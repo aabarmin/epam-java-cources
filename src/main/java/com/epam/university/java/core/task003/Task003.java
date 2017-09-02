@@ -43,6 +43,16 @@ public interface Task003 {
     String[] filter(String[] source, FilteringCondition condition);
 
     /**
+     * Remove elements from source array.
+     *
+     * @param source source array
+     * @param toRemote elements to remove
+     * @return new array without removed elements
+     * @throws IllegalArgumentException if parameters not provided
+     */
+    String[] removeElements(String[] source, String[] toRemote);
+
+    /**
      * Convert source array in accordance with provided operation.
      *
      * @param source source array

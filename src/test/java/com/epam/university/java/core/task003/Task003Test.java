@@ -201,4 +201,31 @@ public class Task003Test {
                 instance.flatMap(source, flatMappingOperation)
         );
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveElementsWithoutArguments() throws Exception {
+        instance.removeElements(null, null);
+    }
+
+    @Test
+    public void testRemoveElements() throws Exception {
+        final String[] source = {
+                "One",
+                "Two",
+                "Three",
+                "Four"
+        };
+        final String[] toRemove = {
+                "Two",
+                "Four"
+        };
+        final String[] target = {
+                "One",
+                "Three"
+        };
+        assertArrayEquals("Error in remove elements operation",
+                target,
+                instance.removeElements(source, toRemove)
+        );
+    }
 }
