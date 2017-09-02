@@ -26,6 +26,6 @@ public class Task001Impl implements Task001 {
     }
 
     private void checkForNull(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null) throw new IllegalArgumentException();
+        if (firstNumber == null || secondNumber == null) {throw new IllegalArgumentException();}
     }
 }
