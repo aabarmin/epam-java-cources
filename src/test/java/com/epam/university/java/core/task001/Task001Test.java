@@ -124,16 +124,17 @@ public class Task001Test {
     }
 
     @Test
-    public void divisionWithNegInf() throws Exception {
+    public void divisionWithPositiveInfinity() throws Exception {
+        final double division = instance.division("  1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithNegativeInfinity() throws Exception {
         final double division = instance.division("  -1  ", "  0  ");
         assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
     }
 
-    @Test
-    public void divisionWithInf() throws Exception {
-        final double division = instance.division("  1  ", "  0  ");
-        assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
-    }
     @Test
     public void division() throws Exception {
         final double division = instance.division(" 5 ", " 2 ");
