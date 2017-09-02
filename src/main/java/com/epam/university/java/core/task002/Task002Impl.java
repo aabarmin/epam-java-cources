@@ -3,9 +3,9 @@ package com.epam.university.java.core.task002;
 public class Task002Impl implements Task002 {
 
     private void checkForNull(Object... objects) {
-        if (objects == null) throw new IllegalArgumentException();
+        if (objects == null) {throw new IllegalArgumentException();}
         for (Object obj : objects) {
-            if (obj == null) throw new IllegalArgumentException();
+            if (obj == null) {throw new IllegalArgumentException();}
         }
     }
 
