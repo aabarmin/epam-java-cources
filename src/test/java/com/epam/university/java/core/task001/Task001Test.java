@@ -25,6 +25,11 @@ public class Task001Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void additionNullOneArgument() throws Exception {
+        instance.addition("5", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void additionEmptyBothArgument() throws Exception {
         instance.addition(" ", " ");
     }
@@ -43,6 +48,11 @@ public class Task001Test {
     @Test(expected = IllegalArgumentException.class)
     public void subtractionNullBothArguments() throws Exception {
         instance.subtraction(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractionNullOneArgument() throws Exception {
+        instance.subtraction("5", null);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -67,6 +77,11 @@ public class Task001Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void multiplicationNullOneArgument() throws Exception {
+        instance.multiplication("5", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void multiplicationEmptyBothArguments() throws Exception {
         instance.multiplication(" ", " ");
     }
@@ -88,6 +103,11 @@ public class Task001Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void divisionNullOneArgument() throws Exception {
+        instance.division("5", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void divisionEmptyBothArguments() throws Exception {
         instance.division(" ", " ");
     }
@@ -99,10 +119,21 @@ public class Task001Test {
 
     @Test
     public void divisionWithNaN() throws Exception {
-        final double division = instance.division("  1  ", "  0  ");
+        final double division = instance.division("  0  ", "  0  ");
         assertEquals("Incorrect division results", Double.NaN, division, DELTA);
     }
 
+    @Test
+    public void divisionWithNegInf() throws Exception {
+        final double division = instance.division("  -1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithInf() throws Exception {
+        final double division = instance.division("  1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
+    }
     @Test
     public void division() throws Exception {
         final double division = instance.division(" 5 ", " 2 ");
