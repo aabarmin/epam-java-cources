@@ -3,9 +3,13 @@ package com.epam.university.java.core.task002;
 public class Task002Impl implements Task002 {
 
     private void checkForNull(Object... objects) {
-        if (objects == null) {throw new IllegalArgumentException();}
+        if (objects == null) {
+            throw new IllegalArgumentException();
+        }
         for (Object obj : objects) {
-            if (obj == null) {throw new IllegalArgumentException();}
+            if (obj == null) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -18,22 +22,26 @@ public class Task002Impl implements Task002 {
     @Override
     public String left(String sourceString, int number) {
         checkForNull(sourceString);
-        if (isBordersCorrect(sourceString, number))
+        if (isBordersCorrect(sourceString, number)){
             return sourceString.substring(0, number);
+        }
         return sourceString;
     }
 
     private boolean isBordersCorrect(String sourceString, int number) {
         int length = sourceString.length();
-        if (number < 0) throw new IllegalArgumentException();
+        if (number < 0) {
+            throw new IllegalArgumentException();
+        }
         return length > number;
     }
 
     @Override
     public String right(String sourceString, int number) {
         checkForNull(sourceString);
-        if (isBordersCorrect(sourceString, number))
+        if (isBordersCorrect(sourceString, number)) {
             return sourceString.substring(sourceString.length() - number);
+        }
         return sourceString;
     }
 
