@@ -50,7 +50,7 @@ public class Task002Test {
     public void leftWithNormalAmount() throws Exception {
         assertEquals("Error in left function",
                 "Hello",
-                instance.left("Hegit push origin masterllo, World", 5));
+                instance.left("Hello, World", 5));
     }
 
     @Test
