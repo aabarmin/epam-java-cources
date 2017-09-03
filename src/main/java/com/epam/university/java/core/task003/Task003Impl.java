@@ -1,8 +1,7 @@
 package com.epam.university.java.core.task003;
 
-
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
 
 public class Task003Impl implements Task003 {
     @Override
@@ -66,10 +65,12 @@ public class Task003Impl implements Task003 {
         String[] fullArray = Arrays.stream(source)
                 .flatMap(s -> Arrays.stream(operation.flatMap(s)))
                 .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .sorted()
+                .distinct()
+                .mapToObj(Integer::toString)
                 .toArray(String[]::new);
-        Set<String> set = new TreeSet<>((o1, o2) -> -1 * (new Double(o1).compareTo(Double.parseDouble(o2))));
-        set.addAll(Arrays.asList(fullArray));
-        return set.toArray(new String[set.size()]);
+        return invert(fullArray);
     }
 
     private void checkForNull(Object... objects) {
