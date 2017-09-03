@@ -201,11 +201,13 @@ public class Task003Impl implements Task003 {
         Set<String> mappedSet = new TreeSet<>(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                try {
-                    return Integer.valueOf(o2).compareTo(Integer.valueOf(o1));
-                } catch (NumberFormatException e) {
+
+                if (o1.length() == o2.length()) {
                     return o2.compareTo(o1);
+                } else {
+                    return Integer.valueOf(o2.length()).compareTo(Integer.valueOf(o1.length()));
                 }
+
             }
         });
 
