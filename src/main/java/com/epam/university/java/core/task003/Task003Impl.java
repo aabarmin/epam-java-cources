@@ -1,8 +1,9 @@
 package com.epam.university.java.core.task003;
 
-
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Task003Impl implements Task003 {
     @Override
