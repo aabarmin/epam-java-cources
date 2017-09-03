@@ -40,12 +40,10 @@ public class Task003Impl implements Task003 {
     @Override
     public int findMax(int[] source) {
         checker.check(source);
-        int max = Integer.MIN_VALUE;
+        int max = Arrays.stream(source)
+                .max()
+                .getAsInt();
 
-        for (int element :
-                source) {
-            if (element > max)max = element;
-        }
         return max;
     }
 
@@ -64,10 +62,9 @@ public class Task003Impl implements Task003 {
     public String[] removeElements(String[] source, String[] toRemote) {
         checker.check(source,toRemote);
 
-        List<String> resultList = new ArrayList<>();
-
-        resultList.addAll(Arrays.asList(source));
-        resultList.removeAll(Arrays.asList(toRemote));
+        List<String> resultList = Arrays.stream(source)
+                .filter(n -> !Arrays.asList(toRemote).contains(n))
+                .collect(Collectors.toList());
 
         return resultList.toArray(new String[0]);
     }
