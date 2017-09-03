@@ -6,7 +6,7 @@ public class Task001Impl implements Task001 {
 
         checkForNullBothArguments( firstNumber, secondNumber );
         checkForEmptyBothArguments( firstNumber, secondNumber );
-        return 0;
+        return Double.parseDouble( firstNumber ) + Double.parseDouble( secondNumber );
     }
 
     @Override
@@ -14,7 +14,7 @@ public class Task001Impl implements Task001 {
 
         checkForNullBothArguments( firstNumber, secondNumber );
         checkForEmptyBothArguments( firstNumber, secondNumber );
-        return 0;
+        return Double.parseDouble( firstNumber ) - Double.parseDouble( secondNumber );
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Task001Impl implements Task001 {
 
         checkForNullBothArguments( firstNumber, secondNumber );
         checkForEmptyBothArguments( firstNumber, secondNumber );
-        return 0;
+        return Double.parseDouble( firstNumber ) * Double.parseDouble( secondNumber );
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Task001Impl implements Task001 {
 
         checkForNullBothArguments( firstNumber, secondNumber );
         checkForEmptyBothArguments( firstNumber, secondNumber );
-        return 0;
+        return Double.parseDouble( firstNumber ) / Double.parseDouble( secondNumber );
     }
 
     // (null, null)
