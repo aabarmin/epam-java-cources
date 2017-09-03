@@ -3,6 +3,7 @@ package com.epam.university.java.core.task003;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by ilya on 02.09.17.
@@ -10,16 +11,11 @@ import java.util.List;
 public class FlatMappingOperationImpl implements FlatMappingOperation {
     @Override
     public String[] flatMap(String source) {
-        List<String> stringList = Arrays.asList(source.split(","));
-        List<String> resultList = new ArrayList<>();
-        String[] result = new String[0];
+        List<String> resultList = Arrays.asList(source.split(","))
+                .stream()
+                .map(n -> n.trim())
+                .collect(Collectors.toList());
 
-        for (String string :
-                stringList) {
-            resultList.add(string.trim());
-        }
-
-
-        return resultList.toArray(result);
+        return resultList.toArray(new String[0]);
     }
 }
