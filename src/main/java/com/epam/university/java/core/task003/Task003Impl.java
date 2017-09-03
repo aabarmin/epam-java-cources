@@ -1,6 +1,11 @@
 package com.epam.university.java.core.task003;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
 
 public class Task003Impl implements Task003 {
     /**
@@ -199,7 +204,7 @@ public class Task003Impl implements Task003 {
                 try {
                     return Integer.valueOf(o2).compareTo(Integer.valueOf(o1));
                 } catch (NumberFormatException e) {
-                    return o1.compareTo(o2);
+                    return o2.compareTo(o1);
                 }
             }
         });

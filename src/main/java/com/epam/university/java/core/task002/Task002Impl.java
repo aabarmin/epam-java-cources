@@ -140,19 +140,7 @@ public class Task002Impl implements Task002 {
             throw new IllegalArgumentException();
         }
 
-        if (sourceCollection.length == 0) {
-            return "";
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(sourceCollection[0]);
-
-        for (int i = 1; i < sourceCollection.length; i++) {
-            sb.append(glue);
-            sb.append(sourceCollection[i]);
-        }
-
-        return sb.toString();
+        return String.join(glue, sourceCollection);
 
     }
 }
