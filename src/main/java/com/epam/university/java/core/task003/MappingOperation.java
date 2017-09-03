@@ -12,4 +12,5 @@ public interface MappingOperation {
      * @throws IllegalArgumentException if source string not provided
      */
     String map(String source);
+
 }

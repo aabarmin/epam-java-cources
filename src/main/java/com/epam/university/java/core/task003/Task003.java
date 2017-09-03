@@ -71,4 +71,5 @@ public interface Task003 {
      * @throws IllegalArgumentException if parameters not provided
      */
     String[] flatMap(String[] source, FlatMappingOperation operation);
+
 }
