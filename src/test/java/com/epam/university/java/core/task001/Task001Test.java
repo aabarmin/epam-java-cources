@@ -26,7 +26,7 @@ public class Task001Test {
 
     @Test(expected = IllegalArgumentException.class)
     public void additionEmptyBothArgument() throws Exception {
-        instance.addition(" ", " ");
+        instance.addition("   ", "  ");
     }
 
     @Test(expected = NumberFormatException.class)
@@ -39,7 +39,7 @@ public class Task001Test {
         final double addition = instance.addition(" 2   ", "   2 ");
         assertEquals("Incorrect addition results", 4, addition, DELTA);
     }
-
+//subtraction
     @Test(expected = IllegalArgumentException.class)
     public void subtractionNullBothArguments() throws Exception {
         instance.subtraction(null, null);

@@ -103,6 +103,7 @@ public class Task003Test {
         instance.findMax(null);
     }
 
+
     @Test
     public void testMaxAllDifferent() throws Exception {
         final int[] source = {
