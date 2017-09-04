@@ -58,6 +58,7 @@ public class Task002Test {
         assertEquals("Error is left function", 
                 "Hello, World",
                 instance.left("Hello, World", 50));
+
     }
 
     @Test(expected = IllegalArgumentException.class)
