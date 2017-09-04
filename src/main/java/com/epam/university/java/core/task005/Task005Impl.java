@@ -15,11 +15,11 @@ public class Task005Impl implements Task005 {
     @Override
     public PiHolder findPi(int digits) {
 
-        if (digits <= 0) {
+        if (digits <= 0 || digits > 10) {
             throw new IllegalArgumentException();
         }
 
-        int maxA    = (int) Math.pow(10, digits) - 1;
+        int maxA    = (int) (Math.pow(10, digits) - 1 > Integer.MAX_VALUE ? Integer.MAX_VALUE : Math.pow(10, digits) - 1);
         int b       = (int) Math.pow(10, digits - 1);
 
         double minDiff = 1.0;
