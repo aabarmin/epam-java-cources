@@ -10,7 +10,7 @@ public class Task005Impl implements Task005 {
      *
      * @param digits amount of digits in numbers.
      * @return holder which contains both numbers
-     * @throws IllegalArgumentException if digits less or equals to then zero
+     * @throws IllegalArgumentException if digits less or equals to the zero, or more than ten
      */
     @Override
     public PiHolder findPi(int digits) {
