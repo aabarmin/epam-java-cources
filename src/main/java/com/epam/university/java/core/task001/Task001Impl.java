@@ -30,9 +30,6 @@ public class Task001Impl implements Task001 {
     public double division(String firstNumber, String secondNumber) {
         checkIllegalArgument(firstNumber,secondNumber);
         double[] array = checkParseDouble(firstNumber,secondNumber);
-        if (Double.isInfinite(array[0]/array[1]))
-            return Double.NaN;
-
         return array[0]/array[1];
     }
 
