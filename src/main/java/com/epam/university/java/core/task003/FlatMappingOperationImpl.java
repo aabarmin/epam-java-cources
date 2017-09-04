@@ -3,7 +3,7 @@ package com.epam.university.java.core.task003;
 import java.util.*;
 
 /**
- * Created by nb on 04.09.2017.
+ * FlatMappingOperation implementation.
  */
 public final class FlatMappingOperationImpl implements FlatMappingOperation {
     @Override

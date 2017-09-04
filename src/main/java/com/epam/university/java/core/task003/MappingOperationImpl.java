@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task003;
 
 /**
- * Created by nb on 04.09.2017.
+ * MappingOperation implementation.
  */
 public final class MappingOperationImpl implements MappingOperation {
     @Override
