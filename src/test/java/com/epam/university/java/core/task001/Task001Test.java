@@ -26,7 +26,7 @@ public class Task001Test {
 
     @Test(expected = IllegalArgumentException.class)
     public void additionEmptyBothArgument() throws Exception {
-        instance.addition(" ", " ");
+        instance.addition("   ", "  ");
     }
 
     @Test(expected = NumberFormatException.class)
@@ -39,7 +39,7 @@ public class Task001Test {
         final double addition = instance.addition(" 2   ", "   2 ");
         assertEquals("Incorrect addition results", 4, addition, DELTA);
     }
-
+//subtraction
     @Test(expected = IllegalArgumentException.class)
     public void subtractionNullBothArguments() throws Exception {
         instance.subtraction(null, null);
@@ -99,8 +99,20 @@ public class Task001Test {
 
     @Test
     public void divisionWithNaN() throws Exception {
-        final double division = instance.division("  1  ", "  0  ");
+        final double division = instance.division("  0  ", "  0  ");
         assertEquals("Incorrect division results", Double.NaN, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithPositiveInfinity() throws Exception {
+        final double division = instance.division("  1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithNegativeInfinity() throws Exception {
+        final double division = instance.division("  -1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
     }
 
     @Test
