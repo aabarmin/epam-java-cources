@@ -53,7 +53,6 @@ public class Task001Impl implements Task001 {
     private double[] checkParseDouble(String firstNumber, String secondNumber){
         double a;
         double b;
-
         try {
             a = Double.parseDouble(firstNumber.trim());
             b = Double.parseDouble(secondNumber.trim());
