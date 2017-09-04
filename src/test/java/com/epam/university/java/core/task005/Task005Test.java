@@ -19,45 +19,38 @@ public class Task005Test {
         instance.findPi(0);
     }
 
-    @Test
+    @Test(timeout = 500L)
     public void testFinderWithOneDigit() throws Exception {
         final PiHolder holder = instance.findPi(1);
         assertEquals("First number incorrect", 3, holder.getFirst());
         assertEquals("Second number incorrect", 1, holder.getSecond());
     }
 
-    @Test
+    @Test(timeout = 1000L)
     public void testFinderWithTwoDigit() throws Exception {
         final PiHolder holder = instance.findPi(2);
         assertEquals("First number incorrect", 44, holder.getFirst());
         assertEquals("Second number incorrect", 14, holder.getSecond());
     }
 
-    @Test
+    @Test(timeout = 5000L)
     public void testFinderWithThreeDigit() throws Exception {
         final PiHolder holder = instance.findPi(3);
         assertEquals("First number incorrect", 355, holder.getFirst());
         assertEquals("Second number incorrect", 113, holder.getSecond());
     }
 
-    @Test
+    @Test(timeout = 10000L)
     public void testFinderWithFourDigit() throws Exception {
         final PiHolder holder = instance.findPi(4);
         assertEquals("First number incorrect", 3195, holder.getFirst());
         assertEquals("Second number incorrect", 1017, holder.getSecond());
     }
 
-    @Test
+    @Test(timeout = 15000L)
     public void testFinderWithFiveDigit() throws Exception {
         final PiHolder holder = instance.findPi(5);
         assertEquals("First number incorrect", 99733, holder.getFirst());
         assertEquals("Second number incorrect", 31746, holder.getSecond());
-    }
-
-    // @Test
-    public void testFinderWithSixDigit() throws Exception {
-        final PiHolder holder = instance.findPi(6);
-        assertEquals("First number incorrect", 355, holder.getFirst());
-        assertEquals("Second number incorrect", 113, holder.getSecond());
     }
 }
