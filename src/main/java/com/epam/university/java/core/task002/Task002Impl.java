@@ -6,21 +6,6 @@ package com.epam.university.java.core.task002;
  */
 public final class Task002Impl implements Task002 {
 
-//    public static void main(String[] args) {
-//        Task002 task = new Task002Impl();
-//        final String one = new String("First");
-//        final String two = "First";
-//
-//        System.out.println("".equals(one));
-//        System.out.println("".equals(two));
-//
-//        System.out.println();
-//
-//        System.out.println(task.isEquals(one, two));
-//
-//    }
-
-
     /**
      * * Message for strings not provided error.
      */
