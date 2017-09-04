@@ -23,7 +23,7 @@ public class Task005Impl implements Task005 {
         int b       = (int) Math.pow(10, digits - 1);
 
         double minDiff = 1.0;
-        PiHolder piHolder = new PiHolderImpl(maxA, b);
+        PiHolderImpl piHolder = new PiHolderImpl(maxA, b);
 
         do {
 
@@ -38,7 +38,8 @@ public class Task005Impl implements Task005 {
 
             if (diff < minDiff) {
                 minDiff = diff;
-                piHolder = new PiHolderImpl((int) a, b);
+                piHolder.setFirst((int) a);
+                piHolder.setSecond(b);
             }
 
             b++;

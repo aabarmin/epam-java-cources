@@ -29,4 +29,13 @@ public class PiHolderImpl implements PiHolder {
     public int getSecond() {
         return second;
     }
+
+    protected void setFirst(int first) {
+        this.first = first;
+    }
+
+    protected void setSecond(int second) {
+        this.second = second;
+    }
+
 }
