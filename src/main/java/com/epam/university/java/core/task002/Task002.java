@@ -66,4 +66,6 @@ public interface Task002 {
      * @throws IllegalArgumentException if strings not provided
      */
     String join(String[] sourceCollection, String glue);
+
+
 }
