@@ -32,7 +32,22 @@ public class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] flatMap(String[] source, FlatMappingOperation operation) {
+    public String[] flatMap(String[] source, FlatMappingOperation operation) throws IllegalArgumentException {
+        checkForNullBothArguments( source, operation );
         return new String[0];
     }
+
+
+    // (null, null)
+    private void checkForNullBothArguments(Object firstNumber, Object secondNumber) throws IllegalArgumentException {
+        if( null == firstNumber && null == secondNumber )
+            throw new IllegalArgumentException();
+    }
+
+    // (" ", " ")
+    private void checkForEmptyBothArguments(String firstNumber, String secondNumber) throws IllegalArgumentException {
+        if( firstNumber.equals(" ") && secondNumber.equals(" ") )
+            throw new IllegalArgumentException();
+    }
+
 }
