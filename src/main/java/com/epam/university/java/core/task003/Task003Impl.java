@@ -1,16 +1,23 @@
 package com.epam.university.java.core.task003;
 
-public class Task003Impl implements Task003{
+public class Task003Impl implements Task003 {
     @Override
     public String[] invert(String[] source) {
-        if(source == null){
+        if (source == null) {
             throw new IllegalArgumentException();
         }
-       String[] arr = new String[source.length];
-        for(int i = source.length-1, j=0; i>=0 && j<arr.length ;i--, j++){
-            arr[j]=source[i];
+        for (int i = 0, j = source.length - 1; i < source.length / 2 && j > (source.length - 1) / 2; i++, j--) {
+            String str = source[i];
+            source[i] = source[j];
+            source[j] = str;
         }
-        return arr;
+
+
+        /*String[] arr = new String[source.length];
+        for (int i = source.length - 1, j = 0; i >= 0 && j < arr.length; i--, j++) {
+            arr[j] = source[i];
+        }*/
+        return source;
     }
 
     @Override
