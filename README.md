@@ -20,15 +20,6 @@ epam
 origin
 ```
 
-You can watch list of remotes using `git remote show` command. The result should be like the following:
-
-```
-# git remote show
-
-epam
-origin
-```
-
 **Task execution**
 
 Before you started, pull changes from my repository
