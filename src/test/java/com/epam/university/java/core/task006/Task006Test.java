@@ -23,7 +23,7 @@ public class Task006Test {
         instance = TestHelper.getInstance(Task006.class);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkMeasurementsIsNull() throws Exception {
         instance.resistance(null);
     }
