@@ -19,6 +19,11 @@ public class Task005Test {
         instance.findPi(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFinderWithHundredDigit() throws Exception {
+        instance.findPi(100);
+    }
+
     @Test(timeout = 500L)
     public void testFinderWithOneDigit() throws Exception {
         final PiHolder holder = instance.findPi(1);
@@ -53,4 +58,6 @@ public class Task005Test {
         assertEquals("First number incorrect", 99733, holder.getFirst());
         assertEquals("Second number incorrect", 31746, holder.getSecond());
     }
+
+
 }

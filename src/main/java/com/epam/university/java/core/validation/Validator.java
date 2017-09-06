@@ -1,5 +1,7 @@
 package com.epam.university.java.core.validation;
 
+import java.util.function.Predicate;
+
 /**
  * Created by Александр on 06.09.2017.
  *
@@ -29,6 +31,15 @@ public class Validator {
 
     public void assertMoreZero(Integer num) {
         if (num <= 0) {
+            throw new IllegalArgumentException(String.format(
+                    "Exception in class %s",
+                    targetClass
+            ));
+        }
+    }
+
+    public void validNum(Integer num, Predicate <Integer>p) {
+        if (!p.test(num)) {
             throw new IllegalArgumentException(String.format(
                     "Exception in class %s",
                     targetClass
