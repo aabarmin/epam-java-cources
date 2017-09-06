@@ -28,11 +28,17 @@ public class Task007Impl implements Task007 {
         }
 
         if (first.size() == 0 || second.size() == 0) {
-            return Arrays.asList(0);
+            if (first.size() > 0) {
+                return first;
+            } else if (second.size() > 0) {
+                return second;
+            } else {
+                return Arrays.asList(0);
+            }
         }
 
-        Integer[] result = new Integer[first.size() + second.size()];
-        Arrays.fill(result, 0);
+        int[] resultArray = new int[first.size() + second.size()];
+        Arrays.fill(resultArray, 0);
 
         int powerFirst = first.size();
 
@@ -42,9 +48,9 @@ public class Task007Impl implements Task007 {
 
             for (int secondElement : second) {
 
-                int index = result.length - (powerFirst + powerSecond);
+                int index = resultArray.length - (powerFirst + powerSecond);
 
-                result[index] = result[index] + (firstElement * secondElement);
+                resultArray[index] = resultArray[index] + (firstElement * secondElement);
 
                 powerSecond--;
 
@@ -54,7 +60,23 @@ public class Task007Impl implements Task007 {
 
         }
 
-        return Arrays.asList(result);
+        Collection<Integer> result = new ArrayList<>();
+
+        for (int resultElement : resultArray) {
+
+            if (result.isEmpty() && resultElement == 0) {
+                continue;
+            }
+
+            result.add(resultElement);
+
+        }
+
+        if (result.isEmpty()) {
+            result.add(0);
+        }
+
+        return result;
 
     }
 }

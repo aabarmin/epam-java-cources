@@ -44,6 +44,7 @@ public class Task006Impl implements Task006 {
 
         // Hence find maximum likelihood estimators.
         double a = Sxy / Sxx;
+
         a = Double.isNaN(a) ? 0.0 : a;
         a = Math.round(a * 1000.0) / 1000.0;
 
