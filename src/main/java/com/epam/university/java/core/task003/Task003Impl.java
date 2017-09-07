@@ -3,8 +3,6 @@ package com.epam.university.java.core.task003;
 import com.epam.university.java.core.task001.Task001Impl;
 
 import java.util.*;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 
 public class Task003Impl implements Task003 {
     @Override
