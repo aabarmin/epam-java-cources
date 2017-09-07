@@ -1,9 +1,8 @@
 package com.epam.university.java.core.task007;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Task007Impl implements Task007 {
     /**
@@ -60,7 +59,25 @@ public class Task007Impl implements Task007 {
 
         }
 
-        return IntStream.of(resultArray).boxed().collect(Collectors.toList());
+        // for situation where first or second equals [0]
+
+        Collection<Integer> result = new ArrayList<>(resultArray.length);
+
+        for (int resultElement : resultArray) {
+
+            if (result.isEmpty() && resultElement == 0) {
+                continue;
+            }
+
+            result.add(resultElement);
+
+        }
+
+        if (result.isEmpty()) {
+            result.add(0);
+        }
+
+        return result;
 
     }
 }
