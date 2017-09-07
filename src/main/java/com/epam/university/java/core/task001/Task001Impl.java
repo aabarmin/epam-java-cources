@@ -3,8 +3,7 @@ package com.epam.university.java.core.task001;
 import com.epam.university.java.core.utils.Validator;
 
 public class Task001Impl implements Task001 {
-    public static final String errorMessageForFirstParameterIfNull = "first number can't be null";
-    public static final String errorMessageForSecondParameterIfNull = "second number can't be null";
+
     public static final String errorMessageForFirstParameterIfLengthNull =
             "first number's length can't be null";
     public static final String errorMessageForSecondParameterIfLengthNull =
@@ -17,7 +16,7 @@ public class Task001Impl implements Task001 {
     @Override
     public double addition(String firstNumber, String secondNumber) {
         Validator.validateValueAndLengthNotNull(firstNumber, secondNumber,
-                errorMessageForFirstParameterIfNull, errorMessageForSecondParameterIfNull,
+                Validator.messageForFirstParameterIfNull, Validator.messageForSecondParameterIfNull,
                 errorMessageForFirstParameterIfLengthNull, errorMessageForSecondParameterIfLengthNull);
         double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
                 firstNumberMessageForNumberFormatException, secondNumberMessageForNumberFormatException);
@@ -27,7 +26,7 @@ public class Task001Impl implements Task001 {
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
         Validator.validateValueAndLengthNotNull(firstNumber, secondNumber,
-                errorMessageForFirstParameterIfNull, errorMessageForSecondParameterIfNull,
+                Validator.messageForFirstParameterIfNull, Validator.messageForSecondParameterIfNull,
                 errorMessageForFirstParameterIfLengthNull, errorMessageForSecondParameterIfLengthNull);
         double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
                 firstNumberMessageForNumberFormatException, secondNumberMessageForNumberFormatException);
@@ -37,7 +36,7 @@ public class Task001Impl implements Task001 {
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
         Validator.validateValueAndLengthNotNull(firstNumber, secondNumber,
-                errorMessageForFirstParameterIfNull, errorMessageForSecondParameterIfNull,
+                Validator.messageForFirstParameterIfNull, Validator.messageForSecondParameterIfNull,
                 errorMessageForFirstParameterIfLengthNull, errorMessageForSecondParameterIfLengthNull);
         double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
                 firstNumberMessageForNumberFormatException, secondNumberMessageForNumberFormatException);
@@ -47,7 +46,7 @@ public class Task001Impl implements Task001 {
     @Override
     public double division(String firstNumber, String secondNumber) {
         Validator.validateValueAndLengthNotNull(firstNumber, secondNumber,
-                errorMessageForFirstParameterIfNull, errorMessageForSecondParameterIfNull,
+                Validator.messageForFirstParameterIfNull, Validator.messageForSecondParameterIfNull,
                 errorMessageForFirstParameterIfLengthNull, errorMessageForSecondParameterIfLengthNull);
         double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
                 firstNumberMessageForNumberFormatException, secondNumberMessageForNumberFormatException);

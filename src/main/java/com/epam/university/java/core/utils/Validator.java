@@ -1,6 +1,10 @@
 package com.epam.university.java.core.utils;
 
 public class Validator {
+    public static final String messageForFirstParameterIfNull = "first parameter can't be null";
+    public static final String messageForSecondParameterIfNull = "second parameter can't be null";
+    public static final String messageForSourceIfNull = "source can't be null";
+
     public static void validateNotNull(Object firstParameter, Object secondParameter,
                                        String messageForFirstParameterIfNull,
                                        String messageForSecondParameterIfNull) {
