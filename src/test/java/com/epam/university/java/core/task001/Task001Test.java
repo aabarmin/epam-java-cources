@@ -99,8 +99,20 @@ public class Task001Test {
 
     @Test
     public void divisionWithNaN() throws Exception {
+        final double division = instance.division("  0  ", "  0  ");
+        assertEquals("Incorrect division results", Double.NaN, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithPositiveInfinity() throws Exception {
         final double division = instance.division("  1  ", "  0  ");
         assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithNegativeInfinity() throws Exception {
+        final double division = instance.division("  -1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
     }
 
     @Test
