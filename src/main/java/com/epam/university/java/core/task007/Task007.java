@@ -9,11 +9,11 @@ public interface Task007 {
     /**
      * Multiply polynomials. Each collection contains coefficients near i-th member, ex:
      *
-     * 3x^3 + 2x^2 - 5x corresponds to collection [3, 2, -5]
+     * 3x^3 + 2x^2 - 5x corresponds to collection [3, 2, -5, 0]
      *
      * Task is to multiply two polynomials: ex:
      *
-     * (3x^3 + 2x^2 - 5x) * (4x^4 + 2x^2) == multiplyPolynomial([3, 2, -5], [4, 0, 2, 0])
+     * (3x^3 + 2x^2 - 5x) * (4x^4 + 2x^2) == multiplyPolynomial([3, 2, -5, 0], [4, 0, 2, 0, 0])
      *
      * If polynomial is degenerating to zero, return [0]
      *
