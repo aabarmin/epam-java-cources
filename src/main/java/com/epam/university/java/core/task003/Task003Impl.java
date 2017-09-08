@@ -24,6 +24,7 @@ public class Task003Impl implements Task003 {
         String[] result = new String[size];
 
         System.arraycopy(first, 0, result, 0, first.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
 
         return result;
     }
@@ -65,7 +66,7 @@ public class Task003Impl implements Task003 {
         List<String> sourceList = Arrays.asList(source);
         List<String> removeList = Arrays.asList(toRemote);
 
-        List<String> result = new ArrayList(sourceList);
+        List<String> result = new ArrayList<>(sourceList);
         result.removeAll(removeList);
 
         return result.toArray(new String[0]);
@@ -97,10 +98,10 @@ public class Task003Impl implements Task003 {
             }
         }
 
-        List<Integer> sortedList = new ArrayList(intSet);
+        List<Integer> sortedList = new ArrayList<>(intSet);
         sortedList.sort(Collections.reverseOrder());
 
-        List<String> result = new ArrayList();
+        List<String> result = new ArrayList<>();
 
         for (int i : sortedList) {
             result.add(String.valueOf(i));
