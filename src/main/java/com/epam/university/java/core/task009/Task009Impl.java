@@ -8,7 +8,10 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
         Set<String> result = new HashSet<>();
         try (Scanner fileInput = new Scanner(sourceFile)) {
-            result.addAll(Arrays.asList(fileInput.nextLine().toLowerCase().split(" ")));
+            do {
+                result.addAll(Arrays.asList(fileInput.nextLine().toLowerCase().split("[ .,!?/'()]+")));
+            }
+            while (fileInput.hasNext());
         } catch (Exception e) {
             System.out.println("Unable to open file");
         }
