@@ -14,7 +14,7 @@ public interface Task005 {
      *
      * @param digits amount of digits in numbers.
      * @return holder which contains both numbers
-     * @throws IllegalArgumentException if digits less or equals to then zero
+     * @throws IllegalArgumentException if digits less or equals to the zero, or more than ten
      */
     PiHolder findPi(int digits);
 }
