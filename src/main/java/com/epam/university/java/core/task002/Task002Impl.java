@@ -4,7 +4,7 @@ public class Task002Impl implements  Task002{
 
     @Override
     public boolean isEquals(String firstString, String secondString) {
-        if (firstString==null | secondString==null){
+        if (firstString == null || secondString == null){
             throw new IllegalArgumentException();
         }
 
@@ -13,11 +13,11 @@ public class Task002Impl implements  Task002{
 
     @Override
     public String left(String sourceString, int number) {
-        if (sourceString==null ||number<0) {
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
-        if (number>sourceString.length()){
-            number=sourceString.length();
+        if (number > sourceString.length()){
+            number = sourceString.length();
         }
 
         return sourceString.substring(0,number);
@@ -25,13 +25,13 @@ public class Task002Impl implements  Task002{
 
     @Override
     public String right(String sourceString, int number) {
-        if (sourceString==null ||number<0) {
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
-        if (number>=sourceString.length()){
-            number=sourceString.length();
+        if (number >= sourceString.length()){
+            number = sourceString.length();
         }
-        int leftIndex= sourceString.length()-number;
+        int leftIndex = sourceString.length()-number;
         int rightIndex = sourceString.length();
 
 
@@ -40,7 +40,7 @@ public class Task002Impl implements  Task002{
 
     @Override
     public String left(String sourceString, String separator) {
-        if (sourceString==null) {
+        if (sourceString == null) {
             throw new IllegalArgumentException();
         }
 
@@ -49,17 +49,17 @@ public class Task002Impl implements  Task002{
 
     @Override
     public String right(String sourceString, String separator) {
-        if (sourceString==null) {
+        if (sourceString == null) {
             throw new IllegalArgumentException();
         }
-        int leftIndex =sourceString.lastIndexOf(separator)+separator.length();
+        int leftIndex = sourceString.lastIndexOf(separator) + separator.length();
 
         return sourceString.substring(leftIndex,sourceString.length());
     }
 
     @Override
     public String[] split(String sourceString, String split) {
-        if (sourceString==null || split == null) {
+        if (sourceString == null || split == null) {
             throw  new IllegalArgumentException();
         }
         return sourceString.split(split);
@@ -67,7 +67,7 @@ public class Task002Impl implements  Task002{
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        if (sourceCollection==null|| sourceCollection.length==0 || glue == null) {
+        if (sourceCollection == null|| sourceCollection.length == 0 || glue == null) {
             throw  new IllegalArgumentException();
         }
         return String.join(glue,sourceCollection);
