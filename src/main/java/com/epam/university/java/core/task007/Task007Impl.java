@@ -59,13 +59,10 @@ public class Task007Impl implements Task007 {
         Collection<Integer> result = new ArrayList<>(resultArray.length);
 
         for (int resultElement : resultArray) {
-
             if (result.isEmpty() && resultElement == 0) {
                 continue;
             }
-
             result.add(resultElement);
-
         }
 
         if (result.isEmpty()) {
