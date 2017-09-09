@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
@@ -23,8 +24,8 @@ public class Task009Test {
 
     @Test
     public void countWords() throws Exception {
-        final String filePath = getClass().getResource("/task009/words.txt").getFile();
-        final File file = new File(filePath);
+        final URI fileURI = getClass().getResource("/task009/words.txt").toURI();
+        final File file = new File(fileURI);
 
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
