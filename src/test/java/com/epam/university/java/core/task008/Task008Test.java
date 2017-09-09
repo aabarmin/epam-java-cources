@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
  */
@@ -26,12 +27,6 @@ public class Task008Test {
     @Test
     public void bracesIncorrect() throws Exception {
         final String source = "(1 + [2) + 3 - 4]";
-        assertFalse("Error in incorrect braces", instance.isValid(source));
-    }
-
-    @Test
-    public void bracesSuperIncorrect() throws Exception {
-        final String source = ")1 + 2( * {}-3] - 4(";
         assertFalse("Error in incorrect braces", instance.isValid(source));
     }
 

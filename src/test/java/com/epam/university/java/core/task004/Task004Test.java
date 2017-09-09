@@ -1,15 +1,13 @@
 package com.epam.university.java.core.task004;
 
 import com.epam.university.java.core.helper.TestHelper;
-//<<<<<<< HEAD
+
 //import javafx.concurrent.Task;
-//=======
-//import javafx.concurrent.Task;
-//>>>>>>> ca6d1801871b4ae17047a44d959ddebddd1709df
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class Task004Test {
     private Task004 instance;
@@ -124,6 +122,7 @@ public class Task004Test {
         };
         final String[] second = {};
         final String[] target = {
+                "",
                 ""
         };
         assertArrayEquals("Error in union operation",

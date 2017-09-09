@@ -5,10 +5,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+
 import java.io.InputStream;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
+
+import java.net.URI;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
@@ -28,7 +35,6 @@ public class Task009Test {
         final File file = new File(filePath);
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
-                62,
-                words.size());
+                62,words.size());
     }
 }
