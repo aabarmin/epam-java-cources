@@ -23,15 +23,6 @@ public interface Task002 {
     String left(String sourceString, int number);
 
     /**
-     * Get most right @{number} of symbols.
-     * @param sourceString source string
-     * @param number amount of symbols to return
-     * @return new string
-     * @throws IllegalArgumentException if string not provided or number less then zero
-     */
-    String right(String sourceString, int number);
-
-    /**
      * Get the characters before separator.
      * @param sourceString source string
      * @param separator separator
@@ -39,6 +30,15 @@ public interface Task002 {
      * @throws IllegalArgumentException if strings not provided
      */
     String left(String sourceString, String separator);
+
+    /**
+     * Get most right @{number} of symbols.
+     * @param sourceString source string
+     * @param number amount of symbols to return
+     * @return new string
+     * @throws IllegalArgumentException if string not provided or number less then zero
+     */
+    String right(String sourceString, int number);
 
     /**
      * Get the characters after separator.
@@ -59,7 +59,7 @@ public interface Task002 {
     String[] split(String sourceString, String split);
 
     /**
-     * Connect array of strings with glue
+     * Connect array of strings with glue.
      * @param sourceCollection collection of strings
      * @param glue glue character
      * @return result string
