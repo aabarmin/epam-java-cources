@@ -38,7 +38,6 @@ public class Task007Impl implements Task007 {
         }
 
         int[] resultArray = new int[first.size() + second.size()];
-
         int powerFirst = first.size();
 
         for (int firstElement : first) {
@@ -46,13 +45,9 @@ public class Task007Impl implements Task007 {
             int powerSecond = second.size();
 
             for (int secondElement : second) {
-
                 int index = resultArray.length - (powerFirst + powerSecond);
-
                 resultArray[index] = resultArray[index] + (firstElement * secondElement);
-
                 powerSecond--;
-
             }
 
             powerFirst--;
