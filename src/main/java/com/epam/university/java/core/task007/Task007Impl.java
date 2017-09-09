@@ -13,9 +13,6 @@ import java.util.stream.IntStream;
 public class Task007Impl implements Task007 {
     NullChecker checker = new SimpleNullChecker();
 
-    int j;
-    int index;
-
     @Override
     public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
         checker.check(first,second);
