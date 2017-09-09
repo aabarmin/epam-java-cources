@@ -23,9 +23,18 @@ public class Task007Impl implements Task007 {
         IntStream.range(0,first.size())
                 .map(index -> {
                     Integer e = integersFirst[index];
-                    multiplicationInSecond(result, integersSecond, index, e);
+                    IntStream.range(index, index + integersSecond.length)
+                            .map(ind -> {
+                                Integer i = integersSecond[ind- index];
+                                if(result.containsKey(ind)){
+                                    result.put(ind, result.get(ind).intValue()+i* e);
+                                }else{
+                                    result.put(ind,i* e);
+                                }
+                                return ind;
+                            }).count();
                     return index;
-                }).count();
+                }).boxed().count();
 
         List<Integer> resList = new ArrayList<>();
 
@@ -33,19 +42,6 @@ public class Task007Impl implements Task007 {
         resList.add(0);
 
         return resList;
-    }
-
-    private void multiplicationInSecond(Map<Integer, Integer> result, Integer[] integersSecond, int index, Integer e) {
-        IntStream.range(index,index+integersSecond.length)
-                .map(ind -> {
-                    Integer i = integersSecond[ind-index];
-                    if(result.containsKey(ind)){
-                        result.put(ind,result.get(ind).intValue()+i*e);
-                    }else{
-                        result.put(ind,i*e);
-                    }
-                    return ind;
-                }).count();
     }
 
 }
