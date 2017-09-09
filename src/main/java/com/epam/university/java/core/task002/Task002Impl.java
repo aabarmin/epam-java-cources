@@ -4,24 +4,19 @@ import com.epam.university.java.core.utils.Validator;
 
 public class Task002Impl implements Task002 {
 
-    public static final String errorMessageForSourceIfLengthNull = "source's length can't be null";
-    public static final String errorMessageIfNegative = "number should be positive";
-    public static final String errorMessageForSeparatorIfNull = "separator can't be null";
-    public static final String errorMessageForSeparatorIfLengthNull = "separator's length can't be null";
-    public static final String errorMessageForGlueIfNull = "glue string can't be null";
-
     @Override
     public boolean isEquals(String firstString, String secondString) {
         Validator.validateNotNull(firstString, secondString,
-                Validator.messageForFirstParameterIfNull, Validator.messageForSecondParameterIfNull);
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         return firstString.equals(secondString);
     }
 
     @Override
     public String left(String sourceString, int number) {
-        Validator.validateValueAndLengthNotNull(sourceString, Validator.messageForSourceIfNull,
-                errorMessageForSourceIfLengthNull);
-        Validator.validateNotNegative(number, errorMessageIfNegative);
+        Validator.validateValueAndLengthNotNull(sourceString, Validator.MESSAGE_FOR_SOURCE_IF_NULL,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL);
+        Validator.validateNotNegative(number, Validator.MESSAGE_IF_NEGATIVE);
         if (sourceString.length() < number) {
             return sourceString;
         }
@@ -30,9 +25,9 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String right(String sourceString, int number) {
-        Validator.validateValueAndLengthNotNull(sourceString, Validator.messageForSourceIfNull,
-                errorMessageForSourceIfLengthNull);
-        Validator.validateNotNegative(number, errorMessageIfNegative);
+        Validator.validateValueAndLengthNotNull(sourceString, Validator.MESSAGE_FOR_SOURCE_IF_NULL,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL);
+        Validator.validateNotNegative(number, Validator.MESSAGE_IF_NEGATIVE);
         if (sourceString.length() < number) {
             return sourceString;
         }
@@ -52,15 +47,18 @@ public class Task002Impl implements Task002 {
     @Override
     public String[] split(String sourceString, String stringSeparator) {
         Validator.validateValueAndLengthNotNull(sourceString, stringSeparator,
-                Validator.messageForSourceIfNull, errorMessageForSeparatorIfNull,
-                errorMessageForSourceIfLengthNull, errorMessageForSeparatorIfLengthNull);
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_LENGTH_NULL);
         return sourceString.split(stringSeparator);
     }
 
     @Override
     public String join(String[] sourceArray, String glueString) {
         Validator.validateNotNull(sourceArray, glueString,
-                Validator.messageForSourceIfNull, errorMessageForGlueIfNull);
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         return String.join(glueString, sourceArray);
     }
 }
