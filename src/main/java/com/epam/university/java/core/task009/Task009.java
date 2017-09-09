@@ -35,6 +35,6 @@ public interface Task009 {
 <<<<<<< HEAD
     Collection<String> countWords(File sourceFile) throws IOException;
 =======
-    Collection<String> countWords(File sourceFile);
+    Collection<String> countWords(File sourceFile) throws IOException;
 >>>>>>> cc23fbcfc6c655261c707eb29b8427ea48f7f05b
 }
