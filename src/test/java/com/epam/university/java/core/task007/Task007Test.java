@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Aleksandr_Barmin on 9/6/2017.
