@@ -3,9 +3,9 @@ package com.epam.university.java.core.task007;
 import com.epam.university.java.core.task003.NullChecker;
 import com.epam.university.java.core.task003.SimpleNullChecker;
 
+
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by ilya on 06.09.17.
@@ -20,41 +20,35 @@ public class Task007Impl implements Task007 {
     public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
         checker.check(first,second);
 
-        Collection<HashMap<Integer,Integer>> result = first.stream()
-                .map(n->   {   j++;
-                                    index = j;
-                                    return second.stream()
-                                            .map(e -> e * n)
-                                    .collect(HashMap<Integer,Integer>::new,(m,v)->m.put(getIndex(),v), HashMap::putAll);
-                                }).collect(Collectors.toList());
-        Map<Integer,Integer> resMap = new HashMap<>();
-
-        for (Map<Integer, Integer> map :
-                result) {
-            for (Map.Entry<Integer, Integer> entry :
-                    map.entrySet()) {
-                resMap.merge(entry.getKey(),entry.getValue(),(v1, v2)-> v1 + v2);
-            }
-        }
+        Map<Integer,Integer> result = new HashMap<>();
+        Integer[] integersFirst = first.toArray(new Integer[first.size()]);
+        Integer[] integersSecond = second.toArray(new Integer[second.size()]);
+        IntStream.range(0,first.size())
+                .map(index -> {
+                    Integer e = integersFirst[index];
+                    multiplicationInSecond(result, integersSecond, index, e);
+                    return index;
+                }).count();
 
         List<Integer> resList = new ArrayList<>();
-        for (Map.Entry<Integer, Integer> entry :
-                resMap.entrySet()) {
-                resList.add(entry.getValue());
-        }
 
-
+        result.forEach((k,v) -> resList.add(v));
         resList.add(0);
-
-        System.out.println(resList);
-
 
         return resList;
     }
 
-    private int getIndex(){
-        return index++;
+    private void multiplicationInSecond(Map<Integer, Integer> result, Integer[] integersSecond, int index, Integer e) {
+        IntStream.range(index,index+integersSecond.length)
+                .map(ind -> {
+                    Integer i = integersSecond[ind-index];
+                    if(result.containsKey(ind)){
+                        result.put(ind,result.get(ind).intValue()+i*e);
+                    }else{
+                        result.put(ind,i*e);
+                    }
+                    return ind;
+                }).count();
     }
-
 
 }
