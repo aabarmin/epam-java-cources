@@ -28,7 +28,7 @@ public class Task009Test {
         final File file = new File(fileUri);
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
-                64,
+                62,
                 words.size());
     }
 }
