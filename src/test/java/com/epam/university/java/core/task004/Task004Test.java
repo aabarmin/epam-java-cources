@@ -120,6 +120,7 @@ public class Task004Test {
         };
         final String[] second = {};
         final String[] target = {
+                "",
                 ""
         };
         assertArrayEquals("Error in union operation",
