@@ -30,6 +30,12 @@ public class Task008Test {
     }
 
     @Test
+    public void bracesSuperIncorrect() throws Exception {
+        final String source = ")1 + 2( * {}-3] - 4(";
+        assertFalse("Error in incorrect braces", instance.isValid(source));
+    }
+
+    @Test
     public void emptySourceString() throws Exception {
         assertTrue("Error with empty string", instance.isValid(""));
     }
