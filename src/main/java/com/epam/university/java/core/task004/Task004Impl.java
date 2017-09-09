@@ -17,6 +17,8 @@ public class Task004Impl implements Task004 {
     @Override
     public String[] union(String[] first, String[] second) {
         if (first==null||second==null) throw new IllegalArgumentException();
+        if (first.length==0) return second;
+        if (second.length==0) return first;
         List<String> buffer = new ArrayList<>();
         buffer.addAll(Arrays.asList(first));
         buffer.addAll(Arrays.asList(second));
