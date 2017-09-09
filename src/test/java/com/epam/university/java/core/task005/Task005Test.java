@@ -20,8 +20,8 @@ public class Task005Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFinderWithHundredDigit() throws Exception {
-        instance.findPi(100);
+    public void testFinderWithElevenDigit() throws Exception {
+        instance.findPi(11);
     }
 
     @Test(timeout = 500L)
