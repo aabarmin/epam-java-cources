@@ -36,8 +36,6 @@ public class Task004Impl implements Task004 {
         if (first == null || second == null) {
             throw new IllegalArgumentException();
         }
-        int unionIndex = 0;
-
         String[] firstCopy = Arrays.copyOf(first, first.length);
         String[] secondCopy = Arrays.copyOf(second, second.length);
         String[] intersection = intersection(firstCopy,secondCopy);
@@ -60,14 +58,6 @@ public class Task004Impl implements Task004 {
         for (int i = 0; i < secondCopy.length; i++) {
                 result[resultIndex++] = secondCopy[i];
             }
-
-
-
-
-
-
-
-
         return result;
     }
 }
