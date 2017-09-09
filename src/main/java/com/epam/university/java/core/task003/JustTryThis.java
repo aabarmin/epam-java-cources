@@ -9,11 +9,11 @@ public class JustTryThis implements  FlatMappingOperation {
 
     public int[] sort(int[] generalArray) {
         int minHelp = 0;
-        for (int i = generalArray.length-1; i > 0; i--) {
+        for (int i = generalArray.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (generalArray[j] < generalArray[j+1]) {
-                    minHelp = generalArray[j+1];
-                    generalArray[j+1] = generalArray[j];
+                if (generalArray[j] < generalArray[j + 1]) {
+                    minHelp = generalArray[j + 1];
+                    generalArray[j + 1] = generalArray[j];
                     generalArray[j] = minHelp;
                 }
             }
@@ -28,8 +28,9 @@ public class JustTryThis implements  FlatMappingOperation {
         int i = 0;
         String sourceWithoutSpace = "";
         while (i < strSpace.length) {
-            if (strSpace[i] != " ")
-                sourceWithoutSpace+=strSpace[i];
+            if (!" ".equals(strSpace[i])) {
+                sourceWithoutSpace += strSpace[i];
+            }
             i++;
         }
 
@@ -40,13 +41,14 @@ public class JustTryThis implements  FlatMappingOperation {
 
 
    // @Override
-    public String[] flatMapOsnova(int[] source) {
+    public String[] flatMapBase(int[] source) {
 
 
         String resultString = "";
-        for (int i = 0; i < source.length-1; i++) {
-            if ((source[i] != source[i+1])||(i == source.length-2))
-                resultString = resultString + source[i]+" ";
+        for (int i = 0; i < source.length - 1; i++) {
+            if ((source[i] != source[i + 1])||(i == source.length - 2)) {
+                resultString = resultString + source[i] + " ";
+            }
         }
 
         String[] resultArray = resultString.split(" ");
@@ -56,8 +58,9 @@ public class JustTryThis implements  FlatMappingOperation {
 
 
     public String[] removeElements(String[] source, String[] toRemote) {
-        if (source == null || toRemote == null)
+        if (source == null || toRemote == null) {
             throw new IllegalArgumentException();
+        }
 
         //посчитаю количество элементов массива которые надо удалить
 
@@ -65,8 +68,9 @@ public class JustTryThis implements  FlatMappingOperation {
 
         for (int i = 0; i < toRemote.length; i++) {
             for (int j = 0; j < source.length; j++) {
-                if (source[j].equals(toRemote[i]))
+                if (source[j].equals(toRemote[i])) {
                     countToDelete++;
+                }
             }
         }
         //создаю массив элементов с учетом удаленных
@@ -78,8 +82,9 @@ public class JustTryThis implements  FlatMappingOperation {
         for (int i = 0; i < source.length; i++) {
             indicator = 0;
             for (int j = 0; j < toRemote.length; j++) {
-                if (source[i].equals(toRemote[j]))
-                indicator = 1;
+                if (source[i].equals(toRemote[j])) {
+                    indicator = 1;
+                }
             }
             if (indicator == 0) {
                 result[k] = source[i];
@@ -98,7 +103,7 @@ public class JustTryThis implements  FlatMappingOperation {
         String[] args1 = justTryThis.flatMap(s);
         String[] args2 = justTryThis.flatMap(s1);
         String[] args3 = justTryThis.flatMap(s2);
-        String[] arsgAll = new String[args1.length+args2.length+args3.length];
+        String[] arsgAll = new String[args1.length + args2.length + args3.length];
 
 
         for (int i = 0; i < args1.length; i++) {
@@ -106,11 +111,11 @@ public class JustTryThis implements  FlatMappingOperation {
         }
         int dlinaLastMassiv = args1.length;
         for (int i = 0; i < args2.length; i++) {
-            arsgAll[i+dlinaLastMassiv] = args2[i];
+            arsgAll[i + dlinaLastMassiv] = args2[i];
         }
         dlinaLastMassiv+=args2.length;
         for (int i = 0; i < args3.length; i++) {
-            arsgAll[i+dlinaLastMassiv] = args3[i];
+            arsgAll[i + dlinaLastMassiv] = args3[i];
         }
 
         int[] sourceAnother = new int[arsgAll.length];
@@ -123,7 +128,7 @@ public class JustTryThis implements  FlatMappingOperation {
 
       //  int[] sourceAnother = new int[]{10,10,9,8,7,7,7,6,5,4,3,2,2,1,1};
         justTryThis.sort(sourceAnother);
-        justTryThis.flatMapOsnova(sourceAnother);
+        justTryThis.flatMapBase(sourceAnother);
         int[] sourceToSort = new int[]{1,2,3,4,5,1,2,6,7,7,7,8,10,9};
 
         String[] sourceOne = {
