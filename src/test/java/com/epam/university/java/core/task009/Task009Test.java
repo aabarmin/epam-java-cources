@@ -1,0 +1,34 @@
+package com.epam.university.java.core.task009;
+
+import com.epam.university.java.core.helper.TestHelper;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.Collection;
+
+import static org.junit.Assert.*;
+
+/**
+ * Created by Aleksandr_Barmin on 9/8/2017.
+ */
+public class Task009Test {
+    private Task009 instance;
+
+    @Before
+    public void setUp() throws Exception {
+        instance = TestHelper.getInstance(getClass());
+    }
+
+    @Test
+    public void countWords() throws Exception {
+        final URI fileURI = getClass().getResource("/task009/words.txt").toURI();
+        final File file = new File(fileURI);
+        final Collection<String> words = instance.countWords(file);
+        assertEquals("Error in words count",
+                64,
+                words.size());
+    }
+}
