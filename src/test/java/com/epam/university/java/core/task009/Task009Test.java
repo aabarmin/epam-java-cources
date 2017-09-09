@@ -22,12 +22,13 @@ public class Task009Test {
     }
 
     @Test
+    //I count with my hands here would be 62
     public void countWords() throws Exception {
         final String filePath = getClass().getResource("/task009/words.txt").getFile();
         final File file = new File(filePath);
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
-                64,
+                62,
                 words.size());
     }
 }
