@@ -46,6 +46,7 @@ public class Task006Test {
         measurements.add(new Measurement(4, 2.8));
         measurements.add(new Measurement(5, 3.0));
         //
+
         assertEquals("Error in first measurement",
                 0.165,
                 instance.resistance(measurements),
