@@ -11,9 +11,12 @@ public class Task001Impl implements Task001 {
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_LENGTH_NULL);
-        double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
-                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
-                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
+        double[] doubles = Validator.validateParseDouble(
+                firstNumber, secondNumber,
+                Validator
+                        .MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
+                Validator
+                        .MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
         return doubles[0] + doubles[1];
     }
 
@@ -24,9 +27,12 @@ public class Task001Impl implements Task001 {
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_LENGTH_NULL);
-        double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
-                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
-                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
+        double[] doubles = Validator.validateParseDouble(firstNumber,
+                secondNumber,
+                Validator
+                        .MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
+                Validator
+                        .MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
         return doubles[0] - doubles[1];
     }
 
@@ -37,9 +43,12 @@ public class Task001Impl implements Task001 {
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_LENGTH_NULL);
-        double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
-                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
-                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
+        double[] doubles = Validator.validateParseDouble(firstNumber,
+                secondNumber,
+                Validator
+                        .MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
+                Validator
+                        .MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
         return doubles[0] * doubles[1];
     }
 
@@ -50,9 +59,12 @@ public class Task001Impl implements Task001 {
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_LENGTH_NULL);
-        double[] doubles = Validator.validateParseDouble(firstNumber, secondNumber,
-                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
-                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
+        double[] doubles = Validator.validateParseDouble(firstNumber,
+                secondNumber,
+                Validator
+                        .MESSAGE_FOR_FIRST_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION,
+                Validator
+                        .MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION);
         if ((doubles[0] == 0.0) && (doubles[1] == 0.0)) {
             return Double.NaN;
         }
