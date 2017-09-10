@@ -10,26 +10,32 @@ public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
         List<String> samplesOfBraces = new ArrayList<>(Arrays.asList("{", "}", "(", ")", "[", "]"));
-        List<String> pullOfBraces =Arrays.stream(sourceString.split("")).
-                filter((n)->samplesOfBraces.contains(n)).
-                collect(Collectors.toList());
+        List<String> pullOfBraces = Arrays
+                .stream(sourceString
+                        .split(""))
+                .filter((n) -> samplesOfBraces.contains(n))
+                .collect(Collectors.toList());
         Stack<String> stack = new Stack<>();
-        for (String current:pullOfBraces){
-            if (current.equals("[") || current.equals("(") || current.equals("{")){
+        for (String current:pullOfBraces) {
+            if (current.equals("[") || current.equals("(") || current.equals("{")) {
                 stack.push(current);
                 continue;
             }
-            if (stack.empty()){
+            if (stack.empty()) {
                 return false;
             }
             if (current.equals(")") && !stack.peek().equals("(")
-                    ||(current.equals("}") && !stack.peek().equals("{")
-                    ||current.equals("]") && !stack.peek().equals("["))){
+                    || (current.equals("}") && !stack.peek().equals("{")
+                    || current.equals("]") && !stack.peek().equals("["))) {
                 return false;
+            } else {
+                stack.pop();
             }
-            else stack.pop();
         }
-        if (stack.empty()) return true;
-        else return false;
+        if (stack.empty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
