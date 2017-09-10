@@ -4,8 +4,6 @@ package com.epam.university.java.core.task001;
  * Created by Вера on 06.09.2017.
  */
 public class Task001Impl implements Task001 {
-    double firstDouble;
-    double secondDouble;
 
     @Override
     public double addition(String firstNumber, String secondNumber) {

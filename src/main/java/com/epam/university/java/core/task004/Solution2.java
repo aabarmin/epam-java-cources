@@ -6,21 +6,21 @@
 public class Solution2 {
         public static void main(String[] args) {
             Solution2 solution = new Solution2();
-             String[] firstTry = {
-                "",
-                "",
-                "2",
-                "12",
-                "43"
-
-             };
-
-            String[] secondTry = {"2","9","12","2","9","14","2"};
-//            String[] firstTry = {
-//                    "",
-//                    ""
-//            };
-//            String[] secondTry = {};
+//             String[] firstTry = {
+//                "",
+//                "",
+//                "2",
+//                "12",
+//                "43"
+//
+//             };
+//
+//            String[] secondTry = {"2","9","12","2","9","14","2"};
+            String[] firstTry = {
+                    "",
+                    ""
+            };
+            String[] secondTry = {};
             solution.union23(firstTry, secondTry);
 
         }
