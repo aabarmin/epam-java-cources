@@ -1,17 +1,22 @@
 package com.epam.university.java.core.task008;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Strings and braces.
  */
-public class Task008Impl implements Task008 {
+public final class Task008Impl implements Task008 {
     @Override
-    public boolean isValid(String sourceString) {
-        if (null == sourceString) return false;
-        if ("" == sourceString) return true;
+    public boolean isValid(final String sourceString) {
+        if (null == sourceString) {
+            return false;
+        }
+        if ("".equals(sourceString)) {
+            return true;
+        }
 
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> stack = new ArrayDeque<>();
         try {
             for (int i = 0; i < sourceString.length(); i++) {
                 char currentChar = sourceString.charAt(i);
@@ -25,41 +30,32 @@ public class Task008Impl implements Task008 {
                     case '}':
                         if ('{' == stack.peek()) {
                             stack.pop();
-                        } else {
-
-                            return false;
+                            break;
                         }
-                        break;
+                        return false;
 
                     case ')':
                         if ('(' == stack.peek()) {
                             stack.pop();
-                        } else {
-                            return false;
+                            break;
                         }
-                        break;
+                        return false;
 
                     case ']':
                         if ('[' == stack.peek()) {
                             stack.pop();
-                        } else {
-                            return false;
+                            break;
                         }
-                        break;
+                        return false;
 
                     default:
                         break;
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
 
-        if (stack.empty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return stack.isEmpty();
     }
 }

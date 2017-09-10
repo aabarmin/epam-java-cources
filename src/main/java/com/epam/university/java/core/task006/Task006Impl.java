@@ -7,7 +7,7 @@ import java.util.Collection;
  * Using Least Square method determine value of resistance.
  * Task006 implementation.
  */
-public class Task006Impl implements Task006 {
+public final class Task006Impl implements Task006 {
 
     /**
      * * Message for the case measurements not provided.
@@ -15,8 +15,10 @@ public class Task006Impl implements Task006 {
     private static final String MSG_NO_ARGS = "measurements not provided";
 
     @Override
-    public double resistance(Collection<Measurement> measurements) {
-        if (measurements == null) throw new IllegalArgumentException(MSG_NO_ARGS);
+    public double resistance(final Collection<Measurement> measurements) {
+        if (measurements == null) {
+            throw new IllegalArgumentException(MSG_NO_ARGS);
+        }
 
         double sumVoltage = 0.0;
         double sumAmperage = 0.0;

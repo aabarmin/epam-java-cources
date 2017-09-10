@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task003;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Collections;
 
 /**
  * FlatMappingOperation implementation.

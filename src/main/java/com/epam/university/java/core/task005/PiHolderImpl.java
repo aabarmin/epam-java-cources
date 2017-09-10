@@ -1,9 +1,18 @@
 package com.epam.university.java.core.task005;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * PiHolder implementation.
  */
-public final class PiHolderImpl implements PiHolder {
+
+@Setter
+@Getter
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+final class PiHolderImpl implements PiHolder {
 
     /**
      * numerator.
@@ -14,28 +23,4 @@ public final class PiHolderImpl implements PiHolder {
      * denominator.
      */
     private int second;
-
-    PiHolderImpl(final int first, final int second) {
-        this.first = first;
-        this.second = second;
-    }
-
-    @Override
-    public int getFirst() {
-        return first;
-    }
-
-    @Override
-    public int getSecond() {
-        return second;
-    }
-
-    public void setFirst(final int first) {
-        this.first = first;
-    }
-
-    public void setSecond(final int second) {
-        this.second = second;
-    }
-
 }
