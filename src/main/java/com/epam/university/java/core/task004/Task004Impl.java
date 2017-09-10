@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task004;
 
-import java.util.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Task004Impl implements Task004 {
     /**

@@ -9,10 +9,14 @@ import java.util.Set;
 
 public class Task009Impl implements Task009 {
     /**
-     * Source file contains words which separated with spaces. You need to output all different words. Same
-     * word in upper and lower case should be counted as equal.
+     * Source file contains words which separated with spaces.
      * <p>
-     * Tip: you can use Set for it.
+     *     You need to output all different words.
+     *     Same word in upper and lower case should be counted as equal.
+     * </p>
+     * <p>
+     *     Tip: you can use Set for it.
+     * </p>
      *
      * @param sourceFile source file
      * @return collection of different words
@@ -28,7 +32,7 @@ public class Task009Impl implements Task009 {
 
                 while (sc.hasNext()) {
                     String word = sc.next();
-                    wordsSet.add(word.toLowerCase().replaceAll("[^a-z0-9]",""));
+                    wordsSet.add(word.toLowerCase().replaceAll("[^a-z0-9]", ""));
                 }
 
             }
@@ -37,8 +41,6 @@ public class Task009Impl implements Task009 {
             e.printStackTrace();
 
         }
-
-        System.out.println(wordsSet);
 
         return wordsSet;
 

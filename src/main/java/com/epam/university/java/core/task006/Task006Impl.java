@@ -21,26 +21,26 @@ public class Task006Impl implements Task006 {
             return 0.0;
         }
 
-        double xBar = 0;
-        double yBar = 0;
+        double xbar = 0;
+        double ybar = 0;
 
         for (Measurement measurement : measurements) {
-            xBar += measurement.getAmperage();
-            yBar += measurement.getVoltage();
+            xbar += measurement.getAmperage();
+            ybar += measurement.getVoltage();
         }
 
-        xBar /= measurements.size();
-        yBar /= measurements.size();
+        xbar /= measurements.size();
+        ybar /= measurements.size();
 
-        double sXX = 0;
-        double sXY = 0;
+        double sxx = 0;
+        double sxy = 0;
 
         for (Measurement measurement : measurements) {
-            sXX += (measurement.getAmperage() - xBar) * (measurement.getAmperage() - xBar);
-            sXY += (measurement.getAmperage() - xBar) * (measurement.getVoltage() - yBar);
+            sxx += (measurement.getAmperage() - xbar) * (measurement.getAmperage() - xbar);
+            sxy += (measurement.getAmperage() - xbar) * (measurement.getVoltage() - ybar);
         }
 
-         double resistance = sXY / sXX;
+        double resistance = sxy / sxx;
 
         resistance = Double.isNaN(resistance) ? 0.0 : resistance;
         resistance = Math.round(resistance * 1000.0) / 1000.0;

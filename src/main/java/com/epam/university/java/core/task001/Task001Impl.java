@@ -81,8 +81,7 @@ public class Task001Impl implements Task001 {
 
     }
 
-    private double doubleFromString(String stringNubmer)
-    {
+    private double doubleFromString(String stringNubmer) {
         if (stringNubmer == null) {
             throw new IllegalArgumentException();
         }

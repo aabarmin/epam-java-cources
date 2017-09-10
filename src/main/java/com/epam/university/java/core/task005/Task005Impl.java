@@ -6,7 +6,8 @@ public class Task005Impl implements Task005 {
      * holder values should be between 1 and 9, if digits is equals to 2, values should
      * be between 10 and 99 and so on.
      * <p>
-     * Tip: Math.abs((a / b) - Math.PI) -> min
+     *     Tip: Math.abs((a / b) - Math.PI) -> min
+     * </p>
      *
      * @param digits amount of digits in numbers.
      * @return holder which contains both numbers
@@ -19,8 +20,9 @@ public class Task005Impl implements Task005 {
             throw new IllegalArgumentException();
         }
 
-        int maxA    = (int) (Math.pow(10, digits) - 1 > Integer.MAX_VALUE ? Integer.MAX_VALUE : Math.pow(10, digits) - 1);
-        int b       = (int) Math.pow(10, digits - 1);
+        double max = Math.pow(10, digits) - 1;
+        int maxA =  max > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) max;
+        int b = (int) Math.pow(10, digits - 1);
 
         double minDiff = 1.0;
         PiHolderImpl piHolder = new PiHolderImpl(maxA, b);

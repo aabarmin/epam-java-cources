@@ -41,28 +41,6 @@ public class Task002Impl implements Task002 {
     }
 
     /**
-     * Get most right @{number} of symbols.
-     *
-     * @param sourceString source string
-     * @param number       amount of symbols to return
-     * @return new string
-     * @throws IllegalArgumentException if string not provided or number less then zero
-     */
-    @Override
-    public String right(String sourceString, int number) {
-
-        if ((sourceString == null) || (number < 0)) {
-            throw new IllegalArgumentException();
-        }
-
-        int index = sourceString.length() - number;
-        index = index < 0 ? 0 : index;
-
-        return sourceString.substring(index, sourceString.length());
-
-    }
-
-    /**
      * Get the characters before separator.
      *
      * @param sourceString source string
@@ -81,6 +59,28 @@ public class Task002Impl implements Task002 {
         index = index < 0 ? 0 : index;
 
         return sourceString.substring(0, index);
+
+    }
+
+    /**
+     * Get most right @{number} of symbols.
+     *
+     * @param sourceString source string
+     * @param number       amount of symbols to return
+     * @return new string
+     * @throws IllegalArgumentException if string not provided or number less then zero
+     */
+    @Override
+    public String right(String sourceString, int number) {
+
+        if ((sourceString == null) || (number < 0)) {
+            throw new IllegalArgumentException();
+        }
+
+        int index = sourceString.length() - number;
+        index = index < 0 ? 0 : index;
+
+        return sourceString.substring(index, sourceString.length());
 
     }
 
@@ -126,7 +126,7 @@ public class Task002Impl implements Task002 {
     }
 
     /**
-     * Connect array of strings with glue
+     * Connect array of strings with glue.
      *
      * @param sourceCollection collection of strings
      * @param glue             glue character

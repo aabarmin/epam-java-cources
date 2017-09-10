@@ -5,9 +5,9 @@ public class StackImpl<T> implements Stack<T> {
     Holder<T> holder;
 
     /**
-     * Push new element on top of the stack
+     * Push new element on top of the stack.
      *
-     * @param element
+     * @param element new element for stack to hold
      */
     @Override
     public void push(T element) {
@@ -15,7 +15,7 @@ public class StackImpl<T> implements Stack<T> {
     }
 
     /**
-     * Get element from top of the stack
+     * Get element from top of the stack.
      *
      * @return if where is no elements, return null
      */
