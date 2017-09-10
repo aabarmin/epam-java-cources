@@ -28,7 +28,7 @@ public class Task009Impl implements Task009 {
 
                 while (sc.hasNext()) {
                     String word = sc.next();
-                    wordsSet.add(word.toLowerCase().trim());
+                    wordsSet.add(word.toLowerCase().replaceAll("[^a-z0-9]",""));
                 }
 
             }
@@ -37,6 +37,8 @@ public class Task009Impl implements Task009 {
             e.printStackTrace();
 
         }
+
+        System.out.println(wordsSet);
 
         return wordsSet;
 
