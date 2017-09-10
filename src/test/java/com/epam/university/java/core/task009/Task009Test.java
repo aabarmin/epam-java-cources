@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
@@ -24,12 +24,11 @@ public class Task009Test {
 
     @Test
     public void countWords() throws Exception {
-        final URI fileURI = getClass().getResource("/task009/words.txt").toURI();
-        final File file = new File(fileURI);
-
+        final URI fileUri = getClass().getResource("/task009/words.txt").toURI();
+        final File file = new File(fileUri);
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
-                64,
+                62,
                 words.size());
     }
 }

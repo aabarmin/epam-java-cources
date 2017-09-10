@@ -4,7 +4,8 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
