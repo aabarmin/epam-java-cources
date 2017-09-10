@@ -8,8 +8,7 @@ public class Task005Impl implements Task005 {
         if (digits <= 0 || digits > 10) {
             throw new IllegalArgumentException("Digits less or equals to the zero, or more than ten!");
         }
-        //PiHolder numbers = new PiHolderImpl();
-        //numbers.
+        PiHolder numbers = new PiHolderImpl();
         return numbers;
     }
 }
