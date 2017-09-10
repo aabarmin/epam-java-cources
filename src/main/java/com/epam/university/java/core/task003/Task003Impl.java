@@ -215,7 +215,7 @@ public class Task003Impl implements Task003 {
 
             String[] temp = operation.flatMap(source[i]);
 
-            for(String tempString : temp) {
+            for (String tempString : temp) {
                 mappedSet.add(tempString.trim());
             }
 
