@@ -11,7 +11,7 @@ public class Task007Impl implements Task007 {
         Collection<Integer> second) {
         List<Integer> firstPolinomial = new ArrayList<>(first);
         List<Integer> secondPolinomial = new ArrayList<>(second);
-        Integer[] result = new Integer[firstPolinomial.size() + secondPolinomial.size()];
+        Integer[] result = new Integer[firstPolinomial.size() + secondPolinomial.size() - 1];
         Arrays.fill(result, 0);
         for (int i = 0; i < firstPolinomial.size(); i++) {
             for (int j = 0; j < secondPolinomial.size(); j++) {
