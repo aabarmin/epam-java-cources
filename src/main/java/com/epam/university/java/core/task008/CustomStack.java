@@ -6,27 +6,32 @@ public class CustomStack<T> {
 
     private T value;
     private CustomStack<T> nextRow;
-    private CustomStack (T newValue, CustomStack prevRow) {
-        value =newValue;
+
+    private CustomStack(T newValue, CustomStack<T> prevRow) {
+        value = newValue;
         nextRow = prevRow;
     }
-    public CustomStack() {};
+
+    public CustomStack() {
+    }
+
+    ;
 
     public T getValue() {
         return value;
     }
+
     public CustomStack<T> push(T newValue) {
-        return new CustomStack<>(newValue,this);
+        return new CustomStack<>(newValue, this);
     }
-    public CustomStack<T> pop(){
+
+    public CustomStack<T> pop() {
         return nextRow;
     }
-    public boolean hasNext(){
+
+    public boolean hasNext() {
         return nextRow != null;
     }
-
-
-
 
 
 }

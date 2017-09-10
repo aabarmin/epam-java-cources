@@ -3,7 +3,7 @@ package com.epam.university.java.core.task008;
 public class Task008Impl implements Task008 {
 
     /**
-     * Determines is the provided character closing brace or not
+     * Determines is the provided character closing brace or not.
      *
      * @param ch input character
      * @return true if character is closing brace
@@ -13,7 +13,7 @@ public class Task008Impl implements Task008 {
     }
 
     /**
-     * Determines is the provided character opening brace or not
+     * Determines is the provided character opening brace or.
      *
      * @param ch input character
      * @return true if character is opening brace
@@ -23,13 +23,14 @@ public class Task008Impl implements Task008 {
     }
 
     /**
-     * Determines whether there are unclosed opening braces inside the braces, ending with closing brace {@code str}.
+     * Determines whether there are unclosed opening braces inside
+     * the braces, ending with closing brace {@code str}.
      *
      * @param stack stack of previously processed braces.
      * @param str   closing brace.
      * @return true if braces has not unclosed opening braces inside
      */
-    private boolean hasNotUnclosedOpeningBraceInside(CustomStack<String> stack, String str) {
+    private boolean hasNotUnclosedOpBraceInside(CustomStack<String> stack, String str) {
         int cntRound = 0;
         int cntSquare = 0;
         int cntBrace = 0;
@@ -59,6 +60,9 @@ public class Task008Impl implements Task008 {
                     cntSquare += 1;
                     break;
                 }
+                default: {
+                    break;
+                }
             }
             if (cntRound == -1 && ")".equals(str) && cntSquare == 0 && cntBrace == 0) {
                 return true;
@@ -80,7 +84,8 @@ public class Task008Impl implements Task008 {
         for (int i = 0; i < sourceString.length(); i++) {
 
             if (isClosingBrace(sourceString.charAt(i))) {
-                if (hasNotUnclosedOpeningBraceInside(stack, String.valueOf(sourceString.charAt(i)))) {
+                if (hasNotUnclosedOpBraceInside(stack,
+                                                String.valueOf(sourceString.charAt(i)))) {
                     stack = stack.push(String.valueOf(sourceString.charAt(i)));
                 } else {
                     return false;
