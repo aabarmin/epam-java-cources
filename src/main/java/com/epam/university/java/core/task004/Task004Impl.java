@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task004;
 
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -58,21 +59,11 @@ public class Task004Impl implements Task004 {
             return new String[0];
         }
 
-        String[] union = new String[first.length + second.length];
+        Set<String> unionSet = new LinkedHashSet<>();
+        unionSet.addAll(Arrays.asList(first));
+        unionSet.addAll(Arrays.asList(second));
 
-        int x = 0;
-
-        for (int i = 0; i < first.length; i++) {
-            union[i + x] = first[i];
-        }
-
-        x = x + first.length;
-
-        for (int i = 0; i < second.length; i++) {
-            union[i + x] = second[i];
-        }
-
-        return union;
+        return unionSet.toArray(new String[unionSet.size()]);
 
     }
 }
