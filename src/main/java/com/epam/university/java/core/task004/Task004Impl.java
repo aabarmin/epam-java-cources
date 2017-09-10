@@ -16,10 +16,10 @@ public class Task004Impl implements Task004 {
         for (int i = 0; i < firstCopy.length; i++) {
             for (int j = 0; j < secondCopy.length; j++) {
                 if (firstCopy[i] != null && secondCopy[j] != null) {
-                    if (firstCopy[i].equals(secondCopy[j])){
-                        preResult[intersectIndex++]=firstCopy[i];
-                        firstCopy[i]=null;
-                        secondCopy[j]=null;
+                    if (firstCopy[i].equals(secondCopy[j])) {
+                        preResult[intersectIndex++] = firstCopy[i];
+                        firstCopy[i] = null;
+                        secondCopy[j] = null;
                     }
 
                 }
@@ -38,9 +38,9 @@ public class Task004Impl implements Task004 {
         }
         String[] firstCopy = Arrays.copyOf(first, first.length);
         String[] secondCopy = Arrays.copyOf(second, second.length);
-        String[] intersection = intersection(firstCopy,secondCopy);
-        String[] result = new String [firstCopy.length+secondCopy.length-intersection.length];
-        int resultIndex=0;
+        String[] intersection = intersection(firstCopy, secondCopy);
+        String[] result = new String[firstCopy.length + secondCopy.length - intersection.length];
+        int resultIndex = 0;
         for (int i = 0; i < firstCopy.length; i++) {
             for (int j = 0; j < intersection.length; j++) {
                 if (intersection[j] != null) {
@@ -56,8 +56,8 @@ public class Task004Impl implements Task004 {
             }
         }
         for (int i = 0; i < secondCopy.length; i++) {
-                result[resultIndex++] = secondCopy[i];
-            }
+            result[resultIndex++] = secondCopy[i];
+        }
         return result;
     }
 }
