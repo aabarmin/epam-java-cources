@@ -24,12 +24,8 @@ public class Task003Impl implements Task003 {
             throw new IllegalArgumentException();
         }
         String[] output = new String[first.length + second.length];
-        for (int i = 0; i < first.length; i++) {
-            output[i] = first[i];
-        }
-        for (int i = 0; i < second.length; i++) {
-            output[first.length + i] = second[i];
-        }
+        System.arraycopy(first, 0, output, 0, first.length);
+        System.arraycopy(second, 0, output, first.length, second.length);
         return output;
     }
 
@@ -58,9 +54,7 @@ public class Task003Impl implements Task003 {
             }
         }
         String[] finalOutput = new String[outputIndex];
-        for (int i = 0; i < finalOutput.length; i++) {
-            finalOutput[i] = output[i];
-        }
+        System.arraycopy(output, 0, finalOutput, 0, finalOutput.length);
         return finalOutput;
     }
 
@@ -71,22 +65,20 @@ public class Task003Impl implements Task003 {
         }
         String[] output = new String[source.length];
         int outputIndex = 0;
-        for (int i = 0; i < source.length; i++) {
+        for (String aSource : source) {
             boolean isToRemote = false;
-            for (int j = 0; j < toRemote.length; j++) {
-                if (source[i].equals(toRemote[j])) {
+            for (String aToRemote : toRemote) {
+                if (aSource.equals(aToRemote)) {
                     isToRemote = true;
                     break;
                 }
             }
             if (!isToRemote) {
-                output[outputIndex++] = source[i];
+                output[outputIndex++] = aSource;
             }
         }
         String[] finalOutput = new String[outputIndex];
-        for (int i = 0; i < finalOutput.length; i++) {
-            finalOutput[i] = output[i];
-        }
+        System.arraycopy(output, 0, finalOutput, 0, finalOutput.length);
         return finalOutput;
     }
 
@@ -119,7 +111,6 @@ public class Task003Impl implements Task003 {
         for (int i = 0; i < tempArrayOfString.length; i++) {
             intSource[i] = Integer.valueOf(tempArrayOfString[i]);
         }
-
         for (int i = 1; i < intSource.length; i++) {
             for (int j = i; j >= 1; j--) {
                 if (intSource[j] > intSource[j-1]) {
