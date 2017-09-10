@@ -92,6 +92,8 @@ public class Task004Test {
                 "One",
                 "Two",
                 "Three",
+                "Two",
+                "Three",
                 "Four"
         };
         assertArrayEquals("Error in union operation",
