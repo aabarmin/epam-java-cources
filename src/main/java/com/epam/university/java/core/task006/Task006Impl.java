@@ -14,7 +14,7 @@ public class Task006Impl implements Task006 {
 
         double avVoltage = 0.0;
         double avAmperage = 0.0;
-        for(Measurement m : measurements){
+        for (Measurement m : measurements) {
             avAmperage += m.getAmperage();
             avVoltage += m.getVoltage();
         }

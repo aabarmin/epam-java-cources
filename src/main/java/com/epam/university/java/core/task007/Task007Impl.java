@@ -19,17 +19,16 @@ public class Task007Impl implements Task007 {
                 int index = i + j;
                 int multOfElements = firstArr[i] * secondArr[j];
 
-                if(resultArr[index] != 0){
+                if (resultArr[index] != 0) {
                     resultArr[index] += multOfElements;
-                }
-                else{
+                } else {
                     resultArr[index] = multOfElements;
                 }
             }
         }
 
         List<Integer> list = new ArrayList<>();
-        for(int i : resultArr){
+        for (int i : resultArr) {
             list.add(i);
         }
         return list;

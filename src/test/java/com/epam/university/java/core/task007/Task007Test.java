@@ -32,7 +32,6 @@ public class Task007Test {
         final Collection<Integer> result = Arrays.asList(4, 4, 1, 0);
 
 
-
         assertEquals("Error in first multiplication",
                 result,
                 instance.multiplyPolynomial(first, second)
@@ -45,7 +44,6 @@ public class Task007Test {
         final Collection<Integer> second = Arrays.asList(4, 0, 1);
 
         final Collection<Integer> result = Arrays.asList(8, 0, 2, 12, 0, 3, 0);
-
 
 
         assertEquals("Error in second multiplication",

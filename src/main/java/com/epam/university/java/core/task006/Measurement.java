@@ -8,12 +8,13 @@ public class Measurement {
     private final double voltage;
 
     /**
-<<<<<<< HEAD
-=======
+     * <<<<<<< HEAD
+     * =======
      * Constructor with all parameters.
->>>>>>> 4e9da890e062f06720ea99b50acb0cae9aee500a
+     * >>>>>>> 4e9da890e062f06720ea99b50acb0cae9aee500a
+     *
      * @param amperage amperage value
-     * @param voltage voltage value
+     * @param voltage  voltage value
      */
     public Measurement(double amperage, double voltage) {
         this.amperage = amperage;

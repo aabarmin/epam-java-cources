@@ -37,8 +37,8 @@ public class Task001Impl implements Task001 {
         return firstDouble / secondDouble;
     }
 
-    public static void nullChecker(Object first, Object second){
-        if(first == null || second == null){
+    public static void nullChecker(Object first, Object second) {
+        if (first == null || second == null) {
             throw new IllegalArgumentException();
         }
     }

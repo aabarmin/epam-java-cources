@@ -57,7 +57,7 @@ public class Task002Test {
 
     @Test
     public void leftWithExceedAmount() throws Exception {
-        assertEquals("Error is left function", 
+        assertEquals("Error is left function",
                 "Hello, World",
                 instance.left("Hello, World", 50));
     }

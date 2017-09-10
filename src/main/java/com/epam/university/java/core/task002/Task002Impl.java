@@ -12,28 +12,24 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String left(String sourceString, int number) {
-        if(sourceString == null || number < 0){
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
-        }
-        else if(number > sourceString.length()){
+        } else if (number > sourceString.length()) {
             return sourceString;
-        }
-        else if(number < 0 ){
+        } else if (number < 0) {
             return sourceString;
         }
 
-        return sourceString.substring(0,number);
+        return sourceString.substring(0, number);
     }
 
     @Override
     public String right(String sourceString, int number) {
-        if(sourceString == null || number < 0){
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
-        }
-        else if(number < 0 ){
+        } else if (number < 0) {
             return sourceString;
-        }
-        else if(number > sourceString.length()){
+        } else if (number > sourceString.length()) {
             return sourceString;
         }
 
@@ -46,7 +42,7 @@ public class Task002Impl implements Task002 {
         Task001Impl.nullChecker(sourceString, separator);
         int sepIndex = sourceString.indexOf(separator);
 
-        return sourceString.substring(0,sepIndex);
+        return sourceString.substring(0, sepIndex);
     }
 
     @Override
@@ -66,12 +62,12 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        if(glue == null){
+        if (glue == null) {
             throw new IllegalArgumentException();
         }
         StringBuilder sb = new StringBuilder();
-        for(String element : sourceCollection){
-            if(element == null)
+        for (String element : sourceCollection) {
+            if (element == null)
                 throw new IllegalArgumentException();
             sb.append(element).append(glue);
         }

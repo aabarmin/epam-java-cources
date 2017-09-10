@@ -8,7 +8,7 @@ public class TestHelper {
      * Get instance for testing.
      *
      * @param testClass test class of class to get instance
-     * @param <T> type of class
+     * @param <T>       type of class
      * @return class instance
      * @throws Exception if can't find of create testable class
      */

@@ -15,6 +15,7 @@ public class Task003Test {
 
     /**
      * Prepare environment.
+     *
      * @throws Exception if can't create testable classes
      */
     @Before

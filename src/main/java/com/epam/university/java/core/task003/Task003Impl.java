@@ -7,11 +7,11 @@ import java.util.*;
 public class Task003Impl implements Task003 {
     @Override
     public String[] invert(String[] source) {
-        if(source == null)
+        if (source == null)
             throw new IllegalArgumentException();
 
-        String [] result = new String[source.length];
-        for (int i = source.length - 1, j = 0; i >= 0; i--,j++) {
+        String[] result = new String[source.length];
+        for (int i = source.length - 1, j = 0; i >= 0; i--, j++) {
             result[j] = source[i];
         }
         return result;
@@ -19,10 +19,10 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] join(String[] first, String[] second) {
-        Task001Impl.nullChecker(first,second);
-        String [] result = new String[first.length + second.length];
+        Task001Impl.nullChecker(first, second);
+        String[] result = new String[first.length + second.length];
         int count = 0;
-        while(count < result.length){
+        while (count < result.length) {
             for (int i = 0; i < first.length; i++) {
                 result[count] = first[i];
                 count++;
@@ -37,11 +37,11 @@ public class Task003Impl implements Task003 {
 
     @Override
     public int findMax(int[] source) {
-        if(source == null)
+        if (source == null)
             throw new IllegalArgumentException();
         int max = source[0];
         for (int i = 1; i < source.length; i++) {
-            if(max < source[i])
+            if (max < source[i])
                 max = source[i];
         }
 
@@ -54,7 +54,7 @@ public class Task003Impl implements Task003 {
 
         List<String> resultList = new ArrayList<>();
         for (int i = 0; i < source.length; i++) {
-            if(condition.isValid(source[i]))
+            if (condition.isValid(source[i]))
                 resultList.add(source[i]);
         }
         return resultList.toArray(new String[resultList.size()]);
@@ -67,13 +67,12 @@ public class Task003Impl implements Task003 {
         boolean isDuplicate = false;
         for (int i = 0; i < source.length; i++) {
             for (int j = 0; j < toRemote.length; j++) {
-                if(source[i].equals(toRemote[j]))
+                if (source[i].equals(toRemote[j]))
                     isDuplicate = true;
             }
-            if(!isDuplicate){
+            if (!isDuplicate) {
                 listResult.add(source[i]);
-            }
-            else
+            } else
                 isDuplicate = false;
         }
         return listResult.toArray(new String[listResult.size()]);
@@ -95,11 +94,11 @@ public class Task003Impl implements Task003 {
         Set<String> stringSet = new TreeSet<>(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-               int result = o1.length() - o2.length();
+                int result = o1.length() - o2.length();
                 return result == 0 ? o1.compareTo(o2) : result;
             }
         });
-        for(String s : source){
+        for (String s : source) {
             String[] temp = operation.flatMap(s);
             stringSet.addAll(Arrays.asList(temp));
         }

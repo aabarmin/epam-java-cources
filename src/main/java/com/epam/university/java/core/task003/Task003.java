@@ -16,7 +16,7 @@ public interface Task003 {
     /**
      * Join two arrays.
      *
-     * @param first first array
+     * @param first  first array
      * @param second second array
      * @return new array which contains items from first and second arrays
      * @throws IllegalArgumentException if arrays not provided
@@ -35,7 +35,7 @@ public interface Task003 {
     /**
      * Filter array elements in accordance with condition.
      *
-     * @param source source array
+     * @param source    source array
      * @param condition condition instance
      * @return filtered array
      * @throws IllegalArgumentException if array or condition not provided
@@ -45,7 +45,7 @@ public interface Task003 {
     /**
      * Remove elements from source array.
      *
-     * @param source source array
+     * @param source   source array
      * @param toRemote elements to remove
      * @return new array without removed elements
      * @throws IllegalArgumentException if parameters not provided
@@ -55,7 +55,7 @@ public interface Task003 {
     /**
      * Convert source array in accordance with provided operation.
      *
-     * @param source source array
+     * @param source    source array
      * @param operation operation instance
      * @return converted array
      * @throws IllegalArgumentException if parameters not provided
@@ -65,7 +65,7 @@ public interface Task003 {
     /**
      * Convert source array in accordance with provided operation.
      *
-     * @param source source array
+     * @param source    source array
      * @param operation operation instance
      * @return converted array
      * @throws IllegalArgumentException if parameters not provided
