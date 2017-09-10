@@ -2,7 +2,6 @@ package com.epam.university.java.core.task004;
 
 import com.epam.university.java.core.task003.NullChecker;
 import com.epam.university.java.core.task003.SimpleNullChecker;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ public class Task004Impl implements Task004 {
   public String[] union(String[] first, String[] second) {
     checker.check(first, second);
 
-    List<String> resultList = Arrays.stream(first).distinct().collect(Collectors.toList());
+    List<String> resultList = Arrays.stream(first).collect(Collectors.toList());
     List<String> secondList =
         Arrays.stream(second).filter(n -> !resultList.contains(n)).collect(Collectors.toList());
     resultList.addAll(secondList);

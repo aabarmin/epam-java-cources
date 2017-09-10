@@ -2,8 +2,11 @@ package com.epam.university.java.core.task007;
 
 import com.epam.university.java.core.task003.NullChecker;
 import com.epam.university.java.core.task003.SimpleNullChecker;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /** Created by ilya on 06.09.17. */

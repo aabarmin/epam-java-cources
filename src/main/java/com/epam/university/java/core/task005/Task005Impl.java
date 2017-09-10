@@ -1,12 +1,11 @@
 package com.epam.university.java.core.task005;
 
+import static java.lang.Math.PI;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.OptionalDouble;
 import java.util.stream.Stream;
-
-import static java.lang.Math.PI;
 
 /** Created by ilya on 04.09.17. */
 public class Task005Impl implements Task005 {

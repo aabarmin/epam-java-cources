@@ -2,8 +2,10 @@ package com.epam.university.java.core.task008;
 
 import com.epam.university.java.core.task003.NullChecker;
 import com.epam.university.java.core.task003.SimpleNullChecker;
-
-import java.util.*;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 /** Created by ilya on 09.09.17. */
 public class Task008Impl implements Task008 {
