@@ -2,8 +2,9 @@ package com.epam.university.java.core.task001;
 
 /**
  * Calculator.
- *
- * Implementing ordinary calculator which checks input data.
+ * <p>
+ *     Implementing ordinary calculator which checks input data.
+ * </p>
  */
 public interface Task001 {
     /**

@@ -1,11 +1,10 @@
 package com.epam.university.java.core.task004;
 
 import com.epam.university.java.core.helper.TestHelper;
-import javafx.concurrent.Task;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 public class Task004Test {
     private Task004 instance;
@@ -115,7 +114,6 @@ public class Task004Test {
     @Test
     public void testUnionThird() throws Exception {
         final String[] first = {
-                "",
                 ""
         };
         final String[] second = {};
