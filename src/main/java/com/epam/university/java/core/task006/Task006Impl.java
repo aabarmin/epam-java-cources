@@ -38,7 +38,7 @@ public class Task006Impl implements Task006 {
     }
 
     /**
-     * Calculates the average value from given Collection of Measurements
+     * Calculates the average value from given Collection of Measurements.
      *
      * @param measurements    Collection of Measurements
      * @param measurementName name of Measurement's value to get: "amperage"
@@ -53,7 +53,7 @@ public class Task006Impl implements Task006 {
      *                                   the specified class, field, method
      *                                   or constructor
      * @throws InvocationTargetException an exception thrown by an invoked
-     * method or constructor.
+     *                                   method or constructor
      */
     public double average(Collection<Measurement> measurements,
                           String measurementName) {

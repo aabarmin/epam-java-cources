@@ -21,7 +21,7 @@ public interface Task002 {
      * @param number       amount of symbols to return
      * @return new string
      * @throws IllegalArgumentException if string not provided or number less
-     * then zero
+     *                                  then zero
      */
     String left(String sourceString, int number);
 
@@ -42,7 +42,7 @@ public interface Task002 {
      * @param number       amount of symbols to return
      * @return new string
      * @throws IllegalArgumentException if string not provided or number less
-     * then zero
+     *                                  then zero
      */
     String right(String sourceString, int number);
 

@@ -1,7 +1,7 @@
 package com.epam.university.java.core.utils;
 
 /**
- * Validation utility
+ * Validation utility.
  */
 public class Validator {
     public static final String MESSAGE_FOR_FIRST_PARAMETER_IF_NULL
@@ -34,7 +34,6 @@ public class Validator {
      * @param secondParameter                 second parameter to check
      * @param messageForFirstParameterIfNull  message if parameter is null
      * @param messageForSecondParameterIfNull message if parameter is null
-     * @return void
      * @throws IllegalArgumentException if parameters not provided
      */
     public static void validateNotNull(Object firstParameter, Object
@@ -46,11 +45,10 @@ public class Validator {
     }
 
     /**
-     * Validates parameter not null
+     * Validates parameter not null.
      *
      * @param parameter     parameter to check
      * @param messageIfNull message if parameter is null
-     * @return void
      * @throws IllegalArgumentException if parameter not provided
      */
     public static void validateNotNull(Object parameter, String messageIfNull) {
@@ -60,7 +58,7 @@ public class Validator {
     }
 
     /**
-     * Validates value and length of parameters
+     * Validates value and length of parameters.
      *
      * @param firstParameter                        first parameter to check
      * @param secondParameter                       second parameter to check
@@ -72,7 +70,6 @@ public class Validator {
      *                                              length is null
      * @param messageForSecondParameterIfLengthNull message if first parameter's
      *                                              length is null
-     * @return void
      * @throws IllegalArgumentException if parameters not provided or ""
      */
     public static void validateValueAndLengthNotNull(
@@ -91,14 +88,13 @@ public class Validator {
     }
 
     /**
-     * Validates value and length of parameter
+     * Validates value and length of parameter.
      *
      * @param parameter           parameter to check
      * @param messageIfNull       message if parameter is
      *                            null
      * @param messageIfLengthNull message if parameter's
      *                            length is null
-     * @return void
      * @throws IllegalArgumentException if parameter not provided or ""
      */
     public static void validateValueAndLengthNotNull(
@@ -113,12 +109,11 @@ public class Validator {
     }
 
     /**
-     * Validates parameter not negative
+     * Validates parameter not negative.
      *
      * @param parameter         parameter to check
      * @param messageIfNegative message if parameter is
      *                          negative
-     * @return void
      * @throws IllegalArgumentException if parameter is negative
      */
     public static void validateNotNegative(long parameter, String
@@ -129,7 +124,7 @@ public class Validator {
     }
 
     /**
-     * Validates number format (double)
+     * Validates number format (double).
      *
      * @param firstString                                  string to check
      * @param secondString                                 string to check
@@ -150,20 +145,20 @@ public class Validator {
         try {
             firstDouble = Double.parseDouble(firstString);
         } catch (NumberFormatException ex) {
-            throw new NumberFormatException
-                    (firstNumbersMessageForNumberFormatException);
+            throw new NumberFormatException(
+                    firstNumbersMessageForNumberFormatException);
         }
         try {
             secondDouble = Double.parseDouble(secondString);
         } catch (NumberFormatException ex) {
-            throw new NumberFormatException
-                    (secondNumbersMessageForNumberFormatException);
+            throw new NumberFormatException(
+                    secondNumbersMessageForNumberFormatException);
         }
         return new double[]{firstDouble, secondDouble};
     }
 
     /**
-     * Validates parameter is in range
+     * Validates parameter is in range.
      *
      * @param value                        value to check
      * @param lowerBorder                  minimum possible value to input
@@ -172,7 +167,6 @@ public class Validator {
      *                                     is violates minimum limit
      * @param messageIfViolatesUpperBorder message if value
      *                                     is violates upper limit
-     * @return void
      * @throws IllegalArgumentException if parameter violates limits of range
      */
     public static void validateValueRange(double value, double lowerBorder,
