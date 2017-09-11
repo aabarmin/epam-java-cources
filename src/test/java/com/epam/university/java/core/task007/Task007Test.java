@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Aleksandr_Barmin on 9/6/2017.
@@ -24,7 +24,7 @@ public class Task007Test {
     public void testFirst() throws Exception {
         final Collection<Integer> first = Arrays.asList(2, 1);
         final Collection<Integer> second = Arrays.asList(2, 1);
-        final Collection<Integer> result = Arrays.asList(4, 4, 1, 0);
+        final Collection<Integer> result = Arrays.asList(4, 4, 1);
         assertEquals("Error in first multiplication",
                 result,
                 instance.multiplyPolynomial(first, second)
@@ -35,7 +35,7 @@ public class Task007Test {
     public void testSecond() throws Exception {
         final Collection<Integer> first = Arrays.asList(2, 0, 0, 3);
         final Collection<Integer> second = Arrays.asList(4, 0, 1);
-        final Collection<Integer> result = Arrays.asList(8, 0, 2, 12, 0, 3, 0);
+        final Collection<Integer> result = Arrays.asList(8, 0, 2, 12, 0, 3);
         assertEquals("Error in second multiplication",
                 result,
                 instance.multiplyPolynomial(first, second)
