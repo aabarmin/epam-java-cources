@@ -84,9 +84,9 @@ public class Task003Impl implements Task003 {
         String[] finalString = new String[source.length];
 
         for (String str : toRemote) {
-            for (int j = 0, k = 0; k < source.length && j < finalString.length; k++) {
-                if (!str.equals(source[k]) && str != null) {
-                    finalString[j++] = source[k];
+            for (int i = 0, j = 0; i < finalString.length && j < source.length; j++) {
+                if (!str.equals(source[j]) && str != null) {
+                    finalString[i++] = source[j];
                 }
             }
             int count = 0;
