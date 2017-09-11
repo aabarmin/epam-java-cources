@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
-        Validator.validateNotNull(sourceFile, Validator.
-                MESSAGE_FOR_SOURCE_IF_NULL);
+        Validator.validateNotNull(sourceFile,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL);
         try {
             return Files.lines(Paths.get(sourceFile.toURI()))
                     .flatMap(line -> Arrays.stream(line.split(" ")))

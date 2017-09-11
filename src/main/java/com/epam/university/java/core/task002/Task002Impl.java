@@ -13,6 +13,11 @@ public class Task002Impl implements Task002 {
     }
 
     @Override
+    public String left(String sourceString, String stringSeparator) {
+        return split(sourceString, stringSeparator)[0];
+    }
+
+    @Override
     public String left(String sourceString, int number) {
         Validator.validateValueAndLengthNotNull(sourceString,
                 Validator.MESSAGE_FOR_SOURCE_IF_NULL,
@@ -22,6 +27,11 @@ public class Task002Impl implements Task002 {
             return sourceString;
         }
         return sourceString.substring(0, number);
+    }
+
+    @Override
+    public String right(String sourceString, String stringSeparator) {
+        return split(sourceString, stringSeparator)[1];
     }
 
     @Override
@@ -35,16 +45,6 @@ public class Task002Impl implements Task002 {
         }
         return sourceString.substring(sourceString.length() - number,
                 sourceString.length());
-    }
-
-    @Override
-    public String left(String sourceString, String stringSeparator) {
-        return split(sourceString, stringSeparator)[0];
-    }
-
-    @Override
-    public String right(String sourceString, String stringSeparator) {
-        return split(sourceString, stringSeparator)[1];
     }
 
     @Override

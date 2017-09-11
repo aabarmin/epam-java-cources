@@ -20,7 +20,8 @@ public class Task006Impl implements Task006 {
                 (ArrayList<Measurement>) measurements;
         double averageAmperage = average(measurements, "amperage");
         double averageVoltage = average(measurements, "voltage");
-        double covariance = 0, variance = 0;
+        double covariance = 0;
+        double variance = 0;
         for (int i = 0; i < measurementArrayList.size(); i++) {
             covariance += (measurementArrayList.get(i).getAmperage()
                     - averageAmperage)
@@ -36,6 +37,24 @@ public class Task006Impl implements Task006 {
                 .setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
+    /**
+     * Calculates the average value from given Collection of Measurements
+     *
+     * @param measurements    Collection of Measurements
+     * @param measurementName name of Measurement's value to get: "amperage"
+     *                        or "voltage"
+     * @return double
+     * @throws NoSuchMethodException     if a particular method cannot be found
+     * @throws ClassNotFoundException    if no definition for the class with
+     *                                   the specified name could be found
+     * @throws IllegalAccessException    if the currently
+     *                                   executing method does not have
+     *                                   access to the definition of
+     *                                   the specified class, field, method
+     *                                   or constructor
+     * @throws InvocationTargetException an exception thrown by an invoked
+     * method or constructor.
+     */
     public double average(Collection<Measurement> measurements,
                           String measurementName) {
         Validator.validateNotNull(measurements, Validator
