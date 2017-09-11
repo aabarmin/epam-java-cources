@@ -9,40 +9,40 @@ public class Task008Impl implements Task008 {
         char[] sourceArr = sourceString.toCharArray();
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < sourceArr.length; i++) {
-            switch (sourceArr[i]){
-                case '(' :
-                case '[' :
-                case '{' :
+            switch (sourceArr[i]) {
+                case '(':
+                case '[':
+                case '{':
                     stack.push(sourceArr[i]);
                     break;
-                case ')' :
-                    try{
-                        if(stack.pop() == '(')
+                case ')':
+                    try {
+                        if (stack.pop() == '(')
                             break;
-                        else{
+                        else {
                             return false;
                         }
-                    }catch(EmptyStackException e){
+                    } catch (EmptyStackException e) {
                         return false;
                     }
-                case ']' :
-                    try{
-                        if(stack.pop() == '[')
+                case ']':
+                    try {
+                        if (stack.pop() == '[')
                             break;
-                        else{
+                        else {
                             return false;
                         }
-                    }catch(EmptyStackException e){
+                    } catch (EmptyStackException e) {
                         return false;
                     }
-                case '}' :
-                    try{
-                        if(stack.pop() == '{')
+                case '}':
+                    try {
+                        if (stack.pop() == '{')
                             break;
-                        else{
+                        else {
                             return false;
                         }
-                    }catch(EmptyStackException e){
+                    } catch (EmptyStackException e) {
                         return false;
                     }
             }
