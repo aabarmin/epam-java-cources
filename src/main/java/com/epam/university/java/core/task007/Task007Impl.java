@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task007;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +15,7 @@ public class Task007Impl implements Task007 {
         int[] polynomSecond = second.stream().mapToInt(Integer::intValue)
                 .toArray();
         int[] polynomResult = new int[polynomFirst.length
-                + polynomSecond.length];
+                + polynomSecond.length - 1];
         for (int i = 0; i < polynomFirst.length; i++) {
             for (int j = 0; j < polynomSecond.length; j++) {
                 polynomResult[i + j] += (polynomFirst[i] * polynomSecond[j]);
