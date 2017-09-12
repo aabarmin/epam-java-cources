@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task002;
 
 public class Task002Impl implements Task002 {
+
     @Override
     public boolean isEquals(String firstString, String secondString) {
         if (firstString == null || secondString == null) {
@@ -9,20 +10,22 @@ public class Task002Impl implements Task002 {
         return firstString.equals(secondString);
     }
 
-    @Override
-    public String left(String sourceString, int number) {
-        if (sourceString == null || number < 0) {
-            throw new IllegalArgumentException();
-        }
-        return number > sourceString.length() ? sourceString : sourceString.substring(0, number);
-    }
 
     @Override
     public String right(String sourceString, int number) {
         if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
-        return number > sourceString.length() ? sourceString : sourceString.substring(sourceString.length() - number);
+        return number > sourceString.length() ? sourceString
+                : sourceString.substring(sourceString.length() - number);
+    }
+
+    @Override
+    public String right(String sourceString, String separator) {
+        if (sourceString == null || separator == null) {
+            throw new IllegalArgumentException();
+        }
+        return sourceString.substring(sourceString.indexOf(separator) + separator.length());
     }
 
     @Override
@@ -34,11 +37,11 @@ public class Task002Impl implements Task002 {
     }
 
     @Override
-    public String right(String sourceString, String separator) {
-        if (sourceString == null || separator == null) {
+    public String left(String sourceString, int number) {
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
-        return sourceString.substring(sourceString.indexOf(separator) + separator.length());
+        return number > sourceString.length() ? sourceString : sourceString.substring(0, number);
     }
 
     @Override
