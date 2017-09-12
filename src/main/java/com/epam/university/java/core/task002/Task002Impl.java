@@ -13,8 +13,14 @@ public class Task002Impl implements Task002 {
     }
 
     @Override
+    public String left(String sourceString, String stringSeparator) {
+        return split(sourceString, stringSeparator)[0];
+    }
+
+    @Override
     public String left(String sourceString, int number) {
-        Validator.validateValueAndLengthNotNull(sourceString, Validator.MESSAGE_FOR_SOURCE_IF_NULL,
+        Validator.validateValueAndLengthNotNull(sourceString,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL);
         Validator.validateNotNegative(number, Validator.MESSAGE_IF_NEGATIVE);
         if (sourceString.length() < number) {
@@ -24,24 +30,21 @@ public class Task002Impl implements Task002 {
     }
 
     @Override
+    public String right(String sourceString, String stringSeparator) {
+        return split(sourceString, stringSeparator)[1];
+    }
+
+    @Override
     public String right(String sourceString, int number) {
-        Validator.validateValueAndLengthNotNull(sourceString, Validator.MESSAGE_FOR_SOURCE_IF_NULL,
+        Validator.validateValueAndLengthNotNull(sourceString,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_LENGTH_NULL);
         Validator.validateNotNegative(number, Validator.MESSAGE_IF_NEGATIVE);
         if (sourceString.length() < number) {
             return sourceString;
         }
-        return sourceString.substring(sourceString.length() - number, sourceString.length());
-    }
-
-    @Override
-    public String left(String sourceString, String stringSeparator) {
-        return split(sourceString, stringSeparator)[0];
-    }
-
-    @Override
-    public String right(String sourceString, String stringSeparator) {
-        return split(sourceString, stringSeparator)[1];
+        return sourceString.substring(sourceString.length() - number,
+                sourceString.length());
     }
 
     @Override

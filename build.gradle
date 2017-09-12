@@ -2,11 +2,24 @@ group 'com.epam.university'
 version '0.1'
 
 apply plugin: 'java'
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    toolVersion = "8.2"
+}
+
+tasks.withType(Checkstyle) {
+    ignoreFailures = true
+    reports {
+        html.enabled = true
+        xml.enabled = false
+    }
 }
 
 dependencies {

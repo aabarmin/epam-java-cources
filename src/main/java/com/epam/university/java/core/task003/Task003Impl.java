@@ -25,9 +25,11 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] join(String[] first, String[] second) {
-        Validator.validateNotNull(first, second, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+        Validator.validateNotNull(first, second,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
-        return Stream.of(first, second).flatMap(Stream::of).toArray(String[]::new);
+        return Stream.of(first, second).flatMap(Stream::of)
+                .toArray(String[]::new);
     }
 
     @Override
@@ -40,14 +42,17 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
-        Validator.validateNotNull(source, condition, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+        Validator.validateNotNull(source, condition,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
-        return Stream.of(source).filter(condition::isValid).toArray(String[]::new);
+        return Stream.of(source).filter(condition::isValid)
+                .toArray(String[]::new);
     }
 
     @Override
     public String[] removeElements(String[] source, String[] toRemove) {
-        Validator.validateNotNull(source, toRemove, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+        Validator.validateNotNull(source, toRemove,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         List<String> readyList = new ArrayList<>(Arrays.asList(source));
         readyList.removeAll(Arrays.asList(toRemove));
@@ -56,7 +61,8 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] map(String[] source, MappingOperation operation) {
-        Validator.validateNotNull(source, operation, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+        Validator.validateNotNull(source, operation,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         for (int i = 0; i < source.length; i++) {
             source[i] = operation.map(source[i]);
@@ -66,7 +72,8 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
-        Validator.validateNotNull(source, operation, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+        Validator.validateNotNull(source, operation,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         String[] tempStrokes = {};
         for (int i = 0; i < source.length; i++) {
@@ -77,7 +84,8 @@ public class Task003Impl implements Task003 {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        ArrayList<Integer> listOfIntegers = new ArrayList<>(new HashSet<>(tempList));
+        ArrayList<Integer> listOfIntegers = new ArrayList<>(
+                new HashSet<>(tempList));
         Collections.sort(listOfIntegers, Collections.reverseOrder());
         return listOfIntegers.parallelStream()
                 .map((integers) -> integers.toString())
