@@ -4,10 +4,10 @@ import com.epam.university.java.core.validation.Validator;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 12.09.2017.
@@ -31,9 +31,11 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
         VALIDATOR.assertNotNull(sourceFile);
 
-        Arrays.stream(sourceFile.list()).forEach(System.out::println);
-
-        //Files.lines(sourceFile.toPath()).flatMap
-        return new ArrayList<String>();
+        Set<String> result = new HashSet<>();
+        result.addAll(Arrays.asList(sourceFile.list()));
+        result = result.stream()
+                .flatMap(Pattern.compile(" ")::splitAsStream)
+                .collect(Collectors.toSet());
+        return result;
     }
 }

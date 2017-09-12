@@ -35,12 +35,12 @@ public class Validator {
     }
 
     /**
-     * Test number with predicate
+     * Test number with predicate.
      *
      * @param num to test
      * @param p condition
      */
-     void validNum(Integer num, Predicate <Integer>p) {
+    public void validNum(Integer num, Predicate <Integer>p) {
         if (!p.test(num)) {
             throw new IllegalArgumentException(String.format(
                     "Exception in class %s",

@@ -36,7 +36,7 @@ public class Task002Impl implements Task002 {
     @Override
     public String left(String sourceString, int number) {
         VALIDATOR.assertNotNull(sourceString);
-        VALIDATOR.assertMoreZero(number);
+        VALIDATOR.validNum(number, num -> num > 0);
 
         if ( number > sourceString.length())
             return sourceString;
@@ -55,7 +55,7 @@ public class Task002Impl implements Task002 {
     @Override
     public String right(String sourceString, int number) {
         VALIDATOR.assertNotNull(sourceString);
-        VALIDATOR.assertMoreZero(number);
+        VALIDATOR.validNum(number, num -> num > 0);
 
         if ( number > sourceString.length())
             return sourceString;
