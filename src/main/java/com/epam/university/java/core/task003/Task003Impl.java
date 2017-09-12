@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task003;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Task003Impl implements Task003 {
@@ -10,7 +9,7 @@ public class Task003Impl implements Task003 {
         check(source);
         String[] invertedArr = new String[source.length];
         for (int i = 0; i < source.length; i++) {
-            invertedArr[i] = source[source.length-1-i];
+            invertedArr[i] = source[source.length - 1 - i];
         }
 
         return invertedArr;
@@ -21,14 +20,14 @@ public class Task003Impl implements Task003 {
         check(first);
         check(second);
         int j = 0;
-        String[]joinedOfTwo = new String[first.length+second.length];
+        String[]joinedOfTwo = new String[first.length + second.length];
         for (int i = 0; i < joinedOfTwo.length; i++) {
-            if (i>=first.length){
+            if (i >= first.length) {
                 joinedOfTwo[i] = second[j];
                 j++;
-            }else
+            } else {
                 joinedOfTwo[i] = first[i];
-
+            }
         }
         return joinedOfTwo;
     }
@@ -38,8 +37,9 @@ public class Task003Impl implements Task003 {
         check(source);
         int maxValue = source[0];
         for (int i = 0; i < source.length; i++) {
-            if (source[i]>maxValue)
+            if (source[i] > maxValue) {
                 maxValue = source[i];
+            }
         }
         return maxValue;
     }
@@ -47,13 +47,13 @@ public class Task003Impl implements Task003 {
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
         check(source);
-        if (condition==null){
+        if (condition == null) {
             throw new IllegalArgumentException();
         }
-        if (condition.isValid("Last 2")){
+        if (condition.isValid("Last 2")) {
             String[] array = new String[2];
-            array[1] = source[source.length-1];
-            array[0] = source[source.length-2];
+            array[1] = source[source.length - 1];
+            array[0] = source[source.length - 2];
             return array;
         }
 
@@ -65,14 +65,15 @@ public class Task003Impl implements Task003 {
         check(source);
         check(toRemote);
 
-        String[] result = new String[source.length-toRemote.length];
+        String[] result = new String[source.length - toRemote.length];
         ArrayList<String> h = new ArrayList<>();
-        for (String s: source){
+        for (String s : source) {
             h.add(s);
         }
-        for (String s: toRemote){
-            if (h.contains(s))
+        for (String s : toRemote) {
+            if (h.contains(s)) {
                 h.remove(s);
+            }
         }
         result = h.toArray(result);
         return result;
@@ -92,9 +93,9 @@ public class Task003Impl implements Task003 {
         check(source);
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < source.length; i++) {
-             String[] format = operation.flatMap(source[i]);
+            String[]format = operation.flatMap(source[i]);
             for (int j = 0; j < format.length; j++) {
-                if (!arrayList.contains(format[j])){
+                if (!arrayList.contains(format[j])) {
                     arrayList.add(format[j]);
                 }
             }
@@ -102,8 +103,8 @@ public class Task003Impl implements Task003 {
         String[]sort = new String[arrayList.size()];
         sort = arrayList.toArray(sort);
         for (int i = 0; i < sort.length; i++) {
-            for (int j = 0; j < sort.length -1; j++) {
-                if (Integer.parseInt(sort[j]) < Integer.parseInt(sort[j + 1])){
+            for (int j = 0; j < sort.length - 1; j++) {
+                if (Integer.parseInt(sort[j]) < Integer.parseInt(sort[j + 1])) {
                     String temp = sort[j];
                     sort[j] = sort[j + 1];
                     sort[j + 1] = temp;
@@ -113,17 +114,16 @@ public class Task003Impl implements Task003 {
         return sort;
     }
 
-    private void check(String[] arr){
-        if (arr==null){
+    private void check(String[] arr) {
+        if (arr == null) {
             throw new IllegalArgumentException();
         }
 
     }
 
     private void check(int[] arr) {
-        if (arr==null){
+        if (arr == null) {
             throw new IllegalArgumentException();
         }
-
     }
 }
