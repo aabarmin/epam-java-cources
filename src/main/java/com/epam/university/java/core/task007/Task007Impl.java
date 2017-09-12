@@ -25,7 +25,8 @@ public class Task007Impl implements Task007 {
      * @return collection of members in multiplied polynomials
      */
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
 
         if (first == null || second == null) {
             throw new IllegalArgumentException();
@@ -41,15 +42,15 @@ public class Task007Impl implements Task007 {
             }
         }
 
-        int[] resultArray = new int[first.size() + second.size()];
-        int powerFirst = first.size();
+        int[] resultArray = new int[first.size() + second.size() - 1];
+        int powerFirst = first.size() - 1;
 
         for (int firstElement : first) {
 
-            int powerSecond = second.size();
+            int powerSecond = second.size() - 1;
 
             for (int secondElement : second) {
-                int index = resultArray.length - (powerFirst + powerSecond);
+                int index = resultArray.length - (powerFirst + powerSecond + 1);
                 resultArray[index] = resultArray[index] + (firstElement * secondElement);
                 powerSecond--;
             }
