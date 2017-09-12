@@ -15,7 +15,8 @@ public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
         Set<String> result = new HashSet<>();
-        try (Stream<String> streamFromFiles = Files.lines(Paths.get(sourceFile.getAbsolutePath()))) {
+        try (Stream<String> streamFromFiles = Files
+                .lines(Paths.get(sourceFile.getAbsolutePath()))) {
             result = streamFromFiles
                     .flatMap(n -> Arrays.asList(n.toLowerCase().split("[ .,!?/'();:]+"))
                             .stream())
