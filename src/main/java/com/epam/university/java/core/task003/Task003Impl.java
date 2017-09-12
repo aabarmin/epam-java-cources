@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task003;
 
+import java.lang.annotation.Inherited;
 import java.util.Arrays;
 
 public class Task003Impl implements Task003 {
@@ -11,11 +12,18 @@ public class Task003Impl implements Task003 {
         return reverseArr(source);
     }
 
+    /**
+     * Reverse array with any type.
+     *
+     * @param values source array
+     * @return reverse array
+     */
     public static <T> T[] reverseArr(T[] values) {
         if (values == null) {
             throw new IllegalArgumentException("Array not provided!");
         }
-        for (int i = 0, j = values.length - 1; i < values.length / 2 && j > (values.length - 1) / 2; i++, j--) {
+        for (int i = 0, j = values.length - 1; i < values.length / 2
+                && j > (values.length - 1) / 2; i++, j--) {
             T str = values[i];
             values[i] = values[j];
             values[j] = str;
@@ -46,8 +54,9 @@ public class Task003Impl implements Task003 {
         }
         int max = source[0];
         for (int i : source) {
-            if (i > max)
+            if (i > max) {
                 max = i;
+            }
         }
         return max;
     }
@@ -58,7 +67,7 @@ public class Task003Impl implements Task003 {
             throw new IllegalArgumentException("Array or condition not provided!");
         }
         int countElement = 0;
-        boolean mask[] = new boolean[source.length];
+        boolean[] mask = new boolean[source.length];
         for (int i = 0; i < source.length; i++) {
             if (condition.isValid(source[i])) {
                 mask[i] = true;
@@ -162,8 +171,14 @@ public class Task003Impl implements Task003 {
         }
     }
 
+    /**
+     * Remove duplicates in array.
+     *
+     * @param values source array
+     * @return new array without duplicates
+     */
     public static <T> String[] removeDuplicates(T[] values) {
-        boolean mask[] = new boolean[values.length];
+        boolean[] mask = new boolean[values.length];
         int removeCount = 0;
 
         for (int i = 0; i < values.length; i++) {
@@ -179,11 +194,7 @@ public class Task003Impl implements Task003 {
 
         String[] result = new String[values.length - removeCount];
 
-        for (
-                int i = 0, j = 0;
-                i < values.length; i++)
-
-        {
+        for (int i = 0, j = 0; i < values.length; i++) {
             if (!mask[i]) {
                 result[j++] = String.valueOf(values[i]);
             }
