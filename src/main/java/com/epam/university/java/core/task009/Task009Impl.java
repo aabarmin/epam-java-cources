@@ -24,6 +24,10 @@ public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
 
+        if (sourceFile == null) {
+            throw new IllegalArgumentException();
+        }
+
         Set<String> wordsSet = new HashSet<>();
 
         try {
