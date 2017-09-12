@@ -8,10 +8,11 @@ import java.util.Collection;
 import java.util.List;
 
 public class Task007Impl implements Task007 {
-    private Validator validator = new Validator();
+    private Validator validator = Validator.getInstance();
 
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
         validator.vaildate(first, second);
         int[][] coeff = new int[first.size()][first.size() + second.size() - 1];
         int i = 0;
@@ -35,8 +36,8 @@ public class Task007Impl implements Task007 {
 
     private int sumInARow(int[][] matrix, int row) {
         int result = 0;
-        for (int[] aMatrix : matrix) {
-            result += aMatrix[row];
+        for (int[] collum : matrix) {
+            result += collum[row];
         }
         return result;
     }

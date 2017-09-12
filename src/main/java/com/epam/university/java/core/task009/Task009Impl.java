@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task009;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -12,7 +16,10 @@ public class Task009Impl implements Task009 {
         Set<String> setOfWords = new HashSet<>();
         try (Scanner reader = new Scanner(new BufferedReader(new FileReader(sourceFile)))) {
             reader.useDelimiter(" ");
-//            reader.useDelimiter("[^A-Za-z]"); Why doesnt work? dont work properly with commas and question marks
+            /*
+            * reader.useDelimiter("[^A-Za-z]");
+            * Why doesnt work? dont work properly with commas and question marks
+            */
             while (reader.hasNext()) {
                 setOfWords.add(reader.next().toLowerCase().replaceAll("[^a-z]", ""));
             }
