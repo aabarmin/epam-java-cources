@@ -8,14 +8,27 @@ import java.util.ArrayList;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
-        LinkedList<String> names = new LinkedList<>();
+        List<String> names = new LinkedList<>();
         names.addAll(Arrays.asList(collection));
-        return getLastName(names);
+        for (int j = 0; j < names.size(); j++) {
+            names.remove(j);
+            if (j == names.size()) {
+                j = 0;
+            }
+        }
+        return names.get(0);
     }
 
     @Override
     public String getLastName(ArrayList<String> collection) {
-        return getLastName(collection);
+
+        for (int j = 0; j < collection.size(); j++) {
+            collection.remove(j);
+            if (j == collection.size()) {
+                j = 0;
+            }
+        }
+        return collection.get(0);
     }
 
     @Override
