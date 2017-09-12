@@ -10,7 +10,7 @@ import java.util.Set;
 public class FilteringConditionImpl implements FilteringCondition {
     private static final Set<String> conditionalStrings = new HashSet<>();
 
-    static{
+    static {
         Collections.addAll(conditionalStrings, "Three", "Four");
     }
 

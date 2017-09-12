@@ -4,6 +4,7 @@ package com.epam.university.java.core.task002;
  * Created by ilya on 02.09.17.
  */
 public class Task002Impl implements Task002 {
+
     private final Checker checker;
 
     public Task002Impl() {
@@ -12,7 +13,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public boolean isEquals(String firstString, String secondString) {
-        checker.check(firstString,secondString);
+        checker.check(firstString, secondString);
         return firstString.equals(secondString);
     }
 
@@ -22,27 +23,34 @@ public class Task002Impl implements Task002 {
         String result = "";
         try {
             result = sourceString.substring(0, number);
-        }catch (StringIndexOutOfBoundsException e){
-            if(number<0){
+        } catch (StringIndexOutOfBoundsException e) {
+            if (number < 0) {
                 throw new IllegalArgumentException("incorrect position ");
-            }else{
+            } else {
                 result = sourceString;
             }
         }
 
         return result;
     }
+
+    @Override
+    public String left(String sourceString, String separator) {
+        String[] strings = split(sourceString, separator);
+        return strings[0];
+    }
+
 
     @Override
     public String right(String sourceString, int number) {
         checker.check(sourceString);
         String result = "";
         try {
-            result = sourceString.substring(sourceString.length()-number, sourceString.length());
-        }catch (StringIndexOutOfBoundsException e){
-            if(sourceString.length()-number>sourceString.length()){
+            result = sourceString.substring(sourceString.length() - number, sourceString.length());
+        } catch (StringIndexOutOfBoundsException e) {
+            if (sourceString.length() - number > sourceString.length()) {
                 throw new IllegalArgumentException("incorrect position ");
-            }else{
+            } else {
                 result = sourceString;
             }
         }
@@ -50,18 +58,10 @@ public class Task002Impl implements Task002 {
         return result;
     }
 
-
-
-    @Override
-    public String left(String sourceString, String separator) {
-        String[] strings = split(sourceString,separator);
-        return strings[0];
-    }
-
     @Override
     public String right(String sourceString, String separator) {
-        String[] strings = split(sourceString,separator);
-        return strings[strings.length-1];
+        String[] strings = split(sourceString, separator);
+        return strings[strings.length - 1];
     }
 
     @Override

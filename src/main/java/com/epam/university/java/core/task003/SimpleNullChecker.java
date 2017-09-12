@@ -6,11 +6,10 @@ package com.epam.university.java.core.task003;
 public class SimpleNullChecker implements NullChecker {
     @Override
     public void check(Object... objects) {
-        if(objects==null){
+        if (objects == null) {
             throw new IllegalArgumentException("objects doesn't have anything");
         }
-        for (Object object :
-                objects) {
+        for (Object object : objects) {
             if (object == null) {
                 throw new IllegalArgumentException("something is null");
             }

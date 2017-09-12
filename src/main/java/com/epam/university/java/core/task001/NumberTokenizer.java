@@ -7,8 +7,8 @@ public class NumberTokenizer implements Tokenizer {
     @Override
     public String tokenize(String number) {
 
-        number.replaceAll(" ","");
-        if("".equals(number)){
+        number.replaceAll(" ", "");
+        if ("".equals(number)) {
             throw new IllegalArgumentException("empty string");
         }
 
