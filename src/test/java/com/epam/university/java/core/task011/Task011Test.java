@@ -4,9 +4,7 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,7 +30,7 @@ public class Task011Test {
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with array",
-                "Bart",
+                "Marge",
                 lastName
         );
     }
@@ -48,7 +46,7 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-                "Bart",
+                "Marge",
                 lastName
         );
     }
@@ -64,7 +62,7 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-                "Bart",
+                "Marge",
                 lastName
         );
     }
