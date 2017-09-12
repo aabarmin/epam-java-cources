@@ -4,16 +4,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Created by ilya on 02.09.17. */
+/**
+ * Created by ilya on 02.09.17.
+ */
 public class FilteringConditionImpl implements FilteringCondition {
-  private static final Set<String> conditionalStrings = new HashSet<>();
+    private static final Set<String> conditionalStrings = new HashSet<>();
 
-  static {
-    Collections.addAll(conditionalStrings, "Three", "Four");
-  }
+    static {
+        Collections.addAll(conditionalStrings, "Three", "Four");
+    }
 
-  @Override
-  public boolean isValid(String element) {
-    return conditionalStrings.contains(element);
-  }
+    @Override
+    public boolean isValid(String element) {
+        return conditionalStrings.contains(element);
+    }
 }

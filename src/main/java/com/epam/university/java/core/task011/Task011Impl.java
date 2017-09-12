@@ -10,35 +10,35 @@ import java.util.List;
  */
 public class Task011Impl implements Task011 {
 
-  @Override
-  public String getLastName(String[] collection) {
-    LinkedList<String> result = new LinkedList<>();
-    result.addAll(Arrays.asList(collection));
-    return getLastName(result);
-  }
-
-  @Override
-  public String getLastName(ArrayList<String> collection) {
-    LinkedList<String> result = new LinkedList<>();
-    result.addAll(collection);
-    return getLastName(result);
-  }
-
-  @Override
-  public String getLastName(LinkedList<String> collection) {
-    List<String> result = (LinkedList<String>) collection.clone();
-
-    int i = 0;
-
-    while (result.size() != 1) {
-      if (i < result.size()) {
-        result.remove(i);
-      } else {
-        result.remove(result.size() - 1);
-      }
-      i++;
+    @Override
+    public String getLastName(String[] collection) {
+        LinkedList<String> result = new LinkedList<>();
+        result.addAll(Arrays.asList(collection));
+        return getLastName(result);
     }
 
-    return result.get(0);
-  }
+    @Override
+    public String getLastName(ArrayList<String> collection) {
+        LinkedList<String> result = new LinkedList<>();
+        result.addAll(collection);
+        return getLastName(result);
+    }
+
+    @Override
+    public String getLastName(LinkedList<String> collection) {
+        List<String> result = (LinkedList<String>) collection.clone();
+
+        int i = 0;
+
+        while (result.size() != 1) {
+            if (i < result.size()) {
+                result.remove(i);
+            } else {
+                result.remove(result.size() - 1);
+            }
+            i++;
+        }
+
+        return result.get(0);
+    }
 }

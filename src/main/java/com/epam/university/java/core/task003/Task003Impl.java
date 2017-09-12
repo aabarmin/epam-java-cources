@@ -5,90 +5,93 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** Created by ilya on 02.09.17. */
+/**
+ * Created by ilya on 02.09.17.
+ */
 public class Task003Impl implements Task003 {
-  private final NullChecker checker;
 
-  public Task003Impl() {
-    this.checker = new SimpleNullChecker();
-  }
+    private final NullChecker checker;
 
-  @Override
-  public String[] invert(String[] source) {
-    checker.check(source);
-
-    String[] result = new String[source.length];
-
-    for (int i = 0; i < source.length; i++) {
-      result[source.length - i - 1] = source[i];
+    public Task003Impl() {
+        this.checker = new SimpleNullChecker();
     }
 
-    return result;
-  }
+    @Override
+    public String[] invert(String[] source) {
+        checker.check(source);
 
-  @Override
-  public String[] join(String[] first, String[] second) {
-    checker.check(first, second);
+        String[] result = new String[source.length];
 
-    List<String> resultList = new ArrayList<>();
-    resultList.addAll(Arrays.asList(first));
-    resultList.addAll(Arrays.asList(second));
+        for (int i = 0; i < source.length; i++) {
+            result[source.length - i - 1] = source[i];
+        }
 
-    return resultList.toArray(new String[0]);
-  }
+        return result;
+    }
 
-  @Override
-  public int findMax(int[] source) {
-    checker.check(source);
+    @Override
+    public String[] join(String[] first, String[] second) {
+        checker.check(first, second);
 
-    return Arrays.stream(source).max().getAsInt();
-  }
+        List<String> resultList = new ArrayList<>();
+        resultList.addAll(Arrays.asList(first));
+        resultList.addAll(Arrays.asList(second));
 
-  @Override
-  public String[] filter(String[] source, FilteringCondition condition) {
-    checker.check(source, condition);
+        return resultList.toArray(new String[0]);
+    }
 
-    List<String> resultList =
-        Arrays.stream(source).filter(n -> condition.isValid(n)).collect(Collectors.toList());
+    @Override
+    public int findMax(int[] source) {
+        checker.check(source);
 
-    return resultList.toArray(new String[0]);
-  }
+        return Arrays.stream(source).max().getAsInt();
+    }
 
-  @Override
-  public String[] removeElements(String[] source, String[] toRemote) {
-    checker.check(source, toRemote);
+    @Override
+    public String[] filter(String[] source, FilteringCondition condition) {
+        checker.check(source, condition);
 
-    List<String> resultList =
-        Arrays.stream(source)
-            .filter(n -> !Arrays.asList(toRemote).contains(n))
-            .collect(Collectors.toList());
+        List<String> resultList =
+            Arrays.stream(source).filter(n -> condition.isValid(n)).collect(Collectors.toList());
 
-    return resultList.toArray(new String[0]);
-  }
+        return resultList.toArray(new String[0]);
+    }
 
-  @Override
-  public String[] map(String[] source, MappingOperation operation) {
-    checker.check(source, operation);
+    @Override
+    public String[] removeElements(String[] source, String[] toRemote) {
+        checker.check(source, toRemote);
 
-    List<String> resultList =
-        Arrays.stream(source).map(n -> operation.map(n)).collect(Collectors.toList());
+        List<String> resultList =
+            Arrays.stream(source)
+                .filter(n -> !Arrays.asList(toRemote).contains(n))
+                .collect(Collectors.toList());
 
-    return resultList.toArray(new String[0]);
-  }
+        return resultList.toArray(new String[0]);
+    }
 
-  @Override
-  public String[] flatMap(String[] source, FlatMappingOperation operation) {
-    checker.check(source, operation);
+    @Override
+    public String[] map(String[] source, MappingOperation operation) {
+        checker.check(source, operation);
 
-    List<String> sourceList =
-        Arrays.stream(source)
-            .flatMap(p -> Arrays.stream(operation.flatMap(p)))
-            .distinct()
-            .mapToInt(n -> Integer.parseInt(n))
-            .sorted()
-            .mapToObj(n -> Integer.toString(n))
-            .collect(Collectors.toList());
+        List<String> resultList =
+            Arrays.stream(source).map(n -> operation.map(n)).collect(Collectors.toList());
 
-    return invert(sourceList.toArray(new String[0]));
-  }
+        return resultList.toArray(new String[0]);
+    }
+
+    @Override
+    public String[] flatMap(String[] source, FlatMappingOperation operation) {
+        checker.check(source, operation);
+
+        List<String> sourceList =
+            Arrays.stream(source)
+                .flatMap(p -> Arrays.stream(operation.flatMap(p)))
+                .distinct()
+                .mapToInt(n -> Integer.parseInt(n))
+                .sorted()
+                .mapToObj(n -> Integer.toString(n))
+                .collect(Collectors.toList());
+
+        return invert(sourceList.toArray(new String[0]));
+    }
 }

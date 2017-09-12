@@ -1,26 +1,19 @@
 package com.epam.university.java.core.task009;
 
+import static org.junit.Assert.assertEquals;
+
 import com.epam.university.java.core.helper.TestHelper;
+import java.io.File;
+import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.File;
-
-import java.io.InputStream;
-import java.util.Collection;
-
-import static org.junit.Assert.*;
-
-import java.net.URI;
-import java.util.Collection;
-
-import static org.junit.Assert.assertEquals;
 
 
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
  */
 public class Task009Test {
+
     private Task009 instance;
 
     @Before
@@ -35,7 +28,7 @@ public class Task009Test {
         final File file = new File(filePath);
         final Collection<String> words = instance.countWords(file);
         assertEquals("Error in words count",
-                62,words.size());
+            62, words.size());
 
     }
 }
