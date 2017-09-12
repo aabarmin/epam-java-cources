@@ -7,9 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Created by Aleksandr_Barmin on 9/6/2017.
@@ -46,6 +46,7 @@ public class Task006Test {
         measurements.add(new Measurement(4, 2.8));
         measurements.add(new Measurement(5, 3.0));
         //
+
         assertEquals("Error in first measurement",
                 0.165,
                 instance.resistance(measurements),
@@ -72,7 +73,7 @@ public class Task006Test {
     @Test
     public void checkResistanceThird() throws Exception {
         /**
-         * Assumption, that measurements are noised
+         * Assumption, that measurements are noised.
          */
         final Collection<Measurement> measurements = new ArrayList<>();
         measurements.add(new Measurement(0,5.3));
