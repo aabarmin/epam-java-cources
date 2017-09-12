@@ -20,6 +20,14 @@ public class Task002Impl implements Task002 {
     }
 
     @Override
+    public String left(String sourceString, String separator) {
+        checkArguments(sourceString, separator);
+
+        int stopIndex = sourceString.indexOf(separator);
+        return sourceString.substring(0, stopIndex);
+    }
+
+    @Override
     public String right(String sourceString, int number) {
         checkArguments(sourceString, number);
 
@@ -28,14 +36,6 @@ public class Task002Impl implements Task002 {
         }
 
         return sourceString.substring(sourceString.length() - number, sourceString.length());
-    }
-
-    @Override
-    public String left(String sourceString, String separator) {
-        checkArguments(sourceString, separator);
-
-        int stopIndex = sourceString.indexOf(separator);
-        return sourceString.substring(0, stopIndex);
     }
 
     @Override

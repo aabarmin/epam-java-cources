@@ -25,7 +25,14 @@ public class Task005Impl implements Task005 {
         // Search for numerator and denominator
         for (double numerator = startNumerator; numerator < endNumerator; numerator++) {
 
-            double denominator = (numerator / 4) >= startNumerator ? (int) Math.ceil(numerator / 4) : startNumerator;
+            // Denominator init
+            double denominator;
+            if ((numerator / 4) >= startNumerator) {
+                denominator = (int) Math.ceil(numerator / 4);
+            } else {
+                denominator = startNumerator;
+            }
+            
             for (; denominator <= numerator / 3; denominator++) {
                 if ((Math.abs((numerator / denominator) - Math.PI)) < currDiff) {
                     currNumerator = numerator;
