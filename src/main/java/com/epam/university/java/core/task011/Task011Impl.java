@@ -46,6 +46,7 @@ public class Task011Impl implements Task011 {
      * @return name of last man
      */
     public String getLastName(String[] collection, int interval) {
+
         if (collection == null || collection.length == 0) {
             throw new IllegalArgumentException();
         }
