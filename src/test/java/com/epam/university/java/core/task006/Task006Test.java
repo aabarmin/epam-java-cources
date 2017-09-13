@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * Created by Aleksandr_Barmin on 9/6/2017.
  */
 public class Task006Test {
-    public static final double DELTA = 0.0001;
+    public static final double DELTA = 0.001;
     private Task006 instance;
 
     @Before

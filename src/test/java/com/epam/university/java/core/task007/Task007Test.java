@@ -22,9 +22,9 @@ public class Task007Test {
 
     @Test
     public void testFirst() throws Exception {
-        final Collection<Integer> first = Arrays.asList(2, 1);
-        final Collection<Integer> second = Arrays.asList(2, 1);
-        final Collection<Integer> result = Arrays.asList(4, 4, 1);
+        final Collection<Integer> first = Arrays.asList(2, 1); // 2x^2 + 1x
+        final Collection<Integer> second = Arrays.asList(2, 1); // 2x^2 + 1x
+        final Collection<Integer> result = Arrays.asList(4, 4, 1, 0); // 4x^4 + 4x^3 + 1x^2 + 0x
         assertEquals("Error in first multiplication",
                 result,
                 instance.multiplyPolynomial(first, second)
@@ -33,9 +33,10 @@ public class Task007Test {
 
     @Test
     public void testSecond() throws Exception {
-        final Collection<Integer> first = Arrays.asList(2, 0, 0, 3);
-        final Collection<Integer> second = Arrays.asList(4, 0, 1);
-        final Collection<Integer> result = Arrays.asList(8, 0, 2, 12, 0, 3);
+        final Collection<Integer> first = Arrays.asList(2, 0, 0, 3); // 2x^4 + 0x^3 + 0x^2 + 1x
+        final Collection<Integer> second = Arrays.asList(4, 0, 1); // 4x^3 + 0x^2 + 1x
+        // 8x^7 + 0x^6 + 2x^5 + 12x^4 + 0x^3 + 3x^2 + 0x
+        final Collection<Integer> result = Arrays.asList(8, 0, 2, 12, 0, 3, 0);
         assertEquals("Error in second multiplication",
                 result,
                 instance.multiplyPolynomial(first, second)
