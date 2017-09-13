@@ -5,9 +5,13 @@ import java.util.LinkedList;
 public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
+        // Creating stack of bracers
         LinkedList<Character> bracerList = new LinkedList<>();
 
+        // Reading string
         for (char ch : sourceString.toCharArray()) {
+            
+            // Checking for correct bracers
             switch (ch) {
                 case '(':
                     bracerList.add('(');
