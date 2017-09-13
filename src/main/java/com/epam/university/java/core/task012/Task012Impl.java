@@ -21,9 +21,7 @@ public class Task012Impl implements Task012 {
      */
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
-        for (GraphAction action : actions) {
-            action.run(sourceGraph);
-        }
+        actions.forEach(a -> a.run(sourceGraph));
         return sourceGraph;
     }
 
