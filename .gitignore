@@ -4,4 +4,3 @@ build
 *.class
 *.iml
 out
-Будет удалено out/
