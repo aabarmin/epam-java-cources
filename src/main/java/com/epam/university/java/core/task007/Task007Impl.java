@@ -11,14 +11,14 @@ import java.util.List;
 public class Task007Impl implements Task007 {
     @Override
     public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
-        int n = first.size();
-        int m = second.size();
-        // пусть d[i] = сумма по всем (k + l = i) a[k], b[l]
+        int n = first.size() - 1; // степень первого полинома
+        int m = second.size() - 1; // степень второго полинома
+        // пусть d[i] - коэффициенты полинома, полученного перемножение первого и второго полинома
+        // тогда коэффициент d[i] находим следующим образом: = сумма по всем (k + l = i) a[k], b[l]
         // где a[k] - элементы первого массива, b[l] - второго
         ArrayList<Integer> firstList = new ArrayList<>();
         ArrayList<Integer> secondList = new ArrayList<>();
         Collection<Integer> result = new ArrayList<>();
-
 
         for (Integer f: first ) {
             firstList.add(f);
@@ -28,12 +28,12 @@ public class Task007Impl implements Task007 {
         }
 
         int d;
-        for (int i = m + n; i > 0; i--) {
+        for (int i = m + n; i > -1; i--) {
             d = 0;
 
             for (int j = 0; j < firstList.size(); j++) {
                 for (int k = 0; k < secondList.size(); k++) {
-                    if (j + k == i) {
+                    if (j + k == m + n - i) {
                         d = d + firstList.get(j)*secondList.get(k);
                     }
                 }
