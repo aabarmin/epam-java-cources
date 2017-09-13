@@ -22,10 +22,17 @@ public class Task002Impl implements Task002 {
     @Override
     public String left(String sourceString, int number) {
         checkForNull(sourceString);
-        if (isBordersCorrect(sourceString, number)){
+        if (isBordersCorrect(sourceString, number)) {
             return sourceString.substring(0, number);
         }
         return sourceString;
+    }
+
+    @Override
+    public String left(String sourceString, String separator) {
+        checkForNull(sourceString, separator);
+        int pos = sourceString.indexOf(separator);
+        return sourceString.substring(0, pos);
     }
 
     private boolean isBordersCorrect(String sourceString, int number) {
@@ -43,13 +50,6 @@ public class Task002Impl implements Task002 {
             return sourceString.substring(sourceString.length() - number);
         }
         return sourceString;
-    }
-
-    @Override
-    public String left(String sourceString, String separator) {
-        checkForNull(sourceString, separator);
-        int pos = sourceString.indexOf(separator);
-        return sourceString.substring(0, pos);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 public class Task003Impl implements Task003 {
     @Override
     public String[] invert(String[] source) {
-        checkForNull(source);
+        checkForNull((Object) source);
         String[] result = new String[source.length];
         int j = 0;
         for (int i = source.length - 1; i >= 0; i--, j++) {
@@ -27,7 +27,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public int findMax(int[] source) {
-        checkForNull(source);
+        checkForNull((Object) source);
         return Arrays.stream(source)
                 .max()
                 .getAsInt();
