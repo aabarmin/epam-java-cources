@@ -3,6 +3,7 @@ package com.epam.university.java.core.task009;
 import com.epam.university.java.core.validation.Validator;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -31,11 +32,25 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
         VALIDATOR.assertNotNull(sourceFile);
 
-        Set<String> result = new HashSet<>();
-        result.addAll(Arrays.asList(sourceFile.list()));
-        result = result.stream()
-                .flatMap(Pattern.compile(" ")::splitAsStream)
-                .collect(Collectors.toSet());
+        Set<String> result = new TreeSet<>();
+        List <String> lines = new ArrayList<>();
+
+        try {
+            lines.addAll(Files.readAllLines(sourceFile.toPath()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(String line : lines){
+            result.addAll(Arrays.stream(line
+                    .replaceAll("-", " ")
+                    .replaceAll("’re"," are")
+                    .replaceAll("[^A-Za-z ]", "")
+                    .toLowerCase().split(" "))
+                    .collect(Collectors.toSet()));
+        }
+
         return result;
     }
 }
