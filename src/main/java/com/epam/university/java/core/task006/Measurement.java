@@ -8,6 +8,7 @@ public class Measurement {
     private final double voltage;
 
     /**
+     * Constructor with all parameters.
      * @param amperage amperage value
      * @param voltage voltage value
      */
