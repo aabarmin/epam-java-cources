@@ -2,14 +2,16 @@ package com.epam.university.java.core.task003;
 
 public class FilteringConditionImpl implements FilteringCondition {
 
-    private final String CONDITION = "Last 2";
+    private final String condition = "Last 2";
+
     @Override
     public boolean isValid(String element) {
-        if (element==null){
+        if (element == null) {
             return false;
         }
-        if (CONDITION.equals(element))
+        if (condition.equals(element)) {
             return true;
+        }
 
         return false;
     }
