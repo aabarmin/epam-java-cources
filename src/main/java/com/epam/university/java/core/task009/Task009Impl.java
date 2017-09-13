@@ -44,8 +44,6 @@ public class Task009Impl implements Task009 {
 
         for(String line : lines){
             result.addAll(Arrays.stream(line
-                    .replaceAll("-", " ")
-                    .replaceAll("’re"," are")
                     .replaceAll("[^A-Za-z ]", "")
                     .toLowerCase().split(" "))
                     .collect(Collectors.toSet()));
