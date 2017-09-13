@@ -27,7 +27,7 @@ public class Task011Impl implements Task011 {
      */
     @Override
     public String getLastName(String[] collection) {
-        return collection[1];
+        return collection[collection.length-1];
     }
 
     /**
@@ -50,7 +50,7 @@ public class Task011Impl implements Task011 {
      */
     @Override
     public String getLastName(ArrayList<String> collection) {
-        return collection.get(1);
+        return collection.get(collection.size()-1);
     }
 
     /**
@@ -73,6 +73,6 @@ public class Task011Impl implements Task011 {
      */
     @Override
     public String getLastName(LinkedList<String> collection) {
-        return collection.get(1);
+        return collection.getLast();
     }
 }
