@@ -10,7 +10,7 @@ public class Task011Impl implements Task011 {
     /**
      * Given a circle of men, on each iteration one man leaves it through one. You should determine
      * name of last man.
-     * <p>
+     *
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained
@@ -27,13 +27,12 @@ public class Task011Impl implements Task011 {
      */
     @Override
     public String getLastName(String[] collection) {
-        return collection[collection.length-1];
+        return collection[collection.length - 1];
     }
 
     /**
      * Given a circle of men, on each iteration one man leaves it through one. You should determine
      * name of last man.
-     * <p>
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained
@@ -50,13 +49,12 @@ public class Task011Impl implements Task011 {
      */
     @Override
     public String getLastName(ArrayList<String> collection) {
-        return collection.get(collection.size()-1);
+        return collection.get(collection.size() - 1);
     }
 
     /**
      * Given a circle of men, on each iteration one man leaves it through one. You should determine
      * name of last man.
-     * <p>
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained

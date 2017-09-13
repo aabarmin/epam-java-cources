@@ -28,31 +28,31 @@ public class Task007Impl implements Task007 {
      * @return collection of members in multiplied polynomials
      */
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
         ArrayList<Integer> firstArray = new ArrayList<>(first);
         ArrayList<Integer> secondArray = new ArrayList<>(second);
 
         ArrayList<Integer> result = new ArrayList<>();
         int capacity = firstArray.size() + secondArray.size();
-        for(int i = 0; i<capacity; i++){
+        for (int i = 0; i < capacity; i++) {
             result.add(0);
         }
 
-        for(int i = 0; i < firstArray.size(); i++){
-            for(int j = 0; j < secondArray.size(); j++){
+        for (int i = 0; i < firstArray.size(); i++) {
+            for (int j = 0; j < secondArray.size(); j++) {
                 int position = i + j;
                 result.set(position,
                         result.get(position)
-                        + (firstArray.get(i) * secondArray.get(j))
+                                + (firstArray.get(i) * secondArray.get(j))
                 );
             }
         }
 
-        for(int i = result.size()-1; i>0; i--){
-            if(result.get(i) == 0){
+        for (int i = result.size() - 1; i > 0; i--) {
+            if (result.get(i) == 0) {
                 result.remove(i);
-            }
-            else {
+            } else {
                 break;
             }
         }

@@ -26,16 +26,15 @@ public class Task008Impl implements Task008 {
         String openBrackets = "({[";
         String closeBrackets = ")}]";
 
-        Stack <Integer> bracketStack = new Stack<>();
+        Stack<Integer> bracketStack = new Stack<>();
 
-        for (char ch : sourceString.toCharArray()){
+        for (char ch : sourceString.toCharArray()) {
             int openIndex = openBrackets.indexOf(ch);
-            if (openIndex >= 0){
+            if (openIndex >= 0) {
                 bracketStack.push(openIndex);
-            }
-            else{
+            } else {
                 int closeIndex = closeBrackets.indexOf(ch);
-                if (closeIndex >= 0){
+                if (closeIndex >= 0) {
                     if (bracketStack.pop() != closeIndex) {
                         return false;
                     }

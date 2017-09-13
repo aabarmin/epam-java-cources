@@ -1,13 +1,17 @@
 package com.epam.university.java.core.validation;
 
 import java.util.function.Predicate;
-
 /**
  * Created by Александр on 06.09.2017.
- *
+ */
+
+/**
+ * Class for validation user data.
+ * <p>
  * Use:
- *  private static final Validator VALIDATOR = Validator.newInstance(ValidationClient.class);
- *  VALIDATOR.assertNotNull(value);
+ * private static final Validator VALIDATOR = Validator.newInstance(ValidationClient.class);
+ * VALIDATOR.assertNotNull(value);
+ * </p>
  */
 public class Validator {
     private Class targetClass;
@@ -38,9 +42,9 @@ public class Validator {
      * Test number with predicate.
      *
      * @param num to test
-     * @param p condition
+     * @param p   condition
      */
-    public void validNum(Integer num, Predicate <Integer>p) {
+    public void validNum(Integer num, Predicate<Integer> p) {
         if (!p.test(num)) {
             throw new IllegalArgumentException(String.format(
                     "Exception in class %s",

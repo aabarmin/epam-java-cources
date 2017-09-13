@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by Александр on 06.09.2017.
  */
 public class Task004Impl implements Task004 {
-    private static Validator VALIDATOR =Validator.newInstance(Task004Impl.class);
+    private static Validator VALIDATOR = Validator.newInstance(Task004Impl.class);
 
     /**
      * Find intersection of two arrays.
