@@ -14,7 +14,7 @@ public class Task007Impl implements Task007 {
         int n = first.size() - 1; // степень первого полинома
         int m = second.size() - 1; // степень второго полинома
         // пусть d[i] - коэффициенты полинома, полученного перемножение первого и второго полинома
-        // тогда коэффициент d[i] находим следующим образом: = сумма по всем (k + l = i) a[k], b[l]
+        // тогда коэффициент d[i] находим следующим образом: = сумма по всем (k + l = i) a[k] * b[l]
         // где a[k] - элементы первого массива, b[l] - второго
         ArrayList<Integer> firstList = new ArrayList<>();
         ArrayList<Integer> secondList = new ArrayList<>();
