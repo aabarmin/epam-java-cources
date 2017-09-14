@@ -4,7 +4,7 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Aleksandr_Barmin on 8/31/2017.
@@ -101,6 +101,18 @@ public class Task001Test {
     public void divisionWithNaN() throws Exception {
         final double division = instance.division("  0  ", "  0  ");
         assertEquals("Incorrect division results", Double.NaN, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithPositiveInfinity() throws Exception {
+        final double division = instance.division("  1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.POSITIVE_INFINITY, division, DELTA);
+    }
+
+    @Test
+    public void divisionWithNegativeInfinity() throws Exception {
+        final double division = instance.division("  -1  ", "  0  ");
+        assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
     }
 
     @Test
