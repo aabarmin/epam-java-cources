@@ -1,9 +1,21 @@
 package com.epam.university.java.core.task003;
 
+import com.epam.university.java.core.validation.Validator;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Created by Александр on 06.09.2017.
+ * Task003Impl
  */
 public class Task003Impl implements Task003 {
+    private static final Validator VALIDATOR = Validator.newInstance(Task003.class);
+
     /**
      * Invert array.
      *
@@ -13,7 +25,11 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] invert(String[] source) {
-        return new String[0];
+        VALIDATOR.assertNotNull(source);
+
+        List<String> list = Arrays.asList(source);
+        Collections.reverse(list);
+        return list.toArray(new String[source.length]);
     }
 
     /**
@@ -26,7 +42,13 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] join(String[] first, String[] second) {
-        return new String[0];
+        VALIDATOR.assertNotNull(first);
+        VALIDATOR.assertNotNull(second);
+
+        return Stream
+                .of(first, second)
+                .flatMap(Stream::of)
+                .toArray(String[]::new);
     }
 
     /**
@@ -38,7 +60,9 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public int findMax(int[] source) {
-        return 0;
+        VALIDATOR.assertNotNull(source);
+
+        return Arrays.stream(source).max().orElse(0);
     }
 
     /**
@@ -51,7 +75,13 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
-        return new String[0];
+        VALIDATOR.assertNotNull(source);
+        VALIDATOR.assertNotNull(condition);
+
+        return Arrays.stream(source)
+                .filter(condition::isValid)
+                .toArray(String[]::new);
+
     }
 
     /**
@@ -64,7 +94,12 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] removeElements(String[] source, String[] toRemote) {
-        return new String[0];
+        VALIDATOR.assertNotNull(source);
+        VALIDATOR.assertNotNull(toRemote);
+
+        return Arrays.stream(source)
+                .filter((s) -> (Arrays.stream(toRemote).noneMatch(s::equals)))
+                .toArray(String[]::new);
     }
 
     /**
@@ -77,7 +112,12 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] map(String[] source, MappingOperation operation) {
-        return new String[0];
+        VALIDATOR.assertNotNull(source);
+        VALIDATOR.assertNotNull(operation);
+
+        return Arrays.stream(source)
+                .map(operation::map)
+                .toArray(String[]::new);
     }
 
     /**
@@ -90,6 +130,13 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
-        return new String[0];
+        VALIDATOR.assertNotNull(source);
+        VALIDATOR.assertNotNull(operation);
+
+        return Arrays.stream(source)
+                .flatMap(s -> Arrays.stream(s.split("[, ]+")))
+                .distinct()
+                .sorted((s1,s2) -> Integer.valueOf(s2).compareTo(Integer.valueOf(s1)))
+                .toArray(String[]::new);
     }
 }
