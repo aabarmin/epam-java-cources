@@ -5,10 +5,15 @@ package com.epam.university.java.core.task013;
  */
 public class VertexImpl implements Vertex {
 
-    private int coordX;
-    private int coordY;
+    private double coordX;
+    private double coordY;
 
     public VertexImpl(int x, int y) {
+        coordX = x;
+        coordY = y;
+    }
+
+    public VertexImpl(double x, double y) {
         coordX = x;
         coordY = y;
     }
@@ -20,6 +25,10 @@ public class VertexImpl implements Vertex {
      */
     @Override
     public int getX() {
+        return (int) coordX;
+    }
+
+    public double getDoubleX() {
         return coordX;
     }
 
@@ -33,6 +42,10 @@ public class VertexImpl implements Vertex {
         coordX = value;
     }
 
+    public void setX(double value) {
+        coordX = value;
+    }
+
     /**
      * Get y coordinate of vertex.
      *
@@ -40,6 +53,10 @@ public class VertexImpl implements Vertex {
      */
     @Override
     public int getY() {
+        return (int) coordY;
+    }
+
+    public double getDoubleY() {
         return coordY;
     }
 
@@ -49,6 +66,10 @@ public class VertexImpl implements Vertex {
      */
     @Override
     public void setY(int value) {
+        coordY = value;
+    }
+
+    public void setY(double value) {
         coordY = value;
     }
 
