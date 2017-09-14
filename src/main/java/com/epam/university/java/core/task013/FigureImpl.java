@@ -13,7 +13,7 @@ public class FigureImpl implements Figure {
     private final int vertexCount;
     private int verticesAdded;
 
-    FigureImpl(int vertexCount) {
+    public FigureImpl(int vertexCount) {
         this.vertexCount = vertexCount;
         vertices = new ArrayList<>(vertexCount);
     }

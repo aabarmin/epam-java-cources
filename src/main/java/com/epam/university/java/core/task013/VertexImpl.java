@@ -8,7 +8,7 @@ public class VertexImpl implements Vertex {
     private int coordX;
     private int coordY;
 
-    VertexImpl(int x, int y) {
+    public VertexImpl(int x, int y) {
         coordX = x;
         coordY = y;
     }
