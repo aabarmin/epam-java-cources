@@ -10,4 +10,12 @@ public interface FigureFactory {
      * @return figure instance
      */
     Figure newInstance(int vertexCount);
+
+    /**
+     * Create new vertex instance with designated coordinates.
+     * @param x first coordinate
+     * @param y second coordinate
+     * @return vertex instance
+     */
+    Vertex newInstance(int x, int y);
 }
