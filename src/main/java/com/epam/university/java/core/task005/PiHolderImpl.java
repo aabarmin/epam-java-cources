@@ -3,11 +3,11 @@ package com.epam.university.java.core.task005;
 public class PiHolderImpl implements PiHolder {
 
     private int numerator;
-    private int denomimator;
+    private int denumimator;
 
     public PiHolderImpl(int numerator, int denomimator) {
         this.numerator = numerator;
-        this.denomimator = denomimator;
+        this.denumimator = denomimator;
     }
 
     @Override
@@ -17,6 +17,6 @@ public class PiHolderImpl implements PiHolder {
 
     @Override
     public int getSecond() {
-        return denomimator;
+        return denumimator;
     }
 }
