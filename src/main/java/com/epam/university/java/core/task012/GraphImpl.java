@@ -13,7 +13,12 @@ public class GraphImpl implements Graph {
     private final int vertexesCount;
     private ArrayList<Set<Integer>> adjacencyLists;
 
-    GraphImpl(int vertexesCount) {
+    /**
+     * Constructs an undirected graph with designated amount of vertices.
+     *
+     * @param vertexesCount vertices count
+     */
+    public GraphImpl(int vertexesCount) {
         this.vertexesCount = vertexesCount;
         adjacencyLists = new ArrayList<>(vertexesCount);
         for (int i = 0; i < vertexesCount; ++i) {
