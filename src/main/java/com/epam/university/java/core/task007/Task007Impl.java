@@ -1,9 +1,7 @@
 package com.epam.university.java.core.task007;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Daniil Smirnov on 14.09.2017.
