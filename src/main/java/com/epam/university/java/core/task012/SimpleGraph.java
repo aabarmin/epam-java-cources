@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
  * Created by Александр on 14.09.2017.
  */
 public class SimpleGraph implements Graph {
-    int[][] network;
+    private int[][] network;
 
-    SimpleGraph(int vertexesCount){
+    SimpleGraph(int vertexesCount) {
         this.network = new int[vertexesCount][vertexesCount];
     }
 
@@ -41,7 +41,7 @@ public class SimpleGraph implements Graph {
     public boolean edgeExists(int from, int to) {
         from--;
         to--;
-        if (network[from][to] == 1){
+        if (network[from][to] == 1) {
             return true;
         }
         return false;

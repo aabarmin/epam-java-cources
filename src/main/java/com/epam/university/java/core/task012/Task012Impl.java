@@ -13,7 +13,7 @@ public class Task012Impl implements Task012 {
      */
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
-        actions.stream().forEach(ga -> ga.run(sourceGraph));
+        actions.forEach(ga -> ga.run(sourceGraph));
         return sourceGraph;
     }
 
@@ -35,20 +35,19 @@ public class Task012Impl implements Task012 {
 
 
         for (int i = 0; i < size; i++) {
-            if (visited[i] == State.VISITED){
+            if (visited[i] == State.VISITED) {
                 visited[i] = State.PASSED;
 
-                for (int index : graph.getAdjacent(i)){
-                    if (visited[index] == State.NOT_VISITED){
+                for (int index : graph.getAdjacent(i)) {
+                    if (visited[index] == State.NOT_VISITED) {
                         visited[index] = State.VISITED;
                     }
                 }
-
                 //go to start
                 i = -1;
             }
 
-            if (visited[to] != State.NOT_VISITED){
+            if (visited[to] != State.NOT_VISITED) {
                 return true;
             }
         }
@@ -56,7 +55,7 @@ public class Task012Impl implements Task012 {
         return false;
     }
 
-    enum State{
+    enum State {
         NOT_VISITED, VISITED, PASSED
     }
 }
