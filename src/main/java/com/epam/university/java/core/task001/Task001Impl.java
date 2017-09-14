@@ -6,7 +6,7 @@ import com.epam.university.java.core.validation.Validator;
  * Created by Александр on 06.09.2017.
  */
 public class Task001Impl implements Task001 {
-    private static Validator VALIDATOR =Validator.newInstance(Task001Impl.class);
+    private static Validator VALIDATOR = Validator.newInstance(Task001Impl.class);
 
     /**
      * Execute addition operation.

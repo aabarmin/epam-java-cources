@@ -7,7 +7,7 @@ public class PiHolderImpl implements PiHolder {
     private final int numerator;
     private final int denominator;
 
-    public PiHolderImpl(int numerator, int denominator){
+    public PiHolderImpl(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
     }

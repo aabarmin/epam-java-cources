@@ -4,7 +4,8 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class Task003Test {
     private Task003 instance;
@@ -12,6 +13,10 @@ public class Task003Test {
     private MappingOperation mappingOperation;
     private FlatMappingOperation flatMappingOperation;
 
+    /**
+     * Prepare environment.
+     * @throws Exception if can't create testable classes
+     */
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task003.class);

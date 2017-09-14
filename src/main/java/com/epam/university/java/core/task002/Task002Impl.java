@@ -6,7 +6,7 @@ import com.epam.university.java.core.validation.Validator;
  * Created by Александр on 06.09.2017.
  */
 public class Task002Impl implements Task002 {
-    private static Validator VALIDATOR =Validator.newInstance(Task002Impl.class);
+    private static Validator VALIDATOR = Validator.newInstance(Task002Impl.class);
 
 
     /**
@@ -36,31 +36,13 @@ public class Task002Impl implements Task002 {
     @Override
     public String left(String sourceString, int number) {
         VALIDATOR.assertNotNull(sourceString);
-        VALIDATOR.assertMoreZero(number);
+        VALIDATOR.validNum(number, num -> num > 0);
 
-        if ( number > sourceString.length())
+        if (number > sourceString.length()) {
             return sourceString;
-        else
-            return sourceString.substring(0,number);
-    }
-
-    /**
-     * Get most right @{number} of symbols.
-     *
-     * @param sourceString source string
-     * @param number       amount of symbols to return
-     * @return new string
-     * @throws IllegalArgumentException if string not provided or number less then zero
-     */
-    @Override
-    public String right(String sourceString, int number) {
-        VALIDATOR.assertNotNull(sourceString);
-        VALIDATOR.assertMoreZero(number);
-
-        if ( number > sourceString.length())
-            return sourceString;
-        else
-            return sourceString.substring(sourceString.length()-number,sourceString.length());
+        } else {
+            return sourceString.substring(0, number);
+        }
     }
 
     /**
@@ -77,7 +59,7 @@ public class Task002Impl implements Task002 {
         VALIDATOR.assertNotNull(separator);
 
         int endIndex = sourceString.indexOf(separator);
-        return sourceString.substring(0,endIndex);
+        return sourceString.substring(0, endIndex);
     }
 
     /**
@@ -94,7 +76,27 @@ public class Task002Impl implements Task002 {
         VALIDATOR.assertNotNull(separator);
 
         int startIndex = sourceString.indexOf(separator);
-        return sourceString.substring(startIndex+separator.length(),sourceString.length());
+        return sourceString.substring(startIndex + separator.length(), sourceString.length());
+    }
+
+    /**
+     * Get most right @{number} of symbols.
+     *
+     * @param sourceString source string
+     * @param number       amount of symbols to return
+     * @return new string
+     * @throws IllegalArgumentException if string not provided or number less then zero
+     */
+    @Override
+    public String right(String sourceString, int number) {
+        VALIDATOR.assertNotNull(sourceString);
+        VALIDATOR.validNum(number, num -> num > 0);
+
+        if (number > sourceString.length()) {
+            return sourceString;
+        } else {
+            return sourceString.substring(sourceString.length() - number, sourceString.length());
+        }
     }
 
     /**
@@ -114,7 +116,7 @@ public class Task002Impl implements Task002 {
     }
 
     /**
-     * Connect array of strings with glue
+     * Connect array of strings with glue.
      *
      * @param sourceCollection collection of strings
      * @param glue             glue character
@@ -126,6 +128,6 @@ public class Task002Impl implements Task002 {
         VALIDATOR.assertNotNull(sourceCollection);
         VALIDATOR.assertNotNull(glue);
 
-        return String.join(glue,sourceCollection);
+        return String.join(glue, sourceCollection);
     }
 }

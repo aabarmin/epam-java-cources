@@ -4,7 +4,7 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class Task005Test {
     private Task005 instance;
@@ -20,8 +20,8 @@ public class Task005Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFinderWithHundredDigit() throws Exception {
-        instance.findPi(100);
+    public void testFinderWithElevenDigit() throws Exception {
+        instance.findPi(11);
     }
 
     @Test(timeout = 500L)
