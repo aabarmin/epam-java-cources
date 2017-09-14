@@ -1,8 +1,10 @@
 package com.epam.university.java.core.task012;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 14.09.2017.
@@ -68,7 +70,8 @@ public class SimpleGraph implements Graph {
     @Override
     public Collection<Integer> getAdjacent(int from) {
         from--;
-        List result = Arrays.asList(network[from]);
+        List<Integer> result = new ArrayList<>();
+        Arrays.stream(network[from]).forEach(result::add);
         return result;
     }
 }
