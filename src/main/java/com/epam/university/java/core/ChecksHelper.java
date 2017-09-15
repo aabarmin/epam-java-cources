@@ -41,8 +41,8 @@ public class ChecksHelper {
     */
     public static void checkForNullBothArguments(
             Object firstNumber,
-            Object secondNumber) throws IllegalArgumentException
-    {
+            Object secondNumber) throws IllegalArgumentException {
+
         if (null == firstNumber && null == secondNumber) {
             throw new IllegalArgumentException();
         }
@@ -57,8 +57,8 @@ public class ChecksHelper {
      */
     public static void checkForEmptyBothArguments(
             String firstNumber,
-            String secondNumber) throws IllegalArgumentException
-    {
+            String secondNumber) throws IllegalArgumentException {
+
         if (firstNumber.equals(" ") && secondNumber.equals(" ")) {
             throw new IllegalArgumentException();
         }
