@@ -3,6 +3,7 @@ package com.epam.university.java.core.task003;
 import com.epam.university.java.core.validation.Validator;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -96,6 +97,11 @@ public class Task003Impl implements Task003 {
     public String[] removeElements(String[] source, String[] toRemote) {
         VALIDATOR.assertNotNull(source);
         VALIDATOR.assertNotNull(toRemote);
+
+        List<String> result = new ArrayList<>();
+        result.addAll(Arrays.asList(source));
+        result.removeAll(Arrays.asList(toRemote));
+
 
         return Arrays.stream(source)
                 .filter((s) -> (Arrays.stream(toRemote).noneMatch(s::equals)))
