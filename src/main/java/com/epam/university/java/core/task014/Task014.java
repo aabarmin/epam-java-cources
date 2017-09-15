@@ -15,6 +15,9 @@ public interface Task014 {
      * <p>
      *     Example: 1260 = 21 * 60
      * </p>
+     * <p>
+     *     {@see https://en.wikipedia.org/wiki/Vampire_number}
+     * </p>
      * @return collection of vampire numbers
      */
     Collection<VampireNumber> getVampireNumbers();
