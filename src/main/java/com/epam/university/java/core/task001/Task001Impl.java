@@ -16,8 +16,7 @@ public class Task001Impl implements Task001 {
         try {
             firstDouble = Double.parseDouble(firstNumber);
             secondDouble = Double.parseDouble(secondNumber);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new NumberFormatException();
         }
 
@@ -35,8 +34,7 @@ public class Task001Impl implements Task001 {
         try {
             firstDouble = Double.parseDouble(firstNumber);
             secondDouble = Double.parseDouble(secondNumber);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new NumberFormatException();
         }
 
@@ -54,8 +52,7 @@ public class Task001Impl implements Task001 {
         try {
             firstDouble = Double.parseDouble(firstNumber);
             secondDouble = Double.parseDouble(secondNumber);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new NumberFormatException();
         }
 
@@ -73,8 +70,7 @@ public class Task001Impl implements Task001 {
         try {
             firstDouble = Double.parseDouble(firstNumber);
             secondDouble = Double.parseDouble(secondNumber);
-        }
-        catch (Exception e) {
+        }   catch (Exception e) {
             throw new NumberFormatException();
         }
         return firstDouble / secondDouble;

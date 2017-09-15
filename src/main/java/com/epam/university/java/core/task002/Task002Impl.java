@@ -24,13 +24,22 @@ public class Task002Impl implements Task002 {
 
         if (number > chars.length) {
             return sourceString;
-        }
-        else {
+        } else {
             for (int i = 0; i < number; i++) {
                 s = s + chars[i];
             }
             return s;
         }
+    }
+
+    @Override
+    public String left(String sourceString, String separator) {
+        if (sourceString == null || separator == null) {
+            throw new IllegalArgumentException();
+        }
+
+        String[] str = sourceString.split(separator);
+        return str[0];
     }
 
     @Override
@@ -44,23 +53,12 @@ public class Task002Impl implements Task002 {
 
         if (number > chars.length) {
             return sourceString;
+        } else {
+            for (int i = number; i > 0; i--) {
+                s = s + chars[chars.length - i];
+            }
+            return s;
         }
-        else{
-        for (int i = number; i > 0; i--) {
-            s = s + chars[chars.length - i];
-        }
-        return s;
-        }
-    }
-
-    @Override
-    public String left(String sourceString, String separator) {
-        if (sourceString == null || separator == null) {
-            throw new IllegalArgumentException();
-        }
-
-        String[] str = sourceString.split(separator);
-        return str[0];
     }
 
     @Override

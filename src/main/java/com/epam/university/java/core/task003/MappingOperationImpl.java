@@ -13,7 +13,7 @@ public class MappingOperationImpl implements MappingOperation {
         char[] chars = source.toCharArray();
         char[] result = new char[chars.length];
 
-        for (int i = 0; i < chars.length ; i++) {
+        for (int i = 0; i < chars.length; i++) {
             result[i] = chars[chars.length - i - 1];
         }
 

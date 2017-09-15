@@ -128,7 +128,7 @@ public class Task003Impl implements Task003 {
 
         int dlinaLastMassiv = 0;
         int maxReservSymbols = 0;
-        //максимальное кол-во элементов полного массива - т.е. хочу слить массив source в один массив
+        //максимальное кол-во элементов полного массива - т.е. хочу слить source в один массив
         for (int i = 0; i < source.length; i++) {
             maxReservSymbols += operation.flatMap(source[i]).length;
         }
@@ -144,7 +144,7 @@ public class Task003Impl implements Task003 {
             dlinaLastMassiv += temporaryArray.length;
         }
         // cортирую массив по убыванию пузырьком
-       // int max = generalArray[0];
+        // int max = generalArray[0];
         int minHelp = 0;
         for (int i = generalArray.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
@@ -159,7 +159,7 @@ public class Task003Impl implements Task003 {
         //
         String resultString = "";
         for (int i = 0; i < generalArray.length - 1; i++) {
-            if ((generalArray[i] != generalArray[i + 1])||(i == generalArray.length - 2)) {
+            if ((generalArray[i] != generalArray[i + 1]) || (i == generalArray.length - 2)) {
                 resultString = resultString + generalArray[i] + " ";
             }
         }

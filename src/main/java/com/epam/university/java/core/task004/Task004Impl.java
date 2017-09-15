@@ -36,7 +36,7 @@ public class Task004Impl implements Task004 {
 
     //вспомагательные функции
     //функция убирающая дубликаты из массива
-    private String[] deleteDublicates(String first[]) {
+    private String[] deleteDublicates(String[] first) {
 
         // дубликатам из первого массива присваиваю значение первого элемента массива first
         for (int i = 0; i < first.length - 1; i++) {
@@ -70,7 +70,8 @@ public class Task004Impl implements Task004 {
         return firstWithoutDublicates;
     }
 
-    private String[] unionHelpFunction (String[] firstWithoutDublicates, String[] secondWithoutDublicates) {
+    private String[] unionHelpFunction(String[] firstWithoutDublicates,
+                                       String[] secondWithoutDublicates) {
 
         //нахожу количество одинаковых элементов массивов без дубликатов
         int count = 0;
@@ -82,7 +83,8 @@ public class Task004Impl implements Task004 {
             }
         }
 
-        String[] result = new String [firstWithoutDublicates.length + secondWithoutDublicates.length - count];
+        String[] result = new String [firstWithoutDublicates.length
+                + secondWithoutDublicates.length - count];
         //пусть k - счетчик для массива result
         int k = 0;
         //введу индикатор совпадения элементов массивов
@@ -115,9 +117,9 @@ public class Task004Impl implements Task004 {
                 k++;
             }
         }
-//        for (int i = 0; i < result.length; i++) {
-//            System.out.println(result[i]);
-//        }
+        //for (int i = 0; i < result.length; i++) {
+        //    System.out.println(result[i]);
+        //}
 
         return result;
     }

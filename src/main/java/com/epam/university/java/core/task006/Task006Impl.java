@@ -50,28 +50,27 @@ public class Task006Impl implements Task006 {
             summaSquareAmperage = summaSquareAmperage + amperage[j] * amperage[j];
         }
 
-        double resultNumerator = n * summaAmperageVoltage - summaAmperage*summaVoltage;
-        double resultDenominator = n * summaSquareAmperage - (summaAmperage)*(summaAmperage);
+        double resultNumerator = n * summaAmperageVoltage - summaAmperage * summaVoltage;
+        double resultDenominator = n * summaSquareAmperage - (summaAmperage) * (summaAmperage);
         double result;
 
         if (resultNumerator == 0) {
             result = 0.0;
-        }
-        else {
+        } else {
             result = resultNumerator / resultDenominator;
         }
 
 
-//        double result2 = (summaVoltage - result * summaAmperage) / n;
-//        System.out.println(summaAmperage);
-//        System.out.println(summaVoltage);
-//        System.out.println(summaAmperageVoltage);
-//        System.out.println(summaSquareAmperage);
-//        System.out.println(result);
-//        System.out.println(result2);
+        //double result2 = (summaVoltage - result * summaAmperage) / n;
+        //System.out.println(summaAmperage);
+        //System.out.println(summaVoltage);
+        //System.out.println(summaAmperageVoltage);
+        //System.out.println(summaSquareAmperage);
+        //System.out.println(result);
+        //System.out.println(result2);
         BigDecimal x = new BigDecimal(String.valueOf(result));
-        double resultFinish = Double.parseDouble(x.setScale(3, BigDecimal.ROUND_HALF_EVEN).toString());
-      //  System.out.println(resultFinish);
-        return resultFinish;
+        double resultFin = Double.parseDouble(x.setScale(3, BigDecimal.ROUND_HALF_EVEN).toString());
+        //System.out.println(resultFinish);
+        return resultFin;
     }
 }

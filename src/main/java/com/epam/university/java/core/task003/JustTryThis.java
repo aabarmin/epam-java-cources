@@ -1,11 +1,13 @@
+/*
 package com.epam.university.java.core.task003;
 
+*/
 /**
  * Created by Вера on 07.09.2017.
  * этот файл можно не смотреть. Он чисто для меня.
- */
+ *//*
+
 public class JustTryThis implements  FlatMappingOperation {
-  //  private FlatMappingOperation flatMappingOperation;
 
     public int[] sort(int[] generalArray) {
         int minHelp = 0;
@@ -40,13 +42,13 @@ public class JustTryThis implements  FlatMappingOperation {
     }
 
 
-   // @Override
+    //@Override
     public String[] flatMapBase(int[] source) {
 
 
         String resultString = "";
         for (int i = 0; i < source.length - 1; i++) {
-            if ((source[i] != source[i + 1])||(i == source.length - 2)) {
+            if ((source[i] != source[i + 1]) || (i == source.length - 2)) {
                 resultString = resultString + source[i] + " ";
             }
         }
@@ -113,7 +115,7 @@ public class JustTryThis implements  FlatMappingOperation {
         for (int i = 0; i < args2.length; i++) {
             arsgAll[i + dlinaLastMassiv] = args2[i];
         }
-        dlinaLastMassiv+=args2.length;
+        dlinaLastMassiv += args2.length;
         for (int i = 0; i < args3.length; i++) {
             arsgAll[i + dlinaLastMassiv] = args3[i];
         }
@@ -126,7 +128,7 @@ public class JustTryThis implements  FlatMappingOperation {
 
 
 
-      //  int[] sourceAnother = new int[]{10,10,9,8,7,7,7,6,5,4,3,2,2,1,1};
+        // int[] sourceAnother = new int[]{10,10,9,8,7,7,7,6,5,4,3,2,2,1,1};
         justTryThis.sort(sourceAnother);
         justTryThis.flatMapBase(sourceAnother);
         int[] sourceToSort = new int[]{1,2,3,4,5,1,2,6,7,7,7,8,10,9};
@@ -146,3 +148,4 @@ public class JustTryThis implements  FlatMappingOperation {
 
     }
 }
+*/

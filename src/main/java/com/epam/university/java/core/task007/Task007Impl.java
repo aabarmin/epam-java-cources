@@ -10,7 +10,8 @@ import java.util.List;
  */
 public class Task007Impl implements Task007 {
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
         int n = first.size() - 1; // степень первого полинома
         int m = second.size() - 1; // степень второго полинома
         // пусть d[i] - коэффициенты полинома, полученного перемножение первого и второго полинома
@@ -20,10 +21,10 @@ public class Task007Impl implements Task007 {
         ArrayList<Integer> secondList = new ArrayList<>();
         Collection<Integer> result = new ArrayList<>();
 
-        for (Integer f: first ) {
+        for (Integer f: first) {
             firstList.add(f);
         }
-        for (Integer s: second ) {
+        for (Integer s: second) {
             secondList.add(s);
         }
 
@@ -34,7 +35,7 @@ public class Task007Impl implements Task007 {
             for (int j = 0; j < firstList.size(); j++) {
                 for (int k = 0; k < secondList.size(); k++) {
                     if (j + k == m + n - i) {
-                        d = d + firstList.get(j)*secondList.get(k);
+                        d = d + firstList.get(j) * secondList.get(k);
                     }
                 }
             }
