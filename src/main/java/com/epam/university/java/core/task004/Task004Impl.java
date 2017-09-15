@@ -27,12 +27,14 @@ public class Task004Impl implements Task004 {
         String[] merged = new Task003Impl().join(first, second);
         int counter = 0;
 
-        if (merged.length == 1)
+        if (merged.length == 1) {
             return merged;
+        }
 
         for (int i = 0; i < merged.length; i++) {
-            if (merged[i] == null)
+            if (merged[i] == null) {
                 continue;
+            }
             for (int j = i + 1; j < merged.length; j++) {
                 if (merged[i] == merged[j]) {
                     merged[j] = null;
@@ -43,8 +45,9 @@ public class Task004Impl implements Task004 {
         String[] result = new String[merged.length - counter];
         counter = 0;
         for (String s : merged) {
-            if (s != null)
+            if (s != null) {
                 result[counter++] = s;
+            }
         }
         return result;
     }

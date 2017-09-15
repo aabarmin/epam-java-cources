@@ -2,13 +2,20 @@ package com.epam.university.java.core.task003;
 
 import com.epam.university.java.core.task001.Task001Impl;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class Task003Impl implements Task003 {
     @Override
     public String[] invert(String[] source) {
-        if (source == null)
+        if (source == null) {
             throw new IllegalArgumentException();
+        }
 
         String[] result = new String[source.length];
         for (int i = source.length - 1, j = 0; i >= 0; i--, j++) {
@@ -37,12 +44,14 @@ public class Task003Impl implements Task003 {
 
     @Override
     public int findMax(int[] source) {
-        if (source == null)
+        if (source == null) {
             throw new IllegalArgumentException();
+        }
         int max = source[0];
         for (int i = 1; i < source.length; i++) {
-            if (max < source[i])
+            if (max < source[i]) {
                 max = source[i];
+            }
         }
 
         return max;
@@ -54,8 +63,9 @@ public class Task003Impl implements Task003 {
 
         List<String> resultList = new ArrayList<>();
         for (int i = 0; i < source.length; i++) {
-            if (condition.isValid(source[i]))
+            if (condition.isValid(source[i])) {
                 resultList.add(source[i]);
+            }
         }
         return resultList.toArray(new String[resultList.size()]);
     }
@@ -67,13 +77,15 @@ public class Task003Impl implements Task003 {
         boolean isDuplicate = false;
         for (int i = 0; i < source.length; i++) {
             for (int j = 0; j < toRemote.length; j++) {
-                if (source[i].equals(toRemote[j]))
+                if (source[i].equals(toRemote[j])) {
                     isDuplicate = true;
+                }
             }
             if (!isDuplicate) {
                 listResult.add(source[i]);
-            } else
+            } else {
                 isDuplicate = false;
+            }
         }
         return listResult.toArray(new String[listResult.size()]);
     }

@@ -23,6 +23,15 @@ public class Task002Impl implements Task002 {
         return sourceString.substring(0, number);
     }
 
+
+    @Override
+    public String left(String sourceString, String separator) {
+        Task001Impl.nullChecker(sourceString, separator);
+        int sepIndex = sourceString.indexOf(separator);
+
+        return sourceString.substring(0, sepIndex);
+    }
+
     @Override
     public String right(String sourceString, int number) {
         if (sourceString == null || number < 0) {
@@ -35,14 +44,6 @@ public class Task002Impl implements Task002 {
 
 
         return sourceString.substring(sourceString.length() - number);
-    }
-
-    @Override
-    public String left(String sourceString, String separator) {
-        Task001Impl.nullChecker(sourceString, separator);
-        int sepIndex = sourceString.indexOf(separator);
-
-        return sourceString.substring(0, sepIndex);
     }
 
     @Override
@@ -67,8 +68,9 @@ public class Task002Impl implements Task002 {
         }
         StringBuilder sb = new StringBuilder();
         for (String element : sourceCollection) {
-            if (element == null)
+            if (element == null) {
                 throw new IllegalArgumentException();
+            }
             sb.append(element).append(glue);
         }
         String result = sb.toString();

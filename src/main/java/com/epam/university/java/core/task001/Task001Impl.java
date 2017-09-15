@@ -37,6 +37,12 @@ public class Task001Impl implements Task001 {
         return firstDouble / secondDouble;
     }
 
+    /**
+     * Check if one of parameters is null.
+     * @param first any ref to check
+     * @param second any ref to check
+     * @throws IllegalArgumentException if one of parameters is null
+     */
     public static void nullChecker(Object first, Object second) {
         if (first == null || second == null) {
             throw new IllegalArgumentException();

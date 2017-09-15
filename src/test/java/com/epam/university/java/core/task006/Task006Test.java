@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
-
-
 import static org.junit.Assert.assertEquals;
 
 
@@ -77,18 +72,14 @@ public class Task006Test {
     @Test
     public void checkResistanceThird() throws Exception {
         /**
-         <<<<<<< HEAD
-         * Assumption, that measurements are noised
-         =======
          * Assumption, that measurements are noised.
-         >>>>>>> 4e9da890e062f06720ea99b50acb0cae9aee500a
          */
         final Collection<Measurement> measurements = new ArrayList<>();
-        measurements.add(new Measurement(0, 5.3));
-        measurements.add(new Measurement(0, 6.3));
-        measurements.add(new Measurement(0, 4.8));
-        measurements.add(new Measurement(0, 3.8));
-        measurements.add(new Measurement(0, 3.3));
+        measurements.add(new Measurement(0,5.3));
+        measurements.add(new Measurement(0,6.3));
+        measurements.add(new Measurement(0,4.8));
+        measurements.add(new Measurement(0,3.8));
+        measurements.add(new Measurement(0,3.3));
         //
         assertEquals("Error in third measurement",
                 0.0,

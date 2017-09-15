@@ -23,12 +23,12 @@ public class Task012Test {
     public void createGraphAndAddVertexes() throws Exception {
         final Graph sourceGraph = factory.newInstance(4);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-            g -> g.createEdge(1, 2),
-            g -> g.createEdge(2, 3),
-            g -> g.createEdge(3, 4),
-            g -> g.createEdge(4, 1),
-            g -> g.createEdge(1, 3),
-            g -> g.createEdge(2, 4)
+                g -> g.createEdge(1, 2),
+                g -> g.createEdge(2, 3),
+                g -> g.createEdge(3, 4),
+                g -> g.createEdge(4, 1),
+                g -> g.createEdge(1, 3),
+                g -> g.createEdge(2, 4)
         ));
         assertTrue("There is no edge between vertexes", targetGraph.edgeExists(2, 1));
         assertTrue("There is no edge between vertexes", targetGraph.edgeExists(3, 2));
@@ -39,14 +39,14 @@ public class Task012Test {
     public void createGraphAddAndRemoveVertexes() throws Exception {
         final Graph sourceGraph = factory.newInstance(4);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-            g -> g.createEdge(1, 2),
-            g -> g.createEdge(2, 3),
-            g -> g.createEdge(3, 4),
-            g -> g.createEdge(4, 1),
-            g -> g.createEdge(1, 3),
-            g -> g.createEdge(2, 4),
-            g -> g.removeEdge(1, 3),
-            g -> g.removeEdge(2, 4)
+                g -> g.createEdge(1, 2),
+                g -> g.createEdge(2, 3),
+                g -> g.createEdge(3, 4),
+                g -> g.createEdge(4, 1),
+                g -> g.createEdge(1, 3),
+                g -> g.createEdge(2, 4),
+                g -> g.removeEdge(1, 3),
+                g -> g.removeEdge(2, 4)
         ));
         assertTrue("There is not edge between vertexes", targetGraph.edgeExists(2, 1));
         assertTrue("There is not edge between vertexes", targetGraph.edgeExists(3, 2));
@@ -58,12 +58,12 @@ public class Task012Test {
     public void testPathCalculation() throws Exception {
         final Graph sourceGraph = factory.newInstance(5);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-            g -> g.createEdge(1, 2),
-            g -> g.createEdge(2, 3),
-            g -> g.createEdge(3, 4),
-            g -> g.createEdge(4, 5),
-            g -> g.createEdge(5, 1),
-            g -> g.removeEdge(1, 2)
+                g -> g.createEdge(1, 2),
+                g -> g.createEdge(2, 3),
+                g -> g.createEdge(3, 4),
+                g -> g.createEdge(4, 5),
+                g -> g.createEdge(5, 1),
+                g -> g.removeEdge(1, 2)
         ));
         assertTrue("There is path between vertexes",
                 instance.pathExists(targetGraph, 1, 2));

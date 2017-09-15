@@ -7,7 +7,8 @@ import java.util.List;
 
 public class Task007Impl implements Task007 {
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
         Integer[] firstArr = new Integer[first.size()];
         first.toArray(firstArr);
         Integer[] secondArr = new Integer[second.size()];
@@ -30,6 +31,9 @@ public class Task007Impl implements Task007 {
         List<Integer> list = new ArrayList<>();
         for (int i : resultArr) {
             list.add(i);
+        }
+        if (list.lastIndexOf(0) == list.size() - 1) {
+            list.remove(list.size() - 1);
         }
         return list;
     }

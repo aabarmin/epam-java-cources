@@ -17,9 +17,9 @@ public class Task008Impl implements Task008 {
                     break;
                 case ')':
                     try {
-                        if (stack.pop() == '(')
+                        if (stack.pop() == '(') {
                             break;
-                        else {
+                        } else {
                             return false;
                         }
                     } catch (EmptyStackException e) {
@@ -27,9 +27,9 @@ public class Task008Impl implements Task008 {
                     }
                 case ']':
                     try {
-                        if (stack.pop() == '[')
+                        if (stack.pop() == '[') {
                             break;
-                        else {
+                        } else {
                             return false;
                         }
                     } catch (EmptyStackException e) {
@@ -37,14 +37,16 @@ public class Task008Impl implements Task008 {
                     }
                 case '}':
                     try {
-                        if (stack.pop() == '{')
+                        if (stack.pop() == '{') {
                             break;
-                        else {
+                        } else {
                             return false;
                         }
                     } catch (EmptyStackException e) {
                         return false;
                     }
+                default:
+                    break;
             }
         }
         return stack.isEmpty();

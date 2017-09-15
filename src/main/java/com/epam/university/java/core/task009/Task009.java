@@ -10,11 +10,11 @@ public interface Task009 {
     /**
      * Source file contains words which separated with spaces.
      * <p>
-     * You need to output all different words.
-     * Same word in upper and lower case should be counted as equal.
+     *     You need to output all different words.
+     *     Same word in upper and lower case should be counted as equal.
      * </p>
      * <p>
-     * Tip: you can use Set for it.
+     *     Tip: you can use Set for it.
      * </p>
      *
      * @param sourceFile source file
