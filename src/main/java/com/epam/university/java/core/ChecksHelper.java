@@ -2,13 +2,15 @@ package com.epam.university.java.core;
 
 /**
  * class is to be used by all the TaskXXX classes
- * for params consistency checking
+ * for params consistency checking.
+ *
  * @author  Sergei Titov
  */
 
 public class ChecksHelper {
 
     /**
+     * serves as exception-thrower in case of too bad parameter.
      *
      * @param arg is to be checked for not being a null
      * @throws IllegalArgumentException
@@ -20,6 +22,7 @@ public class ChecksHelper {
     }
 
     /**
+    * serves as exception-thrower in case of too bad parameter.
     *
     * @param arg is to be checked for not being a null or an empty array
     * @throws IllegalArgumentException
@@ -31,11 +34,12 @@ public class ChecksHelper {
     }
 
     /**
+    * serves as exception-thrower in case of too bad parameters.
     *
-     * @param firstNumber is to be checked for not being a null
-     * @param secondNumber is to be checked for not being a null
-     * @throws IllegalArgumentException
-     */
+    * @param firstNumber is to be checked for not being a null
+    * @param secondNumber is to be checked for not being a null
+    * @throws IllegalArgumentException
+    */
     public static void checkForNullBothArguments(Object firstNumber,
                                                  Object secondNumber) throws IllegalArgumentException {
         if (null == firstNumber && null == secondNumber) {
@@ -44,6 +48,7 @@ public class ChecksHelper {
     }
 
     /**
+     * serves as exception-thrower in case of too bad parameters.
      *
      * @param firstNumber is to be checked for not being only a single whitespace-char string
      * @param secondNumber is to be checked for not being only a single whitespace-char string
