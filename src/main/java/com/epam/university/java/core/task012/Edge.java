@@ -32,16 +32,16 @@ public class Edge<T> {
 
         Edge<?> edge = (Edge<?>) o;
 
-        if (!pointOne.equals(edge.pointOne)) {
+        if (!(pointOne.equals(edge.pointOne)||pointOne.equals(edge.pointTwo))) {
             return false;
         }
-        return pointTwo.equals(edge.pointTwo);
+        return pointTwo.equals(edge.pointTwo)||pointTwo.equals(edge.pointOne);
     }
 
     @Override
     public int hashCode() {
         int result = pointOne.hashCode();
-        result = 31 * result + pointTwo.hashCode();
+        result = result + pointTwo.hashCode();
         return result;
     }
 }

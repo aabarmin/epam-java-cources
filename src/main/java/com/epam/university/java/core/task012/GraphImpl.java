@@ -19,11 +19,23 @@ public class GraphImpl implements Graph {
     public GraphImpl(
         int pointsCount) {
         this.size = pointsCount;
-        this.points = IntStream.range(1, pointsCount)
+        this.points = IntStream.range(1, pointsCount + 1)
             .collect(HashMap<Integer, List<Integer>>::new,
                 (list, i) -> list.put(i, new ArrayList<>()),
                 HashMap<Integer, List<Integer>>::putAll);
         this.edges = new ArrayList<>();
+    }
+
+    public Collection<Integer> pointSet() {
+        return points.keySet();
+    }
+
+    public Collection<Edge<Integer>> edgeSet() {
+        return edges;
+    }
+
+    public boolean hasPath(int from, int to){
+        return getTree().isConnected(from, to);
     }
 
     private void checkPoint(int... points) {
@@ -38,9 +50,10 @@ public class GraphImpl implements Graph {
     @Override
     public void createEdge(int from, int to) {
         checkPoint(from, to);
-
-        edges.add(new Edge<Integer>(from, to));
-
+        Edge<Integer> targetEdge = new Edge<>(from, to);
+        if (!edges.contains(targetEdge)) {
+            edges.add(targetEdge);
+        }
         points.get(from).add(to);
         points.get(to).add(from);
     }
@@ -55,8 +68,14 @@ public class GraphImpl implements Graph {
     @Override
     public void removeEdge(int from, int to) {
         checkPoint(from, to);
+        Edge<Integer> edge = new Edge<Integer>(from, to);
 
-        edges.remove(new Edge<Integer>(from, to));
+        if (edgeExists(from, to)) {
+            edges.remove(edge);
+        } else {
+            throw new IllegalArgumentException("Edge doesn't exist");
+        }
+
     }
 
     @Override
@@ -64,4 +83,9 @@ public class GraphImpl implements Graph {
         checkPoint(from);
         return points.get(from);
     }
+
+    private QuickUnionFindTree<Integer> getTree(){
+        return QuickUnionFindTreeFactory.getTree(points.keySet(),edges);
+    }
+
 }

@@ -17,6 +17,6 @@ public class Task012Impl implements Task012 {
 
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
-        return false;
+        return graph.hasPath(from, to);
     }
 }
