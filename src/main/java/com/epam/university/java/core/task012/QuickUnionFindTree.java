@@ -13,12 +13,21 @@ public class QuickUnionFindTree<T> {
     private List<Node<T>> nodes;
     private List<Node<T>> roots;
 
+    /**
+     * Constructor.
+     * @param elements collection of elements
+     */
     public QuickUnionFindTree(Collection<T> elements) {
         nodes = elements.stream().map(e -> new Node<T>(e)).collect(Collectors.toList());
         roots = new ArrayList<>();
         nodes.stream().forEach(e -> roots.add(e));
     }
 
+    /**
+     * Connect to elements.
+     * @param first first element
+     * @param second second element
+     */
     public void connect(T first, T second) {
         if (isConnected(first, second)) {
             return;
@@ -37,6 +46,12 @@ public class QuickUnionFindTree<T> {
         }
     }
 
+    /**
+     * Check is two element connected.
+     * @param first first element
+     * @param second secon element
+     * @return true if connected
+     */
     public boolean isConnected(T first, T second) {
         Node<T> firstRoot = getRoot(first);
         Node<T> secondRoot = getRoot(second);
@@ -46,24 +61,6 @@ public class QuickUnionFindTree<T> {
         }
 
         return false;
-    }
-
-    public void remove(T first, T second) {
-        if (!isConnected(first, second)) {
-            throw new IllegalArgumentException("Connection doesn't exist");
-        }
-        Node<T> firstNode = getNode(first);
-        Node<T> secondNode = getNode(second);
-        if (firstNode.hasRoot()&&firstNode.getRoot().equals(secondNode)) {
-            firstNode.setRoot(null);
-            secondNode.removeChild(firstNode);
-            roots.add(firstNode);
-        } else if (secondNode.hasRoot()&&secondNode.getRoot().equals(firstNode)) {
-            secondNode.setRoot(null);
-            firstNode.removeChild(secondNode);
-            roots.add(secondNode);
-        }
-
     }
 
     private Node<T> getNode(T element) {

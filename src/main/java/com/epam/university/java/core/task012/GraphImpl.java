@@ -16,6 +16,10 @@ public class GraphImpl implements Graph {
     private final List<Edge<Integer>> edges;
     private final int size;
 
+    /**
+     * Constructor.
+     * @param pointsCount count of points in Graph
+     */
     public GraphImpl(
         int pointsCount) {
         this.size = pointsCount;
@@ -26,16 +30,9 @@ public class GraphImpl implements Graph {
         this.edges = new ArrayList<>();
     }
 
-    public Collection<Integer> pointSet() {
-        return points.keySet();
-    }
-
-    public Collection<Edge<Integer>> edgeSet() {
-        return edges;
-    }
-
-    public boolean hasPath(int from, int to){
-        return getTree().isConnected(from, to);
+    @Override
+    public int size() {
+        return size;
     }
 
     private void checkPoint(int... points) {
@@ -82,10 +79,6 @@ public class GraphImpl implements Graph {
     public Collection<Integer> getAdjacent(int from) {
         checkPoint(from);
         return points.get(from);
-    }
-
-    private QuickUnionFindTree<Integer> getTree(){
-        return QuickUnionFindTreeFactory.getTree(points.keySet(),edges);
     }
 
 }

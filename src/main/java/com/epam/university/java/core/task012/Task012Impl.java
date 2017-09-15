@@ -1,8 +1,8 @@
 package com.epam.university.java.core.task012;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by ilya on 14.09.17.
@@ -17,6 +17,17 @@ public class Task012Impl implements Task012 {
 
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
-        return graph.hasPath(from, to);
+        ArrayList<Integer> points = IntStream.range(1, graph.size() + 1)
+            .collect(ArrayList<Integer>::new, (l, n) -> l.add(n), ArrayList::addAll);
+
+        QuickUnionFindTree<Integer> tree = new QuickUnionFindTree<>(points);
+
+        for (int point :
+            points) {
+            points.stream().filter(n -> n != point).filter(n -> graph.edgeExists(point, n))
+                .forEach(n -> tree.connect(point, n));
+        }
+
+        return tree.isConnected(from, to);
     }
 }

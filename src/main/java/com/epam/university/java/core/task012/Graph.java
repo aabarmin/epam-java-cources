@@ -35,5 +35,10 @@ public interface Graph {
      */
     Collection<Integer> getAdjacent(int from);
 
-    boolean hasPath(int from, int to);
+    /**
+     * Return size of graph.
+     * We need it to solve this problem!
+     * @return size of Graph
+     */
+    int size();
 }
