@@ -1,8 +1,8 @@
 package com.epam.university.java.core.task005;
 
 public class PiHolderImpl implements PiHolder {
-    private int numerator;
-    private int denominator;
+    private final int numerator;
+    private final int denominator;
 
     PiHolderImpl(int numerator, int denominator) {
         this.numerator = numerator;
