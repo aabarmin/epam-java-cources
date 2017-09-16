@@ -75,15 +75,15 @@ public class Task003Impl implements Task003 {
     public int findMax(int[] source) throws IllegalArgumentException {
 
         ChecksHelper.checkForEmptiness(source);
-        int iRetVal = source[0];
+        int retVal = source[0];
 
-        for (int i=1; i<source.length; i++) {
-            if (source[i] > iRetVal) {
-                iRetVal = source[i];
+        for (int i = 1; i < source.length; i++) {
+            if (source[i] > retVal) {
+                retVal = source[i];
             }
         }
 
-        return iRetVal;
+        return retVal;
     }
 
     /**
@@ -108,7 +108,7 @@ public class Task003Impl implements Task003 {
         }
         List<String> filteredList = new ArrayList<>();
 
-        for (int i=0; i<source.length; i++) {
+        for (int i = 0; i < source.length; i++) {
             if (condition.isValid(source[i])) {
                 filteredList.add(source[i]);
             }
@@ -175,7 +175,7 @@ public class Task003Impl implements Task003 {
         }
         String[] arrRetVal = new String[ source.length ];
 
-        for (int i=0; i<source.length; i++) {
+        for (int i = 0; i < source.length; i++) {
             arrRetVal[i] = operation.map(source[i]);
         }
 
