@@ -97,7 +97,8 @@ public class Task003Impl implements Task003 {
      * @throws IllegalArgumentException if both source and condition are nulls
      */
     @Override
-    public String[] filter(String[] source, FilteringCondition condition) throws IllegalArgumentException {
+    public String[] filter(String[] source, FilteringCondition condition)
+        throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, condition);
         if (null == source) {
@@ -131,7 +132,7 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] removeElements(String[] source, String[] toRemote)
-            throws IllegalArgumentException {
+        throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, toRemote);
         List<String> newList = new ArrayList<>();
@@ -139,8 +140,7 @@ public class Task003Impl implements Task003 {
         for (int i = 0; i < source.length; i++) {
             boolean exists = false;
             for (int j = 0; j < toRemote.length; j++) {
-                if (source[i].equals(toRemote[j]))
-                {
+                if (source[i].equals(toRemote[j])) {
                     exists = true;
                     break;
                 }
@@ -151,7 +151,7 @@ public class Task003Impl implements Task003 {
         }
 
         String[] arrRetVal = new String[ newList.size() ];
-        return newList.toArray( arrRetVal );
+        return newList.toArray(arrRetVal);
     }
 
     /**
@@ -167,7 +167,7 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] map(String[] source, MappingOperation operation)
-            throws IllegalArgumentException {
+        throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, operation);
         if (null == operation) {
@@ -195,7 +195,7 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation)
-            throws IllegalArgumentException {
+        throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, operation);
         if (null == operation) {

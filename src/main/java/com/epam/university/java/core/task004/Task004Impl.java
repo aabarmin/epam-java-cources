@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * implementation class for Task004
+ * implementation class for Task004.
  *
  * @author Sergei Titov
  */
