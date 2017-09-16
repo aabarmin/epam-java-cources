@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task003;
 
 /**
- * String conversion operation
+ * String conversion operation.
  */
 public interface FlatMappingOperation {
     /**
