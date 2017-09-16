@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task009;
 
-import java.io.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
