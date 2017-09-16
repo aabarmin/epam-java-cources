@@ -6,17 +6,9 @@ public class Task005Impl implements Task005 {
         // Checking for positive argument
         checkArgument(digits);
 
-        String stringA = "1";
-        String stringB = "9";
-
         // Generating start and end points
-        for (int i = 1; i < digits; i++) {
-            stringA += "0";
-            stringB += "9";
-        }
-
-        double startNumerator = Double.parseDouble(stringA);
-        double endNumerator = Double.parseDouble(stringB);
+        double startNumerator = Math.pow(10, (digits - 1));
+        double endNumerator = (Math.pow(10, digits) - 1);
 
         double currNumerator = 0;
         double currDenominator = 0;
@@ -32,7 +24,7 @@ public class Task005Impl implements Task005 {
             } else {
                 denominator = startNumerator;
             }
-            
+
             for (; denominator <= numerator / 3; denominator++) {
                 if ((Math.abs((numerator / denominator) - Math.PI)) < currDiff) {
                     currNumerator = numerator;
@@ -46,7 +38,7 @@ public class Task005Impl implements Task005 {
     }
 
     private void checkArgument(int arg) {
-        if (arg <= 0) {
+        if (arg < 1 || arg > 10) {
             throw new IllegalArgumentException();
         }
     }
