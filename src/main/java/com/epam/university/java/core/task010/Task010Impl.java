@@ -42,14 +42,20 @@ public class Task010Impl implements Task010 {
             Arrays.stream(line
                     .replaceAll("[^A-Za-z ]", "")
                     .toLowerCase().split(" "))
-                    .forEach();
+                    .forEach(s -> mapIncrement(result,s));
         }
 
         return result;
     }
 
-    private void addToMap(Map map, String key) {
-        int count = 0;
-        map.get(key)
+    /**
+     * Increment Int value in map. If key does not exists in map - put new element with value 1
+     * @param map link to map
+     * @param key kry to increment.
+     */
+    private static void mapIncrement(Map<String, Integer> map, String key) {
+        int count = map.getOrDefault(key,0) + 1;
+        map.put(key,count);
     }
+
 }
