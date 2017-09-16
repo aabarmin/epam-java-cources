@@ -98,7 +98,7 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] filter(String[] source, FilteringCondition condition)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, condition);
         if (null == source) {
@@ -126,13 +126,13 @@ public class Task003Impl implements Task003 {
      * @param toRemote elements to remove
      *
      * @returns an array, consisting of source array elements,
-     * but not containing elements from "toRemote"
+     *     but not containing elements from "toRemote"
      *
      * @throws IllegalArgumentException if both source and toRemote are nulls
      */
     @Override
     public String[] removeElements(String[] source, String[] toRemote)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, toRemote);
         List<String> newList = new ArrayList<>();
@@ -161,13 +161,13 @@ public class Task003Impl implements Task003 {
      * @param operation operation instance
      *
      * @returns an array of source array elements, mapped by MappingOperation rules,
-     * or returns source array intact if operation is null
+     *    or returns source array intact if operation is null
      *
      * @throws IllegalArgumentException if both source and operation are nulls
      */
     @Override
     public String[] map(String[] source, MappingOperation operation)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, operation);
         if (null == operation) {
@@ -195,7 +195,7 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation)
-        throws IllegalArgumentException {
+            throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(source, operation);
         if (null == operation) {
