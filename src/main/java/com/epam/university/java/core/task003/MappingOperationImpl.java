@@ -3,7 +3,7 @@ package com.epam.university.java.core.task003;
 import com.epam.university.java.core.ChecksHelper;
 
 /**
- * implementation class for MappingOperation
+ * implementation class for MappingOperation.
  *
  * @author Sergei Titov
  */

@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task003;
 
 /**
- * implementation class for FilteringCondition
+ * implementation class for FilteringCondition.
  *
  * @author Sergei Titov
  */
