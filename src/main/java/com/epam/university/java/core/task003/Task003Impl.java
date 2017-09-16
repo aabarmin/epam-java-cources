@@ -161,7 +161,7 @@ public class Task003Impl implements Task003 {
      * @param operation operation instance
      *
      * @returns an array of source array elements, mapped by MappingOperation rules,
-     *    or returns source array intact if operation is null
+     *     or returns source array intact if operation is null
      *
      * @throws IllegalArgumentException if both source and operation are nulls
      */
@@ -189,7 +189,7 @@ public class Task003Impl implements Task003 {
      * @param operation operation instance
      *
      * @returns an array of source array elements, mapped by FlatMappingOperation rules,
-     * or returns source array intact if operation is null
+     *     or returns source array intact if operation is null
      *
      * @throws IllegalArgumentException if both source and operation are nulls
      */
