@@ -46,9 +46,8 @@ public class Task002Impl implements Task002 {
             throw new IllegalArgumentException();
         }
 
-        int count = number >= sourceString.length() ?
-                sourceString.length() :
-                number;
+        int count = number >= sourceString.length()
+                ? sourceString.length() : number;
 
         return sourceString.substring(0, count);
     }
@@ -117,8 +116,9 @@ public class Task002Impl implements Task002 {
         ChecksHelper.checkForNullBothArguments(sourceString, separator);
 
         String[] foundStrings = sourceString.split(separator);
-        if (foundStrings.length > 0)
-            return foundStrings[ foundStrings.length - 1 ];
+        if (foundStrings.length > 0) {
+            return foundStrings[foundStrings.length - 1];
+        }
 
         return null;
     }
@@ -154,7 +154,7 @@ public class Task002Impl implements Task002 {
     public String join(String[] sourceCollection, String glue) throws IllegalArgumentException {
 
         ChecksHelper.checkForNullBothArguments(sourceCollection, glue);
-        if (0 ==sourceCollection.length) {
+        if (0 == sourceCollection.length) {
             return "";
         }
 

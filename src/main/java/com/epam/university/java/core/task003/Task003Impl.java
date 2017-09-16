@@ -13,8 +13,8 @@ public class Task003Impl implements Task003 {
         ChecksHelper.checkForNull(source);
         String[] arrRetVal = new String[ source.length ];
 
-        for (int i=1; i<=source.length; i++) {
-            arrRetVal[ source.length - i ] = source[i-1];
+        for (int i = 1; i <= source.length; i++) {
+            arrRetVal[ source.length - i ] = source[i - 1];
         }
 
         return arrRetVal;
