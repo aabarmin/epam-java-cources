@@ -14,7 +14,7 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @return the sum
+     * @returns the sum
      */
     @Override
     public double addition(String firstNumber, String secondNumber) {
@@ -29,7 +29,7 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @return the difference
+     * @returns the difference
      */
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
@@ -44,7 +44,7 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @return
+     * @returns the product
      */
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
@@ -56,10 +56,10 @@ public class Task001Impl implements Task001 {
 
     /**
      * divides the first param by the second.
-     * 
+     *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @return
+     * @returns the quotient
      */
     @Override
     public double division(String firstNumber, String secondNumber) {
