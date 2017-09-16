@@ -11,4 +11,5 @@ public interface FlatMappingOperation {
      * @return array of converted strings or empty array if source not provided
      */
     String[] flatMap(String source);
+
 }
