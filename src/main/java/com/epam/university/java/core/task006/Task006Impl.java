@@ -34,6 +34,6 @@ public class Task006Impl implements Task006 {
         if (amperesPerSquare == 0) {
             return 0;
         }
-        return ((int) (resistance * 1000)) / 100.0;
+        return ((int) (resistance * 1000)) / 1000.0;
     }
 }
