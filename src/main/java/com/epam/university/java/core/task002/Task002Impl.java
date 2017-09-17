@@ -1,102 +1,169 @@
 package com.epam.university.java.core.task002;
 
+import com.epam.university.java.core.ChecksHelper;
+
+/**
+ * implemenaion class for String operations.
+ *
+ * @author Sergei Titov
+ */
 public class Task002Impl implements Task002 {
 
+    /**
+     * compares two strings.
+     *
+     * @param firstString first string instance
+     * @param secondString second string instance
+     *
+     * @return true if string are equal
+     *
+     * @throws IllegalArgumentException if sourceCollection is null
+     */
     @Override
-    public boolean isEquals(String firstString, String secondString) throws IllegalArgumentException {
+    public boolean isEquals(String firstString, String secondString)
+            throws IllegalArgumentException {
 
-        checkForNullBothArguments( firstString,  secondString);
-        checkForEmptyBothArguments( firstString,  secondString);
-        return firstString.equals( secondString );
+        ChecksHelper.checkForNullBothArguments(firstString,  secondString);
+        ChecksHelper.checkForEmptyBothArguments(firstString,  secondString);
+        return firstString.equals(secondString);
     }
 
+    /**
+     * gets left substring.
+     *
+     * @param sourceString source string
+     * @param number amount of symbols to return
+     *
+     * @returns substring (number of letters)
+     *
+     * @throws IllegalArgumentException if sourceString is null or number is negative
+     */
     @Override
     public String left(String sourceString, int number) throws IllegalArgumentException {
-        if( number < 0 )
+
+        ChecksHelper.checkForNull(sourceString);
+        if (number < 0) {
             throw new IllegalArgumentException();
+        }
 
-        if( null == sourceString )
-            throw new IllegalArgumentException();
+        int count = number >= sourceString.length()
+                ? sourceString.length() : number;
 
-        int count = number >= sourceString.length() ?
-                sourceString.length() :
-                number;
-
-        return sourceString.substring( 0, count );
+        return sourceString.substring(0, count);
     }
 
+    /**
+     * gets left substring.
+     *
+     * @param sourceString source string
+     * @param separator separator
+     *
+     * @returns substring, left-hand from separator, or null if separator was not found
+     *
+     * @throws IllegalArgumentException if sourceString is null
+     */
+    @Override
+    public String left(String sourceString, String separator) throws IllegalArgumentException {
+
+        ChecksHelper.checkForNullBothArguments(sourceString, separator);
+        String[] foundStrings = sourceString.split(separator);
+
+        if (foundStrings.length > 0) {
+            return foundStrings[0];
+        }
+
+        return null;
+    }
+
+    /**
+     * gets right substring.
+     *
+     * @param sourceString source string
+     * @param number amount of symbols to return
+     *
+     * @returns substring (number of letters)
+     *
+     * @throws IllegalArgumentException if sourceString is null or number is negative
+     */
     @Override
     public String right(String sourceString, int number) throws IllegalArgumentException {
-        if( number < 0 )
-            throw new IllegalArgumentException();
 
-        if( null == sourceString )
+        ChecksHelper.checkForNull(sourceString);
+        if (number < 0) {
             throw new IllegalArgumentException();
+        }
 
-        if( number <= sourceString.length() )
-            return sourceString.substring( sourceString.length() - number );
+        if (number <= sourceString.length()) {
+            return sourceString.substring(sourceString.length() - number);
+        }
 
         return sourceString;
     }
 
-    @Override
-    public String left(String sourceString, String separator) throws IllegalArgumentException {
-
-        checkForNullBothArguments(sourceString, separator);
-        String[] foundStrings = sourceString.split( separator );
-
-        if( foundStrings.length > 0 )
-            return foundStrings[0];
-
-        return null;
-    }
-
+    /**
+     * gets right substring.
+     *
+     * @param sourceString source string
+     * @param separator separator
+     *
+     * @returns substring, right-hand from separator, or null if separator was not found
+     *
+     * @throws IllegalArgumentException if sourceString is null
+     */
     @Override
     public String right(String sourceString, String separator) throws IllegalArgumentException {
 
-        checkForNullBothArguments(sourceString, separator);
+        ChecksHelper.checkForNullBothArguments(sourceString, separator);
 
-        String[] foundStrings = sourceString.split( separator );
-        if( foundStrings.length > 0 )
-            return foundStrings[ foundStrings.length-1 ];
+        String[] foundStrings = sourceString.split(separator);
+        if (foundStrings.length > 0) {
+            return foundStrings[foundStrings.length - 1];
+        }
 
         return null;
     }
 
+    /**
+     * does the same as "String.split(...)".
+     *
+     * @param sourceString source string
+     * @param split character to split for
+     *
+     * @return array of substrings
+     *
+     * @throws IllegalArgumentException if sourceString is null
+     */
     @Override
     public String[] split(String sourceString, String split) throws IllegalArgumentException {
 
-        checkForNullBothArguments( sourceString, split );
-        return sourceString.split( split );
+        ChecksHelper.checkForNullBothArguments(sourceString, split);
+        return sourceString.split(split);
     }
 
+    /**
+     * combines strings in one big string.
+     *
+     * @param sourceCollection collection of strings
+     * @param glue glue character
+     *
+     * @return value is a string-composition of "sourceCollection" strings, jointed by "glue" value
+     *
+     * @throws IllegalArgumentException if sourceCollection is null
+     */
     @Override
     public String join(String[] sourceCollection, String glue) throws IllegalArgumentException {
 
-        checkForNullBothArguments( sourceCollection, glue );
-
-        if( 0 ==sourceCollection.length  )
+        ChecksHelper.checkForNullBothArguments(sourceCollection, glue);
+        if (0 == sourceCollection.length) {
             return "";
+        }
 
         String value = sourceCollection[0];
 
         for (int i = 1; i < sourceCollection.length; i++) {
-            value += ( glue + sourceCollection[i] );
+            value += (glue + sourceCollection[i]);
         }
 
         return value;
     }
-
-    // (null, null)
-    private void checkForNullBothArguments(Object firstNumber, String secondNumber) throws IllegalArgumentException {
-        if( null == firstNumber && null == secondNumber )
-            throw new IllegalArgumentException();
-    }
-
-    // (" ", " ")
-    private void checkForEmptyBothArguments(String firstNumber, String secondNumber) throws IllegalArgumentException {
-        if( firstNumber.equals(" ") && secondNumber.equals(" ") )
-            throw new IllegalArgumentException();
-    }
-
 }
