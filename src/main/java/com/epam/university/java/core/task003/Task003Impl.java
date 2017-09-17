@@ -119,7 +119,7 @@ public class Task003Impl implements Task003 {
                     intSource[j] += intSource[j - 1];
                     intSource[j - 1] = intSource[j] - intSource[j - 1];
                     intSource[j] -= intSource[j - 1];
-                }
+                 }
             }
         }
         
