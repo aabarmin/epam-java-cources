@@ -58,7 +58,8 @@ public final class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] filter(final String[] source, final FilteringCondition condition) {
+    public String[] filter(final String[] source,
+                           final FilteringCondition condition) {
         if ((source == null) || (condition == null)) {
             throw new IllegalArgumentException(MSG_NULL_SOURCE);
         }
@@ -76,7 +77,8 @@ public final class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] removeElements(final String[] source, final String[] toRemote) {
+    public String[] removeElements(final String[] source,
+                                   final String[] toRemote) {
         if ((source == null) || (toRemote == null)) {
             throw new IllegalArgumentException(MSG_NULL_SOURCE);
         }
@@ -93,7 +95,8 @@ public final class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] map(final String[] source, final MappingOperation operation) {
+    public String[] map(final String[] source,
+                        final MappingOperation operation) {
         if ((source == null) || (operation == null)) {
             throw new IllegalArgumentException(MSG_NULL_SOURCE);
         }
@@ -109,7 +112,8 @@ public final class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] flatMap(final String[] source, final FlatMappingOperation operation) {
+    public String[] flatMap(final String[] source,
+                            final FlatMappingOperation operation) {
         if ((source == null) || (operation == null)) {
             throw new IllegalArgumentException(MSG_NULL_SOURCE);
         }

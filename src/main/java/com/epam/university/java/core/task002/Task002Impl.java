@@ -19,7 +19,8 @@ public final class Task002Impl implements Task002 {
             MSG_NEGATIVE_NUM = "input number must not be negative";
 
     @Override
-    public boolean isEquals(final String firstString, final String secondString) {
+    public boolean isEquals(final String firstString,
+                            final String secondString) {
         if ((firstString == null) || (secondString == null)) {
             throw new IllegalArgumentException(MSG_NULL_STRINGS);
         }
@@ -64,7 +65,8 @@ public final class Task002Impl implements Task002 {
         }
 
         if (sourceString.length() > number) {
-            return sourceString.substring(sourceString.length() - number, sourceString.length());
+            return sourceString.substring(sourceString.length()
+                    - number, sourceString.length());
         } else {
             return sourceString;
         }

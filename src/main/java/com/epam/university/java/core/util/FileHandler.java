@@ -1,7 +1,4 @@
-
 package com.epam.university.java.core.util;
-
-import org.apache.logging.log4j.core.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +8,6 @@ import java.io.InputStreamReader;
  * Util class for different operations with files.
  */
 public final class FileHandler {
-    //public static final Logger logger = Logger.getLogger(classname.class);
 
     /**
      * Private constructor, not meant to be instantiated.
@@ -40,7 +36,7 @@ public final class FileHandler {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            //logger.error();
+            e.printStackTrace();
             return text.toString();
         }
         return text.toString();

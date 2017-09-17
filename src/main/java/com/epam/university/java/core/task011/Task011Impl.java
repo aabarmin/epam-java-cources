@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class Task011Impl implements Task011 {
     /**
-     * Given a circle of men, on each iteration one man leaves it through one. You should determine
-     * name of last man.
+     * Given a circle of men, on each iteration one man leaves it
+     * through one. You should determine name of last man.
      * <p>
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
@@ -35,8 +35,8 @@ public class Task011Impl implements Task011 {
     }
 
     /**
-     * Given a circle of men, on each iteration one man leaves it through one. You should determine
-     * name of last man.
+     * Given a circle of men, on each iteration one man leaves it
+     * through one. You should determine name of last man.
      * <p>
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
@@ -62,15 +62,15 @@ public class Task011Impl implements Task011 {
                 list.remove(i);
                 i++;
             } else {
-                i=i-list.size();
+                i = i - list.size();
             }
         }
         return list.get(0);
     }
 
     /**
-     * Given a circle of men, on each iteration one man leaves it through one. You should determine
-     * name of last man.
+     * Given a circle of men, on each iteration one man leaves it
+     * through one. You should determine name of last man.
      * <p>
      * <p>
      * <p>
