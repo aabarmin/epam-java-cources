@@ -14,19 +14,13 @@ public class Task002Impl implements Task002 {
         if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
-        if (number == 0) return null;
-        if (number > sourceString.length()) number = sourceString.length();
-        return sourceString.substring(0, number);
-    }
-
-    @Override
-    public String right(String sourceString, int number) {
-        if (sourceString == null || number < 0) {
-            throw new IllegalArgumentException();
+        if (number == 0) {
+            return null;
         }
-        if (number == 0) return null;
-        if (number > sourceString.length()) number = sourceString.length();
-        return sourceString.substring(sourceString.length() - number, sourceString.length());
+        if (number > sourceString.length()) {
+            number = sourceString.length();
+        }
+        return sourceString.substring(0, number);
     }
 
     @Override
@@ -37,6 +31,20 @@ public class Task002Impl implements Task002 {
         int endIndex = sourceString.indexOf(separator);
 
         return sourceString.substring(0, endIndex);
+    }
+
+    @Override
+    public String right(String sourceString, int number) {
+        if (sourceString == null || number < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (number == 0) {
+            return null;
+        }
+        if (number > sourceString.length()) {
+            number = sourceString.length();
+        }
+        return sourceString.substring(sourceString.length() - number, sourceString.length());
     }
 
     @Override
@@ -65,12 +73,12 @@ public class Task002Impl implements Task002 {
         if (sourceCollection == null || glue == null) {
             throw new IllegalArgumentException();
         }
-        String output = sourceCollection[0];
+        StringBuilder output = new StringBuilder(sourceCollection[0]);
         if (sourceCollection.length > 1) {
             for (int i = 1; i < sourceCollection.length; i++) {
-                output += glue + sourceCollection[i];
+                output.append(glue).append(sourceCollection[i]);
             }
         }
-        return output;
+        return output.toString();
     }
 }
