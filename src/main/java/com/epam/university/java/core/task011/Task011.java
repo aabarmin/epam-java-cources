@@ -28,7 +28,7 @@ public interface Task011 {
     String getLastName(String[] collection);
 
     /**
-u      * Given a circle of men, on each iteration one man leaves it through one. You should determine
+     * Given a circle of men, on each iteration one man leaves it through one. You should determine
      * name of last man.
      *
      * <p>

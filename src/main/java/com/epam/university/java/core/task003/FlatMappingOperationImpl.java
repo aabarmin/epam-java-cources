@@ -32,7 +32,6 @@ public final class FlatMappingOperationImpl implements FlatMappingOperation {
 
         String[] resultArray = new String[resultStringList.size()];
         resultArray = resultStringList.toArray(resultArray);
-//
 
         return resultArray;
     }

@@ -42,6 +42,20 @@ public final class Task002Impl implements Task002 {
     }
 
     @Override
+    public String left(final String sourceString, final String separator) {
+        if (("".equals(sourceString)) || ("".equals(separator))
+                || (sourceString == null) || (separator == null)) {
+            throw new IllegalArgumentException(MSG_NULL_STRINGS);
+        }
+
+        if (sourceString.contains(separator)) {
+            return sourceString.split(separator, 2)[0];
+        } else {
+            return sourceString;
+        }
+    }
+
+    @Override
     public String right(final String sourceString, final int number) {
         if (("".equals(sourceString)) || (sourceString == null)) {
             throw new IllegalArgumentException(MSG_NULL_STRINGS);
@@ -51,20 +65,6 @@ public final class Task002Impl implements Task002 {
 
         if (sourceString.length() > number) {
             return sourceString.substring(sourceString.length() - number, sourceString.length());
-        } else {
-            return sourceString;
-        }
-    }
-
-    @Override
-    public String left(final String sourceString, final String separator) {
-        if (("".equals(sourceString)) || ("".equals(separator))
-                || (sourceString == null) || (separator == null)) {
-            throw new IllegalArgumentException(MSG_NULL_STRINGS);
-        }
-
-        if (sourceString.contains(separator)) {
-            return sourceString.split(separator, 2)[0];
         } else {
             return sourceString;
         }
