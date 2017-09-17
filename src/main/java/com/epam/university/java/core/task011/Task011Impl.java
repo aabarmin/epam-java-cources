@@ -65,7 +65,6 @@ public class Task011Impl implements Task011 {
         double intervalStart = Math.pow(2, power) + 1;
 
         // Calculating index of element to return
-
         return (int) (((size - intervalStart) + 1) * 2) - 1;
     }
 }
