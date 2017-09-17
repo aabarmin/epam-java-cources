@@ -36,7 +36,9 @@ public class Task003Impl implements Task003 {
         }
         int max = source[0];
         for (int i = 1; i < source.length; i++) {
-            if (source[i] > max) max = source[i];
+            if (source[i] > max) {
+                max = source[i];
+            }
         }
         return max;
     }
@@ -65,16 +67,16 @@ public class Task003Impl implements Task003 {
         }
         String[] output = new String[source.length];
         int outputIndex = 0;
-        for (String aSource : source) {
+        for (String elementOfSource : source) {
             boolean isToRemote = false;
-            for (String aToRemote : toRemote) {
-                if (aSource.equals(aToRemote)) {
+            for (String elementToRemote : toRemote) {
+                if (elementOfSource.equals(elementToRemote)) {
                     isToRemote = true;
                     break;
                 }
             }
             if (!isToRemote) {
-                output[outputIndex++] = aSource;
+                output[outputIndex++] = elementOfSource;
             }
         }
         String[] finalOutput = new String[outputIndex];
@@ -113,10 +115,10 @@ public class Task003Impl implements Task003 {
         }
         for (int i = 1; i < intSource.length; i++) {
             for (int j = i; j >= 1; j--) {
-                if (intSource[j] > intSource[j-1]) {
-                    intSource[j] += intSource[j-1];
-                    intSource[j-1] = intSource[j] - intSource[j-1];
-                    intSource[j] -= intSource[j-1];
+                if (intSource[j] > intSource[j - 1]) {
+                    intSource[j] += intSource[j - 1];
+                    intSource[j - 1] = intSource[j] - intSource[j - 1];
+                    intSource[j] -= intSource[j - 1];
                  }
             }
         }

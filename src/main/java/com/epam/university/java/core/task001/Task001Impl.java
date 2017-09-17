@@ -23,12 +23,14 @@ public class Task001Impl implements Task001 {
         if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        return Double.valueOf(firstNumber) * Double.valueOf(secondNumber);    }
+        return Double.valueOf(firstNumber) * Double.valueOf(secondNumber);
+    }
 
     @Override
     public double division(String firstNumber, String secondNumber) {
         if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        return Double.valueOf(firstNumber) / Double.valueOf(secondNumber);    }
+        return Double.valueOf(firstNumber) / Double.valueOf(secondNumber);
+    }
 }
