@@ -25,8 +25,9 @@ public class Task006Impl implements Task006 {
 
         // check for arg consistency
         ChecksHelper.checkForNull(measurements);
-        if (0 == measurements.size())
+        if (0 == measurements.size()) {
             return 0.0;
+        }
 
         double sumUxI = 0;
         double sumIxI = 0;
@@ -45,12 +46,13 @@ public class Task006Impl implements Task006 {
             sumU += voltage;
             sumI += amperage;
         }
-        double Z = (n * sumIxI) - (sumI * sumI);
+        double z = (n * sumIxI) - (sumI * sumI);
 
-        if (0 == Z)
+        if (0 == z) {
             return 0;
+        }
 
-        double retVal = ((n * sumUxI) - (sumU * sumI)) / Z;
+        double retVal = ((n * sumUxI) - (sumU * sumI)) / z;
         return ((float)((int)(retVal * 10000))) / 10000; // take only 4 digits after point
     }
 }
