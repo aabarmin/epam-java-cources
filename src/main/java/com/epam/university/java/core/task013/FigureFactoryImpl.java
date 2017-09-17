@@ -13,8 +13,8 @@ public class FigureFactoryImpl implements FigureFactory {
     @Override
     public Vertex newInstance(int x, int y) {
         Vertex vertex = new VertexImpl();
-        vertex.setX(x);
-        vertex.setY(y);
+        vertex.setCoordX(x);
+        vertex.setCoordY(y);
         return vertex;
     }
 }

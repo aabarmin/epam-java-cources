@@ -24,11 +24,11 @@ public class Task013Impl implements Task013 {
         Collection<Vertex> vertices = figure.getVertexes();
         List<Vector> vectors = new LinkedList<>();
 
-        roundIteration(vectors, vertices, (v1,v2) -> (new Vector(v1,v2)));
+        roundIteration(vectors, vertices, (v1, v2) -> (new Vector(v1, v2)));
 
         List<Integer> mult = new ArrayList<>();
 
-        roundIteration(mult, vectors, (v1,v2)-> (v1.multiplyVector(v2)));
+        roundIteration(mult, vectors, (v1, v2) -> (v1.multiplyVector(v2)));
 
         List<Integer> negative = mult.stream().filter(n -> n < 0).collect(Collectors.toList());
         int positive = mult.size() - negative.size();

@@ -8,6 +8,7 @@ import java.util.List;
  * Created by ilya on 15.09.17.
  */
 public class FigureImpl implements Figure {
+
     List<Vertex> vertexes = new LinkedList<>();
 
     @Override

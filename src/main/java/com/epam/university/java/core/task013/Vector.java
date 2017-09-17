@@ -5,23 +5,23 @@ package com.epam.university.java.core.task013;
  */
 public class Vector {
 
-    private int x;
-    private int y;
+    private int coordX;
+    private int coordY;
 
     public Vector(Vertex start, Vertex end) {
-        this.x = end.getX() - start.getX();
-        this.y = end.getY() - start.getY();
+        this.coordX = end.getCoordX() - start.getCoordX();
+        this.coordY = end.getCoordY() - start.getCoordY();
     }
 
-    public int getX() {
-        return x;
+    public int getCoordX() {
+        return coordX;
     }
 
-    public int getY() {
-        return y;
+    public int getCoordY() {
+        return coordY;
     }
 
-    public int multiplyVector(Vector vector){
-        return x*vector.getY()-y*vector.getX();
+    public int multiplyVector(Vector vector) {
+        return coordX * vector.getCoordY() - coordY * vector.getCoordX();
     }
 }
