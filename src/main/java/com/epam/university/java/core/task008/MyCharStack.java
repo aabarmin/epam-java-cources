@@ -1,26 +1,7 @@
 package com.epam.university.java.core.task008;
 
-class MyCharStack {
-    private int elementCount;
-    private StringBuilder items;
+import java.util.Stack;
 
-    MyCharStack() {
-        elementCount = 0;
-        items = new StringBuilder();
-    }
+class MyCharStack extends Stack<Character> {
 
-    boolean isEmpty() {
-        return  elementCount == 0;
-    }
-
-    void push(char item) {
-        elementCount++;
-        items.append(item);
-    }
-
-    char pop() {
-        char item = items.charAt(elementCount - 1);
-        items.deleteCharAt(--elementCount);
-        return item;
-    }
 }
