@@ -5,7 +5,7 @@ public class Task005Impl implements Task005 {
 
     @Override
     strictfp public PiHolder findPi(int digits) {
-        if (digits < 1) throw new IllegalArgumentException();
+        if (digits < 1 || digits > 5) throw new IllegalArgumentException();
 
         final int startDenumerator = (int) Math.pow(10.0, digits - 1);
         final int endDenumerator = (int) (Math.pow(10.0, digits) * 0.34);
