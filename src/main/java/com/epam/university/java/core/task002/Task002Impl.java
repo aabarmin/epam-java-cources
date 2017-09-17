@@ -9,12 +9,14 @@ public final class Task002Impl implements Task002 {
     /**
      * * Message for strings not provided error.
      */
-    private static final String MSG_NULL_STRINGS = "strings not provided";
+    private static final String
+            MSG_NULL_STRINGS = "strings not provided";
 
     /**
      * * Message for strings not provided error.
      */
-    private static final String MSG_NEGATIVE_NUM = "input number must not be negative";
+    private static final String
+            MSG_NEGATIVE_NUM = "input number must not be negative";
 
     @Override
     public boolean isEquals(final String firstString, final String secondString) {
@@ -99,7 +101,8 @@ public final class Task002Impl implements Task002 {
 
     @Override
     public String join(final String[] sourceCollection, final String glue) {
-        if ((sourceCollection == null) || (glue == null) || (sourceCollection.length == 0)) {
+        if ((sourceCollection == null) || (glue == null)
+                || (sourceCollection.length == 0)) {
             throw new IllegalArgumentException(MSG_NULL_STRINGS);
         }
         StringBuilder result = new StringBuilder();

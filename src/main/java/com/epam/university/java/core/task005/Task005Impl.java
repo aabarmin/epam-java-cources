@@ -19,7 +19,7 @@ public final class Task005Impl implements Task005 {
 
     @Override
     public PiHolder findPi(final int digits) {
-        if ((digits <= 0) || (digits > 10)) {
+        if ((digits <= 0) || (digits > TEN)) {
             throw new IllegalArgumentException(MSG_ILLEGAL_ARG);
         }
 

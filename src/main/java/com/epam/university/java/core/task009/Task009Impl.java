@@ -3,10 +3,11 @@ package com.epam.university.java.core.task009;
 import com.epam.university.java.core.util.FileHandler;
 import com.epam.university.java.core.util.RegexHelper;
 
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.*;
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 
 /**
  * Files and collections.
@@ -26,13 +27,13 @@ public class Task009Impl implements Task009 {
      * @return collection of different words
      */
     @Override
-    public Collection<String> countWords(File sourceFile) {
+    public Collection<String> countWords(final File sourceFile) {
         String text = FileHandler.readTextFromFile(sourceFile);
         String[] wordsArray = text.split(RegexHelper.REGEX_NON_WORDS);
 
         Set<String> uniqueWordsSet = new LinkedHashSet<>();
         for (String word : wordsArray) {
-            if (!word.isEmpty()){
+            if (!word.isEmpty()) {
                 word = word.toLowerCase();
                 uniqueWordsSet.add(word);
             }

@@ -3,13 +3,9 @@ package com.epam.university.java.core.task010;
 import com.epam.university.java.core.util.FileHandler;
 import com.epam.university.java.core.util.RegexHelper;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Frequency calculator.
@@ -22,7 +18,7 @@ public class Task010Impl implements Task010 {
      * @return map word to frequency of it
      */
     @Override
-    public Map<String, Integer> countWordNumbers(File source) {
+    public Map<String, Integer> countWordNumbers(final File source) {
         String text = FileHandler.readTextFromFile(source);
         String[] wordsArray = text.split(RegexHelper.REGEX_NON_WORDS);
 

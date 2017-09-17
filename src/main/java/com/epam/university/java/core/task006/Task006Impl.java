@@ -3,7 +3,8 @@ package com.epam.university.java.core.task006;
 import java.util.Collection;
 
 /**
- * This task provide collection of measurements of voltage and amperage in resistance.
+ * This task provide collection of measurements of voltage
+ * and amperage in resistance.
  * Using Least Square method determine value of resistance.
  * Task006 implementation.
  */
@@ -35,7 +36,9 @@ public final class Task006Impl implements Task006 {
         for (Measurement m : measurements) {
             double v = m.getAmperage() - averageAmperage;
             denominatorOfResistance += v * v;
-            numeratorOfResistance += (m.getAmperage() - averageAmperage) * (m.getVoltage() - averageVoltage);
+            numeratorOfResistance +=
+                    (m.getAmperage() - averageAmperage)
+                            * (m.getVoltage() - averageVoltage);
         }
 
         double result = 0.0;

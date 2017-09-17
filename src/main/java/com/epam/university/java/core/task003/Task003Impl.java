@@ -120,8 +120,6 @@ public final class Task003Impl implements Task003 {
 
         }
         String allStrings = stringBuilder.toString();
-
-
         return operation.flatMap(allStrings);
     }
 }
