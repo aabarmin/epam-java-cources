@@ -8,10 +8,10 @@ public class Task004Impl implements Task004 {
         }
         String[] tempArray = new String[Math.min(first.length, second.length)];
         int sizeOfOutputArray = 0;
-        for (String aFirst : first) {
-            for (String aSecond : second) {
-                if (aFirst.equals(aSecond)) {
-                    tempArray[sizeOfOutputArray++] = aFirst;
+        for (String element : first) {
+            for (String elementFromSecond : second) {
+                if (element.equals(elementFromSecond)) {
+                    tempArray[sizeOfOutputArray++] = element;
                 }
             }
         }
@@ -29,15 +29,17 @@ public class Task004Impl implements Task004 {
         int indexOfOutputArray = first.length;
         System.arraycopy(first, 0, tempArray, 0, first.length);
         boolean isUnique;
-        for (String aSecond : second) {
+        for (String elementFromSecond : second) {
             isUnique = true;
-            for (String aFirst : first) {
-                if (aFirst.equals(aSecond)) {
+            for (String elementFromFirst : first) {
+                if (elementFromFirst.equals(elementFromSecond)) {
                     isUnique = false;
                     break;
                 }
             }
-            if (isUnique) tempArray[indexOfOutputArray++] = aSecond;
+            if (isUnique) {
+                tempArray[indexOfOutputArray++] = elementFromSecond;
+            }
         }
         String[] outputArray = new String[indexOfOutputArray];
         System.arraycopy(tempArray, 0, outputArray, 0, indexOfOutputArray);
