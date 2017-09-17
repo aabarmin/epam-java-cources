@@ -13,7 +13,7 @@ public class Task009Impl implements Task009 {
         try {
             Scanner in = new Scanner(sourceFile);
             while (in.hasNext()) {
-                words.add(in.next());
+                words.add(in.next().toLowerCase().replaceAll("[^a-z\\-]", ""));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
