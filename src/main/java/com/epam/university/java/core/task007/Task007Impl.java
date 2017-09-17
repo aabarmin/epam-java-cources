@@ -19,10 +19,11 @@ public class Task007Impl implements Task007 {
      * @returns collection of members in multiplied polynomials
      */
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
 
-        int n = first.size();
-        int m = second.size();
+        final int n = first.size();
+        final int m = second.size();
 
         Integer[] arrFirst = new Integer[n];
         first.toArray(arrFirst);
@@ -31,7 +32,7 @@ public class Task007Impl implements Task007 {
         second.toArray(arrSecond);
 
         Integer[] result = new Integer[n + m - 1];
-        for (int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (null == result[i + j]) { // I don't know why, but without this NullPointerException occurs
                     result[i + j] = 0;
@@ -40,6 +41,6 @@ public class Task007Impl implements Task007 {
             }
         }
 
-        return Arrays.asList( result );
+        return Arrays.asList(result);
     }
 }
