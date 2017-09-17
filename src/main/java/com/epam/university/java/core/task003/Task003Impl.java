@@ -14,6 +14,7 @@ import java.util.List;
 public class Task003Impl implements Task003 {
     @Override
     public String[] invert(String[] source) {
+
         CheckArgument.validateNullValue(source);
         List<String> list = Arrays.asList(source);
         Collections.reverse(list);

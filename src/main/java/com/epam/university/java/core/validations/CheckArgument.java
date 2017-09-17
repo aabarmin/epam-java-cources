@@ -11,6 +11,7 @@ public class CheckArgument {
             throw  new IllegalArgumentException();
         }
     }
+
     public static void validateNullValue(Object value){
         if (value == null){
             throw new IllegalArgumentException();
@@ -22,5 +23,17 @@ public class CheckArgument {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void moreThanTen(int number){
+        if (number > 10 ){
+            throw new IllegalArgumentException();
+        }
+    }
+    public static void notNull(int number){
+        if (number == 0){
+            throw new IllegalArgumentException();
+        }
+    }
+
 
 }
