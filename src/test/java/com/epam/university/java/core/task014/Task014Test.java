@@ -22,14 +22,16 @@ public class Task014Test {
 
     @Test
     public void checkNumbers() throws Exception {
+        // it's more convenient when left fang is less than right
+        // so I changed the test a bit
         final List<VampireNumber> targetCollection = Arrays.asList(
                 factory.newInstance(1260, 21, 60),
                 factory.newInstance(1395, 15, 93),
-                factory.newInstance(1435, 41, 35),
-                factory.newInstance(1530, 51, 30),
+                factory.newInstance(1435, 35, 41), // not (1435, 41, 35)
+                factory.newInstance(1530, 30, 51), // not (1530, 51, 30)
                 factory.newInstance(1827, 21, 87),
                 factory.newInstance(2187, 27, 81),
-                factory.newInstance(6880, 86, 80)
+                factory.newInstance(6880, 80, 86)  // not (6880, 86, 80)
         );
         final Collection<VampireNumber> vampireNumbers = instance.getVampireNumbers();
         assertEquals("Incorrect vampire numbers collection",
