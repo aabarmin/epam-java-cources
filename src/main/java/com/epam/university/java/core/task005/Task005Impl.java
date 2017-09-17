@@ -1,11 +1,11 @@
 package com.epam.university.java.core.task005;
 
 public class Task005Impl implements Task005 {
+    private final static double COEF_RESTRICTION = Math.PI - (int)Math.PI;
+
     @Override
-    public PiHolder findPi(int digits) {
-        if (digits < 1 || digits > 5) {
-            throw new IllegalArgumentException();
-        }
+    strictfp public PiHolder findPi(int digits) {
+        if (digits < 1) throw new IllegalArgumentException();
 
         final int startDenumerator = (int) Math.pow(10.0, digits - 1);
         final int endDenumerator = (int) (Math.pow(10.0, digits) * 0.34);
