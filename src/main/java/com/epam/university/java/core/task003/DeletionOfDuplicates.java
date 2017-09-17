@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task003;
 
 class DeletionOfDuplicates {
-    static String[] deleteDuplicates(String[] source) {
+    static String[] deleteDuplicates (String[] source) {
         boolean[] isDuplicate = new boolean[source.length];
         int sizeOfOutput = source.length;
         for (int i = 0; i < source.length; i++) {
