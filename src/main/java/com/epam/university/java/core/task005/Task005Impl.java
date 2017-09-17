@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task005;
 
- import java.lang.Math;
+import java.lang.Math;
 
 /**
  * implementation class for task005.
@@ -11,7 +11,7 @@ public class Task005Impl implements Task005 {
 
     protected int getDivisor(int digits) {
         int retVal = 1;
-        for (int i = 1; i < digits; i++ ) {
+        for (int i = 1; i < digits; i++) {
             retVal *= 10;
         }
 
@@ -47,26 +47,28 @@ public class Task005Impl implements Task005 {
         double bestPiDiff = bestDividend / bestDivisor;
 
         // temp variables
-        int dividend_low = 3; // just to init with something
-        int dividend_hi = 4;  // so we could start calculating
-        double diff, quotient_low, quotient_hi;
+        int dividendLOW = 3; // just to init with something
+        int dividendHI = 4;  // so we could start calculating
+        double diff;
+        double quotientLOW;
+        double quotientHI;
 
         // loop searching for closest value
-        for (int i = minDivisor; dividend_hi < maxDividend; i++) {
+        for (int i = minDivisor; dividendHI < maxDividend; i++) {
 
             // calculate the difference with PI
-            dividend_low = (int)(i * Math.PI);
-            dividend_hi = dividend_low + 1;
-            quotient_low = (double)dividend_low / i;
-            quotient_hi = (double)dividend_hi / i;
-            diff = Math.min(Math.PI - quotient_low, quotient_hi - Math.PI);
+            dividendLOW = (int)(i * Math.PI);
+            dividendHI = dividendLOW + 1;
+            quotientLOW = (double)dividendLOW / i;
+            quotientHI = (double)dividendHI / i;
+            diff = Math.min(Math.PI - quotientLOW, quotientHI - Math.PI);
 
             // if we just found a closer value
             if (diff < bestPiDiff) {
                 bestPiDiff = diff;
                 bestDivisor = i;
-                bestDividend = Math.PI - quotient_low < quotient_hi - Math.PI ?
-                        dividend_low : dividend_hi;
+                bestDividend = Math.PI - quotientLOW < quotientHI - Math.PI 
+                        ? dividendLOW : dividendHI;
             }
         }
 
