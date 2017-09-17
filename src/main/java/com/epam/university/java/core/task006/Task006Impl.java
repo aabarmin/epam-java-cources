@@ -4,13 +4,9 @@ import java.util.Collection;
 
 public class Task006Impl implements Task006 {
     @Override
-     public strictfp double resistance(Collection<Measurement> measurements) {
-        if (measurements == null) {
-            throw new IllegalArgumentException();
-        }
-        if (measurements.isEmpty()) {
-            return 0;
-        }
+    strictfp public double resistance(Collection<Measurement> measurements) {
+        if (measurements == null) throw new IllegalArgumentException();
+        if (measurements.isEmpty()) return 0;
 
         double resistance = 0;
         double amperesPerSquare = 0;
@@ -31,9 +27,7 @@ public class Task006Impl implements Task006 {
                     * (measurement.getAmperage() - averageAmp);
         }
         resistance /= amperesPerSquare;
-        if (amperesPerSquare == 0) {
-            return 0;
-        }
-        return ((int) (resistance * 1000)) / 1000.0;
+        if (amperesPerSquare == 0) return 0;
+        return ((int) (resistance*1000))/1000.0;
     }
 }
