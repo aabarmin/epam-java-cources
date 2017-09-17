@@ -47,28 +47,28 @@ public class Task005Impl implements Task005 {
         double bestPiDiff = bestDividend / bestDivisor;
 
         // temp variables
-        int dividendLOW = 3; // just to init with something
-        int dividendHI = 4;  // so we could start calculating
+        int dividendLow = 3; // just to init with something
+        int dividendHi = 4;  // so we could start calculating
         double diff;
-        double quotientLOW;
-        double quotientHI;
+        double quotientLow;
+        double quotientHi;
 
         // loop searching for closest value
-        for (int i = minDivisor; dividendHI < maxDividend; i++) {
+        for (int i = minDivisor; dividendHi < maxDividend; i++) {
 
             // calculate the difference with PI
-            dividendLOW = (int)(i * Math.PI);
-            dividendHI = dividendLOW + 1;
-            quotientLOW = (double)dividendLOW / i;
-            quotientHI = (double)dividendHI / i;
-            diff = Math.min(Math.PI - quotientLOW, quotientHI - Math.PI);
+            dividendLow = (int)(i * Math.PI);
+            dividendHi = dividendLow + 1;
+            quotientLow = (double)dividendLow / i;
+            quotientHi = (double)dividendHi / i;
+            diff = Math.min(Math.PI - quotientLow, quotientHi - Math.PI);
 
             // if we just found a closer value
             if (diff < bestPiDiff) {
                 bestPiDiff = diff;
                 bestDivisor = i;
-                bestDividend = Math.PI - quotientLOW < quotientHI - Math.PI 
-                        ? dividendLOW : dividendHI;
+                bestDividend = Math.PI - quotientLow < quotientHi - Math.PI
+                        ? dividendLow : dividendHi;
             }
         }
 
