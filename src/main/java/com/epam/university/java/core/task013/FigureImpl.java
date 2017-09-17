@@ -1,13 +1,13 @@
 package com.epam.university.java.core.task013;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class FigureImpl implements Figure {
 
     private final int vertexCount;
-    private final List<Vertex> vertexes = new ArrayList<>();
+    private final Set<Vertex> vertexes = new LinkedHashSet<>();
 
     public FigureImpl(int vertexCount) {
         this.vertexCount = vertexCount;
@@ -32,6 +32,6 @@ public class FigureImpl implements Figure {
      */
     @Override
     public Collection<Vertex> getVertexes() {
-        return new ArrayList(vertexes);
+        return new LinkedHashSet(vertexes);
     }
 }

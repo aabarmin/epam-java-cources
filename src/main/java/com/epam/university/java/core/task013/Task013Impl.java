@@ -1,8 +1,6 @@
 package com.epam.university.java.core.task013;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Task013Impl implements Task013 {
 
@@ -65,26 +63,81 @@ public class Task013Impl implements Task013 {
 
         List<Vertex> vertexes = new ArrayList(figure.getVertexes());
 
-        if (vertexes.size() < 4)
+        if (vertexes.size() < 4) {
             return true;
-        boolean sign = false;
-        int n = vertexes.size();
-        for(int i=0; i<n; i++)
-        {
-            double dx1 = vertexes.get((i+2)%n).getX()-vertexes.get((i+1)%n).getX();
-            double dy1 = vertexes.get((i+2)%n).getY()-vertexes.get((i+1)%n).getY();
-            double dx2 = vertexes.get(i).getX()-vertexes.get((i+1)%n).getX();
-            double dy2 = vertexes.get(i).getY()-vertexes.get((i+1)%n).getY();
-            double zcrossproduct = dx1*dy2 - dy1*dx2;
-            if (i == 0)
-                sign = zcrossproduct > 0;
-            else if (sign != (zcrossproduct > 0))
-                return false;
         }
-        return true;
+
+        // Find initial vertex with min x and y
+        Vertex initialVertex = vertexes.get(0);
+
+        for (int i = 1; i < vertexes.size(); i++) {
+            if (vertexes.get(i).getX() < initialVertex.getX()) {
+                initialVertex = vertexes.get(i);
+            } else if (vertexes.get(i).getX() == initialVertex.getX()) {
+                if (vertexes.get(i).getY() < initialVertex.getY()) {
+                    initialVertex = vertexes.get(i);
+                }
+            }
+        }
+
+        vertexes.remove(initialVertex);
+        System.out.println("Initial vertex X: " + initialVertex.getX() + " Y: " + initialVertex.getY());
+
+        //  Find 2 vertexes with max angle to initial vertex
+        Vertex center = vertexes.get(0);
+        Vertex finish = vertexes.get(0);
+        double maxAngle = 0;
+
+        for (int i = 0; i < vertexes.size(); i++) {
+
+            for (int k = 0; k < vertexes.size(); k++) {
+
+                if (vertexes.get(i) == vertexes.get(k)) {
+                    continue;
+                }
+
+                double angle = getAngle(vertexes.get(i), vertexes.get(k), initialVertex);
+
+                if (angle > maxAngle) {
+                    maxAngle = angle;
+                    center = vertexes.get(i);
+                    finish = vertexes.get(k);
+                }
+
+            }
+
+        }
+
+        vertexes.remove(center);
+        System.out.println("Next X: " + center.getX() + " Y: " + center.getY());
+
+        // let's go through the figure boundary
+        Vertex a = initialVertex;
+        Vertex b = initialVertex;
+
+        while (center != finish) {
+
+            maxAngle = 0;
+
+            for (Vertex vertex : vertexes) {
+                double angle = getAngle(a, vertex, center);
+                if (angle > maxAngle) {
+                    maxAngle = angle;
+                    b = vertex;
+                }
+            }
+
+            a = center;
+            center = b;
+            vertexes.remove(center);
+            System.out.println("Next X: " + center.getX() + " Y: " + center.getY());
+
+        }
+
+        boolean isConvexPolygon = (vertexes.size() == 0);
+
+        return isConvexPolygon;
 
     }
-
-
 
 }
