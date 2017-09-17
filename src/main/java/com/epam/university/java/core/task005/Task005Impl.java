@@ -2,7 +2,7 @@ package com.epam.university.java.core.task005;
 
 public class Task005Impl implements Task005 {
     @Override
-    strictfp public PiHolder findPi(int digits) {
+    public PiHolder findPi(int digits) {
         if (digits < 1 || digits > 5) {
             throw new IllegalArgumentException();
         }
