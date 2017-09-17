@@ -20,15 +20,6 @@ epam
 origin
 ```
 
-You can watch list of remotes using `git remote show` command. The result should be like the following:
-
-```
-# git remote show
-
-epam
-origin
-```
-
 **Task execution**
 
 Before you started, pull changes from my repository
@@ -82,7 +73,7 @@ Now you can push your changes to your own remote repository:
 git push origin <PRIVATE_BRANCH_NAME>
 ```
 
-When your changes is pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
+When your changes are pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
 to your pull request.
 
 **How to contribute**
