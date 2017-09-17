@@ -4,49 +4,25 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
 
 /**
  * Created by ilya on 16.09.17.
  */
 public class Task015Impl implements Task015 {
 
-    public static void main(String[] args) {
-        PointFactory pointFactory = new PointFactoryImpl();
-        SquareFactory squareFactory = new SquareFactoryImpl();
-        Task015Impl impl = new Task015Impl();
-
-        final Square firstSquare = squareFactory.newInstance(
-            pointFactory.newInstance(2, 2),
-            pointFactory.newInstance(4, 1)
-        );
-
-        Figure figure = impl.squareToFigure(firstSquare);
-        System.out.println("");
-    }
-
     @Override
     public double getArea(Square first, Square second) {
         Figure firstSquare = squareToFigure(first);
         Figure secondSquare = squareToFigure(second);
 
-        List<Vertex> list = firstSquare.getVertex();
-        list.addAll(secondSquare.getVertex());
-
-
-        //  WeilerAthertonAlgorithm algorithm = new WeilerAthertonAlgorithm(firstSquare, secondSquare);
-        //  Figure intersection = null;
-        //  try {
-        //      intersection = algorithm.getIntersection();
-        //  } catch (IllegalArgumentException e) {
-        //     return 0;
-        // }
+        List<DoublePoint> list = firstSquare.getPoints();
+        list.addAll(secondSquare.getPoints());
 
         return randomChecker(firstSquare, secondSquare);
     }
 
     private Figure squareToFigure(Square square) {
-        PointFactory factory = new PointFactoryImpl();
 
         DoublePoint first = new DoublePoint(square.getFirst());
         DoublePoint third = new DoublePoint(square.getSecond());
@@ -90,20 +66,21 @@ public class Task015Impl implements Task015 {
         double rangeLenghX = rangeX.get(1) - rangeX.get(0);
         double rangeLenghY = rangeY.get(1) - rangeY.get(0);
 
+        Random random = new Random();
+
+        int range = 10_000;
         int i = 0;
         int count = 0;
-        while (i != 1_000_000) {
-            DoublePoint p = new DoublePoint(startX + Math.random() * rangeLenghX,
-                startY + Math.random() * rangeLenghY);
+        while (i != range) {
+            DoublePoint p = new DoublePoint(startX + random.nextDouble() * rangeLenghX,
+                startY + random.nextDouble() * rangeLenghY);
             if (first.includes(p) && second.includes(p)) {
                 count++;
             }
-            //System.out.println(i);
             i++;
-
         }
 
-        return ((double) count / 1000000.0) * rangeLenghX * rangeLenghY;
+        return ((double) count / (double) range) * rangeLenghX * rangeLenghY;
 
     }
 

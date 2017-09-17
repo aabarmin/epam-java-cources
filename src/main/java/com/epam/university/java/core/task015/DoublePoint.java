@@ -35,14 +35,6 @@ public class DoublePoint {
     }
 
     @Override
-    public String toString() {
-        return "DoublePoint{" +
-            "coordX=" + coordX +
-            ", coordY=" + coordY +
-            '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

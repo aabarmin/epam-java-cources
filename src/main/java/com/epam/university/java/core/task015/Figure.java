@@ -6,66 +6,51 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
 /**
  * Created by ilya on 16.09.17.
  */
 public class Figure {
 
-    private List<Vertex> points;
+    private List<DoublePoint> points;
     private List<LineSegment> lineSegments;
 
-
+    /**
+     * Figure constructor.
+     * @param points figure points
+     */
     public Figure(List<DoublePoint> points) {
         this.points = new LinkedList<>();
         for (DoublePoint point :
             points) {
-            this.points.add(new Vertex(point));
+            this.points.add(point);
         }
         this.lineSegments = new LinkedList<>();
 
         roundIteration(this.lineSegments, this.points,
-            (p1, p2) -> (new LineSegment(p1.getElement(), p2.getElement())));
+            (p1, p2) -> (new LineSegment(p1, p2)));
 
     }
 
-    public Figure() {
-        this.points = new LinkedList<>();
-    }
-
-    public static void main(String[] args) {
-
-    }
-
+    /**
+     * Getter for points.
+     * @return list of points
+     */
     public List<DoublePoint> getPoints() {
-        List<DoublePoint> doublePoints = points.stream().map(p -> p.getElement())
-            .collect(Collectors.toList());
-        return doublePoints;
-    }
-
-    public List<Vertex> getVertex(){
         return points;
     }
 
-    public void addPoint(int i, DoublePoint point) {
-        points.add(i, new Vertex(point));
-    }
-
-    public void addPoint(DoublePoint point) {
-        points.add(new Vertex(point));
-    }
-
-    public List<LineSegment> getLineSegments() {
-        return lineSegments;
-    }
-
-    public double getArea() {
+    private double getArea() {
         return Math.abs(lineSegments.stream().mapToDouble(
             l -> l.getFirst().getX() * l.getSecond().getY() - l.getFirst().getY() * l.getSecond()
                 .getX()).sum() / 2);
     }
 
+    /**
+     * Check that point in figure.
+     * @param point point for checking
+     * @return true - include, false - not include
+     */
     public boolean includes(DoublePoint point) {
 
         double area = lineSegments.stream().mapToDouble(l -> {
