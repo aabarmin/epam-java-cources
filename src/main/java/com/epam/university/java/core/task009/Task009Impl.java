@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task009;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -14,7 +13,7 @@ public class Task009Impl implements Task009 {
         try {
             Scanner in = new Scanner(sourceFile);
             while (in.hasNext()) {
-                words.add(in.next().toLowerCase().replaceAll("[^a-z\\-]", ""));
+                words.add(in.next());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
