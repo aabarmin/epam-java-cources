@@ -34,7 +34,7 @@ public class Task007Impl implements Task007 {
         Integer[] result = new Integer[n + m - 1];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (null == result[i + j]) { // I don't know why, but without this NullPointerException occurs
+                if (null == result[i + j]) { // without this NullPointerException occurs
                     result[i + j] = 0;
                 }
                 result[i + j] += (arrFirst[i] * arrSecond[j]);
