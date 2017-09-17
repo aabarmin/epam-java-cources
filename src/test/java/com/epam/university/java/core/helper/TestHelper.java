@@ -12,6 +12,7 @@ public class TestHelper {
      * @return class instance
      * @throws Exception if can't find of create testable class
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<?> testClass) throws Exception {
         final Class<?> testableClass;
         final String testClassName = testClass.getName();
