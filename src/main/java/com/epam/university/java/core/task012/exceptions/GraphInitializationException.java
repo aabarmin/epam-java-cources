@@ -12,6 +12,7 @@ public final class GraphInitializationException extends GraphException {
     public GraphInitializationException(final String message) {
         super(message);
     }
+
     /**
      * Constructor with two parameters.
      * @param message - message.

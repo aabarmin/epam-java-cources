@@ -12,6 +12,7 @@ public final class VertexExistsException extends GraphException {
     public VertexExistsException(final String message) {
         super(message);
     }
+
     /**
      * Constructor with two parameters.
      * @param message - message.

@@ -10,18 +10,18 @@ import java.util.List;
  */
 public final class Task011Impl implements Task011 {
     /**
-     * Given a circle of men, on each iteration one man leaves it
-     * through one. You should determine name of last man.
+     * Given a circle of men, on each iteration one man leaves it through one. You should determine
+     * name of last man.
+     *
      * <p>
-     * <p>
-     * Example: source collection: Homer Bart Maggie Lisa Marge
-     * First iteration: Homer leaves, Bart Maggie List Marge remained
-     * Second iteration: Maggie leaves, Bart List Marge remained
-     * Third iteration: Marge leaves, Bart and Lise remained
-     * Fourth iteration: Lisa leaves, Bart is the last one
+     *     Example: source collection: Homer Bart Maggie Lisa Marge
+     *     First iteration: Homer leaves, Bart Maggie List Marge remained
+     *     Second iteration: Maggie leaves, Bart List Marge remained
+     *     Third iteration: Marge leaves, Bart and Lise remained
+     *     Fourth iteration: Lisa leaves, Bart is the last one
      * </p>
      * <p>
-     * Implementation with arrays
+     *     Implementation with arrays
      * </p>
      *
      * @param collection collection of names
@@ -35,18 +35,18 @@ public final class Task011Impl implements Task011 {
     }
 
     /**
-     * Given a circle of men, on each iteration one man leaves it
-     * through one. You should determine name of last man.
+     * Given a circle of men, on each iteration one man leaves it through one. You should determine
+     * name of last man.
+     *
      * <p>
-     * <p>
-     * Example: source collection: Homer Bart Maggie Lisa Marge
-     * First iteration: Homer leaves, Bart Maggie List Marge remained
-     * Second iteration: Maggie leaves, Bart List Marge remained
-     * Third iteration: Marge leaves, Bart and Lise remained
-     * Fourth iteration: Lisa leaves, Bart is the last one
+     *     Example: source collection: Homer Bart Maggie Lisa Marge
+     *     First iteration: Homer leaves, Bart Maggie List Marge remained
+     *     Second iteration: Maggie leaves, Bart List Marge remained
+     *     Third iteration: Marge leaves, Bart and Lise remained
+     *     Fourth iteration: Lisa leaves, Bart is the last one
      * </p>
      * <p>
-     * Implementation with ArrayList
+     *     Implementation with ArrayList
      * </p>
      *
      * @param collection collection of names
@@ -69,18 +69,18 @@ public final class Task011Impl implements Task011 {
     }
 
     /**
-     * Given a circle of men, on each iteration one man leaves it
-     * through one. You should determine name of last man.
+     * Given a circle of men, on each iteration one man leaves it through one. You should determine
+     * name of last man.
+     *
      * <p>
-     * <p>
-     * <p>
-     * First iteration: Homer leaves, Bart Maggie List Marge remained
-     * Second iteration: Maggie leaves, Bart List Marge remained
-     * Third iteration: Marge leaves, Bart and Lise remained
-     * Fourth iteration: Lisa leaves, Bart is the last one
+     *     Example: source collection: Homer Bart Maggie Lisa Marge
+     *     First iteration: Homer leaves, Bart Maggie List Marge remained
+     *     Second iteration: Maggie leaves, Bart List Marge remained
+     *     Third iteration: Marge leaves, Bart and Lise remained
+     *     Fourth iteration: Lisa leaves, Bart is the last one
      * </p>
      * <p>
-     * Implementation with LinkedList
+     *     Implementation with LinkedList
      * </p>
      *
      * @param collection collection of names

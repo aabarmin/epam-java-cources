@@ -8,51 +8,51 @@ public final class VertexImpl implements Vertex {
     /**
      * X coordinate of vertex.
      */
-    private int x;
+    private int coordX;
 
     /**
      * Y coordinate of vertex.
      */
-    private int y;
+    private int coordY;
 
     /**
-     * Get x coordinate of vertex.
+     * Get coordX coordinate of vertex.
      *
      * @return coordinate value
      */
     @Override
     public int getX() {
-        return this.x;
+        return this.coordX;
     }
 
     /**
-     * Set x coordinate of vertex.
+     * Set coordX coordinate of vertex.
      *
      * @param value coordinate value
      */
     @Override
     public void setX(final int value) {
-        this.x = value;
+        this.coordX = value;
 
     }
 
     /**
-     * Get y coordinate of vertex.
+     * Get coordY coordinate of vertex.
      *
      * @return coordinate value
      */
     @Override
     public int getY() {
-        return this.y;
+        return this.coordY;
     }
 
     /**
-     * Set y coordinate of vertex.
+     * Set coordY coordinate of vertex.
      *
      * @param value coordinate value
      */
     @Override
     public void setY(final int value) {
-        this.y = value;
+        this.coordY = value;
     }
 }
