@@ -38,7 +38,8 @@ public class Task010Impl implements Task010 {
                 for (int i = 0; i < str.length; i++) {
                     if (map.containsKey(str[i])) {
                         int count = map.get(str[i]) + 1;
-                        // удаляем этот элемент, чтобы далее его снова добавить но уже с новым значением
+                        // удаляем этот элемент, чтобы далее его снова добавить
+                        // но уже с новым значением
                         map.remove(str[i]);
                         map.put(str[i], count);
                     } else {
