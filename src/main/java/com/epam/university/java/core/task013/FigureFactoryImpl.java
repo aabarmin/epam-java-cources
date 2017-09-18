@@ -22,9 +22,12 @@ public final class FigureFactoryImpl implements FigureFactory {
             return null;
         }
 
+
         //do smth with vertexes, which coordinates????
 
-        return new FigureImpl();
+
+
+        return null;
     }
 
     /**
@@ -36,6 +39,9 @@ public final class FigureFactoryImpl implements FigureFactory {
      */
     @Override
     public Vertex newInstance(final int x, final int y) {
-        return null;
+        Vertex result = new VertexImpl();
+        result.setX(x);
+        result.setY(y);
+        return result;
     }
 }

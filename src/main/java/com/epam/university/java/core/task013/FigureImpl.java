@@ -14,6 +14,11 @@ public final class FigureImpl implements Figure {
      */
     private Set<Vertex> vertexes = new HashSet<>();
 
+    public FigureImpl(final int vertexNumber) {
+
+    }
+
+
     /**
      * Add vertex to figure with designated coordinates.
      *
