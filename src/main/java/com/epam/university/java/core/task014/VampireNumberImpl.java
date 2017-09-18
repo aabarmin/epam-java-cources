@@ -68,19 +68,8 @@ public class VampireNumberImpl implements VampireNumber {
         }
         VampireNumberImpl that = (VampireNumberImpl) value;
         return multiplication == that.multiplication
-            && first == that.first && second == that.second;
+            && (first == that.first && second == that.second
+            || second == that.first && first == that.second);
     }
 
-    /**
-     * Returns a hash code value for the object.
-     *
-     * @return a hash code value for this object
-     */
-    @Override
-    public int hashCode() {
-        int result = multiplication;
-        result = 31 * result + first;
-        result = 31 * result + second;
-        return result;
-    }
 }
