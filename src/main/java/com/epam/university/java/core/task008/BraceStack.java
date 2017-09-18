@@ -17,8 +17,7 @@ public class BraceStack {
         if (brace == getHead()) {
             pop();
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

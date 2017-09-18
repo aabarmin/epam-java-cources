@@ -13,7 +13,7 @@ import static com.epam.university.java.core.task008.BraceStack.Brace.FIGURED;
 public class Task008Impl implements Task008 {
     /**
      * Given a string with mathematical expression like "(1 + 2) * {[-3] - 4}",
-     * checks if all the braces are correct
+     * checks if all the braces are correct.
      *
      * @param sourceString string to check
 
@@ -59,6 +59,9 @@ public class Task008Impl implements Task008 {
                     if (!stack.tryPopValue(FIGURED)) {
                         return false;
                     }
+                    break;
+
+                default :
                     break;
             }
         }
