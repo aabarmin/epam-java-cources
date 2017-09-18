@@ -13,7 +13,7 @@ import java.util.ArrayDeque;
 /**
  * Graphs and others.
  */
-public class Task012Impl implements Task012 {
+public final class Task012Impl implements Task012 {
     /**
      * Create new Graph instance and execute collection of actions. Return
      * the result graph instance.

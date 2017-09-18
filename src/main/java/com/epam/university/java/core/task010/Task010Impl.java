@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Frequency calculator.
  */
-public class Task010Impl implements Task010 {
+public final class Task010Impl implements Task010 {
     /**
      * Given a textual file, you should count frequency of words in this file.
      *

@@ -18,7 +18,7 @@ import lombok.Data;
  * Undirected graph.
  */
 @Data
-public class GraphImpl implements Graph, Serializable {
+public final class GraphImpl implements Graph, Serializable {
 
     /**
      * Set of vertexes and edges corresponding to them.

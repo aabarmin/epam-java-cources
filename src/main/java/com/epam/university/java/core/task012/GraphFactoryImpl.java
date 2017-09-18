@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Class for building Graph instances.
  */
-public class GraphFactoryImpl implements GraphFactory {
+public final class GraphFactoryImpl implements GraphFactory {
     /**
      * Create new Graph instance with designated amount of vertexes.
      *
@@ -29,7 +29,7 @@ public class GraphFactoryImpl implements GraphFactory {
      * @param graph - a graph to copy.
      * @return a copy of graph.
      */
-    public static Graph copy(final Graph graph) {
+    static Graph copy(final Graph graph) {
         if (null == graph) {
             throw new GraphInitializationException(
                     "Trying to copy null graph.");

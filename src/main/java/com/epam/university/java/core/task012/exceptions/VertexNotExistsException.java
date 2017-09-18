@@ -3,7 +3,7 @@ package com.epam.university.java.core.task012.exceptions;
 /**
  * Custom exception for task012.
  */
-public class VertexNotExistsException extends GraphException {
+public final class VertexNotExistsException extends GraphException {
 
     /**
      * Constructor with one parameter.

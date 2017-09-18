@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Figure class.
  */
-public class FigureImpl implements Figure {
+public final class FigureImpl implements Figure {
 
     /**
      * Set of vertexes of the figure.

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Remove items from collection.
  */
-public class Task011Impl implements Task011 {
+public final class Task011Impl implements Task011 {
     /**
      * Given a circle of men, on each iteration one man leaves it
      * through one. You should determine name of last man.

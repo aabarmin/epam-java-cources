@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Files and collections.
  */
-public class Task009Impl implements Task009 {
+public final class Task009Impl implements Task009 {
     /**
      * Source file contains words which separated with spaces.
      * <p>

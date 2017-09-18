@@ -3,7 +3,7 @@ package com.epam.university.java.core.task013;
 /**
  * Factory for creation of figures.
  */
-public class FigureFactoryImpl implements FigureFactory {
+public final class FigureFactoryImpl implements FigureFactory {
 
     /**
      * Minimal number of vertexes to make a figure.
@@ -21,6 +21,9 @@ public class FigureFactoryImpl implements FigureFactory {
         if (vertexCount < MIN_VERTEXES) {
             return null;
         }
+
+        //do smth with vertexes, which coordinates????
+
         return new FigureImpl();
     }
 

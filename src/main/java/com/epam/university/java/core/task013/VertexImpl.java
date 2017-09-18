@@ -3,7 +3,7 @@ package com.epam.university.java.core.task013;
 /**
  * Vertex of figure.
  */
-public class VertexImpl implements Vertex {
+public final class VertexImpl implements Vertex {
 
     /**
      * X coordinate of vertex.
