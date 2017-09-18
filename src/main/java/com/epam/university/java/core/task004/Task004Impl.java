@@ -62,11 +62,6 @@ public final class Task004Impl implements Task004 {
         List<String> resultList = new ArrayList<>(firstList);
         resultList.addAll(secondList);
 
-        //removing duplicates
-        resultList = resultList.stream()
-                .collect(collectingAndThen(toCollection(LinkedHashSet::new),
-                        ArrayList::new));
-
         String[] resultArray = new String[resultList.size()];
         resultArray = resultList.toArray(resultArray);
 

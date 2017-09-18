@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="bookService" class="com.epam.university.java.project.service.BookServiceImpl">
+        <property name="bookDao" ref="bookDao" />
+    </bean>
+
+    <bean id="bookDao" class="com.epam.university.java.project.service.BookDaoXmlImpl">
+
+    </bean>
+</beans>
