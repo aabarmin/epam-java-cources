@@ -42,20 +42,31 @@ public class Task012Impl implements Task012 {
             throw new IllegalArgumentException();
         }
 
-        List<Integer> vertexes = new ArrayList<>();
+        // Also could be done with List removeAll / addAll realization,
+        // but with Set must be faster
+        LinkedHashSet<Integer> vertexes = new LinkedHashSet<>();
         vertexes.add(from);
 
-        for (int i = 0; i < vertexes.size(); i++){
+        Iterator<Integer> i = vertexes.iterator();
 
-            Integer vertex = vertexes.get(i);
+        int nextCalls = 0;
+
+        while (i.hasNext()) {
+
+            Integer vertex = i.next();
+            nextCalls++;
 
             if (vertex.equals(to)) {
                 return true;
             }
 
             Collection<Integer> nextVertexes = graph.getAdjacent(vertex);
-            nextVertexes.removeAll(vertexes);
             vertexes.addAll(nextVertexes);
+
+            i = vertexes.iterator();
+            for (int j = 0; j < nextCalls; j++) {
+                i.next();
+            }
 
         }
 
