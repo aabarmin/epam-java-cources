@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task008;
 
-import java.util.Stack;
-
 public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
@@ -29,12 +27,9 @@ public class Task008Impl implements Task008 {
                         return false;
                     }
                     break;
-
+                default:
             }
         }
-        if (stack.isEmpty()) {
-            return true;
-        }
-        return false;
+        return stack.isEmpty();
     }
 }
