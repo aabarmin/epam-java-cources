@@ -18,10 +18,10 @@ public class FigureImpl implements Figure {
 
     @Override
     public void addVertex(Vertex vertex) {
-        if (currentVertexNumber == numberOfVertex) {
+        /*if (currentVertexNumber == numberOfVertex) {
             System.out.println("Can't add vertex");
             return;
-        }
+        }*/
         vertexArray.add(vertex);
         currentVertexNumber++;
         if (currentVertexNumber == numberOfVertex) {
@@ -39,9 +39,17 @@ public class FigureImpl implements Figure {
      * clockwise about (0,0) coordinate
      */
     private void order() {
-        vertexArray.sort((n, m) -> n.getX() - m.getY());
-        List<Vertex> subList1 = vertexArray.subList(0, numberOfVertex / 2);
-        List<Vertex> subList2 = vertexArray.subList(numberOfVertex / 2, numberOfVertex - 1);
+        List<Vertex> buffer = new ArrayList<>(vertexArray);
+        buffer.sort(Comparator.comparingInt(Vertex::getX));
+        Vertex max = null;
+        if (numberOfVertex % 2 != 0) {
+            max = vertexArray.stream()
+                    .max(Comparator.comparingInt(Vertex::getY))
+                    .get();
+            buffer.remove(max);
+        }
+
+        List<Vertex> subList1 = buffer.subList(0, numberOfVertex / 2);
         subList1.sort((n,m) -> {
             if (m.getX() == n.getX()) {
                 return n.getY() - m.getY();
@@ -49,6 +57,17 @@ public class FigureImpl implements Figure {
                 return m.getX() - n.getX();
             }
         });
+
+        List<Vertex> result = new ArrayList<>(numberOfVertex);
+        List<Vertex> subList2;
+        result.addAll(subList1);
+        if (numberOfVertex % 2 != 0) {
+            result.add(max);
+            subList2 = buffer.subList(numberOfVertex / 2, numberOfVertex - 1);
+        } else {
+            subList2 = buffer.subList(numberOfVertex / 2, numberOfVertex);
+        }
+
         subList2.sort((n,m) -> {
             if (m.getX() == n.getX()) {
                 return m.getY() - n.getY();
@@ -56,14 +75,7 @@ public class FigureImpl implements Figure {
                 return m.getX() - n.getX();
             }
         });
-        List<Vertex> result = new ArrayList<>(numberOfVertex);
-        result.addAll(subList1);
-        if (numberOfVertex % 2 != 0) {
-            Vertex max = vertexArray.stream()
-                    .max(Comparator.comparingInt(Vertex::getY))
-                    .get();
-            result.add(max);
-        }
+
         result.addAll(subList2);
         vertexArray = result;
     }
