@@ -28,6 +28,9 @@ public class Task016Test {
     @Test
     public void testWithRadius1() throws Exception {
         final Collection<Coordinate> targetCoordinates = generate(-1, 1);
+
+        System.out.println(targetCoordinates);
+
         final Collection<Coordinate> resultCoordinates =
             instance.getSquaresInsideCircle(1);
         assertEquals("Incorrect collection size with radius 1",
@@ -68,6 +71,9 @@ public class Task016Test {
             generate(-5, 1).stream())
             .flatMap(Function.identity())
             .collect(Collectors.toList());
+
+        System.out.println(targetCoordinates);
+
         final Collection<Coordinate> resultCoordinates =
             instance.getSquaresInsideCircle(3);
         assertEquals("Incorrect collection size with radius 3",

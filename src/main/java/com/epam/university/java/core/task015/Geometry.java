@@ -249,11 +249,11 @@ class Geometry {
 
             maxAngle = 0;
 
-            for (Point vertex : polygonPoints) {
-                double angle = getAngle(a, vertex, center);
+            for (Point point : polygonPoints) {
+                double angle = getAngle(a, point, center);
                 if (angle > maxAngle) {
                     maxAngle = angle;
-                    b = vertex;
+                    b = point;
                 }
             }
 
