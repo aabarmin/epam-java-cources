@@ -4,84 +4,44 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class Task017Test {
     private Task017 instance;
-    private OrgstructureBuilderFactory builderFactory;
-    private VisitorFactory visitorFactory;
-    private Organization organization;
 
-    /**
-     * {@inheritDoc}
-     */
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task017.class);
-        builderFactory = TestHelper.getInstance(OrgstructureBuilderFactory.class);
-        visitorFactory = TestHelper.getInstance(VisitorFactory.class);
-
-        final OrgstructureBuilder builder = builderFactory.newInstance();
-        organization = builder
-                .addOrganization()
-                        .withName("First Organization")
-                        .done()
-                .addDepartment()
-                        .withName("Department 1")
-                        .withEmployees(10)
-                        .withChild(
-                                builder.addDepartment()
-                                        .withName("Department 1.1")
-                                        .withEmployees(20)
-                                        .done()
-                        )
-                        .withChild(
-                                builder.addDepartment()
-                                        .withName("Department 1.2")
-                                        .withEmployees(30)
-                                        .done()
-                        )
-                        .done()
-                .addDepartment()
-                        .withName("Department 2")
-                        .withEmployees(5)
-                        .withChild(
-                                builder.addDepartment()
-                                        .withName("Department 2.1")
-                                        .withEmployees(15)
-                                        .done()
-                        )
-                        .withChild(
-                                builder.addDepartment()
-                                        .withName("Department 2.2")
-                                        .withEmployees(25)
-                                        .done()
-                        )
-                        .done()
-                .addDepartment()
-                        .withName("Department 3")
-                        .withEmployees(35)
-                        .done()
-                .build();
     }
 
     @Test
-    public void findWithMinimalAmountOfMembers() throws Exception {
-        final Visitor visitor = visitorFactory.newInstance(VisitorType.MINIMAL);
-        final Department department = instance.findDepartment(organization, visitor);
-        assertEquals("Incorrect department found",
-                5,
-                department.getEmployeeCount()
-        );
+    public void formatStrings() throws Exception {
+        final String resultString = instance.formatString("nothing", "John Snow");
+        assertEquals("Strings formatted incorrectly",
+                "You know nothing, John Snow!",
+                resultString);
     }
 
     @Test
-    public void findWithMaximalAmountOfMembers() throws Exception {
-        final Visitor visitor = visitorFactory.newInstance(VisitorType.MAXIMAL);
-        final Department department = instance.findDepartment(organization, visitor);
-        assertEquals("Incorrect department found",
-                35,
-                department.getEmployeeCount()
-        );
+    public void formatNumbers() throws Exception {
+        final String resultString = instance.formatNumbers(20d);
+        assertEquals("Numbers formatted incorrectly",
+                "20.0, 20.00, +20.00, 0x1.4p4",
+                resultString);
+    }
+
+    @Test
+    public void formatDates() throws Exception {
+        final Date targetDate = new Date();
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.dd.MM");
+        final String resultString = instance.formatDates(targetDate);
+        assertEquals("Dates formatted incorrectly",
+                dateFormat.format(targetDate),
+                resultString);
     }
 }
