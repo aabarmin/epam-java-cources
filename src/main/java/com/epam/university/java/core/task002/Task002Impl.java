@@ -2,6 +2,10 @@ package com.epam.university.java.core.task002;
 
 /**
  * Created by Doomsday Device on 17.09.2017.
+ * * <p>
+ *     Task002
+ *     ...
+ *  </p>
  */
 public class Task002Impl implements Task002 {
     @Override
