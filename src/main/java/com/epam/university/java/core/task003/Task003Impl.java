@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task003;
 
-import java.lang.annotation.Inherited;
 import java.util.Arrays;
 
 public class Task003Impl implements Task003 {
