@@ -2,7 +2,6 @@ package com.epam.university.java.core.task004;
 
 import com.epam.university.java.core.ChecksHelper;
 
-import java.sql.Array;
 import java.util.HashSet;
 import java.util.Arrays;
 import java.util.List;
