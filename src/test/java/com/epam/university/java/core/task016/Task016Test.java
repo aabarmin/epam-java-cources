@@ -7,11 +7,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Task016Test {
     private Task016 instance;
@@ -26,49 +28,68 @@ public class Task016Test {
     @Test
     public void testWithRadius1() throws Exception {
         final Collection<Coordinate> targetCoordinates = generate(-1, 1);
-        assertEquals("Incorrect collection with radius 1",
-                targetCoordinates,
-                instance.getSquaresInsideCircle(1)
+        final Collection<Coordinate> resultCoordinates =
+            instance.getSquaresInsideCircle(1);
+        assertEquals("Incorrect collection size with radius 1",
+            targetCoordinates.size(),
+            resultCoordinates.size()
+        );
+        assertTrue("Incorrect collection with radius 1",
+            targetCoordinates.containsAll(resultCoordinates)
         );
     }
 
     @Test
     public void testWithRadius2() throws Exception {
-        final List<Collection<Coordinate>> targetCoordinates = Stream.of(
-                generate(-2, 3),
-                generate(-3, 2),
-                generate(-3, 1)
-        ).collect(Collectors.toList());
-        assertEquals("Incorrect collection with radius 2",
-                targetCoordinates,
-                instance.getSquaresInsideCircle(2)
+        final Collection<Coordinate> targetCoordinates = Stream.of(
+            generate(-2, 3).stream(),
+            generate(-3, 2).stream(),
+            generate(-3, 1).stream())
+            .flatMap(Function.identity())
+            .collect(Collectors.toList());
+        final Collection<Coordinate> resultCoordinates =
+            instance.getSquaresInsideCircle(2);
+        assertEquals("Incorrect collection size with radius 2",
+            targetCoordinates.size(),
+            resultCoordinates.size()
+        );
+        assertTrue("Incorrect collection with radius 2",
+            targetCoordinates.containsAll(resultCoordinates)
         );
     }
 
     @Test
     public void testWithRadius3() throws Exception {
-        final List<Collection<Coordinate>> targetCoordinates = Stream.of(
-                generate(-3, 5),
-                generate(-4, 4),
-                generate(-5, 3),
-                generate(-5, 2),
-                generate(-5, 1)
-        ).collect(Collectors.toList());
-        assertEquals("Incorrect collection with radius 3",
-                targetCoordinates,
-                instance.getSquaresInsideCircle(3)
+        final Collection<Coordinate> targetCoordinates = Stream.of(
+            generate(-3, 5).stream(),
+            generate(-4, 4).stream(),
+            generate(-5, 3).stream(),
+            generate(-5, 2).stream(),
+            generate(-5, 1).stream())
+            .flatMap(Function.identity())
+            .collect(Collectors.toList());
+        final Collection<Coordinate> resultCoordinates =
+            instance.getSquaresInsideCircle(3);
+        assertEquals("Incorrect collection size with radius 3",
+            targetCoordinates.size(),
+            resultCoordinates.size()
+        );
+        assertTrue("Incorrect collection with radius 3",
+            targetCoordinates.containsAll(resultCoordinates)
         );
     }
 
     private Collection<Coordinate> generate(int x, int y) {
         final List<Coordinate> part = new ArrayList<>();
         part.addAll(
-                IntStream.rangeClosed(-x, x)
+            IntStream.rangeClosed(x, -x)
+                .filter(i -> i != 0)
                 .mapToObj(i -> factory.newInstance(i, y))
                 .collect(Collectors.toList())
         );
         part.addAll(
-                IntStream.rangeClosed(-x, x)
+            IntStream.rangeClosed(x, -x)
+                .filter(i -> i != 0)
                 .mapToObj(i -> factory.newInstance(i, -y))
                 .collect(Collectors.toList())
         );
