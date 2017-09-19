@@ -56,6 +56,7 @@ public class Task011Test {
         );
     }
 
+
     @Test
     public void getLastNameWithArraySecond() throws Exception {
         final String[] collection = {
