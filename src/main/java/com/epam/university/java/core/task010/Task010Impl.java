@@ -11,14 +11,18 @@ import java.util.Map;
 public class Task010Impl implements Task010 {
     @Override
     public Map<String, Integer> countWordNumbers(File source) {
-        String[] strArr = null;
+        String[] stringsArr = null;
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(source)))) {
-            strArr = br.readLine().toLowerCase().split("[^a-zA-Z0-9_’-]+");
+            stringsArr = br.readLine().toLowerCase().split("[^a-zA-Z0-9_’-]+");
         } catch (IOException e) {
-            System.out.print("Input-output error happened!" + e);
+            System.out.print("Input-output error!" + e);
         }
         Map<String, Integer> map = new HashMap<>();
-        return null;
+        for (String string : stringsArr) {
+            Integer frequency = map.get(string);
+            map.put(string, frequency == null ? 1 : frequency + 1);
+        }
+        return map;
     }
 }
