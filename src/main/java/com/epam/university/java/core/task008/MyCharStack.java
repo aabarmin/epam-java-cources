@@ -17,6 +17,7 @@ class MyCharStack {
         elementCount++;
         items.append(item);
     }
+
     char pop() {
         char item = items.charAt(elementCount - 1);
         items.deleteCharAt(--elementCount);
