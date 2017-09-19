@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task003;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Collections;
 
 /**
  * FlatMappingOperation implementation.
@@ -28,7 +32,6 @@ public final class FlatMappingOperationImpl implements FlatMappingOperation {
 
         String[] resultArray = new String[resultStringList.size()];
         resultArray = resultStringList.toArray(resultArray);
-//
 
         return resultArray;
     }

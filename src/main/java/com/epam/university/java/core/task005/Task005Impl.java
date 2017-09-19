@@ -19,44 +19,47 @@ public final class Task005Impl implements Task005 {
 
     @Override
     public PiHolder findPi(final int digits) {
-        if ((digits <= 0)||(digits >10)) {
+        if ((digits <= 0) || (digits > TEN)) {
             throw new IllegalArgumentException(MSG_ILLEGAL_ARG);
         }
 
         int minSecond = (int) Math.round(Math.pow(TEN, (double) digits - 1));
         int maxSecond = (int) Math.floor(Math.pow(TEN, digits) / Math.PI);
 
-        int currentSecond = minSecond;
-        int currentFirstFloored = (int) Math.floor(currentSecond * Math.PI);
-        int currentFirstCeiled = (int) Math.ceil(currentSecond * Math.PI);
-        PiHolderImpl piHolder = new PiHolderImpl(currentFirstFloored, currentSecond);
+        //current Second
+        int curSecond = minSecond;
+        //current First Floored
+        int curFstFloored = (int) Math.floor(curSecond * Math.PI);
+        //current First Ceiled
+        int curFstCeiled = (int) Math.ceil(curSecond * Math.PI);
+        PiHolderImpl piHolder = new PiHolderImpl(curFstFloored, curSecond);
 
-        double bestApproximatePi = (double) currentFirstFloored / currentSecond;
-        double currentDelta = Math.abs(bestApproximatePi - Math.PI);
-        double bestDelta = currentDelta;
+        double bestApproxPi = (double) curFstFloored / curSecond;
+        double curDelta = Math.abs(bestApproxPi - Math.PI);
+        double bestDelta = curDelta;
 
-        currentDelta = Math.abs(((double) currentFirstCeiled / currentSecond) - Math.PI);
-        if (currentDelta < bestDelta) {
-            bestApproximatePi = (double) currentFirstCeiled / currentSecond;
-            bestDelta = Math.abs(bestApproximatePi - Math.PI);
-            piHolder.setFirst(currentFirstCeiled);
+        curDelta = Math.abs(((double) curFstCeiled / curSecond) - Math.PI);
+        if (curDelta < bestDelta) {
+            bestApproxPi = (double) curFstCeiled / curSecond;
+            bestDelta = Math.abs(bestApproxPi - Math.PI);
+            piHolder.setFirst(curFstCeiled);
         }
 
-        for (currentSecond = minSecond + 1; currentSecond <= maxSecond; currentSecond++) {
-            currentFirstFloored = (int) Math.floor(currentSecond * Math.PI);
-            currentFirstCeiled = (int) Math.ceil(currentSecond * Math.PI);
-            currentDelta = Math.abs(((double) currentFirstFloored / currentSecond) - Math.PI);
-            if (currentDelta < bestDelta) {
-                bestDelta = currentDelta;
-                piHolder.setFirst(currentFirstFloored);
-                piHolder.setSecond(currentSecond);
+        for (curSecond = minSecond + 1; curSecond <= maxSecond; curSecond++) {
+            curFstFloored = (int) Math.floor(curSecond * Math.PI);
+            curFstCeiled = (int) Math.ceil(curSecond * Math.PI);
+            curDelta = Math.abs(((double) curFstFloored / curSecond) - Math.PI);
+            if (curDelta < bestDelta) {
+                bestDelta = curDelta;
+                piHolder.setFirst(curFstFloored);
+                piHolder.setSecond(curSecond);
             }
 
-            currentDelta = Math.abs(((double) currentFirstCeiled / currentSecond) - Math.PI);
-            if ((currentDelta < bestDelta) && (currentSecond != maxSecond)) {
-                bestDelta = currentDelta;
-                piHolder.setFirst(currentFirstCeiled);
-                piHolder.setSecond(currentSecond);
+            curDelta = Math.abs(((double) curFstCeiled / curSecond) - Math.PI);
+            if ((curDelta < bestDelta) && (curSecond != maxSecond)) {
+                bestDelta = curDelta;
+                piHolder.setFirst(curFstCeiled);
+                piHolder.setSecond(curSecond);
             }
         }
         return piHolder;

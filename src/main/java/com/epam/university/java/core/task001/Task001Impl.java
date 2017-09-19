@@ -17,7 +17,8 @@ public final class Task001Impl implements Task001 {
     private static final String MSG_INCORRECT_ARGS = "incorrect arguments";
 
     @Override
-    public double addition(final String firstNumber, final String secondNumber) {
+    public double addition(
+            final String firstNumber, final String secondNumber) {
         if (("".equals(firstNumber)) || ("".equals(secondNumber))
                 || (firstNumber == null) || (secondNumber == null)) {
             throw new IllegalArgumentException(MSG_EMPTY_PARAMS);
@@ -36,7 +37,8 @@ public final class Task001Impl implements Task001 {
     }
 
     @Override
-    public double subtraction(final String firstNumber, final String secondNumber) {
+    public double subtraction(
+            final String firstNumber, final String secondNumber) {
         if (("".equals(firstNumber)) || ("".equals(secondNumber))
                 || (firstNumber == null) || (secondNumber == null)) {
             throw new IllegalArgumentException(MSG_EMPTY_PARAMS);
@@ -55,7 +57,8 @@ public final class Task001Impl implements Task001 {
     }
 
     @Override
-    public double multiplication(final String firstNumber, final String secondNumber) {
+    public double multiplication(
+            final String firstNumber, final String secondNumber) {
         if (("".equals(firstNumber)) || ("".equals(secondNumber))
                 || (firstNumber == null) || (secondNumber == null)) {
             throw new IllegalArgumentException(MSG_EMPTY_PARAMS);
@@ -74,7 +77,8 @@ public final class Task001Impl implements Task001 {
     }
 
     @Override
-    public double division(final String firstNumber, final String secondNumber) {
+    public double division(
+            final String firstNumber, final String secondNumber) {
         if (("".equals(firstNumber)) || ("".equals(secondNumber))
                 || (firstNumber == null) || (secondNumber == null)) {
             throw new IllegalArgumentException(MSG_EMPTY_PARAMS);
