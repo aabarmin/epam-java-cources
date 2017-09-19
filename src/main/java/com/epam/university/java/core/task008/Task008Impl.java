@@ -10,7 +10,7 @@ public class Task008Impl implements Task008 {
 
         // Reading string
         for (char ch : sourceString.toCharArray()) {
-            
+
             // Checking for correct bracers
             switch (ch) {
                 case '(':
@@ -26,7 +26,7 @@ public class Task008Impl implements Task008 {
                     break;
 
                 case ')':
-                    if (bracerList.getLast() == '(') {
+                    if (bracerList.size() > 0 && bracerList.getLast() == '(') {
                         bracerList.removeLast();
                     } else {
                         return false;
@@ -34,7 +34,7 @@ public class Task008Impl implements Task008 {
                     break;
 
                 case '}':
-                    if (bracerList.getLast() == '{') {
+                    if (bracerList.size() > 0 && bracerList.getLast() == '{') {
                         bracerList.removeLast();
                     } else {
                         return false;
@@ -42,7 +42,7 @@ public class Task008Impl implements Task008 {
                     break;
 
                 case ']':
-                    if (bracerList.getLast() == '[') {
+                    if (bracerList.size() > 0 && bracerList.getLast() == '[') {
                         bracerList.removeLast();
                     } else {
                         return false;
