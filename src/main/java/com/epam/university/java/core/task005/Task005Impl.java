@@ -3,7 +3,7 @@ package com.epam.university.java.core.task005;
 public class Task005Impl implements Task005 {
     @Override
     public PiHolder findPi(int digits) {
-        if (digits <= 0) {
+        if (digits <= 0 || digits > 10) {
             throw new IllegalArgumentException();
         }
         int firstNumber = (int) ((Math.pow(10, digits) - 1) / Math.PI);
