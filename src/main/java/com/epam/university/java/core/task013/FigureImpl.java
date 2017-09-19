@@ -18,10 +18,10 @@ public class FigureImpl implements Figure {
 
     @Override
     public void addVertex(Vertex vertex) {
-        /*if (currentVertexNumber == numberOfVertex) {
+        if (currentVertexNumber == numberOfVertex) {
             System.out.println("Can't add vertex");
             return;
-        }*/
+        }
         vertexArray.add(vertex);
         currentVertexNumber++;
         if (currentVertexNumber == numberOfVertex) {
