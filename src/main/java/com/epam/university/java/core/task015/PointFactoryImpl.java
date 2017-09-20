@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task015;
 
 /**
- * Implementation class for PointFactory
+ * Implementation class for PointFactory.
  *
  * @author Sergei Titov
  */

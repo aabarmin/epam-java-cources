@@ -7,21 +7,22 @@ package com.epam.university.java.core.task015;
  */
 public class PointImpl<T> implements Point<T> {
 
-    T x;
-    T y;
+    T abscissa;
+    T ordinate;
 
     boolean islikeInner;
 
-     /**
-     * Constructor from (X, Y)-coordinates.
-     *
-     * @param x
-     * @param y
-     */
+    /**
+    * Constructor from (X, Y)-coordinates.
+    *
+    * @param x abscissa
+    * @param y ordinate
+    */
     PointImpl(T x, T y) {
-        this.x = x;
-        this.y = y;
+        this.abscissa = x;
+        this.ordinate = y;
     }
+
     /**
      * Get x value of point.
      *
@@ -29,7 +30,7 @@ public class PointImpl<T> implements Point<T> {
      */
     @Override
     public T getX() {
-        return x;
+        return abscissa;
     }
 
     /**
@@ -37,9 +38,10 @@ public class PointImpl<T> implements Point<T> {
      *
      * @return value
      */
+
     @Override
     public T getY() {
-        return y;
+        return ordinate;
     }
 
     /**
@@ -60,7 +62,6 @@ public class PointImpl<T> implements Point<T> {
     public void setY(T y) {
     }
 
-    @Override
     public boolean suspectAsInner() {
         if (false == islikeInner) {
             islikeInner = true;

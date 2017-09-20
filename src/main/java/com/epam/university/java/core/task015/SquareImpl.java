@@ -16,7 +16,7 @@ public class SquareImpl implements Square {
      * @param point1
      * @param point2
      */
-    public SquareImpl (Point<Integer> point1, Point<Integer> point2) {
+    public SquareImpl(Point<Integer> point1, Point<Integer> point2) {
         this.point1 = point1;
         this.point2 = point2;
     }
