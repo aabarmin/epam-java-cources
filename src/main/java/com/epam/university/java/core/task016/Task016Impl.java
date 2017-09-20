@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task016;
 
+import com.epam.university.java.core.util.Utils;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,9 +24,14 @@ public class Task016Impl implements Task016 {
      *
      * @param radius radius of circle
      * @return collection square coordinates
+     * @throws IllegalArgumentException if radius is not positive
      */
     @Override
-    public Collection<Coordinate> getSquaresInsideCircle(int radius) {
+    public Collection<Coordinate> getSquaresInsideCircle(int radius)
+        throws IllegalArgumentException {
+
+        Utils.assertPositive(radius);
+
         radius *= 2;
         List<Coordinate> coordinates = new LinkedList<>();
         for (int x = -radius; x <= radius; ++x) {
