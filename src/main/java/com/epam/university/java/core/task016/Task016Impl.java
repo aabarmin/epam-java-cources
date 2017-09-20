@@ -26,19 +26,27 @@ public class Task016Impl implements Task016 {
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
 
         // For visualization mathway.com/graph
+        // x^2 + y^2 = R^2
 
         radius = radius * 2;
 
         List<Coordinate> coordinates = new ArrayList<>();
-        Coordinate coordinate = new CoordinateImpl(0, radius - 1);
+        Coordinate coordinate = new CoordinateImpl(1, radius - 1);
 
-        while (coordinate.getY() >= 0) {
+        while (coordinate.getY() > 0) {
 
-            // fits
-            if (coordinate.getX() * coordinate.getX() + coordinate.getY() * coordinate.getY() <= radius) {
+            // Coordinate inside circle
+            if (coordinate.getX() * coordinate.getX() + coordinate.getY() * coordinate.getY() <= radius * radius) {
+
                 coordinates.add(coordinate);
+
+                for (int y = coordinate.getY() - 1; y > 0; y--) {
+                    coordinates.add(new CoordinateImpl(coordinate.getX(), y));
+                }
+
                 coordinate = new CoordinateImpl(coordinate);
                 coordinate.setX(coordinate.getX() + 1);
+
             } else {
                 coordinate.setX(coordinate.getX() - 1);
                 coordinate.setY(coordinate.getY() - 1);
@@ -66,7 +74,7 @@ public class Task016Impl implements Task016 {
 
         }
 
-        return coordinates;
+        return allCoordinates;
 
     }
 }
