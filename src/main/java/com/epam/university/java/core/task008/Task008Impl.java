@@ -37,14 +37,17 @@ public class Task008Impl implements Task008 {
             if (braceMapping.containsKey(c)) {
                 stack.push(c);
             } else if (braceMapping.containsValue(c)) {
-                if (c != braceMapping.get(stack.pop())) {
+                if (stack.size() == 0) {
+                    return false;
+                } else if (c != braceMapping.get(stack.pop())) {
                     return false;
                 }
             }
 
         }
 
-        return true;
+
+        return stack.size() == 0;
 
     }
 }

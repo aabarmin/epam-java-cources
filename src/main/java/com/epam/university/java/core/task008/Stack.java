@@ -21,4 +21,11 @@ public interface Stack<T> {
      */
     T pop();
 
+    /**
+     * Returns the number of elements in this stack.
+     *
+     * @return the number of elements in this stack
+     */
+    int size();
+
 }

@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task011;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;

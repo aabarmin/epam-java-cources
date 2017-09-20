@@ -2,7 +2,8 @@ package com.epam.university.java.core.task008;
 
 public class StackImpl<T> implements Stack<T> {
 
-    Holder<T> holder;
+    private int size;
+    private Holder<T> holder;
 
     /**
      * Push new element on top of the stack.
@@ -12,6 +13,7 @@ public class StackImpl<T> implements Stack<T> {
     @Override
     public void push(T element) {
         holder = new Holder<>(element, holder);
+        size++;
     }
 
     /**
@@ -28,9 +30,20 @@ public class StackImpl<T> implements Stack<T> {
 
         T element = holder.getValue();
         holder = holder.getPrevious();
+        size--;
 
         return element;
 
+    }
+
+    /**
+     * Returns the number of elements in this stack.
+     *
+     * @return the number of elements in this stack
+     */
+    @Override
+    public int size() {
+        return size;
     }
 
     private class Holder<T> {

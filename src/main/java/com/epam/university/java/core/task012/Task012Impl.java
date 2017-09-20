@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task012;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 public class Task012Impl implements Task012 {
     /**
