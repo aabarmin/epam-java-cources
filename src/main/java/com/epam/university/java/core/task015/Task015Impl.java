@@ -135,14 +135,14 @@ public class Task015Impl implements Task015 {
                     y = y1 + (t * s1_y);
 
                     // check if endpoint of segment 1 is inside the second polygon
-                    Point<Integer> point = segment1.getFirst();
+                    PointImpl<Integer> point = (PointImpl<Integer>)segment1.getFirst();
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
                         setFilter.add( pointToAdd );
                         retList.add( pointToAdd );
                     }
-                    point = segment1.getSecond();
+                    point = (PointImpl<Integer>)segment1.getSecond();
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
@@ -158,14 +158,14 @@ public class Task015Impl implements Task015 {
                 retList.add(pointFactory.newInstance(x, y));
 
                 // check if endpoint of segment 2 is inside the first polygon
-                Point<Integer> point = segment2.getFirst();
+                PointImpl<Integer> point = (PointImpl<Integer>)segment2.getFirst();
                 if (point.suspectAsInner() && !setFilter.contains(point)) {
                     PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                             point.getY().doubleValue());
                     setFilter.add(pointToAdd);
                     retList.add(pointToAdd);
                 }
-                point = segment2.getSecond();
+                point = (PointImpl<Integer>)segment2.getSecond();
                 if (point.suspectAsInner() && !setFilter.contains(point)) {
                     PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                             point.getY().doubleValue());
