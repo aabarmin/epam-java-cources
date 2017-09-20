@@ -10,5 +10,5 @@ public interface SquareFactory {
      * @param second second point
      * @return square instance
      */
-    Square newInstance(Point first, Point second);
+    Square newInstance(Point<Integer> first, Point<Integer> second);
 }
