@@ -48,34 +48,34 @@ public class Task015Impl implements Task015 {
      * @returns - list with coordinates squire's vertexes
      */
     private List<Square> getSquareSides(Square line) {
-        int aNodeX = line.getFirst().getX();
-        int aNodeY = line.getFirst().getY();
-        int cNodeX = line.getSecond().getX();
-        int cNodeY = line.getSecond().getY();
+        int vertAx = line.getFirst().getX();
+        int vertAy = line.getFirst().getY();
+        int vertCx = line.getSecond().getX();
+        int vertCy = line.getSecond().getY();
 
-        int dx = cNodeX - aNodeX;
-        int dy = aNodeY - cNodeY;
+        int dx = vertCx - vertAx;
+        int dy = vertAy - vertCy;
         int d = (dx - dy) / 2;
 
-        int dX = aNodeX + d;
-        int dY = cNodeY - d;
-        int bX = cNodeX - d;
-        int bY = aNodeY + d;
+        int vertDx = vertAx + d;
+        int vertDy = vertCy - d;
+        int vertBx = vertCx - d;
+        int vertBy = vertAy + d;
 
         List<Square> retList = new ArrayList<>();
         PointFactoryImpl<Integer> pointFactory = new PointFactoryImpl();
         SquareFactoryImpl squareFactory = new SquareFactoryImpl();
-        Point vertexB = pointFactory.newInstance(bX, bY);
-        Point vertexD = pointFactory.newInstance(dX, dY);
+        Point vertB = pointFactory.newInstance(vertBx, vertBy);
+        Point vertD = pointFactory.newInstance(vertDx, vertDy);
 
         // AB side
-        retList.add(squareFactory.newInstance(line.getFirst(), vertexB));
+        retList.add(squareFactory.newInstance(line.getFirst(), vertB));
         // BC side
-        retList.add(squareFactory.newInstance(vertexB, line.getSecond()));
+        retList.add(squareFactory.newInstance(vertB, line.getSecond()));
         // CD side
-        retList.add(squareFactory.newInstance(line.getSecond(), vertexD));
+        retList.add(squareFactory.newInstance(line.getSecond(), vertD));
         // DA side
-        retList.add(squareFactory.newInstance(vertexD, line.getFirst()));
+        retList.add(squareFactory.newInstance(vertD, line.getFirst()));
 
         return retList;
     }
@@ -119,13 +119,14 @@ public class Task015Impl implements Task015 {
 
                 //////////////////////////////////////////////////////////////
                 // find Collision point
-                double s = ((y1 - y2) * (x1 - x3) + (x2 - x1) * (y1 - y3)) / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
-                double t = ((x4 - x3) * (y1 - y3) - sy2 * (x1 - x3)) / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
+                double s = ((y1 - y2) * (x1 - x3) + (x2 - x1) * (y1 - y3))
+                        / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
+                double t = ((x4 - x3) * (y1 - y3) - sy2 * (x1 - x3))
+                        / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
 
                 double x;
                 double y;
-                if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
-                {
+                if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
                     // Collision detected at the following coordinates
                     x = x1 + (t * (x2 - x1));
                     y = y1 + (t * (y2 - y1));
