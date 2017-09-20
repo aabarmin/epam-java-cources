@@ -61,15 +61,15 @@ public class Task015Impl implements Task015 {
             min = square.getFirst();
             max = square.getSecond();
         }
-        double centerX = (double) (min.getX() + max.getX()) / 2;
-        double centerY = (double) (min.getY() + max.getY()) / 2;
-        double halfDiagonalX = (double) (min.getX() - max.getX()) / 2;
-        double halfDiagonalY = (double) (min.getY() - max.getY()) / 2;
+        double centerX = (min.getX() + max.getX()) / 2;
+        double centerY = (min.getY() + max.getY()) / 2;
+        double halfDiagonalX = (min.getX() - max.getX()) / 2;
+        double halfDiagonalY = (min.getY() - max.getY()) / 2;
         ArrayList<Point> vertices = new ArrayList<>(Arrays.asList(
             min,
             max,
-            new PointImpl((int) (centerX - halfDiagonalY), (int) (centerY + halfDiagonalX)),
-            new PointImpl((int) (centerX + halfDiagonalY), (int) (centerY - halfDiagonalX))
+            new PointImpl(centerX - halfDiagonalY, centerY + halfDiagonalX),
+            new PointImpl(centerX + halfDiagonalY, centerY - halfDiagonalX)
         ));
         sortPoints(vertices);
         return vertices;
@@ -186,7 +186,7 @@ public class Task015Impl implements Task015 {
         }
         if (Double.isFinite(x) && Double.isFinite(y) && !Double.isNaN(x) && !Double.isNaN(y)
             && (x % 1) == 0 && (y % 1) == 0) { // not NaN, not Infinity and integral
-            return Optional.of(new PointImpl((int) x, (int) y));
+            return Optional.of(new PointImpl(x, y));
         }
         return Optional.empty();
     }
@@ -244,8 +244,8 @@ public class Task015Impl implements Task015 {
         final Point apLen = vectorLength(a, p);
         final Point abLen = vectorLength(a, b);
         final Point adLen = vectorLength(a, d);
-        final int abProd = scalarProduct(apLen, abLen);
-        final int adProd = scalarProduct(apLen, adLen);
+        final double abProd = scalarProduct(apLen, abLen);
+        final double adProd = scalarProduct(apLen, adLen);
         return 0 <= abProd && abProd <= scalarProduct(abLen, abLen)
             && 0 <= adProd && adProd <= scalarProduct(adLen, adLen);
     }
@@ -266,7 +266,7 @@ public class Task015Impl implements Task015 {
      * @param b second vector length
      * @return scalar product
      */
-    private int scalarProduct(Point a, Point b) {
+    private double scalarProduct(Point a, Point b) {
         return a.getX() * b.getX() + a.getY() * b.getY();
     }
 

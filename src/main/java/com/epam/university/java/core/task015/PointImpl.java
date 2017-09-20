@@ -5,10 +5,10 @@ package com.epam.university.java.core.task015;
  */
 public class PointImpl implements Point {
 
-    private final int coordX;
-    private final int coordY;
+    private final double coordX;
+    private final double coordY;
 
-    public PointImpl(int x, int y) {
+    public PointImpl(double x, double y) {
         coordX = x;
         coordY = y;
     }
@@ -18,7 +18,7 @@ public class PointImpl implements Point {
      * @return x value
      */
     @Override
-    public int getX() {
+    public double getX() {
         return coordX;
     }
 
@@ -27,7 +27,7 @@ public class PointImpl implements Point {
      * @return y value
      */
     @Override
-    public int getY() {
+    public double getY() {
         return coordY;
     }
 
@@ -37,7 +37,7 @@ public class PointImpl implements Point {
      * @throws UnsupportedOperationException as modification is forbidden
      */
     @Override
-    public void setX(int x) throws UnsupportedOperationException {
+    public void setX(double x) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
@@ -47,13 +47,13 @@ public class PointImpl implements Point {
      * @throws UnsupportedOperationException as modification is forbidden
      */
     @Override
-    public void setY(int y) throws UnsupportedOperationException {
+    public void setY(double y) throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public String toString() {
-        return String.format("[%d, %d]", coordX, coordY);
+        return String.format("[%f, %f]", coordX, coordY);
     }
 
     @Override
@@ -72,8 +72,12 @@ public class PointImpl implements Point {
 
     @Override
     public int hashCode() {
-        int result = coordX;
-        result = 31 * result + coordY;
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(coordX);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(coordY);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

@@ -42,9 +42,9 @@ public class Task016Test {
     @Test
     public void testWithRadius2() throws Exception {
         final Collection<Coordinate> targetCoordinates = Stream.of(
-                generate(-2, 3).stream(),
-                generate(-3, 2).stream(),
-                generate(-3, 1).stream())
+            generate(-2, 3).stream(),
+            generate(-3, 2).stream(),
+            generate(-3, 1).stream())
             .flatMap(Function.identity())
             .collect(Collectors.toList());
         final Collection<Coordinate> resultCoordinates =
@@ -61,11 +61,11 @@ public class Task016Test {
     @Test
     public void testWithRadius3() throws Exception {
         final Collection<Coordinate> targetCoordinates = Stream.of(
-                generate(-3, 5).stream(),
-                generate(-4, 4).stream(),
-                generate(-5, 3).stream(),
-                generate(-5, 2).stream(),
-                generate(-5, 1).stream())
+            generate(-3, 5).stream(),
+            generate(-4, 4).stream(),
+            generate(-5, 3).stream(),
+            generate(-5, 2).stream(),
+            generate(-5, 1).stream())
             .flatMap(Function.identity())
             .collect(Collectors.toList());
         final Collection<Coordinate> resultCoordinates =

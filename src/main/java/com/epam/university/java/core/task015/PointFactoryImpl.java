@@ -12,7 +12,7 @@ public class PointFactoryImpl implements PointFactory {
      * @return point instance
      */
     @Override
-    public Point newInstance(int x, int y) {
+    public Point newInstance(double x, double y) {
         return new PointImpl(x, y);
     }
 
