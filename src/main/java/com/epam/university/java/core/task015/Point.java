@@ -3,28 +3,32 @@ package com.epam.university.java.core.task015;
 /**
  * Point in 2-dimensional area.
  */
-public interface Point {
+public interface Point<T>  {
     /**
      * Get x value of point.
      * @return value
      */
-    int getX();
+    T getX();
 
     /**
      * Get y value of point.
      * @return value
      */
-    int getY();
+    T getY();
 
     /**
      * Set x value of point.
      * @param x value
      */
-    void setX(int x);
+    void setX(T x);
 
     /**
      * Set y value of point.
      * @param y value
      */
-    void setY(int y);
+    void setY(T y);
+
+    default boolean suspectAsInner() {
+        return false;
+    }
 }
