@@ -1,5 +1,8 @@
 package com.epam.university.java.core.task003;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * Created by Vadim on 15.09.2017.
  */
@@ -21,7 +24,7 @@ public class Task003Impl implements Task003 {
     }
 
     @Override
-    public String[] join(String[] first, String[] second) {
+    public  String[] join(String[] first, String[] second) {
 
         int lengthFirst = first.length;
         int lengthSecond = second.length;
@@ -124,18 +127,29 @@ public class Task003Impl implements Task003 {
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
         String[] array = new String[0];
-        for (int i = 0; i < source.length; i++){
-            array = join(array, operation.flatMap(source[i]));
+        for (String aSource : source) {
+            array = join(array, operation.flatMap(aSource));
         }
         String[] newArray = new String[10];
-        int index = 0;
-        newArray[index] = array[0];
-        for (int i = 1; i < array.length; i++){
-            if (!newArray[i - 1].equals(array[i])){
-                index++;
-                newArray[index] = array[i];
-            }
+        int index = 1;
+        int[] numbers = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            numbers[i] = Integer.parseInt(array[i]);
         }
-        return invert(newArray);
+        Arrays.sort(numbers);
+        for (int i = 0; i < numbers.length; i++) {
+            array[i] = String.valueOf(numbers[i]);
+        }
+        array = invert(array);
+        String current = array[0];
+        newArray[0] = array[0];
+        for (int i = 1; i < array.length; i++){
+             if (!current.equals(array[i])){
+                 newArray[index++] = array[i];
+                 current = array[i];
+             }
+        }
+        return newArray;
+
     }
 }
