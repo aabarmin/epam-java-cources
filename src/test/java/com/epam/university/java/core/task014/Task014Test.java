@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Task014Test {
     private Task014 instance;
@@ -33,8 +34,12 @@ public class Task014Test {
         );
         final Collection<VampireNumber> vampireNumbers = instance.getVampireNumbers();
         assertEquals("Incorrect vampire numbers collection",
-                targetCollection,
-                vampireNumbers
+                targetCollection.size(),
+                vampireNumbers.size()
         );
+        assertTrue("Incorrect vampire numbers collection",
+                targetCollection.containsAll(
+                        vampireNumbers
+                ));
     }
 }
