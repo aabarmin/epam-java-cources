@@ -14,6 +14,9 @@ public class BraceStack {
     }
 
     boolean tryPopValue(Brace brace) {
+        if( isEmpty() )
+            return false;
+
         if (brace == getHead()) {
             pop();
             return true;

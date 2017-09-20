@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Task015Impl implements Task015 {
     /**
-     * Get area of intersection of two squares by Gauss-formula
+     * Get area of intersection of two squares by Gauss-formula.
      *
      * @param first first square definition
      * @param second second square definition
@@ -48,34 +48,34 @@ public class Task015Impl implements Task015 {
      * @returns - list with coordinates squire's vertexes
      */
     private List<Square> getSquareSides(Square line) {
-        int aX = line.getFirst().getX();
-        int aY = line.getFirst().getY();
-        int cX = line.getSecond().getX();
-        int cY = line.getSecond().getY();
+        int aNodeX = line.getFirst().getX();
+        int aNodeY = line.getFirst().getY();
+        int cNodeX = line.getSecond().getX();
+        int cNodeY = line.getSecond().getY();
 
-        int dx = cX - aX;
-        int dy = aY - cY;
+        int dx = cNodeX - aNodeX;
+        int dy = aNodeY - cNodeY;
         int d = (dx - dy) / 2;
 
-        int dX = aX + d;
-        int dY = cY - d;
-        int bX = cX - d;
-        int bY = aY + d;
+        int dX = aNodeX + d;
+        int dY = cNodeY - d;
+        int bX = cNodeX - d;
+        int bY = aNodeY + d;
 
         List<Square> retList = new ArrayList<>();
         PointFactoryImpl<Integer> pointFactory = new PointFactoryImpl();
         SquareFactoryImpl squareFactory = new SquareFactoryImpl();
         Point vertexB = pointFactory.newInstance(bX, bY);
-        Point VertexD = pointFactory.newInstance(dX, dY);
+        Point vertexD = pointFactory.newInstance(dX, dY);
 
         // AB side
         retList.add(squareFactory.newInstance(line.getFirst(), vertexB));
         // BC side
         retList.add(squareFactory.newInstance(vertexB, line.getSecond()));
         // CD side
-        retList.add(squareFactory.newInstance(line.getSecond(), VertexD));
+        retList.add(squareFactory.newInstance(line.getSecond(), vertexD));
         // DA side
-        retList.add(squareFactory.newInstance(VertexD, line.getFirst()));
+        retList.add(squareFactory.newInstance(vertexD, line.getFirst()));
 
         return retList;
     }
@@ -115,32 +115,28 @@ public class Task015Impl implements Task015 {
                 int x4 = segment2.getSecond().getX();
                 int y4 = segment2.getSecond().getY();
 
+                double sy2 = (y4 - y3);
+
                 //////////////////////////////////////////////////////////////
                 // find Collision point
-                double s1_x, s1_y, s2_x, s2_y;
-                s1_x = x2 - x1;
-                s1_y = y2 - y1;
-                s2_x = x4 - x3;
-                s2_y = y4 - y3;
-
-                double s = (-s1_y * (x1 - x3) + s1_x * (y1 - y3)) / (-s2_x * s1_y + s1_x * s2_y);
-                double t = ( s2_x * (y1 - y3) - s2_y * (x1 - x3)) / (-s2_x * s1_y + s1_x * s2_y);
+                double s = ((y1 - y2) * (x1 - x3) + (x2 - x1) * (y1 - y3)) / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
+                double t = ((x4 - x3) * (y1 - y3) - sy2 * (x1 - x3)) / ((x3 - x4) * (y2 - y1) + (x2 - x1) * sy2);
 
                 double x;
                 double y;
                 if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
                 {
                     // Collision detected at the following coordinates
-                    x = x1 + (t * s1_x);
-                    y = y1 + (t * s1_y);
+                    x = x1 + (t * (x2 - x1));
+                    y = y1 + (t * (y2 - y1));
 
                     // check if endpoint of segment 1 is inside the second polygon
                     PointImpl<Integer> point = (PointImpl<Integer>)segment1.getFirst();
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
-                        setFilter.add( pointToAdd );
-                        retList.add( pointToAdd );
+                        setFilter.add(pointToAdd);
+                        retList.add(pointToAdd);
                     }
                     point = (PointImpl<Integer>)segment1.getSecond();
                     if (point.suspectAsInner() && !setFilter.contains(point)) {

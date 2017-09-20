@@ -13,8 +13,8 @@ public class SquareImpl implements Square {
     /**
      * Constructor from 2 points.
      *
-     * @param point1
-     * @param point2
+     * @param point1 A-vertex
+     * @param point2 C-vertex
      */
     public SquareImpl(Point<Integer> point1, Point<Integer> point2) {
         this.point1 = point1;

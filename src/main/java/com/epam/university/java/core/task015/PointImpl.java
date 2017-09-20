@@ -62,6 +62,11 @@ public class PointImpl<T> implements Point<T> {
     public void setY(T y) {
     }
 
+    /**
+     * Sets this point suspected to be inside the second squire
+     *
+     * @returns true if it was already suspected (twice is enough)
+     */
     public boolean suspectAsInner() {
         if (false == islikeInner) {
             islikeInner = true;
