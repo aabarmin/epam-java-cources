@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task017;
 
+import java.util.Locale;
+
 public class Task017Impl implements Task017 {
     /**
      * Output objects as formatted string.
@@ -9,7 +11,7 @@ public class Task017Impl implements Task017 {
      */
     @Override
     public String formatString(Object... args) {
-        return null;
+        return String.format("You know %s, %s!", args[0], args[1]);
     }
 
     /**
@@ -20,7 +22,7 @@ public class Task017Impl implements Task017 {
      */
     @Override
     public String formatNumbers(Object... args) {
-        return null;
+        return String.format(Locale.ROOT, "%.1f, %<.2f, %<+.2f, %s", args[0], Double.toHexString(Double.parseDouble(args[0].toString())));
     }
 
     /**
@@ -31,6 +33,6 @@ public class Task017Impl implements Task017 {
      */
     @Override
     public String formatDates(Object... args) {
-        return null;
+        return String.format("%tY.%<te.%<tm", args[0]);
     }
 }
