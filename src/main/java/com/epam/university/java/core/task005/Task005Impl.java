@@ -16,6 +16,16 @@ public class Task005Impl implements Task005 {
             }
         }
         System.out.println(0.4f + 0.3f);
-        return null;
+        return new PiHolder() {
+            @Override
+            public int getFirst() {
+                return 0;
+            }
+
+            @Override
+            public int getSecond() {
+                return 0;
+            }
+        };
     }
 }
