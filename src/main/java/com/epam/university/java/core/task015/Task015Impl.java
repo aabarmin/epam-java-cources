@@ -30,33 +30,28 @@ public class Task015Impl implements Task015 {
         Figure firstSquare = squareToFigure(first);
         Figure secondSquare = squareToFigure(second);
 
-        List<Vertex> list = firstSquare.getVertex();
-        list.addAll(secondSquare.getVertex());
+        WeilerAthertonAlgorithm algorithm = new WeilerAthertonAlgorithm(firstSquare, secondSquare);
+        Figure intersection = null;
+        intersection = algorithm.getIntersection();
+        if (intersection == null){
+            return 0;
+        }
 
-
-        //  WeilerAthertonAlgorithm algorithm = new WeilerAthertonAlgorithm(firstSquare, secondSquare);
-        //  Figure intersection = null;
-        //  try {
-        //      intersection = algorithm.getIntersection();
-        //  } catch (IllegalArgumentException e) {
-        //     return 0;
-        // }
-
-        return randomChecker(firstSquare, secondSquare);
+        return intersection.getArea();
     }
 
     private Figure squareToFigure(Square square) {
         PointFactory factory = new PointFactoryImpl();
 
-        DoublePoint first = new DoublePoint(square.getFirst());
-        DoublePoint third = new DoublePoint(square.getSecond());
-        DoublePoint second = new DoublePoint(
+        Point first = new PointImpl(square.getFirst().getX(), square.getFirst().getY());
+        Point third = new PointImpl(square.getSecond().getX(), square.getSecond().getY());
+        Point second = new PointImpl(
             (first.getX() + third.getX()) / 2 - (third.getY() - first.getY()) / 2,
             (first.getY() + third.getY()) / 2 + (third.getX() - first.getX()) / 2);
-        DoublePoint forth = new DoublePoint(
+        Point forth = new PointImpl(
             (first.getX() + third.getX()) / 2 + (third.getY() - first.getY()) / 2,
             (first.getY() + third.getY()) / 2 - (third.getX() - first.getX()) / 2);
-        List<DoublePoint> points = new LinkedList<>();
+        List<Point> points = new LinkedList<>();
         Collections.addAll(points, first, second, third, forth);
 
         return new Figure(points);
@@ -64,7 +59,7 @@ public class Task015Impl implements Task015 {
     }
 
     private List<Double> getRangeX(Figure first, Figure second) {
-        List<DoublePoint> list = first.getPoints();
+        List<Point> list = first.getPoints();
         list.addAll(second.getPoints());
 
         double maxX = list.stream().mapToDouble(p -> p.getX()).max().getAsDouble();
@@ -73,7 +68,7 @@ public class Task015Impl implements Task015 {
     }
 
     private List<Double> getRangeY(Figure first, Figure second) {
-        List<DoublePoint> list = first.getPoints();
+        List<Point> list = first.getPoints();
         list.addAll(second.getPoints());
 
         double maxY = list.stream().mapToDouble(p -> p.getY()).max().getAsDouble();
@@ -93,7 +88,7 @@ public class Task015Impl implements Task015 {
         int i = 0;
         int count = 0;
         while (i != 1_000_000) {
-            DoublePoint p = new DoublePoint(startX + Math.random() * rangeLenghX,
+            Point p = new PointImpl(startX + Math.random() * rangeLenghX,
                 startY + Math.random() * rangeLenghY);
             if (first.includes(p) && second.includes(p)) {
                 count++;

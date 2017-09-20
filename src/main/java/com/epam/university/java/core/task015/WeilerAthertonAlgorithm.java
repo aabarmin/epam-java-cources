@@ -1,8 +1,10 @@
 package com.epam.university.java.core.task015;
 
+import com.epam.university.java.core.task015.RoundList.RoundInterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -13,8 +15,6 @@ public class WeilerAthertonAlgorithm {
     private Figure first;
     private Figure second;
     private List<Vertex> intersection;
-    private List<Vertex> union;
-
 
     public WeilerAthertonAlgorithm(Figure first, Figure second) {
         this.first = first;
@@ -24,7 +24,11 @@ public class WeilerAthertonAlgorithm {
     }
 
     public Figure getIntersection() throws IllegalArgumentException {
-        start();
+        try {
+            start();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
         Figure figure = new Figure(intersection.stream().map(p -> p.getElement()).collect(Collectors.toList()));
         return figure;
     }
@@ -47,7 +51,6 @@ public class WeilerAthertonAlgorithm {
             .collect(Collectors.toList());
         if (checkFirst.size() == first.getVertex().size()) {
             intersection = first.getVertex();
-            union = second.getVertex();
             return 1;
         } else if (checkFirst.size() == 0) {
             List<Vertex> checkSecond = second.getVertex().stream()
@@ -55,7 +58,6 @@ public class WeilerAthertonAlgorithm {
                 .collect(Collectors.toList());
             if (checkSecond.size() == second.getVertex().size()) {
                 intersection = second.getVertex();
-                union = first.getVertex();
                 return 1;
             } else if (checkSecond.size() == 0) {
                 return -1;
@@ -74,112 +76,111 @@ public class WeilerAthertonAlgorithm {
         first = new Figure(fig.stream().map(p -> p.getElement()).collect(Collectors.toList()));
         fig = findIntersections(second, first);
         second = new Figure(fig.stream().map(p -> p.getElement()).collect(Collectors.toList()));
-        findIntersectionFigure(first);
-        findIntersectionFigure(second);
+        containsInFigure(first, second);
+        containsInFigure(second, first);
+        findLinks();
+        findIntersectionFigure();
+
     }
 
     private List<Vertex> findIntersections(Figure firstFigure, Figure secondFigure) {
-        ListIterator<Vertex> firstIterator = firstFigure.getVertex().listIterator();
-        List<Vertex> figureVertexes = new LinkedList<>();
+        RoundList<LineSegment> first = new RoundList<>(firstFigure.getLineSegments());
+        RoundList<LineSegment> second = new RoundList<>(secondFigure.getLineSegments());
 
-        Vertex last = firstIterator.next();
-        Vertex firstPoint = last;
-        figureVertexes.add(firstPoint);
-        do {
-            if (firstIterator.hasNext()) {
-                Vertex current = firstIterator.next();
-                if (current.hasContainigFigure()) {
-                    firstIterator.previous();
-                    Vertex previous = firstIterator.previous();
-                    if (!previous.hasContainigFigure()) {
-                        addVertexes(firstFigure, secondFigure, figureVertexes, current, previous);
-                    }
-                    firstIterator.next();
-                    firstIterator.next();
+        RoundInterator<LineSegment> firstIter = first.getIterator();
+        RoundInterator<LineSegment> secondIter = second.getIterator();
+
+        List<Vertex> figureFirst = new LinkedList<>();
+
+        LineSegment current = firstIter.next();
+        LineSegment currentHead = current;
+        figureFirst.add(new Vertex(current.getFirst()));
+
+        while(true){
+            LineSegment currentSecond = secondIter.next();
+            LineSegment head = currentSecond;
+
+            while(true){
+                Point intersect = current.lineIntersection(currentSecond);
+                if(intersect != null){
+                    Vertex intersectVertex = new Vertex(intersect);
+                    figureFirst.add(intersectVertex);
                 }
-                last = current;
-                figureVertexes.add(current);
-            } else {
-                if (firstPoint.hasContainigFigure()) {
-                    if (!last.hasContainigFigure()) {
-                        addVertexes(firstFigure, secondFigure, figureVertexes, firstPoint, last);
-                    }
+                currentSecond = secondIter.next();
+                if(currentSecond.equals(head)){
+                    break;
                 }
+            }
+            current = firstIter.next();
+            if(current.getFirst() == currentHead.getFirst()){
                 break;
             }
-        } while (true);
-        return figureVertexes;
-    }
+            figureFirst.add(new Vertex(current.getFirst()));
 
-    private void addVertexes(Figure firstFigure, Figure secondFigure, List<Vertex> figureVertexes,
-        Vertex current, Vertex previous) {
-        DoublePoint point = getIntersectionPoint(current, previous, secondFigure);
-        if (!firstFigure.getPoints().contains(point)) {
-            Vertex vertex = new Vertex(point);
-            vertex.setContainingFigure(secondFigure);
-            if (secondFigure.getPoints().contains(point)) {
-                Vertex link = secondFigure.getVertex().stream()
-                    .filter(p -> p.getElement().equals(point)).findFirst().get();
-                vertex.setLink(link);
-                link.setLink(vertex);
-            }
-            figureVertexes.add(vertex);
         }
+
+        return figureFirst;
     }
 
-
-    private DoublePoint getIntersectionPoint(Vertex first, Vertex second, Figure figure) {
-        LineSegment line = new LineSegment(first.getElement(), second.getElement());
-        LineSegment intersected = figure.getLineSegments().stream().filter(l -> {
-            DoublePoint p = l.lineIntersection(line);
-            return l.includes(p);
-        }).findFirst().get();
-
-        return intersected.lineIntersection(line);
-    }
-
-    private void findIntersectionFigure(Figure figure) {
-        ListIterator<Vertex> iterator = figure.getVertex().listIterator();
-
-        outer:
-        while (iterator.hasNext()) {
-            Vertex current = iterator.next();
-            if (current.hasLink()) {
-                intersection.add(current);
-                if (iterator.next().hasContainigFigure()) {
-                    iterator.previous();
-                    while (iterator.hasNext()) {
-                        Vertex addable = iterator.next();
-                        intersection.add(addable);
-                        if (addable.hasLink()) {
-                            break outer;
-                        }
-                    }
-                } else if (iterator.previous().hasContainigFigure()) {
-                    iterator.next();
-                    while (iterator.hasPrevious()) {
-                        Vertex addable = iterator.previous();
-                        intersection.add(addable);
-                        if (addable.hasLink()) {
-                            break outer;
-                        }
-                        if (!iterator.hasPrevious()) {
-                            while (iterator.hasNext()) {
-                                Vertex next = iterator.next();
-                                if (next.hasLink() && next != current) {
-                                    int i = 0;
-                                    intersection.add(i++, next);
-                                    while (iterator.hasNext()) {
-                                        Vertex other = iterator.next();
-                                        intersection.add(i++, other);
-                                    }
-                                    break outer;
-                                }
-                            }
-                        }
-                    }
-                }
+    private void findLinks(){
+        List<Vertex> secondVertexes = second.getVertex();
+        first.getVertex().forEach(e -> {
+            if(secondVertexes.contains(e)){
+                Vertex vertex = secondVertexes.get(secondVertexes.indexOf(e));
+                e.setLink(vertex);
+                vertex.setLink(e);
             }
+        });
+    }
+
+    private void findIntersectionFigure() {
+        RoundList<Vertex> firstRound = new RoundList<>(first.getVertex());
+        RoundList<Vertex> secondRound = new RoundList<>(second.getVertex());
+
+        RoundInterator<Vertex> firstIter = firstRound.getIterator();
+        RoundInterator<Vertex> secondIter = secondRound.getIterator();
+
+        Vertex current = firstIter.next();
+
+        while(true){
+            if(current.hasLink()){
+                break;
+            }
+            current = firstIter.next();
+        }
+
+        intersection.add(current);
+        Vertex head = current;
+
+        RoundInterator<Vertex> iter = firstIter;
+
+        Function<RoundInterator<Vertex>, Vertex> function = (itera) -> (itera.next());
+        String flag = "next";
+
+        while (true){
+            current = function.apply(iter);
+            if(current == head){
+                break;
+            }
+           if(current.hasLink()){
+                intersection.add(current);
+                if(iter == firstIter){
+                    iter = secondIter;
+                }else{
+                    iter = firstIter;
+                }
+            }else if(current.hasContainigFigure()){
+                intersection.add(current);
+            }else if(!current.hasContainigFigure()){
+                if("next".equals(flag)){
+                    function = (itera) -> (itera.previous());
+                    flag = "previouse";
+                }else{
+                    function = (itera) -> (itera.next());
+                }
+                function.apply(iter);
+            }
+
         }
     }
 

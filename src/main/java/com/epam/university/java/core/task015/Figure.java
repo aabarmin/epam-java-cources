@@ -17,9 +17,9 @@ public class Figure {
     private List<LineSegment> lineSegments;
 
 
-    public Figure(List<DoublePoint> points) {
+    public Figure(List<Point> points) {
         this.points = new LinkedList<>();
-        for (DoublePoint point :
+        for (Point point :
             points) {
             this.points.add(new Vertex(point));
         }
@@ -34,25 +34,21 @@ public class Figure {
         this.points = new LinkedList<>();
     }
 
-    public static void main(String[] args) {
-
-    }
-
-    public List<DoublePoint> getPoints() {
-        List<DoublePoint> doublePoints = points.stream().map(p -> p.getElement())
+    public List<Point> getPoints() {
+        List<Point> vPoints = points.stream().map(p -> p.getElement())
             .collect(Collectors.toList());
-        return doublePoints;
+        return vPoints;
     }
 
     public List<Vertex> getVertex(){
         return points;
     }
 
-    public void addPoint(int i, DoublePoint point) {
+    public void addPoint(int i, Point point) {
         points.add(i, new Vertex(point));
     }
 
-    public void addPoint(DoublePoint point) {
+    public void addPoint(Point point) {
         points.add(new Vertex(point));
     }
 
@@ -66,10 +62,10 @@ public class Figure {
                 .getX()).sum() / 2);
     }
 
-    public boolean includes(DoublePoint point) {
+    public boolean includes(Point point) {
 
         double area = lineSegments.stream().mapToDouble(l -> {
-            List<DoublePoint> points = new LinkedList<>();
+            List<Point> points = new LinkedList<>();
             Collections.addAll(points, point, l.getFirst(), l.getSecond());
             return new Figure(points).getArea();
         }).sum();

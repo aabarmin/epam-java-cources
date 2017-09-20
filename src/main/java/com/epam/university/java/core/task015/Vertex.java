@@ -5,15 +5,15 @@ package com.epam.university.java.core.task015;
  */
 class Vertex {
 
-    private DoublePoint element;
+    private Point element;
     private Figure containingFigure;
     private Vertex link;
 
-    public Vertex(DoublePoint element) {
+    public Vertex(Point element) {
         this.element = element;
     }
 
-    public DoublePoint getElement() {
+    public Point getElement() {
         return element;
     }
 

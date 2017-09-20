@@ -11,6 +11,9 @@ public class RoundList<T> {
 
     private ArrayList<T> elements = new ArrayList<>();
 
+    public RoundList(Collection<T> elements) {
+        this.elements.addAll(elements);
+    }
 
     public int size() {
         return elements.size();
@@ -48,10 +51,10 @@ public class RoundList<T> {
         return new RoundInterator<>(elements);
     }
 
-    public class RoundInterator<T> implements Iterator<T> {
+    public static class RoundInterator<T> implements Iterator<T> {
 
         private ArrayList<T> list;
-        private int position;
+        private int position = 0;
 
         public RoundInterator(ArrayList<T> list) {
             this.list = list;

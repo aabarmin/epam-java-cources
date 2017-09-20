@@ -5,44 +5,44 @@ package com.epam.university.java.core.task015;
  */
 public class LineSegment {
 
-    DoublePoint first;
-    DoublePoint second;
+    private Point first;
+    private Point second;
 
-    public LineSegment(DoublePoint first, DoublePoint second) {
+    public LineSegment(Point first, Point second) {
         this.first = first;
         this.second = second;
     }
 
     public static void main(String[] args) {
-        DoublePoint point1 = new DoublePoint(4, 4);
-        DoublePoint point2 = new DoublePoint(2, 4);
+        Point point1 = new PointImpl(4, 4);
+        Point point2 = new PointImpl(2, 4);
 
         LineSegment seg1 = new LineSegment(point1, point2);
 
-        DoublePoint point3 = new DoublePoint(5, 5);
-        DoublePoint point4 = new DoublePoint(5, 3);
+        Point point3 = new PointImpl(4, 5);
+        Point point4 = new PointImpl(3, 3);
 
         LineSegment seg2 = new LineSegment(point3, point4);
 
-        DoublePoint intersection = seg1.lineIntersection(seg2);
+        Point intersection = seg1.lineIntersection(seg2);
         System.out.println(intersection);
         System.out.println(seg1.includes(intersection));
 
     }
 
-    public DoublePoint getFirst() {
+    public Point getFirst() {
         return first;
     }
 
-    public void setFirst(DoublePoint first) {
+    public void setFirst(Point first) {
         this.first = first;
     }
 
-    public DoublePoint getSecond() {
+    public Point getSecond() {
         return second;
     }
 
-    public void setSecond(DoublePoint second) {
+    public void setSecond(Point second) {
         this.second = second;
     }
 
@@ -51,7 +51,7 @@ public class LineSegment {
             .pow((first.getX() - second.getY()), 2));
     }
 
-    public DoublePoint lineIntersection(LineSegment line) {
+    public Point lineIntersection(LineSegment line) {
         LineParam thisParam = this.getLineParam();
         LineParam lineParam = line.getLineParam();
 
@@ -65,7 +65,12 @@ public class LineSegment {
         double coordY = (parA2 * parC1 - parC2 * parA1) / (parB2 * parA1 - parB1 * parA2);
         double coordX = (parC2 * parB1 - parC1 * parB2) / (parB2 * parA1 - parB1 * parA2);
 
-        return new DoublePoint(coordX, coordY);
+        Point point = new PointImpl(coordX, coordY);
+        if(includes(point)){
+            return point;
+        }
+
+        return null;
 
     }
 
@@ -73,7 +78,7 @@ public class LineSegment {
         return new LineParam(first, second);
     }
 
-    public boolean includes(DoublePoint point) {
+    private boolean includes(Point point) {
         if (point.getX() >= Math.min(first.getX(), second.getX())
             && point.getX() <= Math.max(first.getX(), second.getX())
             && point.getY() >= Math.min(first.getY(), second.getY())
@@ -116,7 +121,7 @@ public class LineSegment {
         private double parB;
         private double parC;
 
-        public LineParam(DoublePoint first, DoublePoint second) {
+        public LineParam(Point first, Point second) {
             parA = first.getY() - second.getY();
             parB = second.getX() - first.getX();
             parC = first.getX() * second.getY() - first.getY() * second.getX();
