@@ -34,4 +34,16 @@ public class Task008Test {
     public void emptySourceString() throws Exception {
         assertTrue("Error with empty string", instance.isValid(""));
     }
+
+    @Test
+    public void singleCloseBracket() throws Exception {
+        final String source = "-3] - 4";
+        assertFalse("Error in correct braces", instance.isValid(source));
+    }
+
+    @Test
+    public void singleOpenBracket() throws Exception {
+        final String source = "1 + (2";
+        assertFalse("Error in correct braces", instance.isValid(source));
+    }
 }
