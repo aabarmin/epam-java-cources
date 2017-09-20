@@ -15,4 +15,10 @@ public interface Robot {
      * @param position position
      */
     void setPosition(RobotPosition position);
+
+    /**
+     * Invoke robot command.
+     * @param command command to invoke
+     */
+    void invokeAction(RobotCommand command);
 }
