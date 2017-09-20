@@ -27,8 +27,4 @@ public interface Point<T>  {
      * @param y value
      */
     void setY(T y);
-
-    default boolean suspectAsInner() {
-        return false;
-    }
 }
