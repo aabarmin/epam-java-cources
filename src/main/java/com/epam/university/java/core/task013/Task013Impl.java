@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task013;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,13 +33,13 @@ public class Task013Impl implements Task013 {
     @Override
     public boolean isConvexPolygon(Figure figure) {
         ArrayList<Vertex> vertices = (ArrayList<Vertex>) figure.getVertexes();
-        Point2D.Double centroid = computeCentroid(vertices);
+        VertexImpl centroid = computeCentroid(vertices);
         vertices.sort(
             (p1, p2) -> {
-                double dx1 = p2.getX() - p1.getX();
-                double dy1 = p2.getY() - p1.getY();
-                double dx2 = centroid.x - p1.getX();
-                double dy2 = centroid.y - p1.getY();
+                int dx1 = p2.getX() - p1.getX();
+                int dy1 = p2.getY() - p1.getY();
+                double dx2 = centroid.getDoubleX() - p1.getX();
+                double dy2 = centroid.getDoubleY() - p1.getY();
                 return Double.compare(dx1 * dy2, dy1 * dx2);
             }
         );
@@ -100,25 +99,25 @@ public class Task013Impl implements Task013 {
      * @param vertices list of vertices
      * @return centroid point
      */
-    private Point2D.Double computeCentroid(List<Vertex> vertices) {
+    private VertexImpl computeCentroid(List<Vertex> vertices) {
         int vertexCount = vertices.size();
-        Point2D.Double centroid = new Point2D.Double(0, 0);
-        double signedArea = 0.0;
+        VertexImpl centroid = new VertexImpl(0.0D, 0.0D);
+        double signedArea = 0.0D;
 
-        for (int i = 0; i < vertexCount; ++i) {
+        for (int i = 0; i < vertexCount - 1; ++i) {
             double x0 = vertices.get(i).getX(); // current vertex x
             double y0 = vertices.get(i).getY(); // current vertex y
-            double x1 = vertices.get((i + 1) % vertexCount).getX(); // next vertex x
-            double y1 = vertices.get((i + 1) % vertexCount).getY(); // next vertex y
+            double x1 = vertices.get(i + 1).getX(); // next vertex x
+            double y1 = vertices.get(i + 1).getY(); // next vertex y
             double a = x0 * y1 - x1 * y0; // partial signed area
             signedArea += a;
-            centroid.x += (x0 + x1) * a;
-            centroid.y += (y0 + y1) * a;
+            centroid.setX(centroid.getDoubleX() + (x0 + x1) * a);
+            centroid.setY(centroid.getDoubleY() + (y0 + y1) * a);
         }
         if (signedArea != 0) { // avoid Infinity in the result
             signedArea *= 0.5;
-            centroid.x /= (6.0 * signedArea);
-            centroid.y /= (6.0 * signedArea);
+            centroid.setX(centroid.getDoubleX() / (6.0 * signedArea));
+            centroid.setY(centroid.getDoubleY() / (6.0 * signedArea));
         }
         return centroid;
     }

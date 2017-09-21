@@ -41,11 +41,12 @@ public class Task008Impl implements Task008 {
         for (char c : sourceString.toCharArray()) {
             if (braces.containsKey(c)) {
                 stack.push(c);
-            } else if (braces.containsValue(c) && c != braces.get(stack.pop())) {
+            } else if (braces.containsValue(c) && (stack.isEmpty()
+                || c != braces.get(stack.pop()))) {
                 return false;
             }
         }
-        return true;
+        return stack.isEmpty();
     }
 
 }
