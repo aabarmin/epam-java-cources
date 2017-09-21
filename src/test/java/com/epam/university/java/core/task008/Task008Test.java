@@ -1,16 +1,18 @@
 package com.epam.university.java.core.task008;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Aleksandr_Barmin on 9/8/2017.
  */
 public class Task008Test {
+
     private Task008 instance;
 
     @Before
