@@ -132,7 +132,8 @@ public class Task015Impl implements Task015 {
                     y = y1 + (t * (y2 - y1));
 
                     // check if endpoint of segment 1 is inside the second polygon
-                    PointImpl<Integer> point = (PointImpl<Integer>)segment1.getFirst();
+                    PointImpl<Integer> point = segment1.getFirst() instanceof PointImpl ?
+                            (PointImpl<Integer>)segment1.getFirst() : null;
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
@@ -155,7 +156,8 @@ public class Task015Impl implements Task015 {
                 retList.add(pointFactory.newInstance(x, y));
 
                 // check if endpoint of segment 2 is inside the first polygon
-                PointImpl<Integer> point = (PointImpl<Integer>)segment2.getFirst();
+                PointImpl<Integer> point = segment2.getFirst() instanceof PointImpl ?
+                        (PointImpl<Integer>)segment2.getFirst() : null;
                 if (point.suspectAsInner() && !setFilter.contains(point)) {
                     PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                             point.getY().doubleValue());

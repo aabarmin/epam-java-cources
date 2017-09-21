@@ -32,18 +32,13 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
 
         try {
-            Collection<String> words = Files.readAllLines(Paths.get(sourceFile.getAbsolutePath()))
+            return Files.readAllLines(Paths.get(sourceFile.getAbsolutePath()))
                     .stream()
                     .map(l -> l.split(" "))
                     .flatMap(Arrays::stream)
+                    .map(l -> l.toLowerCase().replaceAll("[^a-zA-Z0-9]", ""))
                     .collect(Collectors.toSet());
 
-            Set<String> set = new HashSet<>();
-            for (String word : words) {
-                word = word.replaceAll("[^a-zA-Z0-9]", "");
-                set.add(word.toLowerCase());
-            }
-            return set;
         } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
