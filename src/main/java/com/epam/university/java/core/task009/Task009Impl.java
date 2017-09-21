@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 /**
  * Implementation class for Task009.
+ *
+ * @author Sergei Titov
  */
 public class Task009Impl implements Task009 {
     /**
