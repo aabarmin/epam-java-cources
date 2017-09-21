@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -36,7 +34,7 @@ public class Task009Impl implements Task009 {
                     .stream()
                     .map(l -> l.split(" "))
                     .flatMap(Arrays::stream)
-                    .map(l -> l.toLowerCase().replaceAll("[^a-zA-Z0-9]", ""))
+                    .map(l -> l.toLowerCase().replaceAll("[^\\w]", ""))
                     .collect(Collectors.toSet());
 
         } catch (IOException e) {

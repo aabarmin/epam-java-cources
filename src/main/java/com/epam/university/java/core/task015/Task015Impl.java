@@ -88,7 +88,6 @@ public class Task015Impl implements Task015 {
      *
      * @returns list of intersection points
      */
-    @SuppressWarnings("unchecked")
     private List<Point<Double>> getIntersectionPoints(List<Square> first, List<Square> second) {
 
         List<Point<Double>> retList = new ArrayList<>();
@@ -132,9 +131,10 @@ public class Task015Impl implements Task015 {
                     x = x1 + (t * (x2 - x1));
                     y = y1 + (t * (y2 - y1));
 
+                    @SuppressWarnings("unchecked") PointImpl<Integer> point =
+                            segment1.getFirst() instanceof PointImpl
+                                    ? (PointImpl<Integer>)segment1.getFirst() : null;
                     // check if endpoint of segment 1 is inside the second polygon
-                    PointImpl<Integer> point = segment1.getFirst() instanceof PointImpl
-                            ? (PointImpl<Integer>)segment1.getFirst() : null;
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
@@ -156,9 +156,10 @@ public class Task015Impl implements Task015 {
                 setFilter.add(pointFactory.newInstance(x, y));
                 retList.add(pointFactory.newInstance(x, y));
 
+                @SuppressWarnings("unchecked") PointImpl<Integer> point =
+                        segment2.getFirst() instanceof PointImpl
+                                ? (PointImpl<Integer>)segment2.getFirst() : null;
                 // check if endpoint of segment 2 is inside the first polygon
-                PointImpl<Integer> point = segment2.getFirst() instanceof PointImpl
-                        ? (PointImpl<Integer>)segment2.getFirst() : null;
                 if (point.suspectAsInner() && !setFilter.contains(point)) {
                     PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                             point.getY().doubleValue());
