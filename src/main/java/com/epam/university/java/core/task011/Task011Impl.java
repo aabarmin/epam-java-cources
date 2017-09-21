@@ -104,7 +104,9 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(ArrayList<String> collection) {
 
-        return getLastName(collection, 1);
+        String[] stringArray = collection.toArray(new String[collection.size()]);
+
+        return getLastName(stringArray, 1);
 
     }
 
@@ -145,7 +147,7 @@ public class Task011Impl implements Task011 {
      * @param interval interval of leaving
      * @return name of last man
      */
-    public String getLastName(List<String> collection, int interval) {
+    public String getLastName(LinkedList<String> collection, int interval) {
 
         if (collection == null || collection.size() == 0) {
             throw new IllegalArgumentException();

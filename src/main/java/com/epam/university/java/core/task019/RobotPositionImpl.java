@@ -5,6 +5,7 @@ public class RobotPositionImpl implements RobotPosition {
     private int x;
     private int y;
 
+
     /**
      * Get x value.
      *
