@@ -20,7 +20,7 @@ public class Task010Impl implements Task010 {
      *
      * @param source source file
      *
-     * @returns map<word, frequency of it>
+     * @returns the map of word to it's frequency
      */
     @Override
     public Map<String, Integer> countWordNumbers(File source) {

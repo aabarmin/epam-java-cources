@@ -27,7 +27,7 @@ public class Task011Impl implements Task011 {
     public String getLastName(ArrayList<String> collection) {
 
         Collections.sort(collection, Collections.reverseOrder());
-        for (; collection.size() > 1; collection.remove(0));
+        for (; collection.size() > 1; collection.remove(0)) {};
         return collection.get(0);
     }
 
