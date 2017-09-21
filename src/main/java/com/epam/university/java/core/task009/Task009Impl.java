@@ -12,12 +12,12 @@ import java.util.LinkedHashSet;
 public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
-        String[] stringArr = null;
+        String[] stringArr;
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(sourceFile)))) {
             stringArr = br.readLine().toLowerCase().split("[^a-zA-Z0-9_’-]+");
         } catch (IOException e) {
-            System.out.print("Input-output error happened!" + e);
+            throw new RuntimeException(e);
         }
         return new LinkedHashSet<>(Arrays.asList(stringArr));
     }
