@@ -30,14 +30,15 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
 
         // just making an experiment with stylechecker
-        double s1_x, s1_y, s2_x, s2_y;
-        s1_x = 3;
-        s1_y = 3;
-        s2_x = 3;
-        s2_y = 3;
+        double s1_x = 3;
+        double s1_y = 3;
+        double s2_x = 3;
+        double s2_y = 3;
+        double s3_y = 3;
+        double s4_y = 3;
 
         double s = (-s1_y * (3) + s1_x * (3)) / (-s2_x * s1_y + s1_x * s2_y);
-        double t = ( s2_x * (3) - s2_y * (3)) / (-s2_x * s1_y + s1_x * s2_y);
+        double t = ( s2_x * (3) - s4_y * (3)) / (-s2_x * s1_y + s3_y * s2_y);
 
         double x=0;
         double y=0;
