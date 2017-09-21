@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task008;
 
-import java.util.Stack;
-
 public class MyStack<T> {
     private int size;
     private T[] stack;
