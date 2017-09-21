@@ -41,11 +41,10 @@ public class Task009Impl implements Task009 {
             Set<String> set = new HashSet<>();
             for (String word : words) {
                 word = word.replaceAll("[^a-zA-Z0-9]", "");
-                set.add( word.toLowerCase() );
+                set.add(word.toLowerCase());
             }
             return set;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
