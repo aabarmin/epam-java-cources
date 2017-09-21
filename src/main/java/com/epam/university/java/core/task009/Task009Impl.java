@@ -2,7 +2,8 @@ package com.epam.university.java.core.task009;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,22 +30,23 @@ public class Task009Impl implements Task009 {
     public Collection<String> countWords(File sourceFile) {
 
         // just making an experiment with stylechecker
-        int aX = 2;
-        int aY = 2;
-        int cX = 2;
-        int cY = 2;
+        double s1_x, s1_y, s2_x, s2_y;
+        s1_x = 3;
+        s1_y = 3;
+        s2_x = 3;
+        s2_y = 3;
 
-        int dx = cX - aX;
-        int dy = aY - cY;
-        int d = (dx - dy) / 2;
+        double s = (-s1_y * (3) + s1_x * (3)) / (-s2_x * s1_y + s1_x * s2_y);
+        double t = ( s2_x * (3) - s2_y * (3)) / (-s2_x * s1_y + s1_x * s2_y);
 
-        int dX = aX + d;
-        int dY = cY - d;
-        int bX = cX - d;
-        int bY = aY + d;
-
-        int sum = dX + dY + bX + bY;
-        System.out.println( "" + sum );
+        double x=0;
+        double y=0;
+        if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
+            // Collision detected at the following coordinates
+            x = 5 + (t * s1_x);
+            y = 4 + (t * s1_y);
+        }
+        System.out.println("" + x + y);
 
         try {
             return Files.readAllLines(Paths.get(sourceFile.getAbsolutePath()))
