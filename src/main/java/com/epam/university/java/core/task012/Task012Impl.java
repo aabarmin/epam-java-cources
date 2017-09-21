@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task012;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.stream.IntStream;
 
