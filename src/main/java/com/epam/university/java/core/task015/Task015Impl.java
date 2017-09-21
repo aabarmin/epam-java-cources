@@ -88,7 +88,7 @@ public class Task015Impl implements Task015 {
      *
      * @returns list of intersection points
      */
-    List<Point<Double>> getIntersectionPoints(List<Square> first, List<Square> second) {
+    private List<Point<Double>> getIntersectionPoints(List<Square> first, List<Square> second) {
 
         List<Point<Double>> retList = new ArrayList<>();
         List<Point<Double>> setFilter = new ArrayList<>(); // to filter for already added vertexes
