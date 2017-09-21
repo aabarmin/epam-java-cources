@@ -16,7 +16,11 @@ public class Figure {
     private List<Vertex> points;
     private List<LineSegment> lineSegments;
 
-
+    /**
+     * Figure constructor.
+     *
+     * @param points points of convex polygon
+     */
     public Figure(List<Point> points) {
         this.points = new LinkedList<>();
         for (Point point :
@@ -30,17 +34,18 @@ public class Figure {
 
     }
 
-    public Figure() {
-        this.points = new LinkedList<>();
-    }
-
+    /**
+     * Get figure's points.
+     *
+     * @return List of figure's points
+     */
     public List<Point> getPoints() {
-        List<Point> vPoints = points.stream().map(p -> p.getElement())
+        List<Point> vertPoints = points.stream().map(p -> p.getElement())
             .collect(Collectors.toList());
-        return vPoints;
+        return vertPoints;
     }
 
-    public List<Vertex> getVertex(){
+    public List<Vertex> getVertex() {
         return points;
     }
 
@@ -56,12 +61,23 @@ public class Figure {
         return lineSegments;
     }
 
+    /**
+     * Calculate figure area.
+     *
+     * @return figure area
+     */
     public double getArea() {
         return Math.abs(lineSegments.stream().mapToDouble(
             l -> l.getFirst().getX() * l.getSecond().getY() - l.getFirst().getY() * l.getSecond()
                 .getX()).sum() / 2);
     }
 
+    /**
+     * Check if point in figure.
+     *
+     * @param point point to check
+     * @return true - point in figure, false - point not in figure
+     */
     public boolean includes(Point point) {
 
         double area = lineSegments.stream().mapToDouble(l -> {

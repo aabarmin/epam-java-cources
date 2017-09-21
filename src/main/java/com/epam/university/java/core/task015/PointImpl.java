@@ -34,10 +34,30 @@ public class PointImpl implements Point {
     }
 
     @Override
-    public String toString() {
-        return "PointImpl{" +
-            "coordX=" + coordX +
-            ", coordY=" + coordY +
-            '}';
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        PointImpl point = (PointImpl) o;
+
+        if (Double.compare(point.coordX, coordX) != 0) {
+            return false;
+        }
+        return Double.compare(point.coordY, coordY) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(coordX);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(coordY);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

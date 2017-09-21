@@ -13,23 +13,6 @@ public class LineSegment {
         this.second = second;
     }
 
-    public static void main(String[] args) {
-        Point point1 = new PointImpl(4, 4);
-        Point point2 = new PointImpl(2, 4);
-
-        LineSegment seg1 = new LineSegment(point1, point2);
-
-        Point point3 = new PointImpl(4, 5);
-        Point point4 = new PointImpl(3, 3);
-
-        LineSegment seg2 = new LineSegment(point3, point4);
-
-        Point intersection = seg1.lineIntersection(seg2);
-        System.out.println(intersection);
-        System.out.println(seg1.includes(intersection));
-
-    }
-
     public Point getFirst() {
         return first;
     }
@@ -51,6 +34,12 @@ public class LineSegment {
             .pow((first.getX() - second.getY()), 2));
     }
 
+    /**
+     * Find intersection point of line segments.
+     *
+     * @param line second line
+     * @return intersection point, if not intersect - null
+     */
     public Point lineIntersection(LineSegment line) {
         LineParam thisParam = this.getLineParam();
         LineParam lineParam = line.getLineParam();
@@ -66,7 +55,7 @@ public class LineSegment {
         double coordX = (parC2 * parB1 - parC1 * parB2) / (parB2 * parA1 - parB1 * parA2);
 
         Point point = new PointImpl(coordX, coordY);
-        if(includes(point)){
+        if (includes(point, this) && includes(point, line)) {
             return point;
         }
 
@@ -78,12 +67,12 @@ public class LineSegment {
         return new LineParam(first, second);
     }
 
-    private boolean includes(Point point) {
-        if (point.getX() >= Math.min(first.getX(), second.getX())
-            && point.getX() <= Math.max(first.getX(), second.getX())
-            && point.getY() >= Math.min(first.getY(), second.getY())
-            && point.getY() <= Math.max(first.getY(), second.getY())) {
-            LineParam params = getLineParam();
+    private boolean includes(Point point, LineSegment lineSegment) {
+        if (point.getX() >= Math.min(lineSegment.first.getX(), lineSegment.second.getX())
+            && point.getX() <= Math.max(lineSegment.first.getX(), lineSegment.second.getX())
+            && point.getY() >= Math.min(lineSegment.first.getY(), lineSegment.second.getY())
+            && point.getY() <= Math.max(lineSegment.first.getY(), lineSegment.second.getY())) {
+            LineParam params = lineSegment.getLineParam();
             return params.getA() * point.getX() + params.getB() * point.getY() + params.getC()
                 <= 0.0001;
         }
