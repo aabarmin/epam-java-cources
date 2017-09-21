@@ -9,6 +9,9 @@ public class Task011Impl implements Task011 {
         if (collection == null) {
             throw new IllegalArgumentException("Array not provided!");
         }
+        if (collection.length == 1) {
+            return collection[0];
+        }
         int i = 0;
         int count = 0;
         while (true) {
@@ -45,6 +48,9 @@ public class Task011Impl implements Task011 {
     public String getLastName(LinkedList<String> collection) {
         if (collection == null) {
             throw new IllegalArgumentException("Array not provided!");
+        }
+        if (collection.size() == 1) {
+            return collection.get(0);
         }
         int i = 0;
         while (true) {
