@@ -2,7 +2,9 @@ package com.epam.university.java.core.task014;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -27,14 +29,14 @@ public class Task014Impl implements Task014 {
     @Override
     public Collection<VampireNumber> getVampireNumbers() {
 
-        List<VampireNumber> result = new ArrayList<>();
+        Set<VampireNumber> result = new HashSet<>();
 
         for (int i = 10; i < 100; i++) {
             for (int j = 10; j < 100; j++) {
-                result.add(new VampireNumberImpl(i*j, i, j));
+                result.add(new VampireNumberImpl(i * j, i, j));
             }
         }
-        result = result.stream().filter(s -> isVampireNumber(s)).collect(Collectors.toList());
+        result = result.stream().filter(s -> isVampireNumber(s)).collect(Collectors.toSet());
 
 
         return result;
@@ -45,11 +47,10 @@ public class Task014Impl implements Task014 {
         StringBuffer first = new StringBuffer(String.valueOf(number.getFirst()));
         StringBuffer second = new StringBuffer(String.valueOf(number.getSecond()));
 
-        for(Character c : multiplication.toCharArray()){
+        for (Character c : multiplication.toCharArray()) {
             if (first.indexOf(c.toString()) >= 0) {
                 first.deleteCharAt(first.indexOf(c.toString()));
-            }
-            else {
+            } else {
                 if (second.indexOf(c.toString()) >= 0) {
                     second.deleteCharAt(second.indexOf(c.toString()));
                 }

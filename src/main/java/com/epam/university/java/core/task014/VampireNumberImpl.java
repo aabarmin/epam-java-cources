@@ -9,7 +9,7 @@ public class VampireNumberImpl implements VampireNumber {
     private final int second;
     private final int multiplication;
 
-    VampireNumberImpl(int multiplication, int fisrst, int second){
+    VampireNumberImpl(int multiplication, int fisrst, int second) {
         this.multiplication = multiplication;
         this.first = fisrst;
         this.second = second;
@@ -22,7 +22,7 @@ public class VampireNumberImpl implements VampireNumber {
      */
     @Override
     public int getMultiplication() {
-        return first*second;
+        return first * second;
     }
 
     /**
@@ -43,5 +43,35 @@ public class VampireNumberImpl implements VampireNumber {
     @Override
     public int getSecond() {
         return second;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        VampireNumberImpl that = (VampireNumberImpl) o;
+
+        boolean firstAndSecond = ((first == that.first) && (second == that.second));
+        boolean secondAndFirst = ((second == that.first) && (first == that.second));
+
+
+        if (firstAndSecond || secondAndFirst) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int result = multiplication;
+        return result;
     }
 }
