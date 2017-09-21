@@ -4,6 +4,14 @@ package com.epam.university.java.core.task019;
  * Created by Александр on 21.09.2017.
  */
 public class RobotPositionImpl implements RobotPosition {
+    private int x = 0;
+    private int y = 0;
+
+    public RobotPositionImpl(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * Get x value.
      *
@@ -11,7 +19,7 @@ public class RobotPositionImpl implements RobotPosition {
      */
     @Override
     public int getX() {
-        return 0;
+        return x;
     }
 
     /**
@@ -21,7 +29,7 @@ public class RobotPositionImpl implements RobotPosition {
      */
     @Override
     public int getY() {
-        return 0;
+        return y;
     }
 
     /**
@@ -31,7 +39,7 @@ public class RobotPositionImpl implements RobotPosition {
      */
     @Override
     public void setX(int x) {
-
+        this.x = x;
     }
 
     /**
@@ -41,6 +49,6 @@ public class RobotPositionImpl implements RobotPosition {
      */
     @Override
     public void setY(int y) {
-
+        this.y = y;
     }
 }
