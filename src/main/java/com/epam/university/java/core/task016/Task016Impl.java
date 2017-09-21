@@ -13,6 +13,10 @@ public class Task016Impl implements Task016 {
 
     @Override
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
+        if (radius <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         CoordinateFactory factory = new CoordinateFactoryImpl();
         List<Coordinate> squares = new ArrayList<>();
 
