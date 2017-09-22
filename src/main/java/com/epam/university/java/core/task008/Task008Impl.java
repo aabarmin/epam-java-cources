@@ -21,6 +21,9 @@ public class Task008Impl implements Task008 {
                     stack.add(chars[i]);
                     indexStack++;
                 }
+                if ((chars[i] == ']' || chars[i] == '}' || chars[i] == ')') && stack.size() == 0) {
+                    return false;
+                }
                 if (chars[i] == ']') {
                     if (stack.get(indexStack - 1) == '[') {
                         stack.remove(indexStack - 1);
