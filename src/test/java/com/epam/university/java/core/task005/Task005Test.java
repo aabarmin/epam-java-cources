@@ -19,6 +19,11 @@ public class Task005Test {
         instance.findPi(0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFinderWithElevenDigit() throws Exception {
+        instance.findPi(11);
+    }
+
     @Test(timeout = 500L)
     public void testFinderWithOneDigit() throws Exception {
         final PiHolder holder = instance.findPi(1);
