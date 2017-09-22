@@ -6,55 +6,81 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 /**
  * Created by ilya on 16.09.17.
  */
 public class Figure {
 
-    private List<DoublePoint> points;
+    private List<Vertex> points;
     private List<LineSegment> lineSegments;
 
     /**
      * Figure constructor.
-     * @param points figure points
+     *
+     * @param points points of convex polygon
      */
-    public Figure(List<DoublePoint> points) {
+    public Figure(List<Point> points) {
         this.points = new LinkedList<>();
-        for (DoublePoint point :
+        for (Point point :
             points) {
-            this.points.add(point);
+            this.points.add(new Vertex(point));
         }
         this.lineSegments = new LinkedList<>();
 
         roundIteration(this.lineSegments, this.points,
-            (p1, p2) -> (new LineSegment(p1, p2)));
-
+            (p1, p2) -> (new LineSegment(p1.getElement(), p2.getElement())));
     }
 
     /**
-     * Getter for points.
-     * @return list of points
+     * Get figure's points.
+     *
+     * @return List of figure's points
      */
-    public List<DoublePoint> getPoints() {
+    public List<Point> getPoints() {
+        List<Point> vertPoints = points.stream().map(p -> p.getElement())
+            .collect(Collectors.toList());
+        return vertPoints;
+    }
+
+    public List<Vertex> getVertex() {
         return points;
     }
 
-    private double getArea() {
+    public void addPoint(int i, Point point) {
+        points.add(i, new Vertex(point));
+    }
+
+    public void addPoint(Point point) {
+        points.add(new Vertex(point));
+    }
+
+    public List<LineSegment> getLineSegments() {
+        return lineSegments;
+    }
+
+    /**
+     * Calculate figure area.
+     *
+     * @return figure area
+     */
+    public double getArea() {
         return Math.abs(lineSegments.stream().mapToDouble(
             l -> l.getFirst().getX() * l.getSecond().getY() - l.getFirst().getY() * l.getSecond()
                 .getX()).sum() / 2);
     }
 
     /**
-     * Check that point in figure.
-     * @param point point for checking
-     * @return true - include, false - not include
+     * Check if point in figure.
+     *
+     * @param point point to check
+     * @return true - point in figure, false - point not in figure
      */
-    public boolean includes(DoublePoint point) {
+    public boolean includes(Point point) {
 
         double area = lineSegments.stream().mapToDouble(l -> {
-            List<DoublePoint> points = new LinkedList<>();
+            List<Point> points = new LinkedList<>();
             Collections.addAll(points, point, l.getFirst(), l.getSecond());
             return new Figure(points).getArea();
         }).sum();

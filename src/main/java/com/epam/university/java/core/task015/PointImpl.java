@@ -5,31 +5,59 @@ package com.epam.university.java.core.task015;
  */
 public class PointImpl implements Point {
 
-    private int coordX;
-    private int coordY;
+    private double coordX;
+    private double coordY;
 
-    public PointImpl(int coordX, int coordY) {
+    public PointImpl(double coordX, double coordY) {
         this.coordX = coordX;
         this.coordY = coordY;
     }
 
     @Override
-    public int getX() {
+    public double getX() {
         return coordX;
     }
 
     @Override
-    public void setX(int x) {
+    public void setX(double x) {
         coordX = x;
     }
 
     @Override
-    public int getY() {
+    public double getY() {
         return coordY;
     }
 
     @Override
-    public void setY(int y) {
+    public void setY(double y) {
         coordY = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        PointImpl point = (PointImpl) o;
+
+        if (Double.compare(point.coordX, coordX) != 0) {
+            return false;
+        }
+        return Double.compare(point.coordY, coordY) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(coordX);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(coordY);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }
