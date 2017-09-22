@@ -87,16 +87,24 @@ public class ApplicationContextTest {
     }
 
     @Test
-    public void loadSingletonBeanWithStatelessProperties() throws Exception {
+    public void loadStatelessBeanWithSingletonProperties() throws Exception {
         final String testFilePath = getClass().getResource("/project/project001.xml").getFile();
         // try to load beans from xml
         final XmlResource xmlResource = new XmlResource(testFilePath);
         applicationContext.loadBeanDefinitions(xmlResource);
-        // load beans several times
-        final SingletonBean instance1 = applicationContext.getBean(SingletonBean.class);
-        final SingletonBean instance2 = applicationContext.getBean(SingletonBean.class);
-        assertTrue("Singletons are not equal", instance1 ==  instance2);
-        assertFalse("Stateless are equals", instance1.getChildBean() == instance2.getChildBean());
+        //
+        final StatelessBeanWithDependency instance1 =
+                applicationContext.getBean(
+                        "statelessBeanWithDependencies",
+                        StatelessBeanWithDependency.class);
+        final StatelessBeanWithDependency instance2 =
+                applicationContext.getBean(
+                        "statelessBeanWithDependencies",
+                        StatelessBeanWithDependency.class);
+        //
+        assertFalse("Stateless beans are equal", instance1 == instance2);
+        assertTrue("Inner beans are not equal",
+                instance1.getSingletonBean() == instance2.getSingletonBean());
     }
 
     @Test(expected = RuntimeException.class)
