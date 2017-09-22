@@ -36,6 +36,7 @@ public class Task016Test {
         );
         assertTrue("Incorrect collection with radius 1",
             targetCoordinates.containsAll(resultCoordinates)
+                && resultCoordinates.containsAll(targetCoordinates)
         );
     }
 
@@ -54,7 +55,8 @@ public class Task016Test {
             resultCoordinates.size()
         );
         assertTrue("Incorrect collection with radius 2",
-            targetCoordinates.containsAll(resultCoordinates)
+                targetCoordinates.containsAll(resultCoordinates)
+                        && resultCoordinates.containsAll(targetCoordinates)
         );
     }
 
@@ -75,8 +77,14 @@ public class Task016Test {
             resultCoordinates.size()
         );
         assertTrue("Incorrect collection with radius 3",
-            targetCoordinates.containsAll(resultCoordinates)
+                targetCoordinates.containsAll(resultCoordinates)
+                        && resultCoordinates.containsAll(targetCoordinates)
         );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithWrongRadius() throws Exception {
+        instance.getSquaresInsideCircle(-2);
     }
 
     private Collection<Coordinate> generate(int x, int y) {
