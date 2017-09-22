@@ -18,10 +18,12 @@ public class Measurement {
     }
 
     public double getAmperage() {
+
         return amperage;
     }
 
     public double getVoltage() {
+
         return voltage;
     }
 }

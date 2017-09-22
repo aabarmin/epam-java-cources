@@ -13,6 +13,9 @@ public class Task003Impl implements Task003 {
     }
     @Override
     public String[] invert(String[] source) {
+        if (source == null){
+            throw new IllegalArgumentException();
+        }
         int nElements = source.length;
         String[] invertArray = new String[nElements];
         if (!isArrayEmpty(source)){
@@ -25,6 +28,10 @@ public class Task003Impl implements Task003 {
 
     @Override
     public  String[] join(String[] first, String[] second) {
+
+        if (first == null || second == null){
+            throw new IllegalArgumentException();
+        }
 
         int lengthFirst = first.length;
         int lengthSecond = second.length;
@@ -41,7 +48,7 @@ public class Task003Impl implements Task003 {
     @Override
     public int findMax(int[] source) {
 
-        if (source.length < 1){
+        if (source == null){
             throw new IllegalArgumentException();
         }
         int max = source[0];
@@ -56,11 +63,10 @@ public class Task003Impl implements Task003 {
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
 
-        for (String element: source) {
-            if (element == null){
+        if (source == null){
                 throw new IllegalArgumentException();
             }
-        }
+
         int length = 0;
         for (String element : source){
             if (condition.isValid(element)){
@@ -83,16 +89,16 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] removeElements(String[] source, String[] toRemote) {
-        for (String element: source) {
-            if (element == null){
+
+        if (source == null){
                 throw new IllegalArgumentException();
             }
-        }
-        for (String element: toRemote) {
-            if (element == null){
+
+
+        if (toRemote == null){
                 throw new IllegalArgumentException();
             }
-        }
+
         int listlength = source.length - toRemote.length;
         String[] list = new String[listlength];
         int index = 0;
@@ -114,11 +120,11 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] map(String[] source, MappingOperation operation) {
-        for (String element: source) {
-            if (element == null){
+
+        if (source == null){
                 throw new IllegalArgumentException();
             }
-        }
+
        for (int i = 0; i < source.length; i++){
             source[i] = operation.map(source[i]);
        }
@@ -126,6 +132,11 @@ public class Task003Impl implements Task003 {
     }
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
+
+        if (source == null){
+            throw new IllegalArgumentException();
+        }
+
         String[] array = new String[0];
         for (String aSource : source) {
             array = join(array, operation.flatMap(aSource));
