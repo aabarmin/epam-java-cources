@@ -47,19 +47,13 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
-        String stayPerson = null;
-        int i = 0;
-        while (true) {
-            collection.remove(i);
-            if (i == collection.size()) {
-                i = 0;
+        String person = null;
+        while (!collection.isEmpty()) {
+            person = collection.removeFirst();
+            if (!collection.isEmpty()) {
+                collection.add(collection.remove());
             }
-            if (collection.get(i).equals(stayPerson)) {
-                break;
-            }
-            stayPerson = collection.get(i);
-            i = (i + 1) < collection.size() ? (i + 1) : 0;
         }
-        return stayPerson;
+        return person;
     }
 }
