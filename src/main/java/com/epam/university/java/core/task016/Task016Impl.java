@@ -25,6 +25,14 @@ public class Task016Impl implements Task016 {
     @Override
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
 
+        if (radius < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (radius == 0) {
+            return new ArrayList<>();
+        }
+
         // For visualization mathway.com/graph
         // x^2 + y^2 = R^2
 
