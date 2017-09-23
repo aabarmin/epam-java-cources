@@ -116,12 +116,10 @@ public class Task004Test {
     @Test
     public void testUnionThird() throws Exception {
         final String[] first = {
-                "",
                 ""
         };
         final String[] second = {};
         final String[] target = {
-                "",
                 ""
         };
         assertArrayEquals("Error in union operation",
