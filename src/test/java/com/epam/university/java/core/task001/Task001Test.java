@@ -115,6 +115,7 @@ public class Task001Test {
         assertEquals("Incorrect division results", Double.NEGATIVE_INFINITY, division, DELTA);
     }
 
+
     @Test
     public void division() throws Exception {
         final double division = instance.division(" 5 ", " 2 ");
