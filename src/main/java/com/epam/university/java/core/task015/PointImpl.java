@@ -1,16 +1,26 @@
 package com.epam.university.java.core.task015;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  * Point in 2-dimensional area.
  */
 public class PointImpl implements Point {
 
+    private static final DecimalFormat formatter;
+
+    static {
+        formatter = new DecimalFormat("#.###############"); // 15 digits precision
+        formatter.setRoundingMode(RoundingMode.HALF_UP);
+    }
+
     private final double coordX;
     private final double coordY;
 
     public PointImpl(double x, double y) {
-        coordX = x;
-        coordY = y;
+        coordX = x + 0.0D; // workaround for case when x is negative zero
+        coordY = y + 0.0D; // ¯\_(ツ)_/¯
     }
 
     /**
@@ -67,18 +77,14 @@ public class PointImpl implements Point {
 
         PointImpl point = (PointImpl) o;
 
-        return coordX == point.coordX && coordY == point.coordY;
+        return formatter.format(coordX).equals(formatter.format(point.coordX))
+            && formatter.format(coordY).equals(formatter.format(point.coordY));
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(coordX);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(coordY);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = formatter.format(coordX).hashCode();
+        result = 31 * result + formatter.format(coordY).hashCode();
         return result;
     }
-
 }

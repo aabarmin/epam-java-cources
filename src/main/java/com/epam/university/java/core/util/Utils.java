@@ -20,6 +20,7 @@ public class Utils {
      * @throws IllegalArgumentException if at least one of the arguments doesn't satisfy given
      *                                  condition or no args provided
      */
+    @SafeVarargs
     public static <T> void assertCondition(Predicate<T> predicate, T... args)
         throws IllegalArgumentException {
         if (args == null) {
