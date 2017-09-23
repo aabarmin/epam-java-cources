@@ -198,7 +198,7 @@ public class Task015Impl implements Task015 {
      * </p>
      * @param points list of points to sort
      */
-    private void sortPoints(List<Point> points) {
+    public static void sortPoints(List<Point> points) {
         double centroidX = 0.0D;
         double centroidY = 0.0D;
         for (Point p : points) {
