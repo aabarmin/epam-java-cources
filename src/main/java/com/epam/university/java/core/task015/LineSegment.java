@@ -68,6 +68,22 @@ public class LineSegment {
         return new LineParam(first, second);
     }
 
+    /**
+     * Check if point higher than line.
+     *
+     * @param point point to check
+     * @return true - higher, false - lower or on line
+     */
+    public boolean isHighter(Point point) {
+        LineParam param = getLineParam();
+
+        if ((param.getA() * point.getX() + param.getB() * point.getY() + param.getC()) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private boolean includes(Point point, LineSegment lineSegment) {
         if (point.getX() >= Math.min(lineSegment.first.getX(), lineSegment.second.getX())
             && point.getX() <= Math.max(lineSegment.first.getX(), lineSegment.second.getX())
