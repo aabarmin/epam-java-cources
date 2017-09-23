@@ -28,7 +28,7 @@ public class Task021Test {
                 pointFactory.newInstance(2, 2),
                 pointFactory.newInstance(1, 2)
         );
-        final Point target = pointFactory.newInstance(1.2113248654051871, 1.788675134594813);
+        final Point target = pointFactory.newInstance(1.2113248654051871, 1.7886751345948126);
         final Point result = instance.calculate(points);
         assertEquals("Incorrect result in test 1",
                 target,
@@ -93,6 +93,21 @@ public class Task021Test {
         assertEquals("Incorrect result in test 5",
                 target,
                 result
+        );
+    }
+
+    @Test
+    public void test6() throws Exception {
+        final List<Point> points = Arrays.asList(
+            pointFactory.newInstance(0, 0),
+            pointFactory.newInstance(1, 1),
+            pointFactory.newInstance(2, 2)
+        );
+        final Point target = pointFactory.newInstance(1, 1);
+        final Point result = instance.calculate(points);
+        assertEquals("Incorrect result in test 5",
+            target,
+            result
         );
     }
 }
