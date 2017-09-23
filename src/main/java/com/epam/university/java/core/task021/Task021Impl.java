@@ -3,6 +3,7 @@ package com.epam.university.java.core.task021;
 import com.epam.university.java.core.task015.Point;
 import com.epam.university.java.core.task015.PointImpl;
 import com.epam.university.java.core.task015.Task015Impl;
+import com.epam.university.java.core.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,9 +31,10 @@ public class Task021Impl implements Task021 {
     @Override
     public Point calculate(Collection<Point> minePositions) {
 
-        if (minePositions == null || minePositions.isEmpty()) {
+        if (minePositions == null || minePositions.size() != 3) {
             throw new IllegalArgumentException();
         }
+        minePositions.forEach(Utils::assertNonNull);
 
         final ArrayList<Point> positions = new ArrayList<>(minePositions);
         Task015Impl.sortPoints(positions); // sort points clock-wise
@@ -54,7 +56,7 @@ public class Task021Impl implements Task021 {
             return b;
         }
         if (angle(abDist, bcDist, acDist) >= 2 * Math.PI / 3) {
-            return a;
+            return c;
         }
 
         // arrays of two possible third vertices for equilateral triangle
