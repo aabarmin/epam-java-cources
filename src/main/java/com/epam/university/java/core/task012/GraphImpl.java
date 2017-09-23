@@ -7,7 +7,7 @@ public class GraphImpl implements Graph {
     private int vertexCount;
     private boolean[][] isEdgeExist;
 
-    GraphImpl(int vertexCount) {
+    public GraphImpl(int vertexCount) {
         this.vertexCount = ++vertexCount;
         isEdgeExist = new boolean[vertexCount][vertexCount];
     }
