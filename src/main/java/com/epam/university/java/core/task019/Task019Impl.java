@@ -17,7 +17,7 @@ public class Task019Impl implements Task019 {
      */
     @Override
     public boolean isOnStartPosition(Robot robot) {
-        return robot.getPosition().getX() == 0 &&
-                robot.getPosition().getY() == 0;
+        return robot.getPosition().getX() == 0
+                && robot.getPosition().getY() == 0;
     }
 }

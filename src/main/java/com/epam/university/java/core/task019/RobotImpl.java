@@ -4,7 +4,7 @@ package com.epam.university.java.core.task019;
  * {@inheritDoc}
  */
 public class RobotImpl implements Robot {
-    private RobotPosition robotPosition = new RobotPositionImpl(0,0);
+    private RobotPosition robotPosition = new RobotPositionImpl(0, 0);
     private int direction = 1;
 
     /**

@@ -1,8 +1,5 @@
 package com.epam.university.java.core.task013;
 
-
-import java.awt.Polygon;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -25,32 +22,38 @@ public class Task013Impl implements Task013 {
      */
     @Override
     public boolean isConvexPolygon(Figure figure) {
-        ArrayList<Vertex> listOfVertex = (ArrayList<Vertex>) figure.getVertexes();
-        if (listOfVertex.size() <= 3) {
-            return true;
-        }
-        int size = listOfVertex.size();
-        int[] xCoords = new int[size - 1];
-        int[] yCoords = new int[size - 1];
-        int count = 0;
-        Point2D point = null;
-        while (count < size) {
-            for (int i = 0, j = 0; i < size || j < xCoords.length; i++) {
-                if (i != count) {
-                    xCoords[j] = listOfVertex.get(i).getX();
-                    yCoords[j] = listOfVertex.get(i).getY();
-                    j++;
-                } else {
-                    point = new Point2D.Double(listOfVertex.get(i).getX(),
-                            listOfVertex.get(i).getY());
+        ArrayList<Vertex> listOfVertexes = (ArrayList<Vertex>) figure.getVertexes();
+        int countOfedges = 0;
+        int sizeOflist = listOfVertexes.size();
+        Vertex[] edge = new Vertex[2];
+        for (int i = 0; i < sizeOflist; i++) {
+            edge[0] = listOfVertexes.get(i);
+            for (int j = 0; j < sizeOflist; j++) {
+                boolean rightSide = false;
+                if (j == i) {
+                    continue;
+                }
+                edge[1] = listOfVertexes.get(j);
+                for (int k = 0; k < sizeOflist; k++) {
+                    if (k == i || k == j) {
+                        continue;
+                    }
+                    Vertex point = listOfVertexes.get(k);
+                    int a = (edge[1].getX() - edge[0].getX()) * (point.getY() - edge[1].getY());
+                    int b = (edge[1].getY() - edge[0].getY()) * (point.getX() - edge[1].getX());
+                    int result = a - b;
+                    if (result < 0) {
+                        rightSide = true;
+                        break;
+                    }
+                }
+                if (!rightSide) {
+                    countOfedges++;
                 }
             }
-            Polygon polygon = new Polygon(xCoords, yCoords, xCoords.length);
-            if (polygon.contains(point)) {
-                return false;
-            }
-            count++;
+
         }
-        return true;
+
+        return countOfedges == sizeOflist;
     }
 }
