@@ -131,7 +131,7 @@ public class Task015Impl implements Task015 {
                     x = x1 + (t * (x2 - x1));
                     y = y1 + (t * (y2 - y1));
 
-                    @SuppressWarnings("unchecked") PointImpl<Integer> point =
+                    @SuppressWarnings("unsafe") PointImpl<Integer> point =
                             segment1.getFirst() instanceof PointImpl
                                     ? (PointImpl<Integer>)segment1.getFirst() : null;
                     // check if endpoint of segment 1 is inside the second polygon
@@ -156,7 +156,7 @@ public class Task015Impl implements Task015 {
                 setFilter.add(pointFactory.newInstance(x, y));
                 retList.add(pointFactory.newInstance(x, y));
 
-                @SuppressWarnings("unchecked") PointImpl<Integer> point =
+                @SuppressWarnings("unsafe") PointImpl<Integer> point =
                         segment2.getFirst() instanceof PointImpl
                                 ? (PointImpl<Integer>)segment2.getFirst() : null;
                 // check if endpoint of segment 2 is inside the first polygon
