@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task012;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Implementation class for Graph.
