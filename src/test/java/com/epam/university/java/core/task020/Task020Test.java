@@ -55,4 +55,31 @@ public class Task020Test {
                 instance.calculate(parts)
         );
     }
+
+    @Test
+    public void repeatedCharsOneCommonPart() throws Exception {
+        final List<String> parts = Arrays.asList(
+            "just",
+            "test",
+            "that"
+        );
+        assertEquals("There is one common part",
+            1,
+            instance.calculate(parts)
+        );
+    }
+
+    @Test
+    public void repeatedCharsFourCommonParts() throws Exception {
+        final List<String> parts = Arrays.asList(
+            "daredevil",
+            "judgedredd",
+            "deadunicorn"
+        );
+        assertEquals("There are four common parts",
+            4,
+            instance.calculate(parts)
+        );
+    }
+
 }
