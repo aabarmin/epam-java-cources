@@ -11,6 +11,13 @@ public class VampireNumberImpl implements VampireNumber, Comparable<VampireNumbe
     private final int first;
     private final int second;
 
+    /**
+     * Constructor from pair of numbers and their multiplication.
+     *
+     * @param multiplication
+     * @param first
+     * @param second
+     */
     public VampireNumberImpl(int multiplication, int first, int second) {
         this.multiplication = multiplication;
         this.first  = (first < second) ? first : second;
@@ -42,12 +49,12 @@ public class VampireNumberImpl implements VampireNumber, Comparable<VampireNumbe
     }
 
     /**
-     * Compares internals of VampireNumberImpl class
+     * Compares internals of VampireNumberImpl class.
      *
-     * @param obj is an object to compare with.
+     * @param obj is an object to compare with
      *
      * @returns 0 if both pairs (first, second) are equal (order insensitive),
-     * otherwise compares multiplication fields
+     *     otherwise compares multiplication fields
      */
     @Override
     public int compareTo(VampireNumberImpl obj) {

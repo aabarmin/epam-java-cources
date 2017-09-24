@@ -1,6 +1,9 @@
 package com.epam.university.java.core.task014;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Implementation class for Task014.
@@ -19,7 +22,7 @@ public class Task014Impl implements Task014 {
 
         for (int i = 11; i < 99; i++) {
             for (int j = i; j < 99; j++) {
-                int product = i * j;
+                final int product = i * j;
                 if (product < 1000) {
                     continue;
                 }
@@ -36,17 +39,16 @@ public class Task014Impl implements Task014 {
 
                 // factors' digits
                 List<Integer> factorsDigits = new ArrayList<>();
-                factorsDigits.add(i%10);
-                factorsDigits.add(j%10);
-                factorsDigits.add(i/10);
-                factorsDigits.add(j/10);
+                factorsDigits.add(i % 10);
+                factorsDigits.add(j % 10);
+                factorsDigits.add(i / 10);
+                factorsDigits.add(j / 10);
 
                 // compare digits
                 Collections.sort(productDigits);
                 Collections.sort(factorsDigits);
-
                 if (productDigits.equals(factorsDigits)) {
-                    list.add(new VampireNumberImpl(i * j, i, j));
+                    list.add(new VampireNumberImpl(product, i, j));
                 }
             }
         }
