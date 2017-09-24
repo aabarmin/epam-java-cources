@@ -92,8 +92,6 @@ public class Task015Impl implements Task015 {
 
         List<Point<Double>> retList = new ArrayList<>();
         List<Point<Integer>> setFilter = new ArrayList<>(); // to filter for already added vertexes
-        PointFactoryImpl<Double> doublePointFactory = new PointFactoryImpl<>();
-        PointFactoryImpl<Integer> intPointFactory = new PointFactoryImpl<>();
 
         for (Square segment1 : first) {
             for (Square segment2 : second) {
@@ -161,7 +159,7 @@ public class Task015Impl implements Task015 {
                 }
 
                 // add intersection point
-                retList.add(doublePointFactory.newInstance(x, y));
+                retList.add(new PointImpl<>(x, y));
 
                 // check if endpoints of segment 1 is inside the second polygon
                 if (segment2.getFirst() instanceof PointImpl) {

@@ -10,5 +10,5 @@ public interface PointFactory<T> {
      * @param y y coordinate
      * @return point instance
      */
-    Point newInstance(T x, T y);
+    Point<T> newInstance(T x, T y);
 }
