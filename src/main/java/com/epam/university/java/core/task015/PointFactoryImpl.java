@@ -14,7 +14,7 @@ public class PointFactoryImpl<T> implements PointFactory<T> {
      * @return point instance
      */
     @Override
-    public Point newInstance(T x, T y) {
+    public Point<T> newInstance(T x, T y) {
         return new PointImpl(x, y);
     }
 }
