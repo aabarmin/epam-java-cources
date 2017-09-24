@@ -18,6 +18,7 @@ public class VertexImpl implements Vertex {
 
         return nodeX;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -25,6 +26,7 @@ public class VertexImpl implements Vertex {
     public void setX(int value) {
         nodeX = value;
     }
+
     /**
      * {@inheritDoc}
      */
