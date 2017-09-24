@@ -9,6 +9,7 @@ import java.util.Stack;
  * Created by Вера on 17.09.2017.
  */
 public class Task012Impl implements Task012 {
+    @SuppressWarnings("unchecked")
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
         // Graph graph = sourceGraph;

@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task013;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -8,7 +9,13 @@ import java.util.HashSet;
  */
 public class FigureImpl implements Figure {
 
-    private Collection<Vertex> vertexes = new HashSet<>();
+    //private Collection<Vertex> vertexes = new HashSet<>();
+    private Collection<Vertex> vertexes = new ArrayList<>();
+    private int countVertex;
+
+    public FigureImpl(int countVertex) {
+        this.countVertex = countVertex;
+    }
 
     @Override
     public void addVertex(Vertex vertex) {
