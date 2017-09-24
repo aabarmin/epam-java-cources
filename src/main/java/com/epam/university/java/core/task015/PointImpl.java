@@ -57,8 +57,8 @@ public class PointImpl implements Point {
         if (this == o) return true;
         if (!(o instanceof PointImpl)) return false;
         PointImpl point = (PointImpl) o;
-        return Double.compare(point.x, x) == 0 &&
-                Double.compare(point.y, y) == 0;
+        return Double.compare(Math.round(point.x * 1000000) / 1000000, Math.round(x * 1000000) / 1000000) == 0 &&
+                Double.compare(Math.round(point.y * 1000000) / 1000000, Math.round(y * 1000000) / 1000000) == 0;
     }
 
     @Override

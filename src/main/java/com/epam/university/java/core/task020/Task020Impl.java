@@ -46,8 +46,10 @@ public class Task020Impl implements Task020 {
            return firstStoneParts.length;
         }
 
+        stonesList.remove(0);
+
         for (char part : firstStoneParts) {
-            if (stones.size() == stones.stream().filter(stone -> stone.indexOf(part) > -1).count()) {
+            if (stonesList.stream().allMatch(stone -> stone.indexOf(part) > -1)) {
                 commonParts.add(part);
             }
         }

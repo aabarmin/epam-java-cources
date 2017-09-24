@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 import java.util.ArrayList;
 import java.util.List;
 
-class Geometry {
+public class Geometry {
 
     public static List<Point> getAllSquarePoints(Square square) {
 
