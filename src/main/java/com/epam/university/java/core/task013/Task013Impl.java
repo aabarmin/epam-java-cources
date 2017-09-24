@@ -62,7 +62,6 @@ public class Task013Impl implements Task013 {
         return (processed == n);
     }
 
-
     // "Jarvis march"-algorithm
     private boolean isCosMin(Vertex p, Vertex q, Vertex r) {
 
