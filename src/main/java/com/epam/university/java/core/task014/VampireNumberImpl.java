@@ -14,9 +14,9 @@ public class VampireNumberImpl implements VampireNumber, Comparable<VampireNumbe
     /**
      * Constructor from pair of numbers and their multiplication.
      *
-     * @param multiplication
-     * @param first
-     * @param second
+     * @param multiplication of first and second
+     * @param first factor
+     * @param second factor
      */
     public VampireNumberImpl(int multiplication, int first, int second) {
         this.multiplication = multiplication;
@@ -58,7 +58,7 @@ public class VampireNumberImpl implements VampireNumber, Comparable<VampireNumbe
      */
     @Override
     public int compareTo(VampireNumberImpl obj) {
-
+        // sort obj-factors
         int objFirst  = (obj.getFirst() < obj.getSecond()) ? obj.getFirst() : obj.getSecond();
         int objSecond = (obj.getFirst() > obj.getSecond()) ? obj.getFirst() : obj.getSecond();
 
