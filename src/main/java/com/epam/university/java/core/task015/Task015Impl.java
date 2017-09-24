@@ -131,9 +131,10 @@ public class Task015Impl implements Task015 {
                     x = x1 + (t * (x2 - x1));
                     y = y1 + (t * (y2 - y1));
 
-                    @SuppressWarnings("unsafe") PointImpl<Integer> point =
-                            segment1.getFirst() instanceof PointImpl
-                                    ? (PointImpl<Integer>)segment1.getFirst() : null;
+                    PointImpl<Integer> point = null;
+                    if (segment1.getFirst() instanceof PointImpl) {
+                        point = (PointImpl)segment1.getFirst();
+                    }
                     // check if endpoint of segment 1 is inside the second polygon
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
@@ -141,7 +142,10 @@ public class Task015Impl implements Task015 {
                         setFilter.add(pointToAdd);
                         retList.add(pointToAdd);
                     }
-                    point = (PointImpl<Integer>)segment1.getSecond();
+
+                    if (segment1.getSecond() instanceof PointImpl) {
+                        point = (PointImpl)segment1.getSecond();
+                    }
                     if (point.suspectAsInner() && !setFilter.contains(point)) {
                         PointImpl<Double> pointToAdd = new PointImpl<>(point.getX().doubleValue(),
                                 point.getY().doubleValue());
@@ -156,7 +160,7 @@ public class Task015Impl implements Task015 {
                 setFilter.add(pointFactory.newInstance(x, y));
                 retList.add(pointFactory.newInstance(x, y));
 
-                @SuppressWarnings("unsafe") PointImpl<Integer> point =
+                PointImpl<Integer> point =
                         segment2.getFirst() instanceof PointImpl
                                 ? (PointImpl<Integer>)segment2.getFirst() : null;
                 // check if endpoint of segment 2 is inside the first polygon
