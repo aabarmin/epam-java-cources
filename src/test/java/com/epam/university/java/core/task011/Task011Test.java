@@ -34,7 +34,7 @@ public class Task011Test {
             "Homer"
         };
         final String lastName = instance.getLastName(collection);
-        assertEquals("Error in test with array",
+        assertEquals("Error in test with items",
             "Homer",
             lastName
         );
@@ -50,7 +50,7 @@ public class Task011Test {
                 "Marge"
         };
         final String lastName = instance.getLastName(collection);
-        assertEquals("Error in test with array",
+        assertEquals("Error in test with items",
                 "Bart",
                 lastName
         );
@@ -66,7 +66,7 @@ public class Task011Test {
             "Lisa"
         };
         final String lastName = instance.getLastName(collection);
-        assertEquals("Error in test with array",
+        assertEquals("Error in test with items",
             "Lisa",
             lastName
         );
@@ -83,7 +83,7 @@ public class Task011Test {
             "Nelson"
         };
         final String lastName = instance.getLastName(collection);
-        assertEquals("Error in test with array",
+        assertEquals("Error in test with items",
             "Lisa",
             lastName
         );
