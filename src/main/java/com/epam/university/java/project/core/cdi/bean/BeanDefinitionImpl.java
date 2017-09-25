@@ -1,17 +1,17 @@
 package com.epam.university.java.project.core.cdi.bean;
 
 import java.util.Collection;
-import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by ilya on 24.09.17.
  */
-@XmlRootElement
+@XmlRootElement(name = "bean")
 public class BeanDefinitionImpl implements BeanDefinition {
     private String id;
     private String className;
-    @XmlAnyElement
+    @XmlElement(type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> propertyDefinitions;
     private String postConstruct;
     private String scope;

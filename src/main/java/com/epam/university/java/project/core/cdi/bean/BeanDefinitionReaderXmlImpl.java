@@ -2,6 +2,7 @@ package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.cdi.structure.StructureDefinitionImpl;
 import java.util.Collection;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -26,7 +27,7 @@ public class BeanDefinitionReaderXmlImpl implements BeanDefinitionReader {
         }
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinitionDocument.class, BeanDefinitionImpl.class, BeanPropertyDefinitionImpl.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinitionDocument.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             final BeanDefinitionDocument beanDefinitionDocument = (BeanDefinitionDocument) unmarshaller.unmarshal(resource.getFile());
             for (BeanDefinition beanDefinition : beanDefinitionDocument.getDefinitions()) {
