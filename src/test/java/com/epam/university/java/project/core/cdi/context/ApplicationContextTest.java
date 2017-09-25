@@ -51,7 +51,7 @@ public class ApplicationContextTest {
         assertNotNull("Can't get bean by name", byName);
         // by class
         final ParentBean byClass = applicationContext.getBean(ParentBean.class);
-        assertNotNull("Can't get bean by class");
+        assertNotNull("Can't get bean by class", byClass);
         // by name and class
         final ParentBean byClassAndName =
                 applicationContext.getBean("parentBean", ParentBean.class);
