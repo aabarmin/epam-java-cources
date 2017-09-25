@@ -10,7 +10,7 @@ public class Task015Test {
     private static final double DELTA = 0.00001;
 
     private Task015 instance;
-    private PointFactory pointFactory;
+    private PointFactory<Integer> pointFactory;
     private SquareFactory squareFactory;
 
     /**
