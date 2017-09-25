@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Task015Test {
     private static final double DELTA = 0.00001;
@@ -50,6 +51,7 @@ public class Task015Test {
                 pointFactory.newInstance(4, 2),
                 pointFactory.newInstance(6, 4)
         );
+
         assertEquals("Error in intersection 2",
                 0,
                 instance.getArea(firstSquare, secondSquare),
@@ -67,6 +69,7 @@ public class Task015Test {
                 pointFactory.newInstance(3, 2),
                 pointFactory.newInstance(5, 4)
         );
+        instance.getArea(firstSquare,secondSquare);
         assertEquals("Error in intersection 3",
                 0,
                 instance.getArea(firstSquare, secondSquare),
@@ -84,6 +87,7 @@ public class Task015Test {
                 pointFactory.newInstance(5, 1),
                 pointFactory.newInstance(5, 5)
         );
+        instance.getArea(firstSquare,secondSquare);
         assertEquals("Error in intersection 4",
                 2,
                 instance.getArea(firstSquare, secondSquare),
