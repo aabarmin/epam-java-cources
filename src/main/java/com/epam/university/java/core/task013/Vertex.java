@@ -8,23 +8,23 @@ public interface Vertex {
      * Get x coordinate of vertex.
      * @return coordinate value
      */
-    int getPointX();
+    int getX();
 
     /**
      * Set x coordinate of vertex.
      * @param value coordinate value
      */
-    void setPointX(int value);
+    void setX(int value);
 
     /**
      * Get y coordinate of vertex.
      * @return coordinate value
      */
-    int getPointY();
+    int getY();
 
     /**
      * Set y coordinate of vertex.
      * @param value coordinate value
      */
-    void setPointY(int value);
+    void setY(int value);
 }

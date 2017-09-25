@@ -1,4 +1,2 @@
 language: java
-before_install:
- - chmod +pointX gradlew
-script: gradle check
+gradle check
