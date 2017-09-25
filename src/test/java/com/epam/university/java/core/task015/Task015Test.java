@@ -87,7 +87,6 @@ public class Task015Test {
                 pointFactory.newInstance(5, 1),
                 pointFactory.newInstance(5, 5)
         );
-        instance.getArea(firstSquare,secondSquare);
         assertEquals("Error in intersection 4",
                 2,
                 instance.getArea(firstSquare, secondSquare),
