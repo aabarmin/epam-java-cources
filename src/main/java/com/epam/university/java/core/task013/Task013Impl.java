@@ -23,16 +23,16 @@ public class Task013Impl implements Task013 {
             for (Vertex end : figure.getVertexes()) {
                 boolean negative = false;
                 boolean positive = false;
-                int pointA = start.getPointY() - end.getPointY();
-                int pointB = end.getPointX() - start.getPointX();
-                int pointC = (start.getPointX() * end.getPointY())
-                        - (end.getPointX() * start.getPointY());
+                int pointA = start.getY() - end.getY();
+                int pointB = end.getX() - start.getX();
+                int pointC = (start.getX() * end.getY())
+                        - (end.getX() * start.getY());
                 for (Vertex vertex : figure.getVertexes()) {
-                    if (pointA * vertex.getPointX()
-                            + pointB * vertex.getPointY() + pointC < 0) {
+                    if (pointA * vertex.getX()
+                            + pointB * vertex.getY() + pointC < 0) {
                         negative = true;
-                    } else if (pointA * vertex.getPointX()
-                            + pointB * vertex.getPointY() + pointC > 0) {
+                    } else if (pointA * vertex.getX()
+                            + pointB * vertex.getY() + pointC > 0) {
                         positive = true;
                     }
                 }

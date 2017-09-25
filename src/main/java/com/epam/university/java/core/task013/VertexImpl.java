@@ -14,22 +14,22 @@ public class VertexImpl implements Vertex {
     }
 
     @Override
-    public int getPointX() {
+    public int getX() {
         return pointX;
     }
 
     @Override
-    public void setPointX(int value) {
+    public void setX(int value) {
         pointX = value;
     }
 
     @Override
-    public int getPointY() {
+    public int getY() {
         return pointY;
     }
 
     @Override
-    public void setPointY(int value) {
+    public void setY(int value) {
         pointY = value;
     }
 }
