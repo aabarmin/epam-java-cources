@@ -9,9 +9,23 @@ import java.util.LinkedList;
 public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
-        String[] array = sourceString.split("");
+
+        if (sourceString.isEmpty()) {
+            return true;
+        }
+
+        String[] array = sourceString.split("[\\d\\s+\\-*]+");
+        String finnaly = "";
+        for (int i = 0; i < array.length; i++) {
+            finnaly += array[i];
+        }
+        String[] finalArray = finnaly.split("");
         LinkedList<String> res = new LinkedList<>();
-        for (String s : array) {
+        if (finalArray.length <= 1) {
+            return false;
+        }
+
+        for (String s : finalArray) {
             if (s.equals("(")) {
                 res.add(s);
             }
