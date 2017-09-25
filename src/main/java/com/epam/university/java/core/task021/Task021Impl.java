@@ -47,7 +47,7 @@ public class Task021Impl implements Task021 {
         final double acDist = distance(a, c);
         final double bcDist = distance(b, c);
 
-        // if we have an angle >= 120 degrees, than Fermat point is
+        // if we have an angle >= 120 degrees, then Fermat point is
         // the vertex with such angle
         if (angle(bcDist, acDist, abDist) >= 2 * Math.PI / 3) {
             return a;
