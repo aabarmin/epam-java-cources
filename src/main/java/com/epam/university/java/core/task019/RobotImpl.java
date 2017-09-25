@@ -54,7 +54,6 @@ public class RobotImpl implements Robot {
 
     /**
      * Change robot position.
-     *
      */
     private void move() {
         switch (direction) {
@@ -79,7 +78,6 @@ public class RobotImpl implements Robot {
 
     /**
      * Change robot direction.
-     *
      */
     private void turnLeft() {
         switch (direction) {
@@ -104,7 +102,6 @@ public class RobotImpl implements Robot {
 
     /**
      * Change robot direction.
-     *
      */
     private void turnRight() {
         switch (direction) {

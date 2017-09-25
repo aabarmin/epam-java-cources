@@ -36,7 +36,7 @@ public class Task011Impl implements Task011 {
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained
-     * Second iteration: Maggie leaves, Bart List Marge remained
+     * Second iteration: Maggie leaves, Bart Lisa Marge remained
      * Third iteration: Marge leaves, Bart and Lise remained
      * Fourth iteration: Lisa leaves, Bart is the last one
      * </p>
