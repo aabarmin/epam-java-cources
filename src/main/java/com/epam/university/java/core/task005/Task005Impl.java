@@ -25,17 +25,21 @@ public class Task005Impl implements Task005 {
                 case 5:
                     piHolder = findPiLoop((byte) 5, 0.00013);
                     break;
+                default:
+                    System.out.println("error");
             }
             return piHolder;
         }
     }
 
-    private PiHolder findPiLoop(byte coefficient, double delta_max) {
+    private PiHolder findPiLoop(byte coefficient, double deltamax) {
         PiHolder piholder = null;
-        for (double first = (Math.pow(10, coefficient - 1)); first < Math.pow(10, coefficient); first++) {
-            double second = first/result;
+        for (double first = (Math.pow(10, coefficient - 1));
+             first < Math.pow(10, coefficient);
+             first++) {
+            double second = first / result;
             if (Math.round(second) >= (Math.pow(10, coefficient - 1))) {
-                if (Math.abs(second - Math.round(second)) <= delta_max) {
+                if (Math.abs(second - Math.round(second)) <= deltamax) {
                     piholder = new PiHolderImpl((int) first, (int) Math.round(second));
                     break;
                 }

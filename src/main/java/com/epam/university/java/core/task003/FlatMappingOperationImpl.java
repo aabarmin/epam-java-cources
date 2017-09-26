@@ -9,7 +9,7 @@ public class FlatMappingOperationImpl implements FlatMappingOperation {
     @Override
     public String[] flatMap(String source) {
 
-        String[] cut = source.split (",");
+        String[] cut = source.split(",");
 
         List<String> result = Arrays
                 .stream(cut)

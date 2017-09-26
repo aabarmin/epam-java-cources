@@ -7,7 +7,8 @@ import java.util.List;
 
 public class Task007Impl implements Task007 {
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                    Collection<Integer> second) {
         byte resultPolyOrder = (byte) (first.size() + second.size() - 1);
         HashMap<Integer, Integer> resultPoly = new HashMap<>();
         int order;
@@ -30,7 +31,7 @@ public class Task007Impl implements Task007 {
 
         Collection<Integer> resultInt = new ArrayList<>();
 
-        for (int i = resultPolyOrder; i > 0; i -- ) {
+        for (int i = resultPolyOrder; i > 0; i--) {
             resultInt.add(resultPoly.get(i));
         }
         return resultInt;
