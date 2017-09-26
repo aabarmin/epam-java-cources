@@ -21,8 +21,6 @@ public class Task017Impl implements Task017 {
         formatter = new Formatter(new Locale("us-US"));
     }
 
-
-
     /**
      * {@inheritDoc}
      */

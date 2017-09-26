@@ -60,6 +60,7 @@ public class CoordinateImpl implements Coordinate {
         if (!(obj instanceof CoordinateImpl)) {
             return false;
         }
-        return (((CoordinateImpl) obj).getX() == abscissa && ((CoordinateImpl) obj).getY() == ordinate);
+        return (((CoordinateImpl) obj).getX() == abscissa &&
+                ((CoordinateImpl) obj).getY() == ordinate);
     }
 }
