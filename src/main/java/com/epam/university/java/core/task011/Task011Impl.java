@@ -9,14 +9,14 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
         String[] result = collection;
-        int i=0;
+        int i = 0;
         while (result.length != 1) {
             if (i == 0) {
                 result = ArrayUtils.remove(collection, i);
             } else if (i % 2 == 0 && i != 1 && i < 6) {
                 result = ArrayUtils.removeElement(result, collection[i % collection.length]);
             } else if (i >= 6) {
-                i=0;
+                i = 0;
             }
             i++;
         }
