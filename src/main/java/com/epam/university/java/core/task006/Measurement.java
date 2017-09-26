@@ -9,8 +9,9 @@ public class Measurement {
 
     /**
      * Constructor with all parameters.
+     *
      * @param amperage amperage value
-     * @param voltage voltage value
+     * @param voltage  voltage value
      */
     public Measurement(double amperage, double voltage) {
         this.amperage = amperage;

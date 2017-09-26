@@ -12,6 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class Task021Test {
+
     private Task021 instance;
     private PointFactory pointFactory;
 
