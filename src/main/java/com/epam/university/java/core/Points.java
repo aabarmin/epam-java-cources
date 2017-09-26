@@ -6,7 +6,7 @@ import com.epam.university.java.core.task015.PointFactoryImpl;
 import java.util.Collection;
 
 /**
- * Service class for frequently used functions.
+ * Service class for frequently used functions with Point.
  */
 public class Points {
 
