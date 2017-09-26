@@ -55,6 +55,23 @@ public class Task011Test {
     }
 
     @Test
+    public void getLastNameWithArrayList2() throws Exception {
+        final ArrayList<String> collection = new ArrayList<>(Arrays.asList(
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa",
+                "Marge",
+                "Bob"
+        ));
+        final String lastName = instance.getLastName(collection);
+        assertEquals("Error in test with ArrayList",
+                "Lisa",
+                lastName
+        );
+    }
+
+    @Test
     public void getLastNameWithLinkedList() throws Exception {
         final LinkedList<String> collection = new LinkedList<>(Arrays.asList(
                 "Homer",
