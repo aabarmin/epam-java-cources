@@ -6,8 +6,10 @@ import com.epam.university.java.core.task015.Point;
 import com.epam.university.java.core.task015.PointFactory;
 import com.epam.university.java.core.task015.PointFactoryImpl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-import java.util.*;
 
 public class Task021Impl implements Task021 {
     @Override
@@ -42,9 +44,12 @@ public class Task021Impl implements Task021 {
         Point[] pointsOfEqTr2 = thirdPointsOfEquilateralTriangle(list.get(1), list.get(2));
         Point[] pointsOfEqTr3 = thirdPointsOfEquilateralTriangle(list.get(2), list.get(0));
 
-        Point correctPointOfEqTr1 = selectCorrectPointOfEqTriangle(list.get(0), list.get(1), pointsOfEqTr1);
-        Point correctPointOfEqTr2 = selectCorrectPointOfEqTriangle(list.get(1), list.get(2), pointsOfEqTr2);
-        Point correctPointOfEqTr3 = selectCorrectPointOfEqTriangle(list.get(2), list.get(1), pointsOfEqTr3);
+        Point correctPointOfEqTr1 = selectCorrectPointOfEqTriangle(list.get(0),
+                list.get(1), pointsOfEqTr1);
+        Point correctPointOfEqTr2 = selectCorrectPointOfEqTriangle(list.get(1),
+                list.get(2), pointsOfEqTr2);
+        Point correctPointOfEqTr3 = selectCorrectPointOfEqTriangle(list.get(2),
+                list.get(1), pointsOfEqTr3);
 
         Point centerOfCircle1 = centerOfCircumscribedCircle(new Point[]{list.get(0),
                 list.get(1),
@@ -74,8 +79,9 @@ public class Task021Impl implements Task021 {
         validator.vaildate(circleCrossPoints2);
         for (Point point1 : circleCrossPoints1) {
             for (Point point2 : circleCrossPoints2) {
-                if (point1.equals(point2))
+                if (point1.equals(point2)) {
                     return point1;
+                }
             }
         }
         return null;
@@ -95,7 +101,10 @@ public class Task021Impl implements Task021 {
         return null;
     }
 
-    private static Point[] getRoundCrossPoints(Point centerPoint1, Point onCircle1, Point centerPoint2, Point onCircle2) {
+    private static Point[] getRoundCrossPoints(Point centerPoint1,
+                                               Point onCircle1,
+                                               Point centerPoint2,
+                                               Point onCircle2) {
         double x10 = centerPoint1.getX();
         double x20 = centerPoint2.getX();
         double y10 = centerPoint1.getY();
@@ -114,21 +123,21 @@ public class Task021Impl implements Task021 {
 
         double y0 = y10 + a * (y20 - y10) / d;
 
-        double first_x = x0 + h * (y20 - y10) / d;
-        double first_y = y0 - h * (x20 - x10) / d;
+        double firstx = x0 + h * (y20 - y10) / d;
+        double firsty = y0 - h * (x20 - x10) / d;
         PointFactory factory = new PointFactoryImpl();
         if (a == r1) {
             return new Point[]{
-                    factory.newInstance(first_x, first_y)};
+                    factory.newInstance(firstx, firsty)};
         }
 
-        double second_x = x0 - h * (y20 - y10) / d;
-        double second_y = y0 + h * (x20 - x10) / d;
+        double secondx = x0 - h * (y20 - y10) / d;
+        double secondy = y0 + h * (x20 - x10) / d;
 
 
         return new Point[]{
-                factory.newInstance(first_x, first_y),
-                factory.newInstance(second_x, second_y)};
+                factory.newInstance(firstx, firsty),
+                factory.newInstance(secondx, secondy)};
     }
 
     private Point[] thirdPointsOfEquilateralTriangle(Point first, Point second) {

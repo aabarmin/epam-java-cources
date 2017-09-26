@@ -27,8 +27,12 @@ public class RobotImpl implements Robot {
                 break;
             case TURN_LEFT:
                 turnLeft();
+                break;
             case TURN_RIGHT:
                 turnRight();
+                break;
+            default:
+                break;
         }
     }
 
@@ -45,6 +49,8 @@ public class RobotImpl implements Robot {
                 break;
             case RIGHT:
                 dir = Direction.DOWN;
+                break;
+            default:
                 break;
         }
     }
@@ -63,6 +69,8 @@ public class RobotImpl implements Robot {
             case RIGHT:
                 dir = Direction.UP;
                 break;
+            default:
+                break;
         }
     }
 
@@ -80,6 +88,8 @@ public class RobotImpl implements Robot {
                 break;
             case RIGHT:
                 pos = new RobotPositionImpl(pos.getX() + 1, pos.getY());
+                break;
+            default:
                 break;
         }
     }

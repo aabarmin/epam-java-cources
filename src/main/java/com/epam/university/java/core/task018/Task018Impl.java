@@ -42,6 +42,7 @@ public class Task018Impl implements Task018 {
             }
         }
 
-        return clazz.getPackage().isAnnotationPresent((Class<? extends Annotation>) annotationToFind);
+        return clazz.getPackage()
+                .isAnnotationPresent((Class<? extends Annotation>) annotationToFind);
     }
 }
