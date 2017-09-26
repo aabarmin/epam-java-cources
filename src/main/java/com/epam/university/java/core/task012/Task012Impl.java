@@ -1,10 +1,10 @@
 package com.epam.university.java.core.task012;
 
-import com.epam.university.java.core.task008.HandMadeStack;
-import com.epam.university.java.core.task008.ParamStack;
-
-import java.util.*;
-
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Queue;
+import java.util.Set;
 
 public class Task012Impl implements Task012 {
     @Override

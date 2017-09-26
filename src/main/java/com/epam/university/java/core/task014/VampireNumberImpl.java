@@ -28,12 +28,19 @@ public class VampireNumberImpl implements VampireNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         VampireNumberImpl that = (VampireNumberImpl) o;
 
-        return multiplication == that.multiplication && (first == that.first && second == that.second || second == that.first && first == that.second);
+        return multiplication == that.multiplication
+                && (first == that.first && second == that.second
+                || second == that.first && first == that.second);
+
     }
 
     @Override

@@ -4,24 +4,33 @@ import java.util.Collection;
 
 public class BookImpl implements Book {
 
-    private int Id;
+    private int id;
     private String title;
     private Collection<String> authors;
 
     public BookImpl(int id, String title, Collection<String> authors) {
-        Id = id;
+        this.id = id;
         this.title = title;
         this.authors = authors;
     }
 
     @Override
+    public String toString() {
+        return "BookImpl{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", authors=" + authors +
+                '}';
+    }
+
+    @Override
     public int getId() {
-        return Id;
+        return id;
     }
 
     @Override
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     @Override

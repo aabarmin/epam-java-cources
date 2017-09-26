@@ -1,5 +1,9 @@
 package com.epam.university.java.core.task015;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class SquareImpl implements Square {
     private Point first;
     private Point second;
@@ -28,4 +32,6 @@ public class SquareImpl implements Square {
     public void setSecond(Point second) {
         this.second = second;
     }
+
+
 }

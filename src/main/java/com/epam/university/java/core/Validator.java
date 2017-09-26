@@ -26,10 +26,24 @@ public class Validator {
     }
 
     /**
-     * Checking varargs for null references.
-     *
+     * Checking int for correct (pos) value.
      * <p>
-     *     Throwing IllegalArgumentException if finds null.
+     * Throwing IllegalArgumentException if finds neg or zero.
+     * </p>
+     *
+     * @param i int
+     */
+    public void validatePos(int i) {
+        if (i < 1) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
+    /**
+     * Checking varargs for null references.
+     * <p>
+     * Throwing IllegalArgumentException if finds null.
      * </p>
      *
      * @param objects varargs

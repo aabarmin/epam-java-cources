@@ -28,8 +28,9 @@ public class Task013Impl implements Task013 {
     public boolean isConvexPolygon(Figure figure) {
         Collection<Vertex> col = figure.getVertexes();
         Vertex centroid = getCentroid2D(col);
-        if (col.size() < 4)
+        if (col.size() < 4) {
             return true;
+        }
         boolean sign = false;
         int n = col.size();
         List<Vertex> vertexList = new ArrayList<>(col);
@@ -47,10 +48,11 @@ public class Task013Impl implements Task013 {
             double dx2 = vertexList.get(i).getX() - vertexList.get((i + 1) % n).getX();
             double dy2 = vertexList.get(i).getY() - vertexList.get((i + 1) % n).getY();
             double zcrossproduct = dx1 * dy2 - dy1 * dx2;
-            if (i == 0)
+            if (i == 0) {
                 sign = zcrossproduct > 0;
-            else if (sign != (zcrossproduct > 0))
+            } else if (sign != (zcrossproduct > 0)) {
                 return false;
+            }
         }
         return true;
     }

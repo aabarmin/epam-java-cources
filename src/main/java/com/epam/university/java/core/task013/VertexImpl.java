@@ -1,48 +1,52 @@
 package com.epam.university.java.core.task013;
 
 public class VertexImpl implements Vertex {
-    private int x;
-    private int y;
+    private int xcoord;
+    private int ycoord;
 
     VertexImpl(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.xcoord = x;
+        this.ycoord = y;
     }
 
     @Override
     public int getX() {
-        return x;
+        return xcoord;
     }
 
     @Override
     public void setX(int value) {
-        this.x = value;
+        this.xcoord = value;
     }
 
     @Override
     public int getY() {
-        return y;
+        return ycoord;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         VertexImpl vertex = (VertexImpl) o;
 
-        return x == vertex.x && y == vertex.y;
+        return xcoord == vertex.xcoord && ycoord == vertex.ycoord;
     }
 
     @Override
     public int hashCode() {
-        int result = x;
-        result = 31 * result + y;
+        int result = xcoord;
+        result = 31 * result + ycoord;
         return result;
     }
 
     @Override
     public void setY(int value) {
-        this.y = value;
+        this.ycoord = value;
     }
 }
