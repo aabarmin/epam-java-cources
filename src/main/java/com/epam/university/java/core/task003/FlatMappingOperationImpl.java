@@ -11,15 +11,15 @@ public class FlatMappingOperationImpl implements FlatMappingOperation {
 
         String[] cut = source.split (",");
 
-        List <String> result = Arrays
-                .stream ( cut )
-                .map ( String::trim )
-                .map ( Integer::parseInt )
-                .sorted ()
-                .distinct ()
-                .map (String::valueOf)
-                .collect (Collectors.toList());
+        List<String> result = Arrays
+                .stream(cut)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .sorted()
+                .distinct()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
 
-        return result.toArray ( new String [ result.size () ] );
+        return result.toArray(new String[result.size()]);
     }
 }
