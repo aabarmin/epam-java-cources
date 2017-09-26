@@ -16,7 +16,11 @@ public class Task016Impl implements Task016 {
      * {@inheritDoc}
      */
     @Override
-    public Collection<Coordinate> getSquaresInsideCircle(int radius) {
+    public Collection<Coordinate> getSquaresInsideCircle(int radius) throws IllegalArgumentException {
+
+        if (radius < 0) {
+            throw new IllegalArgumentException();
+        }
 
         int radius2 = (radius + radius) * (radius + radius);
         List<Coordinate> list = new ArrayList<>();
