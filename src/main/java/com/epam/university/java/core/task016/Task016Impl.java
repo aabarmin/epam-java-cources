@@ -3,7 +3,6 @@ package com.epam.university.java.core.task016;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Implementation class for Task016.
@@ -16,7 +15,8 @@ public class Task016Impl implements Task016 {
      * {@inheritDoc}
      */
     @Override
-    public Collection<Coordinate> getSquaresInsideCircle(int radius) throws IllegalArgumentException {
+    public Collection<Coordinate> getSquaresInsideCircle(int radius)
+            throws IllegalArgumentException {
 
         if (radius < 0) {
             throw new IllegalArgumentException();
