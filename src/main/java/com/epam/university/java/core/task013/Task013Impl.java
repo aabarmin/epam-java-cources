@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task013;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Task013Impl implements Task013 {
 
@@ -13,18 +15,18 @@ public class Task013Impl implements Task013 {
      */
     public static double getAngle(Vertex a, Vertex b, Vertex center) {
 
-        double aToCenter = Math.sqrt(Math.pow(center.getX() - a.getX(), 2) +
-                Math.pow(center.getY() - a.getY(), 2));
+        double aToCenter = Math.sqrt(Math.pow(center.getX() - a.getX(), 2)
+                + Math.pow(center.getY() - a.getY(), 2));
 
-        double bToCenter = Math.sqrt(Math.pow(center.getX() - b.getX(), 2) +
-                Math.pow(center.getY() - b.getY(), 2));
+        double bToCenter = Math.sqrt(Math.pow(center.getX() - b.getX(), 2)
+                + Math.pow(center.getY() - b.getY(), 2));
 
-        double aToB = Math.sqrt(Math.pow(b.getX() - a.getX(), 2)+
-                Math.pow(b.getY() - a.getY(), 2));
+        double aToB = Math.sqrt(Math.pow(b.getX() - a.getX(), 2)
+                + Math.pow(b.getY() - a.getY(), 2));
 
         return Math.acos(
-                (bToCenter * bToCenter + aToCenter * aToCenter - aToB * aToB) /
-                (2 * bToCenter * aToCenter)
+                (bToCenter * bToCenter + aToCenter * aToCenter - aToB * aToB)
+                        / (2 * bToCenter * aToCenter)
         );
 
     }
@@ -81,7 +83,8 @@ public class Task013Impl implements Task013 {
         }
 
         vertexes.remove(initialVertex);
-        System.out.println("Initial vertex X: " + initialVertex.getX() + " Y: " + initialVertex.getY());
+        System.out.println("Initial vertex X: " + initialVertex.getX()
+                + " Y: " + initialVertex.getY());
 
         //  Find 2 vertexes with max angle to initial vertex
         Vertex center = vertexes.get(0);

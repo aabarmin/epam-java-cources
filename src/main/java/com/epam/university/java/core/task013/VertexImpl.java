@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task013;
 
-public class VertexImpl implements Vertex{
+public class VertexImpl implements Vertex {
 
     private int x;
     private int y;
@@ -45,4 +45,4 @@ public class VertexImpl implements Vertex{
         this.y = value;
     }
 
- }
+}

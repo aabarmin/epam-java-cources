@@ -2,14 +2,17 @@ package com.epam.university.java.core.task015;
 
 import java.util.Objects;
 
+/**
+ * Point in 2-dimensional area. With 6 zero precision
+ */
 public class PointImpl implements Point {
 
     private double x;
     private double y;
 
     public PointImpl(double x, double y) {
-        this.x = x;
-        this.y = y;
+        this.x = Math.round(x * 1000000) / 1000000.0;
+        this.y = Math.round(y * 1000000) / 1000000.0;
     }
 
     /**
@@ -39,7 +42,7 @@ public class PointImpl implements Point {
      */
     @Override
     public void setX(double x) {
-        this.x = x;
+        this.x =  Math.round(x * 1000000) / 1000000;
     }
 
     /**
@@ -49,16 +52,24 @@ public class PointImpl implements Point {
      */
     @Override
     public void setY(double y) {
-        this.y = y;
+        this.y = Math.round(y * 1000000) / 1000000;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PointImpl)) return false;
+
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof PointImpl)) {
+            return false;
+        }
+
         PointImpl point = (PointImpl) o;
-        return Double.compare(Math.round(point.x * 1000000) / 1000000, Math.round(x * 1000000) / 1000000) == 0 &&
-                Double.compare(Math.round(point.y * 1000000) / 1000000, Math.round(y * 1000000) / 1000000) == 0;
+        return Double.compare(point.x, x) == 0
+                && Double.compare(point.y, y) == 0;
+
     }
 
     @Override

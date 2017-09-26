@@ -22,7 +22,10 @@ public class Task017Impl implements Task017 {
      */
     @Override
     public String formatNumbers(Object... args) {
-        return String.format(Locale.ROOT, "%.1f, %<.2f, %<+.2f, %s", args[0], Double.toHexString(Double.parseDouble(args[0].toString())));
+        return String.format(Locale.ROOT,
+                "%.1f, %<.2f, %<+.2f, %s",
+                args[0],
+                Double.toHexString(Double.parseDouble(args[0].toString())));
     }
 
     /**

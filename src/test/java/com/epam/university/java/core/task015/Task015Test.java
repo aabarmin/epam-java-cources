@@ -141,4 +141,5 @@ public class Task015Test {
                 DELTA
         );
     }
+
 }

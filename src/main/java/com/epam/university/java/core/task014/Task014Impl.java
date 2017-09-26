@@ -1,7 +1,11 @@
 package com.epam.university.java.core.task014;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Comparator;
 
 public class Task014Impl implements Task014 {
 
@@ -10,14 +14,13 @@ public class Task014Impl implements Task014 {
      * multiplying a pair of numbers containing half the number of digits
      * of the result. The digits are taken from the original number
      * in any order. Pairs of trailing zeroes are not allowed.
-     * <p>
-     * <p>
-     * Example: 1260 = 21 * 60
-     * </p>
-     * <p>
-     * {@see https://en.wikipedia.org/wiki/Vampire_number}
-     * </p>
      *
+     * <p>
+     *     Example: 1260 = 21 * 60
+     * </p>
+     * <p>
+     *     {@see https://en.wikipedia.org/wiki/Vampire_number}
+     * </p>
      * @return collection of vampire numbers
      */
     @Override
@@ -31,7 +34,8 @@ public class Task014Impl implements Task014 {
                 int multiplication = first * second;
 
                 char[] multiplicationChars = Integer.toString(multiplication).toCharArray();
-                char[] multipliersChars = (Integer.toString(first) + Integer.toString(second)).toCharArray();
+                char[] multipliersChars = (Integer.toString(first)
+                        + Integer.toString(second)).toCharArray();
 
                 if (multiplicationChars.length == multipliersChars.length) {
 
@@ -50,7 +54,8 @@ public class Task014Impl implements Task014 {
         Collections.sort(vampireNumbers, new Comparator<VampireNumber>() {
             @Override
             public int compare(VampireNumber o1, VampireNumber o2) {
-                return new Integer(o1.getMultiplication()).compareTo(new Integer(o2.getMultiplication()));
+                return new Integer(o1.getMultiplication())
+                        .compareTo(new Integer(o2.getMultiplication()));
             }
         });
 

@@ -73,10 +73,10 @@ public class Task012Test {
     public void testPathCalculationLooping() throws Exception {
         final Graph sourceGraph = factory.newInstance(5);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
-                g -> g.createEdge(1, 2),
-                g -> g.createEdge(2, 3),
-                g -> g.createEdge(3, 4),
-                g -> g.createEdge(4, 1)
+            g -> g.createEdge(1, 2),
+            g -> g.createEdge(2, 3),
+            g -> g.createEdge(3, 4),
+            g -> g.createEdge(4, 1)
         ));
         assertFalse("There is path between vertexes",
                 instance.pathExists(targetGraph, 1, 5));

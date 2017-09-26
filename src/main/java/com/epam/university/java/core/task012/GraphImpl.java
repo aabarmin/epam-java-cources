@@ -6,11 +6,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Collection;
 
+/**
+ * Undirected graph.
+ */
 public class GraphImpl implements Graph {
 
     private final int vertexesCount;
     private final Map<Integer, Set<Integer>> vertexesEdges = new HashMap<>();
 
+    /**
+     * GraphImpl constructor.
+     *
+     * @param vertexesCount vertex quantity
+     */
     public GraphImpl(int vertexesCount) {
 
         this.vertexesCount = vertexesCount;
@@ -38,7 +46,7 @@ public class GraphImpl implements Graph {
         edges = vertexesEdges.get(from);
         edges.add(to);
 
-        // assumes what this is not oriented graph
+        // becouse this is not undirected graph
         edges = vertexesEdges.get(to);
         edges.add(from);
 
@@ -80,7 +88,7 @@ public class GraphImpl implements Graph {
         edges = vertexesEdges.get(from);
         edges.remove(to);
 
-        // assumes what this is not oriented graph
+        // becouse this is not undirected graph
         edges = vertexesEdges.get(to);
         edges.remove(from);
 

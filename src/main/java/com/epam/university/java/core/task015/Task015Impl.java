@@ -10,18 +10,18 @@ public class Task015Impl implements Task015 {
     /**
      * Get area of intersection of two squares. Squares are defined as two
      * opposite points in 2-dimensional area.
+     *
      * <p>
-     * <p>
-     * Example:
-     * square 1 = (2, 2) and (4, 4)
-     * square 2 = (3, 3) and (5, 5)
-     * area is 1 = square (3, 3) and (4, 4)
+     *     Example:
+     *          square 1 = (2, 2) and (4, 4)
+     *          square 2 = (3, 3) and (5, 5)
+     *          area is 1 = square (3, 3) and (4, 4)
      * </p>
      * <p>
-     * Tip: paint it in the notebook.
+     *     Tip: paint it in the notebook.
      * </p>
      *
-     * @param first  first square definition
+     * @param first first square definition
      * @param second second square definition
      * @return value of area
      */
@@ -34,12 +34,9 @@ public class Task015Impl implements Task015 {
 
         List<Point> firstSquarePoints = Geometry.getAllSquarePoints(first);
         List<Point> secondSquarePoints = Geometry.getAllSquarePoints(second);
+        // Could be no intersection points, if one square inside another
         List<Point> intersectionPoints = Geometry.getSquaresIntersectionPoints(firstSquarePoints,
                 secondSquarePoints);
-
-        if (intersectionPoints.size() == 0) {
-            return 0;
-        }
 
         Set<Point> intersectionPolygonPoints = new HashSet<>();
         intersectionPolygonPoints.addAll(intersectionPoints);
@@ -47,6 +44,10 @@ public class Task015Impl implements Task015 {
                 secondSquarePoints));
         intersectionPolygonPoints.addAll(Geometry.getSquareInternalPoints(secondSquarePoints,
                 firstSquarePoints));
+
+        if (intersectionPolygonPoints.size() == 0) {
+            return 0;
+        }
 
         List<Point> polygonPoints = new ArrayList<>(intersectionPolygonPoints);
         List<Point> clockwisePoints = Geometry.getClockwiseOrderedPolygonPoints(polygonPoints);
@@ -57,9 +58,9 @@ public class Task015Impl implements Task015 {
         int j = clockwisePoints.size() - 1;
 
         for (int i = 0; i < clockwisePoints.size(); i++) {
-            area = area +
-                    (clockwisePoints.get(j).getX() + clockwisePoints.get(i).getX()) *
-                            (clockwisePoints.get(j).getY() - clockwisePoints.get(i).getY());
+            area = area
+                    + (clockwisePoints.get(j).getX() + clockwisePoints.get(i).getX())
+                    * (clockwisePoints.get(j).getY() - clockwisePoints.get(i).getY());
             j = i;
         }
 

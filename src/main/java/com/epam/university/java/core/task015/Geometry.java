@@ -3,57 +3,52 @@ package com.epam.university.java.core.task015;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Geometry static methods.
+ */
 public class Geometry {
 
+    /**
+     * Get all square points by given square defined as two opposite points in 2-dimensional area.
+     * All points ordered clockwise;
+     *
+     * @param square square defined as two opposite points in 2-dimensional area
+     *
+     * @return list of 4 square points ordered clockwise
+     */
     public static List<Point> getAllSquarePoints(Square square) {
 
         List<Point> squarePoints = new ArrayList<>();
 
-        double leftX = Math.min(square.getFirst().getX(), square.getSecond().getX());
-        double rightX = Math.max(square.getFirst().getX(), square.getSecond().getX());
-        double topY = Math.max(square.getFirst().getY(), square.getSecond().getY());
-        double bottomY = Math.min(square.getFirst().getY(), square.getSecond().getY());
+        squarePoints.add(square.getFirst());
+        squarePoints.add(square.getSecond());
 
-        squarePoints.add(new PointImpl(leftX, bottomY));
-        squarePoints.add(new PointImpl(leftX, topY));
-        squarePoints.add(new PointImpl(rightX, topY));
-        squarePoints.add(new PointImpl(rightX, bottomY));
-
-        if (leftX == rightX) {
-
-            double halfOfHeight = (topY - bottomY) * 0.5;
-            double middleY = bottomY + halfOfHeight;
-            double x = leftX;
-
-            leftX  = x - halfOfHeight;
-            rightX = x + halfOfHeight;
-
-            squarePoints.set(0, new PointImpl(leftX, middleY));
-            squarePoints.set(1, new PointImpl(x, topY));
-            squarePoints.set(2, new PointImpl(rightX, middleY));
-            squarePoints.set(3, new PointImpl(x, bottomY));
+        Point midPoint = new PointImpl(
+                (square.getFirst().getX() + square.getSecond().getX()) / 2.0,
+                (square.getFirst().getY() + square.getSecond().getY()) / 2.0
+        );
 
 
-        } else if (topY == bottomY) {
+        double x = (square.getFirst().getX() - square.getSecond().getX()) / 2.0;
+        double y = - (square.getFirst().getY() - square.getSecond().getY()) / 2.0;
 
-            double halfOfLengt = (rightX - leftX) * 0.5;
-            double middleX = leftX + halfOfLengt;
-            double y = topY;
+        squarePoints.add(new PointImpl(midPoint.getX() - y, midPoint.getY() - x));
+        squarePoints.add(new PointImpl(midPoint.getX() + y, midPoint.getY() + x));
 
-            topY  = y + halfOfLengt;
-            bottomY = y - halfOfLengt;
-
-            squarePoints.set(0, new PointImpl(leftX, y));
-            squarePoints.set(1, new PointImpl(middleX, topY));
-            squarePoints.set(2, new PointImpl(rightX, y));
-            squarePoints.set(3, new PointImpl(middleX, bottomY));
-
-        }
+        squarePoints = getClockwiseOrderedPolygonPoints(squarePoints);
 
         return squarePoints;
 
     }
 
+    /**
+     * Get all squares intersection points.
+     *
+     * @param firstSquarePoints all points of first square
+     * @param secondSquarePoints all points of second square
+     *
+     * @return list of all intersection points
+     */
     public static List<Point> getSquaresIntersectionPoints(List<Point> firstSquarePoints,
                                                            List<Point> secondSquarePoints) {
 
@@ -75,14 +70,14 @@ public class Geometry {
                     continue;
                 }
 
-                if (z.getX() < Math.min(a.getX(), b.getX()) ||
-                        z.getX() <  Math.min(c.getX(), d.getX()) ||
-                        z.getX() >  Math.max(a.getX(), b.getX()) ||
-                        z.getX() >  Math.max(c.getX(), d.getX()) ||
-                        z.getY() <  Math.min(a.getY(), b.getY()) ||
-                        z.getY() <  Math.min(c.getY(), d.getY()) ||
-                        z.getY() >  Math.max(a.getY(), b.getY()) ||
-                        z.getY() >  Math.max(c.getY(), d.getY()))     {
+                if (z.getX() < Math.min(a.getX(), b.getX())
+                        || z.getX() <  Math.min(c.getX(), d.getX())
+                        || z.getX() >  Math.max(a.getX(), b.getX())
+                        || z.getX() >  Math.max(c.getX(), d.getX())
+                        || z.getY() <  Math.min(a.getY(), b.getY())
+                        || z.getY() <  Math.min(c.getY(), d.getY())
+                        || z.getY() >  Math.max(a.getY(), b.getY())
+                        || z.getY() >  Math.max(c.getY(), d.getY())) {
 
                     continue;
 
@@ -98,7 +93,16 @@ public class Geometry {
 
     }
 
-    public static List<Point> getSquareInternalPoints(List<Point> squarePoints, List<Point> pointsToCheck) {
+    /**
+     * Get points that are inside of the square.
+     *
+     * @param squarePoints square
+     * @param pointsToCheck all points of second square
+     *
+     * @return list of all points that are inside of the square
+     */
+    public static List<Point> getSquareInternalPoints(List<Point> squarePoints,
+                                                      List<Point> pointsToCheck) {
 
         List<Point> internalPoints = new ArrayList<>();
 
@@ -112,49 +116,67 @@ public class Geometry {
 
     }
 
+    /**
+     * Check point is inside polygon or not.
+     *
+     * @param pointToCheck point to check
+     * @param polygonPoints points of polygon
+     *
+     * @return true if point inside polygon and false if not
+     */
     public static boolean pointInsidePolygon(Point pointToCheck, List<Point> polygonPoints) {
-        
+
         boolean result = false;
-        
+
         for (int i = 0, j = polygonPoints.size() - 1; i < polygonPoints.size(); j = i++) {
             if ((polygonPoints.get(i).getY() > pointToCheck.getY())
-                    != (polygonPoints.get(j).getY() > pointToCheck.getY()) &&
-                    (pointToCheck.getX() <
-                            (polygonPoints.get(j).getX() - polygonPoints.get(i).getX()) *
-                            (pointToCheck.getY() - polygonPoints.get(i).getY()) /
-                            (polygonPoints.get(j).getY()-polygonPoints.get(i).getY()) +
-                                    polygonPoints.get(i).getX()
-                    )
-                    ) {
+                    != (polygonPoints.get(j).getY() > pointToCheck.getY())
+                    && (pointToCheck.getX()
+                        < (polygonPoints.get(j).getX() - polygonPoints.get(i).getX())
+                            * (pointToCheck.getY() - polygonPoints.get(i).getY())
+                            /  (polygonPoints.get(j).getY() - polygonPoints.get(i).getY())
+                            + polygonPoints.get(i).getX()
+                        )
+            ) {
                 result = !result;
             }
         }
 
-        return result;        
+        return result;
 
     }
 
+    /**
+     * Get lines intersection point.
+     *
+     * @param a first point of first line
+     * @param b second point of first line
+     * @param c first point of second line
+     * @param d second point of second line
+     *
+     * @return intersection point
+     */
     public static Point getLinesIntersectionPoint(Point a, Point b, Point c, Point d) {
 
         // Line AB represented as a1x + b1y = c1
         double a1 = b.getY() - a.getY();
         double b1 = a.getX() - b.getX();
-        double c1 = a1*(a.getX()) + b1*(a.getY());
+        double c1 = a1 * (a.getX()) + b1 * (a.getY());
 
         // Line CD represented as a2x + b2y = c2
         double a2 = d.getY() - c.getY();
         double b2 = c.getX() - d.getX();
-        double c2 = a2*(c.getX()) +  b2*(c.getY());
+        double c2 = a2 * (c.getX()) + b2 * (c.getY());
 
-        double determinant = a1*b2 - a2*b1;
+        double determinant = a1 * b2 - a2 * b1;
 
         // The lines are parallel.
         if (determinant == 0) {
             return null;
         }
 
-        double x = (b2*c1 - b1*c2) / determinant;
-        double y = (a1*c2 - a2*c1) / determinant;
+        double x = (b2 * c1 - b1 * c2) / determinant;
+        double y = (a1 * c2 - a2 * c1) / determinant;
 
         return new PointImpl(x, y);
 
@@ -169,25 +191,31 @@ public class Geometry {
      */
     public static double getAngle(Point a, Point b, Point center) {
 
-        double aToCenter = Math.sqrt(Math.pow(center.getX() - a.getX(), 2) +
-                Math.pow(center.getY() - a.getY(), 2));
+        double aToCenter = Math.sqrt(Math.pow(center.getX() - a.getX(), 2)
+                + Math.pow(center.getY() - a.getY(), 2));
 
-        double bToCenter = Math.sqrt(Math.pow(center.getX() - b.getX(), 2) +
-                Math.pow(center.getY() - b.getY(), 2));
+        double bToCenter = Math.sqrt(Math.pow(center.getX() - b.getX(), 2)
+                + Math.pow(center.getY() - b.getY(), 2));
 
-        double aToB = Math.sqrt(Math.pow(b.getX() - a.getX(), 2)+
-                Math.pow(b.getY() - a.getY(), 2));
+        double aToB = Math.sqrt(Math.pow(b.getX() - a.getX(), 2)
+                + Math.pow(b.getY() - a.getY(), 2));
 
         return Math.acos(
-                (bToCenter * bToCenter + aToCenter * aToCenter - aToB * aToB) /
-                        (2 * bToCenter * aToCenter)
+                (bToCenter * bToCenter + aToCenter * aToCenter - aToB * aToB)
+                        / (2 * bToCenter * aToCenter)
         );
 
     }
 
+    /**
+     * Get clockwise ordered polygon points.
+     *
+     * @param polygonPoints point of polygon in any order
+     *
+     * @return clockwise ordered polygon points
+     */
     public static List<Point> getClockwiseOrderedPolygonPoints(List<Point> polygonPoints) {
 
-        List<Point> clockwiseOrderedPolygonPoints = new ArrayList<>(polygonPoints.size());
         polygonPoints = new ArrayList<>(polygonPoints);
 
         // Find initial point with min x and y
@@ -204,6 +232,8 @@ public class Geometry {
         }
 
         polygonPoints.remove(initialPoint);
+
+        List<Point> clockwiseOrderedPolygonPoints = new ArrayList<>(polygonPoints.size());
         clockwiseOrderedPolygonPoints.add(initialPoint);
 
         //  Find 2 polygonPoints with max angle to initial vertex
@@ -264,7 +294,7 @@ public class Geometry {
 
         }
 
-         return clockwiseOrderedPolygonPoints;
+        return clockwiseOrderedPolygonPoints;
 
     }
 

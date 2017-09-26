@@ -54,11 +54,10 @@ public class Task011Impl implements Task011 {
 
         while (collection.length > 1) {
 
-            int remainedCollectionLength = collection.length / 2;
-
-            if (collection.length % 2 > 0 && countDown % 2 > 0) {
-                remainedCollectionLength++;
-            }
+            int remainedCollectionLength =
+                    (collection.length - countDown)
+                    / (interval + 1)
+                    * interval + countDown;
 
             String[] remainedCollection = new String[remainedCollectionLength];
 

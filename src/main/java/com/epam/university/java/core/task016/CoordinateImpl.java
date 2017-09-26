@@ -2,6 +2,9 @@ package com.epam.university.java.core.task016;
 
 import java.util.Objects;
 
+/**
+ * Square coordinate.
+ */
 public class CoordinateImpl implements Coordinate {
 
     private int x;
@@ -60,11 +63,18 @@ public class CoordinateImpl implements Coordinate {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         CoordinateImpl that = (CoordinateImpl) o;
-        return x == that.x &&
-                y == that.y;
+        return x == that.x && y == that.y;
+
     }
 
     @Override

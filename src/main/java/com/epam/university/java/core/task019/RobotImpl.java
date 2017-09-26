@@ -74,9 +74,3 @@ public class RobotImpl implements Robot {
     }
 }
 
-enum Direction {
-    NORTH,
-    WEST,
-    SOUTH,
-    EAST
-}
