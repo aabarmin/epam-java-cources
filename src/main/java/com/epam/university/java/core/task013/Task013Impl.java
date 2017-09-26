@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 16.09.2017.
+ * Do that later
  */
 public class Task013Impl implements Task013 {
     /**
@@ -18,7 +19,7 @@ public class Task013Impl implements Task013 {
      */
     @Override
     public Figure invokeActions(Figure figure, Collection<FigureAction> actions) {
-        actions.stream().forEach(action -> action.run(figure));
+        actions.forEach(a -> a.run(figure));
         return figure;
     }
 
@@ -37,7 +38,7 @@ public class Task013Impl implements Task013 {
         }
 
         for (int i = 0; i < vertices.size(); i++) {
-            boolean isRightTurn = isRightTurn(vertices.subList(i, i+3));
+            boolean isRightTurn = isRightTurn(vertices.subList(i, i + 3));
             if (isRightTurn) {
                 return false;
             }
@@ -47,7 +48,7 @@ public class Task013Impl implements Task013 {
         return true;
     }
 
-    static boolean isRightTurn(List<Vertex> vertexList){
+     private boolean isRightTurn(List<Vertex> vertexList) {
         if (vertexList.size() != 3) {
             return false;
         }
@@ -58,13 +59,10 @@ public class Task013Impl implements Task013 {
         int x2 = vertexList.get(2).getX() - vertexList.get(0).getX();
         int y2 = vertexList.get(2).getY() - vertexList.get(0).getY();
 
-        double determinant = x1*y2 - x2*y1;
+        double determinant = x1 * y2 - x2 * y1;
 
-        if (determinant > 0) {
-            return true;
-        }
-        return false;
-    }
+         return determinant > 0;
+     }
 
 
 }

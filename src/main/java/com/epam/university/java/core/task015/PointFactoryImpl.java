@@ -2,8 +2,9 @@ package com.epam.university.java.core.task015;
 
 /**
  * Created by Александр on 22.09.2017.
+ * PointFactory implementation
  */
-public class PointFactoryImpl implements PointFactory{
+public class PointFactoryImpl implements PointFactory {
     /**
      * Creates new point instance.
      *

@@ -2,6 +2,7 @@ package com.epam.university.java.core.task014;
 
 /**
  * Created by Александр on 18.09.2017.
+ * Some blood hungry numbers
  */
 public class VampireNumberImpl implements VampireNumber {
 
@@ -60,18 +61,11 @@ public class VampireNumberImpl implements VampireNumber {
         boolean firstAndSecond = ((first == that.first) && (second == that.second));
         boolean secondAndFirst = ((second == that.first) && (first == that.second));
 
-
-        if (firstAndSecond || secondAndFirst) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return firstAndSecond || secondAndFirst;
     }
 
     @Override
     public int hashCode() {
-        int result = multiplication;
-        return result;
+        return multiplication;
     }
 }

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 18.09.2017.
+ * Just bust
  */
 public class Task014Impl implements Task014 {
     /**
@@ -16,14 +17,13 @@ public class Task014Impl implements Task014 {
      * multiplying a pair of numbers containing half the number of digits
      * of the result. The digits are taken from the original number
      * in any order. Pairs of trailing zeroes are not allowed.
-     * <p>
-     * <p>
-     * Example: 1260 = 21 * 60
-     * </p>
-     * <p>
-     * {@see https://en.wikipedia.org/wiki/Vampire_number}
-     * </p>
      *
+     * <p>
+     *     Example: 1260 = 21 * 60
+     * </p>
+     * <p>
+     *     {@see https://en.wikipedia.org/wiki/Vampire_number}
+     * </p>
      * @return collection of vampire numbers
      */
     @Override
@@ -36,16 +36,16 @@ public class Task014Impl implements Task014 {
                 result.add(new VampireNumberImpl(i * j, i, j));
             }
         }
-        result = result.stream().filter(s -> isVampireNumber(s)).collect(Collectors.toSet());
+        result = result.stream().filter(this::isVampireNumber).collect(Collectors.toSet());
 
 
         return result;
     }
 
-    boolean isVampireNumber(VampireNumber number){
+    private boolean isVampireNumber(VampireNumber number) {
         String multiplication = String.valueOf(number.getMultiplication());
-        StringBuffer first = new StringBuffer(String.valueOf(number.getFirst()));
-        StringBuffer second = new StringBuffer(String.valueOf(number.getSecond()));
+        StringBuilder first = new StringBuilder(String.valueOf(number.getFirst()));
+        StringBuilder second = new StringBuilder(String.valueOf(number.getSecond()));
 
         for (Character c : multiplication.toCharArray()) {
             if (first.indexOf(c.toString()) >= 0) {
@@ -57,11 +57,7 @@ public class Task014Impl implements Task014 {
             }
         }
 
-        if ((first.length() == 0) && (second.length() == 0)) {
-            return true;
-        }
-
-        return false;
+        return (first.length() == 0) && (second.length() == 0);
 
 
     }

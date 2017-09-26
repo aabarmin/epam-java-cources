@@ -5,9 +5,10 @@ import java.util.List;
 
 /**
  * Created by Александр on 24.09.2017.
+ * My square with chess and tea.
  */
 public class DottedSquare {
-    ArrayList<Point> vertices;
+    private ArrayList<Point> vertices;
 
     DottedSquare(Point first, Point second) {
         verticesInit(first, second);
@@ -43,14 +44,14 @@ public class DottedSquare {
      * @param second point of diagonal
      */
     private void verticesInit(Point first, Point second) {
-        Point center = new PointImpl((first.getX()+second.getX()) / 2,
+        Point center = new PointImpl((first.getX() + second.getX()) / 2,
                 (first.getY() + second.getY()) / 2);
 
-        vertices = new ArrayList<Point>(4);
+        vertices = new ArrayList<>(4);
         vertices.add(0, first);
-        vertices.add(1, getPoints(center, second, Math.PI/2));
+        vertices.add(1, getPoints(center, second, Math.PI / 2));
         vertices.add(2, second);
-        vertices.add(3, getPoints(center, second,Math.PI*3/2));
+        vertices.add(3, getPoints(center, second,Math.PI * 3 / 2));
     }
 
     /**
@@ -78,25 +79,30 @@ public class DottedSquare {
         return new PointImpl(resultX, resultY);
     }
 
+    /**
+     * Get square edges.
+     * @return collection of LineSegment
+     */
     public List<LineSegment> getEdges() {
         List<LineSegment> result = new ArrayList<>();
 
-        for ( int i = 0; i < 4; i++) {
-            result.add(new LineSegment(vertices.get(i), vertices.get((i+1)%4)));
+        for (int i = 0; i < 4; i++) {
+            result.add(new LineSegment(vertices.get(i), vertices.get((i + 1) % 4)));
         }
 
         return result;
     }
 
-
-    public boolean isInside(Point point)
-    {
-
+    /**
+     * Method returns true, when Point inside squere.
+     * @param point to check
+     * @return true when inside
+     */
+    public boolean isInside(Point point) {
         boolean count = false;
         ArrayList<Point> vertices = this.getVertices();
 
-        for (int i = 0, j = 4 - 1; i < 4; j = i++)
-        {
+        for (int i = 0, j = 4 - 1; i < 4; j = i++) {
             if ((((vertices.get(i).getY() <= point.getY())
                     && (point.getY() < vertices.get(j).getY()))
                     || ((vertices.get(j).getY() <= point.getY())
@@ -105,8 +111,9 @@ public class DottedSquare {
                     && (point.getX() > (vertices.get(j).getX() - vertices.get(i).getX())
                     * (point.getY() - vertices.get(i).getY())
                     / (vertices.get(j).getY() - vertices.get(i).getY())
-                    + vertices.get(i).getX()))
+                    + vertices.get(i).getX())) {
                 count = !count;
+            }
         }
 
         return count;

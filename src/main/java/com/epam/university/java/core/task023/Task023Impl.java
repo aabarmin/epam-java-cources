@@ -5,14 +5,15 @@ import java.util.regex.Pattern;
 
 /**
  * Created by Александр on 26.09.2017.
+ * Regular magic
  */
 public class Task023Impl implements Task023 {
     /**
      * Given string that presents cell phone number. You should use regular expression
      * to extract operator code.
+     *
      * <p>
-     * <p>
-     * Example: given phone number +7(912)345-67-89, operator code is 912
+     *     Example: given phone number +7(912)345-67-89, operator code is 912
      * </p>
      *
      * @param phoneString cell phone number string

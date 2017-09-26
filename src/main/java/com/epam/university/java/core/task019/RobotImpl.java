@@ -2,10 +2,11 @@ package com.epam.university.java.core.task019;
 
 /**
  * Created by Александр on 21.09.2017.
+ * Terminator origin.
  */
 public class RobotImpl implements Robot {
-    RobotPosition position = new RobotPositionImpl(0, 0);
-    RobotDirection direction = RobotDirection.UP;
+    private RobotPosition position = new RobotPositionImpl(0, 0);
+    private RobotDirection direction = RobotDirection.UP;
 
     /**
      * Get current robot position.
@@ -35,7 +36,7 @@ public class RobotImpl implements Robot {
      */
     @Override
     public void invokeAction(RobotCommand command) {
-        switch (command){
+        switch (command) {
             case TURN_LEFT: {
                 turnLeft();
                 break;
@@ -46,6 +47,9 @@ public class RobotImpl implements Robot {
             }
             case MOVE_FORWARD: {
                 move();
+                break;
+            }
+            default: {
                 break;
             }
 
@@ -73,6 +77,9 @@ public class RobotImpl implements Robot {
                 position.setY(position.getY() + 1);
                 break;
             }
+            default: {
+                break;
+            }
         }
     }
 
@@ -97,6 +104,9 @@ public class RobotImpl implements Robot {
                 direction = RobotDirection.RIGHT;
                 break;
             }
+            default: {
+                break;
+            }
         }
     }
 
@@ -119,6 +129,9 @@ public class RobotImpl implements Robot {
             }
             case DOWN: {
                 direction = RobotDirection.LEFT;
+                break;
+            }
+            default: {
                 break;
             }
         }

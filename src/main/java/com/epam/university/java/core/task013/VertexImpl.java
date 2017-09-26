@@ -2,12 +2,13 @@ package com.epam.university.java.core.task013;
 
 /**
  * Created by Александр on 16.09.2017.
+ * Implevents vertex interface
  */
 public class VertexImpl implements Vertex {
     private int x;
     private int y;
 
-    VertexImpl(int x, int y){
+    VertexImpl(int x, int y) {
         this.x = x;
         this.y = y;
     }
