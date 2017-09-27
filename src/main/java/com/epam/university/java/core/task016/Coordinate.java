@@ -8,23 +8,23 @@ public interface Coordinate {
      * Get x coordinate value.
      * @return coordinate value
      */
-    int getPointX();
+    int getX();
 
     /**
-     * Set pointX coordinate value.
-     * @param pointX coordinate value
+     * Set x coordinate value.
+     * @param x coordinate value
      */
-    void setPointX(int pointX);
+    void setX(int x);
 
     /**
      * Get y coordinate value.
      * @return coordinate value
      */
-    int getPointY();
+    int getY();
 
     /**
-     * Set pointY coordinate value.
-     * @param pointY coordinate value
+     * Set y coordinate value.
+     * @param y coordinate value
      */
-    void setPointY(int pointY);
+    void setY(int y);
 }

@@ -10,6 +10,9 @@ import java.util.Collection;
 public class Task016Impl implements Task016 {
     @Override
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
+        if (radius <= 0) {
+            throw new IllegalArgumentException();
+        }
         Collection<Coordinate> coordinates = new ArrayList<>();
         CoordinateFactory cf = new CoordinateFactoryImpl();
 

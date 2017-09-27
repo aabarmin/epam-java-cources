@@ -10,22 +10,22 @@ public class RobotPositionImpl implements RobotPosition {
     private int pointY;
 
     @Override
-    public int getPointX() {
+    public int getX() {
         return pointX;
     }
 
     @Override
-    public int getPointY() {
+    public int getY() {
         return pointY;
     }
 
     @Override
-    public void setPointX(int pointX) {
+    public void setX(int pointX) {
         this.pointX = pointX;
     }
 
     @Override
-    public void setPointY(int pointY) {
+    public void setY(int pointY) {
         this.pointY = pointY;
     }
 }

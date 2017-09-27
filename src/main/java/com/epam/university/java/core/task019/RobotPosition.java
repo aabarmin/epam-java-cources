@@ -8,23 +8,23 @@ public interface RobotPosition {
      * Get x value.
      * @return value
      */
-    int getPointX();
+    int getX();
 
     /**
      * Get y value.
      * @return value
      */
-    int getPointY();
+    int getY();
 
     /**
-     * Set pointX value.
-     * @param pointX value
+     * Set x value.
+     * @param x value
      */
-    void setPointX(int pointX);
+    void setX(int x);
 
     /**
-     * Set pointY value.
-     * @param pointY value
+     * Set y value.
+     * @param y value
      */
-    void setPointY(int pointY);
+    void setY(int y);
 }

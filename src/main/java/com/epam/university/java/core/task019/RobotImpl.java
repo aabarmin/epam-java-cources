@@ -28,16 +28,16 @@ public class RobotImpl implements Robot {
         if (RobotCommand.MOVE_FORWARD == command) {
             switch (direction) {
                 case 1:
-                    rb.setPointX(rb.getPointX() + 1);
+                    rb.setX(rb.getX() + 1);
                     break;
                 case 2:
-                    rb.setPointY(rb.getPointY() + 1);
+                    rb.setY(rb.getY() + 1);
                     break;
                 case 3:
-                    rb.setPointX(rb.getPointX() - 1);
+                    rb.setX(rb.getX() - 1);
                     break;
                 case 4:
-                    rb.setPointY(rb.getPointY() - 1);
+                    rb.setY(rb.getY() - 1);
                     break;
                 default:
                     throw new IllegalArgumentException();
