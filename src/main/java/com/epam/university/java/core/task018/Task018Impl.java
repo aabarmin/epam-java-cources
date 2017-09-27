@@ -43,8 +43,8 @@ public class Task018Impl implements Task018 {
 
             // parameters
             Arrays.stream(method.getParameterAnnotations())
-            .flatMap( l -> Arrays.stream(l))
-            .forEach( l -> list.add(l) );
+                .flatMap(l -> Arrays.stream(l))
+                .forEach(l -> list.add(l));
         }
 
         // constructor
