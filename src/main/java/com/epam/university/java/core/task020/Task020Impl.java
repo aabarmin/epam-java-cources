@@ -1,8 +1,10 @@
 package com.epam.university.java.core.task020;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * {@inheritDoc}
@@ -15,6 +17,7 @@ public class Task020Impl implements Task020 {
     public int calculate(Collection<String> stones) {
         int mainCounter = 0;
         Map<Character, Integer> mapOfStones = new HashMap<>();
+        stones.stream().forEach(s -> Arrays.asList(s.toCharArray()));
         for (String stone : stones) {
             for (char c : stone.toCharArray()) {
                 Integer count = mapOfStones.put(c, 1);
