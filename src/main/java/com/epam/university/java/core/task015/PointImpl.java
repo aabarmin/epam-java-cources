@@ -6,10 +6,10 @@ import java.util.Map;
  * Created by Александр on 22.09.2017.
  */
 public class PointImpl implements Point {
-    double x;
-    double y;
+    private double x;
+    private double y;
 
-    PointImpl(double x, double y) {
+    public PointImpl(double x, double y) {
         this.x = x;
         this.y = y;
     }

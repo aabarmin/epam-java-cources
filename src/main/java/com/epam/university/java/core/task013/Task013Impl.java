@@ -48,7 +48,12 @@ public class Task013Impl implements Task013 {
         return true;
     }
 
-     private boolean isRightTurn(List<Vertex> vertexList) {
+    /**
+     * True if angle > 0.
+     * @param vertexList of square
+     * @return true if angle > 0
+     */
+    private boolean isRightTurn(List<Vertex> vertexList) {
         if (vertexList.size() != 3) {
             return false;
         }
@@ -61,8 +66,8 @@ public class Task013Impl implements Task013 {
 
         double determinant = x1 * y2 - x2 * y1;
 
-         return determinant > 0;
-     }
+        return determinant > 0;
+    }
 
 
 }
