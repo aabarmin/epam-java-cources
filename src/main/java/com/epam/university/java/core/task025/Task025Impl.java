@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task025;
 
-import java.util.stream.Collectors;
-
 /**
  * Cosmic radiation.
  */
@@ -13,22 +11,23 @@ public class Task025Impl implements Task025 {
      * Given the signal received by Earth as a string, determine how many letters of SOS
      * has been changed by radiation.
      *
-     * <p>
-     *     Example: source SOSOASOB, result is 2
-     * </p>
-     *
      * @param sourceMessage received message
      * @return amount of altered letters
      */
     @Override
     public int getAmountOfAlteredLetters(String sourceMessage) {
-        return sourceMessage.toUpperCase()
-            .chars()
-            .mapToObj(i -> (char)i)
-            .filter(ch -> ch != 'S')
-            .filter(ch -> ch != 'O')
-            .collect(Collectors.toList())
-            .size();
+        final String[] strings = sourceMessage.split("(?<=\\G...)"); // split by 3 letters
+        final String sos = "SOS";
+        int count = 0;
+        for (String s : strings) {
+            for (int i = 0; i < s.length(); ++i) {
+                if (s.charAt(i) != sos.charAt(i)) {
+                    ++count;
+                }
+                count += sos.length() - s.length();
+            }
+        }
+        return count;
     }
 
 }
