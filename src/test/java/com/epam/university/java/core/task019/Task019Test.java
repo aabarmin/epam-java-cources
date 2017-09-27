@@ -4,7 +4,6 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static com.epam.university.java.core.task019.RobotCommand.MOVE_FORWARD;
@@ -23,9 +22,9 @@ public class Task019Test {
     @Test
     public void robotOnTheSamePosition() throws Exception {
         final Robot robot = TestHelper.getInstance(Robot.class);
-        assertTrue("Incorrect result", instance.isOnStartPosition(robot));
+        assertTrue("Incorrect result",
+                instance.isOnStartPosition(robot));
     }
-
 
     @Test
     public void robotMovesSquared() throws Exception {
@@ -40,7 +39,8 @@ public class Task019Test {
                 MOVE_FORWARD
         )
                 .forEach(a -> instance.invokeAction(robot, a));
-        assertTrue("Incorrect result", instance.isOnStartPosition(robot));
+        assertTrue("Incorrect result",
+                instance.isOnStartPosition(robot));
     }
 
     @Test
@@ -58,6 +58,7 @@ public class Task019Test {
                 MOVE_FORWARD
         )
                 .forEach(a -> instance.invokeAction(robot, a));
-        assertFalse("Incorrect result", instance.isOnStartPosition(robot));
+        assertFalse("Incorrect result",
+                instance.isOnStartPosition(robot));
     }
 }

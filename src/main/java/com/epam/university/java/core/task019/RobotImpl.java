@@ -1,9 +1,20 @@
 package com.epam.university.java.core.task019;
 
+import com.epam.university.java.core.utils.Validator;
+
+import javax.xml.bind.ValidationEvent;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import static com.epam.university.java.core.task019.RobotCommand.MOVE_FORWARD;
 import static com.epam.university.java.core.task019.RobotCommand.TURN_LEFT;
 import static com.epam.university.java.core.task019.RobotCommand.TURN_RIGHT;
 
+/**
+ * Class - implementation of Robot, that can walk through two-dimensional
+ * coordinates
+ */
 public class RobotImpl implements Robot {
 
     private RobotState currentRobotState;
@@ -12,6 +23,9 @@ public class RobotImpl implements Robot {
 
     public RobotImpl(RobotPosition currentRobotPosition, RobotPosition
             initialRobotPosition) {
+        Validator.validateNotNull(currentRobotPosition, initialRobotPosition,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
         this.currentRobotPosition = currentRobotPosition;
         this.initialRobotPosition = initialRobotPosition;
     }
@@ -29,6 +43,8 @@ public class RobotImpl implements Robot {
 
     @Override
     public void setPosition(RobotPosition position) {
+        Validator.validateNotNull(position,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL);
         currentRobotPosition = position;
     }
 
@@ -38,10 +54,25 @@ public class RobotImpl implements Robot {
 
     @Override
     public void invokeAction(RobotCommand command) {
+        Validator.validateNotNull(command,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL);
+        Validator.validateEnum(command, RobotCommand.values(),
+                Validator.MESSAGE_IF_ILLEGAL_ARGUMENT);
+
         if (command.equals(MOVE_FORWARD)) {
             currentRobotState.invokeAction(MOVE_FORWARD);
             setPosition(currentRobotState.getPosition());
+        } else {
+            changeRobotState(command);
         }
+
+        System.out.println("current robot position: " + currentRobotPosition
+                + System.lineSeparator());
+    }
+
+    public void changeRobotState(RobotCommand command) {
+        Validator.validateNotNull(command,
+                Validator.MESSAGE_FOR_SOURCE_IF_NULL);
         if (command.equals(TURN_RIGHT)) {
             if (currentRobotState instanceof RobotStateForward) {
                 currentRobotState = new RobotStateRight(currentRobotPosition,
@@ -73,7 +104,5 @@ public class RobotImpl implements Robot {
                         initialRobotPosition);
             }
         }
-        System.out.println("current robot position: " + currentRobotPosition
-                + System.lineSeparator());
     }
 }

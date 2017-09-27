@@ -30,6 +30,8 @@ public class Validator {
             "first parameter can't be negative";
     public static final String MESSAGE_FOR_SECOND_PARAMETER_IF_NEGATIVE =
             "second parameter can't be negative";
+    public static final String MESSAGE_IF_ILLEGAL_ARGUMENT =
+            "illegal argument assigned";
 
     /**
      * Validates parameters not null.
@@ -202,5 +204,26 @@ public class Validator {
         if (value > upperBorder) {
             throw new IllegalArgumentException(messageIfViolatesUpperBorder);
         }
+    }
+
+    /**
+     * Validates value exists in Enum.
+     *
+     * @param value                    value to check
+     * @param enumValues               enum values to look in
+     * @param messageIfIllegalArgument message if value doesn't belongs to
+     *                                 enum
+     * @return <code>boolean</code> true if value exists in Enum
+     * @throws IllegalArgumentException if parameter doesn't exists in enum
+     */
+    public static <E extends Enum<E>> boolean
+    validateEnum(E value, E[] enumValues, String
+            messageIfIllegalArgument) throws IllegalArgumentException {
+        for (E enumValue : enumValues) {
+            if (enumValue.equals(value)) {
+                return true;
+            }
+        }
+        throw new IllegalArgumentException(messageIfIllegalArgument);
     }
 }

@@ -3,7 +3,7 @@ package com.epam.university.java.core.task019;
 /**
  * Robot commands.
  */
-public enum RobotCommand {
+public enum RobotCommand{
     /**
      * Turn left.
      */
