@@ -11,6 +11,9 @@ public class Task005Impl implements Task005 {
         if (digits < 1){
             throw new IllegalArgumentException();
         }
+        if (digits > 5){
+            throw new IllegalArgumentException();
+        }
         double start = Math.pow(10, digits - 1);
         double end = Math.pow(10, digits);
         double min = 10;
