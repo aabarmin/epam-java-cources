@@ -81,9 +81,11 @@ public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
         CustomStack<String> stack = new CustomStack<>();
+        int braceCounter = 0;
         for (int i = 0; i < sourceString.length(); i++) {
 
             if (isClosingBrace(sourceString.charAt(i))) {
+                braceCounter--;
                 if (hasNotUnclosedOpBraceInside(stack,
                                                 String.valueOf(sourceString.charAt(i)))) {
                     stack = stack.push(String.valueOf(sourceString.charAt(i)));
@@ -92,9 +94,14 @@ public class Task008Impl implements Task008 {
                 }
             }
             if (isOpeningBrace(sourceString.charAt(i))) {
+                braceCounter++;
                 stack = stack.push(String.valueOf(sourceString.charAt(i)));
             }
         }
-        return true;
+        if (braceCounter == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
