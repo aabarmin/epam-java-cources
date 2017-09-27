@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task011;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -46,6 +45,7 @@ public class Task011Impl implements Task011 {
      * @return name of last man
      */
     public String getLastName(String[] collection, int interval) {
+
         if (collection == null || collection.length == 0) {
             throw new IllegalArgumentException();
         }
@@ -54,11 +54,10 @@ public class Task011Impl implements Task011 {
 
         while (collection.length > 1) {
 
-            int remainedCollectionLength = collection.length / 2;
-
-            if (collection.length % 2 > 0 && countDown % 2 > 0) {
-                remainedCollectionLength++;
-            }
+            int remainedCollectionLength =
+                    (collection.length - countDown)
+                    / (interval + 1)
+                    * interval + countDown;
 
             String[] remainedCollection = new String[remainedCollectionLength];
 
@@ -104,7 +103,9 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(ArrayList<String> collection) {
 
-        return getLastName(collection, 1);
+        String[] stringArray = collection.toArray(new String[collection.size()]);
+
+        return getLastName(stringArray, 1);
 
     }
 
@@ -145,7 +146,7 @@ public class Task011Impl implements Task011 {
      * @param interval interval of leaving
      * @return name of last man
      */
-    public String getLastName(List<String> collection, int interval) {
+    public String getLastName(LinkedList<String> collection, int interval) {
 
         if (collection == null || collection.size() == 0) {
             throw new IllegalArgumentException();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="parentBean" class="com.epam.university.java.project.core.cdi.context.ParentBean"
+            init="init" scope="singleton">
+
+        <property name="property1" value="value1" />
+        <property name="property2" value="10" />
+        <property name="childBean" ref="childBean" />
+    </bean>
+
+    <bean id="childBean" class="com.epam.university.java.project.core.cdi.context.ChildBean" scope="singleton">
+        <property name="property1" value="value1" />
+        <property name="property2" value="20" />
+    </bean>
+
+    <bean id="statelessBean" class="com.epam.university.java.project.core.cdi.context.StatelessBean" scope="prototype"></bean>
+
+    <bean id="singletonBean" class="com.epam.university.java.project.core.cdi.context.SingletonBean"
+            scope="singleton">
+    </bean>
+
+    <bean id="statelessBeanWithDependencies" class="com.epam.university.java.project.core.cdi.context.StatelessBeanWithDependency">
+        <property name="singletonBean" ref="singletonBean" />
+    </bean>
+</beans>
