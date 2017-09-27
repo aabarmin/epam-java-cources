@@ -10,9 +10,9 @@ public class Task024Impl implements Task024 {
         if (source.isEmpty()) {
             return new ArrayList<>();
         }
-        
+
         return Arrays.asList(source
-                .replaceAll("([a-z])([A-Z]+)", "$1,$2")
+                .replaceAll("(\\p{L})(\\p{Lu})", "$1,$2")
                 .toLowerCase()
                 .split(",")
         );
