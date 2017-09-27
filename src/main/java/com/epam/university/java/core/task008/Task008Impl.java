@@ -42,6 +42,10 @@ public class Task008Impl implements Task008 {
             }
         }
 
+        if (!stack.isEmpty()) {
+            return false;
+        }
+
         return true;
     }
 }
