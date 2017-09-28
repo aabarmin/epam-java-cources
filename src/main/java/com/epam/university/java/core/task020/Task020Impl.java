@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task020;
 
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,22 +16,13 @@ public class Task020Impl implements Task020 {
      */
     @Override
     public int calculate(Collection<String> stones) {
-        int mainCounter = 0;
-        Map<Character, Integer> mapOfStones = new HashMap<>();
-        stones.stream().forEach(s -> Arrays.asList(s.toCharArray()));
-        for (String stone : stones) {
-            for (char c : stone.toCharArray()) {
-                Integer count = mapOfStones.put(c, 1);
-                if (count != null) {
-                    mapOfStones.put(c, ++count);
-                }
-            }
-        }
-        for (Map.Entry<Character, Integer> entry : mapOfStones.entrySet()) {
-            if (entry.getValue() == stones.size()) {
-                mainCounter++;
-            }
-        }
-        return mainCounter;
+        Map<String, Integer> mapOfStones = new HashMap<>();
+        stones.forEach(stone -> Arrays.stream(stone.split("")).
+                forEach(letter -> mapOfStones.merge(letter, 1, (old, incr) -> old + 1)));
+
+        long count = mapOfStones.values().
+                stream().
+                filter(i -> i == stones.size()).count();
+        return (int) count;
     }
 }
