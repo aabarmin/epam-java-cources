@@ -1,6 +1,10 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.CollectionAdapter;
 import java.util.Collection;
+import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,10 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by ilya on 24.09.17.
  */
 @XmlRootElement(name = "bean")
+@XmlAccessorType(XmlAccessType.NONE)
 public class BeanDefinitionImpl implements BeanDefinition {
     private String id;
     private String className;
-    @XmlElement(type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> propertyDefinitions;
     private String postConstruct;
     private String scope;
@@ -64,5 +68,10 @@ public class BeanDefinitionImpl implements BeanDefinition {
     @Override
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    @XmlElement(type = BeanPropertyDefinitionImpl.class)
+    protected List<BeanPropertyDefinition> getXmlDefinitions(){
+        return new CollectionAdapter<BeanPropertyDefinition>(propertyDefinitions);
     }
 }
