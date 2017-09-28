@@ -39,33 +39,11 @@ public class FigureImpl implements Figure {
      * clockwise about (0,0) coordinate
      */
     private void order() {
-        vertexArray.sort((n, m) -> n.getX() - m.getY());
-        List<Vertex> subList1 = vertexArray.subList(0, numberOfVertex / 2);
-        List<Vertex> subList2 = vertexArray.subList(numberOfVertex / 2, numberOfVertex - 1);
-        subList1.sort((n,m) -> {
-            if (m.getX() == n.getX()) {
-                return n.getY() - m.getY();
-            } else {
-                return m.getX() - n.getX();
-            }
-        });
-        subList2.sort((n,m) -> {
-            if (m.getX() == n.getX()) {
-                return m.getY() - n.getY();
-            } else {
-                return m.getX() - n.getX();
-            }
-        });
-        List<Vertex> result = new ArrayList<>(numberOfVertex);
-        result.addAll(subList1);
-        if (numberOfVertex % 2 != 0) {
-            Vertex max = vertexArray.stream()
-                    .max(Comparator.comparingInt(Vertex::getY))
-                    .get();
-            result.add(max);
-        }
-        result.addAll(subList2);
-        vertexArray = result;
+        double averageX = vertexArray.stream().mapToDouble(Vertex::getX).sum() / vertexArray.size();
+        double averageY = vertexArray.stream().mapToDouble(Vertex::getY).sum() / vertexArray.size();
+        vertexArray.sort(Comparator.comparingDouble(
+            p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
+        ));
     }
 }
 
