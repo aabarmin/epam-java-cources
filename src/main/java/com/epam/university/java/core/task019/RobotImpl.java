@@ -11,7 +11,7 @@ public class RobotImpl implements Robot {
     private int deltaX = 1;
     private int deltaY = 0;
 
-    RobotPositionImpl position = new RobotPositionImpl();
+    private RobotPositionImpl position = new RobotPositionImpl();
 
     /**
      * {@inheritDoc}
