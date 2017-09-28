@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Implementation class for Task011.
+ * Implementation class for Task018.
  *
  * @author Sergei Titov
  */
