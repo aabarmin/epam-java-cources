@@ -36,30 +36,22 @@ public class RobotImpl implements Robot {
     @Override
     public void invokeAction(RobotCommand command) {
 
-        // read position
-        RobotPosition position = getPosition();
-        int abscissa = position.getX();
-        int ordinate = position.getY();
+        // change position
+        if (RobotCommand.MOVE_FORWARD == command) {
+            // old position
+            RobotPosition position = getPosition();
+            int abscissa = position.getX();
+            int ordinate = position.getY();
+            // new position
+            position.setX(abscissa + deltaX);
+            position.setY(ordinate + deltaY);
+            return;
+        }
 
-        int direction = 0;
-        switch (command) {
-
-            // change position
-            case MOVE_FORWARD : {
-                position.setX(abscissa + deltaX);
-                position.setY(ordinate + deltaY);
-                return;
-            }
-
-            // calculate rotation sign
-            case TURN_LEFT : {
-                direction = 1;
-                break;
-            }
-            case TURN_RIGHT : {
-                direction = -1;
-                break;
-            }
+        // calculate rotation sign
+        int direction = 1;
+        if (RobotCommand.TURN_RIGHT == command) {
+            direction = -1;
         }
 
         // change orientation accordingly to rotation sign
