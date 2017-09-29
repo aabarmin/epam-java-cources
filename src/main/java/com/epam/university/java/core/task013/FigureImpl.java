@@ -39,45 +39,11 @@ public class FigureImpl implements Figure {
      * clockwise about (0,0) coordinate
      */
     private void order() {
-        List<Vertex> buffer = new ArrayList<>(vertexArray);
-        buffer.sort(Comparator.comparingInt(Vertex::getX));
-        Vertex max = null;
-        if (numberOfVertex % 2 != 0) {
-            max = vertexArray.stream()
-                    .max(Comparator.comparingInt(Vertex::getY))
-                    .get();
-            buffer.remove(max);
-        }
-
-        List<Vertex> subList1 = buffer.subList(0, numberOfVertex / 2);
-        subList1.sort((n,m) -> {
-            if (m.getX() == n.getX()) {
-                return n.getY() - m.getY();
-            } else {
-                return m.getX() - n.getX();
-            }
-        });
-
-        List<Vertex> result = new ArrayList<>(numberOfVertex);
-        List<Vertex> subList2;
-        result.addAll(subList1);
-        if (numberOfVertex % 2 != 0) {
-            result.add(max);
-            subList2 = buffer.subList(numberOfVertex / 2, numberOfVertex - 1);
-        } else {
-            subList2 = buffer.subList(numberOfVertex / 2, numberOfVertex);
-        }
-
-        subList2.sort((n,m) -> {
-            if (m.getX() == n.getX()) {
-                return m.getY() - n.getY();
-            } else {
-                return m.getX() - n.getX();
-            }
-        });
-
-        result.addAll(subList2);
-        vertexArray = result;
+        double averageX = vertexArray.stream().mapToDouble(Vertex::getX).sum() / vertexArray.size();
+        double averageY = vertexArray.stream().mapToDouble(Vertex::getY).sum() / vertexArray.size();
+        vertexArray.sort(Comparator.comparingDouble(
+            p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
+        ));
     }
 }
 
