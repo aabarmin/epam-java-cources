@@ -2,7 +2,9 @@ package com.epam.university.java.core.task003;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlatMappingOperationImpl implements FlatMappingOperation {
