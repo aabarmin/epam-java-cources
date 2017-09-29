@@ -2,10 +2,8 @@ package com.epam.university.java.core.task009;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
+
 
 public class Task009Impl implements Task009 {
 
@@ -19,19 +17,19 @@ public class Task009Impl implements Task009 {
             e.printStackTrace();
         }
 
-        Set<String> words = new HashSet<>();
+        Set<String> result = new HashSet<>();
 
         String temp;
 
         while (input.hasNext()){
             temp = input.next();
-            //String[] s = temp.toLowerCase().split("\\pP");
-            String[] s = temp.toLowerCase().split("[-,.:!?]");
-            for (int i = 0; i < s.length; i++){
-                words.add(s[i]);
+            //String[] allWords = temp.split("\\pP");
+            String[] allWords = temp.split("[,.:!?]+");
+            for (String word : allWords){
+                word = word.toLowerCase();
+                result.add(word);
             }
         }
-        System.out.println(words.size());
-        return words;
+        return result;
     }
 }

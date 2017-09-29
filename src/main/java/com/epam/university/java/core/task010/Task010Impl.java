@@ -19,16 +19,18 @@ public class Task010Impl implements Task010 {
             e.printStackTrace();
         }
 
-        Map<String, Integer> words = new HashMap<>();
+        Map<String, Integer> result = new HashMap<>();
 
         String temp;
-
+        int count = 0;
         while (input.hasNext()){
             temp = input.next();
-            String[] s = temp.toLowerCase().split("[-,.:!?]");
-            
+            String[] allWords = temp.toLowerCase().split("[,.:!?]");
+            for (String word: allWords) {
+                Integer frequency = result.get(word);
+                result.put(word, frequency == null ? 1 : frequency + 1);
+            }
         }
-        System.out.println(words.size());
-        return words;
+        return result;
     }
 }
