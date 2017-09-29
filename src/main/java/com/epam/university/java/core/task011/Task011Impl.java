@@ -17,9 +17,7 @@ public class Task011Impl implements Task011 {
         if (collection == null || collection.size() == 0) {
             throw new IllegalArgumentException();
         }
-        if (collection.size() == 1) {
-            return collection.get(0);
-        }
+
         ArrayList<String> names = new ArrayList<>(collection);
         int index = 0;
         while (names.size() > 1) {
