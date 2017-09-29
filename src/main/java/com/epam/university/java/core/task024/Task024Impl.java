@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task024;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,13 +25,30 @@ public class Task024Impl implements Task024 {
      */
     @Override
     public Collection<String> getWordsCount(String source) {
+        String encodedSource = encode(source, "cp1251");
+
         String regex = "(?=\\p{Lu})";
-        if (source.isEmpty()) {
+        if (encodedSource.isEmpty()) {
             return Collections.emptyList();
         } else {
-            return Arrays.asList(source.split(regex)).stream()
+            return Arrays.asList(encodedSource.split(regex)).stream()
                     .map(s -> s.toLowerCase())
                     .collect(Collectors.toList());
         }
+
     }
+
+    /**
+     * Encode source string tocharset.
+     * @param source to encode
+     * @param charset of result string.
+     * @return new string
+     */
+    String encode(String source, String charset) {
+        Charset cset = Charset.forName(charset);
+        ByteBuffer buf = cset.encode(source);
+        byte[] b = buf.array();
+        return new String(b);
+    }
+
 }
