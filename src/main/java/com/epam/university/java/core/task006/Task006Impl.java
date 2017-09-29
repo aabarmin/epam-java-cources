@@ -31,7 +31,9 @@ public class Task006Impl implements Task006 {
             if (sumAmperage == 0) {
                 return 0.0;
             } else {
-                BigDecimal result = BigDecimal.valueOf((exps * sumAmperageVoltage - sumAmperage * sumVoltage) / (exps * sumAmperageSqrs - sumAmperageSqr));
+                BigDecimal result = BigDecimal
+                        .valueOf((exps * sumAmperageVoltage - sumAmperage * sumVoltage)
+                                / (exps * sumAmperageSqrs - sumAmperageSqr));
                 return result.setScale(3, BigDecimal.ROUND_DOWN).doubleValue();
             }
         }
