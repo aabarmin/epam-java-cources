@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * Created by Александр on 14.09.2017.
+ * Task008 implementation.
  */
 public class Task008Impl implements Task008 {
     /**
@@ -35,14 +36,14 @@ public class Task008Impl implements Task008 {
             } else {
                 int closeIndex = closeBrackets.indexOf(ch);
                 if (closeIndex >= 0) {
-                    if (bracketStack.pop() != closeIndex) {
+                    if ((bracketStack.empty()) || (bracketStack.pop() != closeIndex)) {
                         return false;
                     }
                 }
             }
-
         }
 
-        return true;
+        return bracketStack.empty();
+
     }
 }
