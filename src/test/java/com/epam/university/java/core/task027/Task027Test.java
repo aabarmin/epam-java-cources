@@ -36,8 +36,8 @@ public class Task027Test {
     public void extract3() throws Exception {
         assertArrayEquals(
                 "Invalid extraction",
-                new Integer[]{99, 100, 111},
-                instance.extract("99100100").toArray(new Integer[3])
+                new Integer[]{99, 100, 101},
+                instance.extract("99100101").toArray(new Integer[3])
         );
     }
 
