@@ -13,12 +13,18 @@ public class Task008Impl implements Task008 {
                 stack.push(s);
             }
             if (s.matches(CLOSING_BRACES)) {
+                if (stack.isEmpty()) {
+                    return false;
+                }
                 if (s.equals(getPair(stack.peek()))) {
                     stack.pop();
                 } else {
                     result = false;
                 }
             }
+        }
+        if (!stack.isEmpty()) {
+            result = false;
         }
         return result;
     }

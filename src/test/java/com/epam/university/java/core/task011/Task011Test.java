@@ -37,6 +37,7 @@ public class Task011Test {
         );
     }
 
+
     @Test
     public void getLastNameWithArrayList() throws Exception {
         final ArrayList<String> collection = new ArrayList<>(Arrays.asList(

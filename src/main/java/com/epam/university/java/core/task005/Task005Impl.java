@@ -11,6 +11,9 @@ public class Task005Impl implements Task005 {
         if (digits < 1) {
             throw new IllegalArgumentException("digits must be natural");
         }
+        if (digits > 10) {
+            throw new IllegalArgumentException("digits must be natural");
+        }
         int secondStart = (int) Math.pow(10, digits - 1);
         final int firstStart = 3 * secondStart;
         final int firstLim = 10 * secondStart;
@@ -21,8 +24,8 @@ public class Task005Impl implements Task005 {
         double delta;
         int secondLessFirst;
         for (int i = firstStart; i < firstLim; i++) {
-            secondLessFirst = (int) Math.ceil(i * (0.34)) + 1;
-            secondStart = (int) Math.ceil(i * (0.3)) - 1;
+            secondLessFirst = (int) Math.ceil(i * (0.3183)) + 1;
+            secondStart = (int) Math.ceil(i * (0.31831)) - 1;
             for (int j = secondStart; (j < secondLessFirst) & (j < secondLim); j++) {
                 if ((delta = Math.abs(i - j * Math.PI)) < prevResult) {
                     firstResult = i;
