@@ -1,13 +1,20 @@
 package com.epam.university.java.core.task013;
 
+import java.util.Collection;
+
 /**
  * Figure interface.
  */
 public interface Figure {
     /**
      * Add vertex to figure with designated coordinates.
-     * @param x first coordinate
-     * @param y second coordinate
+     * @param vertex vertex to add
      */
-    void addVertex(int x, int y);
+    void addVertex(Vertex vertex);
+
+    /**
+     * Get all vertexes of figure.
+     * @return collection of vertexes
+     */
+    Collection<Vertex> getVertexes();
 }
