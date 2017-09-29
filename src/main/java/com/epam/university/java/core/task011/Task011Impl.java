@@ -59,7 +59,11 @@ public class Task011Impl implements Task011 {
      * @return index of element to return
      */
     private int getElementIndex(int size) {
-        
+        // check for empty collection
+        if (size == 0) {
+            throw new IllegalArgumentException("Empty collection is not allowed.");
+        }
+
         // Calculating nearest size of collection which returns second element of collection
         double power = Math.ceil(Math.log10(size) / Math.log10(2)) - 1;
         double intervalStart = Math.pow(2, power) + 1;
