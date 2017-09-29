@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task026;
 
 public class Task026Impl implements Task026 {
+    // english alphabet power
     private static final int POWER = 26;
     private final char[] lowerCase;
     private final char[] upperCase;
@@ -9,6 +10,7 @@ public class Task026Impl implements Task026 {
         lowerCase = new char[POWER];
         upperCase = new char[POWER];
 
+        // filling up arrays of lowercase and uppercase chars of english alphabet
         for (int i = 0; i < POWER; i++) {
             lowerCase[i] = (char) (65 + i);
             upperCase[i] = (char) (97 + i);
@@ -45,12 +47,12 @@ public class Task026Impl implements Task026 {
                 // index of needed char from alphabet
                 int index = isEncrypting ? ((j + shift) % POWER) : ((j - shift + POWER) % POWER);
 
-                //replacing char if needed
+                // replacing char if needed
                 if (ch == lowerCase[j]) {
                     correctChar = lowerCase[index];
                 }
 
-                //replacing char if needed
+                // replacing char if needed
                 if (ch == upperCase[j]) {
                     correctChar = upperCase[index];
                 }
