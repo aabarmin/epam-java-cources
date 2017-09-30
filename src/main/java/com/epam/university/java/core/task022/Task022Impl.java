@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task022;
 
-import com.epam.university.java.core.task015.Point;
-
 import java.util.Collection;
 
 /**
@@ -16,17 +14,7 @@ public class Task022Impl implements Task022 {
      */
     @Override
     public int maxSum(Collection<Integer> numbers) {
-
-        int sum = 0;
-        int min = Integer.MAX_VALUE;
-
-        for(Integer number : numbers) {
-            if(number < min) {
-                min = number;
-            }
-            sum += number;
-        }
-        return sum - min;
+        return goCalc(numbers, true);
     }
 
     /**
@@ -34,16 +22,22 @@ public class Task022Impl implements Task022 {
      */
     @Override
     public int minSum(Collection<Integer> numbers) {
+        return goCalc(numbers, false);
+    }
+
+
+    // calculating procedure
+    private int goCalc(Collection<Integer> numbers, boolean needMax) {
 
         int sum = 0;
-        int max = Integer.MIN_VALUE;
+        int minus = needMax ? Integer.MAX_VALUE : Integer.MIN_VALUE;
 
-        for(Integer number : numbers) {
-            if(number > max) {
-                max = number;
+        for (Integer number : numbers) {
+            if ((needMax && number < minus) || (!needMax && number > minus)) {
+                minus = number;
             }
             sum += number;
         }
-        return sum - max;
+        return sum - minus;
     }
 }
