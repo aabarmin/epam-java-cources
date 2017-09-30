@@ -27,7 +27,7 @@ public class BeanDefinitionDocument {
         this.definitions = definitions;
     }
 
-    @XmlElement(type = BeanDefinitionImpl.class)
+    @XmlElement(name = "bean", type = BeanDefinitionImpl.class)
     protected List<BeanDefinition> getXmlDefinitions(){
         return new CollectionAdapter<BeanDefinition>(definitions);
     }

@@ -28,14 +28,14 @@ public class ListDefinitionImpl implements ListDefinition {
         this.listItemDefinitions = items;
     }
 
-    @XmlElementWrapper(name = "list")
-    @XmlElement(type = ListItemDefinitionImpl.class)
+    @XmlElementWrapper()
+    @XmlElement(name = "list", type = ListItemDefinitionImpl.class)
     protected List<ListItemDefinition> getXmlCollection() {
         return new CollectionAdapter<ListItemDefinition>(listItemDefinitions);
     }
 
     @XmlRootElement
-    static class ListItemDefinitionImpl implements ListItemDefinition{
+    public static class ListItemDefinitionImpl implements ListItemDefinition{
 
         private String value;
 

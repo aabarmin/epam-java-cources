@@ -20,6 +20,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
     private String postConstruct;
     private String scope;
 
+    @XmlElement(name = "id")
     @Override
     public String getId() {
         return id;
@@ -30,6 +31,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
         this.id = id;
     }
 
+    @XmlElement(name = "class")
     @Override
     public String getClassName() {
         return className;
@@ -60,6 +62,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
         this.postConstruct = methodName;
     }
 
+    @XmlElement(name = "scope")
     @Override
     public String getScope() {
         return scope;
@@ -70,7 +73,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
         this.scope = scope;
     }
 
-    @XmlElement(type = BeanPropertyDefinitionImpl.class)
+    @XmlElement(name = "properties", type = BeanPropertyDefinitionImpl.class)
     protected List<BeanPropertyDefinition> getXmlDefinitions(){
         return new CollectionAdapter<BeanPropertyDefinition>(propertyDefinitions);
     }
