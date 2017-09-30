@@ -1,7 +1,9 @@
 package com.epam.university.java.project.core.cdi.context;
 
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.SaxBeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import java.util.Collection;
@@ -10,10 +12,12 @@ import java.util.Collection;
  * Created by Александр on 29.09.2017.
  */
 public class BasicApplicationContext implements ApplicationContext {
-    BeanDefinitionRegistry beanDefinitionRegistry;
+    BeanDefinitionRegistry registry;
+    BeanDefinitionReader saxReader = new SaxBeanDefinitionReader(registry);
+
 
     public BasicApplicationContext(){
-        beanDefinitionRegistry = new BeanDefinitionRegistryImpl();
+        registry = new BeanDefinitionRegistryImpl();
     }
 
     /**

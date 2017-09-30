@@ -10,6 +10,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
     private String id;
     private String className;
     private String scope;
+    private String postConstruct;
     Collection<BeanPropertyDefinition> properties;
 
     /**
@@ -79,7 +80,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
      */
     @Override
     public String getPostConstruct() {
-        return null;
+        return postConstruct;
     }
 
     /**
@@ -89,7 +90,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
      */
     @Override
     public void setPostConstruct(String methodName) {
-
+        postConstruct = methodName;
     }
 
     /**
