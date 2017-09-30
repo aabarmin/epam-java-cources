@@ -137,7 +137,7 @@ public class Task015Impl implements Task015 {
                     if (segment1.getFirst() instanceof PointImpl) {
                         segmentVertex = (PointImpl<Integer>) segment1.getFirst();
 
-                        if (segmentVertex.suspectAsInner() /*&& !setFilter.contains(segmentVertex)*/) {
+                        if (segmentVertex.suspectAsInner()) {
                             setFilter.add(new PointImpl<>(segmentVertex.getX(),
                                     segmentVertex.getY()));
                             retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),
@@ -147,7 +147,7 @@ public class Task015Impl implements Task015 {
                     if (segment1.getSecond() instanceof PointImpl) {
                         segmentVertex = (PointImpl<Integer>)segment1.getSecond();
 
-                        if (segmentVertex.suspectAsInner() /*&& !setFilter.contains(segmentVertex)*/) {
+                        if (segmentVertex.suspectAsInner()) {
                             setFilter.add(new PointImpl<>(segmentVertex.getX(),
                                     segmentVertex.getY()));
                             retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),

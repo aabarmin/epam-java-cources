@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task021;
 
 import com.epam.university.java.core.task015.Point;
-import com.epam.university.java.core.task015.PointFactoryImpl;
 
 import java.util.Collection;
 

@@ -28,7 +28,7 @@ public class FermatToricelliPoint {
 
     /**
      * Finds a Fermat-Toricelli point for ABC triangle with coordinates:
-     * (Ax, Ay), (Bx, By), (Cx, Cy)
+     * (Ax, Ay), (Bx, By), (Cx, Cy).
      *
      * @param x1 - Ax
      * @param y1 - Ay
@@ -64,7 +64,8 @@ public class FermatToricelliPoint {
             oet2 = create_equilateral_triangle(x3, y3, x2, y2);
         }
 
-        return intersection_point(oet1.getX(), oet1.getY(), x3, y3, oet2.getX(), oet2.getY(), x1, y1);
+        return intersection_point(oet1.getX(), oet1.getY(), x3, y3,
+                                  oet2.getX(), oet2.getY(), x1, y1);
     }
 
     /**
@@ -140,7 +141,7 @@ public class FermatToricelliPoint {
     }
 
     /**
-     * Detects orientation of triangle points (clockwise or counterclockwise walk around)
+     * Detects orientation of triangle points (clockwise or counterclockwise walk around).
      *
      * @param x1 - triangle vertex coordinate
      * @param y1 - triangle vertex coordinate
@@ -153,8 +154,8 @@ public class FermatToricelliPoint {
      */
     public static int orientation(final double  x1, final double  y1,
                                   final double  x2, final double  y2,
-                                  final double  px, final double  py)
-    {
+                                  final double  px, final double  py) {
+
         final double orin = (x2 - x1) * (py - y1) - (px - x1) * (y2 - y1);
 
         if (orin > 0) {
@@ -193,7 +194,7 @@ public class FermatToricelliPoint {
     }
 
     /**
-     * Checks is two double values are equal (provided with custom epsilon)
+     * Checks is two double values are equal (provided with custom epsilon).
      *
      * @param val1 - value to check
      * @param val2 - value to check with
