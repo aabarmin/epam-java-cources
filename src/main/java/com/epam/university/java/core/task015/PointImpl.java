@@ -68,23 +68,43 @@ public class PointImpl<T> implements Point<T> {
      * @returns true if it was already suspected before (twice is enough)
      */
     protected boolean suspectAsInner() {
-        if (false == isLikeInner) {
+        if (!isLikeInner) {
             isLikeInner = true;
             return false;
         }
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object obj) {
 
-        if(abscissa instanceof Number) {
+        // self check
+        if (this == obj) {
+            return true;
+        }
+        // null check
+        if (obj == null) {
+            return false;
+        }
+        // type check and cast
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        if (abscissa instanceof Number
+                && obj instanceof PointImpl) {
+
+            final double deltaX;
+            final double deltaY;
             final double epsilon = 0.000000000001;
 
-            PointImpl<Number> to = (PointImpl<Number>)obj;
+            PointImpl<Number> to = (PointImpl<Number>) obj;
 
-            final double deltaX = ((Number) abscissa).doubleValue() - (double)to.getX();
-            final double deltaY = ((Number) ordinate).doubleValue() - (double)to.getY();
+            deltaX = ((Number) abscissa).doubleValue() - to.getX().doubleValue();
+            deltaY = ((Number) ordinate).doubleValue() - to.getY().doubleValue();
 
             return (deltaX < epsilon
                     && deltaX > -epsilon
