@@ -48,10 +48,10 @@ public class Task015Impl implements Task015 {
      * @returns - list with coordinates squire's vertexes
      */
     private List<Square> getSquareSides(Square line) {
-        int vertAx = (Integer)line.getFirst().getX();
-        int vertAy = (Integer)line.getFirst().getY();
-        int vertCx = (Integer)line.getSecond().getX();
-        int vertCy = (Integer)line.getSecond().getY();
+        int vertAx = line.getFirst().getX();
+        int vertAy = line.getFirst().getY();
+        int vertCx = line.getSecond().getX();
+        int vertCy = line.getSecond().getY();
 
         int dx = vertCx - vertAx;
         int dy = vertAy - vertCy;
@@ -63,10 +63,10 @@ public class Task015Impl implements Task015 {
         int vertBy = vertAy + d;
 
         List<Square> retList = new ArrayList<>();
-        PointFactoryImpl pointFactory = new PointFactoryImpl();
+        PointFactoryImpl<Integer> pointFactory = new PointFactoryImpl<>();
         SquareFactoryImpl squareFactory = new SquareFactoryImpl();
-        Point vertB = pointFactory.newInstance(vertBx, vertBy);
-        Point vertD = pointFactory.newInstance(vertDx, vertDy);
+        Point<Integer> vertB = pointFactory.newInstance(vertBx, vertBy);
+        Point<Integer> vertD = pointFactory.newInstance(vertDx, vertDy);
 
         // AB side
         retList.add(squareFactory.newInstance(line.getFirst(), vertB));
@@ -135,22 +135,22 @@ public class Task015Impl implements Task015 {
 
                     // check if endpoints of segment 1 is inside the second polygon
                     if (segment1.getFirst() instanceof PointImpl) {
-                        segmentVertex = (PointImpl) segment1.getFirst();
+                        segmentVertex = (PointImpl<Integer>) segment1.getFirst();
 
                         if (segmentVertex.suspectAsInner()) {
-                            setFilter.add(new PointImpl(segmentVertex.getX(),
+                            setFilter.add(new PointImpl<>(segmentVertex.getX(),
                                     segmentVertex.getY()));
-                            retList.add(new PointImpl(segmentVertex.getX().doubleValue(),
+                            retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),
                                     segmentVertex.getY().doubleValue()));
                         }
                     }
                     if (segment1.getSecond() instanceof PointImpl) {
-                        segmentVertex = (PointImpl)segment1.getSecond();
+                        segmentVertex = (PointImpl<Integer>)segment1.getSecond();
 
                         if (segmentVertex.suspectAsInner()) {
-                            setFilter.add(new PointImpl(segmentVertex.getX(),
+                            setFilter.add(new PointImpl<>(segmentVertex.getX(),
                                     segmentVertex.getY()));
-                            retList.add(new PointImpl(segmentVertex.getX().doubleValue(),
+                            retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),
                                     segmentVertex.getY().doubleValue()));
                         }
                     }
@@ -159,24 +159,24 @@ public class Task015Impl implements Task015 {
                 }
 
                 // add intersection point
-                retList.add(new PointImpl(x, y));
+                retList.add(new PointImpl<>(x, y));
 
                 // check if endpoints of segment 1 is inside the second polygon
                 if (segment2.getFirst() instanceof PointImpl) {
-                    segmentVertex = (PointImpl) segment2.getFirst();
+                    segmentVertex = (PointImpl<Integer>) segment2.getFirst();
 
                     if (segmentVertex.suspectAsInner() && !setFilter.contains(segmentVertex)) {
-                        setFilter.add(new PointImpl(segmentVertex.getX(), segmentVertex.getY()));
-                        retList.add(new PointImpl(segmentVertex.getX().doubleValue(),
+                        setFilter.add(new PointImpl<>(segmentVertex.getX(), segmentVertex.getY()));
+                        retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),
                                 segmentVertex.getY().doubleValue()));
                     }
                 }
                 if (segment2.getSecond() instanceof PointImpl) {
-                    segmentVertex = (PointImpl)segment2.getSecond();
+                    segmentVertex = (PointImpl<Integer>)segment2.getSecond();
 
                     if (segmentVertex.suspectAsInner() /*&& !setFilter.contains(segmentVertex)*/) {
-                        setFilter.add(new PointImpl(segmentVertex.getX(), segmentVertex.getY()));
-                        retList.add(new PointImpl(segmentVertex.getX().doubleValue(),
+                        setFilter.add(new PointImpl<>(segmentVertex.getX(), segmentVertex.getY()));
+                        retList.add(new PointImpl<>(segmentVertex.getX().doubleValue(),
                                 segmentVertex.getY().doubleValue()));
                     }
                 }
