@@ -8,23 +8,23 @@ public interface Square {
      * Get first point of square.
      * @return point value
      */
-    Point<Integer> getFirst();
+    Point getFirst();
 
     /**
      * Get second point of square.
      * @return point value
      */
-    Point<Integer> getSecond();
+    Point getSecond();
 
     /**
      * Set first point of square.
      * @param first point value
      */
-    void setFirst(Point<Integer> first);
+    void setFirst(Point first);
 
     /**
      * Set second point of square.
      * @param second point value
      */
-    void setSecond(Point<Integer> second);
+    void setSecond(Point second);
 }

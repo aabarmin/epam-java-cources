@@ -3,12 +3,12 @@ package com.epam.university.java.core.task015;
 /**
  * Point factory.
  */
-public interface PointFactory<T> {
+public interface PointFactory {
     /**
      * Creates new point instance.
      * @param x x coordinate
      * @param y y coordinate
      * @return point instance
      */
-    Point<T> newInstance(T x, T y);
+    Point newInstance(Number x, Number y);
 }

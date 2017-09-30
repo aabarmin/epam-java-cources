@@ -5,10 +5,10 @@ package com.epam.university.java.core.task015;
  *
  * @author Sergei Titov
  */
-public class PointImpl<T> implements Point<T> {
+public class PointImpl implements Point<Number> {
 
-    protected T abscissa;
-    protected T ordinate;
+    protected Number abscissa;
+    protected Number ordinate;
 
     private boolean isLikeInner;
 
@@ -18,7 +18,7 @@ public class PointImpl<T> implements Point<T> {
     * @param x abscissa
     * @param y ordinate
     */
-    protected PointImpl(T x, T y) {
+    protected PointImpl(Number x, Number y) {
         this.abscissa = x;
         this.ordinate = y;
     }
@@ -29,7 +29,7 @@ public class PointImpl<T> implements Point<T> {
      * @return value
      */
     @Override
-    public T getX() {
+    public Number getX() {
         return abscissa;
     }
 
@@ -40,7 +40,7 @@ public class PointImpl<T> implements Point<T> {
      */
 
     @Override
-    public T getY() {
+    public Number getY() {
         return ordinate;
     }
 
@@ -50,7 +50,7 @@ public class PointImpl<T> implements Point<T> {
      * @param x value
      */
     @Override
-    public void setX(T x) {
+    public void setX(Number x) {
     }
 
     /**
@@ -59,7 +59,7 @@ public class PointImpl<T> implements Point<T> {
      * @param y value
      */
     @Override
-    public void setY(T y) {
+    public void setY(Number y) {
     }
 
     /**
@@ -94,24 +94,18 @@ public class PointImpl<T> implements Point<T> {
             return false;
         }
 
-        if (abscissa instanceof Number
-                && obj instanceof PointImpl) {
+        final double deltaX;
+        final double deltaY;
+        final double epsilon = 0.000000000001;
 
-            final double deltaX;
-            final double deltaY;
-            final double epsilon = 0.000000000001;
+        PointImpl to = (PointImpl) obj;
 
-            PointImpl<Number> to = (PointImpl<Number>) obj;
+        deltaX = abscissa.doubleValue() - to.getX().doubleValue();
+        deltaY = ordinate.doubleValue() - to.getY().doubleValue();
 
-            deltaX = ((Number) abscissa).doubleValue() - to.getX().doubleValue();
-            deltaY = ((Number) ordinate).doubleValue() - to.getY().doubleValue();
-
-            return (deltaX < epsilon
-                    && deltaX > -epsilon
-                    && deltaY < epsilon
-                    && deltaY > -epsilon);
-        }
-
-        return super.equals(obj);
+        return (deltaX < epsilon
+                && deltaX > -epsilon
+                && deltaY < epsilon
+                && deltaY > -epsilon);
     }
 }

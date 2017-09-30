@@ -14,7 +14,7 @@ public class SquareFactoryImpl implements SquareFactory {
      * @return square instance
      */
     @Override
-    public Square newInstance(Point<Integer> first, Point<Integer> second) {
+    public Square newInstance(Point first, Point second) {
         return new SquareImpl(first, second);
     }
 }

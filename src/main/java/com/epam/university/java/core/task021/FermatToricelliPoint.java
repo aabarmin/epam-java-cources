@@ -23,7 +23,7 @@ public class FermatToricelliPoint {
     static final int LeftHandSide  = +1;
     static final int CollinearOrientation = 0;
 
-    public static PointFactoryImpl<Double> factory = new PointFactoryImpl();
+    public static PointFactoryImpl factory = new PointFactoryImpl();
 
 
     /**
@@ -160,11 +160,9 @@ public class FermatToricelliPoint {
 
         if (orin > 0) {
             return LeftHandSide;         // Orientation is to the left-hand side
-        }
-        else if (orin < 0) {
+        } else if (orin < 0) {
             return RightHandSide;        // Orientation is to the right-hand side
-        }
-        else {
+        } else {
             return CollinearOrientation; // Orientation is neutral aka collinear
         }
     }
