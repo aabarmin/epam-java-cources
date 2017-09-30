@@ -126,7 +126,7 @@ public class Task015Impl implements Task015 {
                 double x; // x-coordinate of a collision point
                 double y; // y-coordinate of a collision point
 
-                PointImpl segmentVertex; // end-point of a segment with a collision
+                PointImpl<Integer> segmentVertex; // end-point of a segment with a collision
 
                 if (s >= 0 && s <= 1 && t >= 0 && t <= 1) {
                     // Collision detected at the following coordinates

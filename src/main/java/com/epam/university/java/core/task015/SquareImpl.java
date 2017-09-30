@@ -7,8 +7,8 @@ package com.epam.university.java.core.task015;
  */
 public class SquareImpl implements Square {
 
-    protected Point point1;
-    protected Point point2;
+    protected Point<Integer> point1;
+    protected Point<Integer> point2;
 
     /**
      * Constructor from 2 points.
@@ -16,7 +16,7 @@ public class SquareImpl implements Square {
      * @param point1 A-vertex
      * @param point2 C-vertex
      */
-    public SquareImpl(Point point1, Point point2) {
+    public SquareImpl(Point<Integer> point1, Point<Integer> point2) {
         this.point1 = point1;
         this.point2 = point2;
     }
@@ -27,7 +27,7 @@ public class SquareImpl implements Square {
      * @return point value
      */
     @Override
-    public Point getFirst() {
+    public Point<Integer> getFirst() {
 
         return point1;
     }
@@ -38,7 +38,7 @@ public class SquareImpl implements Square {
      * @return point value
      */
     @Override
-    public Point getSecond() {
+    public Point<Integer> getSecond() {
         return point2;
     }
 
@@ -48,7 +48,7 @@ public class SquareImpl implements Square {
      * @param first point value
      */
     @Override
-    public void setFirst(Point first) {
+    public void setFirst(Point<Integer> first) {
     }
 
     /**
@@ -57,6 +57,6 @@ public class SquareImpl implements Square {
      * @param second point value
      */
     @Override
-    public void setSecond(Point second) {
+    public void setSecond(Point<Integer> second) {
     }
 }

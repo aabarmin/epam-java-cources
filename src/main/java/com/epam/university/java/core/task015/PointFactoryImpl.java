@@ -5,7 +5,7 @@ package com.epam.university.java.core.task015;
  *
  * @author Sergei Titov
  */
-public class PointFactoryImpl implements PointFactory {
+public class PointFactoryImpl<T extends Number> implements PointFactory<T> {
     /**
      * Creates new point instance.
      *
@@ -14,7 +14,7 @@ public class PointFactoryImpl implements PointFactory {
      * @return point instance
      */
     @Override
-    public Point newInstance(Number x, Number y) {
-        return new PointImpl(x, y);
+    public Point<T> newInstance(T x, T y) {
+        return new PointImpl<>(x, y);
     }
 }

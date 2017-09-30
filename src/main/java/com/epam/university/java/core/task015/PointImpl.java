@@ -5,10 +5,10 @@ package com.epam.university.java.core.task015;
  *
  * @author Sergei Titov
  */
-public class PointImpl implements Point<Number> {
+public class PointImpl<T extends Number> implements Point<T> {
 
-    protected Number abscissa;
-    protected Number ordinate;
+    protected T abscissa;
+    protected T ordinate;
 
     private boolean isLikeInner;
 
@@ -18,7 +18,7 @@ public class PointImpl implements Point<Number> {
     * @param x abscissa
     * @param y ordinate
     */
-    protected PointImpl(Number x, Number y) {
+    protected PointImpl(T x, T y) {
         this.abscissa = x;
         this.ordinate = y;
     }
@@ -29,7 +29,7 @@ public class PointImpl implements Point<Number> {
      * @return value
      */
     @Override
-    public Number getX() {
+    public T getX() {
         return abscissa;
     }
 
@@ -40,7 +40,7 @@ public class PointImpl implements Point<Number> {
      */
 
     @Override
-    public Number getY() {
+    public T getY() {
         return ordinate;
     }
 
@@ -50,7 +50,7 @@ public class PointImpl implements Point<Number> {
      * @param x value
      */
     @Override
-    public void setX(Number x) {
+    public void setX(T x) {
     }
 
     /**
@@ -59,7 +59,7 @@ public class PointImpl implements Point<Number> {
      * @param y value
      */
     @Override
-    public void setY(Number y) {
+    public void setY(T y) {
     }
 
     /**
