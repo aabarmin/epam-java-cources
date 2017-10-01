@@ -9,6 +9,16 @@ public class PointImpl implements Point {
     private double x;
     private double y;
 
+    public PointImpl() {
+        this.x = 0;
+        this.y = 0;
+    }
+
+    public PointImpl(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     @Override
     public double getX() {
         return x;
@@ -42,20 +52,16 @@ public class PointImpl implements Point {
             return false;
         }
 
-
         PointImpl point = (PointImpl) o;
 
-        if (x != point.getX()) {
+        if (Math.abs(x - point.getX()) > 0.000001) {
             return false;
         }
-
-        if (y != point.getY()) {
+        if (Math.abs(y - point.getY()) > 0.000001) {
             return false;
         }
         return true;
 
-        //return Double.compare(point.x, x) == 0
-        //        && Double.compare(point.y, y) == 0;
     }
 
     @Override
@@ -64,6 +70,10 @@ public class PointImpl implements Point {
 
         result = (int) (x + y);
         return result;
-        // return Objects.hash(x,y);
+    }
+
+    @Override
+    public String toString() {
+        return "x =" + x + ", y=" + y;
     }
 }
