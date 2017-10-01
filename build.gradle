@@ -16,6 +16,8 @@ checkstyle {
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
+compileJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+compileTestJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 
 tasks.withType(Checkstyle) {
     ignoreFailures = true

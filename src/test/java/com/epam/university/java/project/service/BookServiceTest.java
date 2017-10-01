@@ -90,6 +90,7 @@ public class BookServiceTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void createNewBookInDraftStatus() throws Exception {
         final String contextPath = getClass().getResource("/project/library001.xml").getFile();
         applicationContext.loadBeanDefinitions(new XmlResource(contextPath));
@@ -115,7 +116,10 @@ public class BookServiceTest {
                 book.getState()
         );
         // issue book
-        final Book issuedBook = bookService.issue(acceptedBook, LocalDate.now().plus(3, ChronoUnit.DAYS));
+        final Book issuedBook = bookService.issue(
+                acceptedBook,
+                LocalDate.now().plus(3, ChronoUnit.DAYS)
+        );
         assertEquals("Incorrect book status",
                 BookStatus.ISSUED,
                 book.getState()
