@@ -22,4 +22,15 @@ public interface StateMachineManager {
      */
     <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity,
                                                  StateMachineDefinition<S, E> definition);
+
+    /**
+     * Handle event for stateful entity with event handler.
+     * @param entity entity to update
+     * @param event event to handle
+     * @param <S> state type
+     * @param <E> event type
+     * @return updated entity
+     */
+    <S, E> StatefulEntity<S, E> handleEvent(StatefulEntity<S, E> entity,
+                                            E event);
 }
