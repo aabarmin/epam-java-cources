@@ -48,4 +48,29 @@ public class Task024Test {
                 instance.getWordsCount("twoWordsAndOtherOne").toArray()
         );
     }
+
+    @Test
+    public void startsWithUppercase() throws Exception {
+        assertArrayEquals("Invalid result",
+            new String[]{"two", "words"},
+            instance.getWordsCount("TwoWords").toArray()
+        );
+    }
+
+    @Test
+    public void cyrillicWords() throws Exception {
+        assertArrayEquals("Invalid result",
+            new String[]{"привет", "мир"},
+            instance.getWordsCount("приветМир").toArray()
+        );
+    }
+
+    @Test
+    public void unicodeWords() throws Exception {
+        assertArrayEquals("Invalid result",
+            new String[] {"testen", "in", "deutsch", "über", "österreich"},
+            instance.getWordsCount("testenInDeutschÜberÖsterreich").toArray()
+        );
+    }
+
 }
