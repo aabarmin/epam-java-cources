@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Collections;
 
 /**
  * Circle and squares.
@@ -33,7 +34,7 @@ public class Task016Impl implements Task016 {
         }
 
         if (radius == 0) {
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
 
         // For visualization mathway.com/graph
