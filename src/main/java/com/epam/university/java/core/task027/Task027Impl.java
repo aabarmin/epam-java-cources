@@ -46,7 +46,11 @@ public class Task027Impl implements Task027{
             pattern = Pattern.compile("(^" + String.valueOf(value + 1) + ")(\\d*)");
             matcher = pattern.matcher(nextString);
             result.clear();
+            if (value == 0) {
+                return result;
+            }
             result.add(value);
+
 
             while (matcher.matches()) {
                 pattern = Pattern.compile("(^" + String.valueOf(value + 1) + ")(\\d*)");
@@ -64,7 +68,7 @@ public class Task027Impl implements Task027{
             }
         }
 
-        return result;
+        return new ArrayList<>();
     }
 
 }
