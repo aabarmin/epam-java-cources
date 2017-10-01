@@ -1,13 +1,19 @@
 package com.epam.university.java.project.service;
 
+import com.epam.university.java.core.helper.ReflectionUtils;
 import com.epam.university.java.core.helper.TestHelper;
 import com.epam.university.java.project.core.cdi.context.ApplicationContext;
 import com.epam.university.java.project.core.cdi.context.ApplicationContextFactory;
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
+import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
+import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
+import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.domain.Book;
 import com.epam.university.java.project.domain.BookStatus;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -19,6 +25,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Book service test.
@@ -84,6 +95,11 @@ public class BookServiceTest {
         applicationContext.loadBeanDefinitions(new XmlResource(contextPath));
         // create new book instance
         final BookService bookService = applicationContext.getBean(BookService.class);
+        final StateMachineManager stateMachineManager = Mockito.spy(
+                applicationContext.getBean(StateMachineManager.class)
+        );
+        ReflectionUtils.setField(bookService, "stateMachineManager", stateMachineManager);
+        //
         final Book book = bookService.createBook();
         // check book exists
         assertNotNull("Book was not created", book);
@@ -99,7 +115,10 @@ public class BookServiceTest {
                 book.getState()
         );
         // issue book
-        final Book issuedBook = bookService.issue(acceptedBook, LocalDate.now().plus(3, ChronoUnit.DAYS));
+        final Book issuedBook = bookService.issue(
+                acceptedBook,
+                LocalDate.now().plus(3, ChronoUnit.DAYS)
+        );
         assertEquals("Incorrect book status",
                 BookStatus.ISSUED,
                 book.getState()
@@ -109,6 +128,16 @@ public class BookServiceTest {
         assertEquals("Incorrect book status",
                 BookStatus.ACCOUNTED,
                 book.getState()
+        );
+        // invocation checks
+        verify(stateMachineManager, times(1)).loadDefinition(any(Resource.class));
+        verify(stateMachineManager, atLeast(4)).handleEvent(
+                any(StatefulEntity.class),
+                anyObject()
+        );
+        verify(stateMachineManager, times(1)).initStateMachine(
+                any(StatefulEntity.class),
+                any(StateMachineDefinition.class)
         );
     }
 }
