@@ -9,12 +9,16 @@ import java.util.LinkedList;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
+        if (collection.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
         // k - счетчик ненулевых элементов массива
         int k = collection.length;
         int i = 0;
         int countOfCircle = 1; // какой круг по счету
         int indicatorExistNotNullElementAtTheEnd = 0;
-        while (k != 1) {
+        while (k > 1) {
             while (i < collection.length) {
                 collection[i] = null;
                 i = i + 2 * countOfCircle;
@@ -56,6 +60,7 @@ public class Task011Impl implements Task011 {
                     k++;
                 }
             }
+            countOfCircle++;
         }
 
         // нахожу единственный ненклевой элемент в массиве
@@ -71,6 +76,10 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
+        if (collection.size() == 0) {
+            throw new IllegalArgumentException();
+        }
+
         int i = 0;
         while (collection.size() != 1) {
 
@@ -97,6 +106,10 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
+        if (collection.size() == 0) {
+            throw new IllegalArgumentException();
+        }
+
         int i = 0;
         while (collection.size() != 1) {
 

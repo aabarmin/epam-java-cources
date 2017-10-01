@@ -12,31 +12,18 @@ import java.util.Collection;
 public class Task021Impl implements Task021 {
     @Override
     public Point calculate(Collection<Point> minePositions) {
-        //double[] pointX = new double[3];
-        //double[] pointY = new double[3];
         Point[] points = new Point[3];
         int i = 0;
 
-        System.out.println(minePositions.toString());
-
-        for (Point p : minePositions ) {
+        for (Point p : minePositions) {
             System.out.println(p.toString());
-            //pointX[i] = p.getX();
-            //pointY[i] = p.getY();
-            //points[i].setX(p.getX());
-            //points[i].setY(p.getY());
             points[i] = p;
             i++;
         }
 
         double cos120 = 120;
 
-        System.out.println(points[0].toString());
-        System.out.println(points[1].toString());
-        System.out.println(points[2].toString());
-
         int indicator = -1;
-
         if (angle(points[0], points[1], points[2]) >= cos120) {
             indicator = 1;
         }
@@ -49,20 +36,22 @@ public class Task021Impl implements Task021 {
 
         if (indicator > -1) {
             for (Point p : minePositions) {
-                System.out.println(p.toString());
+                //System.out.println(p.toString());
                 if (points[indicator].getX() == p.getX()
                         && points[indicator].getY() == p.getY()) {
-                    return p;
+                    Point point = new PointImpl();
+                    point.setX(p.getX());
+                    point.setY(p.getY());
+                    System.out.println(point.toString());
+                    return point;
                 }
             }
         }
 
-
-
-        return null;
+        return new PointImpl();
     }
+    // вычисление угла ABC через вектора.
 
-    //private double angle(double Ax, double Ay, double Bx, double By, double Cx, double Cy) {
     private double angle(Point a, Point b, Point c) {
         double abX = a.getX() - b.getX();
         double abY = a.getY() - b.getY();

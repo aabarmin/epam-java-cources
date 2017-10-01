@@ -1,11 +1,5 @@
 package com.epam.university.java.core.task014;
 
-import com.epam.university.java.core.task018.BasicAnnotation;
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
-import jdk.nashorn.internal.objects.annotations.Constructor;
-
-import java.beans.ConstructorProperties;
-import java.lang.annotation.Target;
 
 /**
  * Created by Вера on 19.09.2017.
@@ -15,17 +9,19 @@ public class VampireNumberImpl implements VampireNumber {
     private int first;
     private int second;
 
-
+    /**
+     * This is constructor.
+     * @param multilplication is value of constructor
+     */
     public VampireNumberImpl(int multilplication) {
         this.multilplication = multilplication;
     }
 
     /**
      * This is constructor.
-     * @param multilplication
-     * @param first
-     * @param second
-     * @return VampireNumberImpl
+     * @param multilplication is value of constructor
+     * @param first is value of constructor
+     * @param second is value of constructor
      */
     public VampireNumberImpl(int multilplication, int first, int second) {
         this.multilplication = multilplication;

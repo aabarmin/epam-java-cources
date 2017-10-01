@@ -18,6 +18,6 @@ public class Task018Impl implements Task018 {
 
         return annotationToFind.getClass().equals(toCheck);
         //return toCheck.getClass() == annotationToFind.getClass();
-       // return false;
+        // return false;
     }
 }
