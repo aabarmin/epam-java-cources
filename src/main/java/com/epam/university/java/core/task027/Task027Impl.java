@@ -44,7 +44,8 @@ public class Task027Impl implements Task027 {
                 final String secondString = String.valueOf(second);
                 final String potentialSecondString =
                     sourceString.substring(index, index + secondString.length());
-                if (!secondString.equals(potentialSecondString)) {
+                if (!secondString.equals(potentialSecondString)
+                    || tempNumString.startsWith("0")) {
                     break;
                 }
                 res.add(first);
