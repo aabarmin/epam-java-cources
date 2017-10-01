@@ -10,22 +10,21 @@ import java.util.regex.Pattern;
  */
 public class Task023Impl implements Task023 {
 
+    final static String regExp =
+            "(\\d\\d\\d)[ )-]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d]$";
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String extract(String phoneString) throws IllegalArgumentException {
 
-        final Pattern pattern = Pattern.compile(
-                "(\\d\\d\\d)[ )-]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d]$"
-        );
-
+        final Pattern pattern = Pattern.compile(regExp);
         Matcher matcher = pattern.matcher(phoneString);
 
         if (matcher.find()) {
             return matcher.group(1);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException();
         }
     }
