@@ -2,6 +2,7 @@ package com.epam.university.java.project.service;
 
 import com.epam.university.java.project.domain.Book;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Collection;
  */
 public interface BookService {
     /**
-     * Create new book instance.
+     * Create new draft book instance.
      * @return new book instance
      */
     Book createBook();
@@ -39,4 +40,27 @@ public interface BookService {
      * @return saved book instance
      */
     Book save(Book book);
+
+    /**
+     * Accept book into the account with the following <code>number</code>.
+     * @param book book to accept
+     * @param number book number
+     * @return accounted book
+     */
+    Book accept(Book book, String number);
+
+    /**
+     * Issue book and set return date.
+     * @param book book to issue
+     * @param returnDate return date
+     * @return issued book
+     */
+    Book issue(Book book, LocalDate returnDate);
+
+    /**
+     * Return book from issue.
+     * @param book book to return
+     * @return accounted book
+     */
+    Book returnFromIssue(Book book);
 }
