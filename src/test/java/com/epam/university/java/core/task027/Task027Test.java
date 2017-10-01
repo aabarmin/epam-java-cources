@@ -77,4 +77,13 @@ public class Task027Test {
         );
     }
 
+    @Test
+    public void extract8() throws Exception {
+        assertArrayEquals(
+            "Invalid extraction",
+            new Integer[]{},
+            instance.extract("7").toArray(new Integer[0])
+        );
+    }
+
 }
