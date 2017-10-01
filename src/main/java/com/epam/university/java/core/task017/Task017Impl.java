@@ -36,6 +36,6 @@ public class Task017Impl implements Task017 {
      */
     @Override
     public String formatDates(Object... args) {
-        return String.format("%tY.%<te.%<tm", args[0]);
+        return String.format("%tY.%<td.%<tm", args[0]);
     }
 }

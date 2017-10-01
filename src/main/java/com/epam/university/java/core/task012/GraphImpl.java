@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Undirected graph.
@@ -104,7 +105,7 @@ public class GraphImpl implements Graph {
     public Collection<Integer> getAdjacent(int from) {
 
         if (from == 0 || from > vertexesCount) {
-            return new HashSet<Integer>();
+            return Collections.emptySet();
         }
 
         return vertexesEdges.get(from);
