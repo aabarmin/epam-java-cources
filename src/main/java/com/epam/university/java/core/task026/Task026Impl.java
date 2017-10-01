@@ -2,6 +2,7 @@ package com.epam.university.java.core.task026;
 
 /**
  * Created by Александр on 30.09.2017.
+ * CCaesar cipher.
  */
 public class Task026Impl implements Task026 {
     /**
