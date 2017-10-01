@@ -99,7 +99,10 @@ public class BookServiceTest {
                 book.getState()
         );
         // issue book
-        final Book issuedBook = bookService.issue(acceptedBook, LocalDate.now().plus(3, ChronoUnit.DAYS));
+        final Book issuedBook = bookService.issue(
+            acceptedBook,
+            LocalDate.now().plus(3, ChronoUnit.DAYS)
+        );
         assertEquals("Incorrect book status",
                 BookStatus.ISSUED,
                 book.getState()
