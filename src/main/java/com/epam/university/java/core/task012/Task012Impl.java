@@ -29,6 +29,11 @@ public class Task012Impl implements Task012 {
      */
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
+        ignoreSet.clear();
+        return exists(graph, from, to);
+    }
+
+    private boolean exists(Graph graph, int from, int to) {
 
         if (to == from) {
             return true;
@@ -40,9 +45,7 @@ public class Task012Impl implements Task012 {
             if (ignoreSet.contains(adj)) {
                 continue;
             }
-
-            if (pathExists(graph, adj, to)) {
-                ignoreSet.clear();
+            if (exists(graph, adj, to)) {
                 return true;
             }
         }

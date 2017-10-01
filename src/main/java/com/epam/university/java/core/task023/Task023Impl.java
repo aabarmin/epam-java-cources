@@ -10,8 +10,7 @@ import java.util.regex.Pattern;
  */
 public class Task023Impl implements Task023 {
 
-    public static final String regExp =
-            "(\\d\\d\\d)[ )-]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d][ -]*[\\d]$";
+    private static final String regExp = "(\\d{3})[ )-]*([ -]*[\\d]){7}$";
 
     /**
      * {@inheritDoc}
