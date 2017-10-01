@@ -2,6 +2,7 @@ package com.epam.university.java.project.core.cdi.bean;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
@@ -9,17 +10,16 @@ import java.util.Collection;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "bean")
 public class BeanDefinitionImpl implements BeanDefinition {
-    @XmlElement
+    @XmlAttribute
     private String id;
-    @XmlElement
+    @XmlAttribute(name = "class")
     private String className;
-    @XmlElement(type=BeanPropertyDefinitionImpl.class)
-    private Collection<BeanPropertyDefinition> properties;
-    @XmlElement
+    @XmlElement(type = BeanPropertyDefinitionImpl.class)
+    private Collection<BeanPropertyDefinition> property;
+    @XmlAttribute
     private String scope;
-    @XmlElement
+    @XmlAttribute
     private String postConstruct;
-
 
     @Override
     public String getId() {
@@ -44,12 +44,12 @@ public class BeanDefinitionImpl implements BeanDefinition {
 
     @Override
     public Collection<BeanPropertyDefinition> getProperties() {
-        return properties;
+        return property;
     }
 
     @Override
     public void setProperties(Collection<BeanPropertyDefinition> properties) {
-        this.properties = properties;
+        this.property = properties;
     }
 
     @Override

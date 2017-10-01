@@ -8,19 +8,11 @@ public class BookImpl implements Book {
     private String title;
     private Collection<String> authors;
 
-    public BookImpl(int id, String title, Collection<String> authors) {
-        this.id = id;
-        this.title = title;
-        this.authors = authors;
-    }
-
     @Override
     public String toString() {
-        return "BookImpl{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", authors=" + authors +
-                '}';
+        return "BookImpl{" + "id="
+                + id + ", title='" + title + '\''
+                + ", authors=" + authors + '}';
     }
 
     @Override

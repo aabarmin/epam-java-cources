@@ -2,19 +2,19 @@ package com.epam.university.java.project.core.cdi.structure;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "entery")
-public class MapEnteryDefinitionImpl implements MapDefinition.MapEntryDefinition {
-
+public class MapEntryDefinitionImpl implements MapDefinition.MapEntryDefinition {
     @XmlElement
     private String key;
     @XmlElement
     private String value;
     @XmlElement
     private String ref;
+
 
     @Override
     public String getKey() {

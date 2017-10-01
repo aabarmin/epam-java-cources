@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+@SuppressWarnings("unchecked")
 public class Task018Impl implements Task018 {
     @Override
     public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {

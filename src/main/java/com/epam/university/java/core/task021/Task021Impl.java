@@ -75,8 +75,8 @@ public class Task021Impl implements Task021 {
                 list.get(2)
         );
 
-        validator.vaildate(circleCrossPoints1);
-        validator.vaildate(circleCrossPoints2);
+        validator.vaildate((Object[]) circleCrossPoints1);
+        validator.vaildate((Object[]) circleCrossPoints2);
         for (Point point1 : circleCrossPoints1) {
             for (Point point2 : circleCrossPoints2) {
                 if (point1.equals(point2)) {
