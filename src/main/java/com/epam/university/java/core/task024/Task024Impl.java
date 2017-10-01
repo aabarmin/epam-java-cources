@@ -25,13 +25,13 @@ public class Task024Impl implements Task024 {
      */
     @Override
     public Collection<String> getWordsCount(String source) {
-        String encodedSource = encode(source, "cp1251");
+        //String encodedSource = encode(source, "cp1251");
 
         String regex = "(?=\\p{Lu})";
-        if (encodedSource.isEmpty()) {
+        if (source.isEmpty()) {
             return Collections.emptyList();
         } else {
-            return Arrays.asList(encodedSource.split(regex)).stream()
+            return Arrays.asList(source.split(regex)).stream()
                     .map(s -> s.toLowerCase())
                     .collect(Collectors.toList());
         }
