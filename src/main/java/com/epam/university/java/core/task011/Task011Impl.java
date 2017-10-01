@@ -10,11 +10,16 @@ import java.util.LinkedList;
  * @author Sergei Titov
  */
 public class Task011Impl implements Task011 {
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getLastName(String[] collection) {
+    public String getLastName(String[] collection) throws IllegalArgumentException {
+
+        if (null == collection || collection.length == 0) {
+            throw new IllegalArgumentException();
+        }
 
         // not fair :)
         //return getLastName(new ArrayList<>(Arrays.asList(collection)));
@@ -41,18 +46,18 @@ public class Task011Impl implements Task011 {
      * {@inheritDoc}
      */
     @Override
-    public String getLastName(ArrayList<String> collection) {
+    public String getLastName(ArrayList<String> collection) throws IllegalArgumentException {
 
-        return getLastName((AbstractList)collection);
+        return getLastName((AbstractList<String>)collection);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getLastName(LinkedList<String> collection) {
+    public String getLastName(LinkedList<String> collection) throws IllegalArgumentException {
 
-        return getLastName((AbstractList)collection);
+        return getLastName((AbstractList<String>)collection);
     }
 
 
@@ -63,10 +68,19 @@ public class Task011Impl implements Task011 {
      *
      * @return last man standing name
      */
-    public String getLastName(AbstractList<String> collection) {
+    public String getLastName(AbstractList<String> collection) throws IllegalArgumentException {
+
+        if (null == collection || collection.size() == 0) {
+            throw new IllegalArgumentException();
+        }
 
         for (int i = 0; collection.size() > 1; i++) {
             collection.remove(i % collection.size());
+
+            // this correction is needed for even-sized collections
+            if (collection.size() == i - 1) {
+                i++;
+            }
         }
 
         return collection.get(0);

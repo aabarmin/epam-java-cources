@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 /**
  * Point in 2-dimensional area.
  */
-public interface Point<T>  {
+public interface Point<T extends Number>  {
     /**
      * Get x value of point.
      * @return value

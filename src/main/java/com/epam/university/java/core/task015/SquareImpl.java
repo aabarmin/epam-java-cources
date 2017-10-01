@@ -28,6 +28,7 @@ public class SquareImpl implements Square {
      */
     @Override
     public Point<Integer> getFirst() {
+
         return point1;
     }
 

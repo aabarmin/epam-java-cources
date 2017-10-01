@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 /**
  * Point factory.
  */
-public interface PointFactory<T> {
+public interface PointFactory<T extends Number> {
     /**
      * Creates new point instance.
      * @param x x coordinate

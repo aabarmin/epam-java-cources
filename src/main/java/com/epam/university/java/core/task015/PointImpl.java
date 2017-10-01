@@ -5,7 +5,7 @@ package com.epam.university.java.core.task015;
  *
  * @author Sergei Titov
  */
-public class PointImpl<T> implements Point<T> {
+public class PointImpl<T extends Number> implements Point<T> {
 
     protected T abscissa;
     protected T ordinate;
@@ -67,11 +67,45 @@ public class PointImpl<T> implements Point<T> {
      *
      * @returns true if it was already suspected before (twice is enough)
      */
-    protected  boolean suspectAsInner() {
-        if (false == isLikeInner) {
+    protected boolean suspectAsInner() {
+        if (!isLikeInner) {
             isLikeInner = true;
             return false;
         }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        // self check
+        if (this == obj) {
+            return true;
+        }
+        // null check
+        if (obj == null) {
+            return false;
+        }
+        // type check and cast
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final double deltaX;
+        final double deltaY;
+        final double epsilon = 0.000000000001;
+
+        PointImpl to = (PointImpl) obj;
+
+        deltaX = abscissa.doubleValue() - to.getX().doubleValue();
+        deltaY = ordinate.doubleValue() - to.getY().doubleValue();
+
+        return (deltaX < epsilon
+                && deltaX > -epsilon
+                && deltaY < epsilon
+                && deltaY > -epsilon);
     }
 }
