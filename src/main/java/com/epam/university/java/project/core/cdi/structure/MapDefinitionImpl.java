@@ -3,65 +3,36 @@ package com.epam.university.java.project.core.cdi.structure;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement
+
 public class MapDefinitionImpl implements MapDefinition {
 
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlRootElement
-    class mapEntery implements MapDefinition.MapEntryDefinition {
+    //    @XmlJavaTypeAdapter(MapAdapter.class)
+    //    private Map<String, MapEntryDefinition> map = new HashMap<>();
 
-        @XmlElement
-        private String key;
-        @XmlElement
-        private String value;
-        @XmlElement
-        private String ref;
-
-        @Override
-        public String getKey() {
-            return key;
-        }
-
-        @Override
-        public void setKey(String key) {
-            this.key = key;
-
-        }
-
-        @Override
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public void setValue(String value) {
-            this.value = value;
-
-        }
-
-        @Override
-        public String getRef() {
-            return ref;
-        }
-
-        @Override
-        public void setRef(String reference) {
-            this.ref = reference;
-
-        }
-    }
+    @XmlElement(type = MapEntryDefinitionImpl.class,
+            name = "entry")
+    private List<MapEntryDefinition> list = new ArrayList<>();
 
     @Override
+    //    public Collection<MapEntryDefinition> getValues() {
+    //        return map.values();
+    //    }
+
     public Collection<MapEntryDefinition> getValues() {
-        return null;
+        return list;
     }
 
     @Override
     public void setValues(Collection<MapEntryDefinition> values) {
-
+        //        values.forEach(s -> map.put(s.getKey(), s));
+        list.addAll(values);
     }
 }

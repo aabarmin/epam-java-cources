@@ -10,9 +10,14 @@ import java.util.List;
 public class BookDaoImpl implements BookDao {
     private HashMap<Integer, Book> books;
 
+    BookDaoImpl() {
+        this.books = new HashMap<>();
+    }
+
     @Override
     public Book createBook() {
-        Book book = new BookImpl(books.size(), null, null);
+        Book book = new BookImpl();
+        book.setId(books.size() + 1);
         books.put(book.getId(), book);
         return book;
     }

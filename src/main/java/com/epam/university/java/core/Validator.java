@@ -1,5 +1,7 @@
 package com.epam.university.java.core;
 
+import java.util.Collection;
+
 /**
  * Validator for checking null reference.
  */
@@ -39,6 +41,20 @@ public class Validator {
         }
     }
 
+    /**
+     * Checking connection for Empty.
+     * <p>
+     * Throwing IllegalArgumentException if finds null.
+     * </p>
+     *
+     * @param object collection
+     */
+    public void vaildateNotEmpty(Collection object) {
+        if (object.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
+    }
 
     /**
      * Checking varargs for null references.

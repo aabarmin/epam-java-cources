@@ -19,17 +19,20 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(ArrayList<String> collection) {
         validator.vaildate(collection);
+        validator.vaildateNotEmpty(collection);
         return getLastNameImpl(collection);
     }
 
     @Override
     public String getLastName(LinkedList<String> collection) {
         validator.vaildate(collection);
+        validator.vaildateNotEmpty(collection);
         return getLastNameImpl(collection);
     }
 
     private String getLastNameImpl(List<String> list) {
-
+        validator.vaildate(list);
+        validator.vaildateNotEmpty(list);
         List<String> listForChages = new LinkedList<>(list);
         int i = 0;
         while (listForChages.size() != 1) {

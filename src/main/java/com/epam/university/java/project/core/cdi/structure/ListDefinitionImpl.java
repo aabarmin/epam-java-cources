@@ -2,37 +2,28 @@ package com.epam.university.java.project.core.cdi.structure;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement
 public class ListDefinitionImpl implements ListDefinition {
-
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlRootElement
-    class ListElement implements ListDefinition.ListItemDefinition {
-        @XmlElement
-        private String value;
-
-        @Override
-        public String getValue() {
-            return null;
-        }
-
-        @Override
-        public void setValue(String value) {
-
-        }
-    }
+    @XmlElement(type = ListItemDefinitionImpl.class,
+            name = "value")
+    private List<ListItemDefinition> listElements = new ArrayList<>();
 
     @Override
     public Collection<ListItemDefinition> getItems() {
-        return null;
+        return listElements;
     }
 
     @Override
     public void setItems(Collection<ListItemDefinition> items) {
-
+        listElements.addAll(items);
     }
 }

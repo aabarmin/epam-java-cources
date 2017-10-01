@@ -5,6 +5,6 @@
     </bean>
 
     <bean id="bookDao" class="com.epam.university.java.project.service.BookDaoXmlImpl">
-
     </bean>
 </beans>
+
