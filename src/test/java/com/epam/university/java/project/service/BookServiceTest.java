@@ -5,12 +5,16 @@ import com.epam.university.java.project.core.cdi.context.ApplicationContext;
 import com.epam.university.java.project.core.cdi.context.ApplicationContextFactory;
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 import com.epam.university.java.project.domain.Book;
+import com.epam.university.java.project.domain.BookStatus;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -72,5 +76,39 @@ public class BookServiceTest {
         bookService.remove(bookById);
         assertNull("Book not removed", bookService.getBook(bookById.getId()));
         assertFalse("Book not remove", bookService.getBooks().contains(bookById));
+    }
+
+    @Test
+    public void createNewBookInDraftStatus() throws Exception {
+        final String contextPath = getClass().getResource("/project/library001.xml").getFile();
+        applicationContext.loadBeanDefinitions(new XmlResource(contextPath));
+        // create new book instance
+        final BookService bookService = applicationContext.getBean(BookService.class);
+        final Book book = bookService.createBook();
+        // check book exists
+        assertNotNull("Book was not created", book);
+        // check book status
+        assertEquals("Incorrect book status",
+                BookStatus.DRAFT,
+                book.getState()
+        );
+        // take book into the account
+        final Book acceptedBook = bookService.accept(book, "12345");
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                book.getState()
+        );
+        // issue book
+        final Book issuedBook = bookService.issue(acceptedBook, LocalDate.now().plus(3, ChronoUnit.DAYS));
+        assertEquals("Incorrect book status",
+                BookStatus.ISSUED,
+                book.getState()
+        );
+        // return book
+        final Book returnedBook = bookService.returnFromIssue(issuedBook);
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                book.getState()
+        );
     }
 }
