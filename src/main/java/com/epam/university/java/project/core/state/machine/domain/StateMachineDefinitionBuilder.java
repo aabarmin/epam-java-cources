@@ -28,7 +28,7 @@ public interface StateMachineDefinitionBuilder<STATE, EVENT> {
     );
 
     /**
-     * Add state to definition;
+     * Add state to definition.
      * @param from from state
      * @param to to state
      * @param on event
