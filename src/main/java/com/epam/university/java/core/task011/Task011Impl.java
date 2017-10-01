@@ -3,6 +3,7 @@ package com.epam.university.java.core.task011;
 import java.util.LinkedList;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task011Impl implements Task011 {
     @Override
@@ -18,7 +19,7 @@ public class Task011Impl implements Task011 {
             throw new IllegalArgumentException();
         }
 
-        ArrayList<String> names = new ArrayList<>(collection);
+        List<String> names = new ArrayList<>(collection);
         int index = 0;
         while (names.size() > 1) {
             names.remove(index);
