@@ -3,6 +3,7 @@ package com.epam.university.java.project.core.cdi.context;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.JAXBBeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.SaxBeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
@@ -13,7 +14,7 @@ import java.util.Collection;
  */
 public class BasicApplicationContext implements ApplicationContext {
     BeanDefinitionRegistry registry;
-    BeanDefinitionReader saxReader = new SaxBeanDefinitionReader(registry);
+    BeanDefinitionReader reader = new JAXBBeanDefinitionReader(registry);
 
 
     public BasicApplicationContext(){
