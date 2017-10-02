@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -19,9 +20,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 
 
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListDefinitionImpl implements ListDefinition {
 
+    @XmlElement(type = ListItemDefinitionImpl.class, name = "value")
     Collection<ListItemDefinition> listItemDefinitions;
 
     @Override
@@ -29,14 +31,13 @@ public class ListDefinitionImpl implements ListDefinition {
         return listItemDefinitions;
     }
 
-    @XmlElement(type = ListItemDefinitionImpl.class)
     @Override
     public void setItems(Collection<ListItemDefinition> items) {
         this.listItemDefinitions = items;
     }
 
     public static class ListItemDefinitionImpl implements ListItemDefinition{
-
+        @XmlValue
         private String value;
 
         @Override
