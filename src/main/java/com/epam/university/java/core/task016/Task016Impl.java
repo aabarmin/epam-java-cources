@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task016;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Александр on 25.09.2017.
@@ -23,6 +25,22 @@ public class Task016Impl implements Task016 {
      */
     @Override
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
-        return null;
+        if (radius < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        //to square scale
+        radius = radius * 2;
+
+        Set<Coordinate> result = new HashSet<>();
+        for (int i = -radius; i <= radius; i++) {
+            for (int j = -radius; j <= radius; j++) {
+                if (((Math.pow(i, 2) + Math.pow(j, 2)) <= Math.pow(radius, 2))
+                    && (i != 0) && (j != 0)) {
+                    result.add(new CoordinateImpl(i, j));
+                }
+            }
+        }
+        return result;
     }
 }

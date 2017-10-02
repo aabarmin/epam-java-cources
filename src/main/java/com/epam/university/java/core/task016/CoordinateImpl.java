@@ -4,8 +4,8 @@ package com.epam.university.java.core.task016;
  * Created by Александр on 25.09.2017.
  */
 public class CoordinateImpl implements Coordinate {
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     CoordinateImpl(int x, int y) {
         this.x = x;
@@ -50,5 +50,29 @@ public class CoordinateImpl implements Coordinate {
     @Override
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CoordinateImpl that = (CoordinateImpl) o;
+
+        if (x != that.x) {
+            return false;
+        }
+        return y == that.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 }
