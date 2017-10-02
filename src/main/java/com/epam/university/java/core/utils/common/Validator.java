@@ -1,4 +1,4 @@
-package com.epam.university.java.core.utils;
+package com.epam.university.java.core.utils.common;
 
 /**
  * Validation utility.
@@ -199,7 +199,8 @@ public class Validator {
                                           String messageIfViolatesLowerBorder,
                                           String messageIfViolatesUpperBorder) {
         if (value < lowerBorder) {
-            throw new IllegalArgumentException(messageIfViolatesLowerBorder);
+            throw new IllegalArgumentException(value + " - " +
+                    messageIfViolatesLowerBorder + " - " + lowerBorder);
         }
         if (value > upperBorder) {
             throw new IllegalArgumentException(messageIfViolatesUpperBorder);

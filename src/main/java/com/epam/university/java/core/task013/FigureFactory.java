@@ -5,9 +5,9 @@ package com.epam.university.java.core.task013;
  */
 public interface FigureFactory {
     /**
-     * Create figure with designated amount of vertexes.
+     * Create figure with designated amount of vertices.
      *
-     * @param vertexCount amount of vertexes
+     * @param vertexCount amount of vertices
      * @return figure instance
      */
     Figure newInstance(int vertexCount);

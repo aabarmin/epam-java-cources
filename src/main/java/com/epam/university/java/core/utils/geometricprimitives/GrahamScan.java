@@ -3,7 +3,12 @@ package com.epam.university.java.core.utils.geometricprimitives;
 import java.util.Arrays;
 import java.util.Stack;
 
+/**
+ * Class implements the method (Graham Scan) of finding the convex hull of a
+ * finite set of points in the plane
+ */
 public class GrahamScan {
+    private Stack<Point2D> hull = new Stack<Point2D>();
 
     /**
      * Computes the convex hull of the specified array of points.
@@ -32,14 +37,14 @@ public class GrahamScan {
             a[i] = points[i];
         }
 
-        // preprocess so that a[0] has lowest y-coordinate; break ties by
-        // x-coordinate
-        // a[0] is an extreme point of the convex hull
-        // (alternatively, could do easily in linear time)
+        /* preprocess so that a[0] has lowest y-coordinate; break ties by
+         x-coordinate
+         a[0] is an extreme point of the convex hull
+         (alternatively, could do easily in linear time)*/
         Arrays.sort(a);
 
-        // sort by polar angle with respect to base point a[0],
-        // breaking ties by distance to a[0]
+        /*sort by polar angle with respect to base point a[0],
+         breaking ties by distance to a[0]*/
         Arrays.sort(a, 1, n, a[0].polarOrder());
         hull.push(a[0]);       // a[0] is first extreme point
 
@@ -74,7 +79,6 @@ public class GrahamScan {
         }
     }
 
-    private Stack<Point2D> hull = new Stack<Point2D>();
 
     public Stack<Point2D> getHull() {
         return hull;

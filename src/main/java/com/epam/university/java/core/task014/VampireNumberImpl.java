@@ -1,16 +1,40 @@
 package com.epam.university.java.core.task014;
 
+import com.epam.university.java.core.utils.common.Validator;
+
+/**
+ * Implements Vampire number.
+ */
 public class VampireNumberImpl implements VampireNumber {
-    public VampireNumberImpl(int multiplication, int firstNumber, int
-            secondNumber) {
-        this.multiplication = multiplication;
-        this.firstNumber = firstNumber;
-        this.secondNumber = secondNumber;
-    }
 
     private int multiplication;
     private int firstNumber;
     private int secondNumber;
+
+    /**
+     * Initialisation of Vampire number implementation.
+     *
+     * @param multiplication multiplication for the Vampire number
+     * @param firstNumber    first number of Vampire number
+     * @param secondNumber   second number of Vampire number
+     * @throws IllegalAccessException if at least one of parameters violates
+     *                                permitted range
+     */
+    public VampireNumberImpl(int multiplication, int firstNumber, int
+            secondNumber) {
+        Validator.validateValueRange(multiplication, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        Validator.validateValueRange(firstNumber, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        Validator.validateValueRange(secondNumber, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        this.multiplication = multiplication;
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
+    }
 
     @Override
     public boolean equals(Object o) {

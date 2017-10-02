@@ -1,11 +1,6 @@
 package com.epam.university.java.core.task019;
 
-import com.epam.university.java.core.utils.Validator;
-
-import javax.xml.bind.ValidationEvent;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import com.epam.university.java.core.utils.common.Validator;
 
 import static com.epam.university.java.core.task019.RobotCommand.MOVE_FORWARD;
 import static com.epam.university.java.core.task019.RobotCommand.TURN_LEFT;
@@ -13,7 +8,7 @@ import static com.epam.university.java.core.task019.RobotCommand.TURN_RIGHT;
 
 /**
  * Class - implementation of Robot, that can walk through two-dimensional
- * coordinates
+ * coordinates.
  */
 public class RobotImpl implements Robot {
 
@@ -21,6 +16,13 @@ public class RobotImpl implements Robot {
     private RobotPosition currentRobotPosition;
     private RobotPosition initialRobotPosition;
 
+    /**
+     * Initialisation of <code>RobotImpl</code>.
+     *
+     * @param currentRobotPosition current position of machine
+     * @param initialRobotPosition initial position of machine
+     * @throws IllegalArgumentException if at least one of parameters is null
+     */
     public RobotImpl(RobotPosition currentRobotPosition, RobotPosition
             initialRobotPosition) {
         Validator.validateNotNull(currentRobotPosition, initialRobotPosition,
@@ -30,6 +32,9 @@ public class RobotImpl implements Robot {
         this.initialRobotPosition = initialRobotPosition;
     }
 
+    /**
+     * Initialisation of <code>RobotImpl</code> with no arguments.
+     */
     public RobotImpl() {
         currentRobotState = new RobotStateForward();
         currentRobotPosition = new RobotPositionImpl();
@@ -48,6 +53,11 @@ public class RobotImpl implements Robot {
         currentRobotPosition = position;
     }
 
+    /**
+     * Get initial position of machine.
+     *
+     * @return <code>RobotPosition</code>
+     */
     public RobotPosition getInitialRobotPosition() {
         return initialRobotPosition;
     }
@@ -70,9 +80,20 @@ public class RobotImpl implements Robot {
                 + System.lineSeparator());
     }
 
+
+    /**
+     * Change state of machine.
+     *
+     * @param command command that triggers the machine state
+     * @throws IllegalArgumentException if command is null or not belongs to
+     *                                  the Enum
+     */
     public void changeRobotState(RobotCommand command) {
         Validator.validateNotNull(command,
                 Validator.MESSAGE_FOR_SOURCE_IF_NULL);
+        Validator.validateEnum(command, RobotCommand.values(),
+                Validator.MESSAGE_IF_ILLEGAL_ARGUMENT);
+
         if (command.equals(TURN_RIGHT)) {
             if (currentRobotState instanceof RobotStateForward) {
                 currentRobotState = new RobotStateRight(currentRobotPosition,

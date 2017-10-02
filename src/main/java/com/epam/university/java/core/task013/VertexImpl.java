@@ -1,38 +1,62 @@
 package com.epam.university.java.core.task013;
 
+import com.epam.university.java.core.utils.common.Validator;
+
+/**
+ * Class implements Vertex.
+ */
 public class VertexImpl implements Vertex {
+    private int coordinateX;
+    private int coordinateY;
 
-    public VertexImpl(int xCoordinate, int yCoordinate) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    /**
+     * Initialisation of two-dimensional vertex.
+     *
+     * @param coordinateX value of coordinate x
+     * @param coordinateY value of coordinate y
+     * @throws IllegalAccessException if at least one of parameters violates
+     *                                permitted range
+     */
+    public VertexImpl(int coordinateX, int coordinateY) {
+        Validator.validateValueRange(coordinateX, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        Validator.validateValueRange(coordinateY, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
     }
-
-    private int xCoordinate;
-    private int yCoordinate;
 
     @Override
     public int getX() {
-        return xCoordinate;
+        return coordinateX;
     }
 
     @Override
     public void setX(int value) {
-        this.xCoordinate = value;
+        Validator.validateValueRange(value, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        this.coordinateX = value;
     }
 
     @Override
     public int getY() {
-        return yCoordinate;
+        return coordinateY;
     }
 
     @Override
     public void setY(int value) {
-        this.yCoordinate = value;
+        Validator.validateValueRange(value, Integer.MIN_VALUE,
+                Integer.MAX_VALUE, Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
+                Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
+        this.coordinateY = value;
     }
 
     @Override
     public String toString() {
-        return "VertexImpl{" + "x=" + xCoordinate + ", y=" + yCoordinate
+        return "VertexImpl{" + "x=" + coordinateX + ", y=" + coordinateY
                 + "}; ";
     }
 }

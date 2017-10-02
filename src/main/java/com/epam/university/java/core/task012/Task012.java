@@ -17,7 +17,7 @@ public interface Task012 {
 
     /**
      * Check is there path in <code>graph</code> between <code>from</code> and
-     * <code>to</code> vertexes.
+     * <code>to</code> vertices.
      * @param graph graph instance
      * @param from source vertex
      * @param to target vertex

@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task012;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 import com.epam.university.java.core.utils.exceptions.CollectionFullException;
 
 import java.util.Collection;
@@ -9,21 +9,37 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * Class implements <code>Graph</code>.
+ */
 public class GraphImpl implements Graph {
-    public GraphImpl(int numberOfVertexes) {
-        this.numberOfVertexes = numberOfVertexes;
-        this.mapOfVertexes = new HashMap<>();
-    }
 
-    private Map<Integer, Set> mapOfVertexes;
-    private int numberOfVertexes;
+    private Map<Integer, Set> mapOfVertices;
+    private int numberOfVertices;
     public static String MESSAGE_FOR_COLLECTION_IS_FULL_EXCEPTION =
             "Graph is full, adding new vertex is impossible";
 
-    public Map<Integer, Set> getMapOfVertexes() {
-        return mapOfVertexes;
+    /**
+     * Initialisation of graph.
+     *
+     * @param numberOfVertices number of vertices
+     * @throws IllegalArgumentException if parameter is negative
+     */
+    public GraphImpl(int numberOfVertices) {
+        Validator.validateNotNegative(numberOfVertices,
+                Validator.MESSAGE_IF_NEGATIVE);
+        this.numberOfVertices = numberOfVertices;
+        this.mapOfVertices = new HashMap<>();
     }
 
+    /**
+     * Get map of vertices.
+     *
+     * @return <code><Map<Integer, Set></code> collection of vertices
+     */
+    public Map<Integer, Set> getMapOfVertices() {
+        return mapOfVertices;
+    }
 
     @Override
     public void createEdge(int from, int to) {
@@ -41,15 +57,15 @@ public class GraphImpl implements Graph {
      * @param to   second vertex of new edge
      */
     public void subCreateEdge(int from, int to) {
-        if (!mapOfVertexes.containsKey(to)) {
-            if (mapOfVertexes.size() == numberOfVertexes) {
+        if (!mapOfVertices.containsKey(to)) {
+            if (mapOfVertices.size() == numberOfVertices) {
                 throw new CollectionFullException(
                         MESSAGE_FOR_COLLECTION_IS_FULL_EXCEPTION);
             }
-            mapOfVertexes.put(Integer.valueOf(to), new TreeSet());
-            mapOfVertexes.get(Integer.valueOf(to)).add(from);
+            mapOfVertices.put(Integer.valueOf(to), new TreeSet());
+            mapOfVertices.get(Integer.valueOf(to)).add(from);
         } else {
-            mapOfVertexes.get(Integer.valueOf(to)).add(from);
+            mapOfVertices.get(Integer.valueOf(to)).add(from);
         }
     }
 
@@ -58,7 +74,7 @@ public class GraphImpl implements Graph {
         Validator.validateNotNegative(from, to,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NEGATIVE,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NEGATIVE);
-        if (mapOfVertexes.containsKey(from) && mapOfVertexes.get(from)
+        if (mapOfVertices.containsKey(from) && mapOfVertices.get(from)
                 .contains(to)) {
             return true;
         }
@@ -71,20 +87,20 @@ public class GraphImpl implements Graph {
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NEGATIVE,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NEGATIVE);
 
-        if (mapOfVertexes.containsKey(from)) {
-            if ((mapOfVertexes.get(from).size() == 1
-                    && (mapOfVertexes.get(from).contains(to)))) {
-                mapOfVertexes.remove(from);
+        if (mapOfVertices.containsKey(from)) {
+            if ((mapOfVertices.get(from).size() == 1
+                    && (mapOfVertices.get(from).contains(to)))) {
+                mapOfVertices.remove(from);
             } else {
-                mapOfVertexes.get(from).remove(to);
+                mapOfVertices.get(from).remove(to);
             }
         }
-        if (mapOfVertexes.containsKey(to)) {
-            if ((mapOfVertexes.get(to).size() == 1)
-                    && (mapOfVertexes.get(to).contains(from))) {
-                mapOfVertexes.remove(to);
+        if (mapOfVertices.containsKey(to)) {
+            if ((mapOfVertices.get(to).size() == 1)
+                    && (mapOfVertices.get(to).contains(from))) {
+                mapOfVertices.remove(to);
             } else {
-                mapOfVertexes.get(to).remove(from);
+                mapOfVertices.get(to).remove(from);
             }
         }
     }
@@ -92,6 +108,6 @@ public class GraphImpl implements Graph {
     @Override
     public Collection<Integer> getAdjacent(int from) {
         Validator.validateNotNegative(from, Validator.MESSAGE_IF_NEGATIVE);
-        return mapOfVertexes.get(from);
+        return mapOfVertices.get(from);
     }
 }

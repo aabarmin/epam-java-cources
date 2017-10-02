@@ -11,45 +11,45 @@ public final class Point2D implements Comparable<Point2D> {
     /**
      * Initializes a new point (x, y).
      *
-     * @param xCoordinate the x-coordinate
-     * @param yCoordinate the y-coordinate
+     * @param CoordinateX the x-coordinate
+     * @param CoordinateY the y-coordinate
      * @throws IllegalArgumentException if either {@code x} or {@code y}
      *                                  is {@code Double.NaN},
      *                                  {@code Double.POSITIVE_INFINITY} or
      *                                  {@code Double.NEGATIVE_INFINITY}
      */
-    public Point2D(double xCoordinate, double yCoordinate) {
-        if (Double.isInfinite(xCoordinate) || Double.isInfinite(yCoordinate)) {
+    public Point2D(double CoordinateX, double CoordinateY) {
+        if (Double.isInfinite(CoordinateX) || Double.isInfinite(CoordinateY)) {
             throw new IllegalArgumentException("Coordinates must be finite");
         }
-        if (Double.isNaN(xCoordinate) || Double.isNaN(yCoordinate)) {
+        if (Double.isNaN(CoordinateX) || Double.isNaN(CoordinateY)) {
             throw new IllegalArgumentException("Coordinates cannot be NaN");
         }
-        if (xCoordinate == 0.0) {
-            this.xCoordinate = 0.0;
+        if (CoordinateX == 0.0) {
+            this.CoordinateX = 0.0;
         }  // convert -0.0 to +0.0
         else {
-            this.xCoordinate = xCoordinate;
+            this.CoordinateX = CoordinateX;
         }
 
-        if (yCoordinate == 0.0) {
-            this.yCoordinate = 0.0;
+        if (CoordinateY == 0.0) {
+            this.CoordinateY = 0.0;
         } // convert -0.0 to +0.0
         else {
-            this.yCoordinate = yCoordinate;
+            this.CoordinateY = CoordinateY;
         }
     }
 
-    private double xCoordinate;    // x coordinate
-    private double yCoordinate;    // y coordinate
+    private double CoordinateX;    // x coordinate
+    private double CoordinateY;    // y coordinate
 
     /**
      * Returns the x-coordinate.
      *
      * @return the x-coordinate
      */
-    public double x() {
-        return xCoordinate;
+    public double getCoordinateX() {
+        return CoordinateX;
     }
 
     /**
@@ -57,8 +57,8 @@ public final class Point2D implements Comparable<Point2D> {
      *
      * @return the y-coordinate
      */
-    public double y() {
-        return yCoordinate;
+    public double getCoordinateY() {
+        return CoordinateY;
     }
 
     /**
@@ -67,7 +67,7 @@ public final class Point2D implements Comparable<Point2D> {
      * @return the x-coordinate
      */
     public void setCoordinateX(double coordinateX) {
-        this.xCoordinate = coordinateX;
+        this.CoordinateX = coordinateX;
     }
 
     /**
@@ -76,7 +76,7 @@ public final class Point2D implements Comparable<Point2D> {
      * @return the y-coordinate
      */
     public void setCoordinateY(double coordinateY) {
-        this.yCoordinate = coordinateY;
+        this.CoordinateY = coordinateY;
     }
 
 
@@ -90,9 +90,9 @@ public final class Point2D implements Comparable<Point2D> {
      * counterclocwise } turn.
      */
     public static int ccw(Point2D a, Point2D b, Point2D c) {
-        double area2 = (b.xCoordinate - a.xCoordinate) * (c.yCoordinate
-                - a.yCoordinate) - (b.yCoordinate - a.yCoordinate)
-                * (c.xCoordinate - a.xCoordinate);
+        double area2 = (b.CoordinateX - a.CoordinateX) * (c.CoordinateY
+                - a.CoordinateY) - (b.CoordinateY - a.CoordinateY)
+                * (c.CoordinateX - a.CoordinateX);
         if (area2 < 0) {
             return -1;
         } else if (area2 > 0) {
@@ -106,8 +106,8 @@ public final class Point2D implements Comparable<Point2D> {
     @Override
     public String toString() {
         return "Point2D{" +
-                "xCoordinate=" + xCoordinate +
-                ", yCoordinate=" + yCoordinate +
+                "CoordinateX=" + CoordinateX +
+                ", CoordinateY=" + CoordinateY +
                 '}';
     }
 
@@ -115,9 +115,9 @@ public final class Point2D implements Comparable<Point2D> {
     public int hashCode() {
         int result;
         long temp;
-        temp = Double.doubleToLongBits(xCoordinate);
+        temp = Double.doubleToLongBits(CoordinateX);
         result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(yCoordinate);
+        temp = Double.doubleToLongBits(CoordinateY);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -138,8 +138,8 @@ public final class Point2D implements Comparable<Point2D> {
             return false;
         }
         Point2D that = (Point2D) other;
-        return (this.xCoordinate == that.xCoordinate) && (this.yCoordinate ==
-                that.yCoordinate);
+        return (this.CoordinateX == that.CoordinateX) && (this.CoordinateY ==
+                that.CoordinateY);
     }
 
     /**
@@ -157,16 +157,16 @@ public final class Point2D implements Comparable<Point2D> {
      * argument point
      */
     public int compareTo(Point2D that) {
-        if (this.yCoordinate < that.yCoordinate) {
+        if (this.CoordinateY < that.CoordinateY) {
             return -1;
         }
-        if (this.yCoordinate > that.yCoordinate) {
+        if (this.CoordinateY > that.CoordinateY) {
             return +1;
         }
-        if (this.xCoordinate < that.xCoordinate) {
+        if (this.CoordinateX < that.CoordinateX) {
             return -1;
         }
-        if (this.xCoordinate > that.xCoordinate) {
+        if (this.CoordinateX > that.CoordinateX) {
             return +1;
         }
         return 0;
@@ -190,10 +190,10 @@ public final class Point2D implements Comparable<Point2D> {
      */
     private class PolarOrder implements Comparator<Point2D> {
         public int compare(Point2D q1, Point2D q2) {
-            double dx1 = q1.xCoordinate - xCoordinate;
-            double dy1 = q1.yCoordinate - yCoordinate;
-            double dx2 = q2.xCoordinate - xCoordinate;
-            double dy2 = q2.yCoordinate - yCoordinate;
+            double dx1 = q1.CoordinateX - CoordinateX;
+            double dy1 = q1.CoordinateY - CoordinateY;
+            double dx2 = q2.CoordinateX - CoordinateX;
+            double dy2 = q2.CoordinateY - CoordinateY;
             if (dy1 >= 0 && dy2 < 0) {
                 return -1;
             }    // q1 above; q2 below

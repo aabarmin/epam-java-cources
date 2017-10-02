@@ -4,6 +4,9 @@ package com.epam.university.java.core.task014;
 import java.util.*;
 import java.util.regex.Pattern;
 
+/**
+ * Implements Vampire number creation for numbers with length of 4.
+ */
 public class Task014Impl implements Task014 {
     @Override
     public Collection<VampireNumber> getVampireNumbers() {
@@ -41,8 +44,6 @@ public class Task014Impl implements Task014 {
                 }
             }
         }
-        System.out.println(Pattern.compile("^[a-z]([a-z0-9][a-zA-Z0-9]*)?$")
-                .matcher("hoCoordinate").find());
         return vampireNumberSet;
     }
 }

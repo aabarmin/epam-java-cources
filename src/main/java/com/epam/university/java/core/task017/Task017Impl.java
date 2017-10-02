@@ -1,12 +1,12 @@
 package com.epam.university.java.core.task017;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Class formats input args data
+ * Class formats input args data.
  */
 public class Task017Impl implements Task017 {
     @Override

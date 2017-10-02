@@ -5,9 +5,9 @@ package com.epam.university.java.core.task012;
  */
 public interface GraphFactory {
     /**
-     * Create new Graph instance with designated amount of vertexes.
-     * @param vertexesCount vertexes count
+     * Create new Graph instance with designated amount of vertices.
+     * @param verticesCount vertices count
      * @return new graph instance
      */
-    Graph newInstance(int vertexesCount);
+    Graph newInstance(int verticesCount);
 }

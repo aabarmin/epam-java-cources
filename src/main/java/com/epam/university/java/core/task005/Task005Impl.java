@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task005;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 public class Task005Impl implements Task005 {
     @Override

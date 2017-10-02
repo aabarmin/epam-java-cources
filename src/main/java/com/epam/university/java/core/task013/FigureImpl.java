@@ -1,32 +1,45 @@
 package com.epam.university.java.core.task013;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * Class implements <code>Figure</code>.
+ */
 public class FigureImpl implements Figure {
-    public FigureImpl(int numberOfVertexes) {
-        this.numberOfVertexes = numberOfVertexes;
+
+    private Set<Vertex> vertexSet;
+    private int numberOfVertices;
+
+    /**
+     * Initialisation of <code>Figure</code>.
+     *
+     * @param numberOfVertices number of vertices
+     * @throws IllegalArgumentException if <code>numberOfVertices</code> is
+     * negative
+     */
+    public FigureImpl(int numberOfVertices) {
+        Validator.validateNotNegative(numberOfVertices,
+                Validator.MESSAGE_IF_NEGATIVE);
+        this.numberOfVertices = numberOfVertices;
         this.vertexSet = new LinkedHashSet<>();
     }
 
-    private Set<Vertex> vertexSet;
-    private int numberOfVertexes;
+    @Override
+    public Collection<Vertex> getVertices() {
+        return vertexSet;
+    }
 
     @Override
     public void addVertex(Vertex vertex) {
         Validator.validateNotNull(vertex, Validator.MESSAGE_FOR_SOURCE_IF_NULL);
-        if (vertexSet.size() == numberOfVertexes) {
-            System.out.println("figure is finished, no more vertexes");
+        if (vertexSet.size() == numberOfVertices) {
+            System.out.println("figure is finished, no more vertices");
         } else {
             vertexSet.add(vertex);
         }
-    }
-
-    @Override
-    public Collection<Vertex> getVertexes() {
-        return vertexSet;
     }
 }

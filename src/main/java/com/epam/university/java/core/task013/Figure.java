@@ -14,9 +14,9 @@ public interface Figure {
     void addVertex(Vertex vertex);
 
     /**
-     * Get all vertexes of figure.
+     * Get all vertices of figure.
      *
-     * @return collection of vertexes
+     * @return collection of vertices
      */
-    Collection<Vertex> getVertexes();
+    Collection<Vertex> getVertices();
 }

@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task006;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Class implements Task006
+ */
 public class Task006Impl implements Task006 {
     @Override
     public double resistance(Collection<Measurement> measurements) {

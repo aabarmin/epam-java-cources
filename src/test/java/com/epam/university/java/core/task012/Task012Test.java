@@ -20,7 +20,7 @@ public class Task012Test {
     }
 
     @Test
-    public void createGraphAndAddVertexes() throws Exception {
+    public void createGraphAndAddvertices() throws Exception {
         final Graph sourceGraph = factory.newInstance(4);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
             g -> g.createEdge(1, 2),
@@ -30,13 +30,13 @@ public class Task012Test {
             g -> g.createEdge(1, 3),
             g -> g.createEdge(2, 4)
         ));
-        assertTrue("There is no edge between vertexes", targetGraph.edgeExists(2, 1));
-        assertTrue("There is no edge between vertexes", targetGraph.edgeExists(3, 2));
-        assertTrue("There is no edge between vertexes", targetGraph.edgeExists(3, 1));
+        assertTrue("There is no edge between vertices", targetGraph.edgeExists(2, 1));
+        assertTrue("There is no edge between vertices", targetGraph.edgeExists(3, 2));
+        assertTrue("There is no edge between vertices", targetGraph.edgeExists(3, 1));
     }
 
     @Test
-    public void createGraphAddAndRemoveVertexes() throws Exception {
+    public void createGraphAddAndRemovevertices() throws Exception {
         final Graph sourceGraph = factory.newInstance(4);
         final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
             g -> g.createEdge(1, 2),
@@ -48,10 +48,10 @@ public class Task012Test {
             g -> g.removeEdge(1, 3),
             g -> g.removeEdge(2, 4)
         ));
-        assertTrue("There is not edge between vertexes", targetGraph.edgeExists(2, 1));
-        assertTrue("There is not edge between vertexes", targetGraph.edgeExists(3, 2));
-        assertFalse("There is edge between vertexes", targetGraph.edgeExists(3, 1));
-        assertFalse("There is edge between vertexes", targetGraph.edgeExists(4, 2));
+        assertTrue("There is not edge between vertices", targetGraph.edgeExists(2, 1));
+        assertTrue("There is not edge between vertices", targetGraph.edgeExists(3, 2));
+        assertFalse("There is edge between vertices", targetGraph.edgeExists(3, 1));
+        assertFalse("There is edge between vertices", targetGraph.edgeExists(4, 2));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class Task012Test {
             g -> g.createEdge(5, 1),
             g -> g.removeEdge(1, 2)
         ));
-        assertTrue("There is path between vertexes",
+        assertTrue("There is path between vertices",
                 instance.pathExists(targetGraph, 1, 2));
     }
 }

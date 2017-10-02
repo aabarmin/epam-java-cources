@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+/**
+ * Class implements Task011
+ */
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(ArrayList<String> collection) {
