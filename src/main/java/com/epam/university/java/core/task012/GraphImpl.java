@@ -32,6 +32,11 @@ public class GraphImpl implements Graph {
         this.mapOfVertices = new HashMap<>();
     }
 
+    public GraphImpl(Map<Integer, Set> mapOfVertices, int numberOfVertices) {
+        this.mapOfVertices = mapOfVertices;
+        this.numberOfVertices = numberOfVertices;
+    }
+
     /**
      * Get map of vertices.
      *
@@ -109,5 +114,13 @@ public class GraphImpl implements Graph {
     public Collection<Integer> getAdjacent(int from) {
         Validator.validateNotNegative(from, Validator.MESSAGE_IF_NEGATIVE);
         return mapOfVertices.get(from);
+    }
+
+    @Override
+    public String toString() {
+        return "GraphImpl{" +
+                "mapOfVertices=" + mapOfVertices +
+                ", numberOfVertices=" + numberOfVertices +
+                '}';
     }
 }

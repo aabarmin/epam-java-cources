@@ -8,85 +8,105 @@ import com.epam.university.java.core.utils.geometricprimitives.Polygon2D;
 
 import java.util.*;
 
-/**
- * Class implements Task015.
- */
 public class Task015Impl implements Task015 {
     @Override
-    public double getArea(Square squareFirst, Square squareSecond) {
-        Validator.validateNotNull(squareFirst, squareSecond,
-                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
-                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
+    public double getArea(Square first, Square second) {
+        //find intersection points
+        Point2D[] pointsFirstSquare = ((SquareImpl) first).getPoints()
+                .toArray(new Point2D[0]);
+        Line2D[] sidesFirstSquare = verticesToLines(pointsFirstSquare);
+        Point2D[] pointsSecondSquare = ((SquareImpl) second).getPoints()
+                .toArray(new Point2D[0]);
+        Line2D[] sidesSecondSquare = verticesToLines(pointsSecondSquare);
+        Point2D[] intersections = findIntersections(sidesFirstSquare,
+                sidesSecondSquare, true);
 
-        //searching intersection points
-        Stack<Point2D> pointsFirstSquare = ((SquareImpl) squareFirst)
-                .getPoints();
-        Stack<Point2D> pointsSecondSquare = ((SquareImpl) squareSecond)
-                .getPoints();
-        Polygon2D tempIntersectionPolygon;
-        Set<Point2D> tempIntersectionSet = new LinkedHashSet<>();
-        Line2D tempSideFirst = null;
-        Line2D tempSideSecond = null;
-        Point2D tempIntersectionPoint = null;
-        for (int i = 0; i < pointsFirstSquare.size(); i++) {
-            for (int j = 0; j < pointsSecondSquare.size(); j++) {
-                if (i == pointsFirstSquare.size() - 1) {
-                    if (j == pointsSecondSquare.size() - 1) {
-                        tempSideSecond = new Line2D(pointsSecondSquare.get(j),
-                                pointsSecondSquare.get(0));
-                    } else {
-                        tempSideFirst = new Line2D(pointsFirstSquare.get(i),
-                                pointsFirstSquare.get(0));
-                        tempSideSecond = new Line2D(pointsSecondSquare.get(j),
-                                pointsSecondSquare.get(0));
-                    }
-                } else {
-                    if (j == pointsSecondSquare.size() - 1) {
-                        tempSideSecond = new Line2D(pointsSecondSquare.get(j),
-                                pointsSecondSquare.get(0));
-                    } else {
-                        tempSideFirst = new Line2D(pointsFirstSquare.get(i),
-                                pointsFirstSquare.get(i + 1));
-                        tempSideSecond = new Line2D(pointsSecondSquare.get(j),
-                                pointsSecondSquare.get(j + 1));
-                    }
-                }
-                tempIntersectionPoint = tempSideFirst.intersectionPoint
-                        (tempSideSecond,true);
-                if (tempIntersectionPoint != null) {
-                    tempIntersectionSet.add(tempIntersectionPoint);
-                }
-            }
-        }
+        //get internal vertices
+        Set<Point2D> internalVertices = findInternalAll(first, second);
 
-        //check internal figures
-        for (int i = 0; i < getInternal(squareFirst, squareSecond).length;
-             i++) {
-            tempIntersectionSet.add(getInternal(squareFirst, squareSecond)[i]);
-        }
-        for (int i = 0; i < getInternal(squareSecond, squareFirst).length;
-             i++) {
-            tempIntersectionSet.add(getInternal(squareSecond, squareFirst)[i]);
-        }
-
-        if (tempIntersectionSet.size() == 0) {
+        if (internalVertices.size() == 0 && intersections.length == 0) {
             return 0;
         }
-        tempIntersectionPolygon = new Polygon2D();
-        tempIntersectionPolygon.addAll((tempIntersectionSet).toArray(new
+
+        //calculating area
+        Polygon2D tempIntersectionPolygon2D = new Polygon2D();
+        tempIntersectionPolygon2D.addAll(intersections);
+        tempIntersectionPolygon2D.addAll((internalVertices).toArray(new
                 Point2D[0]));
         Point2D[] intersectionPointsOrdered = (new GrahamScan
-                (tempIntersectionPolygon.getPoints2D())).getHull2D();
-        tempIntersectionPolygon = new Polygon2D();
-        tempIntersectionPolygon.addAll(intersectionPointsOrdered);
-        //calculating area
-        return tempIntersectionPolygon.area();
+                (tempIntersectionPolygon2D.getPoints2D())).getHull2D();
+        tempIntersectionPolygon2D = new Polygon2D();
+        tempIntersectionPolygon2D.addAll(intersectionPointsOrdered);
+        return tempIntersectionPolygon2D.area();
     }
 
     /**
-     * Get internal points of each square in another one.
+     * Create lines from vertices of two-dimensional polygon
+     *
+     * @param vertices array of a polygon's vertices ordered in clock-wise or
+     *                 counter clock-wise order
+     * @return <code>Line2D[]</code> array of polygon sides ordered in
+     * clock-wise or
+     * counter clock-wise order
+     * @throws IllegalArgumentException if parameter is null
      */
-    public Point2D[] getInternal(Square squareFirst, Square squareSecond) {
+    public Line2D[] verticesToLines(Point2D[] vertices) {
+        Validator.validateNotNull(vertices, Validator
+                .MESSAGE_FOR_SOURCE_IF_NULL);
+        if (vertices.length < 3) {
+            throw new IllegalArgumentException("number of points should be " +
+                    "more than 2");
+        }
+        Line2D[] sides = new Line2D[vertices.length];
+        for (int i = 0; i < vertices.length; i++) {
+            if (!(i == vertices.length - 1)) {
+                sides[i] = new Line2D(vertices[i], vertices[i + 1]);
+                continue;
+            }
+            sides[i] = new Line2D(vertices[i], vertices[0]);
+        }
+        return sides;
+    }
+
+    /**
+     * Find intersections of lines or segments of lines
+     *
+     * @param linesFirst  sides of first square
+     * @param linesSecond sides of second square
+     * @param isSegment   <code>true</code> if searching intersections of the
+     *                    segments of line
+     * @return <code>Point2D[]</code> array of all intersection points
+     * @throws IllegalArgumentException if at least one of lines array is null
+     */
+    public Point2D[] findIntersections(Line2D[] linesFirst, Line2D[]
+            linesSecond, boolean isSegment) {
+        Validator.validateNotNull(linesFirst, linesSecond,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
+        Set<Point2D> intersections = new LinkedHashSet<>();
+        Point2D tempPoint = null;
+        for (int i = 0; i < linesFirst.length; i++) {
+            for (int j = 0; j < linesSecond.length; j++) {
+                tempPoint = linesFirst[i].intersectionPoint(linesSecond[j],
+                        true);
+                if (!(tempPoint == null)) {
+                    intersections.add(tempPoint);
+                }
+            }
+        }
+        return intersections.toArray(new Point2D[0]);
+    }
+
+    /**
+     * Find all internal vertices after intersection for one of squares
+     *
+     * @param squareFirst  first square
+     * @param squareSecond second square
+     * @return <code>Point2D[]</code> array of all internal points for
+     * <code>squareFirst</code>
+     * @throws IllegalArgumentException if at least one of parameters is null
+     */
+    public Point2D[] findInternal(Square squareFirst, Square squareSecond) {
         Validator.validateNotNull(squareFirst, squareSecond,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
@@ -94,9 +114,7 @@ public class Task015Impl implements Task015 {
         Polygon2D polygonFirstSquare = new Polygon2D();
         Point2D[] pointsFirstSquareTemp = ((SquareImpl) squareFirst)
                 .getPoints2D();
-        for (int i = 0; i < pointsFirstSquareTemp.length; i++) {
-            polygonFirstSquare.add(pointsFirstSquareTemp[i]);
-        }
+        polygonFirstSquare.addAll(pointsFirstSquareTemp);
         Point2D[] pointsSecondSquare = ((SquareImpl) squareSecond)
                 .getPoints2D();
         for (int i = 0; i < pointsSecondSquare.length; i++) {
@@ -105,5 +123,28 @@ public class Task015Impl implements Task015 {
             }
         }
         return tempInternalPoints.toArray(new Point2D[0]);
+    }
+
+    /**
+     * Find all internal vertices after intersection for both of squares
+     *
+     * @param first  first square
+     * @param second second square
+     * @return <code>Set<Point2D></code> of all internal points
+     * @throws IllegalArgumentException if at least one of parameters is null
+     */
+    public Set<Point2D> findInternalAll(Square first, Square second) {
+        Validator.validateNotNull(first, second,
+                Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
+        Set<Point2D> internalVertices = new LinkedHashSet<>();
+
+        for (int i = 0; i < findInternal(first, second).length; i++) {
+            internalVertices.add(findInternal(first, second)[i]);
+        }
+        for (int i = 0; i < findInternal(second, first).length; i++) {
+            internalVertices.add(findInternal(second, first)[i]);
+        }
+        return internalVertices;
     }
 }

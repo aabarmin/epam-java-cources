@@ -1,5 +1,7 @@
 package com.epam.university.java.core.utils.common;
 
+import java.util.Collection;
+
 /**
  * Validation utility.
  */
@@ -32,6 +34,8 @@ public class Validator {
             "second parameter can't be negative";
     public static final String MESSAGE_IF_ILLEGAL_ARGUMENT =
             "illegal argument assigned";
+    public static final String MESSAGE_IF_COLLECTION_EMPTY =
+            "collection can't be empty";
 
     /**
      * Validates parameters not null.
@@ -226,5 +230,19 @@ public class Validator {
             }
         }
         throw new IllegalArgumentException(messageIfIllegalArgument);
+    }
+
+    /**
+     * Validates if collection is empty or not.
+     *
+     * @param collection               collection to check
+     * @param messageIfCollectionEmpty message if collection is empty
+     * @throws IllegalArgumentException if collection is empty
+     */
+    public static void validateEmpty(Collection collection, String
+            messageIfCollectionEmpty) {
+        if (collection.isEmpty()) {
+            throw new IllegalArgumentException(messageIfCollectionEmpty);
+        }
     }
 }
