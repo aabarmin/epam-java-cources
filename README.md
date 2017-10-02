@@ -79,3 +79,8 @@ to your pull request.
 **How to contribute**
 
 You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label. 
+
+Large cross-topic project
+=
+
+You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
