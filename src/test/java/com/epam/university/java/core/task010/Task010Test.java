@@ -23,7 +23,8 @@ public class Task010Test {
 
     @Test
     public void testFrequency() throws Exception {
-        final URI fileUri = getClass().getResource("/task009/words.txt").toURI();
+        final URI fileUri = getClass().getResource("/task009/words.txt")
+                .toURI();
         final File file = new File(fileUri);
         final Map<String, Integer> results = instance.countWordNumbers(file);
         assertEquals("Error in test frequency",

@@ -30,14 +30,11 @@ public class Task011Test {
 
     @Test
     public void getLastNameWithSingleElementArray() throws Exception {
-        final String[] collection = {
-            "Homer"
+        final String[] collection = {"Homer"
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with items",
-            "Homer",
-            lastName
-        );
+                "Homer", lastName);
     }
 
     @Test
@@ -51,41 +48,35 @@ public class Task011Test {
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with array",
-                "Bart",
-                lastName
-        );
+                "Bart", lastName);
     }
 
     @Test
     public void getLastNameWithArraySecond() throws Exception {
         final String[] collection = {
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa"
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with items",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
 
     @Test
     public void getLastNameWithArrayThird() throws Exception {
         final String[] collection = {
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa",
-            "Marge",
-            "Nelson"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa",
+                "Marge",
+                "Nelson"
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with items",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -97,13 +88,11 @@ public class Task011Test {
     @Test
     public void getLastNameWithSingleElementArrayList() throws Exception {
         final ArrayList<String> collection = new ArrayList<>(Collections.singletonList(
-            "Homer"
+                "Homer"
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-            "Homer",
-            lastName
-        );
+                "Homer", lastName);
     }
 
     @Test
@@ -117,41 +106,35 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-                "Bart",
-                lastName
-        );
+                "Bart", lastName);
     }
 
     @Test
     public void getLastNameWithArrayListSecond() throws Exception {
         final ArrayList<String> collection = new ArrayList<>(Arrays.asList(
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa"
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
 
     @Test
     public void getLastNameWithArrayListThird() throws Exception {
         final ArrayList<String> collection = new ArrayList<>(Arrays.asList(
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa",
-            "Marge",
-            "Nelson"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa",
+                "Marge",
+                "Nelson"
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -162,14 +145,12 @@ public class Task011Test {
 
     @Test
     public void getLastNameWithSingleElementLinkedListFirst() throws Exception {
-        final LinkedList<String> collection = new LinkedList<>(Collections.singletonList(
-            "Homer"
-        ));
+        final LinkedList<String> collection = new LinkedList<>(
+                Collections.singletonList("Homer"
+                ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-            "Homer",
-            lastName
-        );
+                "Homer", lastName);
     }
 
     @Test
@@ -183,41 +164,34 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-                "Bart",
-                lastName
-        );
+                "Bart", lastName);
     }
 
     @Test
     public void getLastNameWithLinkedListSecond() throws Exception {
         final LinkedList<String> collection = new LinkedList<>(Arrays.asList(
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa"
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
 
     @Test
     public void getLastNameWithLinkedListThird() throws Exception {
         final LinkedList<String> collection = new LinkedList<>(Arrays.asList(
-            "Homer",
-            "Bart",
-            "Maggie",
-            "Lisa",
-            "Marge",
-            "Nelson"
+                "Homer",
+                "Bart",
+                "Maggie",
+                "Lisa",
+                "Marge",
+                "Nelson"
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-            "Lisa",
-            lastName
-        );
+                "Lisa", lastName);
     }
-
 }
