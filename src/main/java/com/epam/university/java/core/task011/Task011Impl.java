@@ -36,9 +36,7 @@ public class Task011Impl implements Task011 {
         }
 
         List<String> result = new ArrayList<>(Arrays.asList(collection));
-        for (int toRemove = 0, i = 0;
-             result.size() > 1;
-             i++, toRemove = (toRemove + 2) % result.size()) {
+        for (int toRemove = 0; result.size() > 1; toRemove = (toRemove + 1) % result.size()) {
             result.remove(toRemove);
         }
 
@@ -69,9 +67,7 @@ public class Task011Impl implements Task011 {
         }
 
         List<String> result = new ArrayList<>(collection);
-        for (int toRemove = 0, i = 0;
-             result.size() > 1;
-             i++, toRemove = (toRemove + 2) % result.size()) {
+        for (int toRemove = 0; result.size() > 1; toRemove = (toRemove + 1) % result.size()) {
             result.remove(toRemove);
         }
 
@@ -102,9 +98,7 @@ public class Task011Impl implements Task011 {
         }
 
         List<String> result = new ArrayList<>(collection);
-        for (int toRemove = 0, i = 0;
-             result.size() > 1;
-             i++, toRemove = (toRemove + 2) % result.size()) {
+        for (int toRemove = 0; result.size() > 1; toRemove = (toRemove + 1) % result.size()) {
             result.remove(toRemove);
         }
 

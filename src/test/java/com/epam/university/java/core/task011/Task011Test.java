@@ -51,7 +51,7 @@ public class Task011Test {
         };
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with array",
-                "Marge",
+                "Bart",
                 lastName
         );
     }
@@ -117,7 +117,7 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with ArrayList",
-                "Marge",
+                "Bart",
                 lastName
         );
     }
@@ -183,7 +183,7 @@ public class Task011Test {
         ));
         final String lastName = instance.getLastName(collection);
         assertEquals("Error in test with LinkedList",
-                "Marge",
+                "Bart",
                 lastName
         );
     }
