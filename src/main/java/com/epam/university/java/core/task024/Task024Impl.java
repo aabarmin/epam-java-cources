@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Implementation class for Task022.
+ * Implementation class for Task024.
  *
  * @author Sergei Titov
  */
@@ -27,11 +27,7 @@ public class Task024Impl implements Task024 {
 
         while (matcher.find()) {
             collection.add(matcher.group(0).toLowerCase());
-            System.out.println(
-                    matcher.group(0)
-            );
         }
-
         return collection;
     }
 }
