@@ -1,11 +1,14 @@
 package com.epam.university.java.project.domain;
 
+import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
+
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
  * Book domain object interface.
  */
-public interface Book {
+public interface Book extends StatefulEntity<BookStatus, BookEvent> {
     /**
      * Get the book id.
      * @return book id
@@ -41,4 +44,28 @@ public interface Book {
      * @param authors book authors
      */
     void setAuthors(Collection<String> authors);
+
+    /**
+     * Get book serial number.
+     * @return number value
+     */
+    String getSerialNumber();
+
+    /**
+     * Set book serial number.
+     * @param value number value
+     */
+    void setSerialNumber(String value);
+
+    /**
+     * Get return date for issued book.
+     * @return return date
+     */
+    LocalDate getReturnDate();
+
+    /**
+     * Set return date for issued book.
+     * @param date return date
+     */
+    void setReturnDate(LocalDate date);
 }
