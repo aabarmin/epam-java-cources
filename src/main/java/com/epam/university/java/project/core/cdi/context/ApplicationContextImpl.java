@@ -27,7 +27,7 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     @Override
     public int loadBeanDefinitions(Collection<Resource> resources) {
-        return 0;
+        return beanReader.loadBeanDefinitions(resources);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     @Override
     public Object getBean(String beanName) {
-       return beanFactory.getBean(beanName);
+        return beanFactory.getBean(beanName);
     }
 
     @Override

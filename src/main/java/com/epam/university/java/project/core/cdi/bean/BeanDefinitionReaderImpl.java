@@ -33,54 +33,74 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                     .newDocumentBuilder()
                     .parse(resource.getFile());
 
-            //TODO: Do I really need normalize()? Some kind of optimisation
             document.getDocumentElement().normalize();
-            NodeList nodeList = document.getElementsByTagName("bean");
+            NodeList beans = document.getElementsByTagName("bean");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                BeanDefinitionImpl beanDefinition = new BeanDefinitionImpl();
-                NamedNodeMap beanAttributes = nodeList.item(i).getAttributes();
+            //handling of each bean
+            for (int i = 0; i < beans.getLength(); i++) {
+                BeanDefinitionImpl beanDef = new BeanDefinitionImpl();
+                NamedNodeMap attributes = beans.item(i).getAttributes();
 
-                //TODO: Make an universal method to invoke methods (bean and BD)
-                beanDefinition.setId(beanAttributes.getNamedItem("id").getNodeValue());
-                beanDefinition.setClassName(beanAttributes.getNamedItem("class").getNodeValue());
+                //set bean attributes
+                beanDef.setId(attributes.getNamedItem("id").getNodeValue());
+                beanDef.setClassName(attributes.getNamedItem("class").getNodeValue());
 
-                if (beanAttributes.getNamedItem("init") != null) {
-                    beanDefinition.setPostConstruct(beanAttributes.getNamedItem("init").getNodeValue());
+                if (attributes.getNamedItem("init") != null) {
+                    beanDef.setPostConstruct(attributes
+                            .getNamedItem("init")
+                            .getNodeValue()
+                    );
+                }
+                if (attributes.getNamedItem("scope") != null) {
+                    beanDef.setScope(attributes
+                            .getNamedItem("scope")
+                            .getNodeValue()
+                    );
                 }
 
-                if (beanAttributes.getNamedItem("scope") != null) {
-                    beanDefinition.setScope(beanAttributes.getNamedItem("scope").getNodeValue());
-                }
+                //set bean properties
+                Set<BeanPropertyDefinition> propertiesSet = new HashSet<>();
+                if (beans.item(i).hasChildNodes()) {
+                    NodeList props = beans.item(i).getChildNodes();
 
-                Set<BeanPropertyDefinition> properties = new HashSet<>();
-                if (nodeList.item(i).hasChildNodes()) {
-                    NodeList propertiesNodes = nodeList.item(i).getChildNodes();
-                    
-                    for (int j = 0; j < propertiesNodes.getLength(); j++) {
+                    for (int j = 0; j < props.getLength(); j++) {
 
-                        if (propertiesNodes.item(j).hasAttributes()) {
-                            BeanPropertyDefinitionImpl beanPropertyDefinition = new BeanPropertyDefinitionImpl();
-                            if (propertiesNodes.item(j).getAttributes().getNamedItem("name") != null) {
-                                beanPropertyDefinition.setName(propertiesNodes.item(j).getAttributes().getNamedItem("name").getNodeValue());
-                            }
-                            
-                            //TODO: Is it correct understanding of "incorrect definition"?
-                            if (propertiesNodes.item(j).getAttributes().getNamedItem("value") != null) {
-                                beanPropertyDefinition.setValue(propertiesNodes.item(j).getAttributes().getNamedItem("value").getNodeValue());
-                            } else if (propertiesNodes.item(j).getAttributes().getNamedItem("ref") != null) {
-                                beanPropertyDefinition.setRef(propertiesNodes.item(j).getAttributes().getNamedItem("ref").getNodeValue());
+                        if (props.item(j).hasAttributes()) {
+                            BeanPropertyDefinitionImpl propDef = new BeanPropertyDefinitionImpl();
+
+                            //add property name
+                            propDef.setName(props
+                                    .item(j)
+                                    .getAttributes()
+                                    .getNamedItem("name")
+                                    .getNodeValue()
+                            );
+
+                            //add property "value" or "ref"
+                            if (props.item(j).getAttributes().getNamedItem("value") != null) {
+                                propDef.setValue(props
+                                        .item(j)
+                                        .getAttributes()
+                                        .getNamedItem("value")
+                                        .getNodeValue()
+                                );
+                            } else if (props.item(j).getAttributes().getNamedItem("ref") != null) {
+                                propDef.setRef(props
+                                        .item(j)
+                                        .getAttributes()
+                                        .getNamedItem("ref")
+                                        .getNodeValue()
+                                );
                             } else {
                                 throw new RuntimeException();
                             }
 
-                            properties.add(beanPropertyDefinition);
+                            propertiesSet.add(propDef);
                         }
                     }
                 }
-
-                beanDefinition.setProperties(properties);
-                beanRegistry.addBeanDefinition(beanDefinition);
+                beanDef.setProperties(propertiesSet);
+                beanRegistry.addBeanDefinition(beanDef);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

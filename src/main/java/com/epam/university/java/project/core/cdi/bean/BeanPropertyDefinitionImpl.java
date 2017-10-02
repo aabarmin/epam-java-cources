@@ -6,7 +6,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     private String name;
     private String value;
     private String ref;
-    
+
     /**
      * Get the property name.
      *
@@ -67,7 +67,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
         this.ref = ref;
     }
 
-    //TODO: Unimplemented methods!
+    //TODO: Implement methods!
+
     /**
      * Get inner property data.
      *
@@ -86,15 +87,5 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     @Override
     public void setData(StructureDefinition data) {
 
-    }
-
-    //TODO: Delete toString()
-    @Override
-    public String toString() {
-        return "BeanPropertyDefinitionImpl{" +
-                "name='" + name + '\'' +
-                ", value='" + value + '\'' +
-                ", ref='" + ref + '\'' +
-                '}';
     }
 }

@@ -108,16 +108,4 @@ public class BeanDefinitionImpl implements BeanDefinition {
     public void setScope(String scope) {
         this.scope = scope;
     }
-
-    //TODO: Delete toString()
-    @Override
-    public String toString() {
-        return "BeanDefinitionImpl{" +
-                "id='" + id + '\'' +
-                ", className='" + className + '\'' +
-                ", scope='" + scope + '\'' +
-                ", postConstruct='" + postConstruct + '\'' +
-                ", properties=" + properties +
-                '}';
-    }
 }
