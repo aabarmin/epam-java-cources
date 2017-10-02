@@ -1,7 +1,9 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,11 +11,18 @@ import java.util.List;
  * Created by Александр on 29.09.2017.
  */
 
+@XmlRootElement(name = "bean")
 public class BeanDefinitionImpl implements BeanDefinition {
+    @XmlAttribute
     private String id;
+    @XmlAttribute
     private String className;
+    @XmlAttribute
     private String scope;
+    @XmlAttribute(name = "init")
     private String postConstruct;
+    @XmlElement
+    @XmlElementWrapper
     Collection<BeanPropertyDefinition> properties;
 
     /**
@@ -21,6 +30,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return id of bean
      */
+    @XmlAttribute
     @Override
     public String getId() {
         return id;
