@@ -33,13 +33,13 @@ public class Task026Impl implements Task026 {
      * Implement a Caesar cipher, both encoding and decoding.
      * So key 2 encrypts "HI" to "JK", but key 28 or -2 encrypts "JK" to "HI".
      *
-     * @param source
+     * @param source string to encrypt
      * @param offset key is an integer from 1 to 25.
-     * @return
+     * @return encrypted string
      */
-    String caesarCipher(String source, int offset) {
+    private String caesarCipher(String source, int offset) {
         StringBuilder result = new StringBuilder();
-        for(char current : source.toCharArray()) {
+        for (char current : source.toCharArray()) {
             if (Character.isLetter(current)) {
                 if (Character.isUpperCase(current)) {
                     result.append((char) ('A' + Math.floorMod((current - 'A' + offset), 26)));

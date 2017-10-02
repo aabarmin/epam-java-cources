@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Created by Александр on 01.10.2017.
  * Sequence of two or more positive integers
  */
-public class Task027Impl implements Task027{
+public class Task027Impl implements Task027 {
     /**
      * Given a number string that can be split into the sequence of two or more positive
      * integers [a1, a2, ..., an] satisfying the following conditions:
