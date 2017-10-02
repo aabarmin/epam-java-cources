@@ -25,6 +25,7 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 
 /**
@@ -75,7 +76,7 @@ public class ApplicationContextXmlImpl implements ApplicationContext {
         ListItemDefinition defOne = new ListItemDefinitionImpl();
         defOne.setValue("one");
         ListItemDefinition defTwo = new ListItemDefinitionImpl();
-        defOne.setValue("two");
+        defTwo.setValue("two");
         Collections.addAll(list, defOne, defTwo);
 
         structure.setItems(list);
@@ -104,6 +105,10 @@ public class ApplicationContextXmlImpl implements ApplicationContext {
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(beanDefinitionDocument, new File("test_jaxb.xml"));
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            BeanDefinitionDocument unmarshal = (BeanDefinitionDocument) unmarshaller.unmarshal(new File("test_jaxb.xml"));
+            System.out.println("");
+
         } catch (JAXBException e) {
             e.printStackTrace();
         }

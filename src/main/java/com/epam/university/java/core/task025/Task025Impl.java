@@ -9,6 +9,10 @@ public class Task025Impl implements Task025 {
     public int getAmountOfAlteredLetters(String sourceMessage) {
         final String sos = "SOS";
 
+        if("".equals(sourceMessage)){
+            return 0;
+        }
+
         String[] letters = sourceMessage.split("");
 
         int count = 0;

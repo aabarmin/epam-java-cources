@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans>
+    <bean id="One" class="someClass" scope="NotSingleton">
+        <property name="itemList">
+            <list>
+                <items>
+                    <value>one</value>
+                </items>
+                <items>
+                    <value>two</value>
+                </items>
+            </list>
+        </property>
+        <property name="someString" value="someString"/>
+    </bean>
+</beans>

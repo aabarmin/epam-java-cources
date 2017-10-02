@@ -1,5 +1,6 @@
 package com.epam.university.java.project.core.cdi.structure;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl.ListItemDefinitionImpl;
 import java.util.Collection;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,11 +9,16 @@ import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Created by ilya on 24.09.17.
  */
-@XmlRootElement
+
+
 @XmlAccessorType(XmlAccessType.NONE)
 public class ListDefinitionImpl implements ListDefinition {
 
@@ -23,18 +29,12 @@ public class ListDefinitionImpl implements ListDefinition {
         return listItemDefinitions;
     }
 
+    @XmlElement(type = ListItemDefinitionImpl.class)
     @Override
     public void setItems(Collection<ListItemDefinition> items) {
         this.listItemDefinitions = items;
     }
 
-    @XmlElementWrapper()
-    @XmlElement(name = "list", type = ListItemDefinitionImpl.class)
-    protected List<ListItemDefinition> getXmlCollection() {
-        return new CollectionAdapter<ListItemDefinition>(listItemDefinitions);
-    }
-
-    @XmlRootElement
     public static class ListItemDefinitionImpl implements ListItemDefinition{
 
         private String value;
@@ -49,4 +49,5 @@ public class ListDefinitionImpl implements ListDefinition {
             this.value = value;
         }
     }
+
 }
