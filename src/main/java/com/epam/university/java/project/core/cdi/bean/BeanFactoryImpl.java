@@ -4,6 +4,12 @@ package com.epam.university.java.project.core.cdi.bean;
  * Created by Александр on 30.09.2017.
  */
 public class BeanFactoryImpl implements BeanFactory {
+    BeanDefinitionRegistry registry;
+
+    public BeanFactoryImpl(BeanDefinitionRegistry registry) {
+        this.registry = registry;
+    }
+
     /**
      * Get bean instances by class.
      *

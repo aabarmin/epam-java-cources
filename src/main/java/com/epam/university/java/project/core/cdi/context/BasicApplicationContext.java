@@ -3,6 +3,8 @@ package com.epam.university.java.project.core.cdi.context;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanFactory;
+import com.epam.university.java.project.core.cdi.bean.BeanFactoryImpl;
 import com.epam.university.java.project.core.cdi.bean.JAXBBeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.SaxBeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.io.Resource;
@@ -14,11 +16,14 @@ import java.util.Collection;
  */
 public class BasicApplicationContext implements ApplicationContext {
     BeanDefinitionRegistry registry;
-    BeanDefinitionReader reader = new JAXBBeanDefinitionReader(registry);
+    BeanDefinitionReader reader;
+    BeanFactoryImpl factory;
 
 
     public BasicApplicationContext(){
         registry = new BeanDefinitionRegistryImpl();
+        reader = new JAXBBeanDefinitionReader(registry);
+        factory = new BeanFactoryImpl(registry);
     }
 
     /**
@@ -29,7 +34,7 @@ public class BasicApplicationContext implements ApplicationContext {
      */
     @Override
     public <T> T getBean(Class<T> beanClass) {
-        return null;
+        return factory.getBean(beanClass);
     }
 
     /**
@@ -40,7 +45,7 @@ public class BasicApplicationContext implements ApplicationContext {
      */
     @Override
     public Object getBean(String beanName) {
-        return null;
+        return factory.getBean(beanName);
     }
 
     /**
@@ -52,7 +57,7 @@ public class BasicApplicationContext implements ApplicationContext {
      */
     @Override
     public <T> T getBean(String beanName, Class<T> beanClass) {
-        return null;
+        return factory.getBean(beanName, beanClass);
     }
 
     /**
@@ -63,7 +68,7 @@ public class BasicApplicationContext implements ApplicationContext {
      */
     @Override
     public int loadBeanDefinitions(Resource resource) {
-        return 0;
+        return reader.loadBeanDefinitions(resource);
     }
 
     /**
@@ -74,7 +79,6 @@ public class BasicApplicationContext implements ApplicationContext {
      */
     @Override
     public int loadBeanDefinitions(Collection<Resource> resources) {
-        resources.forEach(this::loadBeanDefinitions);
-        return resources.size();
+        return reader.loadBeanDefinitions(resources);
     }
 }

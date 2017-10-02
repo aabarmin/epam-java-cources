@@ -1,11 +1,14 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by Александр on 29.09.2017.
  */
+
 public class BeanDefinitionImpl implements BeanDefinition {
     private String id;
     private String className;

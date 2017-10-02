@@ -27,7 +27,7 @@ public class JAXBBeanDefinitionReader implements BeanDefinitionReader {
     public int loadBeanDefinitions(Resource resource) {
         try {
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinition.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinitionRegistryImpl.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             registry.addBeanDefinition((BeanDefinition) jaxbUnmarshaller.unmarshal(resource.getFile()));
 
