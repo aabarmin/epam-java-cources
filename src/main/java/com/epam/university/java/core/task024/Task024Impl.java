@@ -8,7 +8,7 @@ public class Task024Impl implements Task024 {
 
     @Override
     public Collection<String> getWordsCount(String source) {
-         String result = Stream.of(source.split(""))
+        String result = Stream.of(source.split(""))
                 .flatMap(s -> {
                     if (s.matches("[А-ЯA-Z]")) {
                         return Stream.of(" ", s);
