@@ -142,4 +142,20 @@ public class Task015Test {
         );
     }
 
+    @Test
+    public void testIntersection8() throws Exception {
+        final Square firstSquare = squareFactory.newInstance(
+                pointFactory.newInstance(1, 1),
+                pointFactory.newInstance(5, 5)
+        );
+        final Square secondSquare = squareFactory.newInstance(
+                pointFactory.newInstance(3, 0),
+                pointFactory.newInstance(3, 6)
+        );
+        assertEquals("Error in intersection 7",
+                14,
+                instance.getArea(firstSquare, secondSquare),
+                DELTA
+        );
+    }
 }
