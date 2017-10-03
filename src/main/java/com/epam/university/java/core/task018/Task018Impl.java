@@ -42,6 +42,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getPackageAnnotations(Object toCheck, Class<? extends
             Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
@@ -66,6 +67,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getTypeAnnotations(Object toCheck, Class<? extends
             Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
@@ -86,6 +88,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getFieldsAnnotations(Object toCheck, Class<? extends
             Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
@@ -110,6 +113,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getConstructorsAnnotations(Object toCheck, Class<? extends
             Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
@@ -133,6 +137,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getMethodsAnnotations(Object toCheck, Class<? extends
             Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
@@ -156,6 +161,7 @@ public class Task018Impl implements Task018 {
      * @return <code>List</code> collection with existing annotations
      * @throws IllegalArgumentException if at least one of arguments is null
      */
+    @SuppressWarnings("unchecked")
     public List getMethodsParametersAnnotations(Object toCheck, Class<?
             extends Annotation> annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,

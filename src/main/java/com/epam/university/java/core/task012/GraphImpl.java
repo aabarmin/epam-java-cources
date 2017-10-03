@@ -62,6 +62,7 @@ public class GraphImpl implements Graph {
      * @param from first vertex of new edge
      * @param to   second vertex of new edge
      */
+    @SuppressWarnings("unchecked")
     public void subCreateEdge(int from, int to) {
         if (!mapOfVertices.containsKey(to)) {
             if (mapOfVertices.size() == numberOfVertices) {
