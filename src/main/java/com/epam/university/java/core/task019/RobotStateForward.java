@@ -16,7 +16,7 @@ class RobotStateForward implements RobotState {
      *                             plane
      * @param initialRobotPosition initial machine position in two-dimensional
      *                             plane
-     * @throws
+     * @throws IllegalArgumentException if at least one of parameters is null
      */
     public RobotStateForward(RobotPosition currentRobotPosition, RobotPosition
             initialRobotPosition) {

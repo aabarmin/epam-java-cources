@@ -118,16 +118,16 @@ public class Polygon2D {
             boolean cond2 = (dynamicVerticesPolygon[j].getCoordinateY()
                     <= point.getCoordinateY()) && (point.getCoordinateY()
                     < dynamicVerticesPolygon[i].getCoordinateY());
-            if (cond1 || cond2) {
-                // need to cast to double
+            if (cond1 || cond2) { // need to cast to double
                 if (point.getCoordinateX() < (dynamicVerticesPolygon[j]
                         .getCoordinateX() - dynamicVerticesPolygon[i]
                         .getCoordinateX()) * (point.getCoordinateY()
                         - dynamicVerticesPolygon[i].getCoordinateY())
                         / (dynamicVerticesPolygon[j].getCoordinateY()
                         - dynamicVerticesPolygon[i].getCoordinateY())
-                        + dynamicVerticesPolygon[i].getCoordinateX())
+                        + dynamicVerticesPolygon[i].getCoordinateX()) {
                     crossings++;
+                }
             }
         }
         if (crossings % 2 == 1) {

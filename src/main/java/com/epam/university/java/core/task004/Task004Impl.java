@@ -47,7 +47,7 @@ public class Task004Impl implements Task004 {
      *
      * @param function Function, stream object
      *                 can be changed
-     * @return <code>Predicate<T></code> for checking the stream
+     * @return <code>Predicate</code> for checking the stream
      * @throws IllegalArgumentException if parameter is null
      */
     public static <T> Predicate<T> distinctByValue(Function<? super T, ?>

@@ -131,7 +131,7 @@ public class Task015Impl implements Task015 {
      *
      * @param first  first square
      * @param second second square
-     * @return <code>Set<Point2D></code> of all internal points
+     * @return <code>Set</code> of all internal points
      * @throws IllegalArgumentException if at least one of parameters is null
      */
     public Set<Point2D> findInternalAll(Square first, Square second) {

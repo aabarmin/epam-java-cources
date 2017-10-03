@@ -33,7 +33,7 @@ public class SquareImpl implements Square {
     /**
      * Get all vertices of square.
      *
-     * @return <code>Stack<Point2D><code> - collection of vertices
+     * @return <code>Stack</code> - collection of vertices
      */
     public Stack<Point2D> getPoints() {
         return points;

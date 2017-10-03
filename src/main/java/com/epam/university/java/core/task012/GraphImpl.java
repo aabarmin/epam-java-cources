@@ -40,7 +40,7 @@ public class GraphImpl implements Graph {
     /**
      * Get map of vertices.
      *
-     * @return <code>Map<Integer, Set></code> collection of vertices
+     * @return <code>Map</code> collection of vertices
      */
     public Map<Integer, Set> getMapOfVertices() {
         return mapOfVertices;

@@ -14,7 +14,7 @@ public class Line2D {
     private boolean isSegment;
 
     /**
-     * Initialisation of line
+     * Initialisation of line.
      *
      * @param pointFirst  one of points of the line
      * @param pointSecond one of points of the line
@@ -146,7 +146,7 @@ public class Line2D {
     /**
      * Get canonical parameters for <code>this</code> line.
      *
-     * @return <code>Map<String,Double></code> with parameters
+     * @return <code>Map</code> with parameters
      */
     public Map<String, Double> getCanonicalParameters() {
         Map<String, Double> canonicalParameters = new HashMap<>();

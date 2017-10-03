@@ -11,30 +11,30 @@ public final class Point2D implements Comparable<Point2D> {
     /**
      * Initializes a new point (x, y).
      *
-     * @param CoordinateX the x-coordinate
-     * @param CoordinateY the y-coordinate
+     * @param coordinateX the x-coordinate
+     * @param coordinateY the y-coordinate
      * @throws IllegalArgumentException if either {@code x} or {@code y}
      *                                  is {@code Double.NaN},
      *                                  {@code Double.POSITIVE_INFINITY} or
      *                                  {@code Double.NEGATIVE_INFINITY}
      */
-    public Point2D(double CoordinateX, double CoordinateY) {
-        if (Double.isInfinite(CoordinateX) || Double.isInfinite(CoordinateY)) {
+    public Point2D(double coordinateX, double coordinateY) {
+        if (Double.isInfinite(coordinateX) || Double.isInfinite(coordinateY)) {
             throw new IllegalArgumentException("Coordinates must be finite");
         }
-        if (Double.isNaN(CoordinateX) || Double.isNaN(CoordinateY)) {
+        if (Double.isNaN(coordinateX) || Double.isNaN(coordinateY)) {
             throw new IllegalArgumentException("Coordinates cannot be NaN");
         }
-        if (CoordinateX == 0.0) {
-            this.coordinateX = 0.0;// convert -0.0 to +0.0
+        if (coordinateX == 0.0) {
+            this.coordinateX = 0.0; // convert -0.0 to +0.0
         } else {
-            this.coordinateX = CoordinateX;
+            this.coordinateX = coordinateX;
         }
 
-        if (CoordinateY == 0.0) {
-            this.coordinateY = 0.0;// convert -0.0 to +0.0
+        if (coordinateY == 0.0) {
+            this.coordinateY = 0.0; // convert -0.0 to +0.0
         } else {
-            this.coordinateY = CoordinateY;
+            this.coordinateY = coordinateY;
         }
     }
 
@@ -73,7 +73,6 @@ public final class Point2D implements Comparable<Point2D> {
         this.coordinateY = coordinateY;
     }
 
-
     /**
      * Returns true if a→b→c is a counterclockwise turn.
      *
@@ -81,7 +80,7 @@ public final class Point2D implements Comparable<Point2D> {
      * @param b second point
      * @param c third point
      * @return { -1, 0, +1 } if a→b→c is a { clockwise, collinear;
-     * counterclocwise } turn.
+     * counter clock-wise } turn.
      */
     public static int ccw(Point2D a, Point2D b, Point2D c) {
         double area2 = (b.coordinateX - a.coordinateX) * (c.coordinateY
@@ -137,9 +136,8 @@ public final class Point2D implements Comparable<Point2D> {
     /**
      * Compares two points by y-coordinate, breaking ties by x-coordinate.
      * Formally, the invoking point (x0, y0) is less than the argument
-     * point (x1, y1)
-     * if and only if either {@code y0 < y1} or if {@code y0 == y1} and
-     * {@code x0 < x1}.
+     * point (x1, y1) if and only if either {@code y0 < y1} or if
+     * {@code y0 == y1} and {@code x0 < x1}.
      *
      * @param that the other point
      * @return the value {@code 0} if this string is equal to the argument
@@ -187,7 +185,7 @@ public final class Point2D implements Comparable<Point2D> {
             double dx2 = q2.coordinateX - coordinateX;
             double dy2 = q2.coordinateY - coordinateY;
             if (dy1 >= 0 && dy2 < 0) {
-                return -1;// q1 above; q2 below
+                return -1; // q1 above; q2 below
             } else if (dy2 >= 0 && dy1 < 0) {
                 return +1; // q1 below; q2 above
             } else if (dy1 == 0 && dy2 == 0) { // 3-collinear and horizontal
@@ -200,7 +198,7 @@ public final class Point2D implements Comparable<Point2D> {
                 }
             } else {
                 return -ccw(Point2D.this, q1, q2);     // both above or below
-            }// Note: ccw() recomputes dx1, dy1, dx2, and dy2
+            } // Note: ccw() recomputes dx1, dy1, dx2, and dy2
         }
     }
 }

@@ -32,7 +32,8 @@ public class Task014Test {
                 factory.newInstance(2187, 27, 81),
                 factory.newInstance(6880, 86, 80)
         );
-        final Collection<VampireNumber> vampireNumbers = instance.getVampireNumbers();
+        final Collection<VampireNumber> vampireNumbers = instance
+                .getVampireNumbers();
         assertEquals("Incorrect vampire numbers collection",
                 targetCollection.size(),
                 vampireNumbers.size()
