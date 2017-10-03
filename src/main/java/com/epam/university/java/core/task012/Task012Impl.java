@@ -11,9 +11,8 @@ import java.util.Set;
 /**
  * Class implements Task012.
  */
-public class Task012Impl implements Task012, Cloneable {
+public class Task012Impl implements Task012 {
     public boolean stopCycling = false;
-    private Graph test;
 
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction>
@@ -29,26 +28,22 @@ public class Task012Impl implements Task012, Cloneable {
 
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
-        test = graph;
-        Graph graph1 = graph;
-        Validator.validateNotNull(graph1, Validator.MESSAGE_FOR_SOURCE_IF_NULL);
+        Validator.validateNotNull(graph, Validator.MESSAGE_FOR_SOURCE_IF_NULL);
         Validator.validateValueRange(from, 1, 1000,
                 Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
                 Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
         Validator.validateValueRange(to, 1, 1000,
                 Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
                 Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
-        Map<Integer, Set> graphMap = ((GraphImpl) graph1).getMapOfVertices();
+        Map<Integer, Set> graphMap = ((GraphImpl) graph).getMapOfVertices();
         if (!graphMap.containsKey(from)) {
             return false;
         } else {
             System.out.println("----------------");
             System.out.println("from" + from);
             System.out.println("to" + to);
-            // Map copy =graphMap;
             boolean result = subFinder(new GraphImpl(graphMap, graphMap.size()),
                     from, to);
-            graph = test;
             return result;
         }
     }

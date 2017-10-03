@@ -14,8 +14,8 @@ import java.util.TreeSet;
  */
 public class GraphImpl implements Graph {
 
-    private Map<Integer, Set> mapOfVertices;
-    private int numberOfVertices;
+    public Map<Integer, Set> mapOfVertices;
+    public int numberOfVertices;
     public static String MESSAGE_FOR_COLLECTION_IS_FULL_EXCEPTION =
             "Graph is full, adding new vertex is impossible";
 
