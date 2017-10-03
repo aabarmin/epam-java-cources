@@ -14,6 +14,19 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
         beans.put(definition.getId(), definition);
+        
+        //TODO: Problem of overriding if several classes implements one interface
+        //trying to associate beans definition with it's interfaces names
+        try {
+            Class<?>[] interfaces = Class.forName(definition.getClassName()).getInterfaces();
+            for (Class<?> currInterface : interfaces) {
+                String interfaceId = currInterface.getSimpleName().substring(0, 1).toLowerCase()
+                        + currInterface.getSimpleName().substring(1);
+                beans.put(interfaceId, definition);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
