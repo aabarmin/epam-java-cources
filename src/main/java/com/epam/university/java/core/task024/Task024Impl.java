@@ -12,7 +12,7 @@ public class Task024Impl implements Task024 {
             throw new IllegalArgumentException("String wasn't provided!");
         }
         return source.isEmpty() ? Collections.emptyList()
-                : Arrays.stream(source.split("(?=[A-Z])"))
+                : Arrays.stream(source.split("(?=\\p{Lu})"))
                 .map(String::toLowerCase)
                 .collect(Collectors.toList());
     }
