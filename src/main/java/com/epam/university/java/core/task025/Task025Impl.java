@@ -6,6 +6,9 @@ public class Task025Impl implements Task025 {
         if (sourceMessage == null) {
             throw new IllegalArgumentException("String wasn't provided!");
         }
+        if ("".equals(sourceMessage)) {
+            return 0;
+        }
         final String sos = "SOS";
         final String[] sosStrings = sourceMessage.split("(?<=\\G.{3})");
         int count = 0;

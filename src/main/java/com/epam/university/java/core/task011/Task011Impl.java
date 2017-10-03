@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
-        if (collection == null) {
+        if (collection == null || collection.length == 0) {
             throw new IllegalArgumentException("Array not provided!");
         }
         if (collection.length == 1) {
@@ -37,8 +37,8 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
-        if (collection == null) {
-            throw new IllegalArgumentException("Array not provided!");
+        if (collection == null || collection.isEmpty()) {
+            throw new IllegalArgumentException("Array list not provided!");
         }
         return getLastName(new LinkedList<>(collection));
     }
@@ -46,8 +46,8 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
-        if (collection == null) {
-            throw new IllegalArgumentException("Array not provided!");
+        if (collection == null || collection.isEmpty()) {
+            throw new IllegalArgumentException("Linked list not provided!");
         }
         if (collection.size() == 1) {
             return collection.get(0);
