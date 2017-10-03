@@ -35,7 +35,8 @@ public class Task012Impl implements Task012 {
         Validator.validateValueRange(to, 1, 1000,
                 Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
                 Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
-        Map<Integer, Set> graphMap = ((GraphImpl) graph).getMapOfVertices();
+        Map<Integer, Set<Integer>> graphMap = ((GraphImpl) graph)
+                .getMapOfVertices();
         if (!graphMap.containsKey(from)) {
             return false;
         } else {
@@ -55,7 +56,8 @@ public class Task012Impl implements Task012 {
      * @return boolean if path exists
      */
     public boolean subFinder(Graph graph, int from, int to) {
-        Map<Integer, Set> graphMap = ((GraphImpl) graph).getMapOfVertices();
+        Map<Integer, Set<Integer>> graphMap = ((GraphImpl) graph)
+                .getMapOfVertices();
         if (!graphMap.containsKey(from)) {
             System.out.println("beginning key deleted");
             return false;
