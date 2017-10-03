@@ -48,7 +48,7 @@ public class Task015Impl implements Task015 {
      * @param vertices array of a polygon's vertices ordered in clock-wise or
      *                 counter clock-wise order
      * @return <code>Line2D[]</code> array of polygon sides ordered in
-     *  clock-wise or counter clock-wise order
+     *     clock-wise or counter clock-wise order
      * @throws IllegalArgumentException if parameter is null
      */
     public Line2D[] verticesToLines(Point2D[] vertices) {
