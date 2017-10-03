@@ -1,8 +1,5 @@
 package com.epam.university.java.core.task026;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Implementation class for Task026.
@@ -11,6 +8,8 @@ import java.util.stream.Stream;
  */
 public class Task026Impl implements Task026 {
 
+    private static final int diapason = ('Z' - 'A') + 1;
+
     /**
      * {@inheritDoc}
      */
@@ -18,14 +17,18 @@ public class Task026Impl implements Task026 {
     public String encrypt(String sourceString, int shift) {
 
         final String ret = sourceString.chars()
-                .map(l -> ((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z')) ? (l + shift) : l)
-                .mapToObj(l -> {
-                    if (l > 'z') {
-                        return String.valueOf((char)('a' + l - 'z' - 1));
-                    } else if (l > 'Z' && l < 'a')  {
-                        return String.valueOf((char)('A' + l - 'Z' - 1));
+                .mapToObj(old -> {
+
+                    int now = old + shift;
+                    if( old < 'A' || old > 'z' || (old > 'Z' && old < 'a')) {
+                        now = old;
+                    } else if (now > 'z' || (now > 'Z' && old <= 'Z')) {
+                        now -= diapason;
+                    } else if (now < 'A' || (now < 'a' && old >= 'a')) {
+                        now += diapason;
                     }
-                    return String.valueOf((char)l);
+
+                    return String.valueOf((char)now);
                 })
                 .reduce("", (a, b) -> a + b);
 
@@ -37,6 +40,7 @@ public class Task026Impl implements Task026 {
      */
     @Override
     public String decrypt(String encryptedString, int shift) {
-        return null;
+
+        return encrypt(encryptedString, -shift);
     }
 }

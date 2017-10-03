@@ -7,7 +7,7 @@ package com.epam.university.java.core.task025;
  */
 public class Task025Impl implements Task025 {
 
-    private final static String word = "SOS";
+    private static final String word = "SOS";
     private final int length = word.length();
 
     /**
@@ -19,7 +19,7 @@ public class Task025Impl implements Task025 {
         int amount = 0;
 
         for (int i = 0; i < sourceMessage.length(); i++) {
-            if (sourceMessage.charAt(i) != word.charAt(i % length) ) {
+            if (sourceMessage.charAt(i) != word.charAt(i % length)) {
                 amount++;
             }
         }
