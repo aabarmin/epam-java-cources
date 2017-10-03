@@ -42,9 +42,7 @@ public class Task012Impl implements Task012 {
             System.out.println("----------------");
             System.out.println("from" + from);
             System.out.println("to" + to);
-            boolean result = subFinder(new GraphImpl(graphMap, graphMap.size()),
-                    from, to);
-            return result;
+            return subFinder(new GraphImpl(graphMap, graphMap.size()), from, to);
         }
     }
 

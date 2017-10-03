@@ -14,7 +14,7 @@ import java.util.TreeSet;
  */
 public class GraphImpl implements Graph {
 
-    public Map<Integer, Set> mapOfVertices;
+    public Map<Integer, Set<Integer>> mapOfVertices;
     public int numberOfVertices;
     public static String MESSAGE_FOR_COLLECTION_IS_FULL_EXCEPTION =
             "Graph is full, adding new vertex is impossible";
@@ -32,7 +32,8 @@ public class GraphImpl implements Graph {
         this.mapOfVertices = new HashMap<>();
     }
 
-    public GraphImpl(Map<Integer, Set> mapOfVertices, int numberOfVertices) {
+    public GraphImpl(Map<Integer, Set<Integer>> mapOfVertices, int
+            numberOfVertices) {
         this.mapOfVertices = mapOfVertices;
         this.numberOfVertices = numberOfVertices;
     }
@@ -42,7 +43,7 @@ public class GraphImpl implements Graph {
      *
      * @return <code>Map</code> collection of vertices
      */
-    public Map<Integer, Set> getMapOfVertices() {
+    public Map<Integer, Set<Integer>> getMapOfVertices() {
         return mapOfVertices;
     }
 
@@ -67,10 +68,10 @@ public class GraphImpl implements Graph {
                 throw new CollectionFullException(
                         MESSAGE_FOR_COLLECTION_IS_FULL_EXCEPTION);
             }
-            mapOfVertices.put(Integer.valueOf(to), new TreeSet());
-            mapOfVertices.get(Integer.valueOf(to)).add(from);
+            mapOfVertices.put(to, new TreeSet());
+            mapOfVertices.get(to).add(from);
         } else {
-            mapOfVertices.get(Integer.valueOf(to)).add(from);
+            mapOfVertices.get(to).add(from);
         }
     }
 

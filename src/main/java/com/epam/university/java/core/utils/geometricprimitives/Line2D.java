@@ -136,8 +136,7 @@ public class Line2D {
                 && ((Math.min(this.pointFirst.getCoordinateY(), this.pointSecond
                 .getCoordinateY()) <= pointToCheck.getCoordinateY())
                 && (pointToCheck.getCoordinateY() <= Math.max(this.pointFirst
-                .getCoordinateY(), this.pointSecond.getCoordinateY())))
-                ) {
+                .getCoordinateY(), this.pointSecond.getCoordinateY())))) {
             return true;
         }
         return false;

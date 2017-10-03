@@ -15,12 +15,13 @@ import java.util.stream.Stream;
  */
 public class Task018Impl implements Task018 {
     @Override
+    @SuppressWarnings("unchecked")
     public boolean isAnnotationPresent(Object toCheck, Class<?>
             annotationToFind) {
         Validator.validateNotNull(toCheck, annotationToFind,
                 Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
                 Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL);
-        List annotations = new ArrayList();
+        List<Annotation> annotations = new ArrayList<>();
         Class<? extends Annotation> toFind = (Class<? extends Annotation>)
                 annotationToFind;
         annotations.addAll(getPackageAnnotations(toCheck, toFind));
