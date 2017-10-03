@@ -1,8 +1,8 @@
 package com.epam.university.java.core.task014;
 
-
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Implements Vampire number creation for numbers with length of 4.
@@ -14,8 +14,8 @@ public class Task014Impl implements Task014 {
         for (int number = 1000; number < 10000; number++) {
             int[] numberInArray = new int[Integer.toString(number).length()];
             for (int i = 0; i < numberInArray.length; i++) {
-                numberInArray[i] = Character.getNumericValue(Integer.toString
-                        (number).charAt(i));
+                numberInArray[i] = Character.getNumericValue(Integer.toString(
+                        number).charAt(i));
             }
             for (int i = 0; i < numberInArray.length; i++) {
                 for (int j = 0; j < numberInArray.length; j++) {

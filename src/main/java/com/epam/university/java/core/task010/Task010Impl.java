@@ -11,9 +11,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-
 /**
- * Class implements Task010
+ * Class implements Task010.
  */
 public class Task010Impl implements Task010 {
 

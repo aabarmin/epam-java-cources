@@ -40,7 +40,7 @@ public class GraphImpl implements Graph {
     /**
      * Get map of vertices.
      *
-     * @return <code><Map<Integer, Set></code> collection of vertices
+     * @return <code>Map<Integer, Set></code> collection of vertices
      */
     public Map<Integer, Set> getMapOfVertices() {
         return mapOfVertices;
@@ -118,9 +118,7 @@ public class GraphImpl implements Graph {
 
     @Override
     public String toString() {
-        return "GraphImpl{" +
-                "mapOfVertices=" + mapOfVertices +
-                ", numberOfVertices=" + numberOfVertices +
-                '}';
+        return "GraphImpl{mapOfVertices=" + mapOfVertices
+                + ", numberOfVertices=" + numberOfVertices + '}';
     }
 }

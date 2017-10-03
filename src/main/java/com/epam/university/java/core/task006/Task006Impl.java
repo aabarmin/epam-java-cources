@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Class implements Task006
+ * Class implements Task006.
  */
 public class Task006Impl implements Task006 {
     @Override

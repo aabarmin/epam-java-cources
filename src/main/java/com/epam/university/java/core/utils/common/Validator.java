@@ -203,8 +203,8 @@ public class Validator {
                                           String messageIfViolatesLowerBorder,
                                           String messageIfViolatesUpperBorder) {
         if (value < lowerBorder) {
-            throw new IllegalArgumentException(value + " - " +
-                    messageIfViolatesLowerBorder + " - " + lowerBorder);
+            throw new IllegalArgumentException(value + " - "
+                    + messageIfViolatesLowerBorder + " - " + lowerBorder);
         }
         if (value > upperBorder) {
             throw new IllegalArgumentException(messageIfViolatesUpperBorder);
@@ -222,8 +222,8 @@ public class Validator {
      * @throws IllegalArgumentException if parameter doesn't exists in enum
      */
     public static <E extends Enum<E>> boolean
-    validateEnum(E value, E[] enumValues, String
-            messageIfIllegalArgument) throws IllegalArgumentException {
+    validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+            throws IllegalArgumentException {
         for (E enumValue : enumValues) {
             if (enumValue.equals(value)) {
                 return true;

@@ -38,7 +38,7 @@ public class Task020Impl implements Task020 {
      * Return predicate that checks if value of stream is unique.
      *
      * @param function function
-     * @return <code><T>Predicate<T></code> for checking the uniqueness test
+     * @return <code>Predicate<T></code> for checking the uniqueness test
      * @throws IllegalArgumentException if parameter is null
      */
     public static <T> Predicate<T> distinctByValue(Function<? super T, ?>

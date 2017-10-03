@@ -53,18 +53,19 @@ public class PointImpl implements Point {
 
     @Override
     public String toString() {
-        return "PointImpl{" +
-                "point2D=" + point2D +
-                '}';
+        return "PointImpl{point2D=" + point2D + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PointImpl)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PointImpl)) {
+            return false;
+        }
 
         PointImpl point = (PointImpl) o;
-
         return point2D.equals(point.point2D);
     }
 

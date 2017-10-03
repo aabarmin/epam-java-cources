@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Class implements Task012.
  */
-public class Task012Impl implements Task012,Cloneable {
+public class Task012Impl implements Task012, Cloneable {
     public boolean stopCycling = false;
     private Graph test;
 
@@ -29,8 +29,8 @@ public class Task012Impl implements Task012,Cloneable {
 
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
-        test=graph;
-        Graph graph1=graph;
+        test = graph;
+        Graph graph1 = graph;
         Validator.validateNotNull(graph1, Validator.MESSAGE_FOR_SOURCE_IF_NULL);
         Validator.validateValueRange(from, 1, 1000,
                 Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
@@ -45,10 +45,10 @@ public class Task012Impl implements Task012,Cloneable {
             System.out.println("----------------");
             System.out.println("from" + from);
             System.out.println("to" + to);
-           // Map copy =graphMap;
-            boolean result=subFinder(new GraphImpl(graphMap,graphMap.size()),
+            // Map copy =graphMap;
+            boolean result = subFinder(new GraphImpl(graphMap, graphMap.size()),
                     from, to);
-            graph=test;
+            graph = test;
             return result;
         }
     }

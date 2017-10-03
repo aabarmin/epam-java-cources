@@ -66,11 +66,14 @@ public class RobotPositionImpl implements RobotPosition {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RobotPositionImpl)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof RobotPositionImpl)) {
+            return false;
+        }
 
         RobotPositionImpl that = (RobotPositionImpl) o;
-
         return position != null ? position.equals(that.position) : that
                 .position == null;
     }

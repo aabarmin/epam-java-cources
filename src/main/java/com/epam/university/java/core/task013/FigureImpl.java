@@ -19,7 +19,7 @@ public class FigureImpl implements Figure {
      *
      * @param numberOfVertices number of vertices
      * @throws IllegalArgumentException if <code>numberOfVertices</code> is
-     * negative
+     *                                  negative
      */
     public FigureImpl(int numberOfVertices) {
         Validator.validateNotNegative(numberOfVertices,

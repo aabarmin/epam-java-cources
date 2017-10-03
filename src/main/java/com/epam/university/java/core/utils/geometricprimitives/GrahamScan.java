@@ -5,7 +5,7 @@ import java.util.Stack;
 
 /**
  * Class implements the method (Graham Scan) of finding the convex hull of a
- * finite set of points in the plane
+ * finite set of points in the plane.
  */
 public class GrahamScan {
     private Stack<Point2D> hull = new Stack<Point2D>();
@@ -89,7 +89,7 @@ public class GrahamScan {
     }
 
     /**
-     * Check that boundary of hull is strictly convex
+     * Check that boundary of hull is strictly convex.
      *
      * @return true if boundary of hull is strictly convex
      */

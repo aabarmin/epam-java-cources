@@ -33,7 +33,7 @@ public class SquareImpl implements Square {
     /**
      * Get all vertices of square.
      *
-     * @return <code<<Stack<Point2D><code> - collection of vertices
+     * @return <code>Stack<Point2D><code> - collection of vertices
      */
     public Stack<Point2D> getPoints() {
         return points;
@@ -70,22 +70,20 @@ public class SquareImpl implements Square {
             Point2D[] pointsTemp = new Point2D[4];
             pointsTemp[0] = ((PointImpl) pointFirst).getPoint2D();
             pointsTemp[1] = ((PointImpl) pointSecond).getPoint2D();
-            pointsTemp[2] = new Point2D((pointsTemp[0].getCoordinateX()
-                    + pointsTemp[1].getCoordinateX()) / 2 + (pointsTemp[0]
-                    .getCoordinateY() -
-                    pointsTemp[1].getCoordinateY()) / 2, (pointsTemp[0]
-                    .getCoordinateY()
-                    + pointsTemp[1].getCoordinateY()) / 2 + (pointsTemp[1]
-                    .getCoordinateX() -
-                    pointsTemp[0].getCoordinateX()) / 2);
-            pointsTemp[3] = new Point2D((pointsTemp[0].getCoordinateX()
-                    + pointsTemp[1].getCoordinateX()) / 2 + (pointsTemp[1]
-                    .getCoordinateY() -
-                    pointsTemp[0].getCoordinateY()) / 2, (pointsTemp[0]
-                    .getCoordinateY()
-                    + pointsTemp[1].getCoordinateY()) / 2 + (pointsTemp[0]
-                    .getCoordinateX() -
-                    pointsTemp[1].getCoordinateX()) / 2);
+            pointsTemp[2] = new Point2D((pointsTemp[0]
+                    .getCoordinateX() + pointsTemp[1].getCoordinateX()) / 2
+                    + (pointsTemp[0].getCoordinateY() - pointsTemp[1]
+                    .getCoordinateY()) / 2, (pointsTemp[0]
+                    .getCoordinateY() + pointsTemp[1].getCoordinateY()) / 2
+                    + (pointsTemp[1].getCoordinateX() - pointsTemp[0]
+                    .getCoordinateX()) / 2);
+            pointsTemp[3] = new Point2D((pointsTemp[0]
+                    .getCoordinateX() + pointsTemp[1].getCoordinateX()) / 2
+                    + (pointsTemp[1].getCoordinateY() - pointsTemp[0]
+                    .getCoordinateY()) / 2, (pointsTemp[0]
+                    .getCoordinateY() + pointsTemp[1].getCoordinateY()) / 2
+                    + (pointsTemp[0].getCoordinateX() - pointsTemp[1]
+                    .getCoordinateX()) / 2);
             points = new GrahamScan(pointsTemp).getHull();
         }
     }

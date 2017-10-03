@@ -38,11 +38,14 @@ public class VampireNumberImpl implements VampireNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof VampireNumberImpl)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof VampireNumberImpl)) {
+            return false;
+        }
 
         VampireNumberImpl that = (VampireNumberImpl) o;
-
         return multiplication == that.multiplication;
     }
 
@@ -53,12 +56,9 @@ public class VampireNumberImpl implements VampireNumber {
 
     @Override
     public String toString() {
-        return "VampireNumberImpl{" +
-                "multiplication=" + multiplication +
-                ", firstNumber=" + firstNumber +
-                ", secondNumber=" + secondNumber +
-                '}'
-                + System.lineSeparator();
+        return "VampireNumberImpl{multiplication=" + multiplication
+                + ", firstNumber=" + firstNumber + ", secondNumber="
+                + secondNumber + '}' + System.lineSeparator();
     }
 
     @Override

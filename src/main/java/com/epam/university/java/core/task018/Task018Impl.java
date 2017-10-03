@@ -6,7 +6,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -49,8 +50,9 @@ public class Task018Impl implements Task018 {
         Annotation[] annotationsArray = toCheck.getClass().getPackage()
                 .getDeclaredAnnotations();
         Stream.of(annotationsArray).parallel().forEach(annotation -> {
-            if (annotation.annotationType().equals(annotationToFind))
+            if (annotation.annotationType().equals(annotationToFind)) {
                 annotations.add(annotationToFind);
+            }
         });
         return annotations;
     }
@@ -91,8 +93,9 @@ public class Task018Impl implements Task018 {
         List annotations = new ArrayList();
         Field[] fields = toCheck.getClass().getDeclaredFields();
         Stream.of(fields).parallel().forEach(field -> {
-            if (field.isAnnotationPresent(annotationToFind))
+            if (field.isAnnotationPresent(annotationToFind)) {
                 annotations.add(annotationToFind);
+            }
         });
 
         return annotations;
@@ -114,8 +117,9 @@ public class Task018Impl implements Task018 {
         List annotations = new ArrayList();
         Constructor[] constructors = toCheck.getClass().getConstructors();
         Stream.of(constructors).parallel().forEach(constructor -> {
-            if (constructor.isAnnotationPresent(annotationToFind))
+            if (constructor.isAnnotationPresent(annotationToFind)) {
                 annotations.add(annotationToFind);
+            }
         });
         return annotations;
     }
@@ -136,8 +140,9 @@ public class Task018Impl implements Task018 {
         List annotations = new ArrayList();
         Method[] methods = toCheck.getClass().getMethods();
         Stream.of(methods).parallel().forEach(method -> {
-            if (method.isAnnotationPresent(annotationToFind))
+            if (method.isAnnotationPresent(annotationToFind)) {
                 annotations.add(annotationToFind);
+            }
         });
         return annotations;
     }

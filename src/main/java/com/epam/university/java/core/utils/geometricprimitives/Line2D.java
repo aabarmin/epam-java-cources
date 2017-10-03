@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class implements line in two-dimensional plane
+ * Class implements line in two-dimensional plane.
  */
 public class Line2D {
     private Point2D pointFirst;
@@ -29,7 +29,7 @@ public class Line2D {
     }
 
     /**
-     * Get <code>pointFirst</code>
+     * Get <code>pointFirst</code>.
      *
      * @return <code>Point2D</code> first point
      */
@@ -38,7 +38,7 @@ public class Line2D {
     }
 
     /**
-     * Set <code>pointFirst</code>
+     * Set <code>pointFirst</code>.
      *
      * @param pointFirst first point
      * @throws IllegalArgumentException if argument is null
@@ -50,7 +50,7 @@ public class Line2D {
     }
 
     /**
-     * Get <code>pointSecond</code>
+     * Get <code>pointSecond</code>.
      *
      * @return <code>Point2D</code> - second point
      */
@@ -59,7 +59,7 @@ public class Line2D {
     }
 
     /**
-     * Set <code>pointSecond</code>
+     * Set <code>pointSecond</code>.
      *
      * @param pointSecond first point
      * @throws IllegalArgumentException if argument is null
@@ -72,7 +72,7 @@ public class Line2D {
 
     /**
      * Find intersection point of <code>this</code> line and
-     * <code>lineSecond</code>
+     * <code>lineSecond</code>.
      *
      * @param lineSecond second line
      * @return <code>Point2D</code> intersection point
@@ -87,30 +87,29 @@ public class Line2D {
         double firstB = getCanonicalParameters().get("parameterB");
         double firstC = getCanonicalParameters().get("parameterC");
 
-        // Line CD represented as a2x + b2y = c2
-        double secondA = lineSecond.getCanonicalParameters().get
-                ("parameterA");
-        double secondB = lineSecond.getCanonicalParameters().get
-                ("parameterB");
-        double secondC = lineSecond.getCanonicalParameters().get
-                ("parameterC");
-
+        // second line represented as a2x + b2y = c2
+        double secondA = lineSecond.getCanonicalParameters().get(
+                "parameterA");
+        double secondB = lineSecond.getCanonicalParameters().get(
+                "parameterB");
+        double secondC = lineSecond.getCanonicalParameters().get(
+                "parameterC");
         double determinant = firstA * secondB - secondA * firstB;
 
         if (determinant == 0) {
             // The lines are parallel. This is simplified by returning null
             return null;
         } else {
-            double intersectionX = (secondB * firstC - firstB * secondC) /
-                    determinant;
-            double intersectionY = (firstA * secondC - secondA * firstC) /
-                    determinant;
+            double intersectionX = (secondB * firstC - firstB * secondC)
+                    / determinant;
+            double intersectionY = (firstA * secondC - secondA * firstC)
+                    / determinant;
             //check that intersection point belongs to the segments
             if (isSegment) {
                 Point2D tempIntersectionPoint = new Point2D(intersectionX,
                         intersectionY);
-                if (this.isInSegmentRange(tempIntersectionPoint) &&
-                        lineSecond.isInSegmentRange(tempIntersectionPoint)) {
+                if (this.isInSegmentRange(tempIntersectionPoint)
+                        && lineSecond.isInSegmentRange(tempIntersectionPoint)) {
                     return tempIntersectionPoint;
                 }
                 return null;
@@ -121,7 +120,7 @@ public class Line2D {
     }
 
     /**
-     * Check if point belongs to range of line segment
+     * Check if point belongs to range of line segment.
      *
      * @param pointToCheck point to check
      * @return <code>boolean</code> true if point belongs to the range
@@ -145,19 +144,19 @@ public class Line2D {
     }
 
     /**
-     * Get canonical parameters for <code>this</code> line
+     * Get canonical parameters for <code>this</code> line.
      *
      * @return <code>Map<String,Double></code> with parameters
      */
     public Map<String, Double> getCanonicalParameters() {
         Map<String, Double> canonicalParameters = new HashMap<>();
         // first line represented as a1x + b1y = c1
-        canonicalParameters.put("parameterA", this.pointSecond.getCoordinateY
-                () - this.pointFirst.getCoordinateY());
-        canonicalParameters.put("parameterB", this.pointFirst.getCoordinateX
-                () - this.pointSecond.getCoordinateX());
-        canonicalParameters.put("parameterC", canonicalParameters.get
-                ("parameterA") * (this.pointFirst.getCoordinateX())
+        canonicalParameters.put("parameterA", this.pointSecond.getCoordinateY()
+                - this.pointFirst.getCoordinateY());
+        canonicalParameters.put("parameterB", this.pointFirst.getCoordinateX()
+                - this.pointSecond.getCoordinateX());
+        canonicalParameters.put("parameterC", canonicalParameters.get(
+                "parameterA") * (this.pointFirst.getCoordinateX())
                 + canonicalParameters.get("parameterB") * (this.pointFirst
                 .getCoordinateY()));
         return canonicalParameters;
@@ -165,7 +164,7 @@ public class Line2D {
 
     @Override
     public String toString() {
-        return "Line2D{" + "pointFirst=" + pointFirst + System.lineSeparator
-                () + ", pointSecond=" + pointSecond + '}';
+        return "Line2D{" + "pointFirst=" + pointFirst + System.lineSeparator()
+                + ", pointSecond=" + pointSecond + '}';
     }
 }

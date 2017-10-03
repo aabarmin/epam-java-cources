@@ -90,7 +90,6 @@ public class Logger {
      * Set file for logging.
      *
      * @param loggerFile file for logging
-     * @return <code>File</code> - file for logging
      * @throws IllegalArgumentException if parameter is null
      */
     public void setLoggerFile(File loggerFile) {

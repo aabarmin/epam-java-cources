@@ -6,7 +6,9 @@ import com.epam.university.java.core.utils.geometricprimitives.Point2D;
 import com.epam.university.java.core.utils.geometricprimitives.Line2D;
 import com.epam.university.java.core.utils.geometricprimitives.Polygon2D;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Task015Impl implements Task015 {
     @Override
@@ -31,31 +33,30 @@ public class Task015Impl implements Task015 {
         //calculating area
         Polygon2D tempIntersectionPolygon2D = new Polygon2D();
         tempIntersectionPolygon2D.addAll(intersections);
-        tempIntersectionPolygon2D.addAll((internalVertices).toArray(new
-                Point2D[0]));
-        Point2D[] intersectionPointsOrdered = (new GrahamScan
-                (tempIntersectionPolygon2D.getPoints2D())).getHull2D();
+        tempIntersectionPolygon2D.addAll((internalVertices).toArray(
+                new Point2D[0]));
+        Point2D[] intersectionPointsOrdered = (new GrahamScan(
+                tempIntersectionPolygon2D.getPoints2D())).getHull2D();
         tempIntersectionPolygon2D = new Polygon2D();
         tempIntersectionPolygon2D.addAll(intersectionPointsOrdered);
         return tempIntersectionPolygon2D.area();
     }
 
     /**
-     * Create lines from vertices of two-dimensional polygon
+     * Create lines from vertices of two-dimensional polygon.
      *
      * @param vertices array of a polygon's vertices ordered in clock-wise or
      *                 counter clock-wise order
      * @return <code>Line2D[]</code> array of polygon sides ordered in
-     * clock-wise or
-     * counter clock-wise order
+     * clock-wise or counter clock-wise order
      * @throws IllegalArgumentException if parameter is null
      */
     public Line2D[] verticesToLines(Point2D[] vertices) {
         Validator.validateNotNull(vertices, Validator
                 .MESSAGE_FOR_SOURCE_IF_NULL);
         if (vertices.length < 3) {
-            throw new IllegalArgumentException("number of points should be " +
-                    "more than 2");
+            throw new IllegalArgumentException("number of points should be "
+                    + "more than 2");
         }
         Line2D[] sides = new Line2D[vertices.length];
         for (int i = 0; i < vertices.length; i++) {
@@ -69,7 +70,7 @@ public class Task015Impl implements Task015 {
     }
 
     /**
-     * Find intersections of lines or segments of lines
+     * Find intersections of lines or segments of lines.
      *
      * @param linesFirst  sides of first square
      * @param linesSecond sides of second square
@@ -98,7 +99,7 @@ public class Task015Impl implements Task015 {
     }
 
     /**
-     * Find all internal vertices after intersection for one of squares
+     * Find all internal vertices after intersection for one of squares.
      *
      * @param squareFirst  first square
      * @param squareSecond second square
@@ -126,7 +127,7 @@ public class Task015Impl implements Task015 {
     }
 
     /**
-     * Find all internal vertices after intersection for both of squares
+     * Find all internal vertices after intersection for both of squares.
      *
      * @param first  first square
      * @param second second square
