@@ -1,12 +1,6 @@
 package com.epam.university.java.core.task013;
 
-import com.sun.xml.internal.ws.policy.AssertionValidationProcessor;
-import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
-import edu.princeton.cs.algorithms.GrahamScan;
 import edu.princeton.cs.algorithms.Point2D;
-import edu.princeton.cs.introcs.StdOut;
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,14 +24,15 @@ public class Task013Impl implements Task013 {
 
         Point2D[] vertexesP = new Point2D[vertexes.size()];
 
-        for (int i=0; i <vertexes.size(); i++) {
-            vertexesP[i] = new Point2D(vertexes.get(i).getX(), vertexes.get(i).getY()) ;
+        for (int i = 0; i < vertexes.size(); i++) {
+            vertexesP[i] = new Point2D(vertexes.get(i).getX(),vertexes.get(i).getY());
         }
 
         Arrays.sort(vertexesP, new Point2D(0,0).POLAR_ORDER);
 
         for (int i = 0; i < vertexesP.length; i++) {
-            if (Point2D.ccw(vertexesP[i], vertexesP[(i+1) % vertexesP.length], vertexesP[(i+2) % vertexesP.length]) <= 0) {
+            if (Point2D.ccw(vertexesP[i], vertexesP[(i + 1) % vertexesP.length],
+                    vertexesP[(i + 2) % vertexesP.length]) <= 0) {
                 return false;
             }
         }
