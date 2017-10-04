@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task009;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task010;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Class implements Task010.
+ */
 public class Task010Impl implements Task010 {
 
     @Override

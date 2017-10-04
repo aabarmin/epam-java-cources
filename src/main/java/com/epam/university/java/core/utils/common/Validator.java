@@ -1,4 +1,6 @@
-package com.epam.university.java.core.utils;
+package com.epam.university.java.core.utils.common;
+
+import java.util.Collection;
 
 /**
  * Validation utility.
@@ -24,8 +26,16 @@ public class Validator {
     public static final String
             MESSAGE_FOR_SECOND_PARAMETER_IF_NUMBER_FORMAT_EXCEPTION
             = "can't convert second input value to number";
-    public static final String MESSAGE_IF_NEGATIVE = "number should be "
-            + "positive";
+    public static final String MESSAGE_IF_NEGATIVE =
+            "number should be positive";
+    public static final String MESSAGE_FOR_FIRST_PARAMETER_IF_NEGATIVE =
+            "first parameter can't be negative";
+    public static final String MESSAGE_FOR_SECOND_PARAMETER_IF_NEGATIVE =
+            "second parameter can't be negative";
+    public static final String MESSAGE_IF_ILLEGAL_ARGUMENT =
+            "illegal argument assigned";
+    public static final String MESSAGE_IF_COLLECTION_EMPTY =
+            "collection can't be empty";
 
     /**
      * Validates parameters not null.
@@ -124,6 +134,25 @@ public class Validator {
     }
 
     /**
+     * Validates parameters not negative.
+     *
+     * @param firstParameter                      parameter to check
+     * @param messageForFirstParameterIfNegative  message if first parameter is
+     *                                            negative
+     * @param messageForSecondParameterIfNegative message if second parameter is
+     *                                            negative
+     * @throws IllegalArgumentException if at least one parameter is negative
+     */
+    public static void validateNotNegative(
+            long firstParameter, long secondParameter,
+            String messageForFirstParameterIfNegative,
+            String messageForSecondParameterIfNegative) {
+        validateNotNegative(firstParameter, messageForFirstParameterIfNegative);
+        validateNotNegative(secondParameter,
+                messageForSecondParameterIfNegative);
+    }
+
+    /**
      * Validates number format (double).
      *
      * @param firstString                                  string to check
@@ -174,10 +203,46 @@ public class Validator {
                                           String messageIfViolatesLowerBorder,
                                           String messageIfViolatesUpperBorder) {
         if (value < lowerBorder) {
-            throw new IllegalArgumentException(messageIfViolatesLowerBorder);
+            throw new IllegalArgumentException(value + " - "
+                    + messageIfViolatesLowerBorder + " - " + lowerBorder);
         }
         if (value > upperBorder) {
             throw new IllegalArgumentException(messageIfViolatesUpperBorder);
+        }
+    }
+
+    /**
+     * Validates value exists in Enum.
+     *
+     * @param value                    value to check
+     * @param enumValues               enum values to look in
+     * @param messageIfIllegalArgument message if value doesn't belongs to
+     *                                 enum
+     * @return <code>boolean</code> true if value exists in Enum
+     * @throws IllegalArgumentException if parameter doesn't exists in enum
+     */
+    public static <E extends Enum<E>> boolean
+        validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+            throws IllegalArgumentException {
+        for (E enumValue : enumValues) {
+            if (enumValue.equals(value)) {
+                return true;
+            }
+        }
+        throw new IllegalArgumentException(messageIfIllegalArgument);
+    }
+
+    /**
+     * Validates if collection is empty or not.
+     *
+     * @param collection               collection to check
+     * @param messageIfCollectionEmpty message if collection is empty
+     * @throws IllegalArgumentException if collection is empty
+     */
+    public static void validateEmpty(Collection collection, String
+            messageIfCollectionEmpty) {
+        if (collection.isEmpty()) {
+            throw new IllegalArgumentException(messageIfCollectionEmpty);
         }
     }
 }

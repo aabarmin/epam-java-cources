@@ -9,9 +9,7 @@ import java.util.LinkedList;
 public interface Task011 {
     /**
      * Given a circle of men, on each iteration one man leaves it through one.
-     * You should determine
-     * name of last man.
-     * <p>
+     * You should determine name of last man.
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained
@@ -29,10 +27,8 @@ public interface Task011 {
     String getLastName(String[] collection);
 
     /**
-     * Given a circle of men, on each iteration one man leaves it through one
-     * . You should determine
-     * name of last man.
-     * <p>
+     * Given a circle of men, on each iteration one man leaves it through one.
+     * You should determine name of last man.
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained
@@ -50,10 +46,8 @@ public interface Task011 {
     String getLastName(ArrayList<String> collection);
 
     /**
-     * Given a circle of men, on each iteration one man leaves it through one
-     * . You should determine
-     * name of last man.
-     * <p>
+     * Given a circle of men, on each iteration one man leaves it through one.
+     * You should determine name of last man.
      * <p>
      * Example: source collection: Homer Bart Maggie Lisa Marge
      * First iteration: Homer leaves, Bart Maggie List Marge remained

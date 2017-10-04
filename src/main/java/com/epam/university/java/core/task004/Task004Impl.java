@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task004;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +47,7 @@ public class Task004Impl implements Task004 {
      *
      * @param function Function, stream object
      *                 can be changed
-     * @return <T>Predicate<T> for checking the stream
+     * @return <code>Predicate</code> for checking the stream
      * @throws IllegalArgumentException if parameter is null
      */
     public static <T> Predicate<T> distinctByValue(Function<? super T, ?>

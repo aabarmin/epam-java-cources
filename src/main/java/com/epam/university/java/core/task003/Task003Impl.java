@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task003;
 
-import com.epam.university.java.core.utils.Validator;
+import com.epam.university.java.core.utils.common.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
