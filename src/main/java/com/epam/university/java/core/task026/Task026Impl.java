@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task026;
 
 
+import java.util.stream.Collectors;
+
 /**
  * Implementation class for Task026.
  *
@@ -16,7 +18,7 @@ public class Task026Impl implements Task026 {
     @Override
     public String encrypt(String sourceString, int shift) {
 
-        final String ret = sourceString.chars()
+        return sourceString.chars()
                 .mapToObj(old -> {
 
                     int now = old + shift;
@@ -27,12 +29,9 @@ public class Task026Impl implements Task026 {
                     } else if (now < 'A' || (now < 'a' && old >= 'a')) {
                         now += diapason;
                     }
-
                     return String.valueOf((char)now);
                 })
-                .reduce("", (a, b) -> a + b);
-
-        return ret;
+                .collect(Collectors.joining());
     }
 
     /**
