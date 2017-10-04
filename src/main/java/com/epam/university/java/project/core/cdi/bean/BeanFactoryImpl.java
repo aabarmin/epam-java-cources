@@ -61,9 +61,13 @@ public class BeanFactoryImpl implements BeanFactory {
                     if (propertySetter.equals(method.getName())) {
                         Class methodParamType = method.getParameterTypes()[0];
 
-                        //choosing the correct action to inject property
-                        if (methodParamType.equals(Integer.TYPE)) {
-                            method.invoke(object, Integer.parseInt(propertyValue));
+                        //choosing the correct type to inject property
+                        if (methodParamType.isPrimitive()) {
+                            if (methodParamType == int.class) {
+                                method.invoke(object, Integer.parseInt(propertyValue));
+                            } else if (methodParamType == double.class) {
+                                method.invoke(object, Double.parseDouble(propertyValue));
+                            }
                         } else if (methodParamType.equals(String.class)) {
                             method.invoke(object, propertyValue);
                         } else {
