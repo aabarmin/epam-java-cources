@@ -5,43 +5,54 @@ import java.util.LinkedList;
 
 public class Task011Impl implements Task011 {
 
-    public boolean isLast(String[] input){
-        int count = 0;
-        for (String element: input) {
-            if (element != null){
-                count++;
-            }
-        }
-        return count != 0;
-    }
     @Override
     public String getLastName(String[] collection) {
-        if (collection.length == 0){
-            throw new IllegalArgumentException();
-        }
-        int i = 0;
-        int end = collection.length;
-        String name = null;
-        while (isLast(collection)){
-            name = collection[i];
-            collection[i] = null;
-            i = i + 2;
-            if (i == end - 1 || i == end - 2){
-                name = collection[i];
-                collection[i] = null;
-                i = 1;
-            }
-        }
-        return name;
+       int nElem = collection.length;
+       if (nElem == 0){
+           throw new IllegalArgumentException();
+       }
+       int i = 0;
+       int pow = 0;
+       int result = 1;
+       while (nElem > pow){
+           pow = (int) Math.pow(2, i);
+           result = 2*nElem - pow;
+           i++;
+       }
+       return collection[result - 1];
     }
 
     @Override
     public String getLastName(ArrayList<String> collection) {
-        return null;
+        int nElem = collection.size();
+        if (nElem == 0){
+            throw new IllegalArgumentException();
+        }
+        int i = 0;
+        int pow = 0;
+        int result = 1;
+        while (nElem > pow){
+            pow = (int) Math.pow(2, i);
+            result = 2*nElem - pow;
+            i++;
+        }
+        return collection.get(result - 1);
     }
 
     @Override
     public String getLastName(LinkedList<String> collection) {
-        return null;
+        int nElem = collection.size();
+        if (nElem == 0){
+            throw new IllegalArgumentException();
+        }
+        int i = 0;
+        int pow = 0;
+        int result = 1;
+        while (nElem > pow){
+            pow = (int) Math.pow(2, i);
+            result = 2*nElem - pow;
+            i++;
+        }
+        return collection.get(result - 1);
     }
 }
