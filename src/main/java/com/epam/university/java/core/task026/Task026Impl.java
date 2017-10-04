@@ -22,7 +22,7 @@ public class Task026Impl implements Task026 {
                 .mapToObj(old -> {
 
                     int now = old + shift;
-                    if( old < 'A' || old > 'z' || (old > 'Z' && old < 'a')) {
+                    if (old < 'A' || old > 'z' || (old > 'Z' && old < 'a')) {
                         now = old;
                     } else if (now > 'z' || (now > 'Z' && old <= 'Z')) {
                         now -= diapason;

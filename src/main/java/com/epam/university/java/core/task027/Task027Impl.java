@@ -17,17 +17,19 @@ public class Task027Impl implements Task027 {
     @Override
     public Collection<Integer> extract(String sourceString) {
 
+        int digitsCount = 1;
+        boolean wellFormed;
         Collection<Integer> list;
 
-        int index = 1;
-        boolean wellFormed = false;
         do {
             list = new ArrayList<>();
-            int intValue = Integer.valueOf(sourceString.substring(0, index++));
-            wellFormed = isStringWell(list, sourceString, intValue);
-        } while (!wellFormed && index < sourceString.length());
+            wellFormed = isStringWell(list,
+                    sourceString,
+                    Integer.valueOf(sourceString.substring(0, digitsCount++)));
 
-        if( wellFormed ) {
+        } while (!wellFormed && digitsCount < sourceString.length());
+
+        if (wellFormed) {
             return list;
         }
 
@@ -41,14 +43,14 @@ public class Task027Impl implements Task027 {
             return false;
         }
 
-        String strNumber = String.valueOf(value);
+        String digits = String.valueOf(value);
         collection.add(value);
 
-        while (strNumber.length() < sourceString.length()) {
+        while (digits.length() < sourceString.length()) {
             collection.add(++value);
-            strNumber += String.valueOf(value);
+            digits += String.valueOf(value);
         }
 
-        return sourceString.equals(strNumber);
+        return sourceString.equals(digits);
     }
 }
