@@ -54,7 +54,7 @@ public class Task027Test {
     public void extract5() throws Exception {
         assertArrayEquals(
             "Invalid extraction",
-            new Integer[]{},
+            new Integer[]{0, 1, 2, 3},
             instance.extract("0123").toArray(new Integer[0])
         );
     }
