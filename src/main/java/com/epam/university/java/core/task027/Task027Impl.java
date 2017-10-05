@@ -18,14 +18,14 @@ public class Task027Impl implements Task027 {
             List<Integer> extractedIntegers = new ArrayList<>();
             int currentPosition = 0;
             int interval = i;
-            extractedIntegers.add(Integer.parseInt(sourceString.
-                    substring(currentPosition, interval)));
+            extractedIntegers.add(Integer.parseInt(sourceString
+                    .substring(currentPosition, interval)));
             currentPosition += interval;
 
             while (currentPosition <= sourceString.length() - interval) {
                 int currentNumber = extractedIntegers.get(extractedIntegers.size() - 1);
-                int nextNumber = Integer.parseInt(sourceString.
-                        substring(currentPosition, currentPosition + interval));
+                int nextNumber = Integer.parseInt(sourceString
+                        .substring(currentPosition, currentPosition + interval));
 
                 if (nextNumber - currentNumber == 1) {
                     extractedIntegers.add(nextNumber);
