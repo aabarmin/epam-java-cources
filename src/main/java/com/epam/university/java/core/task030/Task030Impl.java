@@ -63,9 +63,10 @@ public class Task030Impl implements Task030 {
      */
     @Override
     public LocalDate getNextWeekend(LocalDate localDate) {
-        return localDate.plus(
-                Math.abs(localDate.getDayOfWeek().getValue() - 6),
-                ChronoUnit.DAYS);
+        int dayNumber = localDate.getDayOfWeek().getValue();
+        return (dayNumber < 6)
+                ? localDate.plus(6 - dayNumber, ChronoUnit.DAYS)
+                : localDate.plus(6 - dayNumber, ChronoUnit.DAYS).plus(1, ChronoUnit.WEEKS);
     }
 
     /**
