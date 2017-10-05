@@ -56,6 +56,7 @@ public class Task013Test {
     }
 
     @Test
+
     public void testWithPentagon() throws Exception {
         final Figure sourceFigure = factory.newInstance(5);
         final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
@@ -87,6 +88,7 @@ public class Task013Test {
     }
 
     @Test
+
     public void testWithWrongFigure() throws Exception {
         final Figure sourceFigure = factory.newInstance(5);
         final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
@@ -98,6 +100,7 @@ public class Task013Test {
         ));
         assertFalse("Figure is not a convex polygon", instance.isConvexPolygon(modifiedFigure));
     }
+
 
     @Test
     public void testWithWrongFigure2() throws Exception {
@@ -112,4 +115,5 @@ public class Task013Test {
         ));
         assertFalse("Figure is not a convex polygon", instance.isConvexPolygon(modifiedFigure));
     }
+
 }
