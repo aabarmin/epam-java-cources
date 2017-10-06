@@ -170,9 +170,9 @@ public class Task015Impl implements Task015 {
             double c = (squareList.get(i).getX() * squareList.get(compareTo).getY())
                     - (squareList.get(compareTo).getX() * squareList.get(i).getY());
 
-            if (a * point.getX() + b * point.getY() + c <= 0) {
+            if (a * point.getX() + b * point.getY() + c < 0) {
                 minus = true;
-            } else if (a * point.getX() + b * point.getY() + c >= 0) {
+            } else if (a * point.getX() + b * point.getY() + c > 0) {
                 plus = true;
             }
         }
