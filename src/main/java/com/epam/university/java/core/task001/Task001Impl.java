@@ -6,7 +6,7 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double addition(String firstNumber, String secondNumber) {
-        if ((firstNumber == null && secondNumber == null)
+        if ((firstNumber == null || secondNumber == null)
                 || (Objects.equals(firstNumber, " ") && Objects.equals(secondNumber, " "))) {
             throw new IllegalArgumentException();
         } else if (firstNumber.matches("^[a-zA-z_-]$")
@@ -19,7 +19,7 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
-        if ((firstNumber == null && secondNumber == null)
+        if ((firstNumber == null || secondNumber == null)
                 || (Objects.equals(firstNumber, " ") && Objects.equals(secondNumber, " "))) {
             throw new IllegalArgumentException();
         } else if (firstNumber.matches("^[a-zA-z_-]$")
@@ -32,7 +32,7 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
-        if ((firstNumber == null && secondNumber == null)
+        if ((firstNumber == null || secondNumber == null)
                 || (Objects.equals(firstNumber, " ") && Objects.equals(secondNumber, " "))) {
             throw new IllegalArgumentException();
         } else if (firstNumber.matches("^[a-zA-z_-]$")
@@ -45,7 +45,7 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double division(String firstNumber, String secondNumber) {
-        if ((firstNumber == null && secondNumber == null)
+        if ((firstNumber == null || secondNumber == null)
                 || (Objects.equals(firstNumber, " ") && Objects.equals(secondNumber, " "))) {
             throw new IllegalArgumentException();
         } else if (firstNumber.matches("^[a-zA-z_-]$")
