@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Implementation class for Task022.
+ * Implementation class for Task023.
  *
  * @author Sergei Titov
  */
