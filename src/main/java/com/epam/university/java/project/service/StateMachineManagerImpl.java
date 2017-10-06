@@ -57,12 +57,9 @@ public class StateMachineManagerImpl implements StateMachineManager {
     @Override
     public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity,
                                                         StateMachineDefinition<S, E> definition) {
-        // todo: init machine, call start method
         entity.setStateMachineDefinition(definition);
         return entity;
     }
-
-    // TODO: 02.10.17 see SquirelStateMachine
 
     /**
      * Handle event for stateful entity with event handler.
