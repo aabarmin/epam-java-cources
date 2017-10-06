@@ -87,7 +87,7 @@ public class Task029Impl implements Task029 {
                 Deque<Character> charStack = new LinkedList<>(charList);
                 List<String> rc = new ArrayList<>(rows);
                 List<String> wc = new ArrayList<>(words);
-                Point d = getNextDashPoint(rc);
+                Position d = getNextDashPoint(rc);
 
                 // word horizontally
                 if (d.getX() < rc.get(d.getY()).length() - 1
@@ -153,9 +153,9 @@ public class Task029Impl implements Task029 {
 
         }
 
-        private Point getNextDashPoint(List<String> rows) {
+        private Position getNextDashPoint(List<String> rows) {
 
-            Point dash = new Point(-1, -1);
+            Position dash = new Position(-1, -1);
 
             for (int y = 0; y < rows.size(); y++) {
                 int x = rows.get(y).indexOf('-');
@@ -170,7 +170,7 @@ public class Task029Impl implements Task029 {
 
         }
 
-        private boolean fillChar(List<String> rows, Point dash, Deque<Character> charStack) {
+        private boolean fillChar(List<String> rows, Position dash, Deque<Character> charStack) {
 
             if (rows.get(dash.getY()).charAt(dash.getX()) == '-') {
                 StringBuilder newRow = new StringBuilder(rows.get(dash.getY()));
