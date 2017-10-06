@@ -1,7 +1,12 @@
 package com.epam.university.java.project.service;
 
+import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
+import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
+import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.domain.Book;
+import com.epam.university.java.project.domain.BookEvent;
 import com.epam.university.java.project.domain.BookStatus;
 
 import java.time.LocalDate;
@@ -14,14 +19,31 @@ public class BookServiceImpl implements BookService {
 
     private BookDao bookDao;
     private StateMachineManager stateMachineManager;
+    private Resource xmlResource;
+
+    /**
+     * Creates a service and prepares xml resource with default BookStateMachine definition.
+     */
+    public BookServiceImpl() {
+        this.stateMachineManager = new StateMachineManagerImpl();
+        final String testFilePath =
+            getClass().getResource("/project/DefaultBookStateMachineDefinition.xml").getFile();
+        this.xmlResource = new XmlResource(testFilePath);
+    }
 
     /**
      * Create new draft book instance.
      * @return new book instance
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Book createBook() {
-        return bookDao.createBook();
+        final StateMachineDefinition<BookStatus, BookEvent> definition =
+            (StateMachineDefinition<BookStatus, BookEvent>)
+                stateMachineManager.loadDefinition(xmlResource);
+        final StatefulEntity<BookStatus, BookEvent> entity =
+            stateMachineManager.initStateMachine(bookDao.createBook(), definition);
+        return (Book) stateMachineManager.handleEvent(entity, BookEvent.CREATE);
     }
 
     /**
@@ -70,9 +92,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book accept(Book book, String number) {
-        book.setState(BookStatus.ACCOUNTED);
         book.setSerialNumber(number);
-        return bookDao.save(book);
+        return bookDao.save((Book) stateMachineManager.handleEvent(book, BookEvent.ACCEPT));
     }
 
     /**
@@ -84,8 +105,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book issue(Book book, LocalDate returnDate) {
         book.setReturnDate(returnDate);
-        book.setState(BookStatus.ISSUED);
-        return book;
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.ISSUE);
     }
 
     /**
@@ -95,8 +115,7 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book returnFromIssue(Book book) {
-        book.setState(BookStatus.ACCOUNTED);
-        return book;
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.RETURN);
     }
 
 }
