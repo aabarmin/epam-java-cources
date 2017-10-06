@@ -3,6 +3,8 @@ package com.epam.university.java.core.task020;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -17,10 +19,12 @@ public class Task020Impl implements Task020 {
 
         List<String> list = new ArrayList<>();
         list.addAll(stones);
+        Set<String> set = new HashSet<>();
 
-        return Stream.of(list.get(0).split(""))
+        Stream.of(list.get(0).split(""))
                 .filter(s -> stones.stream()
                         .allMatch(m -> Pattern.compile(s).matcher(m).find()))
-                .toArray().length;
+                .forEach(set::add);
+        return set.size();
     }
 }
