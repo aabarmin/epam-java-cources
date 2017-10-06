@@ -17,8 +17,10 @@ public class Task020Impl implements Task020 {
                 )
         );
 
+        System.out.println(charMap);
+
         // return count of chars that are repeated in all strings
         return (int) charMap.entrySet().stream().filter(o ->
-                o.getValue() == stones.size()).count();
+                o.getValue() >= stones.size()).count();
     }
 }
