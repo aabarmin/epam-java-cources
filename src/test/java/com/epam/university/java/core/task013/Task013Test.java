@@ -63,6 +63,39 @@ public class Task013Test {
     }
 
     @Test
+
+    public void testWithPentagon() throws Exception {
+        final Figure sourceFigure = factory.newInstance(5);
+        final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
+            f -> f.addVertex(factory.newInstance(0, 0)),
+            f -> f.addVertex(factory.newInstance(0, 4)),
+            f -> f.addVertex(factory.newInstance(3, 6)),
+            f -> f.addVertex(factory.newInstance(6, 0)),
+            f -> f.addVertex(factory.newInstance(6, 4))
+
+        ));
+        assertTrue("Figure is convex polygon", instance.isConvexPolygon(modifiedFigure));
+    }
+
+    @Test
+    public void testWithOctagon() throws Exception {
+        final Figure sourceFigure = factory.newInstance(8);
+        final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
+            f -> f.addVertex(factory.newInstance(0, 4)),
+            f -> f.addVertex(factory.newInstance(0, 2)),
+            f -> f.addVertex(factory.newInstance(2, 0)),
+            f -> f.addVertex(factory.newInstance(2, 6)),
+            f -> f.addVertex(factory.newInstance(4, 6)),
+            f -> f.addVertex(factory.newInstance(6, 2)),
+            f -> f.addVertex(factory.newInstance(4, 0)),
+            f -> f.addVertex(factory.newInstance(6, 4))
+
+        ));
+        assertTrue("Figure is convex polygon", instance.isConvexPolygon(modifiedFigure));
+    }
+
+    @Test
+
     public void testWithWrongFigure() throws Exception {
         final Figure sourceFigure = factory.newInstance(5);
         final Figure modifiedFigure = instance.invokeActions(sourceFigure,
@@ -76,4 +109,20 @@ public class Task013Test {
         assertFalse("Figure is not a convex polygon",
                 instance.isConvexPolygon(modifiedFigure));
     }
+
+
+    @Test
+    public void testWithWrongFigure2() throws Exception {
+        final Figure sourceFigure = factory.newInstance(6);
+        final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
+            f -> f.addVertex(factory.newInstance(1, 2)),
+            f -> f.addVertex(factory.newInstance(0, 4)),
+            f -> f.addVertex(factory.newInstance(3, 2)),
+            f -> f.addVertex(factory.newInstance(4, 4)),
+            f -> f.addVertex(factory.newInstance(0, 0)),
+            f -> f.addVertex(factory.newInstance(4, 0))
+        ));
+        assertFalse("Figure is not a convex polygon", instance.isConvexPolygon(modifiedFigure));
+    }
+
 }
