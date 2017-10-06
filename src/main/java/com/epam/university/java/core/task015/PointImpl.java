@@ -1,8 +1,13 @@
 package com.epam.university.java.core.task015;
 
-public class PointImpl extends java.awt.Point implements Point {
+public class PointImpl implements Point {
     private double x;
     private double y;
+
+    public PointImpl(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
 
     @Override
     public double getX() {
@@ -22,5 +27,11 @@ public class PointImpl extends java.awt.Point implements Point {
     @Override
     public void setY(double y) {
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        PointImpl point = (PointImpl) obj;
+        return (Math.abs(point.x - this.x) < 0.01) && (Math.abs(point.y - this.y) < 0.01);
     }
 }
