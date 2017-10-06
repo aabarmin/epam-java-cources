@@ -36,4 +36,12 @@ public class PointImpl implements Point {
         myValue = pyValue;
 
     }
+
+    @Override
+    public String toString() {
+        return "PointImpl{" +
+                "mxValue=" + mxValue +
+                ", myValue=" + myValue +
+                '}';
+    }
 }
