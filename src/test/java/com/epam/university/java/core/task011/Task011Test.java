@@ -25,7 +25,7 @@ public class Task011Test {
     @Test(expected = IllegalArgumentException.class)
     public void getLastNameWithEmptyArray() throws Exception {
         final String[] collection = {};
-        final String lastName = instance.getLastName(collection);
+        instance.getLastName(collection);
     }
 
     @Test
@@ -50,12 +50,11 @@ public class Task011Test {
                 "Marge"
         };
         final String lastName = instance.getLastName(collection);
-        assertEquals("Error in test with items",
+        assertEquals("Error in test with array",
                 "Bart",
                 lastName
         );
     }
-
 
     @Test
     public void getLastNameWithArraySecond() throws Exception {
@@ -92,7 +91,7 @@ public class Task011Test {
     @Test(expected = IllegalArgumentException.class)
     public void getLastNameWithEmptyArrayList() throws Exception {
         final ArrayList<String> collection = new ArrayList<>();
-        final String lastName = instance.getLastName(collection);
+        instance.getLastName(collection);
     }
 
     @Test
@@ -158,7 +157,7 @@ public class Task011Test {
     @Test(expected = IllegalArgumentException.class)
     public void getLastNameWithEmptyLinkedList() throws Exception {
         final LinkedList<String> collection = new LinkedList<>();
-        final String lastName = instance.getLastName(collection);
+        instance.getLastName(collection);
     }
 
     @Test
