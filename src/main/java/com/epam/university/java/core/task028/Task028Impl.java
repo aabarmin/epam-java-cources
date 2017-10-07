@@ -19,7 +19,7 @@ public class Task028Impl implements Task028 {
 
         // collection of unique powers
         ArrayList<Integer> uniques = new ArrayList<>();
-        for (int i = 1, n = 1; n <= value; n = getPower(++i, power) ) {
+        for (int i = 1, n = 1; n <= value; n = getPower(++i, power)) {
             uniques.add(n);
         }
         Collections.reverse(uniques);
@@ -32,7 +32,7 @@ public class Task028Impl implements Task028 {
     private int wayCount(int destination, Integer[] powers, int index) {
 
         int result = 0;
-        if( destination == powers[index] ) {
+        if (destination == powers[index]) {
             result++;
         } else {
             destination -= powers[index];

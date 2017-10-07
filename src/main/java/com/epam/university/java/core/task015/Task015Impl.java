@@ -110,7 +110,7 @@ public class Task015Impl implements Task015 {
                 }
 
                 // add INTERSECTION point
-                PointImpl<Double> intersectionPoint = new PointImpl<>(x, y);
+                Point<Double> intersectionPoint = new PointImpl<>(x, y);
                 if (!retList.contains(intersectionPoint)) {
                     if (corners1[0].equals(segment1.getSecond())) {
                         retList.add(index, intersectionPoint);
@@ -152,28 +152,23 @@ public class Task015Impl implements Task015 {
      *
      * @return - list with coordinates squire's vertexes
      */
-    private PointImpl<Integer>[] getSquarePoints(Square line) {
-        int vertAx = line.getFirst().getX();
-        int vertAy = line.getFirst().getY();
-        int vertCx = line.getSecond().getX();
-        int vertCy = line.getSecond().getY();
+    private Point<Integer>[] getSquarePoints(Square line) {
+        final int vertAx = line.getFirst().getX();
+        final int vertAy = line.getFirst().getY();
+        final int vertCx = line.getSecond().getX();
+        final int vertCy = line.getSecond().getY();
 
-        int dx = vertCx - vertAx;
-        int dy = vertAy - vertCy;
-        int d = (dx - dy) / 2;
-
-        int vertDx = vertAx + d;
-        int vertDy = vertCy - d;
-        int vertBx = vertCx - d;
-        int vertBy = vertAy + d;
+        final int dx = vertCx - vertAx;
+        final int dy = vertAy - vertCy;
+        final int d = (dx - dy) / 2;
 
         @SuppressWarnings("unchecked")
-        PointImpl<Integer>[] points = new PointImpl[4];
+        Point<Integer>[] points = new PointImpl[4];
 
         points[0] = new PointImpl<>(vertAx, vertAy);
-        points[1] = new PointImpl<>(vertBx, vertBy);
+        points[1] = new PointImpl<>(vertCx - d, vertAy + d);
         points[2] = new PointImpl<>(vertCx, vertCy);
-        points[3] = new PointImpl<>(vertDx, vertDy);
+        points[3] = new PointImpl<>(vertAx + d, vertCy - d);
 
         return points;
     }
@@ -207,22 +202,22 @@ public class Task015Impl implements Task015 {
         // distance to AB
         double dx = x2 - x1;
         double dy = y2 - y1;
-        double d1 = ((y1 - point.getY()) * dx + (point.getX() - x1) * dy) / (dy * dy + dx * dx);
+        final double d1 = ((y1 - point.getY()) * dx + (point.getX() - x1) * dy) / (dy * dy + dx * dx);
 
         // distance to BC
         dx = x3 - x2;
         dy = y3 - y2;
-        double d2 = ((y2 - point.getY()) * dx + (point.getX() - x2) * dy ) / (dy * dy + dx * dx);
+        final double d2 = ((y2 - point.getY()) * dx + (point.getX() - x2) * dy) / (dy * dy + dx * dx);
 
         // distance to CD
         dx = x4 - x3;
         dy = y4 - y3;
-        double d3 = ((y3 - point.getY()) * dx + (point.getX() - x3) * dy ) / (dy * dy + dx * dx);
+        final double d3 = ((y3 - point.getY()) * dx + (point.getX() - x3) * dy) / (dy * dy + dx * dx);
 
         // distance to DA
         dx = x1 - x4;
         dy = y1 - y4;
-        double d4 = ((y4 - point.getY()) * dx + (point.getX() - x4) * dy ) / (dy * dy + dx * dx);
+        final double d4 = ((y4 - point.getY()) * dx + (point.getX() - x4) * dy) / (dy * dy + dx * dx);
 
         // distances to each of the segments must be of one sign
         if (d1 > 0) {

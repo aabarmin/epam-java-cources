@@ -54,9 +54,8 @@ public class ChecksHelper {
     /**
      * serves as exception-thrower in case of too bad parameters.
      *
-     * neither
      * @param firstNumber or
-     * @param secondNumber is to be checked for not being a null
+     * @param secondNumber have to be be not a null
      *
      * @throws IllegalArgumentException otherwise
      */
