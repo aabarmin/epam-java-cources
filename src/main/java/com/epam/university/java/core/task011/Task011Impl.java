@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
-        if (collection == null) {
+        if (collection == null || collection.length == 0) {
             throw new IllegalArgumentException();
         }
         int index = 0;
@@ -30,10 +30,13 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
-        if (collection == null) {
+        if (collection == null || collection.size() == 0) {
             throw new IllegalArgumentException();
         }
         int index = 0;
+        if (collection.size() == 1) {
+            return collection.get(0);
+        }
         do {
             collection.remove(collection.get(index));
             if (index == collection.size()) {
@@ -50,7 +53,7 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
-        if (collection == null) {
+        if (collection == null || collection.size() == 0) {
             throw new IllegalArgumentException();
         }
         while (collection.size() > 1) {

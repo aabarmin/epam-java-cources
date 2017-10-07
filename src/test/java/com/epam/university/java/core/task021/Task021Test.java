@@ -29,6 +29,7 @@ public class Task021Test {
                 pointFactory.newInstance(1, 2)
         );
         final Point target = pointFactory.newInstance(1.2113248654051871, 1.788675134594813);
+
         final Point result = instance.calculate(points);
         assertEquals("Incorrect result in test 1",
                 target,
