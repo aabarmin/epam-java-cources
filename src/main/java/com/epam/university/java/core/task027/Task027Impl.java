@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * Implementation class for Task026.
+ * Implementation class for Task027.
  *
  * @author Sergei Titov
  */
@@ -17,23 +17,26 @@ public class Task027Impl implements Task027 {
     @Override
     public Collection<Integer> extract(String sourceString) {
 
-        int digitsCount = 1;
-        boolean wellFormed;
-        Collection<Integer> list;
-
-        do {
-            list = new ArrayList<>();
-            wellFormed = isStringWell(list,
-                    sourceString,
-                    Integer.valueOf(sourceString.substring(0, digitsCount++)));
-
-        } while (!wellFormed && digitsCount < sourceString.length());
-
-        if (wellFormed) {
-            return list;
+        if (null == sourceString || sourceString.length() < 2) {
+            return Collections.emptyList();
         }
 
-        return Collections.emptyList();
+        int position = 1;
+        boolean wellFormed;
+        Collection<Integer> list = new ArrayList<>();
+
+        do {
+            list.clear();
+            wellFormed = isStringWell(list,
+                    sourceString,
+                    Integer.valueOf(sourceString.substring(0, position++)));
+
+        } while (!wellFormed && position < sourceString.length());
+
+        if (!wellFormed) {
+            list.clear();
+        }
+        return list;
     }
 
     // isStringWell

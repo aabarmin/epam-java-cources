@@ -14,12 +14,13 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @returns the sum
+     *
+     * @return the sum
      */
     @Override
     public double addition(String firstNumber, String secondNumber) {
 
-        ChecksHelper.checkForNullBothArguments(firstNumber, secondNumber);
+        ChecksHelper.checkForNullAnyOfArgument(firstNumber, secondNumber);
         ChecksHelper.checkForEmptyBothArguments(firstNumber, secondNumber);
         return Double.parseDouble(firstNumber) + Double.parseDouble(secondNumber);
     }
@@ -29,12 +30,13 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @returns the difference
+     *
+     * @return the difference
      */
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
 
-        ChecksHelper.checkForNullBothArguments(firstNumber, secondNumber);
+        ChecksHelper.checkForNullAnyOfArgument(firstNumber, secondNumber);
         ChecksHelper.checkForEmptyBothArguments(firstNumber, secondNumber);
         return Double.parseDouble(firstNumber) - Double.parseDouble(secondNumber);
     }
@@ -44,12 +46,13 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @returns the product
+     *
+     * @return the product
      */
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
 
-        ChecksHelper.checkForNullBothArguments(firstNumber, secondNumber);
+        ChecksHelper.checkForNullAnyOfArgument(firstNumber, secondNumber);
         ChecksHelper.checkForEmptyBothArguments(firstNumber, secondNumber);
         return Double.parseDouble(firstNumber) * Double.parseDouble(secondNumber);
     }
@@ -59,12 +62,13 @@ public class Task001Impl implements Task001 {
      *
      * @param firstNumber string value of first number
      * @param secondNumber string value of second number
-     * @returns the quotient
+     *
+     * @return the quotient
      */
     @Override
     public double division(String firstNumber, String secondNumber) {
 
-        ChecksHelper.checkForNullBothArguments(firstNumber, secondNumber);
+        ChecksHelper.checkForNullAnyOfArgument(firstNumber, secondNumber);
         ChecksHelper.checkForEmptyBothArguments(firstNumber, secondNumber);
         return Double.parseDouble(firstNumber) / Double.parseDouble(secondNumber);
     }

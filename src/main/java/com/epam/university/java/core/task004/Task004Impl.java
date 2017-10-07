@@ -2,10 +2,10 @@ package com.epam.university.java.core.task004;
 
 import com.epam.university.java.core.ChecksHelper;
 
-import java.util.HashSet;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * implementation class for Task004.
@@ -33,15 +33,10 @@ public class Task004Impl implements Task004 {
             return null;
         }
 
-        HashSet<String> setSecond = new HashSet(Arrays.asList(second));
-        List<String> intersectionList = new ArrayList<>();
-        for (int i = 0; i < first.length; i++) {
-            if (setSecond.contains(first[i])) {
-                intersectionList.add(first[i]);
-            }
-        }
-        String[] arrayRetVal = new String[intersectionList.size()];
-        return intersectionList.toArray(arrayRetVal);
+        return Arrays.stream(first)
+                .filter((l) -> Arrays.asList(second).contains(l))
+                .collect(Collectors.toSet())
+                .toArray(new String[0]);
     }
 
     /**
@@ -69,12 +64,11 @@ public class Task004Impl implements Task004 {
         // at first just take the first array wholly
         List<String> list = new ArrayList<>(Arrays.asList(first));
         // then add absent elements from the second array
-        for (int i = 0; i < second.length; i++) {
-            if (!list.contains(second[i])) {
-                list.add(new String(second[i]));
+        for (String entry : second) {
+            if (!list.contains(entry)) {
+                list.add(entry);
             }
         }
-
         return list.toArray(new String[list.size()]);
     }
 }

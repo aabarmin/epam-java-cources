@@ -19,11 +19,11 @@ import com.epam.university.java.core.task015.PointFactoryImpl;
  */
 public class FermatToricelliPoint {
 
-    static final int RightHandSide = -1;
-    static final int LeftHandSide  = +1;
-    static final int CollinearOrientation = 0;
+    private static final int RightHandSide = -1;
+    private static final int LeftHandSide  = +1;
+    private static final int CollinearOrientation = 0;
 
-    public static PointFactoryImpl factory = new PointFactoryImpl();
+    public static PointFactoryImpl<Double> factory = new PointFactoryImpl<>();
 
 
     /**
@@ -98,7 +98,7 @@ public class FermatToricelliPoint {
 
         Double ix;
         Double iy;
-        if (not_equal(ratio, 0.0)) {
+        if (!is_equal(ratio, 0.0)) {
             ratio = (dy2 * dx2 - dx3 * dy3) / ratio;
             ix    = x1 + ratio * dx1;
             iy    = y1 + ratio * dy1;
@@ -165,18 +165,6 @@ public class FermatToricelliPoint {
         } else {
             return CollinearOrientation; // Orientation is neutral aka collinear
         }
-    }
-
-    /**
-     * Checks is two double values are not equal.
-     *
-     * @param val1 - value to check
-     * @param val2 - value to check with
-     *
-     * @returns true if are not equal
-     */
-    public static boolean not_equal(final double val1, final double val2) {
-        return !is_equal(val1, val2);
     }
 
     /**

@@ -12,6 +12,7 @@ public class ChecksHelper {
      * serves as exception-thrower in case of too bad parameter.
      *
      * @param arg is to be checked for not being a null
+     *
      * @throws IllegalArgumentException otherwise
      */
     public static void checkForNull(Object arg) throws IllegalArgumentException {
@@ -24,6 +25,7 @@ public class ChecksHelper {
     * serves as exception-thrower in case of too bad parameter.
     *
     * @param arg is to be checked for not being a null or an empty array
+     *
     * @throws IllegalArgumentException otherwise
     */
     public static void checkForEmptiness(int[] arg) throws IllegalArgumentException {
@@ -33,12 +35,13 @@ public class ChecksHelper {
     }
 
     /**
-    * serves as exception-thrower in case of too bad parameters.
-    *
-    * @param firstNumber is to be checked for not being a null
-    * @param secondNumber is to be checked for not being a null
-    * @throws IllegalArgumentException otherwise
-    */
+     * serves as exception-thrower in case of too bad parameters.
+     *
+     * @param firstNumber is to be checked for not being a null
+     * @param secondNumber is to be checked for not being a null
+     *
+     * @throws IllegalArgumentException otherwise
+     */
     public static void checkForNullBothArguments(
             Object firstNumber,
             Object secondNumber) throws IllegalArgumentException {
@@ -51,8 +54,27 @@ public class ChecksHelper {
     /**
      * serves as exception-thrower in case of too bad parameters.
      *
+     * neither
+     * @param firstNumber or
+     * @param secondNumber is to be checked for not being a null
+     *
+     * @throws IllegalArgumentException otherwise
+     */
+    public static void checkForNullAnyOfArgument(
+            Object firstNumber,
+            Object secondNumber) throws IllegalArgumentException {
+
+        if (null == firstNumber || null == secondNumber) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     * serves as exception-thrower in case of too bad parameters.
+     *
      * @param firstNumber is to be checked for not being only a single whitespace-char string
      * @param secondNumber is to be checked for not being only a single whitespace-char string
+     *
      * @throws IllegalArgumentException otherwise
      */
     public static void checkForEmptyBothArguments(
