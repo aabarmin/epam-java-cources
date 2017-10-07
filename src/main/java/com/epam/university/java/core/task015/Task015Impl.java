@@ -2,6 +2,7 @@ package com.epam.university.java.core.task015;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class Task015Impl implements Task015 {
     /**
@@ -88,7 +89,7 @@ public class Task015Impl implements Task015 {
      * @param b  point b
      * @return value of metric
      */
-    private double metric(Point a1, Point a2, Point b) {
+    private static double metric(Point a1, Point a2, Point b) {
         return (b.getX() - a1.getX()) * (a2.getY() - a1.getY())
                 - (b.getY() - a1.getY()) * (a2.getX() - a1.getX());
     }
@@ -100,7 +101,7 @@ public class Task015Impl implements Task015 {
      * @param vertices source set of points
      * @return sorted list of vertices
      */
-    private ArrayList<Point> sortVertices(ArrayList<Point> vertices) {
+    public static ArrayList<Point> sortVertices(ArrayList<Point> vertices) {
         for (int i = 0; i < vertices.size(); i++) {
             if (vertices.get(0).getX() > vertices.get(i).getX()) {
                 Point tmp = vertices.get(0);

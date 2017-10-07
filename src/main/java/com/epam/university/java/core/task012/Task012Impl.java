@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class Task012Impl implements Task012 {
     ArrayList<Integer> passed = new ArrayList<Integer>();
+
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
         GraphFactoryImpl graphFactory = new GraphFactoryImpl();
@@ -25,7 +26,7 @@ public class Task012Impl implements Task012 {
         }
         Collection<Integer> neighbours = graph.getAdjacent(from);
         for (Integer neighbour : neighbours) {
-            if (passed.contains(neighbour)){
+            if (passed.contains(neighbour)) {
                 continue;
             }
             passed.add(neighbour);
