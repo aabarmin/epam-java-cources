@@ -61,6 +61,7 @@ public class Task013Impl implements Task013 {
      * @return is figure convex polygon
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean isConvexPolygon(Figure figure) {
 
         List<Vertex> vertexes = new ArrayList(figure.getVertexes());

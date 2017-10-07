@@ -15,6 +15,7 @@ public class Task018Impl implements Task018 {
      * @return is annotation presents
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean isAnnotationPresent(Object toCheck, Class annotationToFind) {
 
         Class classToCheck = toCheck.getClass();

@@ -53,9 +53,36 @@ public class Task027Test {
     @Test
     public void extract5() throws Exception {
         assertArrayEquals(
-                "Invalid extraction",
-                new Integer[]{878, 879},
-                instance.extract("878879").toArray(new Integer[2])
+            "Invalid extraction",
+            new Integer[]{},
+            instance.extract("0123").toArray(new Integer[0])
+        );
+    }
+
+    @Test
+    public void extract6() throws Exception {
+        assertArrayEquals(
+            "Invalid extraction",
+            new Integer[]{},
+            instance.extract("2122023").toArray(new Integer[0])
+        );
+    }
+
+    @Test
+    public void extract7() throws Exception {
+        assertArrayEquals(
+            "Invalid extraction",
+            new Integer[]{},
+            instance.extract("4123").toArray(new Integer[0])
+        );
+    }
+
+    @Test
+    public void extract8() throws Exception {
+        assertArrayEquals(
+            "Invalid extraction",
+            new Integer[]{},
+            instance.extract("7").toArray(new Integer[0])
         );
     }
 

@@ -40,6 +40,10 @@ public class Task027Impl implements Task027 {
             throw new IllegalArgumentException();
         }
 
+        if (sourceString.charAt(0) == '0') {
+            return Collections.emptyList();
+        }
+
         for (int i = 1; i < (sourceString.length() / 2) + 1; i++) {
 
             int cursor = 0;
@@ -50,8 +54,14 @@ public class Task027Impl implements Task027 {
 
             while (cursor <= sourceString.length() - interval) {
 
+                String substring = sourceString.substring(cursor, cursor + interval);
+
+                if (substring.charAt(0) == '0') {
+                    break;
+                }
+
                 int a = toReturn.getLast();
-                int b = Integer.parseInt(sourceString.substring(cursor, cursor + interval));
+                int b = Integer.parseInt(substring);
 
                 if (a + 1 == b) {
                     toReturn.add(b);
