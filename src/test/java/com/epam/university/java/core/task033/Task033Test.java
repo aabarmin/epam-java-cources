@@ -55,7 +55,7 @@ public class Task033Test {
         } catch (Exception e) {
             assertTrue(
                     "Incorrect type of exception",
-                    e instanceof GreaterException
+                    e instanceof LessException
             );
             assertEquals(
                     "Incorrect exception message body",
