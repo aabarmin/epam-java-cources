@@ -19,11 +19,18 @@ public class ClientImpl implements Client {
     public void sendMessage(String message) {
 
         try {
-            writer.write(message);
+            writer.write(message +  System.lineSeparator());
             writer.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -33,7 +40,7 @@ public class ClientImpl implements Client {
     public void start() {
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -44,7 +51,6 @@ public class ClientImpl implements Client {
                     new OutputStreamWriter(
                             socket.getOutputStream()
                     ));
-            System.out.println("Connected to server");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,6 +63,9 @@ public class ClientImpl implements Client {
     @Override
     public void stop() {
         try {
+            if (writer != null) {
+                writer.close();
+            }
             if (socket != null) {
                 socket.close();
             }

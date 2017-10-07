@@ -31,7 +31,8 @@ public class FigureImpl implements Figure {
      * @return collection of vertexes
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<Vertex> getVertexes() {
-        return new LinkedHashSet(vertexes);
+        return new LinkedHashSet<>(vertexes);
     }
 }
