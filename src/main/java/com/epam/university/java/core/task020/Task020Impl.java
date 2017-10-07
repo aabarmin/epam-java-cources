@@ -16,9 +16,7 @@ public class Task020Impl implements Task020 {
                         charMap.merge((char) c, 1, (a, b) -> a + b)
                 )
         );
-
-        System.out.println(charMap);
-
+        
         // return count of chars that are repeated in all strings
         return (int) charMap.entrySet().stream().filter(o ->
                 o.getValue() >= stones.size()).count();
