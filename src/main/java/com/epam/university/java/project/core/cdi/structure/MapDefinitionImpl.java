@@ -15,11 +15,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Created by ilya on 24.09.17.
  */
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class MapDefinitionImpl implements MapDefinition {
 
-    @XmlElement(type = MapEntryDefinitionImpl.class)
     Collection<MapEntryDefinition> entries = new ArrayList<>();
 
     @Override
@@ -27,15 +25,10 @@ public class MapDefinitionImpl implements MapDefinition {
         return entries;
     }
 
+    @XmlElement(name = "map", type = ListItemDefinitionImpl.class)
     @Override
     public void setValues(Collection<MapEntryDefinition> values) {
         this.entries = values;
-    }
-
-    @XmlElementWrapper(name = "map")
-    @XmlElement(type = ListItemDefinitionImpl.class)
-    protected List<MapEntryDefinition> getXmlCollection() {
-        return new CollectionAdapter<MapEntryDefinition>(entries);
     }
 
     @XmlRootElement(name = "entry")

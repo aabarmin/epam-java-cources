@@ -2,7 +2,6 @@ package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 import com.epam.university.java.project.core.cdi.io.Resource;
-import com.epam.university.java.project.core.cdi.structure.StructureDefinitionImpl;
 import java.util.Collection;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

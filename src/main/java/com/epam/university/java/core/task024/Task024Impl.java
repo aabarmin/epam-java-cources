@@ -17,7 +17,7 @@ public class Task024Impl implements Task024 {
 
         Stream.of(source.split(""))
             .flatMap(s -> {
-                if (s.matches("[A-ZА-Я]")) {
+                if (s.matches("\\p{javaUpperCase}")) {
                     return Stream.of(" ", s);
                 } else {
                     return Stream.of(s);

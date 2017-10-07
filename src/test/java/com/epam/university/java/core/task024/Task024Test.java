@@ -65,4 +65,12 @@ public class Task024Test {
         );
     }
 
+    @Test
+    public void unicodeWords() throws Exception {
+        assertArrayEquals("Invalid result",
+            new String[] {"testen", "in", "deutsch", "über", "österreich"},
+            instance.getWordsCount("testenInDeutschÜberÖsterreich").toArray()
+        );
+    }
+
 }
