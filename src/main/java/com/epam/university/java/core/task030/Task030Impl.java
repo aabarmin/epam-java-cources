@@ -61,7 +61,7 @@ public class Task030Impl implements Task030 {
         LocalDate weekEnd = localDate;
         while (true) {
             weekEnd = weekEnd.plus(1, ChronoUnit.DAYS);
-            if(weekEnd.getDayOfWeek().equals(DayOfWeek.SATURDAY)) {
+            if (weekEnd.getDayOfWeek().equals(DayOfWeek.SATURDAY)) {
                 break;
             }
         }
