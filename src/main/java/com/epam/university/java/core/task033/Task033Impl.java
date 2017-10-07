@@ -15,7 +15,7 @@ public class Task033Impl implements Task033 {
         }
 
         if (second > first) {
-            throw new GreaterExceptionImpl("Second > First", new BaseExceptionImpl("x"));
+            throw new LessExceptionImpl("Second > First", new BaseExceptionImpl("x"));
         }
 
         throw new ArithmeticException();

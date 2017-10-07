@@ -19,6 +19,7 @@ public class Task032Impl implements Task032 {
      */
     @Override
     public SomeActionExecutor createExecutorWithProxy(CountingProxy proxy) {
-        return (SomeActionExecutor) proxy;
+        return (SomeActionExecutor)
+                ((CountingProxyImpl) proxy).newInstance(new SomeActionExecutorImpl());
     }
 }
