@@ -36,10 +36,10 @@ public class Task026Impl implements Task026 {
         int stopLetter;
         if (Character.isUpperCase(b)) {
             startLetter = (int) 'A';
-            stopLetter = ((int) 'Z')+1;
+            stopLetter = ((int) 'Z') + 1;
         } else {
             startLetter = (int) 'a';
-            stopLetter = ((int) 'z')+1;
+            stopLetter = ((int) 'z') + 1;
         }
         int oldLetterPos = b - startLetter;
         int newLetterPos = (oldLetterPos + shift) % 26;

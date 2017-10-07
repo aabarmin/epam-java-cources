@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Task024Impl implements  Task024 {
+public class Task024Impl implements Task024 {
     @Override
     public Collection<String> getWordsCount(String source) {
         if (source == null) {
@@ -15,10 +15,12 @@ public class Task024Impl implements  Task024 {
         }
         Pattern pattern = Pattern.compile("(.)(\\p{Lu})");
         Matcher matcher = pattern.matcher(source);
-        source =matcher.replaceAll("$1!$2");
+        source = matcher.replaceAll("$1!$2");
 
 
-        return  Arrays.stream(source.split("!")).map(String::toLowerCase).filter(n->!"".equals(n)).collect(Collectors.toList());
+        return Arrays.stream(source.split("!"))
+                .map(String::toLowerCase).filter(n -> !"".equals(n))
+                .collect(Collectors.toList());
 
     }
 }

@@ -11,8 +11,8 @@ public class PointImpl implements Point {
      * @param pyValue value of Y
      */
     public PointImpl(double pxValue, double pyValue) {
-        mxValue = Math.round(pxValue*1000000)/1000000.0;
-        myValue = Math.round(pyValue*1000000)/1000000.0;
+        mxValue = Math.round(pxValue * 1000000) / 1000000.0;
+        myValue = Math.round(pyValue * 1000000) / 1000000.0;
     }
 
     @Override
@@ -27,32 +27,38 @@ public class PointImpl implements Point {
 
     @Override
     public void setX(double pxValue) {
-        mxValue = Math.round(pxValue*1000000)/1000000.0;
+        mxValue = Math.round(pxValue * 1000000) / 1000000.0;
 
     }
 
     @Override
     public void setY(double pyValue) {
-        myValue = Math.round(pyValue*1000000)/1000000.0;
+        myValue = Math.round(pyValue * 1000000) / 1000000.0;
 
     }
 
     @Override
     public String toString() {
-        return "PointImpl{" +
-                "mxValue=" + mxValue +
-                ", myValue=" + myValue +
-                '}';
+        return "PointImpl{"
+                + "mxValue=" + mxValue
+                + ", myValue=" + myValue
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         PointImpl point = (PointImpl) o;
 
-        if (Double.compare(point.mxValue, mxValue) != 0) return false;
+        if (Double.compare(point.mxValue, mxValue) != 0) {
+            return false;
+        }
         return Double.compare(point.myValue, myValue) == 0;
     }
 

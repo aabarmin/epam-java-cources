@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task021;
 
-import com.epam.university.java.core.task015.*;
+import com.epam.university.java.core.task015.PointImpl;
+import com.epam.university.java.core.task015.Point;
+import com.epam.university.java.core.task015.PointFactoryImpl;
+import com.epam.university.java.core.task015.PointFactory;
+import com.epam.university.java.core.task015.Task015Impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,6 +12,13 @@ import java.util.Collection;
 
 public class Task021Impl implements Task021 {
 
+    /**
+     * Calculates cos fun using angle point1,point2,point3.
+     * @param point1  first point of angle
+     * @param point2  angle center
+     * @param point3  second point of angle
+     * @return cos function
+     */
     public double cos(Point point1, Point point2, Point point3) {
         Point vector1 = new PointImpl(point2.getX() - point1.getX(), point2.getY() - point1.getY());
         Point vector2 = new PointImpl(point3.getX() - point1.getX(), point3.getY() - point1.getY());
@@ -17,6 +28,13 @@ public class Task021Impl implements Task021 {
         return mult / (mod1 * mod2);
     }
 
+    /**
+     * Calculates angle between vectors (point2, point1) and (point2,point3).
+     * @param point1 first point of angle
+     * @param point2 center of angle
+     * @param point3 second point of angle
+     * @return angle value
+     */
     public double angle(Point point1, Point point2, Point point3) {
         return Math.round(Math.acos(cos(point1, point2, point3)) * 180 / Math.PI);
     }
@@ -38,36 +56,9 @@ public class Task021Impl implements Task021 {
         };
     }
 
-    public static Point getLinesIntersectionPoint(Point a, Point b, Point c, Point d) {
-
-        // Line AB represented as a1x + b1y = c1
-        double a1 = b.getY() - a.getY();
-        double b1 = a.getX() - b.getX();
-        double c1 = a1 * (a.getX()) + b1 * (a.getY());
-
-        // Line CD represented as a2x + b2y = c2
-        double a2 = d.getY() - c.getY();
-        double b2 = c.getX() - d.getX();
-        double c2 = a2 * (c.getX()) + b2 * (c.getY());
-
-        double determinant = a1 * b2 - a2 * b1;
-
-        // The lines are parallel.
-        if (determinant == 0) {
-            return null;
-        }
-
-        double x = (b2 * c1 - b1 * c2) / determinant;
-        double y = (a1 * c2 - a2 * c1) / determinant;
-
-        return new PointImpl(x, y);
-
-    }
-
-
     /**
-     * Determines the relative position of a point
-     * <code>b</code> andvector [<code>a1</code>,<code>a2</code>.
+     * Determines the relative position of a point.
+     * <code>b</code> and vector [<code>a1</code>,<code>a2</code>.
      * if metric < 0 point is to the left side of vector
      * if metric > 0 point is to the right side of vector
      * if metric =0  point lies on the vector of it's forming line
@@ -83,14 +74,16 @@ public class Task021Impl implements Task021 {
     }
 
     /**
-     * Select lefthand point for vector from first to second points
+     * Select lefthand point for vector from first to second points.
      *
      * @param first           first point of vector
      * @param second          second point of vector
      * @param candidatePoints calculated points of eq triangle
      * @return lefthand point of eq triangle
      */
-    private Point correctThirdPointOfEqTriangle(Point first, Point second, Point[] candidatePoints) {
+    private Point correctThirdPointOfEqTriangle(Point first,
+                                                Point second,
+                                                Point[] candidatePoints) {
         for (Point candidate : candidatePoints) {
             if (metric(first, second, candidate) < 0) {
                 return candidate;
