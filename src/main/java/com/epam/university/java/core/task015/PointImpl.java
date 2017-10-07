@@ -10,7 +10,6 @@ public class PointImpl<T extends Number> implements Point<T> {
     protected T abscissa;
     protected T ordinate;
 
-    private boolean isLikeInner;
 
     /**
     * Constructor from (X, Y)-coordinates.
@@ -62,18 +61,6 @@ public class PointImpl<T extends Number> implements Point<T> {
     public void setY(T y) {
     }
 
-    /**
-     * Sets this point suspected to be inside the second squire.
-     *
-     * @returns true if it was already suspected before (twice is enough)
-     */
-    protected boolean suspectAsInner() {
-        if (!isLikeInner) {
-            isLikeInner = true;
-            return false;
-        }
-        return true;
-    }
 
     /**
      * {@inheritDoc}
