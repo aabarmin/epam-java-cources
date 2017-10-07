@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task012;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,11 +29,17 @@ public class Task012Impl implements Task012 {
     public boolean pathExists(Graph graph, int from, int to) {
         Queue<Integer> queue = new LinkedList<>();
         queue.addAll(graph.getAdjacent(from));
+        HashSet<Integer> visited = new HashSet<>();
+        visited.add(from);
         while (!queue.isEmpty()) {
-            if (queue.peek() == to) {
+            Integer poll = queue.poll();
+            if (poll == to) {
                 return true;
             } else {
-                queue.addAll(graph.getAdjacent(queue.poll()));
+                if (!visited.contains(poll)) {
+                    queue.addAll(graph.getAdjacent(poll));
+                    visited.add(poll);
+                }
             }
         }
         return false;
