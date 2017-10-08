@@ -29,7 +29,7 @@ public class Task029Impl implements Task029 {
         }
 
         // fill the crossword with '-'s
-        tryToFill(list, 0, 0, 1, false);
+        fill(list, 0, 0, 1, false);
 
         // prepare and return result
         List<String> result = new ArrayList<>();
@@ -40,8 +40,8 @@ public class Task029Impl implements Task029 {
     }
 
 
-    // tryToFill
-    private boolean tryToFill(List<String> words, int index, int row, int col, boolean horizontally) {
+    // fill
+    private boolean fill(List<String> words, int index, int row, int col, boolean horizontally) {
 
         String word = words.get(index);
 
@@ -92,7 +92,7 @@ public class Task029Impl implements Task029 {
                 }
 
                 // try to fill from next word
-                if (tryToFill(words, index + 1, row + dRow, col + dCol, !horizontally)) {
+                if (fill(words, index + 1, row + dRow, col + dCol, !horizontally)) {
                     return true;
                 }
 
@@ -135,8 +135,8 @@ public class Task029Impl implements Task029 {
             if (9 == col) {
                 return 0;
             }
-            while (++col < 10 && '-' == crossword[row][col] ) {
-                    size++;
+            while (++col < 10 && '-' == crossword[row][col]) {
+                size++;
             }
         } else {
             if (9 == row) {
