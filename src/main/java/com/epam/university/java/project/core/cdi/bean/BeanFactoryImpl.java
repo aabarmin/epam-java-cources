@@ -25,6 +25,7 @@ public class BeanFactoryImpl implements BeanFactory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object getBean(String beanName) {
         String className = beanName.substring(beanName.lastIndexOf(".") + 1);
         if (className.endsWith("Interface")) {
@@ -82,27 +83,30 @@ public class BeanFactoryImpl implements BeanFactory {
                                 //StringMap
                                 if (f.getName().startsWith("string")) {
                                     Map<String, String> result =
-                                            ((ArrayList<MapEntryDefinitionImpl>) m.invoke(propertyDefinition.getData()))
+                                            ((ArrayList<MapEntryDefinitionImpl>)
+                                                    m.invoke(propertyDefinition.getData()))
                                                     .stream().collect(HashMap<String, String>::new,
-                                                    (q, c) -> q.put(c.getKey(), c.getValue()),
-                                                    (q, u) -> {
-                                                    });
+                                                        (q, c) -> q.put(c.getKey(),
+                                                            c.getValue()),
+                                                        (q, u) -> {
+                                                        });
                                     f.set(instance, result);
                                 }
                                 //ObjectMap
                                 if (f.getName().startsWith("object")) {
                                     Map<String, Object> result =
-                                            ((ArrayList<MapEntryDefinitionImpl>) m.invoke(propertyDefinition.getData()))
+                                            ((ArrayList<MapEntryDefinitionImpl>)
+                                                    m.invoke(propertyDefinition.getData()))
                                                     .stream().collect(HashMap<String, Object>::new,
-                                                    (q, c) -> q.put(c.getKey(), getBean(c.getRef())),
-                                                    (q, u) -> {
-                                                    });
+                                                        (q, c) -> q.put(c.getKey(),
+                                                            getBean(c.getRef())),
+                                                        (q, u) -> {
+                                                        });
                                     f.set(instance, result);
                                 }
                             }
                         }
                     }
-
                     //Injects propertyDefinitions with References.
                     if (propertyDefinition.getRef() != null) {
                         f.set(instance, getBean(propertyDefinition.getRef()));
@@ -119,15 +123,15 @@ public class BeanFactoryImpl implements BeanFactory {
         return instance;
     }
 
-    private boolean isCorrectPropDef(BeanPropertyDefinition beanPropertyDefinition) {
-        return beanPropertyDefinition.getRef() != null
-                || beanPropertyDefinition.getValue() != null
-                || beanPropertyDefinition.getData() != null;
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
         return (T) getBean(beanName);
+    }
+
+    private boolean isCorrectPropDef(BeanPropertyDefinition beanPropertyDefinition) {
+        return beanPropertyDefinition.getRef() != null
+                || beanPropertyDefinition.getValue() != null
+                || beanPropertyDefinition.getData() != null;
     }
 }
