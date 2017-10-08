@@ -1,6 +1,9 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
 public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYPE, EVENT> {
+    private TYPE type;
+    private EVENT event;
+
     @Override
     public TYPE getFrom() {
         return null;
@@ -8,7 +11,7 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
 
     @Override
     public void setFrom(TYPE state) {
-
+        this.type = state;
     }
 
     @Override

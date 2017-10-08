@@ -1,10 +1,14 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.MapEntryDefinitionImpl;
+
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BeanFactoryImpl implements BeanFactory {
     private BeanDefinitionRegistry registry;
@@ -35,57 +39,90 @@ public class BeanFactoryImpl implements BeanFactory {
             return map.get(beanDefinition.getId());
         }
         Object instance;
+        Field f;
+        try {
+            Class clazz = Class.forName(beanDefinition.getClassName());
+            instance = clazz.newInstance();
+            if (beanDefinition.getProperties() != null) {
+                prop:
+                for (BeanPropertyDefinition propertyDefinition : beanDefinition.getProperties()) {
+                    if (!isCorrectPropDef(propertyDefinition)) {
+                        throw new RuntimeException(propertyDefinition.getName()
+                                + " has no definition");
+                    }
+                    f = clazz.getDeclaredField(propertyDefinition.getName());
+                    f.setAccessible(true);
 
+                    //Injects propertyDefinitions with Value.
+                    if (propertyDefinition.getValue() != null) {
+                        if (f.getType().isPrimitive()) {
+                            if (f.getType().equals(int.class)) {
+                                f.set(instance, Integer.parseInt(propertyDefinition.getValue()));
+                            } else if (f.getType().equals(double.class)) {
+                                f.set(instance, Double.parseDouble(propertyDefinition.getValue()));
+                            }
+                        } else if (f.getType().equals(String.class)) {
+                            f.set(instance, propertyDefinition.getValue());
+                        }
+                    }
 
-//        try {
-//            Class clazz = Class.forName(beanDefinition.getClassName());
-//            instance = clazz.newInstance();
-//            Field f;
-//            boolean isNotUsedProperty = true;
-//            if (beanDefinition.getProperties() != null) {
-//                for (BeanPropertyDefinition beanPropertyDefinition
-//                        : beanDefinition.getProperties()) {
-//                    try {
-//                        f = clazz.getDeclaredField(beanPropertyDefinition.getName());
-//                        f.setAccessible(true);
-//                        if (beanPropertyDefinition.getValue() != null) {
-//                            isNotUsedProperty = false;
-//                            Class classFiled = f.getType();
-//                            if (classFiled.toString().equals("int")) {
-//                                f.setInt(instance,
-//                                        Integer.valueOf(beanPropertyDefinition.getValue()));
-//                            } else {
-//                                f.set(instance, beanPropertyDefinition.getValue());
-//                            }
-//                        }
-//                        if (beanPropertyDefinition.getData() != null) {
-//                            isNotUsedProperty = false;
-//                            f.set(instance, beanPropertyDefinition.getData());
-//                        }
-//                        if (beanPropertyDefinition.getRef() != null) {
-//                            isNotUsedProperty = false;
-//                            f.set(instance, getBean(beanPropertyDefinition.getRef()));
-//                        }
-//                        f.setAccessible(false);
-//                        if (isNotUsedProperty) {
-//                            throw new RuntimeException(beanPropertyDefinition.getName()
-//                                    + " has no definition");
-//                        }
-//                    } catch (NoSuchFieldException ignored) {
-//                        ignored.printStackTrace();
-//                    }
-//                }
-//            }
-//        } catch (Exception e1) {
-//            throw new RuntimeException(e1);
-//        }
+                    //Injects propertyDefinitions with Data.
+                    if (propertyDefinition.getData() != null) {
+                        Class propDefClass = propertyDefinition.getData().getClass();
+                        for (Method m : propDefClass.getDeclaredMethods()) {
 
+                            // for list
+                            if (m.getReturnType().equals(f.getType())
+                                    && m.getName().startsWith("get")) {
+                                f.set(instance, m.invoke(propertyDefinition.getData()));
+                                continue prop;
+                            }
+                            // for map
+                            if (m.getName().startsWith("get")) {
+                                //StringMap
+                                if (f.getName().startsWith("string")) {
+                                    Map<String, String> result =
+                                            ((ArrayList<MapEntryDefinitionImpl>) m.invoke(propertyDefinition.getData()))
+                                                    .stream().collect(HashMap<String, String>::new,
+                                                    (q, c) -> q.put(c.getKey(), c.getValue()),
+                                                    (q, u) -> {
+                                                    });
+                                    f.set(instance, result);
+                                }
+                                //ObjectMap
+                                if (f.getName().startsWith("object")) {
+                                    Map<String, Object> result =
+                                            ((ArrayList<MapEntryDefinitionImpl>) m.invoke(propertyDefinition.getData()))
+                                                    .stream().collect(HashMap<String, Object>::new,
+                                                    (q, c) -> q.put(c.getKey(), getBean(c.getRef())),
+                                                    (q, u) -> {
+                                                    });
+                                    f.set(instance, result);
+                                }
+                            }
+                        }
+                    }
 
+                    //Injects propertyDefinitions with References.
+                    if (propertyDefinition.getRef() != null) {
+                        f.set(instance, getBean(propertyDefinition.getRef()));
+                    }
+                    f.setAccessible(false);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if ("singleton".equals(beanDefinition.getScope())) {
             map.put(beanDefinition.getId(), instance);
         }
-
         return instance;
+    }
+
+    private boolean isCorrectPropDef(BeanPropertyDefinition beanPropertyDefinition) {
+        return beanPropertyDefinition.getRef() != null
+                || beanPropertyDefinition.getValue() != null
+                || beanPropertyDefinition.getData() != null;
     }
 
     @Override
