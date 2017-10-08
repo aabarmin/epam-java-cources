@@ -1,19 +1,19 @@
 package com.epam.university.java.core.task033;
 
 class BaseExceptionImpl extends RuntimeException implements BaseException {
-    BaseExceptionImpl() {
+    public BaseExceptionImpl() {
         super();
     }
-    
-    BaseExceptionImpl(String message) {
+
+    public BaseExceptionImpl(String message) {
         super(message);
     }
-    
-    BaseExceptionImpl(String message, Throwable cause) {
+
+    public BaseExceptionImpl(String message, Throwable cause) {
         super(message, cause);
     }
-    
-    BaseExceptionImpl(Throwable cause) {
+
+    public BaseExceptionImpl(Throwable cause) {
         super(cause);
     }
 }

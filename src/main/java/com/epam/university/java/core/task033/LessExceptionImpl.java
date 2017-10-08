@@ -1,11 +1,11 @@
 package com.epam.university.java.core.task033;
 
 class LessExceptionImpl extends BaseExceptionImpl implements LessException {
-    LessExceptionImpl() {
+    public LessExceptionImpl() {
         super();
     }
 
-    LessExceptionImpl(String message) {
+    public LessExceptionImpl(String message) {
         super(message);
     }
 
@@ -13,7 +13,7 @@ class LessExceptionImpl extends BaseExceptionImpl implements LessException {
         super(message, cause);
     }
 
-    LessExceptionImpl(Throwable cause) {
+    public LessExceptionImpl(Throwable cause) {
         super(cause);
     }
 }

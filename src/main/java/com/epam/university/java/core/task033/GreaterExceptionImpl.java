@@ -1,19 +1,19 @@
 package com.epam.university.java.core.task033;
 
 class GreaterExceptionImpl extends BaseExceptionImpl implements GreaterException {
-    GreaterExceptionImpl() {
+    public GreaterExceptionImpl() {
         super();
     }
 
-    GreaterExceptionImpl(String message) {
+    public GreaterExceptionImpl(String message) {
         super(message);
     }
 
-    GreaterExceptionImpl(String message, Throwable cause) {
+    public GreaterExceptionImpl(String message, Throwable cause) {
         super(message, cause);
     }
 
-    GreaterExceptionImpl(Throwable cause) {
+    public GreaterExceptionImpl(Throwable cause) {
         super(cause);
     }
 }
