@@ -1,17 +1,16 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by Александр on 29.09.2017.
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
-    Set<BeanDefinition> beanDefinitions;
+    private final Map<String, BeanDefinition> storage = new HashMap<>();
 
-    public BeanDefinitionRegistryImpl(){
-        beanDefinitions = new HashSet<>();
-    }
     /**
      * Add bean definition to registry.
      *
@@ -19,7 +18,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      */
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
-        beanDefinitions.add(definition);
+        //beanDefinitions.add(definition);
     }
 
     /**
@@ -30,9 +29,11 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      */
     @Override
     public BeanDefinition getBeanDefinition(String beanId) {
-        return beanDefinitions.stream()
+        System.out.print("1");
+        /*return beanDefinitions.stream()
                 .filter(v -> (v.getId() == beanId))
                 .findFirst()
-                .orElse(null);
+                .orElse(null);*/
+                return null;
     }
 }
