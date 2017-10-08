@@ -22,6 +22,19 @@ public class Task013Impl implements Task013 {
     @Override
     public boolean isConvexPolygon(Figure figure) {
         Collection<Vertex> vertices = figure.getVertexes();
+
+        List<Vertex> vertexList = vertices.stream().collect(Collectors.toList());
+
+        List<Vertex> variant = new ArrayList<>();
+        variant.add(vertexList.get(0));
+
+        vertexList.remove(0);
+
+        return findOrder(vertexList, 0, variant, vertexList.size());
+    }
+
+    private boolean isConvex(List<Vertex> vertices) {
+
         List<Vector> vectors = new LinkedList<>();
 
         roundIteration(vectors, vertices, (v1, v2) -> (new Vector(v1, v2)));
@@ -51,5 +64,32 @@ public class Task013Impl implements Task013 {
                 break;
             }
         } while (true);
+    }
+
+    private boolean findOrder(final List<Vertex> vertices, int counter, final List<Vertex> variant,
+        int max) {
+        if (counter > max - 1) {
+            if (isConvex(variant)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            for (int i = 0; i < vertices.size(); i++) {
+                List<Vertex> newVariant = new ArrayList<>(variant);
+                newVariant.add(vertices.get(i));
+                List<Vertex> newVer = new ArrayList<>(vertices);
+                newVer.remove(vertices.get(i));
+                if (isConvex(newVariant)) {
+                    boolean order = findOrder(newVer, counter + 1, newVariant, max);
+                    if (order == false) {
+                        continue;
+                    } else {
+                        return order;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

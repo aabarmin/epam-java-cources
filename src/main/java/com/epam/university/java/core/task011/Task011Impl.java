@@ -38,7 +38,7 @@ public class Task011Impl implements Task011 {
 
         while (result.size() != 1) {
             result.remove(i % result.size());
-            i++;
+            i += 2;
         }
 
         return result.get(0);

@@ -5,65 +5,128 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by ilya on 08.10.17.
  */
 public class ServerImpl implements Server, Runnable {
 
-    private final ServerSocket serverSocket = new ServerSocket(6000);
-    private String monitor = "monitor";
-    private Deque<String> massages = new ArrayDeque<>();
-    private boolean isWork;
+    private ServerSocket serverSocket;
 
-    public ServerImpl() throws IOException {
+    private volatile BlockingDeque<String> massages = new LinkedBlockingDeque<>();
 
+    private Thread serverThread;
+
+    private volatile boolean readed = false;
+
+    private List<Thread> consumers = new ArrayList<>();
+
+    /**
+     * Constructor.
+     */
+    public ServerImpl() {
+        try {
+            serverSocket = new ServerSocket(6000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public String readMessage() {
-        synchronized (monitor) {
-            if (massages.isEmpty()) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (!serverThread.isInterrupted()) {
+            while (readed == false) {
                 try {
-                    monitor.wait();
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
-        System.out.println("read massage");
         if (massages.isEmpty()) {
             return "";
         }
-        return massages.pop();
+        String mes = massages.pop();
+        readed = false;
+        System.out.println("read massage");
+        return mes;
     }
 
     @Override
     public void start() {
-        isWork = true;
-        new Thread(this).start();
+        serverThread = new Thread(this);
+        serverThread.start();
     }
 
     @Override
     public void stop() {
-        isWork = false;
+        consumers.forEach(Thread::interrupt);
+        serverThread.interrupt();
+        readed = true;
+        try {
+            Thread.sleep(2000);
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
-        while (isWork == true) {
-            try (Socket clientSocket = serverSocket.accept();
-                BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()))) {
-                if (reader.ready()) {
-                    System.out.println("WE are here");
-                    final String fromClient = reader.readLine();
-                    System.out.println("WE are here");
-                    massages.push(fromClient);
-                    System.out.println("Pushed: " + fromClient);
-                    monitor.notify();
+        Socket clientSocket = null;
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            while (!serverThread.isInterrupted()) {
+                Thread consumerThread = new Thread(new Consumer(serverSocket.accept()));
+                consumers.add(consumerThread);
+                consumerThread.start();
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private class Consumer implements Runnable {
+
+        private final Socket socket;
+
+        public Consumer(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()))) {
+                while (!Thread.currentThread().isInterrupted()) {
+                    if (reader.ready()) {
+                        System.out.println("WE are here");
+                        final String fromClient = reader.readLine();
+                        System.out.println("WE are here");
+                        massages.push(fromClient);
+                        System.out.println("Pushed: " + fromClient);
+                    }
+                    readed = true;
                 }
             } catch (IOException e) {
                 e.printStackTrace();

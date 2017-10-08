@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task015;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,14 +40,13 @@ public class WeilerAthertonAlgorithm {
      * @throws IllegalArgumentException if figures doesn't intersect
      */
     public Figure getIntersection() throws IllegalArgumentException {
-        try {
-            start();
-        } catch (IllegalArgumentException e) {
-            return null;
+        start();
+        if (intersection.size() != 0) {
+            Figure figure = new Figure(
+                intersection.stream().map(p -> p.getElement()).collect(Collectors.toList()));
+            return figure;
         }
-        Figure figure = new Figure(
-            intersection.stream().map(p -> p.getElement()).collect(Collectors.toList()));
-        return figure;
+        return null;
     }
 
     private void containsInFigure(Figure firstF, Figure secondF) {
@@ -60,7 +60,7 @@ public class WeilerAthertonAlgorithm {
     /**
      * Check first contains second or second contains first or doesn't intersect.
      *
-     * @return -1 - doesn't intersect, 0 - intersect, 1 - one of them contains other
+     * @return -1 - may be doesn't intersect, 0 - intersect, 1 - one of them contains other
      */
     private int containsAll() {
         List<Vertex> checkFirst = first.getVertex().stream().filter(p -> p.hasContainigFigure())
@@ -83,13 +83,15 @@ public class WeilerAthertonAlgorithm {
     }
 
     private void start() throws IllegalArgumentException {
-        if (containsAll() == -1) {
-            throw new IllegalArgumentException("Doesn't intersect");
-        } else if (containsAll() == 1) {
+        if (containsAll() == 1) {
             return;
         }
         List<Vertex> figF = findIntersections(first, second);
         List<Vertex> figS = findIntersections(second, first);
+        if (figF.size() == first.getVertex().size() && figS.size() == second.getVertex().size()) {
+            intersection = new ArrayList<>();
+            return;
+        }
         Figure firstF = new Figure(figF.stream()
             .map(p -> p.getElement())
             .collect(Collectors.toList())
@@ -111,7 +113,6 @@ public class WeilerAthertonAlgorithm {
 
         Iterator<LineSegment> firstIter = firstFigure.getLineSegments().iterator();
         List<Vertex> resultFigure = new LinkedList<>();
-
 
         while (firstIter.hasNext()) {
             LineSegment current = firstIter.next();
