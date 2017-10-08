@@ -202,22 +202,26 @@ public class Task015Impl implements Task015 {
         // distance to AB
         double dx = x2 - x1;
         double dy = y2 - y1;
-        final double d1 = ((y1 - point.getY()) * dx + (point.getX() - x1) * dy) / (dy * dy + dx * dx);
+        final double d1 = ((y1 - point.getY()) * dx + (point.getX() - x1) * dy)
+                                                          / (dy * dy + dx * dx);
 
         // distance to BC
         dx = x3 - x2;
         dy = y3 - y2;
-        final double d2 = ((y2 - point.getY()) * dx + (point.getX() - x2) * dy) / (dy * dy + dx * dx);
+        final double d2 = ((y2 - point.getY()) * dx + (point.getX() - x2) * dy)
+                                                         / (dy * dy + dx * dx);
 
         // distance to CD
         dx = x4 - x3;
         dy = y4 - y3;
-        final double d3 = ((y3 - point.getY()) * dx + (point.getX() - x3) * dy) / (dy * dy + dx * dx);
+        final double d3 = ((y3 - point.getY()) * dx + (point.getX() - x3) * dy)
+                                                         / (dy * dy + dx * dx);
 
         // distance to DA
         dx = x1 - x4;
         dy = y1 - y4;
-        final double d4 = ((y4 - point.getY()) * dx + (point.getX() - x4) * dy) / (dy * dy + dx * dx);
+        final double d4 = ((y4 - point.getY()) * dx + (point.getX() - x4) * dy)
+                                                          / (dy * dy + dx * dx);
 
         // distances to each of the segments must be of one sign
         if (d1 > 0) {
