@@ -1,6 +1,8 @@
 package com.epam.university.java.core.task015;
 
 
+import com.epam.university.java.core.Validator;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.Arrays;
 public class Task015Impl implements Task015 {
     @Override
     public double getArea(Square first, Square second) {
+        new Validator().vaildate(first, second);
+
         return intersection(first, second);
     }
 
@@ -173,6 +177,9 @@ public class Task015Impl implements Task015 {
             }
             if (y < Math.min(three.getY(), four.getY())
                     || y > Math.max(three.getY(), four.getY())) {
+                continue;
+            }
+            if (Double.isNaN(x) || Double.isNaN(y)) {
                 continue;
             }
             list.add(pointFactory.newInstance(x, y));

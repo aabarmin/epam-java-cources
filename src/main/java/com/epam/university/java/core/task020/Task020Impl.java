@@ -15,7 +15,7 @@ public class Task020Impl implements Task020 {
                         ? ((int) m.get(c) + 1) : 1), HashMap::putAll)
                 .entrySet()
                 .stream()
-                .filter(i -> (int) i.getValue() == stones.size())
+                .filter(i -> (int) i.getValue() >= stones.size())
                 .map(Map.Entry::getKey)
                 .collect(ArrayList::new, ArrayList::add,
                         ArrayList::addAll).size();

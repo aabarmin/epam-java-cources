@@ -14,12 +14,14 @@ public class ClientImpl implements Client {
     private Socket socket;
     private BufferedReader reader;
     private BufferedWriter writer;
+    private final int port;
 
-    private ClientImpl() {
+    private ClientImpl(int port) {
+        this.port = port;
     }
 
-    public static Client getInstance() {
-        return new ClientImpl();
+    public static Client getInstance(int port) {
+        return new ClientImpl(port);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class ClientImpl implements Client {
     @Override
     public void start() {
         runVoid(() -> {
-            socket = new Socket(InetAddress.getLocalHost(), 6000);
+            socket = new Socket(InetAddress.getLocalHost(), port);
             System.out.println("client connected");
             reader = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
