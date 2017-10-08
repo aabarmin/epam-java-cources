@@ -107,4 +107,23 @@ public class Task012Test {
             instance.pathExists(targetGraph, 2, 4));
     }
 
+    @Test
+    public void testPathCalculationDisconnectedGraph() throws Exception {
+        final Graph sourceGraph = factory.newInstance(9);
+        final Graph targetGraph = instance.invokeActions(sourceGraph, Arrays.asList(
+            g -> g.createEdge(1, 2),
+            g -> g.createEdge(2, 3),
+            g -> g.createEdge(3, 4),
+            g -> g.createEdge(4, 8),
+            g -> g.createEdge(1, 5),
+            g -> g.createEdge(6, 1),
+            g -> g.createEdge(6, 7),
+            g -> g.createEdge(7, 8),
+            g -> g.createEdge(9, 1),
+            g -> g.removeEdge(8, 4),
+            g -> g.removeEdge(1, 2)
+        ));
+        assertFalse("There is no path between vertexes",
+                instance.pathExists(targetGraph, 4, 9));
+    }
 }
