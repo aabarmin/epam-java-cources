@@ -35,48 +35,52 @@ public class BeanFactoryImpl implements BeanFactory {
             return map.get(beanDefinition.getId());
         }
         Object instance;
-        try {
-            Class clazz = Class.forName(beanDefinition.getClassName());
-            instance = clazz.newInstance();
-            Field f;
-            boolean isNotUsedProperty = true;
-            if (beanDefinition.getProperties() != null) {
-                for (BeanPropertyDefinition beanPropertyDefinition
-                        : beanDefinition.getProperties()) {
-                    try {
-                        f = clazz.getDeclaredField(beanPropertyDefinition.getName());
-                        f.setAccessible(true);
-                        if (beanPropertyDefinition.getValue() != null) {
-                            isNotUsedProperty = false;
-                            Class classFiled = f.getType();
-                            if (classFiled.toString().equals("int")) {
-                                f.setInt(instance,
-                                        Integer.valueOf(beanPropertyDefinition.getValue()));
-                            } else {
-                                f.set(instance, beanPropertyDefinition.getValue());
-                            }
-                        }
-                        if (beanPropertyDefinition.getData() != null) {
-                            isNotUsedProperty = false;
-                            f.set(instance, beanPropertyDefinition.getData());
-                        }
-                        if (beanPropertyDefinition.getRef() != null) {
-                            isNotUsedProperty = false;
-                            f.set(instance, getBean(beanPropertyDefinition.getRef()));
-                        }
-                        f.setAccessible(false);
-                        if (isNotUsedProperty) {
-                            throw new RuntimeException(beanPropertyDefinition.getName()
-                                    + " has no definition");
-                        }
-                    } catch (NoSuchFieldException ignored) {
-                        ignored.printStackTrace();
-                    }
-                }
-            }
-        } catch (Exception e1) {
-            throw new RuntimeException(e1);
-        }
+
+
+//        try {
+//            Class clazz = Class.forName(beanDefinition.getClassName());
+//            instance = clazz.newInstance();
+//            Field f;
+//            boolean isNotUsedProperty = true;
+//            if (beanDefinition.getProperties() != null) {
+//                for (BeanPropertyDefinition beanPropertyDefinition
+//                        : beanDefinition.getProperties()) {
+//                    try {
+//                        f = clazz.getDeclaredField(beanPropertyDefinition.getName());
+//                        f.setAccessible(true);
+//                        if (beanPropertyDefinition.getValue() != null) {
+//                            isNotUsedProperty = false;
+//                            Class classFiled = f.getType();
+//                            if (classFiled.toString().equals("int")) {
+//                                f.setInt(instance,
+//                                        Integer.valueOf(beanPropertyDefinition.getValue()));
+//                            } else {
+//                                f.set(instance, beanPropertyDefinition.getValue());
+//                            }
+//                        }
+//                        if (beanPropertyDefinition.getData() != null) {
+//                            isNotUsedProperty = false;
+//                            f.set(instance, beanPropertyDefinition.getData());
+//                        }
+//                        if (beanPropertyDefinition.getRef() != null) {
+//                            isNotUsedProperty = false;
+//                            f.set(instance, getBean(beanPropertyDefinition.getRef()));
+//                        }
+//                        f.setAccessible(false);
+//                        if (isNotUsedProperty) {
+//                            throw new RuntimeException(beanPropertyDefinition.getName()
+//                                    + " has no definition");
+//                        }
+//                    } catch (NoSuchFieldException ignored) {
+//                        ignored.printStackTrace();
+//                    }
+//                }
+//            }
+//        } catch (Exception e1) {
+//            throw new RuntimeException(e1);
+//        }
+
+
         if ("singleton".equals(beanDefinition.getScope())) {
             map.put(beanDefinition.getId(), instance);
         }
