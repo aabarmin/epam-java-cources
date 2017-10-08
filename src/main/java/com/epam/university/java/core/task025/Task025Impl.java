@@ -9,7 +9,7 @@ public class Task025Impl implements Task025 {
     public int getAmountOfAlteredLetters(String sourceMessage) {
         final String sos = "SOS";
 
-        if("".equals(sourceMessage)){
+        if ("".equals(sourceMessage)) {
             return 0;
         }
 
