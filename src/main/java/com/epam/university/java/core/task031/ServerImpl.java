@@ -12,6 +12,7 @@ public class ServerImpl implements Server {
     private final int port;
     private volatile ServerSocket serverSocket;
     private volatile LinkedList<String> queue = new LinkedList<>();
+    private boolean wereRecords = false;
 
     ServerImpl(int port) {
         this.port = port;
@@ -23,16 +24,20 @@ public class ServerImpl implements Server {
      * @return message text
      */
     public String readMessage() {
-        // trying to lifehack
-        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-        
-        // selling the soul to the devil for passing tests
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        // trying to wait, if there was no records on queue
+        for (int i = 0; i < 100; i++) {
+            if (queue.size() == 0 && !wereRecords) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                break;
+            }
         }
-        
+
         return queue.size() > 0 ? queue.removeLast() : "";
     }
 
@@ -60,6 +65,7 @@ public class ServerImpl implements Server {
                                 while (true) {
                                     if (reader.ready()) {
                                         queue.addLast(reader.readLine());
+                                        wereRecords = true;
                                     }
                                 }
                             } catch (Exception e) {
@@ -76,7 +82,7 @@ public class ServerImpl implements Server {
                 throw new RuntimeException(e);
             }
         });
-        
+
         listenerThread.setPriority(Thread.MAX_PRIORITY);
         listenerThread.start();
     }
