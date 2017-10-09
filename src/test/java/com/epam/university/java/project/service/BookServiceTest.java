@@ -141,4 +141,85 @@ public class BookServiceTest {
             any(StateMachineDefinition.class)
         );
     }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void persistStateBetweenLoads() throws Exception {
+        final String contextPath = getClass().getResource("/project/library001.xml").getFile();
+        applicationContext.loadBeanDefinitions(new XmlResource(contextPath));
+        // create new book instance
+        final BookService bookService = applicationContext.getBean(BookService.class);
+        final StateMachineManager stateMachineManager = Mockito.spy(
+                applicationContext.getBean(StateMachineManager.class)
+        );
+        ReflectionUtils.setField(bookService, "stateMachineManager", stateMachineManager);
+        //
+        final Book book = bookService.createBook();
+        // check book exists
+        assertNotNull("Book was not created", book);
+        // check book status
+        assertEquals("Incorrect book status",
+                BookStatus.DRAFT,
+                book.getState()
+        );
+        // save book back
+        final Book savedDraftBook = bookService.save(book);
+        // load book back
+        final Book loadedDraftBook = bookService.getBook(savedDraftBook.getId());
+        assertEquals("Incorrect book status",
+                BookStatus.DRAFT,
+                loadedDraftBook.getState()
+        );
+        // take book into the account
+        final Book acceptedBook = bookService.accept(loadedDraftBook, "12345");
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                acceptedBook.getState()
+        );
+        final Book savedAcceptedBook = bookService.save(acceptedBook);
+        // load book back
+        final Book loadedAcceptedBook = bookService.getBook(savedAcceptedBook.getId());
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                loadedAcceptedBook.getState()
+        );
+        // issue book
+        final Book issuedBook = bookService.issue(
+                loadedAcceptedBook,
+                LocalDate.now().plus(3, ChronoUnit.DAYS)
+        );
+        assertEquals("Incorrect book status",
+                BookStatus.ISSUED,
+                issuedBook.getState()
+        );
+        final Book savedIssuedBook = bookService.save(issuedBook);
+        // load book back
+        final Book loadedIssuedBook = bookService.getBook(savedIssuedBook.getId());
+        assertEquals("Incorrect book status",
+                BookStatus.ISSUED,
+                loadedIssuedBook.getState()
+        );
+        // return book
+        final Book returnedBook = bookService.returnFromIssue(loadedIssuedBook);
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                returnedBook.getState()
+        );
+        final Book savedReturnedBook = bookService.save(returnedBook);
+        final Book loadedReturnedBook = bookService.getBook(savedReturnedBook.getId());
+        assertEquals("Incorrect book status",
+                BookStatus.ACCOUNTED,
+                loadedReturnedBook.getState()
+        );
+        // invocation checks
+        verify(stateMachineManager, times(1)).loadDefinition(any(Resource.class));
+        verify(stateMachineManager, atLeast(4)).handleEvent(
+                any(StatefulEntity.class),
+                anyObject()
+        );
+        verify(stateMachineManager, times(1)).initStateMachine(
+                any(StatefulEntity.class),
+                any(StateMachineDefinition.class)
+        );
+    }
 }
