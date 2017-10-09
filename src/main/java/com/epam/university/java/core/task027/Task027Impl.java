@@ -14,7 +14,10 @@ public class Task027Impl implements Task027 {
         new Validator().vaildate(sourceString);
         final int delta = 1;
         List<Integer> result = new ArrayList<>();
-        Set<Pair<Integer, Integer>> borders = new LinkedHashSet<>();
+        if ("0".equals(sourceString.substring(0, 1))) {
+            return result;
+        }
+        List<Pair<Integer, Integer>> borders = new ArrayList<>();
         int startPos = 0;
         int numOfDigits = 1;
         Pair<Integer, Integer> first = new Pair<>(startPos, startPos + numOfDigits);
@@ -22,7 +25,9 @@ public class Task027Impl implements Task027 {
         while (startPos + numOfDigits <= sourceString.length()) {
             Pair<Integer, Integer> second = new Pair<>(startPos, startPos + numOfDigits);
             int currentDelta = getNumber(sourceString, second) - getNumber(sourceString, first);
-            if (currentDelta == delta) {
+            if (currentDelta == delta
+                    && checkForFirstZero(sourceString, second)
+                    && checkForFirstZero(sourceString, first)) {
                 borders.add(first);
                 borders.add(second);
                 first = second;
@@ -36,11 +41,15 @@ public class Task027Impl implements Task027 {
                 }
             }
         }
-        for (Pair<Integer, Integer> pair : borders) {
-            result.add(Integer
-                    .valueOf(sourceString
-                            .substring(pair.getFirst(),
-                                    pair.getSecond())));
+        if (!borders.isEmpty() && borders.get(borders.size() - 1).getSecond()
+                == sourceString.length()) {
+
+            for (Pair<Integer, Integer> pair : new LinkedHashSet<>(borders)) {
+                result.add(Integer
+                        .valueOf(sourceString
+                                .substring(pair.getFirst(),
+                                        pair.getSecond())));
+            }
         }
         return result;
     }
@@ -55,6 +64,10 @@ public class Task027Impl implements Task027 {
      */
     private static int getNumber(String source, Pair<Integer, Integer> pair) {
         return Integer.valueOf((source.substring(pair.getFirst(), pair.getSecond())));
+    }
+
+    private static boolean checkForFirstZero(String source, Pair<Integer, Integer> pair) {
+        return (!"0".equals(source.substring(pair.getFirst(), pair.getFirst() + 1)));
     }
 
     /**
