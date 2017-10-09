@@ -48,7 +48,10 @@ public class Task034Test {
         );
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
-                person.getPhoneNumbers().toArray(new String[0])
+                person.getPhoneNumbers()
+                    .stream()
+                    .map(PhoneNumber::getPhoneNumber)
+                    .toArray()
         );
     }
 
@@ -75,7 +78,10 @@ public class Task034Test {
         );
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
-                person.getPhoneNumbers().toArray(new String[0])
+                person.getPhoneNumbers()
+                    .stream()
+                    .map(PhoneNumber::getPhoneNumber)
+                    .toArray()
         );
     }
 
@@ -105,7 +111,10 @@ public class Task034Test {
         );
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
-                person.getPhoneNumbers().toArray(new String[0])
+                person.getPhoneNumbers()
+                    .stream()
+                    .map(PhoneNumber::getPhoneNumber)
+                    .toArray()
         );
     }
 }
