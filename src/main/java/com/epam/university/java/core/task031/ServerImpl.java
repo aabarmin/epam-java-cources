@@ -32,8 +32,8 @@ public class ServerImpl implements Server {
                     e.printStackTrace();
                 }
             }
+            return queue.isEmpty() ? "" : queue.removeLast();
         }
-        return queue.isEmpty() ? "" : queue.removeLast();
     }
 
     @Override
