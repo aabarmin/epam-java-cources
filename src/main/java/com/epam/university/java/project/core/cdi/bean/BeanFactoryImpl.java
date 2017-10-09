@@ -19,7 +19,6 @@ public class BeanFactoryImpl implements BeanFactory {
      * @param beanClass bean class to get
      * @return bean instance
      */
-    //TODO: Not working with interfaces
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
