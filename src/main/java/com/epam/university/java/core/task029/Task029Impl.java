@@ -28,7 +28,7 @@ public class Task029Impl implements Task029 {
             line.getChars(0, line.length(), crossword[i++], 0);
         }
 
-        // fill the crossword with '-'s
+        // start filling from first word
         fill(list, 0, 0, 1, false);
 
         // prepare and return result
@@ -126,7 +126,7 @@ public class Task029Impl implements Task029 {
         return size;
     }
 
-    // sizeBack
+    // sizeForward
     private int sizeForward(int row, int col, boolean horizontally) {
 
         int size = 0;
@@ -148,5 +148,4 @@ public class Task029Impl implements Task029 {
         }
         return size;
     }
-
 }
