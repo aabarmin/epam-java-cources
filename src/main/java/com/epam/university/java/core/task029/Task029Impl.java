@@ -1,6 +1,11 @@
 package com.epam.university.java.core.task029;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by Daniil Smirnov on 08.10.2017.
@@ -10,38 +15,36 @@ public class Task029Impl implements Task029 {
 
     @Override
     public Collection<String> fillCrossword(Collection<String> rows, Collection<String> words) {
-        ArrayList<String> AL = new ArrayList<>(rows);
-
+        ArrayList<String> arrayList = new ArrayList<>(rows);
 
         Map<String, Mark> markMapHorizontal = new HashMap<>();
         Map<String, Mark> markMapVertical = new HashMap<>();
 
 
-        for (int i = 0; i < AL.size(); i++) {
-            String[] strings = AL.get(i).split("");
+        for (int i = 0; i < arrayList.size(); i++) {
+            String[] strings = arrayList.get(i).split("");
             String stringI = String.valueOf(i);
             for (int j = 0; j < strings.length; j++) {
                 String stringCoordinats = stringI + String.valueOf(j);
 
                 //For horizontal adding
                 if (strings[j].equals("-")) {
-                    if (AL.size() > i+1) {
-                    if (AL.get(i+1).split("")[j].equals("-")) {
-                        markMapHorizontal.put(stringCoordinats, new Mark(i, j));
-                    } else if (AL.get(i-1).split("")[j].equals("-")) {
-                        markMapHorizontal.put(stringCoordinats, new Mark(i, j));
-                    }
-
-                    } else if (AL.get(i-1).split("")[j].equals("-")) {
+                    if (arrayList.size() > i + 1) {
+                        if (arrayList.get(i + 1).split("")[j].equals("-")) {
+                            markMapHorizontal.put(stringCoordinats, new Mark(i, j));
+                        } else if (arrayList.get(i - 1).split("")[j].equals("-")) {
+                            markMapHorizontal.put(stringCoordinats, new Mark(i, j));
+                        }
+                    } else if (arrayList.get(i - 1).split("")[j].equals("-")) {
                         markMapHorizontal.put(stringCoordinats, new Mark(i,j));
                     }
                 }
 
                 //For vertical adding
                 if (strings[j].equals("-")) {
-                    if (strings[j+1].equals("-")) {
+                    if (strings[j + 1].equals("-")) {
                         markMapVertical.put(stringCoordinats,new Mark(i,j));
-                    } else if (strings[j-1].equals("-")) {
+                    } else if (strings[j - 1].equals("-")) {
                         markMapVertical.put(stringCoordinats,new Mark(i,j));
                     }
                 }
@@ -95,55 +98,112 @@ public class Task029Impl implements Task029 {
                 for (int i = 0; i < hor.size(); i++) {
                     for (int j = 0; j < ver.size(); j++) {
                         if (hor.get(i).equals(ver.get(j))) {
-                            crossingValues.add(String.valueOf(hor.get(i).getX())+String.valueOf(hor.get(i).getY()));
+                            crossingValues.add(String.valueOf(hor.get(i).getX())
+                                    + String.valueOf(hor.get(i).getY()));
                         }
                     }
                 }
             }
         }
 
+        //Check what words can be apply for horizontal fields.
+        ArrayList<ArrayList<String>> optionsForHorizontalWords =
+                checkWordsCanBeApply(horizontalWords,words);
 
-        ArrayList<ArrayList<Mark>> optionsForHorizontalWords = new ArrayList<>();
-        ArrayList<ArrayList<Mark>> optionsForVerticalWords = new ArrayList<>();
+        //Check what words can be apply for vertical fields.
+        ArrayList<ArrayList<String>> optionsForVerticalWords =
+                checkWordsCanBeApply(verticalWords,words);
 
-        ArrayList<String> opFHW = new ArrayList<>();
-        ArrayList<String> opFVW = new ArrayList<>();
+        //Mark values that have only one option (Horizontal).
+        for (int i = 0; i < optionsForHorizontalWords.size(); i++) {
+            markToCollection(arrayList,optionsForHorizontalWords,horizontalWords);
+        }
+
+        //Mark values that have only one option (Vertical).
+        for (int i = 0; i < optionsForVerticalWords.size(); i++) {
+            markToCollection(arrayList,optionsForVerticalWords,verticalWords);
+        }
+
+        //Check for crossing values
+        for (int i = 0; i < crossingValues.size(); i++) {
+            String[] split = crossingValues.get(i).split("");
+            int x = Integer.parseInt(split[0]);
+            int y = Integer.parseInt(split[1]);
+            String s = arrayList.get(x);
+            String[] find = s.split("");
+            String point = find[y];
 
 
-        for (String word : words) {
-            for (int i = 0; i < horizontalWords.size(); i++) {
-                if (word.length() == horizontalWords.get(i).size()) {
-                    opFHW.add(word);
-                }
-            }
-            for (int i = 0; i < verticalWords.size(); i++) {
-                if (word.length() == verticalWords.get(i).size()) {
-                    opFVW.add(word);
+            for (int j = 0; j < optionsForHorizontalWords.size(); j++) {
+
+                if (optionsForHorizontalWords.get(j).size() == 2) {
+
+                    String[] splitedHorizont = optionsForHorizontalWords.get(j).get(0).split("");
+
+                    if (x < splitedHorizont.length) {
+                        if (splitedHorizont[x].equals(point)) {
+                            String removingString = optionsForHorizontalWords.get(j).get(0);
+                            optionsForHorizontalWords.get(j).remove(1);
+                            markToCollection(arrayList, optionsForHorizontalWords, horizontalWords);
+
+                            for (int k = 0; k < optionsForVerticalWords.size(); k++) {
+                                if (optionsForVerticalWords.get(k).size() == 2) {
+                                    optionsForVerticalWords.get(k).remove(removingString);
+                                    markToCollection(arrayList,
+                                            optionsForVerticalWords,
+                                            verticalWords);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+        return arrayList;
+    }
 
-        //crossingValues.forEach(System.out::println);
-        System.out.println(opFHW.size());
-        System.out.println(opFVW.size());
+    private ArrayList<ArrayList<String>> checkWordsCanBeApply(
+            ArrayList<ArrayList<Mark>> pozitionWords,
+            Collection<String> words) {
 
+        ArrayList<ArrayList<String>> options = new ArrayList<>();
+        for (int i = 0; i < pozitionWords.size(); i++) {
+            ArrayList<String> opFpw = new ArrayList<>();
+            for (String word : words) {
+                if (word.length() == pozitionWords.get(i).size()) {
+                    opFpw.add(word);
+                }
+            }
+            if (!opFpw.isEmpty()) {
+                options.add(opFpw);
+            }
+        }
+        return options;
+    }
 
-/*
-        Set<String> st = markMapVertical.keySet();
-        ArrayList<String> s = new ArrayList<>(st);
-        Collections.sort(s);
-        s.forEach(System.out::println);*/
+    private void markToCollection(ArrayList<String> arrayList,
+                                  ArrayList<ArrayList<String>> optionsForWords,
+                                  ArrayList<ArrayList<Mark>> pozitionWords) {
 
-        /*horizontalWords.forEach(marks ->
-            marks.forEach(h -> System.out.print(h + " ")));
-        System.out.println("");
+        for (int i = 0; i < optionsForWords.size(); i++) {
 
-        System.out.println("-------------------------");
-
-        verticalWords.forEach(marks ->
-            marks.forEach(v -> System.out.print(v + " ")));*/
-
-        return null;
+            if (optionsForWords.get(i).size() == 1) {
+                ArrayList<Mark> marks = pozitionWords.get(i);
+                String[] toMark = optionsForWords.get(i).get(0).split("");
+                for (int j = 0; j < marks.size(); j++) {
+                    String s = arrayList.get(marks.get(j).getX());
+                    String[] split = s.split("");
+                    split[marks.get(j).getY()] = toMark[j];
+                    marks.get(j).setWord(toMark[j]);
+                    StringBuilder sb = new StringBuilder("");
+                    for (int k = 0; k < split.length; k++) {
+                        sb.append(split[k]);
+                    }
+                    arrayList.set(marks.get(j).getX(),sb.toString());
+                }
+                optionsForWords.get(i).remove(0);
+            }
+        }
     }
 
     private class Mark {
@@ -183,12 +243,18 @@ public class Task029Impl implements Task029 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
 
             Mark mark = (Mark) o;
 
-            if (x != mark.x) return false;
+            if (x != mark.x) {
+                return false;
+            }
             return y == mark.y;
         }
 
@@ -197,15 +263,6 @@ public class Task029Impl implements Task029 {
             int result = x;
             result = 31 * result + y;
             return result;
-        }
-
-        @Override
-        public String toString() {
-            return "Mark{" +
-                    "x=" + x +
-                    ", y=" + y +
-
-                    '}';
         }
     }
 }
