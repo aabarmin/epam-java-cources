@@ -209,7 +209,7 @@ public class BookServiceTest {
         final Book loadedReturnedBook = bookService.getBook(savedReturnedBook.getId());
         assertEquals("Incorrect book status",
                 BookStatus.ACCOUNTED,
-                loadedAcceptedBook.getState()
+                loadedReturnedBook.getState()
         );
         // invocation checks
         verify(stateMachineManager, times(1)).loadDefinition(any(Resource.class));
