@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task018;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -10,7 +11,7 @@ import java.lang.reflect.Parameter;
  */
 public class Task018Impl implements Task018 {
     @Override
-    public boolean isAnnotationPresent(Object toCheck, Class annotationToFind) {
+    public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {
         // проверка аннотации над классом
         Class classToCheck = toCheck.getClass();
 
@@ -20,14 +21,14 @@ public class Task018Impl implements Task018 {
 
         //проверка аннотации над пакетом
         Package p = classToCheck.getPackage();
-        if (p.isAnnotationPresent(annotationToFind)) {
+        if (p.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
             return true;
         }
 
         // наличие конструкоторов с аннотацией
         Constructor[] constructors = classToCheck.getDeclaredConstructors();
         for (Constructor constructor : constructors) {
-            if (constructor.isAnnotationPresent(annotationToFind)) {
+            if (constructor.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
                 return true;
             }
         }
@@ -35,7 +36,7 @@ public class Task018Impl implements Task018 {
         // наличие полей с аннотацией
         Field[] fields = classToCheck.getDeclaredFields();
         for (Field field : fields) {
-            if (field.isAnnotationPresent(annotationToFind)) {
+            if (field.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
                 return true;
             }
         }
@@ -44,14 +45,14 @@ public class Task018Impl implements Task018 {
         // проверяем наличие аннотации в методах класса toCheck
         Method[] methods = classToCheck.getDeclaredMethods();
         for (Method md: methods) {
-            if (md.isAnnotationPresent(annotationToFind)) {
+            if (md.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
                 return true;
             }
 
             // наличие аннотации в переменных метода
             Parameter[] parameters = md.getParameters();
             for (Parameter parameter : parameters) {
-                if (parameter.isAnnotationPresent(annotationToFind)) {
+                if (parameter.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
                     return true;
                 }
             }

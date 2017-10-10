@@ -25,7 +25,7 @@ public class Task012Impl implements Task012 {
     public boolean pathExists(Graph graph, int from, int to) {
         // поиск в глубину
         // формирую стек для запоминания ещё не отработанных вершин
-        Stack stack = new Stack();
+        Stack<Integer> stack = new Stack<>();
         // множество - для запоминания уже отработанных вершин
         Set<Integer> setFinish = new HashSet<>();
 
