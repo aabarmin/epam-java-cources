@@ -24,7 +24,7 @@ public class Task028Impl implements Task028 {
      * @param power power
      * @return number of ways
      */
-   // @Override
+    @Override
     public int getWays(int value, int power) {
 
         int max = (int) Math.pow(value, 1.0 / power);

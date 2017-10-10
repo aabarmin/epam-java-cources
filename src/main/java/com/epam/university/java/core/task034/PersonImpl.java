@@ -1,16 +1,26 @@
 package com.epam.university.java.core.task034;
 
-import com.google.gson.annotations.SerializedName;
-
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
+@XmlRootElement(name = "person")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PersonImpl implements Person {
 
+    @XmlAttribute(name = "id")
     private int id;
+    @XmlElement(name = "first-name")
     private String firstName;
+    @XmlElement(name = "last-name")
     private String lastName;
-    @SerializedName("phones")
+    @XmlElementWrapper(name = "person-phones")
+    @XmlElement(name = "person-phone", type = PhoneNumberImpl.class)
     private Collection<PhoneNumber> phoneNumbers;
 
     /**
@@ -80,7 +90,7 @@ public class PersonImpl implements Person {
      */
     @Override
     public Collection<PhoneNumber> getPhoneNumbers() {
-        return new HashSet<>(phoneNumbers);
+        return new ArrayList<>(phoneNumbers);
     }
 
     /**
@@ -90,6 +100,6 @@ public class PersonImpl implements Person {
      */
     @Override
     public void setPhoneNumbers(Collection<PhoneNumber> phoneNumbers) {
-        this.phoneNumbers = new HashSet<>(phoneNumbers);
+        this.phoneNumbers = new ArrayList<>(phoneNumbers);
     }
 }

@@ -84,8 +84,8 @@ public class Task013Impl implements Task013 {
         }
 
         vertexes.remove(initialVertex);
-        System.out.println("Initial vertex X: " + initialVertex.getX()
-                + " Y: " + initialVertex.getY());
+        //System.out.println("Initial vertex X: " + initialVertex.getX()
+        //        + " Y: " + initialVertex.getY());
 
         //  Find 2 vertexes with max angle to initial vertex
         Vertex center = vertexes.get(0);
@@ -113,7 +113,7 @@ public class Task013Impl implements Task013 {
         }
 
         vertexes.remove(center);
-        System.out.println("Next X: " + center.getX() + " Y: " + center.getY());
+        //System.out.println("Next X: " + center.getX() + " Y: " + center.getY());
 
         // let's go through the figure boundary
         Vertex a = initialVertex;
