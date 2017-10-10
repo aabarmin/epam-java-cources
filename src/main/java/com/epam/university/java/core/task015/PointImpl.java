@@ -60,8 +60,9 @@ public class PointImpl implements Point {
 
         PointImpl point = (PointImpl) o;
 
-        if (Double.compare(point.x, x) != 0) return false;
-        return Double.compare(point.y, y) == 0;
+        if (point.x - x > 0.0000000001) return false;
+
+        return point.y - y < 0.0000000001;
     }
 
     /**
