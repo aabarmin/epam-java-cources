@@ -24,7 +24,7 @@ public class Task028Impl implements Task028 {
      * @param power power
      * @return number of ways
      */
-    @Override
+   // @Override
     public int getWays(int value, int power) {
 
         int max = (int) Math.pow(value, 1.0 / power);
@@ -53,6 +53,7 @@ public class Task028Impl implements Task028 {
 
             if (value == 0) {
                 this.counter++;
+                return;
             }
 
             for (int i = k + 1; i <= this.max; i++) {
