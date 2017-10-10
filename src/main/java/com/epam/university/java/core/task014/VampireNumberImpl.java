@@ -39,4 +39,12 @@ public class VampireNumberImpl implements VampireNumber {
                 && (secondNumber == that.secondNumber || secondNumber == that.firstNumber
                 && multiplication == that.multiplication);
     }
+
+    @Override
+    public int hashCode() {
+        int result = firstNumber;
+        result = 31 * result + secondNumber;
+        result = 31 * result + multiplication;
+        return result;
+    }
 }
