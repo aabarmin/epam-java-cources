@@ -2,6 +2,7 @@ package com.epam.university.java.core.task035;
 
 import com.epam.university.java.core.helper.TestHelper;
 import com.epam.university.java.core.task034.Person;
+import com.epam.university.java.core.task034.PhoneNumber;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class Task035Test {
         final InputStream stream = getClass().getResourceAsStream("/task035/data.json");
         final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         final StringBuilder data = new StringBuilder();
-        reader.lines().forEach(l -> data.append(l));
+        reader.lines().forEach(data::append);
         return data.toString();
     }
 
@@ -35,27 +36,30 @@ public class Task035Test {
     public void readWithJackson() throws Exception {
         final ObjectMapper mapper = new ObjectMapper();
         final Person person = instance.readWithJackson(mapper, readData());
-        assertNotNull("XML was not parsed", person);
-        assertEquals("Incorrect XML parsing",
+        assertNotNull("JSON was not parsed", person);
+        assertEquals("Incorrect JSON parsing",
                 10,
                 person.getId()
         );
-        assertEquals("Incorrect XML parsing",
+        assertEquals("Incorrect JSON parsing",
                 "Ivan",
                 person.getFirstName()
         );
-        assertEquals("Incorrect XML parsing",
+        assertEquals("Incorrect JSON parsing",
                 "Petrov",
                 person.getLastName()
         );
-        assertNotNull("Incorrect XML parsing", person.getPhoneNumbers());
-        assertEquals("Incorrect XML parsing",
+        assertNotNull("Incorrect JSON parsing", person.getPhoneNumbers());
+        assertEquals("Incorrect JSON parsing",
                 2,
                 person.getPhoneNumbers().size()
         );
-        assertArrayEquals("Incorrect XML parsing",
+        assertArrayEquals("Incorrect JSON parsing",
                 new String[]{"Phone first", "Phone second"},
-                person.getPhoneNumbers().toArray(new String[0])
+                person.getPhoneNumbers()
+                    .stream()
+                    .map(PhoneNumber::getPhoneNumber)
+                    .toArray()
         );
     }
 
@@ -63,27 +67,30 @@ public class Task035Test {
     public void readWithGson() throws Exception {
         final GsonBuilder builder = new GsonBuilder();
         final Person person = instance.readWithGson(builder, readData());
-        assertNotNull("XML was not parsed", person);
-        assertEquals("Incorrect XML parsing",
+        assertNotNull("JSON was not parsed", person);
+        assertEquals("Incorrect JSON parsing",
                 10,
                 person.getId()
         );
-        assertEquals("Incorrect XML parsing",
+        assertEquals("Incorrect JSON parsing",
                 "Ivan",
                 person.getFirstName()
         );
-        assertEquals("Incorrect XML parsing",
+        assertEquals("Incorrect JSON parsing",
                 "Petrov",
                 person.getLastName()
         );
-        assertNotNull("Incorrect XML parsing", person.getPhoneNumbers());
-        assertEquals("Incorrect XML parsing",
+        assertNotNull("Incorrect JSON parsing", person.getPhoneNumbers());
+        assertEquals("Incorrect JSON parsing",
                 2,
                 person.getPhoneNumbers().size()
         );
-        assertArrayEquals("Incorrect XML parsing",
+        assertArrayEquals("Incorrect JSON parsing",
                 new String[]{"Phone first", "Phone second"},
-                person.getPhoneNumbers().toArray(new String[0])
+                person.getPhoneNumbers()
+                    .stream()
+                    .map(PhoneNumber::getPhoneNumber)
+                    .toArray()
         );
     }
 
