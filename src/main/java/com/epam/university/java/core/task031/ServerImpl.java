@@ -24,7 +24,6 @@ public class ServerImpl implements Server {
      * @return message text
      */
     public String readMessage() {
-
         // trying to wait, if there was no records on queue
         for (int i = 0; i < 100; i++) {
             if (queue.size() == 0 && !wereRecords) {
@@ -52,7 +51,6 @@ public class ServerImpl implements Server {
                 while (true) {
                     if (serverSocket != null && !serverSocket.isClosed()) {
                         Socket clientSocket = serverSocket.accept();
-
                         Thread readerThread = new Thread(() -> {
                             try (
                                     final BufferedReader reader = new BufferedReader(
