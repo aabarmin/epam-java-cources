@@ -1,9 +1,11 @@
 package com.epam.university.java.core.task032;
 
+import java.lang.reflect.InvocationHandler;
+
 /**
  * Proxy interface.
  */
-public interface CountingProxy {
+public interface CountingProxy extends InvocationHandler {
     /**
      * Get amount of method call.
      * @param methodName method name
