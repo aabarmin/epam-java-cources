@@ -71,14 +71,20 @@ public class Task013Impl implements Task013 {
 
             // если точка расположена правее относительно самой нижней точки
             if (minX < x) {
-                polarAngle[i] = 45 * (y - minY) / (x - minX);
-                // polarAngle[i] = (int)Math.toDegrees(Math.atan((y - minY)/(x - minX)));
+                //polarAngle[i] = 45 * (y - minY) / (x - minX);
+                polarAngle[i] = (int)Math.toDegrees(Math.atan(1.0 * (y - minY) / (x - minX)));
+                //System.out.println("x = " + x + ", y = " + y);
+                //System.out.println("(y - minY) / (x - minX) = " + (y - minY) / (x - minX));
+                //System.out.println("Math.atan = " + Math.atan(1.0 * (y - minY) / (x - minX)));
+                //System.out.println("Math.toDegrees = "
+                // + Math.toDegrees(Math.atan(1.0 * (y - minY) / (x - minX))));
+                //System.out.println(polarAngle[i]);
             }
 
             // если точка расположена левее относительно самой нижней точки
             if (minX > x) {
-                polarAngle[i] = 90 + 45 * (y - minY) / (minX - x);
-                // polarAngle[i] = 90 + (int)Math.toDegrees(Math.atan((y - minY)/(minX - x)));
+                //polarAngle[i] = 90 + 45 * (y - minY) / (minX - x);
+                polarAngle[i] = 180 - (int)Math.toDegrees(Math.atan(1.0 * (y - minY) / (minX - x)));
             }
         }
 
@@ -139,10 +145,10 @@ public class Task013Impl implements Task013 {
         int v3x;
         int v3y;
         for (int i = 0; i < sortVertex.size() - 2; i++) {
-            v1x = sortVertex.get(i).getX();
-            v1y = sortVertex.get(i).getY();
-            v2x = sortVertex.get(i + 1).getX();
-            v2y = sortVertex.get(i + 1).getY();
+            v1x = stackVertexConvexHull.get(stackVertexConvexHull.size() - 2).getX();
+            v1y = stackVertexConvexHull.get(stackVertexConvexHull.size() - 2).getY();
+            v2x = stackVertexConvexHull.get(stackVertexConvexHull.size() - 1).getX();
+            v2y = stackVertexConvexHull.get(stackVertexConvexHull.size() - 1).getY();
             v3x = sortVertex.get(i + 2).getX();
             v3y = sortVertex.get(i + 2).getY();
 
@@ -150,7 +156,8 @@ public class Task013Impl implements Task013 {
             // (B[0]-A[0])*(C[1]-B[1])-(B[1]-A[1])*(C[0]-B[0])
 
             if ((v2x - v1x) * (v3y - v2y) - (v2y - v1y) * (v3x - v2x) < 0) {
-                stackVertexConvexHull.remove(i + 1);
+                stackVertexConvexHull.remove(stackVertexConvexHull.size() - 1);
+                //stackVertexConvexHull.remove(i + 1);
                 // stackVertexConvexHull.add(sortVertex.get(i + 2));
             }
             stackVertexConvexHull.add(sortVertex.get(i + 2));
