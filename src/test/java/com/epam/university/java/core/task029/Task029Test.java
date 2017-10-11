@@ -92,4 +92,49 @@ public class Task029Test {
                 instance.fillCrossword(source, words).toArray(new String[0])
         );
     }
+
+    @Test
+    public void iceAndFireTest() throws Exception {
+        final Collection<String> source = Arrays.asList(
+                "+-++++++",
+                "--------",
+                "+-++++-+",
+                "+-++++-+",
+                "+-++++-+",
+                "+---+---",
+                "+-+++-++",
+                "+-+++-++",
+                "+-+++-++",
+                "+-+++-++",
+                "+-+++-++",
+                "+-++++++"
+
+        );
+        final Collection<String> target = Arrays.asList(
+                "+K++++++",
+                "RIVERRAN",
+                "+N++++S+",
+                "+G++++S+",
+                "+S++++H+",
+                "+LYS+MYR",
+                "+A+++I++",
+                "+N+++E++",
+                "+D+++R++",
+                "+I+++I++",
+                "+N+++N++",
+                "+G++++++"
+        );
+        final Collection<String> words = Arrays.asList(
+                "KINGSLANDING",
+                "LYS",
+                "MYR",
+                "RIVERRAN",
+                "MIERIN",
+                "ASSHY"
+        );
+        assertArrayEquals("Incorrect answer",
+                target.toArray(new String[0]),
+                instance.fillCrossword(source, words).toArray(new String[0])
+        );
+    }
 }

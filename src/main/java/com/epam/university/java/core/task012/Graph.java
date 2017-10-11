@@ -34,4 +34,11 @@ public interface Graph {
      * @return collection of available vertexes
      */
     Collection<Integer> getAdjacent(int from);
+
+    /**
+     * Return size of graph.
+     * We need it to solve this problem!
+     * @return size of Graph
+     */
+    int size();
 }

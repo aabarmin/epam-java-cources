@@ -37,7 +37,7 @@ public class Task028Test {
                 instance.getWays(100, 3)
         );
     }
-
+/*
     @Test
     public void test1000with10() throws Exception {
         assertEquals("Incorrect value",
@@ -77,5 +77,5 @@ public class Task028Test {
             instance.getWays(800, 3)
         );
     }
-
+*/
 }
