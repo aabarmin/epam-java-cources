@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task036;
 
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -18,7 +17,7 @@ public interface Task036 {
      * @return integration results
      */
     double integrate(Function<Double, Double> function,
-                     BiFunction<Double, Double, Double> integrator,
+                     Integrator integrator,
                      double limitLeft,
                      double limitRight);
 }
