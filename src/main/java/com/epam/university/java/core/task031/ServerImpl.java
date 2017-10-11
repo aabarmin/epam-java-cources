@@ -12,6 +12,7 @@ public class ServerImpl implements Server {
     private final int port;
     private volatile ServerSocket serverSocket;
     private volatile LinkedList<String> queue = new LinkedList<>();
+    private boolean wereRecords = false;
 
     ServerImpl(int port) {
         this.port = port;
@@ -23,10 +24,17 @@ public class ServerImpl implements Server {
      * @return message text
      */
     public String readMessage() {
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // trying to wait, if there was no records on queue
+        for (int i = 0; i < 100; i++) {
+            if (queue.size() == 0 && !wereRecords) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                break;
+            }
         }
 
         return queue.size() > 0 ? queue.removeLast() : "";
@@ -37,14 +45,13 @@ public class ServerImpl implements Server {
      */
     @Override
     public void start() {
-        new Thread(() -> {
+        Thread listenerThread = new Thread(() -> {
             try {
                 serverSocket = new ServerSocket(port);
                 while (true) {
                     if (serverSocket != null && !serverSocket.isClosed()) {
                         Socket clientSocket = serverSocket.accept();
-
-                        new Thread(() -> {
+                        Thread readerThread = new Thread(() -> {
                             try (
                                     final BufferedReader reader = new BufferedReader(
                                             new InputStreamReader(
@@ -56,12 +63,15 @@ public class ServerImpl implements Server {
                                 while (true) {
                                     if (reader.ready()) {
                                         queue.addLast(reader.readLine());
+                                        wereRecords = true;
                                     }
                                 }
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
-                        }).start();
+                        });
+                        readerThread.setPriority(Thread.MAX_PRIORITY);
+                        readerThread.start();
                     }
                 }
             } catch (SocketException e) {
@@ -69,7 +79,10 @@ public class ServerImpl implements Server {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }).start();
+        });
+
+        listenerThread.setPriority(Thread.MAX_PRIORITY);
+        listenerThread.start();
     }
 
     /**
