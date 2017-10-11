@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 public class Task036Test {
     private Task036 instance;
     private Integrator integrator;
+    private static final double delta = 0.0001;
 
     @Before
     public void setUp() throws Exception {
@@ -22,21 +23,21 @@ public class Task036Test {
                 integrator, 0, 5
         );
         assertEquals("Incorrect integration value",
-                9.6117,
+                9.6138,
                 value,
-                0.01);
+                delta);
     }
 
     @Test
     public void integrateSimple2() throws Exception {
-        final double value = instance.integrate(x -> ((Math.pow(x, 4) / 12) + (x / 3) - (1 / 60)),
+        final double value = instance.integrate(x -> ((Math.pow(x, 4) / 12) + (x / 3) - (1.0 / 60)),
                 integrator,
                 1, 2
         );
         assertEquals("Incorrect integration value",
-                1.0054,
+                1.0000,
                 value,
-                0.01);
+                delta);
     }
 
     @Test
@@ -46,8 +47,9 @@ public class Task036Test {
                 0, 2
         );
         assertEquals("Incorrect integration value",
-                8.389,
+                8.3891,
                 value,
-                0.01);
+                delta);
     }
+
 }
