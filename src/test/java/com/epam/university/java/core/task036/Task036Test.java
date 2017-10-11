@@ -43,7 +43,7 @@ public class Task036Test {
     public void integrateSimple3() throws Exception {
         final double value = instance.integrate(x -> (x * Math.exp(x)),
                 integrator,
-                1, 2
+                0, 2
         );
         assertEquals("Incorrect integration value",
                 8.389,
