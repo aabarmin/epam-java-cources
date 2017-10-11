@@ -18,7 +18,7 @@ public interface Task036 {
      * @return integration results
      */
     double integrate(Function<Double, Double> function,
-                     BiFunction<Double, Double, Double> integrator,
+                     BiFunction<Double, Function<Double, Double>, Double> integrator,
                      double limitLeft,
                      double limitRight);
 }
