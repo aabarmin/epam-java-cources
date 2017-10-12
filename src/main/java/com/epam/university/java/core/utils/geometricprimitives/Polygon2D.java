@@ -3,6 +3,7 @@ package com.epam.university.java.core.utils.geometricprimitives;
 import com.epam.university.java.core.utils.common.Validator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class implements polygon.
@@ -136,6 +137,47 @@ public class Polygon2D {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get collection of sides of <code>this</code> polygon.
+     *
+     * @return <code>Collection</code> of line segments that represents the
+     *     polygon's sides
+     */
+    public List<Line2D> getSides() {
+        List<Line2D> sides = new ArrayList<>();
+        Point2D[] vertices = getPoints2D();
+        if (dynamicVerticesNumber < 2) {
+            return null;
+        }
+        if (dynamicVerticesNumber == 2) {
+            sides.add((new Line2D(new Point2D(vertices[0].getCoordinateX(),
+                    vertices[0].getCoordinateY()),
+                    new Point2D(vertices[1].getCoordinateX(),
+                            vertices[1].getCoordinateY()))));
+
+            return sides;
+        } else {
+            for (int i = 0; i < dynamicVerticesNumber; i++) {
+                if (i == dynamicVerticesNumber - 1) {
+                    sides.add(new Line2D(
+                            new Point2D(vertices[i].getCoordinateX(),
+                                    vertices[i].getCoordinateY()),
+                            new Point2D(vertices[0].getCoordinateX(),
+                                    vertices[0].getCoordinateY()
+                            )));
+                } else {
+                    sides.add(new Line2D(
+                            new Point2D(vertices[i].getCoordinateX(),
+                                    vertices[i].getCoordinateY()),
+                            new Point2D(vertices[i + 1].getCoordinateX(),
+                                    vertices[i + 1].getCoordinateY()
+                            )));
+                }
+            }
+        }
+        return sides;
     }
 
     @Override

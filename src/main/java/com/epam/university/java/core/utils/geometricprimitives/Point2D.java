@@ -1,5 +1,7 @@
 package com.epam.university.java.core.utils.geometricprimitives;
 
+import com.epam.university.java.core.task015.Point;
+
 import java.util.Comparator;
 
 /**
@@ -80,7 +82,7 @@ public final class Point2D implements Comparable<Point2D> {
      * @param b second point
      * @param c third point
      * @return { -1, 0, +1 } if a→b→c is a { clockwise, collinear;
-     *     counter clock-wise } turn.
+     * counter clock-wise } turn.
      */
     public static int ccw(Point2D a, Point2D b, Point2D c) {
         double area2 = (b.coordinateX - a.coordinateX) * (c.coordinateY
@@ -141,10 +143,10 @@ public final class Point2D implements Comparable<Point2D> {
      *
      * @param that the other point
      * @return the value {@code 0} if this string is equal to the argument
-     *     string (precisely when {@code equals()} returns {@code true});
-     *     a negative integer if this point is less than the argument
-     *     point; and a positive integer if this point is greater than the
-     *     argument point
+     * string (precisely when {@code equals()} returns {@code true});
+     * a negative integer if this point is less than the argument
+     * point; and a positive integer if this point is greater than the
+     * argument point
      */
     public int compareTo(Point2D that) {
         if (this.coordinateY < that.coordinateY) {

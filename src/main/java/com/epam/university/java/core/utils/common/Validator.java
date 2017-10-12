@@ -10,6 +10,8 @@ public class Validator {
             = "first parameter can't be null";
     public static final String MESSAGE_FOR_SECOND_PARAMETER_IF_NULL
             = "second parameter can't be null";
+    public static final String MESSAGE_FOR_THIRD_PARAMETER_IF_NULL
+            = "third parameter can't be null";
     public static final String MESSAGE_FOR_SOURCE_IF_NULL
             = "source can't be null";
     public static final String MESSAGE_IF_VIOLATES_LOWER_BORDER
@@ -36,6 +38,8 @@ public class Validator {
             "illegal argument assigned";
     public static final String MESSAGE_IF_COLLECTION_EMPTY =
             "collection can't be empty";
+    public static final String MESSAGE_IF_ILLEGAL_CLASS =
+            "parameter's class should be the ";
 
     /**
      * Validates parameters not null.
@@ -44,14 +48,37 @@ public class Validator {
      * @param secondParameter                 second parameter to check
      * @param messageForFirstParameterIfNull  message if parameter is null
      * @param messageForSecondParameterIfNull message if parameter is null
-     * @throws IllegalArgumentException if parameters not provided
+     * @throws IllegalArgumentException if at least one of parameters is not
+     *                                  provided
      */
-    public static void validateNotNull(Object firstParameter, Object
-            secondParameter,
-                                       String messageForFirstParameterIfNull,
-                                       String messageForSecondParameterIfNull) {
+    public static void validateNotNull(
+            Object firstParameter, Object secondParameter,
+            String messageForFirstParameterIfNull,
+            String messageForSecondParameterIfNull) {
         validateNotNull(firstParameter, messageForFirstParameterIfNull);
         validateNotNull(secondParameter, messageForSecondParameterIfNull);
+    }
+
+    /**
+     * Validates parameters not null.
+     *
+     * @param firstParameter                  first parameter to check
+     * @param secondParameter                 second parameter to check
+     * @param messageForFirstParameterIfNull  message if first parameter is null
+     * @param messageForSecondParameterIfNull message if second parameter is
+     *                                        null
+     * @param messageForThirdParameterIfNull  message if third parameter is null
+     * @throws IllegalArgumentException if at least one of parameters is not
+     *                                  provided
+     */
+    public static void validateNotNull(
+            Object firstParameter, Object secondParameter,
+            Object thirdParameter, String messageForFirstParameterIfNull,
+            String messageForSecondParameterIfNull,
+            String messageForThirdParameterIfNull) {
+        validateNotNull(firstParameter, messageForFirstParameterIfNull);
+        validateNotNull(secondParameter, messageForSecondParameterIfNull);
+        validateNotNull(thirdParameter, messageForThirdParameterIfNull);
     }
 
     /**
@@ -222,7 +249,7 @@ public class Validator {
      * @throws IllegalArgumentException if parameter doesn't exists in enum
      */
     public static <E extends Enum<E>> boolean
-        validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+    validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
             throws IllegalArgumentException {
         for (E enumValue : enumValues) {
             if (enumValue.equals(value)) {
@@ -244,5 +271,38 @@ public class Validator {
         if (collection.isEmpty()) {
             throw new IllegalArgumentException(messageIfCollectionEmpty);
         }
+    }
+
+    /**
+     * Validates if class is legal.
+     *
+     * @param toCheck               class to check
+     * @param toCompare             class to compare with
+     * @param messageIfIllegalClass message if class is illegal
+     * @throws IllegalArgumentException is class <code>toCheck</code> is illegal
+     */
+    public static void validateClass(Object toCheck, Object toCompare, String
+            messageIfIllegalClass) {
+        if (!toCheck.getClass().equals(toCompare.getClass())) {
+            throw new IllegalArgumentException
+                    (messageIfIllegalClass + toCompare.getClass().getName());
+        }
+    }
+
+    /**
+     * Validates if classes is legal.
+     *
+     * @param toCheckFirst          first class to check
+     * @param toCheckSecond         second class to check
+     * @param toCompare             class to compare with
+     * @param messageIfIllegalClass message if class is illegal
+     * @throws IllegalArgumentException at least one of checked classed is
+     *                                  illegal <code>toCheck</code> is illegal
+     */
+    public static void validateClass(Object toCheckFirst, Object toCheckSecond,
+                                     Object toCompare, String
+                                             messageIfIllegalClass) {
+        validateClass(toCheckFirst, toCompare, messageIfIllegalClass);
+        validateClass(toCheckSecond, toCompare, messageIfIllegalClass);
     }
 }
