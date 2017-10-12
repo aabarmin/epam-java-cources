@@ -60,10 +60,8 @@ public class Task030Impl implements Task030 {
     @Override
     public LocalDate getNextWeekend(LocalDate localDate) {
 
-        LocalDate date = localDate.with(
+        return localDate.with(
                 TemporalAdjusters.next(DayOfWeek.SATURDAY));
-
-        return date;
     }
 
     /**
