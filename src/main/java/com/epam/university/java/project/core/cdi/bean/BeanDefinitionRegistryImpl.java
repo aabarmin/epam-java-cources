@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     private Map<String, BeanDefinition> map = new HashMap<>();
+
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
         map.put(definition.getId(), definition);

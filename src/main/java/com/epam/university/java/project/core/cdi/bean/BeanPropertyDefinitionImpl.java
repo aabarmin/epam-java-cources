@@ -2,11 +2,12 @@ package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
-public class BeanPropertyDefinitionImpl implements  BeanPropertyDefinition {
+public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     private String propertyName;
     private String propertuValue;
     private String ref;
     private StructureDefinition data;
+
     @Override
     public String getName() {
         return propertyName;
@@ -25,7 +26,7 @@ public class BeanPropertyDefinitionImpl implements  BeanPropertyDefinition {
 
     @Override
     public void setValue(String value) {
-        this.propertuValue=value;
+        this.propertuValue = value;
 
     }
 

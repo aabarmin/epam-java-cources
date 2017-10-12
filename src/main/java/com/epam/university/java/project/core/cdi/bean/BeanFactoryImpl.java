@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BeanFactoryImpl implements BeanFactory {
-    private  BeanDefinitionRegistry registry;
+    private BeanDefinitionRegistry registry;
     private Map<String, Object> map = new HashMap<>();
 
     public BeanFactoryImpl(BeanDefinitionRegistry registry) {
@@ -14,13 +14,14 @@ public class BeanFactoryImpl implements BeanFactory {
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
         return (T) getBean(beanClass.getName());
     }
 
     @Override
     public Object getBean(String beanName) {
-        String className = beanName.substring(beanName.lastIndexOf(".")+1);
+        String className = beanName.substring(beanName.lastIndexOf(".") + 1);
         if (className.endsWith("Interface")) {
             className = className.substring(0, className.length() - "Interface".length());
         }
@@ -38,29 +39,27 @@ public class BeanFactoryImpl implements BeanFactory {
             Field f;
             boolean isNotUsedProperty = true;
             if (beanDefinition.getProperties() != null) {
-                for ( BeanPropertyDefinition  definition : beanDefinition.getProperties()) {
+                for (BeanPropertyDefinition definition : beanDefinition.getProperties()) {
                     try {
                         f = aClass.getDeclaredField(definition.getName());
                         f.setAccessible(true);
                         if (definition.getValue() != null) {
                             isNotUsedProperty = false;
                             Class classField = f.getType();
-                            if ("int".equals(classField.toString())){
-                               // f.setInt(instance,);
+                            if ("int".equals(classField.toString())) {
+                                // f.setInt(instance,);
                             }
                         }
 
-                    } catch ( NoSuchFieldException ignored) {
+                    } catch (NoSuchFieldException ignored) {
                         ignored.printStackTrace();
                     }
                 }
             }
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
-
-
 
 
         return null;

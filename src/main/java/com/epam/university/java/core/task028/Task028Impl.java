@@ -1,29 +1,36 @@
 package com.epam.university.java.core.task028;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
 public class Task028Impl implements Task028 {
-    Set<TreeSet> resultSet = new HashSet<>();
+    private int result = 0;
 
     @Override
     public int getWays(int value, int power) {
-        calculateWays(value, power, new TreeSet<Integer>());
-        return resultSet.size();
+        calculateWays(value, value, power, 0);
+        return result;
+
     }
 
-    public void calculateWays(int value, int power, TreeSet<Integer> used) {
-        if (value == 0) {
-            resultSet.add(used);
+    /**
+     * function of recursive finding number of ways to express <code>value</code>
+     * as the sum of Nth power of unique, natural numbers.
+     *
+     * @param value     source value for calculating
+     * @param remaining remaining part of value, need for calculating.
+     * @param power     N
+     * @param used      last used number, need for calculating
+     */
+    private void calculateWays(int value, int remaining, int power, int used) {
+        if (remaining == 0) {
+            result++;
         }
-        if (value > 0) {
+        if (remaining > 0) {
             int root = (int) Math.pow(value, 1.0 / power);
-            for (int i = root; i > 0; i--) {
-                if (!used.contains(i)) {
-                    TreeSet<Integer> destUsed = new TreeSet<>(used);
-                    destUsed.add(i);
-                    calculateWays(value - (int) Math.pow(i, power), power, destUsed);
+            for (int i = used + 1; i <= root; i++) {
+                int newRemaining = (remaining - (int) Math.pow(i, power));
+                if (newRemaining >= 0) {
+                    calculateWays(value, newRemaining, power, i);
+                } else {
+                    break;
                 }
             }
         }
