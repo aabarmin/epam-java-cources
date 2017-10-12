@@ -161,6 +161,44 @@ public class Line2D {
         return canonicalParameters;
     }
 
+    /**
+     * Get angle with given three sides.
+     *
+     * @param adjacentLineFirst  first side that is adjacent with the wanted
+     *                           angle
+     * @param adjacentLineSecond second side that is adjacent with the wanted
+     *                           angle
+     * @param opposingLine       side that is opposing to wanted angle
+     * @return <code>double</code> that is the wanted angle
+     * @throws IllegalArgumentException is at least one of arguments is null
+     */
+    public static double getAngle(Line2D adjacentLineFirst, Line2D
+            adjacentLineSecond, Line2D opposingLine) {
+        Validator.validateNotNull(adjacentLineFirst, adjacentLineSecond,
+                opposingLine, Validator.MESSAGE_FOR_FIRST_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_SECOND_PARAMETER_IF_NULL,
+                Validator.MESSAGE_FOR_THIRD_PARAMETER_IF_NULL);
+        double adjacentLineFirstLength = adjacentLineFirst.getLength();
+        double adjacentLineSecondLength = adjacentLineSecond.getLength();
+        double opposingLineLength = opposingLine.getLength();
+        return Math.acos((Math.pow(adjacentLineFirstLength, 2.0) + Math.pow(
+                adjacentLineSecondLength, 2) - Math.pow(opposingLineLength,
+                2.0)) / (2.0 * adjacentLineFirstLength
+                * adjacentLineSecondLength));
+    }
+
+    /**
+     * Get length of the line segment.
+     *
+     * @return <code>double</code> that is the wanted length
+     */
+    public double getLength() {
+        return Math.pow(Math.pow(this.pointFirst.getCoordinateX() - this
+                .pointSecond.getCoordinateX(), 2) + Math.pow(this
+                .pointFirst.getCoordinateY() - this.pointSecond
+                .getCoordinateY(), 2), 0.5);
+    }
+
     @Override
     public String toString() {
         return "Line2D{" + "pointFirst=" + pointFirst + System.lineSeparator()

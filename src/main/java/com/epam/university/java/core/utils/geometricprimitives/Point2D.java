@@ -1,5 +1,7 @@
 package com.epam.university.java.core.utils.geometricprimitives;
 
+import com.epam.university.java.core.task015.Point;
+
 import java.util.Comparator;
 
 /**

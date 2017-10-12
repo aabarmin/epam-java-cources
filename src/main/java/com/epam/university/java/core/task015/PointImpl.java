@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task015;
 
+import com.epam.university.java.core.utils.common.Validator;
 import com.epam.university.java.core.utils.geometricprimitives.Point2D;
 
 /**
@@ -19,6 +20,17 @@ public class PointImpl implements Point {
      */
     public PointImpl(double coordinateX, double coordinateY) {
         point2D = new Point2D(coordinateX, coordinateY);
+    }
+
+    /**
+     * Initialisation of two-dimensional point.
+     *
+     * @param point2D <code>Point2D</code> with coordinates to initialise
+     */
+    public PointImpl(Point2D point2D) {
+        Validator.validateNotNull(point2D, Validator
+                .MESSAGE_FOR_SOURCE_IF_NULL);
+        this.point2D = point2D;
     }
 
     /**

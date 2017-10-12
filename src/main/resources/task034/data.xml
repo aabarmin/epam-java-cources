@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<person id="10">
+    <first-name>Ivan</first-name>
+    <last-name>Petrov</last-name>
+    <person-phones>
+        <person-phone>Phone first</person-phone>
+        <person-phone>Phone second</person-phone>
+    </person-phones>
+</person>
