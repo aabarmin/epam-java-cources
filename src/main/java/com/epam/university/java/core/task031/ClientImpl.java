@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task031;
 
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -26,7 +27,6 @@ public class ClientImpl implements Client {
     public void sendMessage(String message) {
 
         messages.add(message);
-        System.out.println("Client: added \'" + message + "\' to queue");
     }
 
     /**
@@ -36,7 +36,6 @@ public class ClientImpl implements Client {
     public void start() {
         try {
             socket = new Socket(InetAddress.getLocalHost(), Task031Impl.PORT);
-            System.out.println("Client: Connected to server");
             running = true;
             new Thread(() -> {
                 try (final BufferedWriter writer = new BufferedWriter(
@@ -48,7 +47,6 @@ public class ClientImpl implements Client {
                                 writer.write(messages.poll());
                                 writer.newLine();
                                 writer.flush();
-                                System.out.println("Client: flushed");
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -71,15 +69,11 @@ public class ClientImpl implements Client {
     public void stop() {
 
         running = false;
-        messages.clear();
 
         try {
-            //Thread.sleep(500);
-            //socket.close();
+            socket.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("Client: STOPPED");
     }
 }

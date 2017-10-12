@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -17,6 +20,7 @@ import java.util.*;
 public class ServerImpl implements Server {
 
     private static ServerSocket socket;
+
     static {
         try {
             socket = new ServerSocket(Task031Impl.PORT);
@@ -34,23 +38,16 @@ public class ServerImpl implements Server {
     @Override
     public String readMessage() {
 
-    /*    synchronized (Task031Impl.monitor)*/ {
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (messages.isEmpty()) {
-    System.out.println("Server reads: ''.   this == " + this.hashCode() );
-                return "";
-            }
-
-            String result = messages.pollLast();
-
-            System.out.println("Server reads: " + result + ". Size == " + messages.size() + ".   this == " + this.hashCode());
-
-            return result;
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        if (messages.isEmpty()) {
+            return "";
+        }
+
+        return messages.pollLast();
     }
 
 
@@ -60,13 +57,7 @@ public class ServerImpl implements Server {
     @Override
     public void start() {
 
-
         createListeningThread();
-        // create socket
-     /*   synchronized (this) */
-
-        System.out.println("Exiting start()-method");
-
     }
 
 
@@ -76,23 +67,19 @@ public class ServerImpl implements Server {
     @Override
     public void stop() {
 
-        System.out.println("Server: STOPPED");
-/*
         for (Map.Entry<Object, Boolean> entry : clients.entrySet()) {
             entry.setValue(false);
-        }*/
+        }
     }
 
 
     // createListeningThread
     private void createListeningThread() {
 
-        // accept
         new Thread(() -> {
             try {
                 // accept
                 Socket clientSocket = socket.accept();
-System.out.println("Server: Connection established");
                 createListeningThread();
 
                 try (
@@ -103,18 +90,10 @@ System.out.println("Server: Connection established");
                 ) {
                     clients.put(clientSocket, true);
                     while (clients.get(clientSocket)) {
-                        if (reader.ready()) { // refactor - move one line up
-                            /*synchronized (Task031Impl.monitor)*/ {
-                                final String string = reader.readLine();
-                                messages.add(string);
-                                System.out.println("Server got message: " + string + ". Size == " + messages.size() + ".   this == " + this.hashCode());
-                            }
+                        if (reader.ready()) {
+                            messages.add(reader.readLine());
                         }
                     }
-
-System.out.println("clientSocket's Thread exiting!");
-
-                    //clientSocket.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
