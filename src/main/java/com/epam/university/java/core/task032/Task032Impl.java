@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task032;
 
+import java.lang.reflect.Proxy;
+
 public class Task032Impl implements Task032 {
     /**
      * Create proxy wrapper.
@@ -19,7 +21,12 @@ public class Task032Impl implements Task032 {
      */
     @Override
     public SomeActionExecutor createExecutorWithProxy(CountingProxy proxy) {
-        return (SomeActionExecutor)
-                ((CountingProxyImpl) proxy).newInstance(new SomeActionExecutorImpl());
+
+        return (SomeActionExecutor) Proxy.newProxyInstance(
+                ClassLoader.getSystemClassLoader(),
+                new Class[]{SomeActionExecutor.class},
+                proxy
+        );
+
     }
 }

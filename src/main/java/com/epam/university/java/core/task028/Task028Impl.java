@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task028;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -29,8 +29,49 @@ public class Task028Impl implements Task028 {
 
         int max = (int) Math.pow(value, 1.0 / power);
         final Task028Inner task028Inner = new Task028Inner(max, power);
-        task028Inner.checkRecursive(value, 0);
-        return task028Inner.getCounter();
+
+        // could be done without multithreading
+        if (value < 1000) {
+
+            for (int i = 1; i <= max; i++) {
+                final int remainingValue = value - (int) Math.pow(i, power);
+                if (remainingValue > 0) {
+                    task028Inner.checkRecursive(remainingValue, i);
+                } else {
+                    task028Inner.incrementCounter(remainingValue == 0);
+                }
+            }
+
+        // do it with multithreading
+        } else {
+
+            List<Thread> threads = new ArrayList<>();
+
+            for (int i = 1; i <= max; i++) {
+                final int z = i;
+                final int remainingValue = value - (int) Math.pow(i, power);
+                if (remainingValue > 0) {
+                    Thread thread = new Thread(() -> {
+                        task028Inner.checkRecursive(remainingValue, z);
+                    });
+                    threads.add(thread);
+                    thread.start();
+                } else {
+                    task028Inner.incrementCounter(remainingValue == 0);
+                }
+            }
+
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        return task028Inner.getCounterValue();
 
     }
 
@@ -38,28 +79,32 @@ public class Task028Impl implements Task028 {
 
         private final int max;
         private final int power;
-        private int counter;
+        private AtomicInteger counter = new AtomicInteger(0);
 
         public Task028Inner(int max, int power) {
             this.max = max;
             this.power = power;
         }
 
-        public int getCounter() {
-            return counter;
+        public int getCounterValue() {
+            return counter.intValue();
+        }
+
+        public void incrementCounter(boolean increment) {
+            if (increment) {
+                counter.incrementAndGet();
+            }
         }
 
         public void checkRecursive(int value, int k) {
 
-            if (value == 0) {
-                this.counter++;
-                return;
-            }
-
-            for (int i = k + 1; i <= this.max; i++) {
+            for (int i = k + 1; i <= max; i++) {
                 int remainingValue = value - (int) Math.pow(i, power);
-                if (remainingValue >= 0) {
+                if (remainingValue > 0) {
                     checkRecursive(remainingValue, i);
+                } else {
+                    incrementCounter(remainingValue == 0);
+                    return;
                 }
             }
 
