@@ -70,13 +70,12 @@ public class Task021Impl implements Task021 {
                 Line2D(point, getEquilateralVertex(side, triangle,
                 999999999))));
         List<Point2D> pointsFermat = new ArrayList<>();
-        pointsFermat.add(linesFermat.get(0).intersectionPoint(linesFermat.get
-                (1), true));
-        pointsFermat.add(linesFermat.get(0).intersectionPoint(linesFermat.get
-                (2), true));
-        pointsFermat.add(linesFermat.get(1).intersectionPoint(linesFermat.get
-                (2), true));
-
+        pointsFermat.add(linesFermat.get(0).intersectionPoint(linesFermat.get(
+                1), true));
+        pointsFermat.add(linesFermat.get(0).intersectionPoint(linesFermat.get(
+                2), true));
+        pointsFermat.add(linesFermat.get(1).intersectionPoint(linesFermat.get(
+                2), true));
         Collections.sort(pointsFermat, Comparator.comparingDouble(
                 Point2D::getCoordinateX));
         double coordinateX = pointsFermat.get(1).getCoordinateX();
@@ -146,12 +145,12 @@ public class Task021Impl implements Task021 {
             if (!triangle.contains(thirdPoint)) {
                 firstCoordinateX = (pointFirst.getCoordinateX() + pointSecond
                         .getCoordinateX() + Math.sqrt(3.0) * Math.abs(pointFirst
-                        .getCoordinateY() - pointSecond.getCoordinateY())) /
-                        2.0;
+                        .getCoordinateY() - pointSecond.getCoordinateY()))
+                        / 2.0;
                 firstCoordinateY = (pointFirst.getCoordinateY() + pointSecond
                         .getCoordinateY() - Math.sqrt(3.0) * Math.abs(pointFirst
-                        .getCoordinateX() - pointSecond.getCoordinateX())) /
-                        2.0;
+                        .getCoordinateX() - pointSecond.getCoordinateX()))
+                        / 2.0;
                 thirdPoint = new Point2D(firstCoordinateX, firstCoordinateY);
                 return thirdPoint;
             }
@@ -180,12 +179,12 @@ public class Task021Impl implements Task021 {
         if (parameterA / (-parameterB) < 0) {
             double firstCoordinateX = (pointFirst.getCoordinateX() + pointSecond
                     .getCoordinateX() + Math.sqrt(3.0) * Math.abs(pointFirst
-                    .getCoordinateY() - pointSecond.getCoordinateY()) /
-                    checker) / 2.0;
+                    .getCoordinateY() - pointSecond.getCoordinateY())
+                    / checker) / 2.0;
             double firstCoordinateY = (pointFirst.getCoordinateY() + pointSecond
                     .getCoordinateY() + Math.sqrt(3.0) * Math.abs(pointFirst
-                    .getCoordinateX() - pointSecond.getCoordinateX()) /
-                    checker) / 2.0;
+                    .getCoordinateX() - pointSecond.getCoordinateX())
+                    / checker) / 2.0;
 
             thirdPoint = new Point2D(firstCoordinateX, firstCoordinateY);
             if (!triangle.contains(thirdPoint)) {

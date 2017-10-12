@@ -162,7 +162,7 @@ public class Line2D {
     }
 
     /**
-     * Get angle with given three sides
+     * Get angle with given three sides.
      *
      * @param adjacentLineFirst  first side that is adjacent with the wanted
      *                           angle
@@ -188,7 +188,7 @@ public class Line2D {
     }
 
     /**
-     * Get length of the line segment
+     * Get length of the line segment.
      *
      * @return <code>double</code> that is the wanted length
      */
