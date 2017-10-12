@@ -11,6 +11,7 @@ public class MyStack<T> {
      *
      * @param size size of array
      */
+    @SuppressWarnings("unchecked")
     public MyStack(int size) {
         this.size = size;
         stack = (T[]) (new Object[size]);
