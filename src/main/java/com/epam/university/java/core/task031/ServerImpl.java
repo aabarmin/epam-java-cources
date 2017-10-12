@@ -36,7 +36,7 @@ public class ServerImpl implements Server {
 
     /*    synchronized (Task031Impl.monitor)*/ {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

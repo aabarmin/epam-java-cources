@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task031;
 
-import com.sun.xml.internal.ws.transport.http.HttpAdapter;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;

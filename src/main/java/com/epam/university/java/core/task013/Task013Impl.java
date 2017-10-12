@@ -29,7 +29,7 @@ public class Task013Impl implements Task013 {
 
         List<Vertex> points = null;
         if (figure.getVertexes() instanceof List) {
-            points = (List) figure.getVertexes();
+            points = (List<Vertex>) figure.getVertexes();
         }
 
         int processed = 0;
