@@ -31,6 +31,7 @@ public class ClientImpl implements Client {
             writer.newLine();
             writer.flush();
             System.out.println("mess sended");
+            Thread.sleep(100);
             return null;
         });
     }
@@ -44,6 +45,7 @@ public class ClientImpl implements Client {
                     socket.getInputStream()));
             writer = new BufferedWriter(
                     new OutputStreamWriter(socket.getOutputStream()));
+            Thread.sleep(100);
             return null;
         });
     }

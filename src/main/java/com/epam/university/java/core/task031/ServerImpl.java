@@ -30,7 +30,7 @@ public class ServerImpl implements Server {
     @Override
     public String readMessage() {
         runVoid(() -> {
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
             return null;
         });
         System.out.println("readMessage()");
