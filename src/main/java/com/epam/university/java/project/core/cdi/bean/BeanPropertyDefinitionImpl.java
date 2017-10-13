@@ -1,17 +1,27 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "property")
 public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     private String name;
     private String value;
     private String ref;
+    private StructureDefinition data;
 
     /**
      * Get the property name.
      *
      * @return name of property
      */
+    @XmlAttribute(name = "name")
     @Override
     public String getName() {
         return name;
@@ -32,6 +42,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @return value of property
      */
+    @XmlAttribute(name = "value")
     @Override
     public String getValue() {
         return value;
@@ -52,6 +63,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @return referenced bean name
      */
+    @XmlAttribute(name = "ref")
     @Override
     public String getRef() {
         return ref;
@@ -67,16 +79,19 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
         this.ref = ref;
     }
 
-    //TODO: Implement methods!
-
     /**
      * Get inner property data.
      *
      * @return structure definition
      */
+
     @Override
+    @XmlElements({
+            @XmlElement(name = "list", type = ListDefinitionImpl.class),
+            @XmlElement(name = "map", type = MapDefinitionImpl.class)
+    })
     public StructureDefinition getData() {
-        return null;
+        return data;
     }
 
     /**
@@ -86,6 +101,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public void setData(StructureDefinition data) {
-
+        this.data = data;
     }
 }
