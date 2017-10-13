@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 /**
  * Implementation class for Server.
  *
@@ -28,6 +27,7 @@ public class ServerImpl implements Server {
             e.printStackTrace();
         }
     }
+
     private Deque<String> messages = new LinkedList<>();
     private Map<Object, Boolean> clients = new HashMap<>();
 

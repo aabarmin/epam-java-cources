@@ -39,6 +39,7 @@ public class SquareImpl implements Square {
      */
     @Override
     public Point<Integer> getSecond() {
+
         return point2;
     }
 
@@ -59,4 +60,31 @@ public class SquareImpl implements Square {
     @Override
     public void setSecond(Point<Integer> second) {
     }
+
+    /**
+     * Checks if main diagonals of the squires are the same.
+     *
+     * @param o to check with
+     *
+     * @return true if point1 and point2 are equal
+     */
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SquareImpl square = (SquareImpl) o;
+
+        if (!point1.equals(square.point1)) {
+            return false;
+        }
+        return point2.equals(square.point2);
+    }
+
 }
