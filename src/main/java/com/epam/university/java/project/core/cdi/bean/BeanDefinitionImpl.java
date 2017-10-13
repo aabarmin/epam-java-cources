@@ -1,16 +1,24 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "bean")
 public class BeanDefinitionImpl implements BeanDefinition {
+    @XmlAttribute(name = "id")
     private String id;
+    @XmlAttribute(name = "class")
     private String className;
+    @XmlAttribute(name = "scope")
     private String scope;
+    @XmlAttribute(name = "init")
     private String postConstruct;
+    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> properties;
 
     /**
@@ -18,7 +26,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return id of bean
      */
-    @XmlAttribute(name = "id")
     @Override
     public String getId() {
         return id;
@@ -39,7 +46,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return name of class
      */
-    @XmlAttribute(name = "class")
     @Override
     public String getClassName() {
         return className;
@@ -60,7 +66,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return collection of bean properties
      */
-    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     @Override
     public Collection<BeanPropertyDefinition> getProperties() {
         return properties;
@@ -81,7 +86,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return method name
      */
-    @XmlAttribute(name = "init")
     @Override
     public String getPostConstruct() {
         return postConstruct;
@@ -102,7 +106,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @return bean scope
      */
-    @XmlAttribute(name = "scope")
     @Override
     public String getScope() {
         return scope;

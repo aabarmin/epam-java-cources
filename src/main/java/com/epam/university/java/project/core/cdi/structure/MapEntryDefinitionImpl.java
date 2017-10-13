@@ -1,12 +1,18 @@
 package com.epam.university.java.project.core.cdi.structure;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "entry")
 public class MapEntryDefinitionImpl implements MapDefinition.MapEntryDefinition {
+    @XmlElement(name = "key")
     private String key;
+    @XmlElement(name = "value")
     private String value;
+    @XmlElement(name = "ref")
     private String reference;
 
     /**
@@ -14,7 +20,6 @@ public class MapEntryDefinitionImpl implements MapDefinition.MapEntryDefinition 
      *
      * @return entry key
      */
-    @XmlElement(name = "key")
     @Override
     public String getKey() {
         return key;
@@ -35,7 +40,6 @@ public class MapEntryDefinitionImpl implements MapDefinition.MapEntryDefinition 
      *
      * @return entry value
      */
-    @XmlElement(name = "value")
     @Override
     public String getValue() {
         return value;
@@ -56,7 +60,6 @@ public class MapEntryDefinitionImpl implements MapDefinition.MapEntryDefinition 
      *
      * @return entry reference
      */
-    @XmlElement(name = "ref")
     @Override
     public String getRef() {
         return reference;

@@ -3,6 +3,7 @@ package com.epam.university.java.project.core.cdi.bean;
 import com.epam.university.java.project.core.cdi.structure.ListDefinition;
 import com.epam.university.java.project.core.cdi.structure.MapDefinition;
 
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
@@ -50,7 +51,8 @@ public class BeanFactoryImpl implements BeanFactory {
         }
 
         try {
-            Object object = Class.forName(definition.getClassName()).newInstance();
+            Class<?> objClass = Class.forName(definition.getClassName());
+            Object object = objClass.newInstance();
 
             if (definition.getProperties() != null) {
                 for (BeanPropertyDefinition propertyDefinition : definition.getProperties()) {
@@ -70,33 +72,26 @@ public class BeanFactoryImpl implements BeanFactory {
 
                     String propertyName = propertyDefinition.getName();
                     String propertyValue = propertyDefinition.getValue();
-                    //name of setter method
-                    String propertySetter = "set"
-                            + propertyName.substring(0, 1).toUpperCase()
-                            + propertyName.substring(1);
 
                     //find setter for the property
-                    for (Method method : object.getClass().getDeclaredMethods()) {
-                        if (propertySetter.equals(method.getName())) {
-                            Class methodParamType = method.getParameterTypes()[0];
+                    Method method = new PropertyDescriptor(propertyName, objClass).getWriteMethod();
 
-                            //choosing the correct type to inject property
-                            if (methodParamType.isPrimitive()) {
-                                if (methodParamType == int.class) {
-                                    method.invoke(object, Integer.parseInt(propertyValue));
-                                } else if (methodParamType == double.class) {
-                                    method.invoke(object, Double.parseDouble(propertyValue));
-                                }
-                            } else if (methodParamType.equals(String.class)) {
-                                method.invoke(object, propertyValue);
-                            } else if (methodParamType.equals(Collection.class)) {
-                                method.invoke(object, list);
-                            } else if (methodParamType.equals(Map.class)) {
-                                method.invoke(object, map);
-                            } else {
-                                method.invoke(object, getBean(propertyDefinition.getRef()));
-                            }
+                    //choosing the correct type to inject property
+                    Class methodParamType = method.getParameterTypes()[0];
+                    if (methodParamType.isPrimitive()) {
+                        if (methodParamType == int.class) {
+                            method.invoke(object, Integer.parseInt(propertyValue));
+                        } else if (methodParamType == double.class) {
+                            method.invoke(object, Double.parseDouble(propertyValue));
                         }
+                    } else if (methodParamType.equals(String.class)) {
+                        method.invoke(object, propertyValue);
+                    } else if (methodParamType.equals(Collection.class)) {
+                        method.invoke(object, list);
+                    } else if (methodParamType.equals(Map.class)) {
+                        method.invoke(object, map);
+                    } else {
+                        method.invoke(object, getBean(propertyDefinition.getRef()));
                     }
                 }
             }
@@ -133,11 +128,9 @@ public class BeanFactoryImpl implements BeanFactory {
      * @param listToFill list to fill
      * @param mapToFill  map to fill
      */
-    private void fillData(
-            BeanPropertyDefinition property,
-            Collection<String> listToFill,
-            Map<Object, Object> mapToFill
-    ) {
+    private void fillData(BeanPropertyDefinition property,
+                          Collection<String> listToFill,
+                          Map<Object, Object> mapToFill) {
         //fill list or map from property definition
         if (property.getData() instanceof ListDefinition) {
             ListDefinition list = (ListDefinition) property.getData();
