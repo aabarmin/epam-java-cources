@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task031;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -25,8 +24,9 @@ public class ClientImpl implements Client {
         try {
             writer.write(message + "\n");
             writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Thread.sleep(200);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -42,8 +42,8 @@ public class ClientImpl implements Client {
                             serverSocket.getOutputStream()
                     )
             );
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -53,9 +53,14 @@ public class ClientImpl implements Client {
     @Override
     public void stop() {
         try {
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (writer != null) {
+                writer.close();
+            }
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
