@@ -2,7 +2,6 @@ package com.epam.university.java.core.task028;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Implementation class for Task028.
@@ -29,7 +28,7 @@ public class Task028Impl implements Task028 {
     }
 
     /**
-     * Recursive method
+     * Recursive counting method.
      *
      * @param destination - sum of powers we are trying to compose.
      * @param powers - array of powers to compose from.
