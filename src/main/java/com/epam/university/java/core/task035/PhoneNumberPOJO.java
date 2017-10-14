@@ -1,16 +1,18 @@
-package com.epam.university.java.core.task034;
+package com.epam.university.java.core.task035;
+
+import com.epam.university.java.core.task034.PhoneNumber;
 
 /**
  * Created by Александр on 09.10.2017.
- * Implementation of PhoneNumber class
+ * POJO for
  */
-public class PhoneNumberImpl implements PhoneNumber, Cloneable {
+public class PhoneNumberPOJO implements PhoneNumber {
     private String phoneNumber;
 
     /**
      * Constructor without parametrs.
      */
-    public PhoneNumberImpl() {
+    public PhoneNumberPOJO() {
     }
 
     /**
@@ -18,7 +20,7 @@ public class PhoneNumberImpl implements PhoneNumber, Cloneable {
      *
      * @param phoneNumber string
      */
-    public PhoneNumberImpl(String phoneNumber) {
+    public PhoneNumberPOJO(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
