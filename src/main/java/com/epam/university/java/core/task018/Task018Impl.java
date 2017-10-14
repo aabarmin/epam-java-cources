@@ -12,11 +12,9 @@ import java.util.List;
 public class Task018Impl implements Task018 {
     @Override
     public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {
-        Class clazz = toCheck.getClass();
+        Class<?> clazz = toCheck.getClass();
         List<Annotation> annotations = new LinkedList<>();
-        if (clazz.getAnnotation(annotationToFind) != null) {
-            return true;
-        }
+        annotations.addAll(Arrays.asList(clazz.getDeclaredAnnotations()));
 
         for (Field field : clazz.getDeclaredFields()) {
             annotations.addAll(Arrays.asList(field.getDeclaredAnnotations()));
