@@ -17,7 +17,7 @@ public class IntegratorImpl implements Integrator {
     @Override
     public double integrate(double left, double right, Function<Double, Double> function) {
         double result = 0;
-        
+
         //calculating integral by "left rectangle method"
         double h = (right - left) / partsNumber;
         for (double i = left + h; i <= right; i += h) {
