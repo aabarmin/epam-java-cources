@@ -25,6 +25,11 @@ public class ServerImpl implements Server {
      * @return message text
      */
     public String readMessage() {
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return !queue.isEmpty() ? queue.pollLast() : "";
     }
 

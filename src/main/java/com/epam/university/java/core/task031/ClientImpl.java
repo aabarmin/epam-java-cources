@@ -24,7 +24,7 @@ public class ClientImpl implements Client {
         try {
             writer.write(message + "\n");
             writer.flush();
-            Thread.sleep(200);
+            Thread.sleep(400);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
