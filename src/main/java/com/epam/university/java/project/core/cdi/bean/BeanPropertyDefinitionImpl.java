@@ -1,11 +1,30 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "property")
 public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
+    @XmlAttribute(name = "name")
     private String name;
+    @XmlAttribute(name = "value")
     private String value;
+    @XmlAttribute(name = "ref")
     private String ref;
+    @XmlElements({
+            @XmlElement(name = "list", type = ListDefinitionImpl.class),
+            @XmlElement(name = "map", type = MapDefinitionImpl.class)
+    })
+    private StructureDefinition data;
 
     /**
      * Get the property name.
@@ -67,16 +86,15 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
         this.ref = ref;
     }
 
-    //TODO: Implement methods!
-
     /**
      * Get inner property data.
      *
      * @return structure definition
      */
+
     @Override
     public StructureDefinition getData() {
-        return null;
+        return data;
     }
 
     /**
@@ -86,6 +104,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public void setData(StructureDefinition data) {
-
+        this.data = data;
     }
 }
