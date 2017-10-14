@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class DefaultCountingProxy implements CountingProxy {
     Map<String, Integer> invocationCounts = new HashMap<>();
+    Object instance;
 
     /**
      * Get amount of method call.
@@ -71,6 +72,14 @@ public class DefaultCountingProxy implements CountingProxy {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Integer value = invocationCounts.getOrDefault(method.getName(), 0);
         invocationCounts.put(method.getName(), ++value);
-        return null;
+        return method.invoke(instance,args);
+    }
+
+    /**
+     * Set instance to invoke.
+     * @param instance to invoke method
+     */
+    void setInstance(Object instance) {
+        this.instance = instance;
     }
 }

@@ -9,6 +9,7 @@ import java.lang.reflect.Proxy;
  * Reflective proxy.
  */
 public class Task032Impl implements Task032 {
+
     /**
      * Create proxy wrapper.
      *
@@ -27,9 +28,14 @@ public class Task032Impl implements Task032 {
      */
     @Override
     public SomeActionExecutor createExecutorWithProxy(CountingProxy proxy) {
+        SomeActionExecutor executor = new DefaultSomeActionExecutor();
+
+        DefaultCountingProxy defaultCountingProxy = (DefaultCountingProxy)proxy;
+        defaultCountingProxy.setInstance(executor);
+
         return (SomeActionExecutor) Proxy.newProxyInstance(
                 DefaultSomeActionExecutor.class.getClassLoader(),
                 DefaultSomeActionExecutor.class.getInterfaces(),
-                proxy);
+                defaultCountingProxy);
     }
 }

@@ -2,6 +2,7 @@ package com.epam.university.java.core.task031;
 
 /**
  * Created by Александр on 09.10.2017.
+ * Networking with streams.
  */
 public class Task031Impl implements Task031 {
     /**
@@ -11,7 +12,7 @@ public class Task031Impl implements Task031 {
      */
     @Override
     public Client createClient() {
-        return null;
+        return new ClientImpl();
     }
 
     /**
@@ -21,6 +22,6 @@ public class Task031Impl implements Task031 {
      */
     @Override
     public Server createServer() {
-        return null;
+        return new ServerImpl();
     }
 }
