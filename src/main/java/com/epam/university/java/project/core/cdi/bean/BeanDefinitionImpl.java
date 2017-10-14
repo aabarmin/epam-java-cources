@@ -8,6 +8,7 @@ import java.util.Collection;
 
 /**
  * Created by Александр on 29.09.2017.
+ * Bean definition with xml annotations
  */
 
 @XmlRootElement(name = "bean")
