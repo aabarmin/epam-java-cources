@@ -37,12 +37,14 @@ public class ClientImpl implements Client {
     @Override
     public void start() {
         try {
+            Thread.sleep(500);
             serverSocket = new Socket(InetAddress.getLocalHost(), port);
             writer = new BufferedWriter(
                     new OutputStreamWriter(
                             serverSocket.getOutputStream()
                     )
             );
+            Thread.sleep(500);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -54,12 +56,14 @@ public class ClientImpl implements Client {
     @Override
     public void stop() {
         try {
+            Thread.sleep(500);
             if (writer != null) {
                 writer.close();
             }
             if (serverSocket != null) {
                 serverSocket.close();
             }
+            Thread.sleep(500);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

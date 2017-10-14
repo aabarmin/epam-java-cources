@@ -40,6 +40,7 @@ public class ServerImpl implements Server {
     public void start() {
         Thread listenerThread = new Thread(() -> {
             try {
+                Thread.sleep(500);
                 serverSocket = new ServerSocket(port);
                 while (isWorking) {
                     Socket clientSocket = serverSocket.accept();
@@ -63,6 +64,7 @@ public class ServerImpl implements Server {
                     });
                     readerThread.setPriority(Thread.MAX_PRIORITY);
                     readerThread.start();
+                    Thread.sleep(500);
                 }
             } catch (SocketException e) {
                 stop();
@@ -82,9 +84,11 @@ public class ServerImpl implements Server {
     public void stop() {
         isWorking = false;
         try {
+            Thread.sleep(500);
             if (serverSocket != null && !serverSocket.isClosed()) {
                 serverSocket.close();
             }
+            Thread.sleep(500);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
