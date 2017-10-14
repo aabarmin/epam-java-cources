@@ -322,9 +322,8 @@ public class Validator {
     public static void validateInetAddress(String toCheck, String
             messageIfViolatesLowerBorder, String messageIfViolatesUpperBorder,
                                            String messageIfIllegalAddress) {
-
         Pattern pattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)"
-                +"(\\d{1,3})(\\.)(\\d{1,3})");
+                + "(\\d{1,3})(\\.)(\\d{1,3})");
         Matcher matcher = pattern.matcher(toCheck);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("IPv4 Address not in correct");
@@ -336,7 +335,6 @@ public class Validator {
                         messageIfViolatesUpperBorder)) {
                     throw new IllegalArgumentException(messageIfIllegalAddress);
                 }
-                ;
             }
         }
     }

@@ -79,10 +79,10 @@ public class ServerImpl implements Server {
                                 + ": server is waiting for connections...",
                         false);
                 executorService = Executors.newFixedThreadPool(1000);
-                for (; ; ) {
+                for (;;) {
                     Socket clientSocket = serverSocket.accept();
-                    PrintWriter printWriter = new PrintWriter
-                            (clientSocket.getOutputStream());
+                    PrintWriter printWriter = new PrintWriter(clientSocket
+                            .getOutputStream());
                     readyClientOutputStreams.add(printWriter);
                     executorService.execute(new ClientHandler(clientSocket));
                 }
