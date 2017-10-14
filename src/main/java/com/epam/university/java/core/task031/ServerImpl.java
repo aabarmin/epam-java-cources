@@ -29,7 +29,7 @@ public class ServerImpl implements Server {
     /**
      * Initialization of the class instance.
      *
-     * @throws IOException
+     * @throws IOException @see IOException(String message)
      */
     ServerImpl() {
         try {
@@ -122,14 +122,13 @@ public class ServerImpl implements Server {
             String textLine;
             try {
                 BufferedReader bufferedReader = new BufferedReader(new
-                        InputStreamReader
-                        (clientSocket.getInputStream()));
+                        InputStreamReader(clientSocket.getInputStream()));
                 while ((textLine = bufferedReader.readLine()) != null) {
                     updateClientsChat(textLine);
                     chat.add(textLine);
                     logger.addLoggerLine(this.getClass().getName()
-                                    + ": have got the message from the " +
-                                    "client..." + textLine,
+                                    + ": have got the message from the "
+                                    + "client..." + textLine,
                             false);
                 }
             } catch (IOException ex) {

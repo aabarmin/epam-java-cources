@@ -26,7 +26,7 @@ public class ClientImpl implements Client {
     private Logger logger = new Logger();
 
     /**
-     * Initialisation of the class
+     * Initialisation of the class.
      *
      * @param port the port
      * @throws IllegalArgumentException if the port is illegal
@@ -41,7 +41,7 @@ public class ClientImpl implements Client {
     /**
      * Update client's chat.
      *
-     * @throws IOException
+     * @throws IOException @see IOException#IOException(String message)
      */
     private void chatUpdating() {
         Thread threadReading = new Thread(() -> {

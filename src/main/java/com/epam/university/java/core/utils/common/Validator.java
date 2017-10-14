@@ -252,7 +252,7 @@ public class Validator {
      * @throws IllegalArgumentException if parameter doesn't exists in enum
      */
     public static <E extends Enum<E>> boolean
-    validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+        validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
             throws IllegalArgumentException {
         for (E enumValue : enumValues) {
             if (enumValue.equals(value)) {
@@ -323,8 +323,8 @@ public class Validator {
             messageIfViolatesLowerBorder, String messageIfViolatesUpperBorder,
                                            String messageIfIllegalAddress) {
 
-        Pattern pattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)" +
-                "(\\d{1,3})(\\.)(\\d{1,3})");
+        Pattern pattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)"
+                +"(\\d{1,3})(\\.)(\\d{1,3})");
         Matcher matcher = pattern.matcher(toCheck);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("IPv4 Address not in correct");
