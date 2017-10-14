@@ -5,7 +5,7 @@ package com.epam.university.java.core.task033;
  * Less exception.
  */
 public class LessExceptionImpl extends RuntimeException implements LessException, BaseException {
-    LessExceptionImpl(String message){
+    LessExceptionImpl(String message) {
         super(message, new BaseExceptionImpl());
     }
 }

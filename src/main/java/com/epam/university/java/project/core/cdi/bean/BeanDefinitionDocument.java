@@ -9,11 +9,12 @@ import java.util.List;
 
 /**
  * Created by Александр on 03.10.2017.
+ * XML document parsing
  */
 @XmlRootElement(name = "beans")
 public class BeanDefinitionDocument {
 
-    List<BeanDefinitionImpl> beanDefinitions= new ArrayList<>();
+    List<BeanDefinitionImpl> beanDefinitions = new ArrayList<>();
 
     /**
      * Get beans definitions.

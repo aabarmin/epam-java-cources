@@ -11,6 +11,7 @@ import java.util.Collection;
 @XmlRootElement(name = "map")
 public class MapDefinitionImpl implements MapDefinition {
     Collection<MapEntryDefinition> data;
+
     /**
      * Get map entry collection.
      *

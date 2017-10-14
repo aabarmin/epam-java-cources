@@ -7,6 +7,7 @@ import java.util.Set;
 
 /**
  * Created by Александр on 29.09.2017.
+ * Bean definition implementation
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     private final Map<String, BeanDefinition> storage = new HashMap<>();
@@ -29,11 +30,6 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      */
     @Override
     public BeanDefinition getBeanDefinition(String beanId) {
-        System.out.print("1");
-        /*return beanDefinitions.stream()
-                .filter(v -> (v.getId() == beanId))
-                .findFirst()
-                .orElse(null);*/
-                return null;
+        return null;
     }
 }
