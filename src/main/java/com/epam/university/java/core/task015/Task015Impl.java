@@ -21,13 +21,29 @@ public class Task015Impl implements Task015 {
     @Override
     public double getArea(Square first, Square second) {
 
+        if (first.equals(second)) {
+            return getAreaTwiced(first) / 2;
+        }
+
         // get intersection area of 1st and 2nd squares
         List<Point> vertexes = getIntersectionPoints(first, second);
 
         int n = vertexes.size();
+
+        // no partial intersections
         if (n < 3) {
+
+            if (isSquireInside(first, second)) {
+                return getAreaTwiced(first) / 2;
+            }
+
+            if (isSquireInside(second, first)) {
+                return getAreaTwiced(second) / 2;
+            }
+
             return 0;
         }
+
 
         double area = 0.0d;
         for (int i = 0; i < n - 1; i++) {
@@ -152,7 +168,7 @@ public class Task015Impl implements Task015 {
      *
      * @return - list with coordinates squire's vertexes
      */
-    private Point<Integer>[] getSquarePoints(Square line) {
+    private static Point<Integer>[] getSquarePoints(Square line) {
         final int vertAx = line.getFirst().getX();
         final int vertAy = line.getFirst().getY();
         final int vertCx = line.getSecond().getX();
@@ -229,5 +245,37 @@ public class Task015Impl implements Task015 {
         } else {
             return d2 < 0 && d3 < 0 && d4 < 0;
         }
+    }
+
+    // isPointInside
+    private static boolean isPointInside(Point<Integer> point, Point<Integer>[] corners) {
+        return isPointInside(point,
+                corners[0].getX(), corners[0].getY(),
+                corners[1].getX(), corners[1].getY(),
+                corners[2].getX(), corners[2].getY(),
+                corners[3].getX(), corners[3].getY()
+        );
+    }
+
+
+    // isSquireInside
+    private static boolean isSquireInside(Square square1, Square square2) {
+
+        Point<Integer>[] corners = getSquarePoints(square2);
+        if (isPointInside(square1.getFirst(), corners)
+                || isPointInside(square1.getSecond(), corners)) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    // getSquare
+    private double getAreaTwiced(Square diagonal) {
+        double a = diagonal.getFirst().getX() - diagonal.getSecond().getX();
+        double b = diagonal.getFirst().getY() - diagonal.getSecond().getY();
+
+        return a * a + b * b;
     }
 }
