@@ -26,7 +26,7 @@ public class ServerImpl implements Server {
      */
     public String readMessage() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
