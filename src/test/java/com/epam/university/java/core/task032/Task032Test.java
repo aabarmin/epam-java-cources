@@ -25,6 +25,7 @@ public class Task032Test {
         for (int i = 0; i < 10; i++) {
             executor.doAnotherAction();
         }
+        wrapper.getInvocationsCount("doAction");
         // checkups
         assertEquals("Incorrect count",
                 5,

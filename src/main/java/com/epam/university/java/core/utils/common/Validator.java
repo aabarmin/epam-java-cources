@@ -1,6 +1,8 @@
 package com.epam.university.java.core.utils.common;
 
 import java.util.Collection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Validation utility.
@@ -38,8 +40,8 @@ public class Validator {
             "illegal argument assigned";
     public static final String MESSAGE_IF_COLLECTION_EMPTY =
             "collection can't be empty";
-    public static final String MESSAGE_IF_ILLEGAL_CLASS =
-            "parameter's class should be the ";
+    public static final String MESSAGE_IF_ILLEGAL_IPV4_ADDRESS =
+            "IP Address not in correct";
 
     /**
      * Validates parameters not null.
@@ -225,7 +227,7 @@ public class Validator {
      *                                     is violates upper limit
      * @throws IllegalArgumentException if parameter violates limits of range
      */
-    public static void validateValueRange(double value, double lowerBorder,
+    public static boolean validateValueRange(double value, double lowerBorder,
                                           double upperBorder,
                                           String messageIfViolatesLowerBorder,
                                           String messageIfViolatesUpperBorder) {
@@ -236,6 +238,7 @@ public class Validator {
         if (value > upperBorder) {
             throw new IllegalArgumentException(messageIfViolatesUpperBorder);
         }
+        return true;
     }
 
     /**
@@ -285,7 +288,7 @@ public class Validator {
             messageIfIllegalClass) {
         if (!toCheck.getClass().equals(toCompare.getClass())) {
             throw new IllegalArgumentException(
-            messageIfIllegalClass + toCompare.getClass().getName());
+                    messageIfIllegalClass + toCompare.getClass().getName());
         }
     }
 
@@ -304,5 +307,35 @@ public class Validator {
                                              messageIfIllegalClass) {
         validateClass(toCheckFirst, toCompare, messageIfIllegalClass);
         validateClass(toCheckSecond, toCompare, messageIfIllegalClass);
+    }
+
+    /**
+     * Validates IPv4 address.
+     *
+     * @param toCheck                      IPv4 address to check
+     * @param messageIfViolatesLowerBorder message if violates lower border
+     * @param messageIfViolatesUpperBorder message if violates upper border
+     * @param messageIfIllegalAddress      message if the address is illegal
+     * @throws IllegalArgumentException if address <code>toCheck</code> is
+     *                                  illegal
+     */
+    public static void validateInetAddress(String toCheck, String
+            messageIfViolatesLowerBorder, String messageIfViolatesUpperBorder,
+                                           String messageIfIllegalAddress) {
+        Pattern pattern = Pattern.compile("(\\d{1,3})(\\.)(\\d{1,3})(\\.)"
+                + "(\\d{1,3})(\\.)(\\d{1,3})");
+        Matcher matcher = pattern.matcher(toCheck);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("IPv4 Address not in correct");
+        } else {
+            for (int i = 1; i < 8; i += 2) {
+                if (!Validator.validateValueRange(Integer.parseInt(matcher
+                                .group(i)), 0, 255,
+                        messageIfViolatesLowerBorder,
+                        messageIfViolatesUpperBorder)) {
+                    throw new IllegalArgumentException(messageIfIllegalAddress);
+                }
+            }
+        }
     }
 }
