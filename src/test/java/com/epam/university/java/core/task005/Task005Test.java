@@ -58,6 +58,4 @@ public class Task005Test {
         assertEquals("First number incorrect", 99733, holder.getFirst());
         assertEquals("Second number incorrect", 31746, holder.getSecond());
     }
-
-
 }
