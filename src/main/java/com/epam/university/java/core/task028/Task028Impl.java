@@ -65,7 +65,6 @@ public class Task028Impl implements Task028 {
     }
 
     private int recurse(int value, int power, int count, int rootValue) {
-
         if ((count == rootValue)||(value < 0)) {
             if (value == 0) {
                 return 1;
