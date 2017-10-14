@@ -262,7 +262,7 @@ public class Task015Impl implements Task015 {
     private static boolean isSquireInside(Square square1, Square square2) {
 
         Point<Integer>[] corners = getSquarePoints(square2);
-        if( isPointInside(square1.getFirst(), corners)
+        if (isPointInside(square1.getFirst(), corners)
                 || isPointInside(square1.getSecond(), corners)) {
             return true;
         } else {

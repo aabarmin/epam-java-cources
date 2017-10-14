@@ -22,28 +22,40 @@ public class Task028Impl implements Task028 {
         for (int i = 1, n = 1; n <= value; n = getPower(++i, power)) {
             uniques.add(n);
         }
-        Collections.reverse(uniques);
+
         Integer[] powers = uniques.toArray(new Integer[uniques.size()]);
 
         return wayCount(value, powers, 0);
     }
 
-    // counter
+    /**
+     * Recursive method
+     *
+     * @param destination - sum of powers we are trying to compose.
+     * @param powers - array of powers to compose from.
+     * @param index - position in "powers" we are starting from
+     *
+     * @return a number of possible compositions
+     */
     private int wayCount(int destination, Integer[] powers, int index) {
 
-        int result = 0;
-        if (destination == powers[index]) {
-            result++;
-        } else {
-            destination -= powers[index];
+        if (index >= powers.length
+                || destination < powers[index]) {
+            return 0;
         }
 
-        for (int i = index + 1; i < powers.length; i++) {
-            if (destination < 0) {
-                continue;
-            }
-            result += wayCount(destination, powers, i);
+        if (destination == powers[index]) {
+            return 1;
         }
+
+        int result = 0;
+
+        // without
+        result += wayCount(destination, powers, index + 1);
+
+        // within
+        result += wayCount(destination - powers[index], powers, index + 1);
+
 
         return result;
     }

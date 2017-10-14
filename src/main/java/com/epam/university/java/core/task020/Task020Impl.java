@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task020;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -18,12 +18,12 @@ public class Task020Impl implements Task020 {
     public int calculate(Collection<String> stones) {
 
         // first element from collection
-        List<Character> first = stones.stream()
+        Set<Character> first = stones.stream()
                 .findFirst()
                 .get()
                 .chars()
                 .mapToObj(c -> (char)c)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         // check each letter in first word if it presents in each of the following words
         for (String stone : stones) {
