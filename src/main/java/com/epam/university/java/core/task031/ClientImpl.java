@@ -22,6 +22,7 @@ public class ClientImpl implements Client {
     @Override
     public void sendMessage(String message) {
         try {
+            Thread.sleep(400);
             writer.write(message + "\n");
             writer.flush();
             Thread.sleep(400);
