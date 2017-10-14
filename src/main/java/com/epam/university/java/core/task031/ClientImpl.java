@@ -2,6 +2,7 @@ package com.epam.university.java.core.task031;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -45,6 +46,13 @@ public class ClientImpl implements Client {
                     )
             );
             Thread.sleep(500);
+        } catch (ConnectException e) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
