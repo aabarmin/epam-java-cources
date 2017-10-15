@@ -27,8 +27,8 @@ public class Task034Impl implements Task034 {
     @Override
     public Person readWithSaxParser(DefaultHandler handler, String filepath) {
         return runObject(() -> {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
+            final SAXParserFactory factory = SAXParserFactory.newInstance();
+            final SAXParser parser = factory.newSAXParser();
             final String contextPath = getClass().getResource(filepath).getFile();
             parser.parse(new File(contextPath), handler);
             return ((SaxHandlerImpl) handler).getPerson();
@@ -38,8 +38,8 @@ public class Task034Impl implements Task034 {
     @Override
     public Person readWithJaxbParser(String filepath) {
         return runObject(() -> {
-            JAXBContext jaxbContext = JAXBContext.newInstance(PersonImpl.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            final JAXBContext jaxbContext = JAXBContext.newInstance(PersonImpl.class);
+            final Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             final String contextPath = getClass().getResource(filepath).getFile();
             return (Person) jaxbUnmarshaller.unmarshal(new File(contextPath));
         });
@@ -49,13 +49,13 @@ public class Task034Impl implements Task034 {
     @SuppressWarnings("unchecked")
     public Person readWithStaxParser(XMLStreamReader streamReader) {
 
-        Person person = new PersonImpl();
-        List<PhoneNumber> phoneNumbers = new ArrayList<>();
+        final Person person = new PersonImpl();
+        final List<PhoneNumber> phoneNumbers = new ArrayList<>();
 
         return runObject(() -> {
 
-            XMLInputFactory factory = XMLInputFactory.newInstance();
-            XMLEventReader eventReader =
+            final XMLInputFactory factory = XMLInputFactory.newInstance();
+            final XMLEventReader eventReader =
                     factory.createXMLEventReader(streamReader);
             boolean bFirstName = false;
             boolean bLastName = false;

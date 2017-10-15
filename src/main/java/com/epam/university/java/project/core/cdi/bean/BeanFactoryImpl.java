@@ -28,6 +28,9 @@ public class BeanFactoryImpl implements BeanFactory {
     @SuppressWarnings("unchecked")
     public Object getBean(String beanName) {
         String className = beanName.substring(beanName.lastIndexOf(".") + 1);
+        if (className.startsWith("Default")) {
+            className = className.substring(7);
+        }
         if (className.endsWith("Interface")) {
             className = className.substring(0, className.length() - 9);
         }

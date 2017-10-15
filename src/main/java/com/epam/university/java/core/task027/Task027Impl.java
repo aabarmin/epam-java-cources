@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Task027Impl implements Task027 {
+    private Validator validator = Validator.getInstance();
+
     @Override
     public Collection<Integer> extract(String sourceString) {
-        new Validator().vaildate(sourceString);
+        validator.validate(sourceString);
         final int delta = 1;
-        List<Integer> result = new ArrayList<>();
+        final List<Integer> result = new ArrayList<>();
         if ("0".equals(sourceString.substring(0, 1))) {
             return result;
         }
-        List<Pair<Integer, Integer>> borders = new ArrayList<>();
+        final List<Pair<Integer, Integer>> borders = new ArrayList<>();
         int startPos = 0;
         int numOfDigits = 1;
         Pair<Integer, Integer> first = new Pair<>(startPos, startPos + numOfDigits);

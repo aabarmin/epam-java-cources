@@ -2,29 +2,31 @@ package com.epam.university.java.core.task015;
 
 
 import com.epam.university.java.core.Validator;
+import com.epam.university.java.core.Points;
 
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.Collection;
 import java.util.Arrays;
 
 public class Task015Impl implements Task015 {
+    private Validator validator = Validator.getInstance();
+    private static final PointFactory pointFactory = new PointFactoryImpl();
+
     @Override
     public double getArea(Square first, Square second) {
-        new Validator().vaildate(first, second);
-
+        validator.validate(first, second);
         return intersection(first, second);
     }
 
 
     private double intersection(Square square1, Square square2) {
         double sumArea = 0;
-        List<Point> sq1 = getFourPoints(square1);
-        List<Point> sq2 = getFourPoints(square2);
+        final List<Point> sq1 = getFourPoints(square1);
+        final List<Point> sq2 = getFourPoints(square2);
 
-        Set<Point> full = getCrossPoints(sq1, sq2);
+        final Set<Point> full = getCrossPoints(sq1, sq2);
 
         for (Point point : sq1) {
             if (isPointInSquare(point, sq2)) {
@@ -37,8 +39,8 @@ public class Task015Impl implements Task015 {
             }
         }
 
-        Point centroid = getCentroid2D(full);
-        List<Point> full2 = new LinkedList<>(full);
+        final Point centroid = Points.getCentroid2D(full);
+        final List<Point> full2 = new LinkedList<>(full);
         full2.sort((p1, p2) -> {
             double dx1 = p2.getX() - p1.getX();
             double dy1 = p2.getY() - p1.getY();
@@ -63,15 +65,15 @@ public class Task015Impl implements Task015 {
     }
 
     private double getTriangleArea(Point p1, Point p2, Point p3) {
-        double a = getSideLength(p1, p2);
-        double b = getSideLength(p2, p3);
-        double c = getSideLength(p1, p3);
-        double p = (a + b + c) / 2;
+        final double a = Points.distance(p1, p2);
+        final double b = Points.distance(p2, p3);
+        final double c = Points.distance(p1, p3);
+        final double p = (a + b + c) / 2;
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
     private Set<Point> getCrossPoints(List<Point> sq1, List<Point> sq2) {
-        Set<Point> full = new HashSet<>();
+        final Set<Point> full = new HashSet<>();
         for (int i = 0; i < sq1.size(); i++) {
             Point one = sq1.get((i));
             Point two = sq1.get((i + 1) % sq1.size());
@@ -105,49 +107,20 @@ public class Task015Impl implements Task015 {
         return false;
     }
 
-    private static double getSideLength(Point p1, Point p2) {
-        double a = Math.abs(p1.getX() - p2.getX());
-        double b = Math.abs(p1.getY() - p2.getY());
-        double alpha = Math.atan(b / a);
-        double r;
-        if (Math.sin(alpha) != 0) {
-            r = b / Math.sin(alpha);
-        } else {
-            r = a / Math.cos(alpha);
-        }
-        return r;
-    }
-
-    private static Point getCentroid2D(Collection<Point> points) {
-        double sumX = 0;
-        double sumY = 0;
-        for (Point v : points) {
-            sumX += v.getX();
-            sumY += v.getY();
-        }
-        double x = sumX / points.size();
-        double y = sumY / points.size();
-        return (new PointFactoryImpl()).newInstance(x, y);
-    }
-
-
     private static List<Point> getFourPoints(Square square) {
-        PointFactoryImpl factory = new PointFactoryImpl();
-        Point p1 = square.getFirst();
-        Point p2 = square.getSecond();
-
-        Point square1p3 = factory.newInstance((p1.getX() + p2.getX()) / 2
+        final Point p1 = square.getFirst();
+        final Point p2 = square.getSecond();
+        final Point square1p3 = pointFactory.newInstance((p1.getX() + p2.getX()) / 2
                         + (p1.getY() - p2.getY()) / 2,
                 (p2.getX() - p1.getX()) / 2 + (p1.getY() + p2.getY()) / 2);
-        Point square1p4 = factory.newInstance((p1.getX() + p2.getX()) / 2
+        final Point square1p4 = pointFactory.newInstance((p1.getX() + p2.getX()) / 2
                         + (p2.getY() - p1.getY()) / 2,
                 (p1.getX() - p2.getX()) / 2 + (p1.getY() + p2.getY()) / 2);
         return Arrays.asList(square.getFirst(), square1p3, square.getSecond(), square1p4);
     }
 
     private static List<Point> getCrossLines(Point one, Point two, List<Point> listSquare) {
-        List<Point> list = new LinkedList<>();
-        PointFactory pointFactory = new PointFactoryImpl();
+        final List<Point> list = new LinkedList<>();
         for (int i = 0; i < listSquare.size(); i++) {
             Point three = listSquare.get((i));
             Point four = listSquare.get((i + 1) % listSquare.size());

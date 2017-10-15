@@ -30,7 +30,6 @@ public class ClientImpl implements Client {
             writer.write(message);
             writer.newLine();
             writer.flush();
-            System.out.println("mess sended");
             Thread.sleep(100);
             return null;
         });
@@ -40,7 +39,6 @@ public class ClientImpl implements Client {
     public void start() {
         runVoid(() -> {
             socket = new Socket(InetAddress.getLocalHost(), port);
-            System.out.println("client connected");
             reader = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
             writer = new BufferedWriter(

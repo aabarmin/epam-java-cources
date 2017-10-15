@@ -12,8 +12,8 @@ import java.util.Comparator;
 public class Task014Impl implements Task014 {
     @Override
     public Collection<VampireNumber> getVampireNumbers() {
-        VampireNumberFactory vampireNumberFactory = new VampireNumberFactoryImpl();
-        Set<VampireNumber> vampireNumbers = new HashSet<>();
+        final VampireNumberFactory vampireNumberFactory = new VampireNumberFactoryImpl();
+        final Set<VampireNumber> vampireNumbers = new HashSet<>();
         double q;
         int qint;
         for (int i = 1000; i < 10000; i++) {
@@ -34,7 +34,7 @@ public class Task014Impl implements Task014 {
                 }
             }
         }
-        List<VampireNumber> list = new ArrayList<>(vampireNumbers);
+        final List<VampireNumber> list = new ArrayList<>(vampireNumbers);
         list.sort(Comparator.comparingInt(VampireNumber::getMultiplication));
         return list;
     }

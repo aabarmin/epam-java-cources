@@ -212,14 +212,17 @@ public class BookServiceTest {
                 loadedReturnedBook.getState()
         );
         // invocation checks
-        verify(stateMachineManager, times(1)).loadDefinition(any(Resource.class));
         verify(stateMachineManager, atLeast(4)).handleEvent(
                 any(StatefulEntity.class),
                 anyObject()
         );
+
         verify(stateMachineManager, times(1)).initStateMachine(
                 any(StatefulEntity.class),
                 any(StateMachineDefinition.class)
         );
+        verify(stateMachineManager, times(1)).loadDefinition(any(Resource.class));
+
+
     }
 }

@@ -2,14 +2,13 @@ package com.epam.university.java.core.task026;
 
 import com.epam.university.java.core.Validator;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-
 public class Task026Impl implements Task026 {
+    private Validator validator = Validator.getInstance();
+
     @Override
     public String encrypt(String sourceString, int shift) {
-        new Validator().vaildate(sourceString);
-        byte[] bytes = sourceString.getBytes();
+        validator.validate(sourceString);
+        final byte[] bytes = sourceString.getBytes();
         for (int i = 0; i < bytes.length; i++) {
             if (Character.isLetter(bytes[i])) {
                 bytes[i] = rotateLetterRight(bytes[i], shift);
@@ -20,8 +19,8 @@ public class Task026Impl implements Task026 {
 
     @Override
     public String decrypt(String encryptedString, int shift) {
-        new Validator().vaildate(encryptedString);
-        byte[] bytes = encryptedString.getBytes();
+        validator.validate(encryptedString);
+        final byte[] bytes = encryptedString.getBytes();
         for (int i = 0; i < bytes.length; i++) {
             if (Character.isLetter(bytes[i])) {
                 bytes[i] = rotateLetterLeft(bytes[i], shift);

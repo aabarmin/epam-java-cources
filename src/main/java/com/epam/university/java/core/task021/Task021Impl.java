@@ -12,13 +12,14 @@ import java.util.List;
 
 
 public class Task021Impl implements Task021 {
+    private Validator validator = Validator.getInstance();
+
     @Override
     public Point calculate(Collection<Point> minePositions) {
         if (minePositions.size() != 3) {
             throw new IllegalArgumentException();
         }
-        Validator validator = Validator.getInstance();
-        minePositions.forEach(validator::vaildate);
+        minePositions.forEach(validator::validate);
 
         List<Point> list = new ArrayList<>(minePositions);
 
@@ -75,8 +76,8 @@ public class Task021Impl implements Task021 {
                 list.get(2)
         );
 
-        validator.vaildate((Object[]) circleCrossPoints1);
-        validator.vaildate((Object[]) circleCrossPoints2);
+        validator.validate((Object[]) circleCrossPoints1);
+        validator.validate((Object[]) circleCrossPoints2);
         for (Point point1 : circleCrossPoints1) {
             for (Point point2 : circleCrossPoints2) {
                 if (point1.equals(point2)) {

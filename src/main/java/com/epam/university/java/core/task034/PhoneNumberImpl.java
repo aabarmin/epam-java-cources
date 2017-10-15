@@ -17,7 +17,7 @@ public class PhoneNumberImpl implements PhoneNumber {
         this.phoneNumber = phoneNumber;
     }
 
-    PhoneNumberImpl() {
+    public PhoneNumberImpl() {
     }
 
     @Override

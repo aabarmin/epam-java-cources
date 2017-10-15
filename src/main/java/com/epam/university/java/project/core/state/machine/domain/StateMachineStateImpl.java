@@ -1,46 +1,66 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
-public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYPE, EVENT> {
-    private TYPE type;
-    private EVENT event;
+import com.epam.university.java.project.domain.BookEvent;
+import com.epam.university.java.project.domain.BookStatus;
 
-    @Override
-    public TYPE getFrom() {
-        return null;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "transition")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class StateMachineStateImpl implements StateMachineState<BookStatus, BookEvent> {
+    @XmlAttribute(name = "from")
+    private BookStatus from;
+    @XmlAttribute(name = "to")
+    private BookStatus to;
+    @XmlAttribute(name = "on")
+    private BookEvent on;
+    @XmlAttribute(name = "call")
+    private String methodToCall;
+
+    StateMachineStateImpl() {
     }
 
     @Override
-    public void setFrom(TYPE state) {
-        this.type = state;
+    public BookStatus getFrom() {
+        return from;
     }
 
     @Override
-    public TYPE getTo() {
-        return null;
+    public void setFrom(BookStatus state) {
+        this.from = state;
     }
 
     @Override
-    public void setTo(TYPE state) {
-
+    public BookStatus getTo() {
+        return to;
     }
 
     @Override
-    public EVENT getOn() {
-        return null;
+    public void setTo(BookStatus to) {
+        this.to = to;
     }
 
     @Override
-    public void setOn(EVENT event) {
+    public BookEvent getOn() {
+        return on;
+    }
+
+    @Override
+    public void setOn(BookEvent event) {
+        this.on = event;
 
     }
 
     @Override
     public String getMethodToCall() {
-        return null;
+        return methodToCall;
     }
 
     @Override
     public void setMethodToCall(String method) {
-
+        this.methodToCall = method;
     }
 }

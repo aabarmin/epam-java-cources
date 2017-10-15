@@ -9,9 +9,12 @@ public class Task023Impl implements Task023 {
         if (phoneString.length() < 10) {
             throw new IllegalArgumentException();
         }
-        Pattern p = Pattern.compile("\\+?([\\d]{1})\\s?\\(?([\\d]{3})\\)?");
-        Matcher m = p.matcher(phoneString);
-        m.find();
-        return m.group(2);
+        final Pattern p = Pattern.compile("\\+?([\\d]{1})\\s?\\(?([\\d]{3})\\)?");
+        final Matcher m = p.matcher(phoneString);
+        if (m.find()) {
+            return m.group(2);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 }

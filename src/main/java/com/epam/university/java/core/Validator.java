@@ -10,6 +10,12 @@ public class Validator {
     private static volatile Validator instance;
 
     /**
+     * Private constructor for to prohibit the creation not by getInstance().
+     */
+    private Validator() {
+    }
+
+    /**
      * Singleton with Double Checked Locking & volatile.
      *
      * @return instance of class
@@ -49,7 +55,7 @@ public class Validator {
      *
      * @param object collection
      */
-    public void vaildateNotEmpty(Collection object) {
+    public void validateNotEmpty(Collection object) {
         if (object.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -64,7 +70,7 @@ public class Validator {
      *
      * @param objects varargs
      */
-    public void vaildate(Object... objects) {
+    public void validate(Object... objects) {
         if (objects == null) {
             throw new IllegalArgumentException();
         }

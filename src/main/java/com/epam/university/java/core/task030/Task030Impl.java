@@ -37,8 +37,8 @@ public class Task030Impl implements Task030 {
 
     @Override
     public LocalTime getLocalTime(String timeString) {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
-        TemporalAccessor temporalAccessor = timeFormatter.parse(timeString);
+        final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
+        final TemporalAccessor temporalAccessor = timeFormatter.parse(timeString);
         return LocalTime.from(temporalAccessor);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Task010Impl implements Task010 {
     @Override
     public Map<String, Integer> countWordNumbers(File source) {
-        Map<String, Integer> mapOfWords = new HashMap<>();
+        final Map<String, Integer> mapOfWords = new HashMap<>();
         String word;
         try (Scanner reader = new Scanner(new BufferedReader(new FileReader(source)))) {
             reader.useDelimiter(" ");

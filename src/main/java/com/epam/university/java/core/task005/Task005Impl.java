@@ -7,7 +7,7 @@ public class Task005Impl implements Task005 {
 
     @Override
     public PiHolder findPi(int digits) {
-        validator.vaildate(digits);
+        validator.validate(digits);
         if (digits < 1) {
             throw new IllegalArgumentException("digits must be natural");
         }

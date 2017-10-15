@@ -1,26 +1,39 @@
 package com.epam.university.java.core.task028;
 
+import java.util.stream.IntStream;
+
 public class Task028Impl implements Task028 {
-    private int result = 0;
 
     @Override
     public int getWays(int value, int power) {
-        recurentFind(value, value, power, 0);
-        return result;
+        final int lim = (int) Math.floor(Math.pow(value, 1.0 / power));
+
+        int[] possiblePowers = IntStream
+                .range(1, lim + 1)
+                .map(s -> (int) Math.pow(s, power))
+                .toArray();
+
+        return recurrentFind(value, possiblePowers, 0);
     }
 
-    private void recurentFind(int value, int
-            remain, int power, int checkNum) {
-        if (remain == 0) {
-            result++;
-        }
-        int biggestPowInNum = (int) Math.floor(Math.pow(value, 1.0 / power));
+    private int recurrentFind(int remain, int[] possiblePowers, int i) {
 
-        for (int i = checkNum + 1; i <= biggestPowInNum; i++) {
-            int newRemain = remain - (int) Math.pow(i, power);
-            if (newRemain >= 0) {
-                recurentFind(value, newRemain, power, i);
-            }
+        if (i >= possiblePowers.length
+                || remain < possiblePowers[i]) {
+            return 0;
         }
+
+        if (remain == possiblePowers[i]) {
+            return 1;
+        }
+
+        int result = 0;
+
+        result += recurrentFind(remain, possiblePowers, i + 1);
+
+        result += recurrentFind(remain - possiblePowers[i],
+                possiblePowers, i + 1);
+
+        return result;
     }
 }

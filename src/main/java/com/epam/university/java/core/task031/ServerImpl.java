@@ -29,24 +29,16 @@ public class ServerImpl implements Server {
 
     @Override
     public String readMessage() {
-        runVoid(() -> {
-//            Thread.sleep(2000);
-            return null;
-        });
-        System.out.println("readMessage()");
         String messageToReturn = messages.poll();
-        String messageToReturnFinal = messageToReturn != null
+        return messageToReturn != null
                 ? messageToReturn :
                 "";
-        System.out.println("returned: " + messageToReturnFinal);
-        return messageToReturnFinal;
     }
 
     @Override
     public void start() {
         runVoid(() -> serverSocket = new ServerSocket(port,
                 10, InetAddress.getLocalHost()));
-        System.out.println("server created");
         socketLisenerThread = new Thread(new SocketListener(serverSocket, messages));
         socketLisenerThread.start();
     }
