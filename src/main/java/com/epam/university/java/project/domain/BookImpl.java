@@ -13,7 +13,7 @@ public class BookImpl implements Book {
     private Collection<String> authors = new ArrayList<>();
     private String serialNumber;
     private LocalDate returnDate;
-    private BookStatus state = BookStatus.DRAFT;
+    private BookStatus state;
     private StateMachineDefinition<BookStatus, BookEvent> stateMachineDefinition;
 
     /**

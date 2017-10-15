@@ -1,5 +1,6 @@
 package com.epam.university.java.project.service;
 
+import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 import com.epam.university.java.project.core.cdi.io.Resource;
 import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
 import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinitionImpl;
@@ -8,15 +9,14 @@ import com.epam.university.java.project.core.state.machine.domain.StateMachineSt
 import com.epam.university.java.project.core.state.machine.domain.StateMachineStateImpl;
 import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
+import com.epam.university.java.project.domain.BookEvent;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class StateMachineManagerImpl implements StateMachineManager {
+
     /**
      * Read state machine definition from resource.
      *
@@ -45,8 +45,8 @@ public class StateMachineManagerImpl implements StateMachineManager {
      * @return initialized stateful entity
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity, StateMachineDefinition<S, E> definition) {
+    public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity,
+                                                        StateMachineDefinition<S, E> definition) {
         entity.setStateMachineDefinition(definition);
         return entity;
     }
@@ -59,35 +59,66 @@ public class StateMachineManagerImpl implements StateMachineManager {
      * @return updated entity
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <S, E> StatefulEntity<S, E> handleEvent(StatefulEntity<S, E> entity, E event) {
+
+        final StateMachineDefinition<S, E> definition;
+
+        if (event == BookEvent.CREATE) {
+
+            definition =
+                    (StateMachineDefinition<S, E>) loadDefinition(new XmlResource(getClass()
+                            .getResource("/project/DefaultBookStateMachineDefinition.xml")
+                            .getFile()));
+
+            // ? why definition is part of entity, not of a StateMachineManager
+            initStateMachine(entity, definition);
+
+        } else {
+            definition = entity.getStateMachineDefinition();
+        }
+
+        final Class<? extends StateMachineEventHandler> handlerClass
+                = definition.getHandlerClass();
+
+        final StateMachineEventHandler handler;
+
         try {
-            final StateMachineDefinition<S, E> definition = entity.getStateMachineDefinition();
-            final StateMachineEventHandler handler = definition.getHandlerClass().newInstance();
-            final Optional<StateMachineState<S, E>> optionalState = definition.getStates()
-                    .stream()
-                    .filter(s -> entity.getState().equals(s.getFrom()))
-                    .filter(s -> event.equals(s.getOn()))
-                    .findFirst();
-            final String methodName;
-            if (optionalState.isPresent()) {
-                methodName = optionalState.get().getMethodToCall();
-            } else {
-                if (!definition.getStartEvent().equals(event)
-                        || !definition.getStartState().equals(entity.getState())) {
-                    throw new RuntimeException();
-                }
-                return entity;
-            }
-            final Optional<Method> toInvoke = Arrays.stream(handler.getClass().getDeclaredMethods())
-                    .filter(m -> methodName.equals(m.getName()))
-                    .findFirst();
-            if (toInvoke.isPresent()) {
-                return (StatefulEntity<S, E>) toInvoke.get().invoke(handler, entity);
-            }
+            handler = handlerClass.newInstance();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return entity;
+
+        String methodName = "";
+        S to = null;
+
+        if (event.equals(definition.getStartEvent())) {
+            methodName = "onCreate"; // ? must be in DefaultBookStateMachineDefinition.xml
+            to = definition.getStartState();
+        } else {
+
+            for (StateMachineState<S, E> state :  definition.getStates()) {
+                if (event.equals(state.getOn())
+                        && entity.getState().equals(state.getFrom())) {
+                    methodName = state.getMethodToCall();
+                    to = state.getTo();
+                }
+            }
+        }
+
+        if ("".equals(methodName)) {
+            throw new RuntimeException("Wrong using of state machine");
+        }
+
+        try {
+            return (StatefulEntity<S, E>)
+                    handlerClass
+                    .getMethod(methodName, entity.getClass(), to.getClass())
+                    .invoke(handler, entity, to);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

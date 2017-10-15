@@ -22,7 +22,7 @@ public class BeansWrapper {
      * @return bean definitions
      */
     public Collection<BeanDefinition> getBeanDefinitions() {
-        return new ArrayList<>(beanDefinitions);
+        return new ArrayList<BeanDefinition>(beanDefinitions);
     }
 
     /**
@@ -31,7 +31,7 @@ public class BeansWrapper {
      * @param beanDefinitions bean definitions
      */
     public void setBeanDefinitions(Collection<BeanDefinition> beanDefinitions) {
-        this.beanDefinitions = new ArrayList(beanDefinitions);
+        this.beanDefinitions = new ArrayList<BeanDefinition>(beanDefinitions);
     }
 
     /**
@@ -40,7 +40,7 @@ public class BeansWrapper {
      * @return beans quantity
      */
     public int getBeansQuantity() {
-       return beanDefinitions.size();
+        return beanDefinitions.size();
     }
 
 }

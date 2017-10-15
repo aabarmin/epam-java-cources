@@ -17,7 +17,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
         String beanId = definition.getId();
 
-        if (beanId == null || beanId.trim().isEmpty() ) {
+        if (beanId == null || beanId.trim().isEmpty()) {
             throw new RuntimeException("beanId is not provided");
         }
 

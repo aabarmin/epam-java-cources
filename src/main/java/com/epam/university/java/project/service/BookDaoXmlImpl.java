@@ -5,10 +5,12 @@ import com.epam.university.java.project.domain.BookImpl;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class BookDaoXmlImpl implements BookDao {
 
-    private LinkedHashMap<Integer, Book> books = new LinkedHashMap<>();
+    private int nextId = 1;
+    private Map<Integer, Book> books = new LinkedHashMap<>();
 
     /**
      * Create new book instance.
@@ -28,7 +30,7 @@ public class BookDaoXmlImpl implements BookDao {
      */
     @Override
     public Book getBook(int id) {
-        return books.getOrDefault(id,null);
+        return this.books.getOrDefault(id,null);
     }
 
     /**
@@ -38,7 +40,7 @@ public class BookDaoXmlImpl implements BookDao {
      */
     @Override
     public Collection<Book> getBooks() {
-        return books.values();
+        return this.books.values();
     }
 
     /**
@@ -48,7 +50,7 @@ public class BookDaoXmlImpl implements BookDao {
      */
     @Override
     public void remove(Book book) {
-        books.remove(book.getId());
+        this.books.remove(book.getId());
     }
 
     /**
@@ -59,9 +61,11 @@ public class BookDaoXmlImpl implements BookDao {
      */
     @Override
     public Book save(Book book) {
-        book.setId(books.size() + 1);
-        books.put(book.getId(), book);
+        book.setId(nextId++);
+        this.books.put(book.getId(), book);
         return book;
     }
 
 }
+
+

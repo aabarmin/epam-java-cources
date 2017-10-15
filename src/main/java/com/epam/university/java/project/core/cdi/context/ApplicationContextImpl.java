@@ -13,7 +13,8 @@ import java.util.Collection;
 public class ApplicationContextImpl implements ApplicationContext {
 
     private final BeanDefinitionRegistry beanDefinitionRegistry = new BeanDefinitionRegistryImpl();
-    private final BeanDefinitionReader beanDefinitionReader = new BeanDefinitionReaderImpl(beanDefinitionRegistry);
+    private final BeanDefinitionReader beanDefinitionReader
+            = new BeanDefinitionReaderImpl(beanDefinitionRegistry);
     private final BeanFactory beanFactory = new BeanFactoryImpl(beanDefinitionRegistry);
 
     /**
