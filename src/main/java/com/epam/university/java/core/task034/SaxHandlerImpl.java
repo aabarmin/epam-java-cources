@@ -51,4 +51,9 @@ public class SaxHandlerImpl extends SaxHandler {
         }
     }
 
+    @Override
+    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
+        thisElement = "";
+    }
+
 }
