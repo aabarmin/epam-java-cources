@@ -1,65 +1,60 @@
 package com.epam.university.java.core.task031;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class ServerImpl implements Server {
     private volatile ServerSocket serverSocket;
     private volatile Deque<String> queue = new ArrayDeque<>();
-    private volatile Object monitor = new Object();
-    private volatile boolean isWorking;
+    private volatile boolean isWorking = true;
+    private final int port;
 
     ServerImpl(int port) {
-        try {
-            serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.port = port;
     }
 
     @Override
-    public String readMessage() {
-        synchronized (monitor) {
-            if (queue.isEmpty()) {
-                try {
-                    monitor.wait(300);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            return queue.isEmpty() ? "" : queue.removeLast();
+    public  String readMessage() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        return queue.isEmpty() ? "" : queue.removeLast();
     }
 
     @Override
     public void start() {
-        isWorking = true;
         Thread thread = new Thread(() -> {
             try {
+                Thread.sleep(500);
+                serverSocket = new ServerSocket(port);
                 while (isWorking) {
-                    if (serverSocket != null && !serverSocket.isClosed()) {
-                        Socket clientSocket = serverSocket.accept();
-                        new Thread(() -> {
-                            try (final BufferedReader reader = new BufferedReader(
-                                    new InputStreamReader(clientSocket.getInputStream()))) {
-                                while (isWorking) {
-                                    if (reader.ready()) {
-                                        queue.addLast(reader.readLine());
-                                    }
+                    Socket clientSocket = serverSocket.accept();
+                    new Thread(() -> {
+                        try (BufferedReader reader
+                                     = new BufferedReader(new InputStreamReader(clientSocket
+                                .getInputStream()))) {
+                            while (isWorking) {
+                                if (reader.ready()) {
+                                    queue.add(reader.readLine());
                                 }
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
-                        }).start();
-                    }
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }).start();
+                    Thread.sleep(500);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (SocketException e) {
+                stop();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         });
         thread.start();
@@ -69,9 +64,13 @@ public class ServerImpl implements Server {
     public void stop() {
         isWorking = false;
         try {
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Thread.sleep(500);
+            if (serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close();
+            }
+            Thread.sleep(500);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
