@@ -11,7 +11,7 @@ import java.util.Deque;
 public class ServerImpl implements Server {
     private volatile ServerSocket serverSocket;
     private volatile Deque<String> queue = new ArrayDeque<>();
-    private final Object monitor = new Object();
+    private volatile Object monitor = new Object();
     private volatile boolean isWorking;
 
     ServerImpl(int port) {
@@ -27,7 +27,7 @@ public class ServerImpl implements Server {
         synchronized (monitor) {
             if (queue.isEmpty()) {
                 try {
-                    monitor.wait(3000);
+                    monitor.wait(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -58,7 +58,7 @@ public class ServerImpl implements Server {
                         }).start();
                     }
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
@@ -69,10 +69,8 @@ public class ServerImpl implements Server {
     public void stop() {
         isWorking = false;
         try {
-            if (serverSocket != null && !serverSocket.isClosed()) {
-                serverSocket.close();
-            }
-        } catch (Exception e) {
+            serverSocket.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
