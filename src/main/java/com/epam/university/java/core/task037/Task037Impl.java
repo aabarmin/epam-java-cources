@@ -41,6 +41,7 @@ public class Task037Impl implements Task037 {
                 return l.get();
             } catch (InterruptedException | ExecutionException ex) {
                 throw new RuntimeException(ex);
-            }}).collect(Collectors.toList());
+            }
+        }).collect(Collectors.toList());
     }
 }

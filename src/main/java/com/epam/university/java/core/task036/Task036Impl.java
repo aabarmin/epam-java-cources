@@ -13,7 +13,8 @@ public class Task036Impl implements Task036 {
      * {@inheritDoc}
      */
     @Override
-    public double integrate(Function<Double, Double> function, Integrator integrator, double limitLeft, double limitRight) {
+    public double integrate(Function<Double, Double> function, Integrator integrator,
+                            double limitLeft, double limitRight) {
 
         return integrator.integrate(limitLeft, limitRight, function);
     }
