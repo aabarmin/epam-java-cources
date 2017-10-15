@@ -27,7 +27,7 @@ public class ServerImpl implements Server {
         synchronized (monitor) {
             if (queue.isEmpty()) {
                 try {
-                    monitor.wait(1000);
+                    monitor.wait(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -58,7 +58,7 @@ public class ServerImpl implements Server {
                         }).start();
                     }
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -69,8 +69,10 @@ public class ServerImpl implements Server {
     public void stop() {
         isWorking = false;
         try {
-            serverSocket.close();
-        } catch (IOException e) {
+            if (serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
