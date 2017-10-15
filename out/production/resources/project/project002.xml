@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="parentBean" class="com.epam.university.java.project.core.cdi.context.ParentBean"
+          init="init" scope="singleton">
+
+        <property name="property1" />
+    </bean>
+</beans>
