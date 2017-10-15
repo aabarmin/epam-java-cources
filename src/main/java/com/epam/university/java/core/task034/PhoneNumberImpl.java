@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task034;
 
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -17,6 +18,13 @@ public class PhoneNumberImpl implements PhoneNumber {
     @Override
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public PhoneNumberImpl(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public PhoneNumberImpl() {
     }
 
     /**

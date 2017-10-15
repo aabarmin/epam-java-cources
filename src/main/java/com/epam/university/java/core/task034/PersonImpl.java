@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task034;
 
-import com.sun.deploy.xml.XMLAttribute;
+
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.gson.annotations.SerializedName;
+
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,16 +20,22 @@ import java.util.Collection;
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonImpl implements Person {
-
+    public PersonImpl() {
+    }
+    @SerializedName("id")
     @XmlAttribute
     private int id;
 
+    @SerializedName("firstName")
     @XmlElement(name = "first-name")
     private String firstName;
 
+    @SerializedName("lastName")
     @XmlElement(name = "last-name")
     private String lastName;
 
+    @JsonDeserialize(contentAs = PhoneNumberImpl.class)
+    @SerializedName("phones")
     @XmlElement(name = "person-phone", type = PhoneNumberImpl.class)
     @XmlElementWrapper(name = "person-phones")
     private Collection<PhoneNumber> phoneNumbers;
@@ -42,6 +52,7 @@ public class PersonImpl implements Person {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public void setId(int id) {
         this.id = id;
@@ -58,6 +69,7 @@ public class PersonImpl implements Person {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -74,6 +86,7 @@ public class PersonImpl implements Person {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -90,6 +103,7 @@ public class PersonImpl implements Person {
     /**
      * {@inheritDoc}
      */
+    @JsonSetter("phones")
     @Override
     public void setPhoneNumbers(Collection<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
