@@ -70,7 +70,7 @@ public class Task034Impl implements Task034 {
                         continue;
                     }
                     String value = streamReader.getText();
-                    switch (currentNode){
+                    switch (currentNode) {
                         case "first-name":
                             person.setFirstName(value);
                             break;

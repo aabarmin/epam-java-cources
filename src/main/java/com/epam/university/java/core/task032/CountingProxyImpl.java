@@ -9,6 +9,11 @@ public class CountingProxyImpl implements CountingProxy {
     private Map<String, Integer> count = new HashMap<>();
     private Object executor;
 
+    /**
+     *  Binding executor to proxy.
+     * @param executor executor
+     * @return executor
+     */
     public SomeActionExecutor setExecutor(Object executor) {
         this.executor = executor;
         return (SomeActionExecutor) Proxy.newProxyInstance(

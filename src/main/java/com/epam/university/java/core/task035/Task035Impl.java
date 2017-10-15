@@ -22,13 +22,14 @@ public class Task035Impl implements Task035 {
         Person person = new PersonImpl();
         try {
             SimpleModule module = new SimpleModule();
-            module.addDeserializer(PhoneNumber.class, new StdDeserializer<PhoneNumber>(PhoneNumber.class) {
-                @Override
-                public PhoneNumber deserialize(JsonParser p, DeserializationContext ctxt)
+            module.addDeserializer(PhoneNumber.class,
+                    new StdDeserializer<PhoneNumber>(PhoneNumber.class) {
+                    @Override
+                    public PhoneNumber deserialize(JsonParser p, DeserializationContext ctxt)
                         throws IOException {
-                    return new PhoneNumberImpl(p.getValueAsString());
-                }
-            });
+                        return new PhoneNumberImpl(p.getValueAsString());
+                    }
+                });
 
             person = mapper
                     .registerModule(module)

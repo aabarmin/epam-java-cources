@@ -20,7 +20,7 @@ public class SaxHandlerImpl extends SaxHandler {
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException {
         if ("person".equals(qName)) {
-                person.setId(Integer.valueOf(attributes.getValue("id")));
+            person.setId(Integer.valueOf(attributes.getValue("id")));
         }
         currentNode = qName;
     }

@@ -17,9 +17,7 @@ public class PhoneNumberImpl implements PhoneNumber {
 
     @Override
     public String toString() {
-        return "PhoneNumberImpl{" +
-                "phoneNumber='" + phoneNumber + '\'' +
-                '}';
+        return "PhoneNumberImpl{" + "phoneNumber='" + phoneNumber + '\'' + '}';
     }
 
     public PhoneNumberImpl(String phoneNumber) {

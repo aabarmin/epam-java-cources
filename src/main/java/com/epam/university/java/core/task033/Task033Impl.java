@@ -5,7 +5,7 @@ public class Task033Impl implements Task033 {
     public void doSomething(int first, int second) throws GreaterExceptionImpl, LessExceptionImpl {
         if (first > second) {
             throw new GreaterExceptionImpl();
-        } else  if (first < second){
+        } else  if (first < second) {
             throw new LessExceptionImpl();
         }
         throw new ArithmeticException();
