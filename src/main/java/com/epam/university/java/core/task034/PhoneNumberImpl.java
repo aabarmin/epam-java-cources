@@ -15,6 +15,13 @@ public class PhoneNumberImpl implements PhoneNumber {
     public PhoneNumberImpl() {
     }
 
+    @Override
+    public String toString() {
+        return "PhoneNumberImpl{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
     public PhoneNumberImpl(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

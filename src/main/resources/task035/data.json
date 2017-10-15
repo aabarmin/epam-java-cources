@@ -2,7 +2,7 @@
   "id": 10,
   "firstName": "Ivan",
   "lastName": "Petrov",
-  "phones": [
+  "phoneNumbers": [
     "Phone first",
     "Phone second"
   ]

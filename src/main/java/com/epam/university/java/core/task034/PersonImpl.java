@@ -21,6 +21,16 @@ public class PersonImpl implements Person {
     private Collection<PhoneNumber> phoneNumbers;
 
     @Override
+    public String toString() {
+        return "PersonImpl{" +
+                "\nid=" + id +
+                ", \nfirstName='" + firstName + '\'' +
+                ", \nlastName='" + lastName + '\'' +
+                ", \nphoneNumbers=" + phoneNumbers +
+                '}';
+    }
+
+    @Override
     public int getId() {
         return id;
     }
