@@ -44,7 +44,7 @@ public class PhoneNumberImpl implements PhoneNumber {
     }
 
 
-    /**w
+    /**
      * {@inheritDoc}
      */
     @Override

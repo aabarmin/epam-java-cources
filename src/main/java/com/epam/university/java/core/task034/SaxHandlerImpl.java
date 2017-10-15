@@ -13,23 +13,23 @@ import java.util.ArrayList;
 public class SaxHandlerImpl extends SaxHandler {
 
     private PersonImpl person;
-    private Task034Impl.NODES current_node;
+    private Task034Impl.Nodes currentNode;
 
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void startElement (String uri, String localName,
+    public void startElement(String uri, String localName,
                               String qName, Attributes attributes)
-            throws SAXException
-    {
-        current_node = Task034Impl.NODES.valueOf(qName.replaceAll("-", "_"));
+            throws SAXException {
 
-        if (Task034Impl.NODES.person == current_node) {
+        currentNode = Task034Impl.Nodes.valueOf(qName.replaceAll("-", "_"));
+
+        if (Task034Impl.Nodes.person == currentNode) {
             person = new PersonImpl();
             person.setId(Integer.valueOf(attributes.getValue("id")));
-        } else if (Task034Impl.NODES.person_phones == current_node) {
+        } else if (Task034Impl.Nodes.person_phones == currentNode) {
             person.setPhoneNumbers(new ArrayList<>());
         }
     }
@@ -40,29 +40,29 @@ public class SaxHandlerImpl extends SaxHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
 
-        if (null == person || null == current_node) {
+        if (null == person || null == currentNode) {
             return;
         }
 
         String value = new String(ch, start, length);
 
-        switch (current_node) {
+        switch (currentNode) {
 
             case first_name: {
                 person.setFirstName(value);
-                current_node = null;
+                currentNode = null;
                 break;
             }
 
             case last_name: {
                 person.setLastName(value);
-                current_node = null;
+                currentNode = null;
                 break;
             }
 
             case person_phone: {
                 person.getPhoneNumbers().add(new PhoneNumberImpl(value));
-                current_node = null;
+                currentNode = null;
                 break;
             }
 

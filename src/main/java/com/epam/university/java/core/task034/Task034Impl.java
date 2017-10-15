@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class Task034Impl implements Task034 {
 
     // possible nodes
-    protected enum NODES {
+    protected enum Nodes {
         person,
         first_name,
         last_name,
@@ -108,7 +108,7 @@ public class Task034Impl implements Task034 {
     public Person readWithStaxParser(XMLStreamReader reader) {
 
         PersonImpl person = new PersonImpl();
-        NODES current_node = null;
+        Nodes currentNode = null;
 
         try {
             while (reader.hasNext()) {
@@ -118,31 +118,31 @@ public class Task034Impl implements Task034 {
                 if (XMLStreamConstants.START_ELEMENT == next) {
 
                     // new NODE started
-                    current_node = NODES.valueOf(
+                    currentNode = Nodes.valueOf(
                             reader.getName().toString().replaceAll("-", "_"));
 
-                    if (NODES.person == current_node) {
+                    if (Nodes.person == currentNode) {
                         // person (with id)
                         person = new PersonImpl();
                         person.setId(Integer.valueOf(reader.getAttributeValue(0)));
-                    } else if (NODES.person_phones == current_node) {
+                    } else if (Nodes.person_phones == currentNode) {
                         // PhoneNumbers
                         person.setPhoneNumbers(new ArrayList<>());
                     }
 
                 // END_ELEMENT
                 } else if (XMLStreamConstants.END_ELEMENT == next) {
-                    current_node = null;
+                    currentNode = null;
 
                 // CHARACTERS
                 } else if (XMLStreamConstants.CHARACTERS == next) {
 
-                    if (null == current_node) {
+                    if (null == currentNode) {
                         continue;
                     }
                     String value = reader.getText();
 
-                    switch (current_node) {
+                    switch (currentNode) {
 
                         case first_name: {
                             person.setFirstName(value);
