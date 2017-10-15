@@ -21,7 +21,7 @@ public class ServerImpl implements Server {
     @Override
     public  String readMessage() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -32,6 +32,7 @@ public class ServerImpl implements Server {
     public void start() {
         Thread thread = new Thread(() -> {
             try {
+                Thread.sleep(600);
                 serverSocket = new ServerSocket(port);
                 while (isWorking) {
                     Socket clientSocket = serverSocket.accept();
@@ -48,7 +49,7 @@ public class ServerImpl implements Server {
                             throw new RuntimeException(e);
                         }
                     }).start();
-                    Thread.sleep(500);
+                    Thread.sleep(600);
                 }
             } catch (SocketException e) {
                 stop();
@@ -63,9 +64,11 @@ public class ServerImpl implements Server {
     public void stop() {
         isWorking = false;
         try {
+            Thread.sleep(600);
             if (serverSocket != null && !serverSocket.isClosed()) {
                 serverSocket.close();
             }
+            Thread.sleep(600);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
