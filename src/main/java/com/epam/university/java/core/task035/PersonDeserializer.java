@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 
 /**
- * Class for person de-serializing from JSON by Jackson mapper
+ * Class for person de-serializing from JSON by Jackson mapper.
  *
  * @author Sergei Titov
  */
@@ -42,7 +42,7 @@ public class PersonDeserializer extends JsonDeserializer<Person> {
         // phones
         Collection<PhoneNumber> phones = person.getPhoneNumbers();
         Iterator<JsonNode> phoneItr = node.get("phones").elements();
-        while(phoneItr.hasNext()) {
+        while (phoneItr.hasNext()) {
             JsonNode element = phoneItr.next();
             phones.add(
                     new PhoneNumberImpl(element.asText())

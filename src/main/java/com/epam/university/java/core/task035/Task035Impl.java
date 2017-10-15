@@ -54,7 +54,8 @@ public class Task035Impl implements Task035 {
             @Override
             public PhoneNumber deserialize(JsonElement jsonElement,
                                              Type type,
-                                             JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                                             JsonDeserializationContext jsonDeserializationContext)
+                    throws JsonParseException {
 
                 return new PhoneNumberImpl(jsonElement.getAsString());
             }
