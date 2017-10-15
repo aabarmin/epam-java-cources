@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task034;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -28,6 +30,7 @@ public class PersonImpl implements Person {
     @XmlElement(name = "last-name")
     private String lastName;
 
+    @SerializedName("phones")
     @XmlElementWrapper(name = "person-phones")
     @XmlElements({
             @XmlElement(type = PhoneNumberImpl.class, name = "person-phone")

@@ -28,7 +28,7 @@ public class PhoneNumberImpl implements PhoneNumber {
      *
      * @param phoneNumber is a string, consisting of phone number
      */
-    PhoneNumberImpl(String phoneNumber) {
+    public PhoneNumberImpl(String phoneNumber) {
 
         this.phoneNumber = phoneNumber;
     }
