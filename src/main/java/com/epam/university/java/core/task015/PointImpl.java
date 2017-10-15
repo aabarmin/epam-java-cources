@@ -55,12 +55,18 @@ public class PointImpl implements Point {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         PointImpl point = (PointImpl) o;
 
-        if (point.x - x > 0.0000000001) return false;
+        if (point.x - x > 0.0000000001) {
+            return false;
+        }
 
         return point.y - y < 0.0000000001;
     }

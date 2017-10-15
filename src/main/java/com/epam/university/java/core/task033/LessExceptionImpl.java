@@ -7,7 +7,9 @@ public class LessExceptionImpl extends BaseExceptionImpl implements LessExceptio
     private String message;
 
     /**
-     * @param message
+     * Create entity of LessException with given message.
+     *
+     * @param message message
      */
     public LessExceptionImpl(String message) {
         this.message = message;

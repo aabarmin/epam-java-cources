@@ -56,12 +56,18 @@ public class CoordinateImpl implements Coordinate {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         CoordinateImpl that = (CoordinateImpl) o;
 
-        if (x != that.x) return false;
+        if (x != that.x) {
+            return false;
+        }
         return y == that.y;
     }
 

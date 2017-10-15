@@ -45,6 +45,9 @@ public class RobotImpl implements Robot {
                         break;
                     case 4:
                         this.getPosition().setY(++y);
+                        break;
+                    default:
+                        break;
                 }
                 break;
             case TURN_RIGHT:
@@ -60,6 +63,8 @@ public class RobotImpl implements Robot {
                 } else {
                     direction--;
                 }
+                break;
+            default:
                 break;
         }
     }

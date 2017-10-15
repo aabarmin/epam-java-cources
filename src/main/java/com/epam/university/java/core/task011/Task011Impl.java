@@ -30,8 +30,8 @@ public class Task011Impl implements Task011 {
         }
         int counter = 0;
         String result = "";
-        while(collection.size() > 1) {
-            if(counter >= collection.size()) {
+        while (collection.size() > 1) {
+            if (counter >= collection.size()) {
                 counter = counter % collection.size();
             }
             collection.remove(counter);

@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 public class Task023Impl implements Task023 {
     @Override
     public String extract(String phoneString) {
-        Pattern code = Pattern.compile("^\\+?[\\d]\\s?\\(?([\\d]{3})\\)?\\s?[\\d]{3}[-|\\s]?[\\d]{2}[-|\\s]?[\\d]{2}");
+        Pattern code = Pattern.compile(
+                "^\\+?[\\d]\\s?\\(?([\\d]{3})\\)?\\s?[\\d]{3}[-|\\s]?[\\d]{2}[-|\\s]?[\\d]{2}");
         Matcher matcher = code.matcher(phoneString);
         if (!matcher.matches()) {
             throw new IllegalArgumentException();

@@ -10,12 +10,12 @@ import java.time.temporal.ChronoUnit;
 
 
 /**
- * {@inheritDic}
+ * {@inheritDoc}
  */
 public class Task030Impl implements Task030 {
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public int daysBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
@@ -25,7 +25,7 @@ public class Task030Impl implements Task030 {
     }
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public LocalDate adjustDays(LocalDate dateStart, int daysToAdd) {
@@ -34,7 +34,7 @@ public class Task030Impl implements Task030 {
     }
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public long distanceBetween(Instant instantStart, Instant instantEnd) {
@@ -43,7 +43,7 @@ public class Task030Impl implements Task030 {
     }
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public DayOfWeek getDayOfWeek(LocalDate localDate) {
@@ -52,7 +52,7 @@ public class Task030Impl implements Task030 {
     }
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public LocalDate getNextWeekend(LocalDate localDate) {
@@ -67,7 +67,7 @@ public class Task030Impl implements Task030 {
     }
 
     /**
-     * {@inheritDic}
+     * {@inheritDoc}
      */
     @Override
     public LocalTime getLocalTime(String timeString) {

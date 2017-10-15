@@ -19,7 +19,8 @@ public class SaxHandlerImpl extends SaxHandler {
      * {@inheritDoc}
      */
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName,
+                             String qName, Attributes attributes) throws SAXException {
         switch (qName) {
             case "person":
                 person = new PersonImpl();

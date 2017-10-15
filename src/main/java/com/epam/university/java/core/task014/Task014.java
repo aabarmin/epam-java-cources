@@ -11,13 +11,8 @@ public interface Task014 {
      * multiplying a pair of numbers containing half the number of digits
      * of the result. The digits are taken from the original number
      * in any order. Pairs of trailing zeroes are not allowed.
-     * <p>
-     * <p>
-     * Example: 1260 = 21 * 60
-     * </p>
-     * <p>
-     * {@see https://en.wikipedia.org/wiki/Vampire_number}
-     * </p>
+     * <p>Example: 1260 = 21 * 60</p>
+     * <p>{@see https://en.wikipedia.org/wiki/Vampire_number}</p>
      *
      * @return collection of vampire numbers
      */

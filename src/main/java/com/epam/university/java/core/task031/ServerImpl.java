@@ -54,7 +54,7 @@ public class ServerImpl implements Server {
                         new ServerThread(socket).start();
                     }
                 } catch (IOException e) {
-
+                    e.printStackTrace();
                 }
             }).start();
         } catch (IOException e) {

@@ -106,6 +106,9 @@ public class Task034Impl implements Task034 {
                             default:
                                 break;
                         }
+                        break;
+                    default:
+                        break;
                 }
                 if (!streamReader.hasNext()) {
                     break;

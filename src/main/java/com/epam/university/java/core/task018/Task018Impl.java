@@ -22,7 +22,8 @@ public class Task018Impl implements Task018 {
         }
 
         Package classToCheckPackage = classToCheck.getPackage();
-        if (classToCheckPackage.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
+        if (classToCheckPackage.isAnnotationPresent(
+                (Class<? extends Annotation>) annotationToFind)) {
             return true;
         }
 

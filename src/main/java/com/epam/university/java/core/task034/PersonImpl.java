@@ -20,8 +20,10 @@ import java.util.Collection;
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonImpl implements Person {
+
     public PersonImpl() {
     }
+
     @SerializedName("id")
     @XmlAttribute
     private int id;

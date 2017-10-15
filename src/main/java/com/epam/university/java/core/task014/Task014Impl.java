@@ -42,16 +42,16 @@ public class Task014Impl implements Task014 {
      * @param mult   result of multiplication of first and second
      * @param first  first multiplier
      * @param second second multiplier
-     * @return
+     * @return true if its vampire
      */
     private boolean isVampire(int mult, int first, int second) {
-        List<String> multList = Arrays.asList(String.valueOf(mult).split(""));
         List<String> removeList = new ArrayList<>();
 
         removeList.add(first / 10 + "");
         removeList.add(first % 10 + "");
         removeList.add(second / 10 + "");
         removeList.add(second % 10 + "");
+        List<String> multList = Arrays.asList(String.valueOf(mult).split(""));
         Collections.sort(multList);
         Collections.sort(removeList);
         return multList.equals(removeList);

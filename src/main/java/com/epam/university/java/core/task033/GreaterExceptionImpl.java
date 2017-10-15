@@ -7,7 +7,9 @@ public class GreaterExceptionImpl extends BaseExceptionImpl implements GreaterEx
     private String message;
 
     /**
-     * @param message
+     * Create entity of GreaterException with given message.
+     *
+     * @param message message
      */
     public GreaterExceptionImpl(String message) {
         this.message = message;

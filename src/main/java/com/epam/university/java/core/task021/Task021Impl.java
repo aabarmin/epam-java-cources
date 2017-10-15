@@ -47,20 +47,20 @@ public class Task021Impl implements Task021 {
      */
     private Point getTriangelVertex(Point first, Point second, Point toCompare) {
         Point result = null;
-        double xOfVertA = (first.getX() + second.getX() +
-                (first.getY() - second.getY()) * Math.sqrt(3)) / 2;
-        double yOfVertA = (first.getY() + second.getY() +
-                (second.getX() - first.getX()) * Math.sqrt(3)) / 2;
+        double xOfVertA = (first.getX() + second.getX()
+                + (first.getY() - second.getY()) * Math.sqrt(3)) / 2;
+        double yOfVertA = (first.getY() + second.getY()
+                + (second.getX() - first.getX()) * Math.sqrt(3)) / 2;
 
-        double xOfOppA = (first.getX() + second.getX() -
-                (first.getY() - second.getY()) * Math.sqrt(3)) / 2;
-        double yOfOppA = (first.getY() + second.getY() -
-                (second.getX() - first.getX()) * Math.sqrt(3)) / 2;
+        double xOfOppA = (first.getX() + second.getX()
+                - (first.getY() - second.getY()) * Math.sqrt(3)) / 2;
+        double yOfOppA = (first.getY() + second.getY()
+                - (second.getX() - first.getX()) * Math.sqrt(3)) / 2;
 
-        double distanceA = Math.sqrt(Math.pow(xOfVertA - toCompare.getX(), 2) +
-                Math.pow(yOfVertA - toCompare.getY(), 2));
-        double distanceB = Math.sqrt(Math.pow(xOfOppA - toCompare.getX(), 2) +
-                Math.pow(xOfOppA - toCompare.getY(), 2));
+        double distanceA = Math.sqrt(Math.pow(xOfVertA - toCompare.getX(), 2)
+                + Math.pow(yOfVertA - toCompare.getY(), 2));
+        double distanceB = Math.sqrt(Math.pow(xOfOppA - toCompare.getX(), 2)
+                + Math.pow(xOfOppA - toCompare.getY(), 2));
         if (distanceA > distanceB) {
             result = new PointFactoryImpl().newInstance(xOfVertA, yOfVertA);
         } else {
@@ -80,14 +80,14 @@ public class Task021Impl implements Task021 {
      */
     private Point getIntersection(Point aPoint, Point bPoint, Point cPoint, Point dPoint) {
 
-        double devider = (aPoint.getX() - bPoint.getX()) * (dPoint.getY() - cPoint.getY()) -
-                (aPoint.getY() - bPoint.getY()) * (dPoint.getX() - cPoint.getX());
+        double devider = (aPoint.getX() - bPoint.getX()) * (dPoint.getY() - cPoint.getY())
+                - (aPoint.getY() - bPoint.getY()) * (dPoint.getX() - cPoint.getX());
 
-        double dividendA = (aPoint.getX() - cPoint.getX()) * (dPoint.getY() - cPoint.getY()) -
-                (aPoint.getY() - cPoint.getY()) * (dPoint.getX() - cPoint.getX());
+        double dividendA = (aPoint.getX() - cPoint.getX()) * (dPoint.getY() - cPoint.getY())
+                - (aPoint.getY() - cPoint.getY()) * (dPoint.getX() - cPoint.getX());
 
-        double dividendB = (aPoint.getX() - bPoint.getX()) * (aPoint.getY() - cPoint.getY()) -
-                (aPoint.getY() - bPoint.getY()) * (aPoint.getX() - cPoint.getX());
+        double dividendB = (aPoint.getX() - bPoint.getX()) * (aPoint.getY() - cPoint.getY())
+                - (aPoint.getY() - bPoint.getY()) * (aPoint.getX() - cPoint.getX());
 
         double resultA = dividendA / devider;
         double resultB = dividendB / devider;
@@ -111,20 +111,20 @@ public class Task021Impl implements Task021 {
         Point pointB = points.get(1);
         Point pointC = points.get(2);
 
-        double ribA = Math.sqrt(Math.pow(pointB.getX() - pointC.getX(), 2) +
-                Math.pow(pointB.getY() - pointC.getY(), 2));
+        double ribA = Math.sqrt(Math.pow(pointB.getX() - pointC.getX(), 2)
+                + Math.pow(pointB.getY() - pointC.getY(), 2));
 
-        double ribB = Math.sqrt(Math.pow(pointA.getX() - pointC.getX(), 2) +
-                Math.pow(pointA.getY() - pointC.getY(), 2));
+        double ribB = Math.sqrt(Math.pow(pointA.getX() - pointC.getX(), 2)
+                + Math.pow(pointA.getY() - pointC.getY(), 2));
 
-        double ribC = Math.sqrt(Math.pow(pointA.getX() - pointB.getX(), 2) +
-                Math.pow(pointA.getY() - pointB.getY(), 2));
+        double ribC = Math.sqrt(Math.pow(pointA.getX() - pointB.getX(), 2)
+                + Math.pow(pointA.getY() - pointB.getY(), 2));
 
-        double angleA = Math.acos((Math.pow(ribB, 2) + Math.pow(ribC, 2) - Math.pow(ribA, 2)) /
-                (2 * ribB * ribC));
+        double angleA = Math.acos((Math.pow(ribB, 2) + Math.pow(ribC, 2) - Math.pow(ribA, 2))
+                / (2 * ribB * ribC));
 
-        double angleB = Math.acos((Math.pow(ribA, 2) + Math.pow(ribC, 2) - Math.pow(ribB, 2)) /
-                (2 * ribA * ribC));
+        double angleB = Math.acos((Math.pow(ribA, 2) + Math.pow(ribC, 2) - Math.pow(ribB, 2))
+                / (2 * ribA * ribC));
 
         double angleC = 1.8 - (angleB + angleA);
 

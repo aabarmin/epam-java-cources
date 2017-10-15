@@ -12,10 +12,10 @@ public class Task022Impl implements Task022 {
      */
     @Override
     public int maxSum(Collection<Integer> numbers) {
-        int i = numbers.stream().
-                sorted((a, b) -> b - a).
-                limit(numbers.size() - 1).
-                reduce(0, (a, b) -> a + b);
+        int i = numbers.stream()
+                .sorted((a, b) -> b - a)
+                .limit(numbers.size() - 1)
+                .reduce(0, (a, b) -> a + b);
         return i;
     }
 
@@ -24,10 +24,10 @@ public class Task022Impl implements Task022 {
      */
     @Override
     public int minSum(Collection<Integer> numbers) {
-        int i = numbers.stream().
-                sorted().
-                limit(numbers.size() - 1).
-                reduce(0, (a, b) -> a + b);
+        int i = numbers.stream()
+                .sorted()
+                .limit(numbers.size() - 1)
+                .reduce(0, (a, b) -> a + b);
         return i;
     }
 }

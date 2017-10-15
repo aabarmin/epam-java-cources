@@ -52,11 +52,13 @@ public class Task015Impl implements Task015 {
         double xOfB = (xOfA + xOfC) / 2 + (yOfA - yOfC) / 2;
         double yOfB = (yOfA + yOfC) / 2 + (xOfC - xOfA) / 2;
 
-        double xOfD = (xOfA + xOfC) / 2 + (yOfC - yOfA) / 2;
-        double yOfD = (yOfA + yOfC) / 2 + (xOfA - xOfC) / 2;
         squreCoords[0] = new PointImpl(xOfA, yOfA);
         squreCoords[1] = new PointImpl(xOfB, yOfB);
         squreCoords[2] = new PointImpl(xOfC, yOfC);
+
+        double xOfD = (xOfA + xOfC) / 2 + (yOfC - yOfA) / 2;
+        double yOfD = (yOfA + yOfC) / 2 + (xOfA - xOfC) / 2;
+
         squreCoords[3] = new PointImpl(xOfD, yOfD);
 
         return squreCoords;
@@ -109,7 +111,8 @@ public class Task015Impl implements Task015 {
      * @param secondSquare second square
      * @return list of intersection points
      */
-    private Collection<PointImpl> getIntersections(PointImpl[] firstSquare, PointImpl[] secondSquare) {
+    private Collection<PointImpl> getIntersections(PointImpl[] firstSquare,
+                                                   PointImpl[] secondSquare) {
         List<PointImpl> resultList = new ArrayList<>();
         for (int i = 0; i < firstSquare.length; i++) {
             int j = i == firstSquare.length - 1 ? 0 : i + 1;
@@ -120,14 +123,14 @@ public class Task015Impl implements Task015 {
                 PointImpl cPoint = secondSquare[k];
                 PointImpl dPoint = secondSquare[l];
 
-                double devider = (aPoint.getX() - bPoint.getX()) * (dPoint.getY() - cPoint.getY()) -
-                        (aPoint.getY() - bPoint.getY()) * (dPoint.getX() - cPoint.getX());
+                double devider = (aPoint.getX() - bPoint.getX()) * (dPoint.getY() - cPoint.getY())
+                        - (aPoint.getY() - bPoint.getY()) * (dPoint.getX() - cPoint.getX());
 
-                double dividendA = (aPoint.getX() - cPoint.getX()) * (dPoint.getY() - cPoint.getY()) -
-                        (aPoint.getY() - cPoint.getY()) * (dPoint.getX() - cPoint.getX());
+                double dividendA = (aPoint.getX() - cPoint.getX()) * (dPoint.getY() - cPoint.getY())
+                        - (aPoint.getY() - cPoint.getY()) * (dPoint.getX() - cPoint.getX());
 
-                double dividendB = (aPoint.getX() - bPoint.getX()) * (aPoint.getY() - cPoint.getY()) -
-                        (aPoint.getY() - bPoint.getY()) * (aPoint.getX() - cPoint.getX());
+                double dividendB = (aPoint.getX() - bPoint.getX()) * (aPoint.getY() - cPoint.getY())
+                        - (aPoint.getY() - bPoint.getY()) * (aPoint.getX() - cPoint.getX());
 
                 double resultA = dividendA / devider;
                 double resultB = dividendB / devider;
@@ -154,13 +157,13 @@ public class Task015Impl implements Task015 {
         double[] ribs = new double[3];
         for (int i = 0; i < triangle.length; i++) {
             int j = i == triangle.length - 1 ? 0 : i + 1;
-            ribs[i] = Math.sqrt(Math.pow(triangle[j].getX() - triangle[i].getX(), 2) +
-                    Math.pow(triangle[j].getY() - triangle[i].getY(), 2));
+            ribs[i] = Math.sqrt(Math.pow(triangle[j].getX() - triangle[i].getX(), 2)
+                    + Math.pow(triangle[j].getY() - triangle[i].getY(), 2));
         }
 
         double semiPer = 0.5 * (ribs[0] + ribs[1] + ribs[2]);
-        double square = Math.sqrt(semiPer * (semiPer - ribs[0]) * (semiPer - ribs[1]) *
-                (semiPer - ribs[2]));
+        double square = Math.sqrt(semiPer * (semiPer - ribs[0]) * (semiPer - ribs[1])
+                * (semiPer - ribs[2]));
         return square;
     }
 

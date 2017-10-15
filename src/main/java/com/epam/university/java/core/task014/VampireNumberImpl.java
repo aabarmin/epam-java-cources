@@ -9,26 +9,35 @@ public class VampireNumberImpl implements VampireNumber {
     private int first;
     private int second;
 
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         VampireNumberImpl that = (VampireNumberImpl) o;
 
         return multiplication == that.multiplication;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return multiplication;
     }
 
     /**
-     * Create new instance of Vampire Number with designed figures
+     * Create new instance of Vampire Number with designed figures.
+     *
      * @param multiplication Vampire number
-     * @param first first multiplier
-     * @param second second multiplier
+     * @param first          first multiplier
+     * @param second         second multiplier
      */
     protected VampireNumberImpl(int multiplication, int first, int second) {
         this.multiplication = multiplication;
