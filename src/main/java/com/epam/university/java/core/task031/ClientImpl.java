@@ -30,7 +30,7 @@ public class ClientImpl implements Client {
             writer.write(message);
             writer.newLine();
             writer.flush();
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             return null;
         });
     }
@@ -43,7 +43,7 @@ public class ClientImpl implements Client {
                     socket.getInputStream()));
             writer = new BufferedWriter(
                     new OutputStreamWriter(socket.getOutputStream()));
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             return null;
         });
     }
