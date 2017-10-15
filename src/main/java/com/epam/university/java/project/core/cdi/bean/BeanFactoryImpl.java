@@ -1,5 +1,8 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+
 /**
  * Created by Александр on 30.09.2017.
  */
@@ -18,6 +21,8 @@ public class BeanFactoryImpl implements BeanFactory {
      */
     @Override
     public <T> T getBean(Class<T> beanClass) {
+        //registry.getBeanDefinition()
+
         return null;
     }
 
@@ -29,7 +34,41 @@ public class BeanFactoryImpl implements BeanFactory {
      */
     @Override
     public Object getBean(String beanName) {
+        BeanDefinition definition = registry.getBeanDefinition(beanName);
+        definition.getClassName();
+
+        try {
+            Class<?> clazz = Class.forName(beanName);
+            Object bean = clazz.newInstance();
+            for (BeanPropertyDefinition property : definition.getProperties()) {
+                Field field = clazz.getDeclaredField(property.getName());
+                field.setAccessible(true);
+
+                if (field.getType().isPrimitive()) {
+
+                } else if (field.getType().equals(String.class)) {
+
+                }
+
+                field.getType().n
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+
         return null;
+    }
+
+    void fieldSetValue(Field field, String value) {
+
     }
 
     /**

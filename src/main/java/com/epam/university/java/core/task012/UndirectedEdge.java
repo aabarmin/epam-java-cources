@@ -8,6 +8,11 @@ public class UndirectedEdge {
     private final Integer from;
     private final Integer to;
 
+    /**
+     * Constructor with 2 vertices.
+     * @param from first vertex
+     * @param to second vertex
+     */
     public UndirectedEdge(Integer from, Integer to) {
         this.from = Math.min(from, to);
         this.to = Math.max(from, to);

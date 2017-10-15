@@ -1,7 +1,13 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.core.task034.jaxbImpl.PhoneNumberJaxb;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,11 +17,21 @@ import java.util.Collection;
  */
 
 @XmlRootElement(name = "bean")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BeanDefinitionImpl implements BeanDefinition {
+    @XmlAttribute(name = "id")
     private String id;
+
+    @XmlAttribute(name = "class")
     private String className;
+
+    @XmlAttribute(name = "scope")
     private String scope;
+
+    @XmlAttribute(name = "init")
     private String postConstruct;
+
+    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     Collection<BeanPropertyDefinition> properties;
 
     public BeanDefinitionImpl() {
@@ -37,7 +53,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @param id id of bean
      */
-    @XmlAttribute(name = "id")
     @Override
     public void setId(String id) {
         this.id = id;
@@ -58,7 +73,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @param className name of class
      */
-    @XmlAttribute(name = "class")
     @Override
     public void setClassName(String className) {
         this.className = className;
@@ -79,7 +93,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @param properties collection of bean properties
      */
-    @XmlAnyElement(lax = true)
     @Override
     public void setProperties(Collection<BeanPropertyDefinition> properties) {
         this.properties = properties;
@@ -100,7 +113,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @param methodName method name
      */
-    @XmlAttribute(name = "init")
     @Override
     public void setPostConstruct(String methodName) {
         postConstruct = methodName;
@@ -121,7 +133,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      *
      * @param scope bean scope
      */
-    @XmlAttribute(name = "scope")
     @Override
     public void setScope(String scope) {
         this.scope = scope;

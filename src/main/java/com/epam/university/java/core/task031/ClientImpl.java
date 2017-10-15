@@ -14,19 +14,10 @@ import java.net.Socket;
  */
 public class ClientImpl implements Client {
     private Socket socket;
+    Thread clientThread;
+    BufferedWriter writer;
 
     ClientImpl() {
-        new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    socket = new Socket(InetAddress.getLocalHost(), 6000);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }.run();
     }
 
     /**
@@ -36,16 +27,10 @@ public class ClientImpl implements Client {
      */
     @Override
     public void sendMessage(String message) {
-        try (
-                final BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(
-                                socket.getOutputStream()
-                        )
-                );
-
-        ) {
-            writer.write(message + "\n");
-
+        try {
+            writer.write(message);
+            //writer.flush();
+            System.out.println("message send (" + message + ")");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -56,7 +41,17 @@ public class ClientImpl implements Client {
      */
     @Override
     public void start() {
-
+        try {
+            socket = new Socket(InetAddress.getLocalHost(), 6000);
+            writer = new BufferedWriter(
+                    new OutputStreamWriter(
+                            socket.getOutputStream()
+                    )
+            );
+            System.out.println("Client start");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -64,6 +59,10 @@ public class ClientImpl implements Client {
      */
     @Override
     public void stop() {
-
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

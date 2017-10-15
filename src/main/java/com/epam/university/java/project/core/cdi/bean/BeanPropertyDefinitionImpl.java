@@ -5,6 +5,8 @@ import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinitionImpl;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,10 +19,18 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * Bean property definition
  */
 @XmlRootElement(name = "property")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
+    @XmlAttribute(name = "name")
     private String name;
+    @XmlAttribute(name = "value")
     private String value;
+    @XmlAttribute(name = "ref")
     private String reference;
+    @XmlElements({
+            @XmlElement(name = "list", type = ListDefinitionImpl.class),
+            @XmlElement(name = "map", type = MapDefinitionImpl.class)
+    })
     private StructureDefinition structure;
 
     /**
@@ -38,7 +48,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @param name name of property
      */
-    @XmlAttribute(name = "name")
     @Override
     public void setName(String name) {
         this.name = name;
@@ -59,7 +68,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @param value value of property
      */
-    @XmlAttribute(name = "value")
     @Override
     public void setValue(String value) {
         this.value = value;
@@ -80,7 +88,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @param ref referenced bean name
      */
-    @XmlAttribute(name = "ref")
     @Override
     public void setRef(String ref) {
         this.reference = ref;
@@ -101,10 +108,6 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      *
      * @param data structure definition
      */
-    @XmlElements({
-            @XmlElement(name = "list", type = ListDefinitionImpl.class),
-            @XmlElement(name = "map", type = MapDefinitionImpl.class)
-    })
     @Override
     public void setData(StructureDefinition data) {
         this.structure = data;
