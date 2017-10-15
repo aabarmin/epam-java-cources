@@ -55,7 +55,7 @@ public class StateMachineManagerImpl implements StateMachineManager {
             } else {
                 if (!definition.getStartEvent().equals(event)
                         || !definition.getStartState().equals(entity.getState())) {
-                    throw new RuntimeException();
+                    throw new RuntimeException("Entity don't have a correct transaction to" + event.toString());
                 }
                 return entity;
             }
