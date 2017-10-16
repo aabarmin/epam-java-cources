@@ -5,7 +5,7 @@
         <property name="stateMachineManager" ref="stateMachineManager" />
     </bean>
 
-    <bean id="bookDao" class="com.epam.university.java.project.service.BookDaoXmlImpl">
+    <bean id="bookDao" class="com.epam.university.java.project.service.BookDaoImpl">
 
     </bean>
 

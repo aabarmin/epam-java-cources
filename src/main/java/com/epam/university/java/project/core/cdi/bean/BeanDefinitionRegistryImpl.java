@@ -1,10 +1,17 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import javax.xml.bind.annotation.*;
-import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
- * Implementation class for BeanDefinitionReader.
+ * Implementation class for BeanDefinitionRegistry.
  *
  * @author Sergei Titov
  */
@@ -12,27 +19,27 @@ import java.util.*;
 @XmlAccessorType(XmlAccessType.NONE)
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
-    private Map<String, String> map = new HashMap<>();
+    // map of {Bean ID -> Bean class name}
+    private Map<String, BeanDefinition> beanNameRegistry = new HashMap<>();
 
-    @XmlElement(name = "bean")
-    public MapEntry[] getMap() {
-        List<MapEntry> list = new ArrayList<>();
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-
-            MapEntry mapEntry = new MapEntry();
-            mapEntry.id = entry.getKey();
-            mapEntry.value = entry.getValue();
-
-            list.add(mapEntry);
-        }
-        return list.toArray(new MapEntry[list.size()]);
+    /**
+     * Get size of the registry.
+     *
+     * @return a number of bean definitions
+     */
+    public int getSize() {
+        return beanNameRegistry.size();
     }
 
-    public void setMap(MapEntry[] arr) {
-        for(MapEntry entry : arr) {
-            this.map.put(entry.id, entry.value);
-        }
-        return;
+    @XmlElement(name = "bean")
+    BeanDefinitionImpl[] getBeanNameRegistry() {
+        List<BeanDefinition> list = new ArrayList<>();
+        list.addAll(beanNameRegistry.values());
+        return list.toArray(new BeanDefinitionImpl[list.size()]);
+    }
+
+    public void setBeanNameRegistry(BeanDefinitionImpl[] arr) {
+        Arrays.stream(arr).forEach( this::addBeanDefinition );
     }
 
     /**
@@ -41,9 +48,9 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
 
-     /*   if (!registry.containsKey(definition.getId())) {
-            registry.put(definition.getId(), definition);
-        }*/
+        if (!beanNameRegistry.containsKey(definition.getId())) {
+            beanNameRegistry.put(definition.getId(), definition);
+        }
     }
 
     /**
@@ -52,15 +59,6 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     @Override
     public BeanDefinition getBeanDefinition(String beanId) {
 
-        return null;//registry.get(beanId);
+        return beanNameRegistry.get(beanId);
     }
-}
-
-// MapEntry
-class MapEntry {
-    @XmlAttribute
-    public String id;
-
-    @XmlValue
-    public String value;
 }

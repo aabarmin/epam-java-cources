@@ -9,10 +9,9 @@ import java.util.Collection;
  * @author Sergei Titov
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "checkType")
 public class BeanDefinitionImpl implements BeanDefinition {
 
-    @XmlAttribute(name = "id")
+    @XmlAttribute
     private String id;
 
     @XmlAttribute(name = "class")
