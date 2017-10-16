@@ -24,7 +24,7 @@ public class Task036Test {
         assertEquals("Incorrect integration value",
                 9.6117,
                 value,
-                0.02);
+                0.01);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class Task036Test {
         assertEquals("Incorrect integration value",
                 1.0054,
                 value,
-                0.02);
+                0.01);
     }
 
     @Test
@@ -48,6 +48,6 @@ public class Task036Test {
         assertEquals("Incorrect integration value",
                 8.389,
                 value,
-                0.02);
+                0.01);
     }
 }
