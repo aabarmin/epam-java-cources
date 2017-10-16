@@ -53,4 +53,6 @@ public interface Person {
      * @param phoneNumbers phone numbers
      */
     void setPhoneNumbers(Collection<PhoneNumber> phoneNumbers);
+
+    void addElement(String elementName, String value);
 }

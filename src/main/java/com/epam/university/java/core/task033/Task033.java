@@ -9,5 +9,5 @@ public interface Task033 {
      * @param first first value
      * @param second second value
      */
-    void doSomething(int first, int second);
+    void doSomething(int first, int second) throws GreaterExceptionImpl, LessExceptionImpl;
 }
