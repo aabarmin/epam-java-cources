@@ -3,10 +3,23 @@ package com.epam.university.java.core.task028;
 /**
  * Created by Вера on 05.10.2017.
  */
-/*
+
 public class Task028Impl implements Task028 {
     @Override
     public int getWays(int value, int power) {
+
+        int rootValue = (int)Math.pow(value, 1.0 / power);
+
+        return recurse(value,power, 0, rootValue);
+
+
+
+
+
+
+
+        /*
+
         if (value <= 0) {
             return 0;
         }
@@ -62,6 +75,7 @@ public class Task028Impl implements Task028 {
         }
 
         return count;
+        */
     }
 
     private int recurse(int value, int power, int count, int rootValue) {
@@ -89,4 +103,3 @@ public class Task028Impl implements Task028 {
         System.out.println(c);
     }
 }
-*/

@@ -9,6 +9,18 @@ public class IntegratorImpl implements Integrator {
     @Override
     public double integrate(double left, double right, Function<Double, Double> function) {
 
+        // Квадратурная формула Ньютона-Котеса
+
+        // Алгоритм построения ИКФ
+        // 1. Задаем узлы квадратурной формулы - w(i), где i от 1 до n
+        // 2. Вычисляем моменты m(i) весовой функции p(x), в данном случае
+        // можно взять p(x) = 1
+        // 3. Решаем СЛАУ:  сумма по j = 1-n (multiplyVector * w(j)^s) = m(i)^s
+        // где s от 0 до n - 1
+        // 4. Значение искомого интеграла который можно представить как p(x)*f(x) =
+        // = сумма multiVector[i] * function(w[i]) где i от 1 до n
+
+
         int n = 3;
         double a = left;
         double b = right;
@@ -16,15 +28,16 @@ public class IntegratorImpl implements Integrator {
         double[] m = new double[n];
 
         for (int i = 0; i < n; i++) {
-            // момент = интеграл от a до b x^i
+            // m = момент весовой функции  = интеграл от a до b x^i
             m[i] = Math.pow(b, i + 1) / (i + 1)
                     - Math.pow(a, i + 1) / (i + 1);
         }
 
-        double[] w = new double[n];
+        double[] w = new double[n]; // w - узлы (границы разбиения)
         for (int i = 0; i < n; i++) {
             w[i] = a + alf * i;
         }
+
         double[][] c = new double[n][n];
 
         for (int i = 0; i < n; i++) {
@@ -34,7 +47,7 @@ public class IntegratorImpl implements Integrator {
         }
 
         // буду искать обратную матрицу методом гаусса
-        double[][] inverse = new double[2 * n][2 * n]; // N строки в массив
+        double[][] inverse = new double[n][2 * n]; // N строки в массив
         
         // заполняю исходную часть
         for (int i = 0; i < n; i++) {
@@ -106,7 +119,8 @@ public class IntegratorImpl implements Integrator {
 
         double[] multiVector = new double[n];
 
-        //A=c^(-1)*m'
+        //A = c^(-1)*m'
+        //multiVector = cInverse * m
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 multiVector[i] += cInverse[i][j] * m[j];
