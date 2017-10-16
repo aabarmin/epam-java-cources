@@ -11,7 +11,7 @@ public class BookImpl implements Book {
     private Collection<String> authors;
     private String serialNumber;
     private LocalDate returnDate;
-    private BookStatus state;
+    private BookStatus state = BookStatus.DRAFT;
     private StateMachineDefinition<BookStatus, BookEvent> stateMachineDefinition;
 
     @Override

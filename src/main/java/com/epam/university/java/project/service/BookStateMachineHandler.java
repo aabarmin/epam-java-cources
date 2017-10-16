@@ -4,8 +4,8 @@ import com.epam.university.java.project.core.state.machine.domain.StateMachineEv
 import com.epam.university.java.project.domain.Book;
 import com.epam.university.java.project.domain.BookStatus;
 
-public class BookStateMachineEventHandler implements StateMachineEventHandler {
-    //wtf
+public class BookStateMachineHandler implements StateMachineEventHandler {
+
     public Book onAccept(Book book){
         book.setState(BookStatus.ACCOUNTED);
         return book;

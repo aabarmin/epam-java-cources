@@ -1,9 +1,12 @@
 package com.epam.university.java.core.task036;
 
+import java.util.function.Function;
+
 public class IntegratorImpl implements Integrator {
 
     @Override
-    public Double apply(Double aDouble, Double aDouble2) {
-        return Task036Impl.DELTA * (aDouble + aDouble2) / 2;
+    public double integrate(double left, double right, Function<Double, Double> function) {
+
+        return 0;
     }
 }

@@ -11,11 +11,12 @@ import java.util.Map;
  */
 public class BookDaoXmlImpl implements BookDao {
     private Map<Integer, Book> books = new HashMap<>();
+    private int counter;
 
     @Override
     public Book createBook() {
         Book book = new BookImpl();
-        book.setId(books.size());
+        book.setId(++counter);
         books.put(book.getId(), book);
         return book;
     }
