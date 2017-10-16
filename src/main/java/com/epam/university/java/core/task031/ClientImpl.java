@@ -28,8 +28,8 @@ public class ClientImpl implements Client {
     @Override
     public void sendMessage(String message) {
         try {
-            writer.write(message);
-            //writer.flush();
+            writer.write(message + "\n");
+            writer.flush();
             System.out.println("message send (" + message + ")");
         } catch (IOException e) {
             throw new RuntimeException(e);

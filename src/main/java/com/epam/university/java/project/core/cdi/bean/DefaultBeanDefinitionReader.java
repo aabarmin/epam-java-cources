@@ -14,6 +14,7 @@ import java.util.Optional;
 
 /**
  * Created by Александр on 02.10.2017.
+ * Bean definitions reader
  */
 public class DefaultBeanDefinitionReader implements BeanDefinitionReader {
     BeanDefinitionRegistry registry;

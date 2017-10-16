@@ -1,15 +1,15 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Александр on 29.09.2017.
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
-    private final Map<String, BeanDefinition> storage = new HashMap<>();
+    private final List<BeanDefinition> storage = new ArrayList<>();
+
+
 
     /**
      * Add bean definition to registry.
@@ -18,7 +18,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      */
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
-        //beanDefinitions.add(definition);
+        storage.add(definition);
     }
 
     /**
@@ -29,11 +29,32 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      */
     @Override
     public BeanDefinition getBeanDefinition(String beanId) {
-        System.out.print("1");
-        /*return beanDefinitions.stream()
-                .filter(v -> (v.getId() == beanId))
+        return storage.stream()
+                .filter(v -> (v.getId().equals(beanId)))
                 .findFirst()
-                .orElse(null);*/
-                return null;
+                .orElse(null);
     }
+
+    /**
+     * Get bean definition by class from registry.
+     *
+     * @param clazz bean class
+     * @return bean definition
+     */
+    public BeanDefinition getBeanDefinition(Class clazz) {
+        for (BeanDefinition v : storage) {
+            if ((v.getClassName().equals(clazz.getName()))) {
+                return v;
+            } else try {
+                if (clazz.isAssignableFrom(Class.forName(v.getClassName()))) {
+                    return v;
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+
 }

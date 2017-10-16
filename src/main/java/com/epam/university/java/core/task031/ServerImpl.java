@@ -38,6 +38,9 @@ public class ServerImpl implements Server {
     public String readMessage() {
         String message = "";
         try {
+            while (reader == null) {
+                Thread.currentThread().sleep(100);
+            }
             if (reader.ready()) {
                 message = reader.readLine();
             }
@@ -55,19 +58,21 @@ public class ServerImpl implements Server {
     public void start() {
         serverThread = new Thread(() -> {
             try {
-                serverSocket = new ServerSocket(6000);
-                clientSocket = serverSocket.accept();
-                reader = new BufferedReader(
-                        new InputStreamReader(
-                                clientSocket.getInputStream()
-                        )
-                );
+                synchronized (this) {
+                    serverSocket = new ServerSocket(6000);
+                    clientSocket = serverSocket.accept();
+                    reader = new BufferedReader(
+                            new InputStreamReader(
+                                    clientSocket.getInputStream()
+                            )
+                    );
+                }
                 System.out.println("Server start");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        serverThread.start();
+        //serverThread.start();
     }
 
     /**
