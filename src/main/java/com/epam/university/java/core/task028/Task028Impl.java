@@ -1,10 +1,5 @@
 package com.epam.university.java.core.task028;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -12,39 +7,38 @@ import java.util.stream.Stream;
  */
 public class Task028Impl implements Task028 {
 
-    private List<Set<Integer>> variants = new ArrayList<>();
-
+    private int varCounter;
+    private int[] powers;
+    private int value;
+    private int length;
 
     @Override
     public int getWays(int value, int power) {
         int max = (int) Math.pow(value, 1.0 / (double) power);
 
-        final List<Integer> powers = Stream
+        final int[] powers = Stream
             .iterate(1, n -> n + 1)
             .limit(max)
             .map(n -> (int) Math.pow(n, power))
-            .collect(Collectors.toList());
+            .mapToInt(n -> n).toArray();
+        this.powers = powers;
+        length = powers.length;
+        this.value = value;
+        recursionFind(0, 0);
 
-        recursion(value, powers, 0, new HashSet<>());
-
-        return variants.size();
+        return varCounter;
     }
 
-    private void recursion(int value,
-        final List<Integer> powers,
-        int counter,
-        final Set<Integer> variant) {
-        if (counter > powers.size() - 1) {
-            int sum = variant.stream().mapToInt(e -> e).sum();
+    private void recursionFind(int counter, int sum) {
+        if (counter >= length) {
             if (sum == value) {
-                variants.add(variant);
+                varCounter++;
             }
             return;
         }
-        Set<Integer> newVariant = new HashSet<>(variant);
-        recursion(value, powers, counter + 1, newVariant);
-        newVariant.add(powers.get(counter));
-        recursion(value, powers, counter + 1, newVariant);
+
+        recursionFind(counter + 1, sum);
+        recursionFind(counter + 1, sum + powers[counter]);
 
     }
 

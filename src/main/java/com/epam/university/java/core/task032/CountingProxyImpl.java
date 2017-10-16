@@ -18,7 +18,7 @@ public class CountingProxyImpl implements CountingProxy {
 
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-        if(!invokations.containsKey(method.getName())) {
+        if (!invokations.containsKey(method.getName())) {
             invokations.put(method.getName(), 1);
         } else {
             int count = invokations.get(method.getName());

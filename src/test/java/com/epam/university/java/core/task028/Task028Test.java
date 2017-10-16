@@ -62,18 +62,14 @@ public class Task028Test {
         );
     }
 
-    /*
 
-
-    @Test
+    //@Test
     public void test4000() throws Exception {
         assertEquals("Incorrect value",
             1751141,
             instance.getWays(4000, 2)
         );
     }
-
-
 
     @Test
     public void test800() throws Exception {
@@ -82,5 +78,5 @@ public class Task028Test {
             instance.getWays(800, 2)
         );
     }
-    */
+
 }

@@ -24,7 +24,7 @@ public class Task036Test {
         assertEquals("Incorrect integration value",
                 9.6117,
                 value,
-                0.01);
+                0.02);
     }
 
     @Test
@@ -36,18 +36,18 @@ public class Task036Test {
         assertEquals("Incorrect integration value",
                 1.0054,
                 value,
-                0.01);
+                0.02);
     }
 
     @Test
     public void integrateSimple3() throws Exception {
         final double value = instance.integrate(x -> (x * Math.exp(x)),
                 integrator,
-                1, 2
+                0, 2
         );
         assertEquals("Incorrect integration value",
                 8.389,
                 value,
-                0.01);
+                0.02);
     }
 }

@@ -1,6 +1,5 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import com.epam.university.java.project.core.cdi.structure.ListDefinitionAdapter;
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
@@ -9,7 +8,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Created by ilya on 24.09.17.

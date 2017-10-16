@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task032;
 
 import java.lang.reflect.Method;
-import java.util.stream.Stream;
 
 /**
  * Created by ilya on 08.10.17.
