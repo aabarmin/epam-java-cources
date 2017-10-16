@@ -9,15 +9,15 @@ public class Task004Impl implements Task004 {
 
     @Override
     public String[] intersection(String[] first, String[] second) {
-        validator.vaildate(first, second);
-        String[] result = new String[first.length];
+        validator.validate(first, second);
+        final String[] result = new String[first.length];
         int i = 0;
         for (String s : first) {
             if (this.contains(s, second)) {
                 result[i++] = s;
             }
         }
-        int newSize = countNonNull(result);
+        final int newSize = countNonNull(result);
         return Arrays.copyOfRange(result, 0, newSize);
 
         //return Arrays.stream(first).filter(s -> contains(s,second)).toArray(String[]::new);
@@ -45,7 +45,7 @@ public class Task004Impl implements Task004 {
 
     @Override
     public String[] union(String[] first, String[] second) {
-        validator.vaildate(first, second);
+        validator.validate(first, second);
         String[] result = new String[first.length + second.length];
         System.arraycopy(first, 0, result, 0, first.length);
         int i = first.length;
@@ -54,7 +54,7 @@ public class Task004Impl implements Task004 {
                 result[i++] = s;
             }
         }
-        int newSize = countNonNull(result);
+        final int newSize = countNonNull(result);
         return Arrays.copyOfRange(result, 0, newSize);
 
         //        System.arraycopy(second, 0, result, first.length, second.length);

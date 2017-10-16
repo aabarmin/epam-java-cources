@@ -7,7 +7,7 @@ public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
         boolean result = true;
-        ParamStack<String> stack = new HandMadeStack<>();
+        final ParamStack<String> stack = new HandMadeStack<>();
         for (String s : sourceString.split("")) {
             if (s.matches(OPENING_BRACES)) {
                 stack.push(s);

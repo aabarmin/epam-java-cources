@@ -10,7 +10,7 @@ import static com.epam.university.java.core.Callback.runObject;
 public class CountingProxyImpl implements CountingProxy {
 
     private Object obj;
-    private Map<String, Integer> map = new HashMap<>();
+    private final Map<String, Integer> map = new HashMap<>();
 
 
     /**

@@ -13,13 +13,9 @@ import java.util.Set;
 public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
-        Set<String> setOfWords = new HashSet<>();
+        final Set<String> setOfWords = new HashSet<>();
         try (Scanner reader = new Scanner(new BufferedReader(new FileReader(sourceFile)))) {
             reader.useDelimiter(" ");
-            /*
-            * reader.useDelimiter("[^A-Za-z]");
-            * Why doesnt work? dont work properly with commas and question marks
-            */
             while (reader.hasNext()) {
                 setOfWords.add(reader.next().toLowerCase().replaceAll("[^a-z]", ""));
             }

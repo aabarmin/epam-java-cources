@@ -1,27 +1,19 @@
 package com.epam.university.java.core.task002;
 
-public class Task002Impl implements Task002 {
+import com.epam.university.java.core.Validator;
 
-    private void checkForNull(Object... objects) {
-        if (objects == null) {
-            throw new IllegalArgumentException();
-        }
-        for (Object obj : objects) {
-            if (obj == null) {
-                throw new IllegalArgumentException();
-            }
-        }
-    }
+public class Task002Impl implements Task002 {
+    private Validator validator = Validator.getInstance();
 
     @Override
     public boolean isEquals(String firstString, String secondString) {
-        checkForNull(firstString, secondString);
+        validator.validate(firstString, secondString);
         return firstString.equals(secondString);
     }
 
     @Override
     public String left(String sourceString, int number) {
-        checkForNull(sourceString);
+        validator.validate(sourceString);
         if (isBordersCorrect(sourceString, number)) {
             return sourceString.substring(0, number);
         }
@@ -30,13 +22,13 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String left(String sourceString, String separator) {
-        checkForNull(sourceString, separator);
-        int pos = sourceString.indexOf(separator);
+        validator.validate(sourceString, separator);
+        final int pos = sourceString.indexOf(separator);
         return sourceString.substring(0, pos);
     }
 
     private boolean isBordersCorrect(String sourceString, int number) {
-        int length = sourceString.length();
+        final int length = sourceString.length();
         if (number < 0) {
             throw new IllegalArgumentException();
         }
@@ -45,7 +37,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String right(String sourceString, int number) {
-        checkForNull(sourceString);
+        validator.validate(sourceString);
         if (isBordersCorrect(sourceString, number)) {
             return sourceString.substring(sourceString.length() - number);
         }
@@ -54,20 +46,20 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String right(String sourceString, String separator) {
-        checkForNull(sourceString, separator);
-        int pos = sourceString.lastIndexOf(separator);
+        validator.validate(sourceString, separator);
+        final int pos = sourceString.lastIndexOf(separator);
         return sourceString.substring(pos + separator.length());
     }
 
     @Override
     public String[] split(String sourceString, String split) {
-        checkForNull(sourceString, split);
+        validator.validate(sourceString, split);
         return sourceString.split(split);
     }
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        checkForNull(sourceCollection, glue);
+        validator.validate(sourceCollection, glue);
         StringBuilder sb = new StringBuilder();
         for (String s : sourceCollection) {
             sb.append(s);

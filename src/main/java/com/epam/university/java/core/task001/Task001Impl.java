@@ -1,11 +1,15 @@
 package com.epam.university.java.core.task001;
 
+import com.epam.university.java.core.Validator;
+
 /**
  * Realization of Task001.
  *
  * @author Александр
  */
 public class Task001Impl implements Task001 {
+    private Validator validator = Validator.getInstance();
+
     /**
      * Execute addition operation.
      *
@@ -17,7 +21,7 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double addition(String firstNumber, String secondNumber) {
-        argumentsNotNull(firstNumber, secondNumber);
+        validator.validate(firstNumber, secondNumber);
         return Double.valueOf(firstNumber) + Double.valueOf(secondNumber);
     }
 
@@ -32,7 +36,7 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
-        argumentsNotNull(firstNumber, secondNumber);
+        validator.validate(firstNumber, secondNumber);
         return Double.valueOf(firstNumber) - Double.valueOf(secondNumber);
     }
 
@@ -47,7 +51,7 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
-        argumentsNotNull(firstNumber, secondNumber);
+        validator.validate(firstNumber, secondNumber);
         return Double.valueOf(firstNumber) * Double.valueOf(secondNumber);
     }
 
@@ -62,15 +66,7 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double division(String firstNumber, String secondNumber) {
-        argumentsNotNull(firstNumber, secondNumber);
+        validator.validate(firstNumber, secondNumber);
         return Double.valueOf(firstNumber) / Double.valueOf(secondNumber);
-    }
-
-    private void argumentsNotNull(Object... objs) {
-        for (Object obj : objs) {
-            if (obj == null) {
-                throw new IllegalArgumentException();
-            }
-        }
     }
 }

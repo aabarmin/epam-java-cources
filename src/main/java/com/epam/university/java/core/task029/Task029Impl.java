@@ -20,7 +20,7 @@ public class Task029Impl implements Task029 {
     }
 
     private List<String> tryPutWords(char[][] chars, List<String> words) {
-        Iterator<String> it = words.iterator();
+        final Iterator<String> it = words.iterator();
         loop:
         while (it.hasNext()) {
             String word = it.next();
@@ -50,7 +50,7 @@ public class Task029Impl implements Task029 {
     }
 
     private List<String> charsToCollection(char[][] chars) {
-        List<String> list = new ArrayList<>();
+        final List<String> list = new ArrayList<>();
         for (char[] aChar : chars) {
             list.add(new String(aChar));
         }
@@ -58,7 +58,7 @@ public class Task029Impl implements Task029 {
     }
 
     private char[][] collectionToChars(Collection<String> rows) {
-        String[] stringRows = rows.toArray(new String[rows.size()]);
+        final String[] stringRows = rows.toArray(new String[rows.size()]);
         char[][] result = new char[stringRows[0].length()][stringRows.length];
         for (int i = 0; i < stringRows.length; i++) {
             result[i] = stringRows[i].toCharArray();

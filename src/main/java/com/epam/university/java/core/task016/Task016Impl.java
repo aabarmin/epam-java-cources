@@ -11,13 +11,14 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Task016Impl implements Task016 {
+    private Validator validator = Validator.getInstance();
+
     @Override
     public Collection<Coordinate> getSquaresInsideCircle(int radius) {
-        Validator validator = new Validator();
         validator.validatePos(radius);
 
-        CoordinateFactory factory = new CoordinateFactoryImpl();
-        List<Coordinate> squares = new ArrayList<>();
+        final CoordinateFactory factory = new CoordinateFactoryImpl();
+        final List<Coordinate> squares = new ArrayList<>();
         final int radius2 = 2 * radius;
 
         IntStream.rangeClosed(-radius2, radius2)

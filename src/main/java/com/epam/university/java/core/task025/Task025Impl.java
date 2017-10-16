@@ -6,13 +6,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Task025Impl implements Task025 {
+    private Validator validator = Validator.getInstance();
+
     @Override
     public int getAmountOfAlteredLetters(String sourceMessage) {
         int count = 0;
-        new Validator().vaildate(sourceMessage);
+        validator.validate(sourceMessage);
         final String sos = "SOS";
-        Pattern p = Pattern.compile("\\w{3}");
-        Matcher m = p.matcher(sourceMessage);
+        final Pattern p = Pattern.compile("\\w{3}");
+        final Matcher m = p.matcher(sourceMessage);
         while (m.find()) {
             String s = m.group(0);
             for (int i = 0; i < sos.length(); i++) {

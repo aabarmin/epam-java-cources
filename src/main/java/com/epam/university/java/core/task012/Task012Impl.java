@@ -18,8 +18,8 @@ public class Task012Impl implements Task012 {
     */
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
-        Set<Integer> marked = new HashSet<>();
-        Queue<Integer> vertexQueue = new ArrayDeque<>();
+        final Set<Integer> marked = new HashSet<>();
+        final Queue<Integer> vertexQueue = new ArrayDeque<>();
         vertexQueue.add(from);
         while (!vertexQueue.isEmpty()) {
             int vertex = vertexQueue.remove();

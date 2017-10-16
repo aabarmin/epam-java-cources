@@ -2,16 +2,17 @@ package com.epam.university.java.project.service;
 
 import com.epam.university.java.project.domain.Book;
 import com.epam.university.java.project.domain.BookImpl;
+import com.epam.university.java.project.domain.BookStatus;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-public class BookDaoImpl implements BookDao {
-    private HashMap<Integer, Book> books;
+public class BookDaoXmlImpl implements BookDao {
 
-    BookDaoImpl() {
-        this.books = new HashMap<>();
+    private HashMap<Integer, Book> books = new HashMap<>();
+
+    public BookDaoXmlImpl() {
     }
 
     @Override

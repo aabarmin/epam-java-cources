@@ -28,20 +28,17 @@ class SocketListener implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             Socket clientSocket = runObject(() -> serverSocket.accept());
             if (clientSocket != null) {
-                System.out.println("clientSocket created");
                 list.add(
                         new Thread(() -> runVoid(() -> {
                             while (!Thread.currentThread().isInterrupted()) {
                                 BufferedReader reader =
                                         new BufferedReader(new InputStreamReader(
                                                 clientSocket.getInputStream()));
-                                System.out.println("Reader/Writer created");
                                 while (!Thread.currentThread().isInterrupted()) {
                                     String readed = runObject(() -> {
                                         String fromClient = null;
                                         if (reader.ready()) {
                                             fromClient = reader.readLine();
-                                            System.out.println("fromClient: " + fromClient);
                                         }
                                         return fromClient;
                                     });
