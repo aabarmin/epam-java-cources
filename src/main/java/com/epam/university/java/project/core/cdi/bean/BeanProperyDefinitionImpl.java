@@ -4,7 +4,12 @@ import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElements;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "property")
