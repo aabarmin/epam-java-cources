@@ -10,12 +10,7 @@ public class Task028Impl implements Task028 {
 
         int rootValue = (int)Math.pow(value, 1.0 / power);
 
-        return recurse(value,power, 0, rootValue);
-
-
-
-
-
+        return recurse(value, power, 0, rootValue);
 
 
         /*
@@ -79,7 +74,7 @@ public class Task028Impl implements Task028 {
     }
 
     private int recurse(int value, int power, int count, int rootValue) {
-        if ((count == rootValue)||(value < 0)) {
+        if (count == rootValue || value < 0) {
             if (value == 0) {
                 return 1;
             } else {
@@ -89,11 +84,16 @@ public class Task028Impl implements Task028 {
 
         int a = (int) rootValue - count;
 
-        return recurse((int)(value - Math.pow(a, power)), power, count + 1, rootValue) +
+        return recurse((int)(value - Math.pow(a, power)), power, count + 1, rootValue)
+                +
         recurse(value, power, count + 1, rootValue);
 
     }
 
+
+    /**
+        Just to try.
+     */
     public static void main(String[] args) {
         Task028Impl task028 = new Task028Impl();
         int rootValue = (int)Math.pow(10, 1.0 / 2);

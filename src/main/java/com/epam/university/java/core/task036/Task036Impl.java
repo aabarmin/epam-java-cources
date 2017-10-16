@@ -14,7 +14,7 @@ public class Task036Impl implements Task036 {
 
         // делаю составную квадратурную формулу
 
-        int n = 20;
+        int n = 10;
         double interval = (limitRight - limitLeft) / n;
         double result = 0;
         for (int i = 0; i < n; i++) {

@@ -92,7 +92,7 @@ public class IntegratorImpl implements Integrator {
                 for (int j = i + 1; j < 2 * n; j++) { //j-индекс по столбцу
                     inverse[k][j] = inverse[k][j]
                             - inverse[i][j] * inverse[k][i];//вычитаем из k строки i-ую
-                    // sout (a[k][j] + " ");
+                // sout (a[k][j] + " ");
                 }
                 inverse[k][i] = 0;
             }
