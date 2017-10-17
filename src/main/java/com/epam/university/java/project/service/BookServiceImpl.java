@@ -1,9 +1,12 @@
 package com.epam.university.java.project.service;
 
 import com.epam.university.java.project.domain.Book;
+import com.epam.university.java.project.domain.BookImpl;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Implementation class for BookService.
@@ -12,12 +15,16 @@ import java.util.Collection;
  */
 public class BookServiceImpl implements BookService {
 
+    private int newBookIndex = 1;
+    Map<Integer, Book> booksMap = new HashMap<>();
+
     /**
      * {@inheritDoc}
      */
     @Override
     public Book createBook() {
-        return null;
+
+        return new BookImpl();
     }
 
     /**
@@ -25,7 +32,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book getBook(int id) {
-        return null;
+
+        return booksMap.get(id);
     }
 
     /**
@@ -33,7 +41,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Collection<Book> getBooks() {
-        return null;
+
+        return booksMap.values();
     }
 
     /**
@@ -42,6 +51,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void remove(Book book) {
 
+        booksMap.remove(book.getId());
     }
 
     /**
@@ -49,7 +59,12 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book save(Book book) {
-        return null;
+
+        if (0 == book.getId()) {
+            book.setId(newBookIndex++);
+            booksMap.put(book.getId(), book);
+        }
+        return book;
     }
 
     /**
