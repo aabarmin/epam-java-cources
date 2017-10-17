@@ -47,7 +47,7 @@ public class Task035Impl implements Task035 {
 
         builder.registerTypeAdapter(PhoneNumber.class, (JsonDeserializer<PhoneNumber>)
             (jsonElement, type, jsonDeserializationContext)
-            -> new PhoneNumberImpl(jsonElement.getAsString()));
+                -> new PhoneNumberImpl(jsonElement.getAsString()));
 
         return builder.create().fromJson(jsonString, PersonImpl.class);
     }

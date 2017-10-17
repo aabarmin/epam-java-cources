@@ -26,6 +26,9 @@ public class BookServiceImpl implements BookService {
 
     private StateMachineManager stateMachineManager = new StateMachineManagerImpl();
 
+    /**
+     * Default constructor
+     */
     public BookServiceImpl() {
 
         final String contextPath = getClass().getResource(
