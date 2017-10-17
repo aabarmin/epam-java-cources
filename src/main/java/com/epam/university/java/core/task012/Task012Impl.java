@@ -2,7 +2,12 @@ package com.epam.university.java.core.task012;
 
 import com.epam.university.java.core.utils.common.Validator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
 
 /**
  * Class implements <code>Task012</code> interface.
@@ -31,12 +36,13 @@ public class Task012Impl implements Task012 {
         Validator.validateValueRange(to, 1, 1000,
                 Validator.MESSAGE_IF_VIOLATES_LOWER_BORDER,
                 Validator.MESSAGE_IF_VIOLATES_UPPER_BORDER);
-        Map<Integer, Set<Integer>> graphMap = new HashMap<>
-                (((GraphImpl) graph).getMapOfVertices());
+        Map<Integer, Set<Integer>> graphMap = new HashMap<>(((GraphImpl) graph)
+                .getMapOfVertices());
         if (!graphMap.containsKey(from)) {
             return false;
         } else {
-            return subFinder(new GraphImpl(graphMap, graphMap.size()), from, to);
+            return subFinder(new GraphImpl(graphMap, graphMap.size()),
+                    from, to);
         }
     }
 

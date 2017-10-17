@@ -74,30 +74,30 @@ public class Task034Impl implements Task034 {
                 XMLEvent xmlEvent = xmlEventReader.nextEvent();
                 if (xmlEvent.isStartElement()) {
                     StartElement startElement = xmlEvent.asStartElement();
-                    if (startElement.getName().getLocalPart().equals
-                            ("person")) {
+                    if (startElement.getName().getLocalPart().equals(
+                            "person")) {
                         person = new PersonImpl();
                         Attribute idAttr = startElement.getAttributeByName(
                                 new QName("id"));
                         if (idAttr != null) {
                             person.setId(Integer.parseInt(idAttr.getValue()));
                         }
-                    } else if (startElement.getName().getLocalPart().equals
-                            ("first-name")) {
+                    } else if (startElement.getName().getLocalPart().equals(
+                            "first-name")) {
                         if (person == null) {
                             person = new PersonImpl();
                         }
                         xmlEvent = xmlEventReader.nextEvent();
                         person.setFirstName(xmlEvent.asCharacters().getData());
-                    } else if (startElement.getName().getLocalPart().equals
-                            ("last-name")) {
+                    } else if (startElement.getName().getLocalPart().equals(
+                            "last-name")) {
                         if (person == null) {
                             person = new PersonImpl();
                         }
                         xmlEvent = xmlEventReader.nextEvent();
                         person.setLastName(xmlEvent.asCharacters().getData());
-                    } else if (startElement.getName().getLocalPart()
-                            .equals("person-phone")) {
+                    } else if (startElement.getName().getLocalPart().equals(
+                            "person-phone")) {
                         if (person == null) {
                             person = new PersonImpl();
                         }

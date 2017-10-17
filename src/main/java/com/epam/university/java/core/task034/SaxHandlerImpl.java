@@ -46,7 +46,7 @@ public class SaxHandlerImpl extends SaxHandler {
     }
 
     @Override
-    public void characters(char ch[], int start, int length) throws
+    public void characters(char[] ch, int start, int length) throws
             SAXException {
         if (isFirstName) {
             person.setFirstName(new String(ch, start, length));
