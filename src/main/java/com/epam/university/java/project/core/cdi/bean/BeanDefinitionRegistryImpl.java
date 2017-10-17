@@ -69,7 +69,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      *
      * @return collection of bean definitions
      */
-    public Collection<BeanDefinition> values () {
+    public Collection<BeanDefinition> values() {
         return beanNameRegistry.values();
     }
 }
