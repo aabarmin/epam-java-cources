@@ -38,8 +38,8 @@ public class Task029Impl implements Task029 {
      * @param verticalStartPositions   possible verticalStartPositions
      * @param checkedWords             checked words in set
      * @return <code>true</code> if position
-     * is found for another word or crossword
-     * is solved
+     *     is found for another word or crossword
+     *     is solved
      * @throws IllegalArgumentException if at least one of parameters is null
      */
     private boolean solveCross(char[][] crossWordMatrix, List<String> words,
@@ -80,7 +80,7 @@ public class Task029Impl implements Task029 {
      * @param horizontalStartPositions possible horizontalStartPositions
      * @param verticalStartPositions   possible verticalStartPositions
      * @return <code>true</code> if position is found for current word or
-     * crossword is solved
+     *     crossword is solved
      * @throws IllegalArgumentException if word to check is null
      */
     private boolean checkPosition(char[][] crossWordMatrix,
