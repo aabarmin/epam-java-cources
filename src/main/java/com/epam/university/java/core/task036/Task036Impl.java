@@ -10,15 +10,13 @@ public class Task036Impl implements Task036 {
     public double integrate(Function<Double, Double> function,
                             Integrator integrator, double limitLeft, double limitRight) {
 
-        Integrator integrator1 = integrator;
-
         // делаю составную квадратурную формулу
 
-        int n = 10;
+        int n = 9;
         double interval = (limitRight - limitLeft) / n;
         double result = 0;
         for (int i = 0; i < n; i++) {
-            result += integrator1.integrate(limitLeft + i * interval,
+            result += integrator.integrate(limitLeft + i * interval,
                     limitLeft + i * interval + interval,function);
         }
 
