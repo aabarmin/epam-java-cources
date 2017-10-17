@@ -31,11 +31,10 @@ public class ApplicationContextImpl implements ApplicationContext {
     @Override
     public int loadBeanDefinitions(Resource resource) {
         try {
+            // read bean definitions into beanDefinitionRegistry
             JAXBContext jc = JAXBContext.newInstance(
                     BeanDefinitionRegistryImpl.class);
-
             Unmarshaller u = jc.createUnmarshaller();
-
             beanDefinitionRegistry = (BeanDefinitionRegistryImpl)u.unmarshal(resource.getFile());
 
             return beanDefinitionRegistry.getSize();
@@ -63,23 +62,7 @@ public class ApplicationContextImpl implements ApplicationContext {
     @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
 
-        // full path to bean interface class
-        String fullInterfaceName = beanClass.getName();
-
-        // short bean name
-        String beanName = fullInterfaceName.substring(fullInterfaceName.lastIndexOf('.'));
-
-        if (!beanInstanceRegistry.containsKey(beanName)) {
-            try {
-                Class<?> clazz = Class.forName(fullInterfaceName + "Impl");
-                T obj = (T) clazz.newInstance();
-                beanInstanceRegistry.put(beanName, obj);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return (T) beanInstanceRegistry.get(beanName);
+        return (T) loadBeanByPath(beanClass.getName());
     }
 
     /**
@@ -92,8 +75,7 @@ public class ApplicationContextImpl implements ApplicationContext {
 
             // load from context
             BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
-            String clasName = beanDefinition.getClassName();
-            // ...
+            return loadBeanByPath(beanDefinition.getClassName());
         }
 
         return beanInstanceRegistry.get(beanName);
@@ -106,5 +88,35 @@ public class ApplicationContextImpl implements ApplicationContext {
     public <T> T getBean(String beanName, Class<T> beanClass) {
 
         return null;
+    }
+
+    /**
+     * Loads bean into context.
+     *
+     * @param beanPath - path like "com.epam.university.java.project.core.cdi.context.ChildBean"
+     *
+     * @return loaded class instance
+     */
+    private Object loadBeanByPath(String beanPath) {
+
+        // short bean interface name
+        String beanName = beanPath.substring(beanPath.lastIndexOf('.'));
+
+        if (!beanInstanceRegistry.containsKey(beanName)) {
+
+            String classPath = beanPath;
+            String impl = "Impl";
+            if (!classPath.substring(classPath.length() - impl.length()).equals(impl)) {
+                classPath += impl;
+            }
+            try {
+                Class<?> clazz = Class.forName(classPath);
+                Object obj = clazz.newInstance();
+                beanInstanceRegistry.put(beanName, obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return beanInstanceRegistry.get(beanName);
     }
 }

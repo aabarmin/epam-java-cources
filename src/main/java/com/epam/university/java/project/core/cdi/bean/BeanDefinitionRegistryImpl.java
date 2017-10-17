@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -21,15 +22,6 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
     // map of {Bean ID -> Bean class name}
     private Map<String, BeanDefinition> beanNameRegistry = new HashMap<>();
-
-    /**
-     * Get size of the registry.
-     *
-     * @return a number of bean definitions
-     */
-    public int getSize() {
-        return beanNameRegistry.size();
-    }
 
     @XmlElement(name = "bean")
     BeanDefinitionImpl[] getBeanNameRegistry() {
@@ -60,5 +52,24 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     public BeanDefinition getBeanDefinition(String beanId) {
 
         return beanNameRegistry.get(beanId);
+    }
+
+
+    /**
+     * Get size of the registry.
+     *
+     * @return a number of bean definitions
+     */
+    public int getSize() {
+        return beanNameRegistry.size();
+    }
+
+    /**
+     * Get collection of BeanDefinitions.
+     *
+     * @return collection of bean definitions
+     */
+    public Collection<BeanDefinition> values () {
+        return beanNameRegistry.values();
     }
 }
