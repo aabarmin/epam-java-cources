@@ -41,9 +41,6 @@ public class Task034Impl implements Task034 {
             JAXBContext jaxb = JAXBContext.newInstance(PersonImpl.class,PhoneNumberImpl.class);
             Unmarshaller unmarshaller = jaxb.createUnmarshaller();
             String resourcePath = getClass().getResource(filepath).getFile();
-            if (resourcePath.charAt(0) == '/') {
-                resourcePath = resourcePath.substring(1);
-            }
             return (Person) unmarshaller.unmarshal(Paths.get(resourcePath).toFile());
         } catch (JAXBException e) {
             e.printStackTrace();
