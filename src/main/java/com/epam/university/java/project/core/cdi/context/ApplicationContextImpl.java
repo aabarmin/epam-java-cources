@@ -2,6 +2,7 @@ package com.epam.university.java.project.core.cdi.context;
 
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
+import com.epam.university.java.project.core.cdi.bean.BeanPropertyDefinitionImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import javax.xml.bind.JAXBContext;
@@ -33,7 +34,8 @@ public class ApplicationContextImpl implements ApplicationContext {
         try {
             // read bean definitions into beanDefinitionRegistry
             JAXBContext jc = JAXBContext.newInstance(
-                    BeanDefinitionRegistryImpl.class);
+                    BeanDefinitionRegistryImpl.class,
+                    BeanPropertyDefinitionImpl.class);
             Unmarshaller u = jc.createUnmarshaller();
             beanDefinitionRegistry = (BeanDefinitionRegistryImpl)u.unmarshal(resource.getFile());
 
@@ -75,7 +77,8 @@ public class ApplicationContextImpl implements ApplicationContext {
 
             // load from context
             BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
-            return loadBeanByPath(beanDefinition.getClassName());
+
+            return loadBeanByName(beanDefinition.getClassName());
         }
 
         return beanInstanceRegistry.get(beanName);
@@ -118,5 +121,25 @@ public class ApplicationContextImpl implements ApplicationContext {
             }
         }
         return beanInstanceRegistry.get(beanName);
+    }
+
+    /**
+     * Loads bean into context.
+     *
+     * @param beanName - name like "ChildBean"
+     *
+     * @return loaded class instance
+     */
+    private <T> T loadBeanByName(String beanName) {
+
+        T obj = null;
+        try {
+            final Class<T> beanClass = (Class<T>) Class.forName(beanName);
+            obj = beanClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return obj;
     }
 }

@@ -30,7 +30,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
         return list.toArray(new BeanDefinitionImpl[list.size()]);
     }
 
-    public void setBeanNameRegistry(BeanDefinitionImpl[] arr) {
+    private void setBeanNameRegistry(BeanDefinitionImpl[] arr) {
         Arrays.stream(arr).forEach(this::addBeanDefinition);
     }
 
