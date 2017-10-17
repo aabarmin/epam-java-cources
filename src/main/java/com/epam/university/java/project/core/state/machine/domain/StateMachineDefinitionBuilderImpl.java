@@ -19,7 +19,10 @@ public class StateMachineDefinitionBuilderImpl implements StateMachineDefinition
      * {@inheritDoc}
      */
     @Override
-    public StateMachineDefinitionBuilder addState(Object from, Object to, Object on, String method) {
+    public StateMachineDefinitionBuilder addState(Object from,
+                                                  Object to,
+                                                  Object on,
+                                                  String method) {
         return null;
     }
 

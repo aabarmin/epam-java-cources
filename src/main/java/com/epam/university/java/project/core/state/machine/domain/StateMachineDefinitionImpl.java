@@ -1,62 +1,102 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
+import com.epam.university.java.project.domain.BookEvent;
+import com.epam.university.java.project.domain.BookStatus;
+
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
+
+import static javax.xml.bind.annotation.XmlAccessType.FIELD;
 
 /**
  * Implementation class for StateMachineDefinition.
  *
  * @author Sergei Titov
  */
-public class StateMachineDefinitionImpl implements StateMachineDefinition {
+@XmlRootElement(name = "definition")
+@XmlAccessorType(FIELD)
+public class StateMachineDefinitionImpl implements StateMachineDefinition<BookStatus, BookEvent> {
+
+    @XmlAttribute(name = "startEvent")
+    private BookEvent startEvent;
+
+    @XmlAttribute(name = "startState")
+    private BookStatus startState;
+
+    @XmlAttribute(name = "handler")
+    private String handler;
+
+    private Class<? extends StateMachineEventHandler> eventHandler = null;
+
+    @XmlElement(name = "transition", type = StateMachineStateImpl.class)
+    Collection<StateMachineState<BookStatus, BookEvent>> transitions;
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object getStartEvent() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Object getStartState() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setStartEvent(Object o) {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setStartState(Object o) {
-
-    }
-
-    @Override
-    public Collection<StateMachineState> getStates() {
-        return null;
+    public BookEvent getStartEvent() {
+        return startEvent;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addState(StateMachineState state) {
-
+    public BookStatus getStartState() {
+        return startState;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
+    public void setStartEvent(BookEvent o) {
+        this.startEvent = o;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setStartState(BookStatus o) {
+        this.startState = o;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<StateMachineState<BookStatus, BookEvent>> getStates() {
+        return transitions;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addState(StateMachineState<BookStatus, BookEvent> state) {
+        transitions.add(state);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressWarnings("unchecked")
     public Class<? extends StateMachineEventHandler> getHandlerClass() {
-        return null;
+
+        if (null == eventHandler) {
+            try {
+                eventHandler = (Class<? extends StateMachineEventHandler>) Class.forName(handler);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return eventHandler;
     }
 
     /**
@@ -64,6 +104,15 @@ public class StateMachineDefinitionImpl implements StateMachineDefinition {
      */
     @Override
     public void setHandlerClass(Class handlerClass) {
-
+        this.eventHandler = eventHandler;
     }
+
+    public String getHandler() {
+        return handler;
+    }
+
+    public void setHandler(String handler) {
+        this.handler = handler;
+    }
+
 }

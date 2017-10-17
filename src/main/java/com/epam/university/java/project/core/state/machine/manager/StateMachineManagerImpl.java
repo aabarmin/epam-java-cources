@@ -1,8 +1,14 @@
 package com.epam.university.java.project.core.state.machine.manager;
 
-import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinitionImpl;
 import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineEventHandler;
 import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
+
+import com.epam.university.java.project.core.cdi.io.Resource;
+
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBContext;
 
 /**
  * Implementation class for StateMachineManager.
@@ -16,7 +22,19 @@ public class StateMachineManagerImpl implements StateMachineManager {
      */
     @Override
     public StateMachineDefinition<?, ?> loadDefinition(Resource resource) {
-        return null;
+
+        StateMachineDefinition stateMachineDefinition = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(
+                    StateMachineDefinitionImpl.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            stateMachineDefinition = (StateMachineDefinition) unmarshaller
+                    .unmarshal(resource.getFile());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return stateMachineDefinition;
     }
 
     /**
@@ -25,7 +43,9 @@ public class StateMachineManagerImpl implements StateMachineManager {
     @Override
     public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity,
                                                         StateMachineDefinition<S, E> definition) {
-        return null;
+
+        entity.setStateMachineDefinition(definition);
+        return entity;
     }
 
     /**
@@ -33,6 +53,20 @@ public class StateMachineManagerImpl implements StateMachineManager {
      */
     @Override
     public <S, E> StatefulEntity<S, E> handleEvent(StatefulEntity<S, E> entity, E event) {
+
+        try {
+            // get book's state machine
+            final StateMachineDefinition<S, E> definition = entity.getStateMachineDefinition();
+            if (null == definition) {
+                return null;
+            }
+            // get handler name
+            StateMachineEventHandler handlerName = definition.getHandlerClass().newInstance();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }

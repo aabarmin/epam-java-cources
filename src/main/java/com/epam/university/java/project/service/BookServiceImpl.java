@@ -4,15 +4,13 @@ import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManagerImpl;
 import com.epam.university.java.project.domain.Book;
+import com.epam.university.java.project.domain.BookEvent;
 import com.epam.university.java.project.domain.BookImpl;
 
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.epam.university.java.project.domain.BookStatus.ACCOUNTED;
-import static com.epam.university.java.project.domain.BookStatus.ISSUED;
 
 /**
  * Implementation class for BookService.
@@ -91,9 +89,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book accept(Book book, String number) {
-
-        book.setState(ACCOUNTED);
-        return book;
+        book.setSerialNumber(number);
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.ACCEPT);
     }
 
     /**
@@ -101,9 +98,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book issue(Book book, LocalDate returnDate) {
-
-        book.setState(ISSUED);
-        return book;
+        book.setReturnDate(returnDate);
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.ISSUE);
     }
 
     /**
@@ -111,8 +107,6 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book returnFromIssue(Book book) {
-
-        book.setState(ACCOUNTED);
-        return book;
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.RETURN);
     }
 }

@@ -17,6 +17,10 @@ public class BookImpl implements Book {
 
     private int id = 0;
     private String title;
+    private String serial;
+
+    private LocalDate returnDate;
+
     private ArrayList<String> authors = new ArrayList<>();
 
     private BookStatus status = DRAFT;
@@ -74,7 +78,7 @@ public class BookImpl implements Book {
      */
     @Override
     public String getSerialNumber() {
-        return null;
+        return serial;
     }
 
     /**
@@ -82,12 +86,12 @@ public class BookImpl implements Book {
      */
     @Override
     public void setSerialNumber(String value) {
-
+        this.serial = serial;
     }
 
     @Override
     public LocalDate getReturnDate() {
-        return null;
+        return returnDate;
     }
 
     /**
@@ -95,7 +99,7 @@ public class BookImpl implements Book {
      */
     @Override
     public void setReturnDate(LocalDate date) {
-
+        this.returnDate = returnDate;
     }
 
     /**

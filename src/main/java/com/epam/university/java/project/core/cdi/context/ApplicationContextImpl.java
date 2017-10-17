@@ -134,6 +134,7 @@ public class ApplicationContextImpl implements ApplicationContext {
 
         T obj = null;
         try {
+            @SuppressWarnings("unchecked")
             final Class<T> beanClass = (Class<T>) Class.forName(beanName);
             obj = beanClass.newInstance();
         } catch (Exception e) {
