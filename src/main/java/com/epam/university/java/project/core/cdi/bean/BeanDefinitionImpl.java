@@ -1,6 +1,8 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Collection;
 
 /**

@@ -39,7 +39,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     }
 
     public void setBeanNameRegistry(BeanDefinitionImpl[] arr) {
-        Arrays.stream(arr).forEach( this::addBeanDefinition );
+        Arrays.stream(arr).forEach(this::addBeanDefinition);
     }
 
     /**

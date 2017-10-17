@@ -46,12 +46,11 @@ public class Task035Impl implements Task035 {
     @Override
     public Person readWithGson(GsonBuilder builder, String jsonString) {
 
-        builder.registerTypeAdapter(PhoneNumber.class, (JsonDeserializer<PhoneNumber>)
+        builder.registerTypeAdapter(PhoneNumber.class,
+                (JsonDeserializer<PhoneNumber>)
                         (jsonElement, type, jsonDeserializationContext)
                                 -> new PhoneNumberImpl(jsonElement.getAsString()));
 
-        final Gson gson = builder.create();
-
-        return gson.fromJson(jsonString, PersonImpl.class);
+        return builder.create().fromJson(jsonString, PersonImpl.class);
     }
 }

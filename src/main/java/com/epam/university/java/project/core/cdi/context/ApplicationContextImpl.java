@@ -1,12 +1,12 @@
 package com.epam.university.java.project.core.cdi.context;
 
-import com.epam.university.java.project.core.cdi.bean.*;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,14 +19,12 @@ import java.util.Map;
 public class ApplicationContextImpl implements ApplicationContext {
 
     // map of {Bean ID -> Bean instance}
-    private Map<String, BeanDefinition> beanInstanceRegistry = new HashMap<>();
+    private Map<String, Object> beanInstanceRegistry = new HashMap<>();
 
     // map of {Bean ID -> Bean class name} container
     private BeanDefinitionRegistryImpl beanDefinitionRegistry;
 
-/*    private BeanDefinitionReader beanDefinitionReader = new BeanDefinitionReaderImpl(beanRegistry);
-    private BeanFactory beanFactory = new BeanFactoryImpl(beanRegistry);
-*/
+
     /**
      * {@inheritDoc}
      */
@@ -62,21 +60,26 @@ public class ApplicationContextImpl implements ApplicationContext {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
 
-    //    String className = ;
+        // full path to bean interface class
+        String fullInterfaceName = beanClass.getName();
 
-        try {
-            Class<?> clazz = Class.forName(beanClass.getName() + "Impl");
-            T obj = (T)clazz.newInstance();
+        // short bean name
+        String beanName = fullInterfaceName.substring(fullInterfaceName.lastIndexOf('.'));
 
-            return obj;
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (!beanInstanceRegistry.containsKey(beanName)) {
+            try {
+                Class<?> clazz = Class.forName(fullInterfaceName + "Impl");
+                T obj = (T) clazz.newInstance();
+                beanInstanceRegistry.put(beanName, obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        return null;
+        return (T) beanInstanceRegistry.get(beanName);
     }
 
     /**
@@ -87,10 +90,10 @@ public class ApplicationContextImpl implements ApplicationContext {
 
         if (!beanInstanceRegistry.containsKey(beanName)) {
 
+            // load from context
             BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
             String clasName = beanDefinition.getClassName();
-
-            beanInstanceRegistry.put(beanName, null);
+            // ...
         }
 
         return beanInstanceRegistry.get(beanName);

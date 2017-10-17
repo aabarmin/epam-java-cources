@@ -22,49 +22,56 @@ public class BookServiceImpl implements BookService {
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Book getBook(int id) {
         return null;
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Collection<Book> getBooks() {
         return null;
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public void remove(Book book) {
 
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Book save(Book book) {
         return null;
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Book accept(Book book, String number) {
         return null;
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Book issue(Book book, LocalDate returnDate) {
         return null;
     }
 
     /**
      * {@inheritDoc}
-     */    @Override
+     */
+    @Override
     public Book returnFromIssue(Book book) {
         return null;
     }
