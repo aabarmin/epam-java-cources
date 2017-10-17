@@ -19,7 +19,8 @@ public class XmlBeanDefinitionReader implements BeanDefinitionReader {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinitionsContainer.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            BeanDefinitionsContainer container = (BeanDefinitionsContainer) unmarshaller.unmarshal(resource.getFile());
+            BeanDefinitionsContainer container =
+                    (BeanDefinitionsContainer) unmarshaller.unmarshal(resource.getFile());
             for (BeanDefinition beanDefinition : container.getBeans()) {
                 registry.addBeanDefinition((beanDefinition));
             }

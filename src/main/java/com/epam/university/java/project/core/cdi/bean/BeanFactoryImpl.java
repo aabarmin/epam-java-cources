@@ -94,12 +94,15 @@ public class BeanFactoryImpl implements BeanFactory {
 
     /**
      * put property value from definition to field in instance.
-     * @param instance object with target field;
-     * @param field field in target object;
+     *
+     * @param instance   object with target field;
+     * @param field      field in target object;
      * @param definition value for field;
-     * @throws IllegalAccessException
+     * @throws IllegalAccessException when can't set value;
      */
-    private void setPropertyValue(Object instance, Field field, BeanPropertyDefinition definition) throws IllegalAccessException {
+    private void setPropertyValue(Object instance,
+                                  Field field,
+                                  BeanPropertyDefinition definition) throws IllegalAccessException {
         if (definition.getValue() != null) {
             if (field.getType().isPrimitive()) {
                 if ((int.class).equals(field.getType())) {
@@ -115,17 +118,23 @@ public class BeanFactoryImpl implements BeanFactory {
 
     /**
      * put property data to the field in instance.
-     * @param instance target bean object;
-     * @param field field in target object;
+     *
+     * @param instance   target bean object;
+     * @param field      field in target object;
      * @param definition data for field in target object
-     * @throws IllegalAccessException when can't find get method for data in definition
-     * @throws IntrospectionException then can't find get-method for data in definition
+     * @throws IllegalAccessException    when can't find get method for data in definition
+     * @throws IntrospectionException    then can't find get-method for data in definition
      * @throws InvocationTargetException when field has type incompatible with it's name
      */
-    private void setPropertyData(Object instance, Field field, BeanPropertyDefinition definition) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
+    private void setPropertyData(Object instance,
+                                 Field field,
+                                 BeanPropertyDefinition definition)
+            throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         if (definition.getData() != null) {
             Class propDefClass = definition.getData().getClass();
-            Method m = Introspector.getBeanInfo(propDefClass).getPropertyDescriptors()[1].getReadMethod();
+            Method m = Introspector.getBeanInfo(propDefClass)
+                    .getPropertyDescriptors()[1]
+                    .getReadMethod();
 
             Object result = m.invoke(definition.getData());
             //lists
@@ -134,24 +143,24 @@ public class BeanFactoryImpl implements BeanFactory {
                 return;
             }
             //maps
-           if (field.getName().startsWith("string")) {
+            if (field.getName().startsWith("string")) {
                 Map<Object, Object> resultMap =
                         ((ArrayList<MapEntryDefinitionImpl>) result).stream()
                                 .collect(HashMap<Object, Object>::new,
-                                        (q, c) -> q.put(c.getKey(),
-                                                c.getValue()),
-                                        (q, u) -> {
-                                        });
+                                    (q, c) -> q.put(c.getKey(),
+                                            c.getValue()),
+                                    (q, u) -> {
+                                    });
                 field.set(instance, resultMap);
             }
             if (field.getName().startsWith("object")) {
                 Map<String, Object> resultMap =
                         ((ArrayList<MapEntryDefinitionImpl>) result)
                                 .stream().collect(HashMap<String, Object>::new,
-                                (q, c) -> q.put(c.getKey(),
-                                        getBean(c.getRef())),
-                                (q, u) -> {
-                                });
+                                    (q, c) -> q.put(c.getKey(),
+                                            getBean(c.getRef())),
+                                    (q, u) -> {
+                                    });
                 field.set(instance, resultMap);
             }
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-public class BookImpl implements  Book {
+public class BookImpl implements Book {
     int id;
     String title;
     Collection<String> authors;
@@ -14,6 +14,7 @@ public class BookImpl implements  Book {
     LocalDate returnDate;
     BookStatus state = BookStatus.DRAFT;
     private StateMachineDefinition<BookStatus, BookEvent> stateMachineDefinition;
+
     @Override
     public int getId() {
         return id;
@@ -86,7 +87,8 @@ public class BookImpl implements  Book {
     }
 
     @Override
-    public void setStateMachineDefinition(StateMachineDefinition<BookStatus, BookEvent> definition) {
+    public void setStateMachineDefinition(StateMachineDefinition<BookStatus,
+            BookEvent> definition) {
         this.stateMachineDefinition = definition;
 
     }

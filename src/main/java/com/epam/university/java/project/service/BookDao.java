@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * Data access object for books.
  */
-public interface BookDao {
+public interface    BookDao {
     /**
      * Create new book instance.
      * @return new book instance
