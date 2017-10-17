@@ -103,6 +103,7 @@ public class BookImpl implements Book {
      */
     @Override
     public BookStatus getState() {
+
         return status;
     }
 
@@ -111,6 +112,7 @@ public class BookImpl implements Book {
      */
     @Override
     public void setState(BookStatus bookStatus) {
+
         this.status = bookStatus;
     }
 

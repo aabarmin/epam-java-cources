@@ -34,7 +34,6 @@ public class BookServiceImpl implements BookService {
         stateMachineManager.loadDefinition(new XmlResource(contextPath));
     }
 
-
     /**
      * {@inheritDoc}
      */
