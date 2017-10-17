@@ -8,7 +8,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
-        map.put(definition.getId(), definition);
+        map.put(definition.getId().toLowerCase(), definition);
 
     }
 
