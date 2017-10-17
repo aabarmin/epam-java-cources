@@ -25,7 +25,7 @@ public class ServerImpl implements Server {
     @Override
     public String readMessage() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(800);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

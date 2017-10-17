@@ -25,8 +25,8 @@ public class Holder {
     /**
      * Constructor.
      *
-     * @param xCoords
-     * @param yCoords
+     * @param xCoords array x coordinates
+     * @param yCoords array y coordinates
      */
     public Holder(int[] xCoords, int[] yCoords) {
         this.xCoords = xCoords;
@@ -36,8 +36,8 @@ public class Holder {
     /**
      * Get coords of letter.
      *
-     * @param letter
-     * @return
+     * @param letter given letter
+     * @return array of x y coords
      */
     public int[] getLetterCoors(char letter) {
         int[] coords = null;
@@ -55,9 +55,9 @@ public class Holder {
      * Another method for getting coords of letter.
      * Honestly just Kostyl.
      *
-     * @param letter
-     * @param end
-     * @return
+     * @param letter given letter
+     * @param end    magic key
+     * @return array of x y coords
      */
     public int[] getLetterCoors(char letter, boolean end) {
         int[] coords = null;
@@ -74,8 +74,8 @@ public class Holder {
     /**
      * Check if word can be put in line.
      *
-     * @param word
-     * @return
+     * @param word given word
+     * @return true if line has word
      */
     public boolean isSuitableWord(String word) {
         if (word.length() == xCoords.length) {
@@ -88,12 +88,18 @@ public class Holder {
     /**
      * check if line has word.
      *
-     * @return
+     * @return true if has or flase if not
      */
     public boolean hasWord() {
         return word != null;
     }
 
+    /**
+     * Check if line has given coords.
+     *
+     * @param coords given coords
+     * @return true if has or false if not
+     */
     public boolean hasCoords(int[] coords) {
         boolean x = false;
         boolean y = false;
@@ -112,8 +118,8 @@ public class Holder {
     /**
      * Build skelet of crossword without word by given strings.
      *
-     * @param rows
-     * @return
+     * @param rows given list of string with pluses and minuses
+     * @return collection of lines with coords with minuses
      */
     public static Collection<Holder> holderBuilder(Collection<String> rows) {
         List<Holder> holders = new ArrayList<>();
@@ -168,8 +174,8 @@ public class Holder {
     /**
      * Lines goes to arrays for beauty.
      *
-     * @param result
-     * @return
+     * @param result place to put all words
+     * @return given array but with words
      */
     public char[][] putMyselfInArr(char[][] result) {
         for (int y = 0; y < word.length(); y++) {

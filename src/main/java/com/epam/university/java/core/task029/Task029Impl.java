@@ -57,9 +57,9 @@ public class Task029Impl implements Task029 {
     /**
      * Some checking.
      *
-     * @param list
-     * @param coords
-     * @return
+     * @param list   list of holders
+     * @param coords coords to check them
+     * @return Holder which has given coords
      */
     private Holder holderHasCoords(List<Holder> list, int[] coords) {
         Holder result = null;
@@ -74,10 +74,10 @@ public class Task029Impl implements Task029 {
     /**
      * Getting result array by filling strings in array with letters and pluses.
      *
-     * @param holders
-     * @param width
-     * @param height
-     * @return
+     * @param holders list of filled holders
+     * @param width   width of result array
+     * @param height  height of result array
+     * @return result list of words and pluses
      */
     private Collection<String> resultRows(Collection<Holder> holders, int width, int height) {
         List<String> mainList = new ArrayList<>();

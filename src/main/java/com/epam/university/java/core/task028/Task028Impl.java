@@ -21,7 +21,7 @@ public class Task028Impl implements Task028 {
      * @param value given value
      * @param power power
      * @param start value from which we start to search
-     * @return
+     * @return number of ways.
      */
     static int findByRecursion(int value, int power, int start) {
         if (value == 0) {
