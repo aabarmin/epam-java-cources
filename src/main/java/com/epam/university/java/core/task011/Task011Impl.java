@@ -8,6 +8,12 @@ import java.util.ListIterator;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
+        if (collection == null || collection.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        if (collection.length == 1) {
+            return collection[0];
+        }
         String stayPerson = null;
         int i = 0;
         while (true) {
@@ -29,6 +35,12 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
+        if (collection == null || collection.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        if (collection.size() == 1) {
+            return collection.get(0);
+        }
         String stayPerson = null;
         int i = 0;
         while (true) {
@@ -47,6 +59,9 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
+        if (collection == null || collection.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         String person = null;
         while (!collection.isEmpty()) {
             person = collection.removeFirst();

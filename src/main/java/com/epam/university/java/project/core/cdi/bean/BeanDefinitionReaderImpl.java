@@ -1,7 +1,6 @@
 package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.io.Resource;
-import com.sun.org.apache.regexp.internal.RE;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
