@@ -1,7 +1,7 @@
 package com.epam.university.java.project.core.cdi.context;
 
-import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import javax.xml.bind.JAXBContext;

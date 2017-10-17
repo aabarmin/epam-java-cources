@@ -20,6 +20,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
     private String className;
 
     private String scope;
+
     private String postConstruct;
 
     /**
