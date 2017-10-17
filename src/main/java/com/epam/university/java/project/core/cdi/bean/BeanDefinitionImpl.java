@@ -1,6 +1,10 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,21 +21,21 @@ public class BeanDefinitionImpl implements BeanDefinition {
     @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> properties = new ArrayList<>();
 
-    @XmlAttribute(name ="init")
+    @XmlAttribute(name = "init")
     private String postConstruct;
 
-    @XmlAttribute(name ="scope")
+    @XmlAttribute(name = "scope")
     private String scope;
 
     @Override
     public String toString() {
-        return "BeanDefinitionImpl{" +
-                "id='" + id + '\'' +
-                ", \nclassName='" + className + '\'' +
-                ", \nproperties=" + properties +
-                ", \npostConstruct='" + postConstruct + '\'' +
-                ", \nscope='" + scope + '\'' +
-                '}';
+        return "BeanDefinitionImpl{"
+                + "id='" + id + '\''
+                + ", \nclassName='" + className + '\''
+                + ", \nproperties=" + properties
+                + ", \npostConstruct='" + postConstruct + '\''
+                + ", \nscope='" + scope + '\''
+                + '}';
     }
 
     @Override

@@ -26,7 +26,7 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
             BeansCollection beans = (BeansCollection) unmarshaller.unmarshal(resource.getFile());
             for (BeanDefinition bean : beans.getBeans()) {
                 registry.addBeanDefinition(bean);
-                System.out.println(bean);
+                //System.out.println(bean);
             }
             return beans.getBeans().size();
         } catch (JAXBException e) {

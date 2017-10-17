@@ -16,9 +16,8 @@ public class MapDefinitionImpl implements MapDefinition {
 
     @Override
     public String toString() {
-        return "\n\tMapDefinitionImpl{" +
-                "\n\tvalues=" + values +
-                '}';
+        return "\n\tMapDefinitionImpl{"
+                + "\n\tvalues=" + values + '}';
     }
 
     @Override
@@ -46,11 +45,10 @@ public class MapDefinitionImpl implements MapDefinition {
 
         @Override
         public String toString() {
-            return "\n\tMapEntryDefinitionImpl{" +
-                    "\n\tkey='" + key + '\'' +
-                    ", \n\tvalue='" + value + '\'' +
-                    ", \n\tref='" + ref + '\'' +
-                    '}';
+            return "\n\tMapEntryDefinitionImpl{"
+                    + "\n\tkey='" + key + '\''
+                    + ", \n\tvalue='" + value + '\''
+                    + ", \n\tref='" + ref + '\'' + '}';
         }
 
         @Override

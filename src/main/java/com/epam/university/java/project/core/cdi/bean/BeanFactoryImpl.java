@@ -36,6 +36,7 @@ public class BeanFactoryImpl implements BeanFactory {
         String beanId = beanName.substring(beanName.lastIndexOf(".") + 1)
                 .replace("Interface", "");
         beanId = beanId.substring(0, 1).toLowerCase() + beanId.substring(1);
+
         BeanDefinition definition = registry.getBeanDefinition(beanId);
         if (definition == null) {
             return null;
@@ -61,7 +62,7 @@ public class BeanFactoryImpl implements BeanFactory {
                         field.set(bean, property.getValue());
                     }
 
-                } else if (property.getRef() != null){
+                } else if (property.getRef() != null) {
                     field.set(bean, getBean(property.getRef()));
 
                 } else if (property.getData() != null) {
@@ -69,7 +70,7 @@ public class BeanFactoryImpl implements BeanFactory {
 
                     if (data instanceof ListDefinition) {
                         List<String> items = new ArrayList<>();
-                        for (ListItemDefinition dataItem : ((ListDefinition) data).getItems()){
+                        for (ListItemDefinition dataItem : ((ListDefinition) data).getItems()) {
                             items.add(dataItem.getValue());
                         }
                         field.set(bean, items);
@@ -100,6 +101,7 @@ public class BeanFactoryImpl implements BeanFactory {
             }
             return bean;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
     }
