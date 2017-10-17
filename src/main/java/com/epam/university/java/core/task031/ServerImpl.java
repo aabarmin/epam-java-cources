@@ -8,7 +8,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by ilya on 08.10.17.
@@ -25,26 +29,15 @@ public class ServerImpl implements Server, Runnable {
 
     private List<Thread> consumers = new ArrayList<>();
 
-    /**
-     * Constructor.
-     */
-    public ServerImpl() {
-        try {
-            serverSocket = new ServerSocket(6000);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public String readMessage() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         if (!serverThread.isInterrupted()) {
-            while (readed == false) {
+            while (!readed) {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -63,6 +56,11 @@ public class ServerImpl implements Server, Runnable {
 
     @Override
     public void start() {
+        try {
+            serverSocket = new ServerSocket(6000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         serverThread = new Thread(this);
         serverThread.start();
     }
@@ -75,9 +73,7 @@ public class ServerImpl implements Server, Runnable {
         try {
             Thread.sleep(2000);
             serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

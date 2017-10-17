@@ -21,6 +21,11 @@ public class BeanFactoryImpl implements BeanFactory {
     private Map<Class, Function<String, Object>> parsers = new HashMap<>();
     private Map<String, Object> singletones = new HashMap<>();
 
+    /**
+     * Constructor of BeanFactoryImpl.
+     *
+     * @param registry input BeanDefinitionRegistry
+     */
     public BeanFactoryImpl(
         BeanDefinitionRegistry registry) {
         this.registry = registry;
@@ -40,6 +45,12 @@ public class BeanFactoryImpl implements BeanFactory {
         return checkRegistry(beanName);
     }
 
+    @Override
+    public <T> T getBean(String beanName, Class<T> beanClass) {
+        return checkRegistry(beanName);
+    }
+
+    @SuppressWarnings("unchecked")
     private <T> T checkRegistry(String beanName) {
         BeanDefinition beanDefinition = registry.getBeanDefinition(beanName);
         if (beanDefinition != null) {
@@ -66,11 +77,7 @@ public class BeanFactoryImpl implements BeanFactory {
         throw new IllegalArgumentException("bean not defined");
     }
 
-    @Override
-    public <T> T getBean(String beanName, Class<T> beanClass) {
-        return checkRegistry(beanName);
-    }
-
+    @SuppressWarnings("unchecked")
     private <T> T getBeanByDefinition(BeanDefinition definition) {
         T bean = null;
 
@@ -193,9 +200,9 @@ public class BeanFactoryImpl implements BeanFactory {
     }
 
     private boolean checkProp(BeanPropertyDefinition propertyDefinition) {
-        return propertyDefinition.getValue() == null &&
-            propertyDefinition.getData() == null &&
-            propertyDefinition.getRef() == null;
+        return propertyDefinition.getValue() == null
+            && propertyDefinition.getData() == null
+            && propertyDefinition.getRef() == null;
     }
 
     private class Entry<T> {

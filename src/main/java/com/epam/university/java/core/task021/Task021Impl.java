@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 /**
@@ -17,14 +18,14 @@ public class Task021Impl implements Task021 {
 
     @Override
     public Point calculate(Collection<Point> minePositions) {
-        Map<Double, Point> corners = new HashMap();
+        Map<Double, Point> corners = new HashMap<>();
 
         roundIterationThree(corners, minePositions,
             (p1, p2, p3) -> (new Corner(p1, p2, p3).getAngle()));
 
         List<Point> pointList = corners.entrySet().stream()
             .filter(e -> e.getKey() >= 120)
-            .map(e -> e.getValue())
+            .map(Entry::getValue)
             .collect(Collectors.toList());
 
         if (!pointList.isEmpty()) {

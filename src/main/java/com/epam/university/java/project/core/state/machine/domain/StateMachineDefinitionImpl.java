@@ -54,6 +54,7 @@ public class StateMachineDefinitionImpl implements StateMachineDefinition<BookSt
         states.add(state);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Class<? extends StateMachineEventHandler> getHandlerClass() {
         try {

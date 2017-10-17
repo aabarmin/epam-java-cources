@@ -32,13 +32,17 @@ public class Task011Impl implements Task011 {
             throw new IllegalArgumentException();
         }
 
-        List<String> result = (LinkedList<String>) collection.clone();
+        List<String> result = new LinkedList<>(collection);
 
         int i = 0;
 
         while (result.size() != 1) {
-            result.remove(i % result.size());
-            i += 2;
+            if (i < result.size()) {
+                result.remove(i);
+                i++;
+            } else {
+                i %= result.size();
+            }
         }
 
         return result.get(0);

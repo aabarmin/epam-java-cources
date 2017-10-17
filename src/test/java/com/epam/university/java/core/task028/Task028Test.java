@@ -46,6 +46,7 @@ public class Task028Test {
         );
 
     }
+
     @Test
     public void test1000with10() throws Exception {
         assertEquals("Incorrect value",
@@ -63,7 +64,7 @@ public class Task028Test {
     }
 
 
-    //@Test
+    @Test
     public void test4000() throws Exception {
         assertEquals("Incorrect value",
             1751141,

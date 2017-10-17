@@ -9,74 +9,38 @@ import java.net.Socket;
 /**
  * Created by ilya on 08.10.17.
  */
-public class ClientImpl implements Client, Runnable {
+public class ClientImpl implements Client {
 
     private Socket socket;
 
-    private String massage;
-
-    private Thread clientThread;
-
-    private boolean sended = false;
-
-    /**
-     * Constructor.
-     */
-    public ClientImpl() {
-        try {
-            socket = new Socket(InetAddress.getLocalHost(), 6000);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private BufferedWriter writer;
 
     @Override
     public void sendMessage(String message) {
-        if (massage != null) {
-            while (sended == false) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        try {
+            writer.write(message + "\n");
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        sended = false;
-        this.massage = message;
+        System.out.println("Sended: " + message);
     }
 
     @Override
     public void start() {
-        clientThread = new Thread(this);
-        clientThread.start();
-    }
-
-    @Override
-    public void stop() {
-        clientThread.interrupt();
         try {
-            Thread.sleep(2000);
-            socket.close();
+            socket = new Socket(InetAddress.getLocalHost(), 6000);
+            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void run() {
-        try (final BufferedWriter writer = new BufferedWriter(
-            new OutputStreamWriter(socket.getOutputStream()))) {
-            while (!clientThread.isInterrupted()) {
-                if (massage != null) {
-                    writer.write(massage + "\n");
-                    writer.flush();
-                    System.out.println("Sended: " + massage);
-                    massage = null;
-                    sended = true;
-                }
-            }
+    public void stop() {
+        try {
+            writer.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

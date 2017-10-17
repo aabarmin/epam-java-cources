@@ -9,7 +9,6 @@ public class Task028Impl implements Task028 {
 
     private int varCounter;
     private int[] powers;
-    private int value;
     private int length;
 
     @Override
@@ -21,24 +20,27 @@ public class Task028Impl implements Task028 {
             .limit(max)
             .map(n -> (int) Math.pow(n, power))
             .mapToInt(n -> n).toArray();
+
         this.powers = powers;
         length = powers.length;
-        this.value = value;
-        recursionFind(0, 0);
+        recursionFind(length - 1, value);
 
         return varCounter;
     }
 
-    private void recursionFind(int counter, int sum) {
-        if (counter >= length) {
-            if (sum == value) {
+    private void recursionFind(int counter, int difference) {
+        if (difference < 0) {
+            return;
+        }
+        if (counter < 0) {
+            if (difference == 0) {
                 varCounter++;
             }
             return;
         }
 
-        recursionFind(counter + 1, sum);
-        recursionFind(counter + 1, sum + powers[counter]);
+        recursionFind(counter - 1, difference);
+        recursionFind(counter - 1, difference - powers[counter]);
 
     }
 

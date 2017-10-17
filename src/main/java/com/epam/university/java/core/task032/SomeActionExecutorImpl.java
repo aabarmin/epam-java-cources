@@ -13,6 +13,7 @@ public class SomeActionExecutorImpl implements SomeActionExecutor {
         this.countingProxy = countingProxy;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void doAction() {
         //do something
@@ -27,6 +28,7 @@ public class SomeActionExecutorImpl implements SomeActionExecutor {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void doAnotherAction() {
         //do something else

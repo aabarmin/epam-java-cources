@@ -12,14 +12,16 @@ import java.util.Collection;
 public class BookServiceImpl implements BookService {
     private BookDao bookDao = new BookDaoXmlImpl();
     private StateMachineManager stateMachineManager = new StateMachineManagerImpl();
-    private StateMachineDefinition<BookStatus, BookEvent> definitions;
 
+    @SuppressWarnings("unchecked")
     @Override
     public Book createBook() {
         Book book = bookDao.createBook();
-        definitions = (StateMachineDefinition<BookStatus, BookEvent>) stateMachineManager
-            .loadDefinition(new XmlResource(getClass().getResource
-                ("/project/DefaultBookStateMachineDefinition.xml").getFile()));
+        StateMachineDefinition<BookStatus, BookEvent> definitions =
+            (StateMachineDefinition<BookStatus, BookEvent>) stateMachineManager
+            .loadDefinition(new XmlResource(getClass().getResource(
+                "/project/DefaultBookStateMachineDefinition.xml").getFile())
+            );
         stateMachineManager.initStateMachine(book, definitions);
         book = (Book)stateMachineManager.handleEvent(book, BookEvent.CREATE);
         return book;

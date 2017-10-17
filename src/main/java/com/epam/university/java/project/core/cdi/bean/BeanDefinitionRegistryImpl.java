@@ -28,6 +28,12 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
         return idRegistry.get(beanId);
     }
 
+    /**
+     * Find in registry inherited classes.
+     *
+     * @param className parent class name
+     * @return bean definition or null
+     */
     public BeanDefinition getByInferitance(String className) {
         try {
             Class findClass = Class.forName(className);

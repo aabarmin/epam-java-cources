@@ -15,5 +15,6 @@ public interface Task037 {
      * @return collection of tick-tack's
      */
     Collection<String> switcher(Callable<String> ticker,
-                                Callable<String> tacker) throws ExecutionException, InterruptedException;
+                                Callable<String> tacker)
+        throws ExecutionException, InterruptedException;
 }
