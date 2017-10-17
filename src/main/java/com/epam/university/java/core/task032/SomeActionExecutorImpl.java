@@ -3,7 +3,7 @@ package com.epam.university.java.core.task032;
 import com.epam.university.java.core.utils.common.Logger;
 
 /**
- * Class implements Task032.
+ * Class implements <code>Task032</code> interface.
  */
 public class SomeActionExecutorImpl implements SomeActionExecutor {
     private Logger logger = new Logger();

@@ -8,9 +8,11 @@ import javax.xml.stream.XMLStreamReader;
  * Read the XML.
  */
 public interface Task034 {
+
     /**
      * Parse XML document with SAX parser.
-     * @param handler sax handler
+     *
+     * @param handler  sax handler
      * @param filepath path to file with xml
      * @return parsed data
      */
@@ -18,6 +20,7 @@ public interface Task034 {
 
     /**
      * Parse XML document with JAXB parser.
+     *
      * @param filepath path to file with xml
      * @return parsed data
      */
@@ -25,6 +28,7 @@ public interface Task034 {
 
     /**
      * Parse document with StAX parser.
+     *
      * @param streamReader stax reader
      * @return parsed data
      */

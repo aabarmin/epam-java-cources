@@ -5,7 +5,7 @@ import com.epam.university.java.core.utils.common.Validator;
 import java.lang.reflect.Proxy;
 
 /**
- * Class implements Task032.
+ * Class implements <code>Task032</code> interface.
  */
 public class Task032Impl implements Task032 {
     @Override

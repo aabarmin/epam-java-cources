@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class implements <code>Client</code> class.
+ * Class implements <code>Client</code> interface.
  */
 public class ClientImpl implements Client {
     private Socket socket;

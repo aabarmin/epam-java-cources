@@ -10,7 +10,8 @@ import com.google.gson.GsonBuilder;
 public interface Task035 {
     /**
      * Read json string with Jackson object mapper.
-     * @param mapper mapper instance
+     *
+     * @param mapper     mapper instance
      * @param jsonString json string
      * @return parsed data
      */
@@ -18,7 +19,8 @@ public interface Task035 {
 
     /**
      * Read json string with Gson mapper.
-     * @param builder gson builder
+     *
+     * @param builder    gson builder
      * @param jsonString json string
      * @return parsed data
      */
