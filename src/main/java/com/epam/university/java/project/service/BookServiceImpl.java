@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
     private StateMachineManager stateMachineManager = new StateMachineManagerImpl();
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public BookServiceImpl() {
 
