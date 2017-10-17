@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task015;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,6 +54,30 @@ public class PointImpl implements Point {
     @Override
     public void setY(double y) {
         this.y = y;
+    }
+
+    /**
+     * Puts points in appropriate order - clockwise about (0,0) coordinate.
+     * @param points collection of points
+     */
+    public static void orderPoints(List<Point> points) {
+        double averageX = points.stream().mapToDouble(Point::getX).sum() / points.size();
+        double averageY = points.stream().mapToDouble(Point::getY).sum() / points.size();
+        points.sort(Comparator.comparingDouble(
+                p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
+        ));
+    }
+
+    /**
+     * Compute distance between given points.
+     * @param first first point
+     * @param second second point
+     * @return distance between two points
+     */
+    public static double distance(Point first, Point second) {
+        return Math.sqrt(Math.pow(second.getX() - first.getX(), 2)
+                + Math.pow(second.getY() - first.getY(), 2)
+        );
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Александр on 29.09.2017.
+ * Bean registry with find by class name
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     private final List<BeanDefinition> storage = new ArrayList<>();
@@ -41,11 +42,10 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      * @param clazz bean class
      * @return bean definition
      */
+    @SuppressWarnings("ubchecked")
     public BeanDefinition getBeanDefinition(Class clazz) {
         for (BeanDefinition v : storage) {
-            if ((v.getClassName().equals(clazz.getName()))) {
-                return v;
-            } else try {
+            try {
                 if (clazz.isAssignableFrom(Class.forName(v.getClassName()))) {
                     return v;
                 }

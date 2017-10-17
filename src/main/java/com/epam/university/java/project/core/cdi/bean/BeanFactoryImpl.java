@@ -25,6 +25,8 @@ public class BeanFactoryImpl implements BeanFactory {
      * @return bean instance
      */
     @Override
+    //check in getBeanDefinition
+    @SuppressWarnings("ubchecked")
     public <T> T getBean(Class<T> beanClass) {
         BeanDefinitionRegistryImpl registryImpl = (BeanDefinitionRegistryImpl) registry;
         BeanDefinition definition = registryImpl.getBeanDefinition(beanClass);
@@ -125,7 +127,13 @@ public class BeanFactoryImpl implements BeanFactory {
      * @return bean instance
      */
     @Override
+    @SuppressWarnings("ubchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
-        return (T) getBean(beanName);
+        try {
+            return (T) getBean(beanName);
+        } catch (ClassCastException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
