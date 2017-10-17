@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task002;
 
-import java.io.IOException;
-
 /**
  * Created by Vadim on 09.09.2017.
  */
