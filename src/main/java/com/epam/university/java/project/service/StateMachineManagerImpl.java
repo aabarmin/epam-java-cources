@@ -73,11 +73,10 @@ public class StateMachineManagerImpl implements StateMachineManager {
         try {
             final JAXBContext jaxbContext = JAXBContext.newInstance(
                     StateMachineDefinitionImpl.class,
-                    StateMachineStateImpl.class
-            );
+                    StateMachineStateImpl.class);
             final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            return (StateMachineDefinitionImpl) unmarshaller.unmarshal
-                    (resource.getFile());
+            return (StateMachineDefinitionImpl) unmarshaller.unmarshal(
+                            resource.getFile());
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

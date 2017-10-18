@@ -71,8 +71,8 @@ public class BeanFactoryImpl implements BeanFactory {
                             .getRef());
                     beanField.set(instance, dependency);
                 } else if (beanPropertyDefinition.getData() != null) {
-                    if (beanPropertyDefinition.getData() instanceof
-                            ListDefinition) {
+                    if (beanPropertyDefinition.getData()
+                            instanceof ListDefinition) {
                         ListDefinition listDefinition = (ListDefinition)
                                 beanPropertyDefinition.getData();
                         if (listDefinition.getItems() == null) {
@@ -84,8 +84,8 @@ public class BeanFactoryImpl implements BeanFactory {
                             items.add(itemDefinition.getValue());
                         }
                         beanField.set(instance, items);
-                    } else if (beanPropertyDefinition.getData() instanceof
-                            MapDefinition) {
+                    } else if (beanPropertyDefinition.getData()
+                            instanceof MapDefinition) {
                         MapDefinition mapDefinition = (MapDefinition)
                                 beanPropertyDefinition.getData();
                         Map<String, Object> itemMap = new HashMap<>();

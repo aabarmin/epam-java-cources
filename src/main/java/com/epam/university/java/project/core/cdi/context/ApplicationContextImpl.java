@@ -17,7 +17,7 @@ public class ApplicationContextImpl implements ApplicationContext {
     private final BeanDefinitionRegistry registry = new
             BeanDefinitionRegistryImpl();
     private final BeanDefinitionReader reader = new BeanDefinitionReaderImpl(
-    registry);
+        registry);
     private final BeanFactory factory = new BeanFactoryImpl(registry);
 
     @Override
