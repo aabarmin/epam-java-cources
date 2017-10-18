@@ -1,7 +1,6 @@
 package com.epam.university.java.project.service;
 
-import com.epam.university.java.project.core.state.machine.manager
-        .StateMachineManager;
+import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.domain.Book;
 import com.epam.university.java.project.domain.BookEvent;
 

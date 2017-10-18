@@ -22,8 +22,8 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
     @Override
     public int loadBeanDefinitions(Resource resource) {
         if (!(resource instanceof XmlResource)) {
-            throw new IllegalArgumentException("Resource should be instance " +
-                    "of XmlResource");
+            throw new IllegalArgumentException("Resource should be instance "
+                    + "of XmlResource");
         }
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(BeanDefinitionRep

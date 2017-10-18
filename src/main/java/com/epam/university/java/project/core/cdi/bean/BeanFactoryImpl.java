@@ -41,9 +41,8 @@ public class BeanFactoryImpl implements BeanFactory {
             }
             for (BeanPropertyDefinition beanPropertyDefinition : definition
                     .getProperties()) {
-                final Field beanField = beanClass.getDeclaredField
-                        (beanPropertyDefinition
-                        .getName());
+                final Field beanField = beanClass.getDeclaredField(
+                        beanPropertyDefinition.getName());
                 if (beanField == null) {
                     throw new RuntimeException();
                 }
@@ -51,8 +50,8 @@ public class BeanFactoryImpl implements BeanFactory {
                 if (Validator.validateStringEmpty(beanPropertyDefinition
                                 .getValue(),
                         Validator.MESSAGE_IF_STRING_EMPTY)
-                        && Validator.validateStringEmpty
-                        (beanPropertyDefinition.getRef(),
+                        && Validator.validateStringEmpty(
+                        beanPropertyDefinition.getRef(),
                         Validator.MESSAGE_IF_STRING_EMPTY)
                         && beanPropertyDefinition.getData() == null) {
                     throw new RuntimeException();
@@ -60,17 +59,16 @@ public class BeanFactoryImpl implements BeanFactory {
                 if (!Validator.validateStringEmpty(beanPropertyDefinition
                         .getValue(), Validator.MESSAGE_IF_STRING_EMPTY)) {
                     try {
-                        beanField.set(instance, Integer.parseInt
-                                (beanPropertyDefinition
-                                .getValue()));
+                        beanField.set(instance, Integer.parseInt(
+                                beanPropertyDefinition.getValue()));
                     } catch (Exception ignored) {
                         beanField.set(instance, beanPropertyDefinition
                                 .getValue());
                     }
                 } else if (!Validator.validateStringEmpty(beanPropertyDefinition
                         .getRef(), Validator.MESSAGE_IF_STRING_EMPTY)) {
-                    Object dependency = getBean(beanPropertyDefinition.getRef
-                            ());
+                    Object dependency = getBean(beanPropertyDefinition
+                            .getRef());
                     beanField.set(instance, dependency);
                 } else if (beanPropertyDefinition.getData() != null) {
                     if (beanPropertyDefinition.getData() instanceof
@@ -93,25 +91,25 @@ public class BeanFactoryImpl implements BeanFactory {
                         Map<String, Object> itemMap = new HashMap<>();
                         for (MapDefinition.MapEntryDefinition entryDefinition
                                 : mapDefinition.getValues()) {
-                            if (Validator.validateStringEmpty
-                                    (entryDefinition.getKey(), Validator
+                            if (Validator.validateStringEmpty(
+                                    entryDefinition.getKey(), Validator
                                             .MESSAGE_IF_STRING_EMPTY)
-                                    || Validator.validateStringEmpty
-                                    (entryDefinition.getValue(),
-                                            Validator.MESSAGE_IF_STRING_EMPTY)
-                                    && Validator.validateStringEmpty
-                                    (entryDefinition.getRef(),
-                                            Validator
-                                                    .MESSAGE_IF_STRING_EMPTY)) {
+                                    || Validator.validateStringEmpty(
+                                    entryDefinition.getValue(),
+                                    Validator.MESSAGE_IF_STRING_EMPTY)
+                                    && Validator.validateStringEmpty(
+                                    entryDefinition.getRef(),
+                                    Validator
+                                            .MESSAGE_IF_STRING_EMPTY)) {
                                 throw new RuntimeException();
                             }
-                            if (!Validator.validateStringEmpty
-                                    (entryDefinition.getValue(), Validator
+                            if (!Validator.validateStringEmpty(
+                                    entryDefinition.getValue(), Validator
                                             .MESSAGE_IF_STRING_EMPTY)) {
                                 itemMap.put(entryDefinition.getKey(),
                                         entryDefinition.getValue());
-                            } else if (!Validator.validateStringEmpty
-                                    (entryDefinition.getRef(), Validator
+                            } else if (!Validator.validateStringEmpty(
+                                    entryDefinition.getRef(), Validator
                                             .MESSAGE_IF_STRING_EMPTY)) {
                                 Object dependency = getBean(entryDefinition
                                         .getRef());
@@ -125,9 +123,8 @@ public class BeanFactoryImpl implements BeanFactory {
             }
             if (!Validator.validateStringEmpty(definition
                     .getPostConstruct(), Validator.MESSAGE_IF_STRING_EMPTY)) {
-                final Method method =
-                        beanClass.getDeclaredMethod(definition
-                                .getPostConstruct());
+                final Method method = beanClass.getDeclaredMethod(definition
+                        .getPostConstruct());
                 if (method == null) {
                     throw new RuntimeException();
                 }
@@ -140,10 +137,9 @@ public class BeanFactoryImpl implements BeanFactory {
             }
             return instance;
 
-        } catch (ClassNotFoundException | IllegalAccessException |
-                InstantiationException
-                | NoSuchFieldException | NoSuchMethodException |
-                InvocationTargetException e) {
+        } catch (ClassNotFoundException | IllegalAccessException
+                | InstantiationException | NoSuchFieldException
+                | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;

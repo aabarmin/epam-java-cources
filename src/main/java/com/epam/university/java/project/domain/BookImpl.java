@@ -1,8 +1,6 @@
 package com.epam.university.java.project.domain;
 
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineDefinition;
-
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
 import java.time.LocalDate;
 import java.util.Collection;
 
@@ -46,7 +44,7 @@ public class BookImpl implements Book {
 
     @Override
     public StateMachineDefinition<BookStatus, BookEvent>
-    getStateMachineDefinition() {
+        getStateMachineDefinition() {
         return statusMachineDefinition;
     }
 

@@ -292,7 +292,7 @@ public class Validator {
      * @throws IllegalArgumentException if parameter doesn't exists in enum
      */
     public static <E extends Enum<E>> boolean
-    validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+        validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
             throws IllegalArgumentException {
         for (E enumValue : enumValues) {
             if (enumValue.equals(value)) {
@@ -379,10 +379,17 @@ public class Validator {
         }
     }
 
+    /**
+     * Validate string.
+     *
+     * @param stringToCheck  string to check
+     * @param messageIfEmpty message if string is empty
+     * @return <code>true</code> if string is empty
+     */
     public static boolean validateStringEmpty(String stringToCheck, String
             messageIfEmpty) {
-        if (stringToCheck==null || stringToCheck.isEmpty() ||
-                stringToCheck.trim().isEmpty()) {
+        if (stringToCheck == null || stringToCheck.isEmpty()
+                || stringToCheck.trim().isEmpty()) {
             return true;
         }
         return false;

@@ -1,21 +1,14 @@
 package com.epam.university.java.project.service;
 
-import com.epam.university.java.project.core.state.machine.manager
-        .StateMachineManager;
+import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.domain.BookEvent;
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineEventHandler;
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineState;
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineStateImpl;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineEventHandler;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineState;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineStateImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineDefinition;
-import com.epam.university.java.project.core.state.machine.domain
-        .StateMachineDefinitionImpl;
-import com.epam.university.java.project.core.state.machine.domain
-        .StatefulEntity;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinitionImpl;
+import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
 
 import javax.xml.bind.JAXBContext;
@@ -33,8 +26,9 @@ public class StateMachineManagerImpl implements StateMachineManager {
         final StateMachineDefinition<S, E> definition;
         if (event == BookEvent.CREATE) {
             definition = (StateMachineDefinition<S, E>) loadDefinition(new
-                    XmlResource(getClass().getResource
-                    ("/project/DefaultBookStateMachineDefinition.xml")
+                    XmlResource(getClass().getResource(
+                            "/project/DefaultBookStateMachineDefinition"
+                                    + ".xml")
                     .getFile()));
             initStateMachine(entity, definition);
         } else {
@@ -48,7 +42,7 @@ public class StateMachineManagerImpl implements StateMachineManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        String methodName="";
+        String methodName = "";
         S to = null;
         if (event.equals(definition.getStartEvent())) {
             methodName = "onCreate";
