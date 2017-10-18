@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Class implements <code>Server</code> class.
+ * Class implements <code>Server</code> interface.
  */
 public class ServerImpl implements Server {
     private List<String> chat = new ArrayList<>();

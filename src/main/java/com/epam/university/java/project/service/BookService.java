@@ -11,12 +11,14 @@ import java.util.Collection;
 public interface BookService {
     /**
      * Create new draft book instance.
+     *
      * @return new book instance
      */
     Book createBook();
 
     /**
      * Get the book by id.
+     *
      * @param id book id
      * @return book instance
      */
@@ -24,18 +26,21 @@ public interface BookService {
 
     /**
      * Get all books.
+     *
      * @return books collection
      */
     Collection<Book> getBooks();
 
     /**
      * Remove book from library.
+     *
      * @param book book to remove
      */
     void remove(Book book);
 
     /**
      * Save book to library.
+     *
      * @param book book to save
      * @return saved book instance
      */
@@ -43,7 +48,8 @@ public interface BookService {
 
     /**
      * Accept book into the account with the following <code>number</code>.
-     * @param book book to accept
+     *
+     * @param book   book to accept
      * @param number book number
      * @return accounted book
      */
@@ -51,7 +57,8 @@ public interface BookService {
 
     /**
      * Issue book and set return date.
-     * @param book book to issue
+     *
+     * @param book       book to issue
      * @param returnDate return date
      * @return issued book
      */
@@ -59,6 +66,7 @@ public interface BookService {
 
     /**
      * Return book from issue.
+     *
      * @param book book to return
      * @return accounted book
      */

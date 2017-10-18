@@ -14,6 +14,10 @@ public class Validator {
             = "second parameter can't be null";
     public static final String MESSAGE_FOR_THIRD_PARAMETER_IF_NULL
             = "third parameter can't be null";
+    public static final String MESSAGE_FOR_FOURTH_PARAMETER_IF_NULL
+            = "fourth parameter can't be null";
+    public static final String MESSAGE_FOR_FIFTH_PARAMETER_IF_NULL
+            = "fifth parameter can't be null";
     public static final String MESSAGE_FOR_SOURCE_IF_NULL
             = "source can't be null";
     public static final String MESSAGE_IF_VIOLATES_LOWER_BORDER
@@ -42,6 +46,8 @@ public class Validator {
             "collection can't be empty";
     public static final String MESSAGE_IF_ILLEGAL_IPV4_ADDRESS =
             "IP Address not in correct";
+    public static final String MESSAGE_IF_STRING_EMPTY =
+            "input string is empty";
 
     /**
      * Validates parameters not null.
@@ -66,6 +72,7 @@ public class Validator {
      *
      * @param firstParameter                  first parameter to check
      * @param secondParameter                 second parameter to check
+     * @param thirdParameter                  second parameter to check
      * @param messageForFirstParameterIfNull  message if first parameter is null
      * @param messageForSecondParameterIfNull message if second parameter is
      *                                        null
@@ -81,6 +88,39 @@ public class Validator {
         validateNotNull(firstParameter, messageForFirstParameterIfNull);
         validateNotNull(secondParameter, messageForSecondParameterIfNull);
         validateNotNull(thirdParameter, messageForThirdParameterIfNull);
+    }
+
+    /**
+     * Validates parameters not null.
+     *
+     * @param firstParameter                  first parameter to check
+     * @param secondParameter                 second parameter to check
+     * @param thirdParameter                  third parameter to check
+     * @param fourthParameter                 fourth parameter to check
+     * @param fifthParameter                  fifth parameter to check
+     * @param messageForFirstParameterIfNull  message if first parameter is null
+     * @param messageForSecondParameterIfNull message if second parameter is
+     *                                        null
+     * @param messageForThirdParameterIfNull  message if third parameter is null
+     * @param messageForFourthParameterIfNull message if fourth parameter is
+     * @param messageForFifthParameterIfNull  message if fifth parameter is
+     *                                        null
+     * @throws IllegalArgumentException if at least one of parameters is not
+     *                                  provided
+     */
+    public static void validateNotNull(
+            Object firstParameter, Object secondParameter, Object
+            thirdParameter, Object fourthParameter, Object fifthParameter,
+            String messageForFirstParameterIfNull, String
+                    messageForSecondParameterIfNull, String
+                    messageForThirdParameterIfNull, String
+                    messageForFourthParameterIfNull, String
+                    messageForFifthParameterIfNull) {
+        validateNotNull(firstParameter, messageForFirstParameterIfNull);
+        validateNotNull(secondParameter, messageForSecondParameterIfNull);
+        validateNotNull(thirdParameter, messageForThirdParameterIfNull);
+        validateNotNull(fourthParameter, messageForFourthParameterIfNull);
+        validateNotNull(fifthParameter, messageForFifthParameterIfNull);
     }
 
     /**
@@ -228,9 +268,9 @@ public class Validator {
      * @throws IllegalArgumentException if parameter violates limits of range
      */
     public static boolean validateValueRange(double value, double lowerBorder,
-                                          double upperBorder,
-                                          String messageIfViolatesLowerBorder,
-                                          String messageIfViolatesUpperBorder) {
+                                             double upperBorder,
+                                             String messageIfViolatesLowerBorder,
+                                             String messageIfViolatesUpperBorder) {
         if (value < lowerBorder) {
             throw new IllegalArgumentException(value + " - "
                     + messageIfViolatesLowerBorder + " - " + lowerBorder);
@@ -337,5 +377,21 @@ public class Validator {
                 }
             }
         }
+    }
+
+    /**
+     * Validate string.
+     *
+     * @param stringToCheck  string to check
+     * @param messageIfEmpty message if string is empty
+     * @return <code>true</code> if string is empty
+     */
+    public static boolean validateStringEmpty(String stringToCheck, String
+            messageIfEmpty) {
+        if (stringToCheck == null || stringToCheck.isEmpty()
+                || stringToCheck.trim().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

@@ -10,9 +10,9 @@ public interface Task036 {
      * Integrate given <code>function</code> using <code>integrator</code>
      * as integration algorithm in a given limits.
      *
-     * @param function function to integrate
+     * @param function   function to integrate
      * @param integrator integration algorithm
-     * @param limitLeft left limit
+     * @param limitLeft  left limit
      * @param limitRight right limit
      * @return integration results
      */

@@ -4,7 +4,7 @@ import com.epam.university.java.core.utils.common.Validator;
 import com.epam.university.java.core.utils.geometricprimitives.Point2D;
 
 /**
- * Class implements <code>RobotPosition</code> class.
+ * Class implements <code>RobotPosition</code> interface.
  */
 public class RobotPositionImpl implements RobotPosition {
     private Point2D position;

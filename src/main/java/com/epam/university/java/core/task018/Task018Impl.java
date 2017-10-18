@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Created by Admin on 27.09.2017.
+ * Class implements <code>Task018</code> interface.
  */
 public class Task018Impl implements Task018 {
     @Override

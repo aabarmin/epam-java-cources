@@ -87,6 +87,7 @@ public class Task034Test {
 
     @Test
     public void readWithStaxParser() throws Exception {
+
         final InputStream inputStream = getClass().getResourceAsStream("/task034/data.xml");
         final XMLStreamReader streamReader = XMLInputFactory.newFactory()
                 .createXMLStreamReader(inputStream);
