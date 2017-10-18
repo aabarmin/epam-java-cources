@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class StateMachineManagerImpl implements StateMachineManager {
     /**
-     * Default constructor
+     * Default constructor.
      */
     public StateMachineManagerImpl() {
     }
@@ -43,7 +43,7 @@ public class StateMachineManagerImpl implements StateMachineManager {
     }
 
     @Override
-    @SuppressWarnings("all")
+    @SuppressWarnings("unchecked")
     public <S, E> StatefulEntity<S, E> handleEvent(StatefulEntity<S, E> entity, E event) {
         try {
             StateMachineEventHandler handler = entity.getStateMachineDefinition()

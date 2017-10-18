@@ -25,7 +25,7 @@ public class StateMachineStateImpl implements StateMachineState<BookStatus, Book
     private String methodToCall;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public StateMachineStateImpl() {
     }
