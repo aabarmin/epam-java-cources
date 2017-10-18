@@ -73,9 +73,14 @@ Now you can push your changes to your own remote repository:
 git push origin <PRIVATE_BRANCH_NAME>
 ```
 
-When your changes is pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
+When your changes are pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
 to your pull request.
 
 **How to contribute**
 
 You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label. 
+
+Large cross-topic project
+=
+
+You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
