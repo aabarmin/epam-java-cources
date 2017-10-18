@@ -23,7 +23,7 @@ public class Task010Impl implements Task010 {
 
         String temp;
         int count = 0;
-        while (input.hasNext()){
+        while (input.hasNext()) {
             temp = input.next();
             String[] allWords = temp.toLowerCase().split("[,.:!?]");
             for (String word: allWords) {

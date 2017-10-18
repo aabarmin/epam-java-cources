@@ -2,7 +2,10 @@ package com.epam.university.java.core.task009;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 
 public class Task009Impl implements Task009 {
@@ -21,11 +24,10 @@ public class Task009Impl implements Task009 {
 
         String temp;
 
-        while (input.hasNext()){
+        while (input.hasNext()) {
             temp = input.next();
-            //String[] allWords = temp.split("\\pP");
             String[] allWords = temp.split("[,.:!?]+");
-            for (String word : allWords){
+            for (String word : allWords) {
                 word = word.toLowerCase();
                 result.add(word);
             }

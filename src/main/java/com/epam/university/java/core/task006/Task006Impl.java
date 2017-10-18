@@ -9,27 +9,25 @@ public class Task006Impl implements Task006 {
 
     private double round(double number) {
         int pow = 10;
-        for (int i = 1; i < 3; i++)
+        double tmp = 0;
+        for (int i = 1; i < 3; i++) {
             pow *= 10;
-        double tmp = number * pow;
+            tmp = number * pow;
+        }
         return (double) (int) ((tmp - (int) tmp) >= 0.5 ? tmp + 1 : tmp) / pow;
     }
 
     @Override
     public double resistance(Collection<Measurement> measurements) {
-        if (measurements == null){
+        if (measurements == null) {
             throw new IllegalArgumentException();
         }
 
-        double resist; // It's resistance
-
-         // to use Least Square Method I need to create a lot of "sum's"
-
-        int n = measurements.size();
+        // to use Least Square Method I need to create a lot of "sum's"
 
         double sum1 = 0;
         for (Measurement element: measurements) {
-            sum1 += element.getVoltage()*element.getAmperage();
+            sum1 += element.getVoltage() * element.getAmperage();
         }
 
         double sum2 = 0;
@@ -51,10 +49,11 @@ public class Task006Impl implements Task006 {
         for (Measurement element: measurements) {
             sum5 += element.getAmperage();
         }
+        int n = measurements.size();
+        double resist; // It's resistance
+        resist = (n * sum1 - sum2 * sum3) / (n * sum4 - Math.pow(sum5, 2));
 
-        resist = (n*sum1 - sum2*sum3)/(n*sum4 - Math.pow(sum5, 2));
-
-        if (sum2 == 0){
+        if (sum2 == 0) {
             resist = 0;
         }
 

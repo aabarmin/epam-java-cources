@@ -11,7 +11,7 @@ public class Task023Impl implements Task023 {
         for (int i = 0; i < numbers.length; i++){
             telNumber += numbers[i];
         }
-        if (telNumber.length() < 11){
+        if (telNumber.length() < 11) {
             throw new IllegalArgumentException();
         }
         operatorCode = telNumber.substring(1, 4);

@@ -8,7 +8,7 @@ public class Task005Impl implements Task005 {
     @Override
     public PiHolder findPi(int digits) {
 
-        if (digits < 1){
+        if (digits < 1) {
             throw new IllegalArgumentException();
         }
         if (digits > 5){
@@ -18,9 +18,9 @@ public class Task005Impl implements Task005 {
         double end = Math.pow(10, digits);
         double min = 10;
         double current;
-        for (double i = start*3; i < end; i++) {
+        for (double i = start * 3; i < end; i++) {
 
-            for (double j = start; j < (i + 1)/2; j++) {
+            for (double j = start; j < (i + 1) / 2; j++) {
                 current = Math.abs((i / j) - Math.PI);
                 if (current < min) {
                     min = current;

@@ -8,9 +8,10 @@ import java.util.Collections;
 public class Task007Impl implements Task007 {
 
     @Override
-    public Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second) {
+    public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
+                                                  Collection<Integer> second) {
         Integer[] arr = new Integer[first.size() + second.size() - 1];
-        for (int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = 0;
         }
 
@@ -23,13 +24,11 @@ public class Task007Impl implements Task007 {
         Collections.reverse(secondAsArrayList);
 
 
-
-
-        for (int i = 0; i < firstAsArrayList.size(); i++){
+        for (int i = 0; i < firstAsArrayList.size(); i++) {
             //int index = i;
-            for(int j = 0; j < secondAsArrayList.size(); j++){
+            for (int j = 0; j < secondAsArrayList.size(); j++) {
                 int current;
-                current = firstAsArrayList.get(i)*secondAsArrayList.get(j);
+                current = firstAsArrayList.get(i) * secondAsArrayList.get(j);
                 arr[i + j] = arr[i + j] + current;
                 //index++;
             }

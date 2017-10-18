@@ -14,7 +14,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] invert(String[] source) {
-        if (source == null){
+        if (source == null) {
             throw new IllegalArgumentException();
         }
         int nElements = source.length;
@@ -63,7 +63,7 @@ public class Task003Impl implements Task003 {
     public String[] filter(String[] source, FilteringCondition condition) {
 
         if (source == null) {
-                throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
         int length = 0;
         for (String element : source) {
@@ -90,10 +90,10 @@ public class Task003Impl implements Task003 {
     public String[] removeElements(String[] source, String[] toRemote) {
 
         if (source == null) {
-                throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
         if (toRemote == null) {
-                throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
 
         int listlength = source.length - toRemote.length;
@@ -119,12 +119,12 @@ public class Task003Impl implements Task003 {
     public String[] map(String[] source, MappingOperation operation) {
 
         if (source == null) {
-                throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
 
         for (int i = 0; i < source.length; i++) {
             source[i] = operation.map(source[i]);
-       }
+        }
         return source;
     }
 
@@ -134,12 +134,10 @@ public class Task003Impl implements Task003 {
         if (source == null) {
             throw new IllegalArgumentException();
         }
-
         String[] array = new String[0];
         for (String aSource : source) {
             array = join(array, operation.flatMap(aSource));
         }
-        String[] newArray = new String[10];
         int index = 1;
         int[] numbers = new int[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -151,12 +149,13 @@ public class Task003Impl implements Task003 {
         }
         array = invert(array);
         String current = array[0];
+        String[] newArray = new String[10];
         newArray[0] = array[0];
         for (int i = 1; i < array.length; i++) {
             if (!current.equals(array[i])) {
                  newArray[index++] = array[i];
                  current = array[i];
-             }
+            }
         }
         return newArray;
 

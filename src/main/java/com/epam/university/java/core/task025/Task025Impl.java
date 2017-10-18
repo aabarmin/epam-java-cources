@@ -10,8 +10,8 @@ public class Task025Impl implements Task025 {
             String temp = sourceMessage.substring(0, 3);
             sourceMessage = sourceMessage.substring(3, sourceMessage.length());
             char[] comparing = temp.toCharArray();
-            for (int i = 0; i < 3; i++){
-                if(instance[i] != comparing[i]){
+            for (int i = 0; i < 3; i++) {
+                if (instance[i] != comparing[i]) {
                     count++;
                 }
             }
