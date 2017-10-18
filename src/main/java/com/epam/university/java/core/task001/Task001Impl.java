@@ -21,10 +21,10 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null){
+        if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        if (!isNumber(firstNumber) || !isNumber(secondNumber)){
+        if (!isNumber(firstNumber) || !isNumber(secondNumber)) {
             throw new NumberFormatException();
         }
         double numberOne = Double.parseDouble(firstNumber);
@@ -34,15 +34,15 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null){
+        if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        if (!isNumber(firstNumber) || !isNumber(secondNumber)){
+        if (!isNumber(firstNumber) || !isNumber(secondNumber)) {
             throw new NumberFormatException();
         }
         double numberOne = Double.parseDouble(firstNumber);
         double numberTwo = Double.parseDouble(secondNumber);
-        return numberOne*numberTwo;
+        return numberOne * numberTwo;
     }
 
     @Override
