@@ -4,6 +4,7 @@ package com.epam.university.java.core.task013;
 public interface FigureAction {
     /**
      * Invoke action with figure instance.
+     *
      * @param figure figure instance
      */
     void run(Figure figure);

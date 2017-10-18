@@ -6,18 +6,21 @@ package com.epam.university.java.core.task014;
 public interface VampireNumber {
     /**
      * Get multiplication of numbers.
+     *
      * @return value of multiplication
      */
     int getMultiplication();
 
     /**
      * Get first part of vampire number.
+     *
      * @return value if first part
      */
     int getFirst();
 
     /**
      * Get second part of vampire number.
+     *
      * @return value of second part
      */
     int getSecond();
@@ -25,6 +28,7 @@ public interface VampireNumber {
     /**
      * Check if two vampire numbers are equals in spite of the order
      * of parts.
+     *
      * @param value vampire number to check
      * @return if numbers are equals
      */
