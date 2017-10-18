@@ -53,7 +53,10 @@ public class Task027Impl implements Task027 {
                 break;
             }
 
+        }
 
+        if (resultNumbers.contains(0) || resultNumbers.size() == 1) {
+            resultNumbers = new ArrayList<>();
         }
 
         return resultNumbers;

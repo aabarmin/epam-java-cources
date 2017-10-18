@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task011;
 
-import com.epam.university.java.core.task003.NullChecker;
 import com.epam.university.java.core.task003.SimpleNullChecker;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,17 +28,21 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(LinkedList<String> collection) {
         new SimpleNullChecker().check(collection);
-        if(collection.isEmpty()){
+        if (collection.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
-        List<String> result = (LinkedList<String>) collection.clone();
+        List<String> result = new LinkedList<>(collection);
 
         int i = 0;
 
         while (result.size() != 1) {
-            result.remove(i % result.size());
-            i++;
+            if (i < result.size()) {
+                result.remove(i);
+                i++;
+            } else {
+                i %= result.size();
+            }
         }
 
         return result.get(0);

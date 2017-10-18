@@ -1,23 +1,18 @@
 package com.epam.university.java.project.core.cdi.structure;
 
-import com.epam.university.java.project.core.cdi.structure.ListDefinition.ListItemDefinition;
-import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl.ListItemDefinitionImpl;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by ilya on 24.09.17.
  */
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MapDefinitionImpl implements MapDefinition {
 
+    @XmlElement(name = "entry", type = MapEntryDefinitionImpl.class)
     Collection<MapEntryDefinition> entries = new ArrayList<>();
 
     @Override
@@ -25,17 +20,19 @@ public class MapDefinitionImpl implements MapDefinition {
         return entries;
     }
 
-    @XmlElement(name = "map", type = ListItemDefinitionImpl.class)
     @Override
     public void setValues(Collection<MapEntryDefinition> values) {
         this.entries = values;
     }
 
-    @XmlRootElement(name = "entry")
-    static class MapEntryDefinitionImpl implements MapEntryDefinition{
+    @XmlAccessorType(XmlAccessType.FIELD)
+    static class MapEntryDefinitionImpl implements MapEntryDefinition {
 
+        @XmlElement
         private String key;
+        @XmlElement
         private String value;
+        @XmlElement
         private String ref;
 
         @Override

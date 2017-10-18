@@ -3,12 +3,8 @@
     <bean id="One" class="someClass" scope="NotSingleton">
         <property name="itemList">
             <list>
-                <items>
-                    <value>one</value>
-                </items>
-                <items>
-                    <value>two</value>
-                </items>
+                <value>one</value>
+                <value>two</value>
             </list>
         </property>
         <property name="someString" value="someString"/>

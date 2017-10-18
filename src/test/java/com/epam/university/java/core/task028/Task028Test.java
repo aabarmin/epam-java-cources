@@ -37,4 +37,47 @@ public class Task028Test {
                 instance.getWays(100, 3)
         );
     }
+
+    @Test
+    public void test400() throws Exception {
+        assertEquals("Incorrect value",
+            55,
+            instance.getWays(400, 2)
+        );
+
+    }
+
+    @Test
+    public void test1000with10() throws Exception {
+        assertEquals("Incorrect value",
+            0,
+            instance.getWays(1000, 10)
+        );
+    }
+
+    @Test
+    public void test800withCubes() throws Exception {
+        assertEquals("Incorrect value",
+            1,
+            instance.getWays(800, 3)
+        );
+    }
+
+
+    @Test
+    public void test4000() throws Exception {
+        assertEquals("Incorrect value",
+            1751141,
+            instance.getWays(4000, 2)
+        );
+    }
+
+    @Test
+    public void test800() throws Exception {
+        assertEquals("Incorrect value",
+            561,
+            instance.getWays(800, 2)
+        );
+    }
+
 }
