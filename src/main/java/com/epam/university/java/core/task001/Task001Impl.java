@@ -47,22 +47,22 @@ public class Task001Impl implements Task001 {
 
     @Override
     public double division(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null){
+        if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        if (!isNumber(firstNumber) || !isNumber(secondNumber)){
+        if (!isNumber(firstNumber) || !isNumber(secondNumber)) {
             throw new NumberFormatException();
         }
         double numberOne = Double.parseDouble(firstNumber);
         double numberTwo = Double.parseDouble(secondNumber);
         return numberOne / numberTwo;
     }
-    public static boolean isNumber(String s) throws NumberFormatException{
+
+    static boolean isNumber(String s) throws NumberFormatException {
         try {
             Double.parseDouble(s);
             return true;
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
