@@ -48,7 +48,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String right(String sourceString, String separator) {
-        if (sourceString == null){
+        if (sourceString == null) {
             throw new IllegalArgumentException();
         }
         int begin = sourceString.lastIndexOf(separator);
@@ -58,7 +58,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String[] split(String sourceString, String split) {
-        if (sourceString == null){
+        if (sourceString == null) {
             throw new IllegalArgumentException();
         }
         int begin = sourceString.indexOf(split);
@@ -71,7 +71,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        if (sourceCollection == null){
+        if (sourceCollection == null) {
             throw new IllegalArgumentException();
         }
         StringBuilder result = new StringBuilder();
