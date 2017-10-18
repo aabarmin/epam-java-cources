@@ -1,11 +1,12 @@
 package com.epam.university.java.project.service;
 
 import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
-import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManagerImpl;
 import com.epam.university.java.project.domain.Book;
 import com.epam.university.java.project.domain.BookEvent;
 import com.epam.university.java.project.domain.BookImpl;
+import com.epam.university.java.project.domain.BookStatus;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -22,26 +23,46 @@ public class BookServiceImpl implements BookService {
     private int newBookIndex = 1;
     private Map<Integer, Book> booksMap = new HashMap<>();
 
-    private StateMachineManager stateMachineManager = new StateMachineManagerImpl();
+    private StateMachineManagerImpl stateMachineManager = new StateMachineManagerImpl();
+
+    private final String contextPath;
 
     /**
      * Default constructor.
      */
     public BookServiceImpl() {
 
-        final String contextPath = getClass().getResource(
+        contextPath = getClass().getResource(
                 "/project/DefaultBookStateMachineDefinition.xml").getFile();
-
-        stateMachineManager.loadDefinition(new XmlResource(contextPath));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Book createBook() {
 
-        return new BookImpl();
+        StateMachineDefinition<BookStatus, BookEvent> stateMachineDefinition =
+                (StateMachineDefinition)
+                        stateMachineManager.loadDefinition(new XmlResource(contextPath));
+
+        Book newBook = new BookImpl();
+        newBook.setStateMachineDefinition(stateMachineDefinition);
+
+        // init state machine on new book entity
+       stateMachineManager.initStateMachine(
+                newBook,
+                stateMachineDefinition
+        );
+
+        // go start event
+        stateMachineManager.handleEvent(
+                newBook,
+                (BookEvent) stateMachineDefinition.getStartEvent()
+        );
+
+        return newBook;
     }
 
     /**
@@ -81,6 +102,7 @@ public class BookServiceImpl implements BookService {
             book.setId(newBookIndex++);
             booksMap.put(book.getId(), book);
         }
+
         return book;
     }
 

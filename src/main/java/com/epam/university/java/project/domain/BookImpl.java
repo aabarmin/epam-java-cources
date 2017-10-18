@@ -25,6 +25,8 @@ public class BookImpl implements Book {
 
     private BookStatus status = DRAFT;
 
+    private StateMachineDefinition<BookStatus, BookEvent> stateMachineDefinition;
+
     /**
      * {@inheritDoc}
      */
@@ -125,7 +127,7 @@ public class BookImpl implements Book {
      */
     @Override
     public StateMachineDefinition<BookStatus, BookEvent> getStateMachineDefinition() {
-        return null;
+        return stateMachineDefinition;
     }
 
     /**
@@ -135,5 +137,6 @@ public class BookImpl implements Book {
     public void setStateMachineDefinition(StateMachineDefinition<BookStatus,
                                           BookEvent> definition) {
 
+        this.stateMachineDefinition = definition;
     }
 }

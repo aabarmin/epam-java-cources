@@ -1,5 +1,12 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
+import com.epam.university.java.project.domain.BookEvent;
+import com.epam.university.java.project.domain.BookStatus;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -8,18 +15,26 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Sergei Titov
  */
 @XmlRootElement(name = "transition")
-public class StateMachineStateImpl implements StateMachineState {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class StateMachineStateImpl implements StateMachineState<BookStatus, BookEvent> {
 
-    private Object from;
-    private Object to;
-    private Object on;
+    @XmlAttribute
+    private BookStatus from;
+
+    @XmlAttribute
+    private BookStatus to;
+
+    @XmlAttribute
+    private BookEvent on;
+
+    @XmlAttribute
     private String call;
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object getFrom() {
+    public BookStatus getFrom() {
         return from;
     }
 
@@ -27,7 +42,7 @@ public class StateMachineStateImpl implements StateMachineState {
      * {@inheritDoc}
      */
     @Override
-    public void setFrom(Object state) {
+    public void setFrom(BookStatus state) {
         this.from = state;
     }
 
@@ -35,7 +50,7 @@ public class StateMachineStateImpl implements StateMachineState {
      * {@inheritDoc}
      */
     @Override
-    public Object getTo() {
+    public BookStatus getTo() {
         return to;
     }
 
@@ -43,7 +58,7 @@ public class StateMachineStateImpl implements StateMachineState {
      * {@inheritDoc}
      */
     @Override
-    public void setTo(Object state) {
+    public void setTo(BookStatus state) {
         this.to = state;
     }
 
@@ -51,7 +66,7 @@ public class StateMachineStateImpl implements StateMachineState {
      * {@inheritDoc}
      */
     @Override
-    public Object getOn() {
+    public BookEvent getOn() {
         return on;
     }
 
@@ -59,7 +74,7 @@ public class StateMachineStateImpl implements StateMachineState {
      * {@inheritDoc}
      */
     @Override
-    public void setOn(Object o) {
+    public void setOn(BookEvent o) {
         this.on = o;
     }
 
