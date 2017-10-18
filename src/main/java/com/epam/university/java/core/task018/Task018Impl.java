@@ -15,6 +15,7 @@ public class Task018Impl implements Task018 {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {
         Class<?> classToCheck = toCheck.getClass();
         if (classToCheck.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {

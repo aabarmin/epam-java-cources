@@ -13,7 +13,7 @@ public class Task029Impl implements Task029 {
      */
     @Override
     public Collection<String> fillCrossword(Collection<String> rows, Collection<String> words) {
-        List<Holder> listOfHolders = (ArrayList) Holder.holderBuilder(rows);
+        ArrayList<Holder> listOfHolders = (ArrayList) Holder.holderBuilder(rows);
         List<String> listOfWords = new ArrayList<>(words);
         listOfHolders.get(0).setWord(listOfWords.remove(0));
         List<Holder> resultList = new ArrayList<>();

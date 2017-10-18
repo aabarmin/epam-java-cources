@@ -17,6 +17,7 @@ public class GraphImpl implements Graph {
      *
      * @param numberOfVertexes quantity of vertex
      */
+    @SuppressWarnings("unchecked")
     public GraphImpl(int numberOfVertexes) {
         vertexes = new HashSet[numberOfVertexes];
         for (int i = 0; i < vertexes.length; i++) {
