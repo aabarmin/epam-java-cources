@@ -11,7 +11,7 @@ import java.util.Random;
 public class ServerImpl implements Server {
     protected static final int PORT = 7003;
     private static ServerSocket socket;
-    private volatile LinkedList<String> messages;
+    private volatile LinkedList<String> messages = new LinkedList<>();
     private boolean isStopped;
 
     @Override
@@ -29,7 +29,6 @@ public class ServerImpl implements Server {
 
     @Override
     public void start() {
-        messages = new LinkedList<>();
         try {
             socket = new ServerSocket(PORT);
         } catch (IOException e) {
