@@ -43,14 +43,14 @@ public class Task035Impl implements Task035 {
         //add abstract resolver to PhoneNumber
         SimpleModule module = new SimpleModule("model", Version.unknownVersion());
         SimpleAbstractTypeResolver resolver = new SimpleAbstractTypeResolver();
-        resolver.addMapping(PhoneNumber.class, PhoneNumberPOJO.class);
+        resolver.addMapping(PhoneNumber.class, PhoneNumberPojo.class);
         module.setAbstractTypes(resolver);
         mapper.registerModule(module);
 
         try {
             return mapper.readValue(
                     jsonString,
-                    PersonJacksonPOJO.class);
+                    PersonJacksonPojo.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

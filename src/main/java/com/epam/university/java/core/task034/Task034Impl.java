@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task034;
 
-import com.epam.university.java.core.task034.jaxbImpl.PersonJaxb;
-import com.epam.university.java.core.task034.jaxbImpl.PhoneNumberJaxb;
+import com.epam.university.java.core.task034.jaxb.PersonJaxb;
+import com.epam.university.java.core.task034.jaxb.PhoneNumberJaxb;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -11,19 +11,16 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Александр on 13.10.2017.
+ * Read the XML.
  */
 public class Task034Impl implements Task034 {
     /**
@@ -89,21 +86,21 @@ public class Task034Impl implements Task034 {
         try {
             while (streamReader.hasNext()) {
                 final int next = streamReader.next();
-                if(XMLStreamConstants.START_ELEMENT == next){
-                    if (streamReader.getName().toString() == "person") {
+                if (XMLStreamConstants.START_ELEMENT == next) {
+                    if (streamReader.getName().toString().equals("person")) {
                         person.setId(Integer.valueOf(streamReader.getAttributeValue(0)));
-                    } else if (streamReader.getName().toString() == "first-name") {
+                    } else if (Objects.equals(streamReader.getName().toString(), "first-name")) {
                         person.setFirstName(streamReader.getElementText());
-                    } else if (streamReader.getName().toString() == "last-name") {
+                    } else if (Objects.equals(streamReader.getName().toString(), "last-name")) {
                         person.setLastName(streamReader.getElementText());
-                    } else if (streamReader.getName().toString() == "person-phones") {
+                    } else if (Objects.equals(streamReader.getName().toString(), "person-phones")) {
                         person.setPhoneNumbers(new ArrayList<PhoneNumber>());
-                    } else if (streamReader.getName().toString() == "person-phone") {
+                    } else if (Objects.equals(streamReader.getName().toString(), "person-phone")) {
                         person.getPhoneNumbers().add(
                                 new PhoneNumberImpl(streamReader.getElementText()));
                     }
                 } else if (XMLStreamConstants.END_ELEMENT == next) {
-                    if (streamReader.getName().toString() == "person") {
+                    if (Objects.equals(streamReader.getName().toString(), "person")) {
                         return person;
                     }
                 }

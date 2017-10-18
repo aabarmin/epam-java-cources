@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * Created by Александр on 22.09.2017.
+ * Point
  */
 public class PointImpl implements Point {
     private double x;
@@ -64,7 +65,7 @@ public class PointImpl implements Point {
         double averageX = points.stream().mapToDouble(Point::getX).sum() / points.size();
         double averageY = points.stream().mapToDouble(Point::getY).sum() / points.size();
         points.sort(Comparator.comparingDouble(
-                p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
+            p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
         ));
     }
 

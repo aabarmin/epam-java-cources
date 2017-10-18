@@ -20,8 +20,8 @@ public class IntegratorImpl implements Integrator {
     public double integrate(double left, double right, Function<Double, Double> function) {
         double delta = 0.0001;
         double sum = 0;
-        for (double i = left; i<=(right-delta); i+=delta) {
-            sum += trapezoidal(i, i+delta, function);
+        for (double i = left; i <= (right - delta); i += delta) {
+            sum += trapezoidal(i, i + delta, function);
         }
 
         return sum;

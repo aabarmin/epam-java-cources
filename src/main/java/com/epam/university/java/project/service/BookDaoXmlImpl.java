@@ -8,6 +8,7 @@ import java.util.Collection;
 
 /**
  * Created by Александр on 17.10.2017.
+ * Data access object for books.
  */
 public class BookDaoXmlImpl implements BookDao {
     private Collection<Book> books = new ArrayList<>();
@@ -64,6 +65,11 @@ public class BookDaoXmlImpl implements BookDao {
      */
     @Override
     public Book save(Book book) {
+        int maxId = books.stream()
+                .mapToInt(n -> n.getId())
+                .max()
+                .orElse(0);
+        book.setId(maxId + 1);
         books.add(book);
         return book;
     }

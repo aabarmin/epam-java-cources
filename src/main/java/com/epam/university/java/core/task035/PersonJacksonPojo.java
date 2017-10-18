@@ -1,41 +1,24 @@
-package com.epam.university.java.core.task034.jaxbImpl;
+package com.epam.university.java.core.task035;
 
 import com.epam.university.java.core.task034.Person;
 import com.epam.university.java.core.task034.PhoneNumber;
+import com.epam.university.java.core.task034.PhoneNumberImpl;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import javax.xml.bind.annotation.XmlAccessOrder;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorOrder;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created by Александр on 09.10.2017.
- * Person model for jaxb parser.
+ * Created by Александр on 14.10.2017.
+ * POJO for Jackson
  */
-@XmlRootElement(name = "person")
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlAccessorOrder(XmlAccessOrder.UNDEFINED)
-public class PersonJaxb implements Person {
-    @XmlAttribute
+public class PersonJacksonPojo implements Person {
     private int id;
-
-    @XmlElement(name = "first-name")
     private String firstName;
-
-    @XmlElement(name = "last-name")
     private String lastName;
-
-    @XmlElementWrapper(name = "person-phones")
-    @XmlElement(name = "person-phone", type = PhoneNumberJaxb.class)
-    Collection<PhoneNumber> phoneNumbers;
+    @JsonProperty("phones")
+    Collection<PhoneNumber> phoneNumbers  = new ArrayList<>();
 
     /**
      * Get person id.

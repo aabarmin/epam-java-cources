@@ -1,8 +1,13 @@
 package com.epam.university.java.project.service;
 
+import com.epam.university.java.project.core.cdi.impl.io.XmlResource;
+import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
 import com.epam.university.java.project.core.state.machine.manager.StateMachineManager;
 import com.epam.university.java.project.domain.Book;
+import com.epam.university.java.project.domain.BookEvent;
 import com.epam.university.java.project.domain.BookImpl;
+import com.epam.university.java.project.domain.BookStatus;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -12,8 +17,11 @@ import java.util.Collection;
  * Service for book management.
  */
 public class BookServiceImpl implements BookService {
-    BookDao bookDao;
-    StateMachineManager stateMachineManager;
+    private BookDao bookDao;
+    private StateMachineManager stateMachineManager = new StateMachineManagerImpl();
+    private Resource xmlResource = new XmlResource(
+            getClass().getResource("/project/DefaultBookStateMachineDefinition.xml")
+                    .getFile());
 
     /**
      * Create new draft book instance.
@@ -21,8 +29,13 @@ public class BookServiceImpl implements BookService {
      * @return new book instance
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Book createBook() {
-        return bookDao.createBook();
+        return (Book) stateMachineManager.handleEvent(
+                stateMachineManager.initStateMachine(bookDao.createBook(),
+                        (StateMachineDefinition<BookStatus, BookEvent>)
+                                stateMachineManager.loadDefinition(xmlResource)),
+                BookEvent.CREATE);
     }
 
     /**
@@ -76,7 +89,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book accept(Book book, String number) {
-        return null;
+        book.setSerialNumber(number);
+        return bookDao.save((Book) stateMachineManager.handleEvent(book, BookEvent.ACCEPT));
     }
 
     /**
@@ -88,7 +102,8 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book issue(Book book, LocalDate returnDate) {
-        return null;
+        book.setReturnDate(returnDate);
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.ISSUE);
     }
 
     /**
@@ -99,6 +114,6 @@ public class BookServiceImpl implements BookService {
      */
     @Override
     public Book returnFromIssue(Book book) {
-        return null;
+        return (Book) stateMachineManager.handleEvent(book, BookEvent.RETURN);
     }
 }

@@ -6,13 +6,13 @@ import com.epam.university.java.core.task034.PhoneNumber;
  * Created by Александр on 09.10.2017.
  * POJO for
  */
-public class PhoneNumberPOJO implements PhoneNumber {
+public class PhoneNumberPojo implements PhoneNumber {
     private String phoneNumber;
 
     /**
      * Constructor without parametrs.
      */
-    public PhoneNumberPOJO() {
+    public PhoneNumberPojo() {
     }
 
     /**
@@ -20,7 +20,7 @@ public class PhoneNumberPOJO implements PhoneNumber {
      *
      * @param phoneNumber string
      */
-    public PhoneNumberPOJO(String phoneNumber) {
+    public PhoneNumberPojo(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

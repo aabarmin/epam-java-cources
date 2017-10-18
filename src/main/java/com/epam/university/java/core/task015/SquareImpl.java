@@ -121,9 +121,11 @@ public class SquareImpl implements Square {
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 k = i + 1 < m ? i + 1 : 0;
-                LineSegment line1 = new LineSegment(verticesOfFirst.get(i), verticesOfFirst.get(k));
+                LineSegment line1 = new LineSegment(verticesOfFirst.get(i),
+                        verticesOfFirst.get(k));
                 k = j + 1 < n ? j + 1 : 0;
-                LineSegment line2 = new LineSegment(verticesOfSecond.get(j), verticesOfSecond.get(k));
+                LineSegment line2 = new LineSegment(verticesOfSecond.get(j),
+                        verticesOfSecond.get(k));
                 optionalPoints.add(LineSegment.intersectionPoint(line1, line2));
             }
         }

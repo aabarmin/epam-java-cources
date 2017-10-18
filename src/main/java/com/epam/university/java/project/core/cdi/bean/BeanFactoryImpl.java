@@ -1,17 +1,24 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinition;
+import com.epam.university.java.project.core.cdi.structure.MapDefinition;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 30.09.2017.
+ * Bean factory
  */
 public class BeanFactoryImpl implements BeanFactory {
-    BeanDefinitionRegistry registry;
-    Map<String, Object> singletons;
+    private BeanDefinitionRegistry registry;
+    private Map<String, Object> singletons;
 
     public BeanFactoryImpl(BeanDefinitionRegistry registry) {
         this.registry = registry;
@@ -26,7 +33,7 @@ public class BeanFactoryImpl implements BeanFactory {
      */
     @Override
     //check in getBeanDefinition
-    @SuppressWarnings("ubchecked")
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
         BeanDefinitionRegistryImpl registryImpl = (BeanDefinitionRegistryImpl) registry;
         BeanDefinition definition = registryImpl.getBeanDefinition(beanClass);
@@ -44,7 +51,7 @@ public class BeanFactoryImpl implements BeanFactory {
         BeanDefinition definition = registry.getBeanDefinition(beanName);
 
         try {
-            Class<?> clazz = Class.forName( definition.getClassName());
+            Class<?> clazz = Class.forName(definition.getClassName());
             Object beanInstance = clazz.newInstance();
 
             //scope
@@ -81,16 +88,43 @@ public class BeanFactoryImpl implements BeanFactory {
                     field.set(beanInstance, property.getValue());
                 }
 
-                //Injects property with collection.
-
-                if (property.getData() != null) {
-
-                }
-
                 //Inject property with class
                 if (property.getRef() != null) {
                     field.setAccessible(true);
                     field.set(beanInstance, getBean(property.getRef()));
+                }
+
+                //Injects property with collection.
+
+                if (property.getData() == null) {
+                    continue;
+                }
+
+                if (property.getData() instanceof ListDefinition) {
+                    ListDefinition listDefinition = (ListDefinition) property.getData();
+                    Collection<String> items = new ArrayList<>(
+                            listDefinition.getItems()
+                                    .stream()
+                                    .map(n -> n.getValue())
+                                    .collect(Collectors.toList()));
+                    field.set(beanInstance, items);
+                }
+
+                if (property.getData() instanceof MapDefinition) {
+                    MapDefinition mapDefinition = (MapDefinition) property.getData();
+                    Map<String, Object> itemMap = new HashMap<>();
+                    for (MapDefinition.MapEntryDefinition entryDefinition
+                            : mapDefinition.getValues()) {
+                        if (entryDefinition.getValue() != null) {
+                            itemMap.put(entryDefinition.getKey(), entryDefinition.getValue());
+                        } else if (entryDefinition.getRef() != null) {
+                            itemMap.put(entryDefinition.getKey(),
+                                    getBean(entryDefinition.getRef()));
+                        } else {
+                            throw new RuntimeException("value and ref are null in map entry");
+                        }
+                    }
+                    field.set(beanInstance, itemMap);
                 }
             }
 
@@ -127,11 +161,11 @@ public class BeanFactoryImpl implements BeanFactory {
      * @return bean instance
      */
     @Override
-    @SuppressWarnings("ubchecked")
+    @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
         try {
             return (T) getBean(beanName);
-        } catch (ClassCastException e){
+        } catch (ClassCastException e) {
             e.printStackTrace();
         }
         return null;

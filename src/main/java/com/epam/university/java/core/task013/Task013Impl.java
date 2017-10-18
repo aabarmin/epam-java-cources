@@ -40,8 +40,7 @@ public class Task013Impl implements Task013 {
     /**
      * Class for create hull with jarvis alforithm.
      */
-    public class JarvisMarch
-    {
+    public class JarvisMarch {
         private List<Vertex> vertices;
         private int countOfVertices;
         private int currentIndex;
@@ -51,8 +50,7 @@ public class Task013Impl implements Task013 {
          * @param vertices on plane
          * @return count of vertices in hull.
          */
-        public int computeHull(List<Vertex> vertices)
-        {
+        public int computeHull(List<Vertex> vertices) {
             this.vertices = vertices;
             countOfVertices = vertices.size();
             currentIndex = 0;
@@ -63,31 +61,28 @@ public class Task013Impl implements Task013 {
         /**
          * Algorithm start.
          */
-        private void jarvisMarch()
-        {
+        private void jarvisMarch() {
             int i = indexOfLowestPoint();
-            do
-            {
+            do {
                 swap(currentIndex, i);
                 i = indexOfRightmostPointFrom(vertices.get(currentIndex));
                 currentIndex++;
-            }
-            while (i > 0);
+            } while (i > 0);
         }
 
         /**
          * Search left down vertex.
          * @return vertex index in list
          */
-        private int indexOfLowestPoint()
-        {
+        private int indexOfLowestPoint() {
             int min = 0;
-            for (int i = 1; i < countOfVertices; i++)
+            for (int i = 1; i < countOfVertices; i++) {
                 if (vertices.get(i).getY() < vertices.get(min).getY()
                         || vertices.get(i).getY() == vertices.get(min).getY()
                         && vertices.get(i).getX() < vertices.get(min).getX()) {
                     min = i;
                 }
+            }
             return min;
         }
 
@@ -96,8 +91,7 @@ public class Task013Impl implements Task013 {
          * @param vertex current
          * @return  index of vertex
          */
-        private int indexOfRightmostPointFrom(Vertex vertex)
-        {
+        private int indexOfRightmostPointFrom(Vertex vertex) {
             int i = 0;
             for (int j = 1; j < countOfVertices; j++) {
                 if (isLess(relTo(vertices.get(j), vertex), relTo(vertices.get(i), vertex))) {
@@ -110,18 +104,13 @@ public class Task013Impl implements Task013 {
         /**
          * Checks whether the location vector of t has a smaller angle to the zero point
          * than the location vector of a point p.
-         *
-         * Assuming that both points lie above the x axis
          * @param first     vertex
          * @param second    vertex
          * @return  true if angle of turn is less
          */
         private boolean isLess(Vertex first, Vertex second) {
             double f = cross(first, second);
-
-            return f > 0
-                    || f == 0
-                    && isFurther(first, second);
+            return f > 0 || f == 0 && isFurther(first, second);
         }
 
         /**
@@ -160,8 +149,7 @@ public class Task013Impl implements Task013 {
          * @param i vertex
          * @param j vertex
          */
-        private void swap(int i, int j)
-        {
+        private void swap(int i, int j) {
             Collections.swap(vertices, i, j);
         }
 
@@ -172,8 +160,7 @@ public class Task013Impl implements Task013 {
          * @param second vector from zero
          * @return cross multiply
          */
-        public double cross(Vertex first, Vertex second)
-        {
+        public double cross(Vertex first, Vertex second) {
             return first.getX() * second.getY() - second.getX() * first.getY();
         }
 

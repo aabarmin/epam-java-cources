@@ -1,11 +1,10 @@
-package com.epam.university.java.core.task034.jaxbImpl;
+package com.epam.university.java.core.task034.jaxb;
 
 import com.epam.university.java.core.task034.PhoneNumber;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
 /**

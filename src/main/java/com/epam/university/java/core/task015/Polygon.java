@@ -30,7 +30,7 @@ public class Polygon {
         int n = this.getVertices().size();
         int k;
         for (int i = 0; i < n; i++) {
-            k = (i + 1 < n) ? i + 1 : 0;
+            k = (i + 1) % n;
             result += this.vertices.get(i).getX() * this.vertices.get(k).getY()
                     - this.vertices.get(i).getY() * this.vertices.get(k).getX();
         }

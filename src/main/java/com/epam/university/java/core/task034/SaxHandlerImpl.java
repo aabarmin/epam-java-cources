@@ -23,7 +23,11 @@ public class SaxHandlerImpl extends SaxHandler {
     }
 
     @Override
-    public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
+    public void startElement(String namespaceURI,
+                             String localName,
+                             String qName,
+                             Attributes atts)
+            throws SAXException {
         thisElement = qName;
         if (qName == "person") {
             person = new PersonImpl();
@@ -52,7 +56,10 @@ public class SaxHandlerImpl extends SaxHandler {
     }
 
     @Override
-    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
+    public void endElement(String namespaceURI,
+                           String localName,
+                           String qName) throws
+            SAXException {
         thisElement = "";
     }
 

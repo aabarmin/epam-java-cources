@@ -10,8 +10,9 @@ import java.util.List;
  * ListDefinition
  */
 @XmlRootElement(name = "list")
-public class ListDefinitionImpl implements ListDefinition{
+public class ListDefinitionImpl implements ListDefinition {
     private Collection<ListItemDefinition> data;
+
     /**
      * Get list items.
      *

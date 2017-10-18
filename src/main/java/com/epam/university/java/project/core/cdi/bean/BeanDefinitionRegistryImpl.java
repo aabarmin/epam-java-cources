@@ -42,7 +42,7 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
      * @param clazz bean class
      * @return bean definition
      */
-    @SuppressWarnings("ubchecked")
+    @SuppressWarnings("unchecked")
     public BeanDefinition getBeanDefinition(Class clazz) {
         for (BeanDefinition v : storage) {
             try {

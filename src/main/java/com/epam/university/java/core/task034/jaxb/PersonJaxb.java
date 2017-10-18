@@ -1,24 +1,38 @@
-package com.epam.university.java.core.task035;
+package com.epam.university.java.core.task034.jaxb;
 
 import com.epam.university.java.core.task034.Person;
 import com.epam.university.java.core.task034.PhoneNumber;
-import com.epam.university.java.core.task034.PhoneNumberImpl;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessOrder;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorOrder;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
 
 /**
- * Created by Александр on 14.10.2017.
- * POJO for Jackson
+ * Created by Александр on 09.10.2017.
+ * Person model for jaxb parser.
  */
-public class PersonJacksonPOJO implements Person {
+@XmlRootElement(name = "person")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorOrder(XmlAccessOrder.UNDEFINED)
+public class PersonJaxb implements Person {
+    @XmlAttribute
     private int id;
+
+    @XmlElement(name = "first-name")
     private String firstName;
+
+    @XmlElement(name = "last-name")
     private String lastName;
-    @JsonProperty("phones")
-    Collection<PhoneNumber> phoneNumbers  = new ArrayList<>();
+
+    @XmlElementWrapper(name = "person-phones")
+    @XmlElement(name = "person-phone", type = PhoneNumberJaxb.class)
+    Collection<PhoneNumber> phoneNumbers;
 
     /**
      * Get person id.

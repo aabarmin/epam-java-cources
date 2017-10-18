@@ -54,7 +54,9 @@ public class BookImpl implements Book {
      * @param definition state machine definition
      */
     @Override
-    public void setStateMachineDefinition(StateMachineDefinition<BookStatus, BookEvent> definition) {
+    public void setStateMachineDefinition(
+            StateMachineDefinition<BookStatus,
+            BookEvent> definition) {
         this.stateMachineDefinition = definition;
     }
 

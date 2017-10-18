@@ -14,7 +14,7 @@ public class Task033Impl implements Task033 {
      * @param second second value
      */
     @Override
-    public void doSomething(int first, int second){
+    public void doSomething(int first, int second) {
         if ((first == 0) && (second == 0)) {
             throw new ArithmeticException();
         }

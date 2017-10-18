@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class SimpleGraph implements Graph {
     private Set<UndirectedEdge> edges = new HashSet<>();
+    
     /**
      * Create edge between <code>from</code> and <code>to</code> vertexes.
      *

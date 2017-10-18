@@ -11,7 +11,7 @@ public class LineSegment {
     private Point first;
     private Point second;
 
-    LineSegment(Point first, Point second) {
+    public LineSegment(Point first, Point second) {
         this.first = first;
         this.second = second;
     }

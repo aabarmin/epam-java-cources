@@ -17,8 +17,10 @@ public class BasicApplicationContext implements ApplicationContext {
     BeanDefinitionReader reader;
     BeanFactoryImpl factory;
 
-
-    public BasicApplicationContext(){
+    /**
+     * Default init.
+     */
+    public BasicApplicationContext() {
         registry = new BeanDefinitionRegistryImpl();
         reader = new DefaultBeanDefinitionReader(registry);
         factory = new BeanFactoryImpl(registry);
