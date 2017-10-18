@@ -23,17 +23,17 @@ public class SaxHandlerImpl extends SaxHandler {
     }
 
     @Override
-    public void startElement(String namespaceURI,
+    public void startElement(String namespace,
                              String localName,
                              String qName,
                              Attributes atts)
             throws SAXException {
         thisElement = qName;
-        if (qName == "person") {
+        if (qName.equals("person")) {
             person = new PersonImpl();
             person.setId(Integer.valueOf(atts.getValue("id")));
         }
-        if (qName == "person-phones")  {
+        if (qName.equals("person-phones"))  {
             person.setPhoneNumbers(new ArrayList<PhoneNumber>());
         }
 
@@ -56,7 +56,7 @@ public class SaxHandlerImpl extends SaxHandler {
     }
 
     @Override
-    public void endElement(String namespaceURI,
+    public void endElement(String namespace,
                            String localName,
                            String qName) throws
             SAXException {

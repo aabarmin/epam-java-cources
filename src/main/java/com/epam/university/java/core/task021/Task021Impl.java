@@ -91,7 +91,7 @@ public class Task021Impl implements Task021 {
                         + new LineSegment(n, b).length()
                         + new LineSegment(n, c).length();
 
-        Point result = intersectionPoints.stream()
+        return intersectionPoints.stream()
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
@@ -100,7 +100,6 @@ public class Task021Impl implements Task021 {
                 .map(Map.Entry::getKey)
                 .min(Comparator.comparingDouble(toDoubleFunction))
                 .get();
-        return result;
     }
 
     /**
@@ -137,7 +136,7 @@ public class Task021Impl implements Task021 {
         double firstX = first.getSecond().getX() - first.getFirst().getX();
         double secondX = second.getSecond().getX() - second.getFirst().getX();
         double firstY = first.getSecond().getY() - first.getFirst().getY();
-        double secondY = second.getSecond().getY() - second.getFirst().getY();;
+        double secondY = second.getSecond().getY() - second.getFirst().getY();
         if (firstX == 0 && secondX == 0 || firstY == 0 && secondY == 0) {
             return Optional.empty();
         }
