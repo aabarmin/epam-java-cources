@@ -9,15 +9,15 @@ public class Task011Impl implements Task011 {
     public String getLastName(String[] collection) {
         int nElem = collection.length;
         if (nElem == 0) {
-           throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
         }
         int i = 0;
         int pow = 0;
         int result = 1;
         while (nElem > pow) {
-           pow = (int) Math.pow(2, i);
+            pow = (int) Math.pow(2, i);
             result = 2 * nElem - pow;
-           i++;
+            i++;
         }
         return collection[result - 1];
     }

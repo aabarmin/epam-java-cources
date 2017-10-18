@@ -23,8 +23,8 @@ public class Task024Impl implements Task024 {
             }
             result = Arrays.asList(words);
         }
-        if (Character.UnicodeBlock.of(source.charAt(1)).
-                equals(Character.UnicodeBlock.BASIC_LATIN)) {
+        if (Character.UnicodeBlock.of(source.charAt(1))
+                .equals(Character.UnicodeBlock.BASIC_LATIN)) {
             String[] words = source.split("(?<=[a-züäöß])(?=[A-ZÜÄÖ])");
             for (int i = 0; i < words.length; i++) {
                 words[i] = words[i].toLowerCase();

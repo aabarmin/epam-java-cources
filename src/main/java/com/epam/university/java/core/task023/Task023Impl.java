@@ -8,7 +8,7 @@ public class Task023Impl implements Task023 {
         String telNumber = "";
         String[] numbers = phoneString.split("[^0-9]+");
 
-        for (int i = 0; i < numbers.length; i++){
+        for (int i = 0; i < numbers.length; i++) {
             telNumber += numbers[i];
         }
         if (telNumber.length() < 11) {

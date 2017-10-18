@@ -39,12 +39,9 @@ public class Task004Impl implements Task004 {
         LinkedHashSet<String> set = new LinkedHashSet<>(Arrays.asList(array));
 
 
-      return set.toArray(new String[0]);
+        return set.toArray(new String[0]);
     }
 
-    /**
-     * Created by Vadim
-     */
     public  String[] join(String[] first, String[] second) {
         int lengthFirst = first.length;
         int lengthSecond = second.length;

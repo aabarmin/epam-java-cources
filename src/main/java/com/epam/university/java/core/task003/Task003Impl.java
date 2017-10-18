@@ -153,8 +153,8 @@ public class Task003Impl implements Task003 {
         newArray[0] = array[0];
         for (int i = 1; i < array.length; i++) {
             if (!current.equals(array[i])) {
-                 newArray[index++] = array[i];
-                 current = array[i];
+                newArray[index++] = array[i];
+                current = array[i];
             }
         }
         return newArray;
