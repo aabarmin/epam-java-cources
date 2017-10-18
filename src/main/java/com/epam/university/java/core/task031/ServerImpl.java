@@ -5,14 +5,15 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Deque;
 import java.util.LinkedList;
 
 
 public class ServerImpl implements Server {
     private final int port;
+    private volatile boolean isWorking = true;
     private volatile ServerSocket serverSocket;
-    private volatile LinkedList<String> queue = new LinkedList<>();
-    private boolean wereRecords = false;
+    private volatile Deque<String> queue = new LinkedList<>();
 
     ServerImpl(int port) {
         this.port = port;
@@ -24,20 +25,12 @@ public class ServerImpl implements Server {
      * @return message text
      */
     public String readMessage() {
-        // trying to wait, if there was no records on queue
-        for (int i = 0; i < 100; i++) {
-            if (queue.size() == 0 && !wereRecords) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                break;
-            }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
-        return queue.size() > 0 ? queue.removeLast() : "";
+        return !queue.isEmpty() ? queue.pollLast() : "";
     }
 
     /**
@@ -47,35 +40,34 @@ public class ServerImpl implements Server {
     public void start() {
         Thread listenerThread = new Thread(() -> {
             try {
+                Thread.sleep(500);
                 serverSocket = new ServerSocket(port);
-                while (true) {
-                    if (serverSocket != null && !serverSocket.isClosed()) {
-                        Socket clientSocket = serverSocket.accept();
-                        Thread readerThread = new Thread(() -> {
-                            try (
-                                    final BufferedReader reader = new BufferedReader(
-                                            new InputStreamReader(
-                                                    clientSocket.getInputStream()
-                                            )
-                                    )
-                            ) {
+                while (isWorking) {
+                    Socket clientSocket = serverSocket.accept();
+                    Thread readerThread = new Thread(() -> {
+                        try (
+                                BufferedReader reader = new BufferedReader(
+                                        new InputStreamReader(
+                                                clientSocket.getInputStream()
+                                        )
+                                )
+                        ) {
 
-                                while (true) {
-                                    if (reader.ready()) {
-                                        queue.addLast(reader.readLine());
-                                        wereRecords = true;
-                                    }
+                            while (isWorking) {
+                                if (reader.ready()) {
+                                    queue.add(reader.readLine());
                                 }
-                            } catch (Exception e) {
-                                throw new RuntimeException(e);
                             }
-                        });
-                        readerThread.setPriority(Thread.MAX_PRIORITY);
-                        readerThread.start();
-                    }
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                    readerThread.setPriority(Thread.MAX_PRIORITY);
+                    readerThread.start();
+                    Thread.sleep(500);
                 }
             } catch (SocketException e) {
-                System.out.println("Do nothing");
+                stop();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -90,10 +82,13 @@ public class ServerImpl implements Server {
      */
     @Override
     public void stop() {
+        isWorking = false;
         try {
+            Thread.sleep(500);
             if (serverSocket != null && !serverSocket.isClosed()) {
                 serverSocket.close();
             }
+            Thread.sleep(500);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
