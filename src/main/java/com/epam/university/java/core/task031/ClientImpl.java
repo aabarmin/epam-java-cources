@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class ClientImpl implements Client {
     private Socket socket;
     private LinkedList<String> messages;
-    private boolean isStopped;
+    private boolean isStopped = false;
 
     @Override
     public void sendMessage(String message) {
@@ -35,7 +35,7 @@ public class ClientImpl implements Client {
                             writer.flush();
                         }
                     }
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException | InterruptedException | NullPointerException e) {
                     e.printStackTrace();
                 }
             }).start();

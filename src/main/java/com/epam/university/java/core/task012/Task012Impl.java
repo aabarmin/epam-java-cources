@@ -27,6 +27,9 @@ public class Task012Impl implements Task012 {
                 return true;
             }
         }
+        for (Integer vertex : adjacentVertex) {
+            graph.createEdge(from, vertex);
+        }
         return false;
     }
 }
