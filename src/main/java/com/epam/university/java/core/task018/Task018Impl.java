@@ -10,12 +10,17 @@ import java.lang.reflect.Parameter;
  * Created by Вера on 27.09.2017.
  */
 public class Task018Impl implements Task018 {
+
+    @SuppressWarnings("unchecked")
     @Override
     public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {
         // проверка аннотации над классом
-        Class classToCheck = toCheck.getClass();
+        Class<?> classToCheck = toCheck.getClass();
 
-        if (classToCheck.isAnnotationPresent(annotationToFind)) {
+        classToCheck.getDeclaredAnnotations();
+
+
+        if (classToCheck.isAnnotationPresent((Class<? extends Annotation>) annotationToFind)) {
             return true;
         }
 

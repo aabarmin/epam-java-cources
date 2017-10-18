@@ -1,7 +1,6 @@
 package com.epam.university.java.project.core.cdi.structure;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlElements;
 
 /**
@@ -10,7 +9,7 @@ import javax.xml.bind.annotation.XmlElements;
 
 
 public class StructureDefinitionImpl implements StructureDefinition {
-    /*
+
     @XmlElements({
             @XmlElement(name = "stringMap", type = MapDefinitionImpl.class),
             @XmlElement(name = "objectMap", type = MapDefinitionImpl.class)
@@ -35,5 +34,5 @@ public class StructureDefinitionImpl implements StructureDefinition {
     public void setListDefinition(ListDefinition listDefinition) {
         this.listDefinition = listDefinition;
     }
-*/
+
 }

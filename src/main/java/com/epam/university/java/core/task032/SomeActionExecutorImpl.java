@@ -18,6 +18,7 @@ public class SomeActionExecutorImpl implements SomeActionExecutor {
 
         Class c = this.getClass();
         try {
+            @SuppressWarnings("unchecked")
             Method method = c.getDeclaredMethod("doAction");
             this.original.invoke(this, method, null);
         } catch (NoSuchMethodException e) {
@@ -33,6 +34,7 @@ public class SomeActionExecutorImpl implements SomeActionExecutor {
 
         Class c = this.getClass();
         try {
+            @SuppressWarnings("unchecked")
             Method method = c.getDeclaredMethod("doAnotherAction");
             this.original.invoke(this, method, null);
         } catch (NoSuchMethodException e) {
