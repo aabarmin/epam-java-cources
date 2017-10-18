@@ -11,7 +11,7 @@ public class Task001Impl implements Task001 {
         if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         }
-        if (!isNumber(firstNumber) || !isNumber(secondNumber)){
+        if (!isNumber(firstNumber) || !isNumber(secondNumber)) {
             throw new NumberFormatException();
         }
         double numberOne = Double.parseDouble(firstNumber);
