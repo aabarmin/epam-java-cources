@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class ClientImpl implements Client {
     private Socket socket;
     private LinkedList<String> messages;
-    private boolean isStopped;
+    private boolean isStopped = false;
 
     @Override
     public void sendMessage(String message) {
