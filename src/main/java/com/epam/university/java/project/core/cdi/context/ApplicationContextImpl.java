@@ -77,13 +77,17 @@ public class ApplicationContextImpl implements ApplicationContext {
         BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
 
         Object obj = null;
-        if (!beanInstanceRegistry.containsKey(beanName)) {
+        if (!beanInstanceRegistry.containsKey(beanName)
+                || "prototype".equals(beanDefinition.getScope())) {
 
             // load from context
             obj = loadBeanByName(beanDefinition.getClassName());
             beanInstanceRegistry.put(beanName, obj);
         }
         obj = beanInstanceRegistry.get(beanName);
+        if (null == beanDefinition.getProperties()) {
+            return obj;
+        }
 
         // init bean with properties from it's BeanDefinition
         final Object bean = obj;
