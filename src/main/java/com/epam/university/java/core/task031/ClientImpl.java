@@ -35,7 +35,7 @@ public class ClientImpl implements Client {
                             writer.flush();
                         }
                     }
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException | InterruptedException | NullPointerException e) {
                     e.printStackTrace();
                 }
             }).start();
