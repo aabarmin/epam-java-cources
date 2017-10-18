@@ -51,7 +51,7 @@ public class BookServiceImpl implements BookService {
         newBook.setStateMachineDefinition(stateMachineDefinition);
 
         // init state machine on new book entity
-       stateMachineManager.initStateMachine(
+        stateMachineManager.initStateMachine(
                 newBook,
                 stateMachineDefinition
         );
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
         // go start event
         stateMachineManager.handleEvent(
                 newBook,
-                (BookEvent) stateMachineDefinition.getStartEvent()
+                stateMachineDefinition.getStartEvent()
         );
 
         return newBook;

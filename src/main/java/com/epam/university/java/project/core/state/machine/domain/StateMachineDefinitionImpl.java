@@ -106,13 +106,4 @@ public class StateMachineDefinitionImpl implements StateMachineDefinition<BookSt
     public void setHandlerClass(Class handlerClass) {
         this.eventHandler = eventHandler;
     }
-
-    public String getHandler() {
-        return handler;
-    }
-
-    public void setHandler(String handler) {
-        this.handler = handler;
-    }
-
 }

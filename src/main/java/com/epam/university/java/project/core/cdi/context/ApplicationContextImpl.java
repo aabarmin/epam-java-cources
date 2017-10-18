@@ -8,6 +8,7 @@ import com.epam.university.java.project.core.cdi.io.Resource;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,15 +74,42 @@ public class ApplicationContextImpl implements ApplicationContext {
     @Override
     public Object getBean(String beanName) {
 
+        BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
+
+        Object obj = null;
         if (!beanInstanceRegistry.containsKey(beanName)) {
 
             // load from context
-            BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
-
-            return loadBeanByName(beanDefinition.getClassName());
+            obj = loadBeanByName(beanDefinition.getClassName());
+            beanInstanceRegistry.put(beanName, obj);
         }
+        obj = beanInstanceRegistry.get(beanName);
 
-        return beanInstanceRegistry.get(beanName);
+        // init bean with properties from it's BeanDefinition
+        final Object bean = obj;
+        beanDefinition.getProperties()
+                .forEach(l -> {
+                    try {
+                        Field field = bean.getClass().getDeclaredField(l.getName());
+                        field.setAccessible(true);
+
+                        if (null != l.getValue()) {
+                            field.set(bean, l.getValue());
+                        }
+
+                        if (null != l.getRef()) {
+                            field.set(bean, this.getBean(l.getRef()));
+                        }
+
+                        field.setAccessible(false);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        obj = bean;
+
+        return obj;
     }
 
     /**

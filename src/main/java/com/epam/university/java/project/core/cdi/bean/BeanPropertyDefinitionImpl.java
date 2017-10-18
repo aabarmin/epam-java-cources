@@ -5,6 +5,7 @@ import com.epam.university.java.project.core.cdi.structure.StructureDefinitionIm
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,10 +19,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
 
+    @XmlAttribute
     private String name;
 
+    @XmlAttribute
     private String value;
 
+    @XmlAttribute
     private String ref;
 
     @XmlElements({
