@@ -42,6 +42,9 @@ public class Task004Impl implements Task004 {
         return set.toArray(new String[0]);
     }
 
+    /**
+     * Created by Vadim on 09.09.2017.
+     */
     public  String[] join(String[] first, String[] second) {
         int lengthFirst = first.length;
         int lengthSecond = second.length;
