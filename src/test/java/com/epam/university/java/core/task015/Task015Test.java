@@ -141,4 +141,55 @@ public class Task015Test {
                 DELTA
         );
     }
+
+    @Test
+    public void testIntersection8() throws Exception {
+        final Square firstSquare = squareFactory.newInstance(
+                pointFactory.newInstance(1, 1),
+                pointFactory.newInstance(5, 5)
+        );
+        final Square secondSquare = squareFactory.newInstance(
+                pointFactory.newInstance(3, 0),
+                pointFactory.newInstance(3, 6)
+        );
+        assertEquals("Error in intersection 8",
+                14,
+                instance.getArea(firstSquare, secondSquare),
+                DELTA
+        );
+    }
+
+    @Test
+    public void testIntersection9() throws Exception {
+        final Square firstSquare = squareFactory.newInstance(
+                pointFactory.newInstance(1, 4),
+                pointFactory.newInstance(7, 4)
+        );
+        final Square secondSquare = squareFactory.newInstance(
+                pointFactory.newInstance(3, 3),
+                pointFactory.newInstance(5, 5)
+        );
+        assertEquals("Error in intersection 9",
+                4,
+                instance.getArea(firstSquare, secondSquare),
+                DELTA
+        );
+    }
+
+    @Test
+    public void testIntersection10() throws Exception {
+        final Square firstSquare = squareFactory.newInstance(
+                pointFactory.newInstance(1, 1),
+                pointFactory.newInstance(2, 2)
+        );
+        final Square secondSquare = squareFactory.newInstance(
+                pointFactory.newInstance(1, 1),
+                pointFactory.newInstance(2, 2)
+        );
+        assertEquals("Error in intersection 10",
+                1,
+                instance.getArea(firstSquare, secondSquare),
+                DELTA
+        );
+    }
 }

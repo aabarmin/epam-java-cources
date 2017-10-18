@@ -146,7 +146,7 @@
                      value="Method type name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="InterfaceTypeParameterName">
-            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*$)"/>
             <message key="name.invalidPattern"
                      value="Interface type name ''{0}'' must match pattern ''{1}''."/>
         </module>
@@ -176,9 +176,9 @@
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="VariableDeclarationUsageDistance"/>
         <!--<module name="CustomImportOrder">-->
-            <!--<property name="sortImportsInGroupAlphabetically" value="true"/>-->
-            <!--<property name="separateLineBetweenGroups" value="true"/>-->
-            <!--<property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>-->
+        <!--<property name="sortImportsInGroupAlphabetically" value="true"/>-->
+        <!--<property name="separateLineBetweenGroups" value="true"/>-->
+        <!--<property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>-->
         <!--</module>-->
         <module name="MethodParamPad"/>
         <module name="NoWhitespaceBefore">

@@ -15,4 +15,3 @@ public class MappingOperationImpl implements MappingOperation {
         return res;
     }
 }
-
