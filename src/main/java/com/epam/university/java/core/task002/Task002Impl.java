@@ -6,7 +6,7 @@ package com.epam.university.java.core.task002;
 public class Task002Impl implements Task002 {
     @Override
     public boolean isEquals(String firstString, String secondString) {
-        if (firstString == null || secondString == null){
+        if (firstString == null || secondString == null) {
             throw new IllegalArgumentException();
         }
         return firstString.equals(secondString);
@@ -14,36 +14,37 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String left(String sourceString, int number) {
-        if (sourceString == null || number < 0){
+        if (sourceString == null || number < 0) {
             throw new IllegalArgumentException();
         }
         int length = sourceString.length();
-        if (length < number){
-           return sourceString.substring(0, length);
+        if (length < number) {
+            return sourceString.substring(0, length);
         }
         return sourceString.substring(0, number);
     }
 
     @Override
-    public String right(String sourceString, int number) {
-        if (sourceString == null || number < 0){
-            throw new IllegalArgumentException();
-        }
-        int length = sourceString.length();
-        if (length < number){
-            return sourceString.substring(0, length);
-        }
-        return sourceString.substring(number + 2, length);
-    }
-
-    @Override
     public String left(String sourceString, String separator) {
-        if (sourceString == null){
+        if (sourceString == null) {
             throw new IllegalArgumentException();
         }
         int end = sourceString.indexOf(separator);
         return sourceString.substring(0, end);
     }
+
+    @Override
+    public String right(String sourceString, int number) {
+        if (sourceString == null || number < 0) {
+            throw new IllegalArgumentException();
+        }
+        int length = sourceString.length();
+        if (length < number) {
+            return sourceString.substring(0, length);
+        }
+        return sourceString.substring(number + 2, length);
+    }
+
 
     @Override
     public String right(String sourceString, String separator) {
