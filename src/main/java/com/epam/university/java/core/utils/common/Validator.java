@@ -46,6 +46,8 @@ public class Validator {
             "collection can't be empty";
     public static final String MESSAGE_IF_ILLEGAL_IPV4_ADDRESS =
             "IP Address not in correct";
+    public static final String MESSAGE_IF_STRING_EMPTY =
+            "input string is empty";
 
     /**
      * Validates parameters not null.
@@ -290,7 +292,7 @@ public class Validator {
      * @throws IllegalArgumentException if parameter doesn't exists in enum
      */
     public static <E extends Enum<E>> boolean
-        validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
+    validateEnum(E value, E[] enumValues, String messageIfIllegalArgument)
             throws IllegalArgumentException {
         for (E enumValue : enumValues) {
             if (enumValue.equals(value)) {
@@ -375,5 +377,14 @@ public class Validator {
                 }
             }
         }
+    }
+
+    public static boolean validateStringEmpty(String stringToCheck, String
+            messageIfEmpty) {
+        if (stringToCheck==null || stringToCheck.isEmpty() ||
+                stringToCheck.trim().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

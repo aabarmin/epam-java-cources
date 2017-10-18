@@ -75,9 +75,6 @@ public class RobotImpl implements Robot {
         } else {
             changeRobotState(command);
         }
-
-        System.out.println("current robot position: " + currentRobotPosition
-                + System.lineSeparator());
     }
 
 

@@ -3,11 +3,11 @@ package com.epam.university.java.core.task031;
 import com.epam.university.java.core.utils.common.ThreadUtility;
 
 /**
- * Created by Admin on 13.10.2017.
+ * Class implements <code>Task031</code> interface.
  */
 public class Task031Impl implements Task031 {
-    ServerImpl server;
-    ClientImpl client;
+    private ServerImpl server;
+    private ClientImpl client;
 
     @Override
     public Client createClient() {
