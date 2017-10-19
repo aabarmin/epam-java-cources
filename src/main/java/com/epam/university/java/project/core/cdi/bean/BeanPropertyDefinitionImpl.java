@@ -1,7 +1,8 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
-import com.epam.university.java.project.core.cdi.structure.StructureDefinitionImpl;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,7 +30,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     private String ref;
 
     @XmlElements({
-            @XmlElement(type = StructureDefinitionImpl.class)
+            @XmlElement(type = ListDefinitionImpl.class, name = "list"),
+            @XmlElement(type = MapDefinitionImpl.class, name = "map")
     })
     StructureDefinition data;
 
