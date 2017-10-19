@@ -12,8 +12,8 @@ import java.util.Collection;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MapDefinitionImpl implements MapDefinition {
 
-//    @XmlElement(type = ListItemDefinitionImpl.class, name = "value")
-//    private Collection<MapItemDefinition> list = new ArrayList<>();
+    // @XmlElement(type = ListItemDefinitionImpl.class, name = "value")
+    // private Collection<MapItemDefinition> list = new ArrayList<>();
 
     /**
      * {@inheritDoc}

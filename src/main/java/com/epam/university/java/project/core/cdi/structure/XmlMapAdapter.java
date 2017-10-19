@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 /**
- * Implementation class for XmlAdapter<MapDefinitionImpl, Map<String, String>>.
+ * Implementation XmlAdapter-class for MapDefinitionImpl to Map of Strings cast.
  *
  * @author Sergei Titov
  */
@@ -30,6 +30,7 @@ public class XmlMapAdapter extends XmlAdapter<MapDefinitionImpl, Map<String, Str
      */
     @Override
     public MapDefinitionImpl marshal(Map<String, String> map) throws Exception {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
+        return null;
     }
 }

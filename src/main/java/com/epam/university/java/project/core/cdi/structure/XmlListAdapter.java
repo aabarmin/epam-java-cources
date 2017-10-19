@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * Implementation class for XmlAdapter<ListDefinitionImpl, Collection<String>>.
+ * Implementation XmlAdapter-class for ListDefinitionImpl to Collection of Strings cast.
  *
  * @author Sergei Titov
  */
@@ -29,6 +29,7 @@ public class XmlListAdapter extends XmlAdapter<ListDefinitionImpl, Collection<St
      */
     @Override
     public ListDefinitionImpl marshal(Collection<String> collection) throws Exception {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
+        return null;
     }
 }

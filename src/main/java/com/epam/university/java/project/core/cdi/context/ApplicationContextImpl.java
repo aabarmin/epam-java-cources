@@ -120,9 +120,7 @@ public class ApplicationContextImpl implements ApplicationContext {
                             } else if (null != mapOfStrings && mapOfStrings.size() > 0) {
 
                                 // map
-                            }
-
-                            else if (l.getName().contains("property")) {
+                            } else if (l.getName().contains("property")) {
 
                                 // property without value is incorrect
                                 throw new RuntimeException("Bad property from XML");
@@ -148,6 +146,7 @@ public class ApplicationContextImpl implements ApplicationContext {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
 
         return (T) getBean(beanName);
@@ -178,7 +177,9 @@ public class ApplicationContextImpl implements ApplicationContext {
                     Class<?> clazz = Class.forName(classPath);
                     obj = clazz.newInstance();
                     beanInstanceRegistry.put(beanName, obj);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (null != obj) {
                     return obj;
                 }
@@ -189,7 +190,9 @@ public class ApplicationContextImpl implements ApplicationContext {
                 Class<?> clazz = Class.forName(beanPath);
                 obj = clazz.newInstance();
                 beanInstanceRegistry.put(beanName, obj);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                System.out.println("interface instantiation occurs");
+            }
             if (null != obj) {
                 return obj;
             }
@@ -248,27 +251,6 @@ public class ApplicationContextImpl implements ApplicationContext {
             return (Function<String, Integer>)(l -> Integer.valueOf(l));
         }
 
-        // Collection
-        if (type.equals(Collection.class)) {
-
-        }
-
         return (l -> l);
     }
-
-    // castingFor
-    private Function castingFor(StructureDefinition data) {
-
-        if (data instanceof ListDefinitionImpl) {
-
-        }
-
-        if (data instanceof MapDefinitionImpl) {
-
-        }
-
-        return (l -> l);
-    }
-
-
 }
