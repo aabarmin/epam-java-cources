@@ -5,6 +5,8 @@ import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
 import com.epam.university.java.project.core.cdi.bean.BeanPropertyDefinitionImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -38,8 +40,7 @@ public class ApplicationContextImpl implements ApplicationContext {
             // read bean definitions into beanDefinitionRegistry
             JAXBContext jc = JAXBContext.newInstance(
                     BeanDefinitionRegistryImpl.class,
-                    BeanPropertyDefinitionImpl.class,
-                    ListDefinitionImpl.class);
+                    BeanPropertyDefinitionImpl.class);
             Unmarshaller u = jc.createUnmarshaller();
             beanDefinitionRegistry = (BeanDefinitionRegistryImpl)u.unmarshal(resource.getFile());
 
@@ -104,8 +105,28 @@ public class ApplicationContextImpl implements ApplicationContext {
 
                         if (null != l.getValue()) {
                             field.set(bean, castingFor(field).apply(l.getValue()));
-                        } else if (l.getName().contains("property")){
-                            throw new RuntimeException("Bad property from XML");
+
+                        } else if (l instanceof BeanPropertyDefinitionImpl) {
+                            BeanPropertyDefinitionImpl property = (BeanPropertyDefinitionImpl)l;
+
+                            Collection<String> collectionOfStrings = property.getPropCollection();
+                            Map<String, String> mapOfStrings = property.getPropMap();
+
+                            if (null != collectionOfStrings && collectionOfStrings.size() > 0) {
+
+                                // collection
+                                field.set(bean, collectionOfStrings);
+
+                            } else if (null != mapOfStrings && mapOfStrings.size() > 0) {
+
+                                // map
+                            }
+
+                            else if (l.getName().contains("property")) {
+
+                                // property without value is incorrect
+                                throw new RuntimeException("Bad property from XML");
+                            }
                         }
 
                         if (null != l.getRef()) {
@@ -150,7 +171,7 @@ public class ApplicationContextImpl implements ApplicationContext {
 
             String classPath = beanPath;
             String postfix = "Interface";
-            // is it obviously it is an interface?String impl = "Impl";
+            // is it obviously if it's an interface?
             if (beanPath.substring(beanPath.length() - postfix.length()).equals(postfix)) {
                 classPath = classPath.substring(0, beanPath.length() - postfix.length());
                 try {
@@ -222,10 +243,32 @@ public class ApplicationContextImpl implements ApplicationContext {
 
         Class<?> type = field.getType();
 
+        // int
         if (type.equals(int.class)) {
             return (Function<String, Integer>)(l -> Integer.valueOf(l));
         }
 
+        // Collection
+        if (type.equals(Collection.class)) {
+
+        }
+
         return (l -> l);
     }
+
+    // castingFor
+    private Function castingFor(StructureDefinition data) {
+
+        if (data instanceof ListDefinitionImpl) {
+
+        }
+
+        if (data instanceof MapDefinitionImpl) {
+
+        }
+
+        return (l -> l);
+    }
+
+
 }

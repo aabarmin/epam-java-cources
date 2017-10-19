@@ -3,7 +3,7 @@ package com.epam.university.java.project.core.cdi.structure;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlValue;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,17 +13,16 @@ import java.util.Collection;
  *
  * @author Sergei Titov
  */
-@XmlRootElement(name = "list")
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListDefinitionImpl implements ListDefinition {
 
+    @XmlElement(type = ListItemDefinitionImpl.class, name = "value")
     private Collection<ListItemDefinition> list = new ArrayList<>();
 
     /**
      * {@inheritDoc}
      */
     @Override
-    @XmlElement(name = "value")
     public Collection<ListItemDefinition> getItems() {
         return list;
     }
@@ -42,10 +41,11 @@ public class ListDefinitionImpl implements ListDefinition {
  *
  * @author Sergei Titov
  */
-@XmlRootElement(name = "value")
+
 @XmlAccessorType(XmlAccessType.FIELD)
 class ListItemDefinitionImpl implements ListDefinition.ListItemDefinition {
 
+    @XmlValue
     private String value;
 
     @Override

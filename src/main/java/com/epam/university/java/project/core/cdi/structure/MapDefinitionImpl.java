@@ -1,5 +1,7 @@
 package com.epam.university.java.project.core.cdi.structure;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Collection;
 
 /**
@@ -7,7 +9,11 @@ import java.util.Collection;
  *
  * @author Sergei Titov
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MapDefinitionImpl implements MapDefinition {
+
+//    @XmlElement(type = ListItemDefinitionImpl.class, name = "value")
+//    private Collection<MapItemDefinition> list = new ArrayList<>();
 
     /**
      * {@inheritDoc}
@@ -25,3 +31,4 @@ public class MapDefinitionImpl implements MapDefinition {
 
     }
 }
+
