@@ -3,19 +3,19 @@ package com.epam.university.java.core.task012;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Created by Александр on 14.09.2017.
  */
 public class SimpleGraph implements Graph {
-    private int[][] network;
-
-    SimpleGraph(int vertexesCount) {
-        this.network = new int[vertexesCount][vertexesCount];
-    }
-
+    private Set<UndirectedEdge> edges = new HashSet<>();
+    
     /**
      * Create edge between <code>from</code> and <code>to</code> vertexes.
      *
@@ -24,10 +24,7 @@ public class SimpleGraph implements Graph {
      */
     @Override
     public void createEdge(int from, int to) {
-        from--;
-        to--;
-        network[from][to] = 1;
-        network[to][from] = 1;
+        edges.add(new UndirectedEdge(from, to));
     }
 
     /**
@@ -39,12 +36,7 @@ public class SimpleGraph implements Graph {
      */
     @Override
     public boolean edgeExists(int from, int to) {
-        from--;
-        to--;
-        if (network[from][to] == 1) {
-            return true;
-        }
-        return false;
+        return edges.contains(new UndirectedEdge(from, to));
     }
 
     /**
@@ -55,10 +47,7 @@ public class SimpleGraph implements Graph {
      */
     @Override
     public void removeEdge(int from, int to) {
-        from--;
-        to--;
-        network[from][to] = 0;
-        network[to][from] = 0;
+        edges.remove(new UndirectedEdge(from, to));
     }
 
     /**
@@ -69,9 +58,15 @@ public class SimpleGraph implements Graph {
      */
     @Override
     public Collection<Integer> getAdjacent(int from) {
-        from--;
-        List<Integer> result = new ArrayList<>();
-        Arrays.stream(network[from]).forEach(result::add);
+        Set<Integer> result = new HashSet<>();
+        int finalFrom = from;
+        edges.forEach((e) -> {
+            if (e.getFrom() == finalFrom) {
+                result.add(e.getTo());
+            } else if (e.getTo() == finalFrom) {
+                result.add(e.getFrom());
+            }
+        });
         return result;
     }
 }

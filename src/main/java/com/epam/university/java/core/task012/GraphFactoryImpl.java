@@ -12,6 +12,6 @@ public class GraphFactoryImpl implements GraphFactory {
      */
     @Override
     public Graph newInstance(int vertexesCount) {
-        return new SimpleGraph(vertexesCount);
+        return new SimpleGraph();
     }
 }

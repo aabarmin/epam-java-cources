@@ -33,37 +33,8 @@ public class Task015Impl implements Task015 {
      */
     @Override
     public double getArea(Square first, Square second) {
-        DottedSquare firstSquare = new DottedSquare(first);
-        DottedSquare secondSquare = new DottedSquare(second);
-
-        List<LineSegment> firstSquareEdges = firstSquare.getEdges();
-        List<LineSegment> secondSquareEdges = secondSquare.getEdges();
-
-        // points of result figure
-        Set<Point> intersectionPoints = new HashSet<>();
-
-        for (LineSegment firstLineSegment : firstSquareEdges) {
-            for (LineSegment secondLineSegment : secondSquareEdges) {
-                Point currPoint = firstLineSegment.intersectionPoint(secondLineSegment);
-                if (currPoint != null) {
-                    intersectionPoints.add(currPoint);
-                }
-            }
-        }
-
-        for (Point point : firstSquare.getVertices()) {
-            if (secondSquare.isInside(point)) {
-                intersectionPoints.add(point);
-            }
-        }
-
-        for (Point point : secondSquare.getVertices()) {
-            if (firstSquare.isInside(point)) {
-                intersectionPoints.add(point);
-            }
-        }
-
-        return 0;
+        Polygon polygon = new Polygon(SquareImpl.getIntersectionPoints(first,second));
+        return polygon.area();
     }
 
 }
