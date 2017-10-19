@@ -1,10 +1,8 @@
 package com.epam.university.java.project.core.cdi.structure;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import javax.xml.bind.annotation.adapters.XmlAdapter;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -20,9 +18,11 @@ public class XmlMapAdapter extends XmlAdapter<MapDefinitionImpl, Map<String, Str
     @Override
     public Map<String, String> unmarshal(MapDefinitionImpl v) throws Exception {
 
-        Map<String, String> map = new HashMap<>();
-
-        return map;
+        return v.getValues().stream()
+                .map(l -> (MapEntryDefinitionImpl)l)
+                .collect(Collectors.toMap(
+                        MapDefinition.MapEntryDefinition::getKey,
+                        MapEntryDefinitionImpl::getBody));
     }
 
     /**
