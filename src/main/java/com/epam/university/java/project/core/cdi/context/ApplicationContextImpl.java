@@ -4,6 +4,9 @@ import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl
 import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
 import com.epam.university.java.project.core.cdi.bean.BeanPropertyDefinitionImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,6 +15,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Implementation class for ApplicationContext.
@@ -72,13 +76,15 @@ public class ApplicationContextImpl implements ApplicationContext {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Object getBean(String beanName) {
 
         BeanDefinition beanDefinition = beanDefinitionRegistry.getBeanDefinition(beanName);
+        Object obj;
 
-        Object obj = null;
+        // check if we have it already created
         if (!beanInstanceRegistry.containsKey(beanName)
-                || "prototype".equals(beanDefinition.getScope())) {
+                || !"singleton".equals(beanDefinition.getScope())) {
 
             // load from context
             obj = loadBeanByName(beanDefinition.getClassName());
@@ -98,16 +104,36 @@ public class ApplicationContextImpl implements ApplicationContext {
                         field.setAccessible(true);
 
                         if (null != l.getValue()) {
-                            field.set(bean, l.getValue());
+                            field.set(bean, castingFor(field).apply(l.getValue()));
+
+                        } else if (l instanceof BeanPropertyDefinitionImpl) {
+                            BeanPropertyDefinitionImpl property = (BeanPropertyDefinitionImpl)l;
+
+                            Collection<String> collectionOfStrings = property.getPropCollection();
+                            Map<String, String> mapOfStrings = property.getPropMap();
+
+                            if (null != collectionOfStrings && collectionOfStrings.size() > 0) {
+
+                                // collection
+                                field.set(bean, collectionOfStrings);
+
+                            } else if (null != mapOfStrings && mapOfStrings.size() > 0) {
+
+                                // map
+                            } else if (l.getName().contains("property")) {
+
+                                // property without value is incorrect
+                                throw new RuntimeException("Bad property from XML");
+                            }
                         }
 
                         if (null != l.getRef()) {
-                            field.set(bean, this.getBean(l.getRef()));
+                            field.set(bean, getBean(l.getRef()));
                         }
 
                         field.setAccessible(false);
 
-                    } catch (Exception e) {
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
                         e.printStackTrace();
                     }
                 });
@@ -120,9 +146,10 @@ public class ApplicationContextImpl implements ApplicationContext {
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
 
-        return null;
+        return (T) getBean(beanName);
     }
 
     /**
@@ -135,18 +162,50 @@ public class ApplicationContextImpl implements ApplicationContext {
     private Object loadBeanByPath(String beanPath) {
 
         // short bean interface name
-        String beanName = beanPath.substring(beanPath.lastIndexOf('.'));
+        String beanName = beanPath.substring(beanPath.lastIndexOf('.') + 1);
 
         if (!beanInstanceRegistry.containsKey(beanName)) {
 
+            Object obj = null;
+
             String classPath = beanPath;
-            String impl = "Impl";
-            if (!classPath.substring(classPath.length() - impl.length()).equals(impl)) {
-                classPath += impl;
+            String postfix = "Interface";
+            // is it obviously if it's an interface?
+            if (beanPath.substring(beanPath.length() - postfix.length()).equals(postfix)) {
+                classPath = classPath.substring(0, beanPath.length() - postfix.length());
+                try {
+                    Class<?> clazz = Class.forName(classPath);
+                    obj = clazz.newInstance();
+                    beanInstanceRegistry.put(beanName, obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (null != obj) {
+                    return obj;
+                }
+            }
+
+            // try "as is"
+            try {
+                Class<?> clazz = Class.forName(beanPath);
+                obj = clazz.newInstance();
+                beanInstanceRegistry.put(beanName, obj);
+            } catch (Exception e) {
+                System.out.println("interface instantiation occurs");
+            }
+            if (null != obj) {
+                return obj;
+            }
+
+            // try with Impl
+            postfix = "Impl";
+            classPath = beanPath;
+            if (!beanPath.substring(beanPath.length() - postfix.length()).equals(postfix)) {
+                classPath += postfix;
             }
             try {
                 Class<?> clazz = Class.forName(classPath);
-                Object obj = clazz.newInstance();
+                obj = clazz.newInstance();
                 beanInstanceRegistry.put(beanName, obj);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -174,5 +233,24 @@ public class ApplicationContextImpl implements ApplicationContext {
         }
 
         return obj;
+    }
+
+    /**
+     * Supplies with a caster to type, suitable for 'field'.
+     *
+     * @param field - reflexion's Field
+     *
+     * @return casting function
+     */
+    private Function castingFor(Field field) {
+
+        Class<?> type = field.getType();
+
+        // int
+        if (type.equals(int.class)) {
+            return (Function<String, Integer>)(l -> Integer.valueOf(l));
+        }
+
+        return (l -> l);
     }
 }
