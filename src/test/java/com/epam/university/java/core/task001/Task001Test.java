@@ -25,6 +25,11 @@ public class Task001Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void additionNullOneArgument() throws Exception {
+        instance.addition("5", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void additionEmptyBothArgument() throws Exception {
         instance.addition(" ", " ");
     }
@@ -43,6 +48,11 @@ public class Task001Test {
     @Test(expected = IllegalArgumentException.class)
     public void subtractionNullBothArguments() throws Exception {
         instance.subtraction(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractionNullOneArgument() throws Exception {
+        instance.subtraction("5", null);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -67,6 +77,11 @@ public class Task001Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void multiplicationNullOneArgument() throws Exception {
+        instance.multiplication("5", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void multiplicationEmptyBothArguments() throws Exception {
         instance.multiplication(" ", " ");
     }
@@ -85,6 +100,11 @@ public class Task001Test {
     @Test(expected = IllegalArgumentException.class)
     public void divisionNullBothArguments() throws Exception {
         instance.division(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void divisionNullOneArgument() throws Exception {
+        instance.division("5", null);
     }
 
     @Test(expected = IllegalArgumentException.class)
