@@ -41,8 +41,7 @@ public class FigureImpl implements Figure {
     private void order() {
         double averageX = vertexArray.stream().mapToDouble(Vertex::getX).sum() / vertexArray.size();
         double averageY = vertexArray.stream().mapToDouble(Vertex::getY).sum() / vertexArray.size();
-        vertexArray.sort(Comparator.comparingDouble(
-                p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
+        vertexArray.sort(Comparator.comparingDouble(p -> Math.atan2(p.getY() - averageY, p.getX() - averageX)
         ));
     }
 }
