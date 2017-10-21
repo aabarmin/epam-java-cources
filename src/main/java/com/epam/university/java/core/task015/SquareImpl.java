@@ -4,6 +4,11 @@ public class SquareImpl implements Square {
     private Point first;
     private Point second;
 
+    public SquareImpl(Point first, Point second) {
+        this.first = first;
+        this.second = second;
+    }
+
     @Override
     public Point getFirst() {
         return first;

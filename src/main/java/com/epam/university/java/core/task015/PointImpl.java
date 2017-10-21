@@ -28,10 +28,4 @@ public class PointImpl implements Point {
     public void setY(double y) {
         this.y = y;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        PointImpl point = (PointImpl) obj;
-        return (Math.abs(point.x - this.x) < 0.01) && (Math.abs(point.y - this.y) < 0.01);
-    }
 }
