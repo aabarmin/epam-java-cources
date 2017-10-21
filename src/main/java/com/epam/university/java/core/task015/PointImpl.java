@@ -31,7 +31,7 @@ public class PointImpl implements Point {
 
     @Override
     public boolean equals(Object obj) {
-        PointImpl point = (PointImpl) obj;
-        return (Math.abs(point.x - this.x) < 0.01) && (Math.abs(point.y - this.y) < 0.01);
+        PointImpl p = (PointImpl) obj;
+        return (Math.abs(p.y - this.y) < 0.01) && (Math.abs(p.x - this.x) < 0.01);
     }
 }

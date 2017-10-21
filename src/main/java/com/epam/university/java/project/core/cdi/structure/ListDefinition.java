@@ -1,6 +1,8 @@
 package com.epam.university.java.project.core.cdi.structure;
 
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl.ListItemDefinitionImpl;
 import java.util.Collection;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  * Definition of list.
