@@ -20,7 +20,7 @@ public class Task018Impl implements Task018 {
             if (m.isAnnotationPresent(BasicAnnotation.class)) {
                 return true;
             }
-            for(Parameter p: m.getParameters()) {
+            for (Parameter p: m.getParameters()) {
                 if (p.isAnnotationPresent(BasicAnnotation.class)) {
                     return true;
                 }

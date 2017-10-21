@@ -1,5 +1,6 @@
 package com.epam.university.java.project.service;
 
+import com.epam.university.java.project.core.state.machine.domain.StateMachineEventHandler;
 import com.epam.university.java.project.domain.Book;
 
 import java.time.LocalDate;
@@ -63,4 +64,5 @@ public interface BookService {
      * @return accounted book
      */
     Book returnFromIssue(Book book);
+
 }

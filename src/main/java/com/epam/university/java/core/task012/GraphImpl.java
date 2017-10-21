@@ -44,6 +44,7 @@ public class GraphImpl implements Graph {
         return adjacent;
     }
 
+    @Override
     public int getVertexesCount() {
         return vertexesCount;
     }

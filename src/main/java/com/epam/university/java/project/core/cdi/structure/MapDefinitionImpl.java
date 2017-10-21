@@ -1,31 +1,38 @@
 package com.epam.university.java.project.core.cdi.structure;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Collection;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
-@XmlRootElement(name = "map")
+/**
+ * Created by ilya on 24.09.17.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MapDefinitionImpl implements MapDefinition {
 
-    private Collection<MapEntryDefinition> mapEntryDefinitions;
+    @XmlElement(name = "entry", type = MapEntryDefinitionImpl.class)
+    Collection<MapEntryDefinition> entries = new ArrayList<>();
 
     @Override
     public Collection<MapEntryDefinition> getValues() {
-        return mapEntryDefinitions;
+        return entries;
     }
 
     @Override
     public void setValues(Collection<MapEntryDefinition> values) {
-        this.mapEntryDefinitions = values;
+        this.entries = values;
     }
 
-    @XmlRootElement(name = "entry")
-    public static class MapEntryDefinitionImpl implements MapEntryDefinition {
-        @XmlElement(name = "key")
+    @XmlAccessorType(XmlAccessType.FIELD)
+    static class MapEntryDefinitionImpl implements MapEntryDefinition {
+
+        @XmlElement
         private String key;
-        @XmlElement(name = "value")
+        @XmlElement
         private String value;
-        @XmlElement(name = "ref")
+        @XmlElement
         private String ref;
 
         @Override

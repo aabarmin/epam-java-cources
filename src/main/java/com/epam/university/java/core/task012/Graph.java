@@ -34,4 +34,6 @@ public interface Graph {
      * @return collection of available vertexes
      */
     Collection<Integer> getAdjacent(int from);
+
+    int getVertexesCount();
 }

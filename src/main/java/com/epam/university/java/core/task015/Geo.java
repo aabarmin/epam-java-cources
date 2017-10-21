@@ -135,9 +135,7 @@ public class Geo {
                     < (polygonPoints.get(j).getX() - polygonPoints.get(i).getX())
                     * (pointToCheck.getY() - polygonPoints.get(i).getY())
                     /  (polygonPoints.get(j).getY() - polygonPoints.get(i).getY())
-                    + polygonPoints.get(i).getX()
-            )
-                    ) {
+                    + polygonPoints.get(i).getX())) {
                 result = !result;
             }
         }

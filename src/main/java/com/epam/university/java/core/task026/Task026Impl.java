@@ -22,7 +22,7 @@ public class Task026Impl implements Task026 {
                 } else {
                     inter[i] = (byte) codePointShifted;
                 }
-            } else if(isUpperLetter) {
+            } else if (isUpperLetter) {
                 if (!Character.isUpperCase(codePointShifted)) {
                     inter[i] = (byte) (codePointShifted - 90 + 64);
                 } else {
@@ -54,7 +54,7 @@ public class Task026Impl implements Task026 {
                 } else {
                     inter[i] = (byte) codePointShifted;
                 }
-            } else if(isUpperLetter) {
+            } else if (isUpperLetter) {
                 if (!Character.isUpperCase(codePointShifted)) {
                     inter[i] = (byte) (90 - (64 - codePointShifted));
                 } else {

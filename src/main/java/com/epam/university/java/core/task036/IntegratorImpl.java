@@ -11,7 +11,7 @@ public class IntegratorImpl implements Integrator {
         double current = left;
         double value = 0;
         while (Math.abs(current - right) > coef) {
-            value = current + coef/2;
+            value = current + coef / 2;
             ressult += coef * function.apply(value);
             current += coef;
         }

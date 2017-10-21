@@ -9,6 +9,9 @@ import java.util.LinkedList;
 public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
+        if (ArrayUtils.isEmpty(collection)) {
+            throw new IllegalArgumentException();
+        }
         String[] intermediate = collection;
         String[] result = intermediate;
         int begin = 0;
@@ -30,11 +33,21 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(ArrayList<String> collection) {
+        if (collection.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        int itNumber = 0;
+        int colFs = collection.size();
         while (collection.size() != 1) {
-            if (collection.size() % 2 != 0) {
+            if (itNumber == 0) {
                 collection.removeIf(s -> collection.indexOf(s) % 2 == 0);
+                itNumber++;
             } else {
-                collection.removeIf(s -> collection.indexOf(s) % 2 != 0);
+                if (colFs % collection.size() == 0) {
+                    collection.removeIf(s -> collection.indexOf(s) % 2 == 0);
+                } else {
+                    collection.removeIf(s -> collection.indexOf(s) % 2 != 0);
+                }
             }
         }
         return collection.get(0);
@@ -42,6 +55,9 @@ public class Task011Impl implements Task011 {
 
     @Override
     public String getLastName(LinkedList<String> collection) {
+        if (collection.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         while (collection.size() != 1) {
             collection.pop();
             String last = collection.pollFirst();

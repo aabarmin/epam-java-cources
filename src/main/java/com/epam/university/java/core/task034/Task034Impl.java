@@ -24,6 +24,7 @@ import java.util.Collection;
 public class Task034Impl implements Task034 {
     private Person person;
     private Collection<PhoneNumber> phoneNumbers = new ArrayList<>();
+
     @Override
     public Person readWithSaxParser(DefaultHandler handler, String filepath) {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -47,9 +48,9 @@ public class Task034Impl implements Task034 {
                 getClass().getResourceAsStream(filepath)
         );
         try {
-        JAXBContext jaxbContext = JAXBContext.newInstance(PersonImpl.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        this.person = (PersonImpl) jaxbUnmarshaller.unmarshal(source);
+            JAXBContext jaxbContext = JAXBContext.newInstance(PersonImpl.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            this.person = (PersonImpl) jaxbUnmarshaller.unmarshal(source);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -68,14 +69,14 @@ public class Task034Impl implements Task034 {
                 if (xmlEvent == XMLStreamConstants.START_ELEMENT) {
                     if (streamReader.getLocalName().equals("person")) {
                         person.setId(Integer.parseInt(streamReader.getAttributeValue(0)));
-                    } else if(streamReader.getLocalName().equals("first-name")) {
+                    } else if (streamReader.getLocalName().equals("first-name")) {
                         firstName = true;
-                    } else if(streamReader.getLocalName().equals("last-name")) {
+                    } else if (streamReader.getLocalName().equals("last-name")) {
                         lastName = true;
-                    } else if(streamReader.getLocalName().equals("person-phone")) {
+                    } else if (streamReader.getLocalName().equals("person-phone")) {
                         phoneNumber = true;
                     }
-                } else if(xmlEvent == XMLStreamConstants.CHARACTERS) {
+                } else if (xmlEvent == XMLStreamConstants.CHARACTERS) {
                     if (firstName) {
                         person.setFirstName(streamReader.getText());
                         firstName = false;

@@ -1,43 +1,22 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import java.util.Collection;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "bean")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(propOrder = {"id", "className", "postConstruct", "scope", "properties"})
 public class BeanDefinitionImpl implements BeanDefinition {
+    private String id;
+    private String className;
+    private String postConstruct;
+    private String scope;
+    private Collection<BeanPropertyDefinition> propertyDefinitions;
 
     @XmlAttribute(name = "id")
-    private String id;
-
-    @XmlAttribute(name = "class")
-    private String className;
-
-    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
-    private Collection<BeanPropertyDefinition> properties = new ArrayList<>();
-
-    @XmlAttribute(name = "init")
-    private String postConstruct;
-
-    @XmlAttribute(name = "scope")
-    private String scope;
-
-    @Override
-    public String toString() {
-        return "BeanDefinitionImpl{"
-                + "id='" + id + '\''
-                + ", \nclassName='" + className + '\''
-                + ", \nproperties=" + properties
-                + ", \npostConstruct='" + postConstruct + '\''
-                + ", \nscope='" + scope + '\''
-                + '}';
-    }
-
     @Override
     public String getId() {
         return id;
@@ -48,6 +27,7 @@ public class BeanDefinitionImpl implements BeanDefinition {
         this.id = id;
     }
 
+    @XmlAttribute(name = "class")
     @Override
     public String getClassName() {
         return className;
@@ -59,25 +39,17 @@ public class BeanDefinitionImpl implements BeanDefinition {
     }
 
     @Override
-    public Collection<BeanPropertyDefinition> getProperties() {
-        return properties;
-    }
-
-    @Override
-    public void setProperties(Collection<BeanPropertyDefinition> properties) {
-        this.properties = properties;
-    }
-
-    @Override
     public String getPostConstruct() {
         return postConstruct;
     }
 
+    @XmlAttribute(name = "init")
     @Override
-    public void setPostConstruct(String postConstruct) {
-        this.postConstruct = postConstruct;
+    public void setPostConstruct(String methodName) {
+        this.postConstruct = methodName;
     }
 
+    @XmlAttribute(name = "scope")
     @Override
     public String getScope() {
         return scope;
@@ -86,5 +58,16 @@ public class BeanDefinitionImpl implements BeanDefinition {
     @Override
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    @Override
+    public Collection<BeanPropertyDefinition> getProperties() {
+        return propertyDefinitions;
+    }
+
+    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
+    @Override
+    public void setProperties(Collection<BeanPropertyDefinition> properties) {
+        propertyDefinitions = properties;
     }
 }

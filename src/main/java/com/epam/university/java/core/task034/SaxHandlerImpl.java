@@ -23,7 +23,8 @@ public class SaxHandlerImpl extends SaxHandler {
 
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes)
+            throws SAXException {
         if (qName.equalsIgnoreCase("person")) {
             String id = attributes.getValue("id");
             person = new PersonImpl();

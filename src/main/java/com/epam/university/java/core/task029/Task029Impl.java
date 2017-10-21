@@ -22,20 +22,26 @@ public class Task029Impl implements  Task029 {
 
         Indexes firstInd = indexes.get(0);
         String currentWord = word.get(0);
-        String changedString = result.get(firstInd.getY()).replaceFirst("-", String.valueOf(currentWord.charAt(0)));
+        String changedString = result
+                .get(firstInd.getY())
+                .replaceFirst("-", String.valueOf(currentWord.charAt(0)));
         result.set(firstInd.getY(), changedString);
         indexes.remove(0);
 
-        while(indexes.size() != 0) {
+        while (indexes.size() != 0) {
             int ind = 1;
             for (Indexes i: indexes) {
                 if (i.getX() == firstInd.getX()) {
-                    changedString = result.get(i.getY()).replaceFirst("-", String.valueOf(currentWord.charAt(ind)));
+                    changedString = result
+                            .get(i.getY())
+                            .replaceFirst("-", String.valueOf(currentWord.charAt(ind)));
                     result.set(i.getY(), changedString);
                     ind++;
                     indexes.remove(i);
                 } else if (i.getY() == firstInd.getY()) {
-                    changedString = result.get(i.getY()).replaceFirst("-", String.valueOf(currentWord.charAt(ind)));
+                    changedString = result
+                            .get(i.getY())
+                            .replaceFirst("-", String.valueOf(currentWord.charAt(ind)));
                     result.set(i.getY(), changedString);
                     ind++;
                     indexes.remove(i);

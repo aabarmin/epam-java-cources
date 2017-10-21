@@ -24,7 +24,7 @@ public class Task037Impl implements Task037 {
             }
         });
 
-        for (int i=0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             first.run();
             first.interrupt();
             second.run();

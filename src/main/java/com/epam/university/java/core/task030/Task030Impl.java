@@ -23,7 +23,9 @@ public class Task030Impl implements Task030 {
 
     @Override
     public long distanceBetween(Instant instantStart, Instant instantEnd) {
-        return instantEnd.getLong(ChronoField.INSTANT_SECONDS) - instantStart.getLong(ChronoField.INSTANT_SECONDS);
+        return instantEnd
+                .getLong(ChronoField.INSTANT_SECONDS)
+                - instantStart.getLong(ChronoField.INSTANT_SECONDS);
     }
 
     @Override

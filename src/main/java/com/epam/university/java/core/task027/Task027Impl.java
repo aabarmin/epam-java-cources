@@ -13,7 +13,7 @@ public class Task027Impl implements Task027 {
 
         int length = sourceString.length();
 
-        int begin = 0 ;
+        int begin = 0;
 
         if (sourceString.charAt(0) == '0' || sourceString.length() < 2) {
             return inter;
@@ -33,7 +33,7 @@ public class Task027Impl implements Task027 {
             }
             inter.add(Integer.parseInt(sourceString.substring(i,i + numberOfDigits)));
             if (numberOfDigits >= length / 2) {
-                if (!checkNumber(inter)){
+                if (!checkNumber(inter)) {
                     inter.clear();
                     return inter;
                 }

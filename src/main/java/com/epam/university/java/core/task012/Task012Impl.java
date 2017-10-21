@@ -23,12 +23,13 @@ public class Task012Impl implements Task012 {
             for (int i : graph.getAdjacent(nextFrom)) {
                 if (i != prevFrom) {
                     path.add(i);
-
                 }
             }
             prevFrom = nextFrom;
             nextFrom = path.getLast();
             if (prevFrom == nextFrom) {
+                break;
+            } else if (path.size() > graph.getVertexesCount()) {
                 break;
             }
         }
