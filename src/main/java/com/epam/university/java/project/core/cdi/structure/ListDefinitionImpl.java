@@ -30,7 +30,7 @@ public class ListDefinitionImpl implements ListDefinition {
      * {@inheritDoc}
      */
     @Override
-    public void setItems(Collection<ListItemDefinition> items) {
-        this.list = items;
+    public void setItems(Collection<ListItemDefinition> list) {
+        this.list = list;
     }
 }

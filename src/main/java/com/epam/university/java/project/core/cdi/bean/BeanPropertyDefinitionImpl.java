@@ -50,6 +50,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
     @XmlJavaTypeAdapter(XmlMapAdapter.class)
     private Map<String, String> mapData = new HashMap<>();
 
+    private Map<String, Object> objectMap = new HashMap<>();
+
     // not needed actually
     //StructureDefinition data;
 
@@ -123,5 +125,10 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
 
     public Map<String, String> getPropMap() {
         return mapData;
+    }
+
+    // getObjectMap
+    public Map<String, Object> getObjectMap() {
+        return objectMap;
     }
 }

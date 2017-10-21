@@ -4,9 +4,6 @@ import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl
 import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
 import com.epam.university.java.project.core.cdi.bean.BeanPropertyDefinitionImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
-import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
-import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
-import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -119,7 +116,26 @@ public class ApplicationContextImpl implements ApplicationContext {
 
                             } else if (null != mapOfStrings && mapOfStrings.size() > 0) {
 
+                                // needs re-factor!
+                                String token =
+                                        mapOfStrings.entrySet().iterator().next().getValue();
+
                                 // map
+                                if (null != beanDefinitionRegistry.getBeanNameById(token)) {
+
+                                    for (Map.Entry<String, String> entry
+                                            : mapOfStrings.entrySet()) {
+
+                                        property.getObjectMap().put(
+                                                entry.getKey(),
+                                                getBean(entry.getValue()));
+                                    }
+
+                                    field.set(bean, property.getObjectMap());
+                                } else {
+                                    field.set(bean, mapOfStrings);
+                                }
+
                             } else if (l.getName().contains("property")) {
 
                                 // property without value is incorrect

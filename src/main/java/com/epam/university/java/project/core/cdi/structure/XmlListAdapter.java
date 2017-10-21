@@ -1,7 +1,5 @@
 package com.epam.university.java.project.core.cdi.structure;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.Collection;
 import java.util.stream.Collectors;

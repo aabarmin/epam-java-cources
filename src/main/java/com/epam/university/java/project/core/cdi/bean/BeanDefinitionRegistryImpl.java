@@ -72,4 +72,19 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     public Collection<BeanDefinition> values() {
         return beanNameRegistry.values();
     }
+
+    /**
+     * Get bean short name of bean from registry with specified id.
+     *
+     * @param id is a key to registry
+     *
+     * @return collection of bean definitions
+     */
+    public String getBeanNameById(String id) {
+        BeanDefinition definition = beanNameRegistry.get(id);
+        if (null != definition) {
+            return definition.getClassName();
+        }
+        return null;
+    }
 }
