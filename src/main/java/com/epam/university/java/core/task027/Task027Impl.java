@@ -1,7 +1,5 @@
 package com.epam.university.java.core.task027;
 
-import edu.princeton.cs.introcs.In;
-
 import java.util.ArrayList;
 import java.util.Collection;
 

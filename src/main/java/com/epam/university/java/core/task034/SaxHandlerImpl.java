@@ -1,25 +1,26 @@
 package com.epam.university.java.core.task034;
 
+import com.epam.university.java.core.task032.SomeActionExecutorImpl;
+import org.apache.commons.collections4.CollectionUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-/**
- * Sax handler base.
- */
-public abstract class SaxHandler extends DefaultHandler {
-    private Collection<Person> persons;
+public class SaxHandlerImpl extends SaxHandler {
+    private Collection<Person> persons = new ArrayList<>();
+    private Collection<PhoneNumber> phoneNumbers = new ArrayList<>();
     private Person person = null;
     boolean firstName = false;
     boolean lastName = false;
     boolean personPhone = false;
 
-    public Collection<Person> getEmpList() {
-        return persons;
+    public Person getPerson() {
+        return person;
     }
+
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -42,6 +43,7 @@ public abstract class SaxHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (qName.equalsIgnoreCase("person")) {
+            person.setPhoneNumbers(phoneNumbers);
             persons.add(person);
         }
     }
@@ -55,7 +57,8 @@ public abstract class SaxHandler extends DefaultHandler {
             person.setLastName(new String(ch,start,length));
             lastName = false;
         } else if (personPhone) {
-
+            phoneNumbers.add(new PhoneNumberImpl(new String(ch,start,length)));
+            personPhone = false;
         }
     }
 }
