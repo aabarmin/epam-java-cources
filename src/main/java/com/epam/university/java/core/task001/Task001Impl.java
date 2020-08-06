@@ -1,0 +1,41 @@
+package com.epam.university.java.core.task001;
+
+public class Task001Impl implements Task001{
+
+
+    @Override
+    public double addition(String firstNumber, String secondNumber) {
+        if (firstNumber==null || secondNumber==null) throw new IllegalArgumentException("Missing arguments!");
+        double firstDouble, secondDouble;
+        firstDouble = Double.parseDouble(firstNumber);
+        secondDouble = Double.parseDouble(secondNumber);
+        return firstDouble+secondDouble;
+    }
+
+    @Override
+    public double subtraction(String firstNumber, String secondNumber) {
+        if (firstNumber==null || secondNumber==null) throw new IllegalArgumentException("Missing arguments!");
+        double firstDouble, secondDouble;
+        firstDouble = Double.parseDouble(firstNumber);
+        secondDouble = Double.parseDouble(secondNumber);
+        return firstDouble-secondDouble;
+    }
+
+    @Override
+    public double multiplication(String firstNumber, String secondNumber) {
+        if (firstNumber==null || secondNumber==null) throw new IllegalArgumentException("Missing arguments!");
+        double firstDouble, secondDouble;
+        firstDouble = Double.parseDouble(firstNumber);
+        secondDouble = Double.parseDouble(secondNumber);
+        return firstDouble*secondDouble;
+    }
+
+    @Override
+    public double division(String firstNumber, String secondNumber) {
+        if (firstNumber==null || secondNumber==null) throw new IllegalArgumentException("Missing arguments!");
+        double firstDouble, secondDouble;
+        firstDouble = Double.parseDouble(firstNumber);
+        secondDouble = Double.parseDouble(secondNumber);
+        return firstDouble/secondDouble;
+    }
+}
