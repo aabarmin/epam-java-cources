@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task002;
 
-import java.util.Arrays;
 
 public class Task002Impl implements Task002 {
     @Override
@@ -66,9 +65,11 @@ public class Task002Impl implements Task002 {
             throw new IllegalArgumentException();
         }
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < sourceCollection.length; i++) {
+        int i = 0;
+        while (i < sourceCollection.length) {
             stringBuilder.append(sourceCollection[i]);
-            if (i != sourceCollection.length-1) {
+            i++;
+            if (i != sourceCollection.length) {
                 stringBuilder.append(glue);
             }
         }
