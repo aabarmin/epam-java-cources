@@ -20,8 +20,13 @@ public class Task002Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void equalsIsNull() throws Exception {
-        instance.isEquals(null, null);
+    public void equalsFirstStringIsNull() throws Exception {
+        instance.isEquals(null, "");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void equalsSecondStringIsNull() throws Exception {
+        instance.isEquals("", null);
     }
 
     @Test
@@ -87,8 +92,13 @@ public class Task002Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void leftWithCharIsNull() throws Exception {
-        instance.left(null, null);
+    public void leftWithStringIsNull() throws Exception {
+        instance.left(null, ",");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void leftWithSeparatorIsNull() throws Exception {
+        instance.left("", null);
     }
 
     @Test
@@ -99,8 +109,13 @@ public class Task002Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rightWithCharIsNull() throws Exception {
-        instance.right(null, null);
+    public void rightWithStringIsNull() throws Exception {
+        instance.right(null, ",");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rightWithSeparatorIsNull() throws Exception {
+        instance.right("", null);
     }
 
     @Test
@@ -110,9 +125,21 @@ public class Task002Test {
                 instance.right("Hello, World", ", "));
     }
 
+    @Test
+    public void rightWithNonExistSeparator() throws Exception {
+        assertEquals("Error in right function",
+                "Hello, World",
+                instance.right("Hello, World", ":"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void splitIsNull() throws Exception {
-        instance.split(null, null);
+        instance.split("", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void splitWithStringIsNull() throws Exception {
+        instance.split(null, ", ");
     }
 
     @Test
@@ -123,9 +150,29 @@ public class Task002Test {
                 instance.split("Hello, World", ", "));
     }
 
+    @Test
+    public void splitNonExist() throws Exception {
+        final String[] target = {"Hello, World"};
+        assertArrayEquals("Error in split function",
+                target,
+                instance.split("Hello, World", ":"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void joinIsNull() throws Exception {
-        instance.join(null, null);
+        final String[] source = {"Hello", "World"};
+        instance.join(source, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void joinWithCollectionIsNull() throws Exception {
+        instance.join(null, ", ");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void joinWithEmptyCollection() throws Exception {
+        final String[] source = {};
+        instance.join(source, ", ");
     }
 
     @Test
