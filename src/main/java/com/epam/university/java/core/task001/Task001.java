@@ -16,7 +16,7 @@ public interface Task001 {
      * @throws IllegalArgumentException if input parameters are not set
      * @throws NumberFormatException if can't convert input values to numbers
      */
-    double addition(String firstNumber, String secondNumber);
+    double addition(String firstNumber, String secondNumber) throws IllegalAccessException;
 
     /**
      * Execute subtraction operation.
@@ -27,7 +27,7 @@ public interface Task001 {
      * @throws IllegalArgumentException if input parameters are not set
      * @throws NumberFormatException if can't convert input values to numbers
      */
-    double subtraction(String firstNumber, String secondNumber);
+    double subtraction(String firstNumber, String secondNumber) throws IllegalAccessException;
 
     /**
      * Execute multiplication operation.
@@ -38,7 +38,7 @@ public interface Task001 {
      * @throws IllegalArgumentException if input parameters are not set
      * @throws NumberFormatException if can't convert input values to numbers
      */
-    double multiplication(String firstNumber, String secondNumber);
+    double multiplication(String firstNumber, String secondNumber) throws IllegalAccessException;
 
     /**
      * Execute division operation.
@@ -49,5 +49,5 @@ public interface Task001 {
      * @throws IllegalArgumentException if input parameters are not set
      * @throws NumberFormatException if can't convert input values to numbers
      */
-    double division(String firstNumber, String secondNumber);
+    double division(String firstNumber, String secondNumber) throws IllegalAccessException;
 }
