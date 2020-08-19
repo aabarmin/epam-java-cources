@@ -14,7 +14,10 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double addition(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null || firstNumber.equals("") || secondNumber.equals("")) throw new IllegalArgumentException();
+        if (firstNumber == null || secondNumber == null
+                || firstNumber.equals("") || secondNumber.equals("")) {
+            throw new IllegalArgumentException();
+        }
         return Double.parseDouble(firstNumber) + Double.parseDouble(secondNumber);
     }
 
@@ -29,7 +32,10 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null || firstNumber.equals("") || secondNumber.equals("")) throw new IllegalArgumentException();
+        if (firstNumber == null || secondNumber == null
+                || firstNumber.equals("") || secondNumber.equals("")) {
+            throw new IllegalArgumentException();
+        }
         return Double.parseDouble(firstNumber) - Double.parseDouble(secondNumber);
     }
 
@@ -44,7 +50,10 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double multiplication(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null || firstNumber.equals("") || secondNumber.equals("")) throw new IllegalArgumentException();
+        if (firstNumber == null || secondNumber == null
+                || firstNumber.equals("") || secondNumber.equals("")) {
+            throw new IllegalArgumentException();
+        }
         return Double.parseDouble(firstNumber) * Double.parseDouble(secondNumber);
     }
 
@@ -59,7 +68,10 @@ public class Task001Impl implements Task001 {
      */
     @Override
     public double division(String firstNumber, String secondNumber) {
-        if (firstNumber == null || secondNumber == null || firstNumber.equals("") || secondNumber.equals("")) throw new IllegalArgumentException();
+        if (firstNumber == null || secondNumber == null
+                || firstNumber.equals("") || secondNumber.equals("")) {
+            throw new IllegalArgumentException();
+        }
         return Double.parseDouble(firstNumber) / Double.parseDouble(secondNumber);
     }
 }
