@@ -44,7 +44,7 @@ public class Task002Impl implements Task002 {
     }
 
     private void check(String[] stringArr, String str) {
-        if (str == null || str.length() == 0 || stringArr.length == 0) {
+        if (stringArr == null || str == null || str.length() == 0 || stringArr.length == 0) {
             throw new IllegalArgumentException();
         }
     }
