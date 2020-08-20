@@ -126,6 +126,13 @@ public class Task002Test {
     }
 
     @Test
+    public void rightWithSeparator2() throws Exception {
+        assertEquals("Error in right function",
+                "World",
+                instance.right("Hello,World", ","));
+    }
+
+    @Test
     public void rightWithNonExistSeparator() throws Exception {
         assertEquals("Error in right function",
                 "Hello, World",
