@@ -110,6 +110,13 @@ public class Task002Test {
                 instance.right("Hello, World", ", "));
     }
 
+    @Test
+    public void rightWithSeparator2() throws Exception {
+        assertEquals("Error in right function",
+                "World",
+                instance.right("Hello,World", ","));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void splitIsNull() throws Exception {
         instance.split(null, null);
