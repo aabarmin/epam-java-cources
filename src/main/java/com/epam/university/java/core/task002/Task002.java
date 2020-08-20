@@ -11,7 +11,7 @@ public interface Task002 {
      * @return if string are equals
      * @throws IllegalArgumentException if strings not provided
      */
-    boolean isEquals(String firstString, String secondString);
+    boolean isEquals(String firstString, String secondString) throws Exception;
 
     /**
      * Get most left @{number} of symbols.
