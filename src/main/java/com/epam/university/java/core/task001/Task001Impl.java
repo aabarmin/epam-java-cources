@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task001;
 
-public class Task001Impl implements Task001{
+public class Task001Impl implements Task001 {
     @Override
     public double addition(String firstNumber, String secondNumber) {
         double resForAddition;
@@ -18,17 +18,17 @@ public class Task001Impl implements Task001{
 
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
-        double resForSubtraction;
+        double resForSub;
         if (firstNumber == null || secondNumber == null) {
             throw new IllegalArgumentException();
         } else {
             try {
-                resForSubtraction = Double.parseDouble(firstNumber) - Double.parseDouble(secondNumber);
+                resForSub = Double.parseDouble(firstNumber) - Double.parseDouble(secondNumber);
             } catch (NumberFormatException e) {
                 throw new NumberFormatException();
             }
         }
-        return resForSubtraction;
+        return resForSub;
     }
 
     @Override
