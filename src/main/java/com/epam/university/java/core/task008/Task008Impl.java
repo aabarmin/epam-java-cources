@@ -24,8 +24,8 @@ public class Task008Impl implements Task008 {
      * @param sourceString string to check
      * @return is braces valid or source string is empty
      */
-    private static final List<String> OPEN_BRACES = List.of("(","[","{");
-    private static final List<String> CLOSE_BRACES = List.of(")","]","}");
+    private static final List<String> OPEN_BRACES = List.of("(", "[", "{");
+    private static final List<String> CLOSE_BRACES = List.of(")", "]", "}");
 
     @Override
     public boolean isValid(String sourceString) {
