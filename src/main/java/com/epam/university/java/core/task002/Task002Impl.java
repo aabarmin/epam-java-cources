@@ -61,7 +61,7 @@ public class Task002Impl implements Task002 {
 
     @Override
     public String join(String[] sourceCollection, String glue) {
-        if (sourceCollection == null || glue == null) {
+        if (sourceCollection == null || glue == null || sourceCollection.length == 0) {
             throw new IllegalArgumentException();
         }
         StringBuilder stringBuilder = new StringBuilder();
