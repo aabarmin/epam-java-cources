@@ -12,6 +12,9 @@ public class Task008Impl implements Task008 {
             if (c == '{' || c == '(' || c == '[') {
                 stack.push(c);
             }
+            if ((c == '}' || c == ')' || c == ']') && stack.size() == 0) {
+                return false;
+            }
             if (c == '}') {
                 if (stack.peek() != '{') {
                     return false;
