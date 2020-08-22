@@ -1,7 +1,9 @@
 package com.epam.university.java.core.task009;
 
-import java.io.*;
-import java.util.Arrays;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;

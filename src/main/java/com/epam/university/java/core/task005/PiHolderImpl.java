@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task005;
 
-public class PiHolderImpl implements PiHolder{
+public class PiHolderImpl implements PiHolder {
     private int first;
     private int second;
 
@@ -22,11 +22,4 @@ public class PiHolderImpl implements PiHolder{
         return second;
     }
 
-    @Override
-    public String toString() {
-        return "PiHolderImpl{" +
-                "first=" + first +
-                ", second=" + second +
-                '}';
-    }
 }
