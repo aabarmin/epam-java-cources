@@ -14,11 +14,19 @@ public class PiHolderImpl implements PiHolder{
 
     @Override
     public int getFirst() {
-        return 0;
+        return first;
     }
 
     @Override
     public int getSecond() {
-        return 0;
+        return second;
+    }
+
+    @Override
+    public String toString() {
+        return "PiHolderImpl{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
     }
 }
