@@ -207,6 +207,59 @@ public class Task003Test {
         );
     }
 
+    @Test
+    public void testFlatMap2() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9"
+        };
+        final String[] target = {
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
+    }
+
+    @Test
+    public void testFlatMap3() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9, 230    "
+        };
+        final String[] target = {
+                "230",
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testRemoveElementsWithoutArguments() throws Exception {
         instance.removeElements(null, null);
