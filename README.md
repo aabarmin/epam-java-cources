@@ -1,7 +1,18 @@
-Tasks for Java Core course attendee
-=
+# Tasks for Java Core course attendee
 
-**How to use it?**
+# Table of Contents
+
+* [How to use this repository](#how-to-use-this-repository)
+* [Large cross-topic project](#large-cross-topic-project)
+* [How to contribute](#how-to-contribute)
+* [How to check tasks automatically](#how-to-check-tasks-automatically)
+
+## How to use this repository
+
+// TODO:
+1. Update the description on how to use this repository - git manual is a bit cumbersome
+2. Update the task for the cross-topic project
+3. Add a banner 
 
 - Fork this repository by clicking "Fork" button on the top of this page.
 - Clone this repository to your local environment
@@ -20,7 +31,7 @@ epam
 origin
 ```
 
-**Task execution**
+## Task execution
 
 Before you started, pull changes from my repository
 
@@ -76,7 +87,11 @@ git push origin <PRIVATE_BRANCH_NAME>
 When your changes are pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
 to your pull request.
 
-**How to contribute**
+# Large cross-topic project
+
+You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
+
+# How to contribute
 
 You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label.
 
@@ -124,8 +139,3 @@ and then build.
 
 It's necessary having a tool of type JDK with name `JDK_11`. I've used AdoptOpenJDK plugin to install
 the necessary JDK version. 
-
-Large cross-topic project
-=
-
-You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
