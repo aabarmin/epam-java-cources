@@ -78,7 +78,52 @@ to your pull request.
 
 **How to contribute**
 
-You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label. 
+You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label.
+
+# How to check tasks automatically
+
+## Jenkins in Docker
+
+There is an automated way to check all the tasks at once and build a meaningful report - run a
+series of Jenkins jobs and get a CSV file. 
+
+To run a Jenkins instance, it's recommended using a Docker container, a special Docker image with
+all the necessary scripts a prepared in the `/src/main/docker/jenkins/Dockerfile`. To start a Jenkins
+instance execute the following command:
+
+```shell script
+$ cd ./src/main/docker/jenkins
+$ docker-compose up -d
+``` 
+
+As a result, a docker stack with one single instance will be started and Jenkins will be available
+using the following URL: `http://localhost:8080`.
+
+## Configuring Jenkins
+
+It's recommended installing the following plugins:
+
+* AdoptOpenJDK installer
+* Config File Provider Plugin
+
+## Jenkins jobs
+
+The next step is to create two following jobs:
+
+| Jobs name | Job pipeline file |
+| BUILD_REPORT | `/src/main/jenkins/BUILD_REPORT/Jenkinsfile` |
+| BUILD_SINGLE | `/src/main/jenkins/BUILD_SINGLE/Jenkinsfile` |
+
+## Jobs configuration files
+
+Jenkins jobs require a configuration file called `STUDENT_REPOS`. This file should be created
+using the Config File Provider plugin. The file should contain a list of Git repos to clone
+and then build. 
+
+## Jenkins tools
+
+It's necessary having a tool of type JDK with name `JDK_11`. I've used AdoptOpenJDK plugin to install
+the necessary JDK version. 
 
 Large cross-topic project
 =
