@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task010;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -13,5 +14,5 @@ public interface Task010 {
      * @param source source file
      * @return map word to frequency of it
      */
-    Map<String, Integer> countWordNumbers(File source);
+    Map<String, Integer> countWordNumbers(File source) throws IOException;
 }
