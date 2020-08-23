@@ -15,6 +15,7 @@ public class Task005Impl implements Task005 {
         }
 
         int low = Integer.parseInt(numberLow);
+        int lowForFirst = low;
         int maxForFirst = Integer.parseInt(numberMax);;
         int maxForSecond = maxForFirst / 3;
 
@@ -22,7 +23,11 @@ public class Task005Impl implements Task005 {
         int secondValue = 1;
         double resultValue = 9;
 
-        for (int first = low; first < maxForFirst; first++) {
+        if (digits > 4) {
+            lowForFirst = lowForFirst * 9;
+        }
+
+        for (int first = lowForFirst; first < maxForFirst; first++) {
             for (int second = low; second < maxForSecond; second++) {
                 double value = Math.abs(((double) first / second) - Math.PI);
                 if (resultValue > value) {
