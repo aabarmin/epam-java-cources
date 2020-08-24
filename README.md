@@ -186,7 +186,7 @@ Git looks quite complicated but the following resources will help you be familia
 * [ProGit](https://git-scm.com/book/en/v2)
 * [Git Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
 
-## How to check all the tasks
+## How to check all the tasks at once
 
 Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
 and the following command:
