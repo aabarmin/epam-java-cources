@@ -58,7 +58,8 @@ public class Task003Impl implements Task003 {
      */
     @Override
     public int findMax(int[] source) {
-        if (source == null) {
+        if (source == null
+                || source.length == 0) {
             throw new IllegalArgumentException();
         }
         int result = Arrays.stream(source).max().getAsInt();

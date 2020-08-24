@@ -31,7 +31,10 @@ public class Task009Impl implements Task009 {
             Scanner scanner = new Scanner(sourceFile);
             scanner.useDelimiter("[.,:?]?\\s+");
             while (scanner.hasNext()) {
-                words.add(scanner.next().toLowerCase());
+                String word = scanner.next();
+                if (word.length() != 0) {
+                    words.add(word.toLowerCase());
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

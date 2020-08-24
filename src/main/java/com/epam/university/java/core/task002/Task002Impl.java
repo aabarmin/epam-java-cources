@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task002;
 
+import java.util.Arrays;
+
 /**
  * Created by Romin Nuro on 14.08.2020 0:51.
  */
@@ -122,7 +124,8 @@ public class Task002Impl implements Task002 {
     public String join(String[] sourceCollection, String glue) {
         if (sourceCollection == null
                 || glue == null
-                || sourceCollection.length == 0) {
+                || sourceCollection.length == 0
+                || Arrays.asList(sourceCollection).contains(null)) {
             throw new IllegalArgumentException();
         }
         String result = sourceCollection[0];

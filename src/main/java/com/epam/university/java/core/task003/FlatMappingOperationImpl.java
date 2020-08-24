@@ -12,7 +12,7 @@ public class FlatMappingOperationImpl implements FlatMappingOperation {
      */
     @Override
     public String[] flatMap(String source) {
-        String[] result = source.split("\\s*,\\s+");
+        String[] result = source.trim().split("\\D+");
         return result;
     }
 }
