@@ -17,7 +17,11 @@ public class Task005Impl implements Task005 {
 
         while (first < max) {
             while (second < max) {
-                if ((Math.abs((float) first / second -Math.PI)) < (Math.abs((float)fOut / sOut - Math.PI))) {
+                if (second > (first / 3)) {
+                    break;
+                }
+
+                if ((Math.abs((double) first / second - Math.PI)) < (Math.abs((double) fOut / sOut - Math.PI))) {
                     fOut = first;
                     sOut = second;
                 }
@@ -28,7 +32,7 @@ public class Task005Impl implements Task005 {
         }
 /*
         switch (digits) {
-            case 1:
+               case 1:
                 first = 3;
                 second = 1;
                 break;
