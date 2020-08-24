@@ -182,6 +182,13 @@ public class Task002Test {
         instance.join(source, ", ");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void joinWithCollectionContainsNulls() throws Exception {
+        final String[] source = {null, null};
+        instance.join(source, " ");
+    }
+
+
     @Test
     public void joinCheck() throws Exception {
         final String[] source = {"Hello", "World"};

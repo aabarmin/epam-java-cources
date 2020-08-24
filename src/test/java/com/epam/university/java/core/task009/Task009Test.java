@@ -30,4 +30,15 @@ public class Task009Test {
                 62,
                 words.size());
     }
+
+    @Test
+    public void countWordsWithExtraSpaces() throws Exception {
+        final URI fileUri = getClass().getResource("/task009/words_spaced.txt").toURI();
+        final File file = new File(fileUri);
+        final Collection<String> words = instance.countWords(file);
+        assertEquals("Error in words count",
+                62,
+                words.size());
+    }
+
 }
