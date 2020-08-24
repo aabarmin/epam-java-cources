@@ -21,7 +21,7 @@ public class Task009Impl implements Task009 {
                 for (String s : line) {
                     setStr.add(s.replaceAll("[^A-Za-z0-9’]", "").toLowerCase());
                 }
-            };
+            }
             setStr.removeIf(s -> s.length() == 0);
 
         } catch (Exception e) {

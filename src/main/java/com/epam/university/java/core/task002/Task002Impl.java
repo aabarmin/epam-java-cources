@@ -49,8 +49,8 @@ public class Task002Impl implements Task002 {
         if (stringArr == null || str == null || str.length() == 0 || stringArr.length == 0) {
             throw new IllegalArgumentException();
         }
-        Arrays.stream(stringArr).forEach(e-> {
-            if(e == null){
+        Arrays.stream(stringArr).forEach(e -> {
+            if (e == null) {
                 throw new IllegalArgumentException();
             }
         });
