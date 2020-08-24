@@ -4,10 +4,10 @@
 
 * [How to use this repository](#how-to-use-this-repository)
 * [Large cross-topic project](#large-cross-topic-project)
-* [How to contribute](#how-to-contribute)
+* [Contribution](#contribution)
 * [How to check tasks automatically](#how-to-check-tasks-automatically)
 
-## How to use this repository
+# How to use this repository
 
 It's recommended creating a fork of this repository to work on tasks independently. In this case you'll have your own
 copy of the repository and all your implementations will stay in your own repository. Of course, this approach
@@ -148,7 +148,7 @@ the following command:
 
 ```shell script
 $ git checkout master
-$ git checkout -b task-number
+$ git checkout -b <task-number>
 ```
 
 In order to solve the task, it's necessary writing an implementation class that is in the same package as the interface
@@ -167,7 +167,7 @@ When all the tests are passed, don't forget to create a commit and push your cha
 
 ```shell script
 $ git commit
-$ git push --set-upstream task-number
+$ git push --set-upstream <task-number>
 ```
 
 The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
@@ -199,9 +199,43 @@ $ ./gradlew test
 
 You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
 
-# How to contribute
+# Contribution
 
-You can contribute by writing and fixing tests. Create tests and send me a pull request with `Tests` label.
+If you see you can make this repository better - don't hesitate to contribute. Any kind of contributions are desired:
+
+* Bug reports
+* Bug fixes
+* New tasks
+* New tests
+
+## How to raise a bug report
+
+If you see an error, don't hesitate to raise a bug report just by clicking direct 
+[New issue](https://github.com/aabarmin/epam-java-cources/issues/new) link or using the 
+[Issues](https://github.com/aabarmin/epam-java-cources/issues) link on the top of the page and next by clicking the
+[New issue](https://github.com/aabarmin/epam-java-cources/issues/new) button on the top right. 
+
+Your contribution is very appreciated. 
+
+## How to add a new task or test
+
+In order to add a new task or test you need to create a fork of this repository using 
+[How to use this repository](#how-to-use-this-repository) guide and create a branch from the `epam_master` branch. 
+
+```shell script
+$ git checkout epam_master
+$ git pull
+$ git checkout -b <new-task-branch>
+```
+
+When the branch is created, write your code in the branch and then commit and push:
+
+```shell script
+$ git commit
+$ git push --set-upstream <new-task-branch>
+```
+
+And the last one step is to create a pull request into the `master` branch of my repository. 
 
 # How to check tasks automatically
 
