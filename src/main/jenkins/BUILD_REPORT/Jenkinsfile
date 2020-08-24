@@ -1,0 +1,35 @@
+def readLinesFromFile(file) {
+    configFileProvider([configFile(fileId: file, variable: 'FILE_PATH')]) {
+        def content = readFile "${FILE_PATH}"
+        return content.split("\n")
+    }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Run Tests') {
+            steps {
+                script {
+                    def repos = readLinesFromFile("STUDENT_REPOS")
+                    def reportPath = pwd() + "/report_${env.BUILD_NUMBER}.csv"
+
+                    repos.each { repo ->
+                        build job: 'RUN_SINGLE',
+                            propagate: false,
+                            parameters: [
+                                string(name: 'REPOSITORY_URL', value: repo),
+                                string(name: 'REPORT_FILE', value: reportPath),
+                                booleanParam(name: 'SHOULD_CLONE', value: true)]
+                    }
+                }
+            }
+        }
+        stage('Publish report') {
+            steps {
+                archiveArtifacts artifacts: "report_${env.BUILD_NUMBER}.csv", followSymlinks: false
+            }
+        }
+    }
+}

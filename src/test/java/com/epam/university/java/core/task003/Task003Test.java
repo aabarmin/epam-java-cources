@@ -61,8 +61,15 @@ public class Task003Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testJoinArgumentsNotProvided() throws Exception {
-        instance.join(null, null);
+    public void testJoinFirstArgumentsNotProvided() throws Exception {
+        final String[] target = {};
+        instance.join(null, target);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testJoinSecondArgumentsNotProvided() throws Exception {
+        final String[] source = {};
+        instance.join(source, null);
     }
 
     @Test
@@ -103,6 +110,12 @@ public class Task003Test {
         instance.findMax(null);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testMaxWithEmptyArguments() throws Exception {
+        final int[] source = {};
+        instance.findMax(source);
+    }
+
     @Test
     public void testMaxAllDifferent() throws Exception {
         final int[] source = {
@@ -130,8 +143,24 @@ public class Task003Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFilterWithoutArguments() throws Exception {
-        instance.filter(null, null);
+    public void testFilterWithoutFirstArguments() throws Exception {
+        instance.filter(null, filteringCondition);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFilterWithoutSecondArguments() throws Exception {
+        final String[] source = {};
+        instance.filter(source, null);
+    }
+
+    @Test
+    public void testFilterWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in filter operation",
+                target,
+                instance.filter(source, filteringCondition)
+        );
     }
 
     @Test
@@ -153,8 +182,24 @@ public class Task003Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMapWithoutArguments() throws Exception {
-        instance.map(null, null);
+    public void testMapWithoutFirstArguments() throws Exception {
+        instance.map(null, mappingOperation);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMapWithoutSecondArguments() throws Exception {
+        final String[] source = {};
+        instance.map(source, null);
+    }
+
+    @Test
+    public void testMapWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in map operation",
+                target,
+                instance.map(source, mappingOperation)
+        );
     }
 
     @Test
@@ -178,8 +223,24 @@ public class Task003Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFlatMapWithoutArguments() throws Exception {
-        instance.flatMap(null, null);
+    public void testFlatMapWithoutFirstArguments() throws Exception {
+        instance.flatMap(null, flatMappingOperation);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFlatMapWithoutSecondArguments() throws Exception {
+        final String[] source = {};
+        instance.flatMap(source, null);
+    }
+
+    @Test
+    public void testFlatMapWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
     }
 
     @Test
@@ -207,18 +268,102 @@ public class Task003Test {
         );
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoveElementsWithoutArguments() throws Exception {
-        instance.removeElements(null, null);
+    @Test
+    public void testFlatMap2() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9"
+        };
+        final String[] target = {
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
     }
 
     @Test
-    public void testRemoveElements() throws Exception {
+    public void testFlatMap3() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9, 230    "
+        };
+        final String[] target = {
+                "230",
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveElementsWithoutFirstArguments() throws Exception {
+        final String[] toRemote = {};
+        instance.removeElements(null, toRemote);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRemoveElementsWithoutSecondArguments() throws Exception {
+        final String[] source = {};
+        instance.removeElements(source, null);
+    }
+
+    @Test
+    public void testRemoveWithDifferentElements() throws Exception {
         final String[] source = {
                 "One",
                 "Two",
                 "Three",
                 "Four"
+        };
+        final String[] toRemove = {
+                "Two",
+                "Four"
+        };
+        final String[] target = {
+                "One",
+                "Three"
+        };
+        assertArrayEquals("Error in remove elements operation",
+                target,
+                instance.removeElements(source, toRemove)
+        );
+    }
+
+    @Test
+    public void testRemoveWithEqualElements() throws Exception {
+        final String[] source = {
+                "One",
+                "Two",
+                "Three",
+                "Four",
+                "Two",
+                "Two"
         };
         final String[] toRemove = {
                 "Two",
