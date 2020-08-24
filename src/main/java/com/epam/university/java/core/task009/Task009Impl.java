@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -16,11 +17,13 @@ public class Task009Impl implements Task009 {
         try (BufferedReader reader = new BufferedReader(new FileReader(sourceFile))) {
             String str;
             while ((str = reader.readLine()) != null) {
-                String[] line = str.replaceAll("[.!?,]","").split(" ");
+                String[] line = str.replaceAll("[\\s+]", " ").split(" ");
                 for (String s : line) {
-                    setStr.add(s.toLowerCase());
+                    setStr.add(s.replaceAll("[^A-Za-z0-9’]", "").toLowerCase());
                 }
-            }
+            };
+            setStr.removeIf(s -> s.length() == 0);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
