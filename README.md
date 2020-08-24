@@ -9,83 +9,191 @@
 
 ## How to use this repository
 
-// TODO:
-1. Update the description on how to use this repository - git manual is a bit cumbersome
-2. Update the task for the cross-topic project
-3. Add a banner 
+It's recommended creating a fork of this repository to work on tasks independently. In this case you'll have your own
+copy of the repository and all your implementations will stay in your own repository. Of course, this approach
+has both benefits and drawbacks:
 
-- Fork this repository by clicking "Fork" button on the top of this page.
-- Clone this repository to your local environment
-- Connect your branch to my repository by executing the following command:
- 
-```
-git remote add -t master epam http://github.com/aabarmin/epam-java-cources/
+* Benefit - nobody sees your code except yourself.
+* Drawback - nobody sees your code expect yourself.
+
+## How to make a fork of this repository
+
+To create a for of this repository press a `Fork` button on the top right of this page. GitHub will ask you about
+the location of a newly created repository and next you'll be able to clone the repository to your local machine:
+
+```shell script
+$ git clone https://github.com/your-account-name/epam-java-cources
+``` 
+
+As a result, you'll have a folder called `epam-java-courses` locally. 
+
+## How to get updates of a remote repository
+
+When the fork is created it'll not receive updates automatically, it's necessary making some manual configuration 
+for your local repository - you need add a new remote to your local repository. To do it, execute the following
+command:
+
+```shell script
+$ git remote add -t master epam http://github.com/aabarmin/epam-java-cources/
 ```
 
-You can watch list of remotes using `git remote show` command. The result should be like the following:
+This command will associate your local repository with one additional remote repository - mine repository. In means
+that you can send and receive updates from both remote locations - from mine and from your. 
 
-```
-# git remote show
+The following command will show what remotes are associated with your local repository:
+
+```shell script
+$ git remote show
 
 epam
 origin
+```  
+
+`origin` is a default name for your remote (`https://github.com/your-account-name/epam-java-cources`), the `epam` 
+remote is an association with my remote repository (`https://github.com/aabarmin/epam-java-cources`).
+
+The next step is to create a branch that will get updates from my repository. The following command will create
+such kind of branch:
+
+```shell script
+$ git checkout -b epam_master --track epam/master
 ```
 
-## Task execution
+This command will create a new branch called `epam_master` that receives updates from my repository. You can see the
+list of all your branches by executing the following command:
 
-Before you started, pull changes from my repository
+```shell script
+$ git branch -a
 
-```
-git pull epam master
-```
-
-If your repository is behind the remote master, you should rebase changes from my repository to your master. 
-You can do it by executing the following command:
-
-```
-git rebase epam/master master
+epam_master
+master
 ```
 
-Send changes from your local repository to remote:
+When you would like to get updates, you need to pull updates from my repository:
 
-```
-git push origin master
-```
-
-The following step is to switch to your private branch:
-
-```
-git checkout <PRIVATE_BRANCH_NAME>
+```shell script
+$ git checkout epam_master
+$ git pull
 ```
 
-After it you can create branch for task execution:
+And next merge my changes to your `master` branch:
 
-```
-git checkout -b <TASK_BRANCH>
-```
-
-Open your favourite IDE and write some code and don't forget to commit when you finished.
-
-```
-git add .
-git commit
+```shell script
+$ git checkout master
+$ git pull
+$ git merge epam_master
 ```
 
-When your work with task is completely done, you should merge changes from task branch to your private branch:
+As a result, your `master` branch will receive updates and new tasks if they're present. 
 
-```
-git checkout <PRIVATE_BRANCH_NAME>
-git rebase <TASK_BRANCH>
+## What is the task
+
+Any task in this repository consists of three parts:
+1. Description.
+2. An interface for the implementation. 
+3. Tests for the task. 
+
+The first part, the description is in JavaDoc of the interface, but anyway it's important to mention it here. The second
+part is the interface that declares a contract between a task and the solution. All the interfaces are in the 
+`src/main/java` folder and look like this:
+
+```java
+/**
+ * Calculator.
+ * <p>
+ *     Implementing ordinary calculator which checks input data.
+ * </p>
+ */
+public interface Task001 {
+    /**
+     * Execute addition operation.
+     *
+     * @param firstNumber string value of first number
+     * @param secondNumber string value of second number
+     * @return result of addition operation
+     * @throws IllegalArgumentException if input parameters are not set
+     * @throws NumberFormatException if can't convert input values to numbers
+     */
+    double addition(String firstNumber, String secondNumber);
+}
+``` 
+
+The most important part of the task is a collection of tests that checks your implementation. Tests are stored in the
+`src/test/java` folder and has a name like the task name plus `Test` like `Task001Test`. 
+
+Tests are ordinary JUnit tests:
+
+```java
+public class Task001Test {
+    public static final double DELTA = 0.0000001;
+
+    private Task001 instance;
+
+    @Before
+    public void setUp() throws Exception {
+        instance = TestHelper.getInstance(getClass());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void additionNullBothArguments() throws Exception {
+        instance.addition(null, null);
+    }
+}
 ```
 
-Now you can push your changes to your own remote repository:
- 
-```
-git push origin <PRIVATE_BRANCH_NAME>
+## How to solve a task
+
+First of all, it's better working on the separate task in its own branch. To create a separate branch, execute
+the following command:
+
+```shell script
+$ git checkout master
+$ git checkout -b task-number
 ```
 
-When your changes are pushed to your own fork, you should create a pull-request. It's better to add `Excercise` label
-to your pull request.
+In order to solve the task, it's necessary writing an implementation class that is in the same package as the interface
+and has a name with `Impl` at the end. This implementation should implement the interface of the task. 
+
+```java
+public class Task001Impl implements Task001 {
+  @Override
+  double addition(String firstNumber, String secondNumber) {
+    // TODO, your implementation goes here
+  }
+}
+```
+
+When all the tests are passed, don't forget to create a commit and push your changes to the remote repository:
+
+```shell script
+$ git commit
+$ git push --set-upstream task-number
+```
+
+The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
+to the master branch of your repository. It'll allow you to send your code for review to your colleagues or friends 
+on the one hand and on the other hand you'll be able to take one more look into your code later. When the code is
+completed, you'll merge the task branch to the `master` branch. 
+
+Updates from your remote `master` branch can be received using the following command:
+
+```shell script
+$ git checkout master
+$ git pull
+```
+
+Git looks quite complicated but the following resources will help you be familiar with it shortly:
+* [ProGit](https://git-scm.com/book/en/v2)
+* [Git Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
+
+## How to check all the tasks
+
+Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
+and the following command:
+
+```shell script
+$ ./gradlew test
+```
 
 # Large cross-topic project
 
