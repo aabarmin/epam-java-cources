@@ -233,7 +233,8 @@ It's recommended installing the following plugins:
 
 The next step is to create two following jobs:
 
-| Jobs name | Job pipeline file |
+| Jobs name    | Job pipeline file                            |
+|--------------|----------------------------------------------|
 | BUILD_REPORT | `/src/main/jenkins/BUILD_REPORT/Jenkinsfile` |
 | BUILD_SINGLE | `/src/main/jenkins/BUILD_SINGLE/Jenkinsfile` |
 
