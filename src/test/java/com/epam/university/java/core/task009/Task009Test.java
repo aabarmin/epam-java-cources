@@ -21,6 +21,11 @@ public class Task009Test {
         instance = TestHelper.getInstance(getClass());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void sourceIsNull() throws Exception {
+        instance.countWords(null);
+    }
+
     @Test
     public void countWords() throws Exception {
         final URI fileUri = getClass().getResource("/task009/words.txt").toURI();
