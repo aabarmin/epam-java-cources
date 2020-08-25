@@ -1,5 +1,8 @@
 # Tasks for Java Core course attendee
 
+I'm another super commit
+
+
 # Table of Contents
 
 * [How to use this repository](#how-to-use-this-repository)
