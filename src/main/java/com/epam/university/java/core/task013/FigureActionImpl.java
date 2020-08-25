@@ -4,5 +4,6 @@ public class FigureActionImpl implements FigureAction {
     @Override
     public void run(Figure figure) {
 
+
     }
 }
