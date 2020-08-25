@@ -1,8 +1,6 @@
 package com.epam.university.java.core.task003;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Task003Impl implements Task003 {
@@ -35,7 +33,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public int findMax(int[] source) {
-        if (source != null) {
+        if (source != null && source.length != 0) {
             int max = Integer.MIN_VALUE;
             for (int num : source) {
                 max = Math.max(num, max);
@@ -64,9 +62,8 @@ public class Task003Impl implements Task003 {
     public String[] removeElements(String[] source, String[] toRemote) {
         if (source != null && toRemote != null) {
             ArrayList<String> listArr = new ArrayList<>(Arrays.asList(source));
-            for (int i = 0; i < toRemote.length; i++) {
-                listArr.remove(toRemote[i]);
-            }
+            ArrayList<String> listRemove = new ArrayList<>(Arrays.asList(toRemote));
+            listArr.removeAll(listRemove);
             String[] newArr = new String[listArr.size()];
             newArr = listArr.toArray(newArr);
             return newArr;
@@ -90,6 +87,9 @@ public class Task003Impl implements Task003 {
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
         if (source != null && operation != null) {
+            if (source.length == 0) {
+                return source;
+            }
             StringBuilder sourceSb = new StringBuilder();
             for (int i = 0; i < source.length; i++) {
                 sourceSb.append(source[i]).append(", ");
