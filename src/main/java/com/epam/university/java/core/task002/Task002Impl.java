@@ -67,6 +67,9 @@ public class Task002Impl implements Task002 {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
         while (i < sourceCollection.length) {
+            if (sourceCollection[i] == null) {
+                throw new IllegalArgumentException();
+            }
             stringBuilder.append(sourceCollection[i]);
             i++;
             if (i != sourceCollection.length) {

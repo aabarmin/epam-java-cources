@@ -17,7 +17,7 @@ public class Task010Impl implements Task010 {
             }
             ;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("File Not Found. Path: " + source);
         }
 
         text = text.replaceAll("[\\.,]", "");
