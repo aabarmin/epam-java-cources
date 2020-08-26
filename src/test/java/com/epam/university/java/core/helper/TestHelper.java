@@ -21,6 +21,6 @@ public class TestHelper {
         } else {
             testableClass = Class.forName(testClassName + "Impl");
         }
-        return (T) testableClass.newInstance();
+        return (T) testableClass.getDeclaredConstructor().newInstance();
     }
 }
