@@ -46,19 +46,28 @@ public class Task013Impl implements Task013 {
         Vertex two;
         Vertex three;
 
+
+
         List<Vertex> vertexes = (List<Vertex>) figure.getVertexes();
 
-        // TODO: Sort Vertexes !!!
+        // getting starting point for vertex sorting
+        Vertex startVertex = vertexes.stream()
+                .min(Comparator.comparing(Vertex::getX))
+                .get();
 
-        Collections.sort(vertexes, new SortVertexes());
+        // sorting vertexes clockwise
+        Collections.sort(vertexes, new SortVertexes(startVertex.getX(), startVertex.getY()));
 
+        // checking if the turning direction is always the same
         for (int i = 0; i < polygonSize; i++) {
             one = vertexes.get(i);
-            two = vertexes.get((i+1) % polygonSize);
-            three = vertexes.get((i+2) % polygonSize);
+            two = vertexes.get((i + 1) % polygonSize);
+            three = vertexes.get((i + 2) % polygonSize);
 
-            Vertex firstVector = factory.newInstance(two.getX() - one.getX(), two.getY() - one.getY());
-            Vertex secondVector = factory.newInstance(three.getX() - two.getX(), three.getY() - two.getY());
+            Vertex firstVector = factory
+                    .newInstance(two.getX() - one.getX(), two.getY() - one.getY());
+            Vertex secondVector = factory
+                    .newInstance(three.getX() - two.getX(), three.getY() - two.getY());
 
             if (i == 0) {
                 firstCrossProduct = vectorProduct(firstVector, secondVector);
@@ -73,24 +82,38 @@ public class Task013Impl implements Task013 {
         }
         return true;
     }
-    public static int vectorProduct (Vertex firstVector, Vertex secondVector) {
+
+    // multiplying vectors method
+    public static int vectorProduct(Vertex firstVector, Vertex secondVector) {
         return firstVector.getX() * secondVector.getY() - secondVector.getX() * firstVector.getY();
     }
 
     class SortVertexes implements Comparator<Vertex> {
+        private final int startX;
+        private final int startY;
 
+        public SortVertexes(int startX, int startY) {
+            this.startX = startX;
+            this.startY = startY;
+        }
 
         @Override
         public int compare(Vertex o1, Vertex o2) {
-            if (o1.getX() == 0 && o1.getY() == 0) {
+            // comparing angles of vectors from the left point
+            // y / x == tg(angle)
+            if (o1.getX() - startX == 0 && o1.getY() - startY == 0) {
                 return -1;
             }
-            if (o2.getX() == 0 && o2.getY() == 0) {
+            if (o2.getX() - startX == 0 && o2.getY() - startY == 0) {
                 return 1;
             }
-            double tg1 = (double) o1.getY() / (double) o1.getX();
-            double tg2 = (double) o2.getY() / (double) o2.getX();
-            return (int) (tg1 - tg2);
+            double tg1 = (double) (o1.getY() - startY) / (double) (o1.getX() - startX);
+            double tg2 = (double) (o2.getY() - startY) / (double) (o2.getX() - startX);
+            if (tg1 > tg2) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
     }
 }
