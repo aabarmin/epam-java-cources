@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Task013Test {
+public class  Task013Test {
     private FigureFactory factory;
     private Task013 instance;
 
