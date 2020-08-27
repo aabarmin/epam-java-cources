@@ -83,7 +83,6 @@ public class Task003Impl implements Task003 {
                 if (source[j].equals(toRemote[i])) {
                     source[j] = "";
                     size--;
-                    break;
                 }
             }
         }
