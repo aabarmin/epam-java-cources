@@ -3,8 +3,7 @@ package com.epam.university.java.core.task008;
 /**
  * Strings and braces.
  */
-public interface
-Task008 {
+public interface Task008 {
     /**
      * Given a string with mathematical expression like "(1 + 2) * {[-3] - 4}". You need to check,
      * are all braces correct. Ex:
