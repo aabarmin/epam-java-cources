@@ -123,7 +123,7 @@ public class Task003Impl implements Task003 {
     }
 
     private void validateInput(int[] source) {
-        if (source == null) {
+        if (source == null || source.length == 0) {
             throw new IllegalArgumentException();
         }
     }
