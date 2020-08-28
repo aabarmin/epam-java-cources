@@ -6,4 +6,5 @@ import org.xml.sax.helpers.DefaultHandler;
  * Sax handler base.
  */
 public abstract class SaxHandler extends DefaultHandler {
+
 }
