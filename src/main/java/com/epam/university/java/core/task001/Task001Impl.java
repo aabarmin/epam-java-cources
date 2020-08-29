@@ -39,12 +39,6 @@ public class Task001Impl implements Task001{
         }
         double firstNumberParsed = Double.parseDouble(firstNumber);
         double secondNumberParsed = Double.parseDouble(secondNumber);
-//        if (secondNumberParsed == 0){
-//            System.out.println("Incorrect division results");
-//            return 0;
-//        }
-//        else {
-            return firstNumberParsed / secondNumberParsed;
-//        }
+        return firstNumberParsed / secondNumberParsed;
     }
 }
