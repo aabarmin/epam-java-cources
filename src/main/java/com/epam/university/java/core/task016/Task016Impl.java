@@ -15,7 +15,7 @@ public class Task016Impl implements Task016 {
 
         for (int i = 0 - newRadius; i < newRadius; i++) {
             for (int j = 0 - newRadius; j < newRadius; j++) {
-                if ((i * i) + (j * j ) <= newRadius * newRadius) {
+                if ((i * i) + (j * j) <= newRadius * newRadius) {
                     int x0 =  i * (- 1);
                     int y0 = j * (- 1);
 
