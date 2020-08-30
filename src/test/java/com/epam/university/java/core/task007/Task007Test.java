@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by Aleksandr_Barmin on 9/6/2017.
@@ -40,5 +41,24 @@ public class Task007Test {
                 result,
                 instance.multiplyPolynomial(first, second)
         );
+    }
+
+    @Test
+    public void testThird() throws Exception {
+        final Collection<Integer> first = Arrays.asList(6, 10, 0, 5);
+        final Collection<Integer> second = Arrays.asList(4, 2, 1);
+        final Collection<Integer> result = Arrays.asList(24, 52, 26, 30, 10, 5);
+        assertEquals("Error in third multiplication", result, instance.multiplyPolynomial(first, second));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIncorrectArgs() throws Exception {
+        assertNull("Error in args", instance.multiplyPolynomial(null, null));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSecondArgIncorrect() throws Exception {
+        final Collection<Integer> first = Arrays.asList(6, 10, 0, 5);
+        assertNull("Error in second arg", instance.multiplyPolynomial(first, null));
     }
 }
