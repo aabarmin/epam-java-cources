@@ -188,7 +188,7 @@ Git looks quite complicated but the following resources will help you be familia
 
 ## How to check all the tasks at once
 
-Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
+Of course, you can run tests from your favorite IDE but it's also possible checking all of them at once using Gradle
 and the following command:
 
 ```shell script
