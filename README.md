@@ -232,7 +232,7 @@ When the branch is created, write your code in the branch and then commit and pu
 
 ```shell script
 $ git commit
-$ git push --set-upstream <new-task-branch>
+$ git push origin --set-upstream <new-task-branch>
 ```
 
 And the last one step is to create a pull request into the `master` branch of my repository. 
