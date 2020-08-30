@@ -18,7 +18,7 @@ has both benefits and drawbacks:
 
 ## How to make a fork of this repository
 
-To create a for of this repository press a `Fork` button on the top right of this page. GitHub will ask you about
+To create a fork of this repository press a `Fork` button on the top right of this page. GitHub will ask you about
 the location of a newly created repository and next you'll be able to clone the repository to your local machine:
 
 ```shell script
