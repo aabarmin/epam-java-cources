@@ -16,7 +16,7 @@ pipeline {
                     def reportPath = pwd() + "/report_${env.BUILD_NUMBER}.csv"
 
                     repos.each { repo ->
-                        build job: 'RUN_SINGLE',
+                        build job: 'BUILD_SINGLE',
                             propagate: false,
                             parameters: [
                                 string(name: 'REPOSITORY_URL', value: repo),
