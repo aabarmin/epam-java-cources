@@ -9,6 +9,9 @@ import java.util.Map;
 public class GraphFactoryImpl implements GraphFactory {
     @Override
     public Graph newInstance(int vertexesCount) {
+        if (vertexesCount <= 0) {
+            throw new IllegalArgumentException();
+        }
         Map<Integer, ArrayList<Integer>> graphMap = new HashMap<>();
 
         for (int i = 0; i < vertexesCount; i++) {

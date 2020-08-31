@@ -36,6 +36,10 @@ public class GraphImpl implements Graph {
         Collection<Integer> connectFrom = vertexMap.get(from);
         Collection<Integer> connectTo = vertexMap.get(to);
 
+        if (connectFrom == null || connectTo == null) {
+            throw new IllegalArgumentException();
+        }
+
         if (connectFrom.contains(to) && connectTo.contains(from)) {
             return true;
         }
@@ -47,6 +51,10 @@ public class GraphImpl implements Graph {
     public void removeEdge(int from, int to) {
         ArrayList<Integer> connectFrom = vertexMap.get(from);
         ArrayList<Integer> connectTo = vertexMap.get(to);
+
+        if (connectFrom.size() == 0 || connectTo.size() == 0) {
+            throw new IllegalArgumentException();
+        }
 
         connectFrom.remove(Integer.valueOf(to));
         connectTo.remove(Integer.valueOf(from));

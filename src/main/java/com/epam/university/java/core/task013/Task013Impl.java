@@ -8,6 +8,9 @@ import java.util.List;
 public class Task013Impl implements Task013 {
     @Override
     public Figure invokeActions(Figure figure, Collection<FigureAction> actions) {
+        if (figure == null || actions == null || actions.size() == 0) {
+            throw new IllegalArgumentException();
+        }
         for (FigureAction action : actions) {
             action.run(figure);
         }
@@ -16,6 +19,9 @@ public class Task013Impl implements Task013 {
 
     @Override
     public boolean isConvexPolygon(Figure figure) {
+        if (figure == null) {
+            throw new IllegalArgumentException();
+        }
         List<Integer> xPoints = new ArrayList<>();
         List<Integer> yPoints = new ArrayList<>();
 
