@@ -18,6 +18,11 @@ public class Task008Test {
         instance = TestHelper.getInstance(getClass());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void bracesSourceStringIsNull() throws Exception {
+        instance.isValid(null);
+    }
+
     @Test
     public void bracesAreCorrect() throws Exception {
         final String source = "(1 + 2) * {[-3] - 4}";
