@@ -19,6 +19,44 @@ public class Task013Test {
         instance = TestHelper.getInstance(Task013.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void lessThanThreeVertexes() throws Exception {
+        factory.newInstance(2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullFigure() throws Exception {
+        instance.invokeActions(null, Arrays.asList());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullActions() throws Exception {
+        final Figure sourceFigure = factory.newInstance(3);
+        instance.invokeActions(sourceFigure, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithEmptyActions() throws Exception {
+        final Figure sourceFigure = factory.newInstance(3);
+        instance.invokeActions(sourceFigure, Arrays.asList());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkingConvexPolygonWithNullFigure() throws Exception {
+        instance.isConvexPolygon(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void addTooManyVertexes() throws Exception {
+        final Figure sourceFigure = factory.newInstance(3);
+        instance.invokeActions(sourceFigure, Arrays.asList(
+            f -> f.addVertex(factory.newInstance(0, 0)),
+            f -> f.addVertex(factory.newInstance(0, 2)),
+            f -> f.addVertex(factory.newInstance(2, 0)),
+            f -> f.addVertex(factory.newInstance(1, 0))
+        ));
+    }
+
     @Test
     public void testWithTriangle() throws Exception {
         final Figure sourceFigure = factory.newInstance(3);
