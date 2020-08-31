@@ -15,6 +15,9 @@ public class FigureImpl implements Figure {
 
     @Override
     public void addVertex(Vertex vertex) {
+        if (getVertexes().size() == vertexCount) {
+            throw new IllegalArgumentException();
+        }
         this.vertices.add(vertex);
     }
 

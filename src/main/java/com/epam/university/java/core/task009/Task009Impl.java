@@ -14,6 +14,9 @@ import java.util.HashSet;
 public class Task009Impl implements Task009 {
     @Override
     public Collection<String> countWords(File sourceFile) {
+        if (sourceFile == null) {
+            throw new IllegalArgumentException();
+        }
         String line = "";
         String[] lines;
         try (BufferedReader bufRdr  = new BufferedReader(

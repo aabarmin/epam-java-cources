@@ -7,6 +7,9 @@ public class Task013Impl implements Task013 {
 
     @Override
     public Figure invokeActions(Figure figure, Collection<FigureAction> actions) {
+        if (figure == null || actions == null || actions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         for (FigureAction action : actions) {
             action.run(figure);
         }
@@ -15,6 +18,9 @@ public class Task013Impl implements Task013 {
 
     @Override
     public boolean isConvexPolygon(Figure figure) {
+        if (figure == null) {
+            throw new IllegalArgumentException();
+        }
         ArrayList<Vertex> vertices = (ArrayList<Vertex>) figure.getVertexes();
         ArrayList<Vertex> sortedVerticies = sortVerticies(vertices);
         boolean gotNegative = false;

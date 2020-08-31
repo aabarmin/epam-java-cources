@@ -4,6 +4,9 @@ public class FigureFactoryImpl implements FigureFactory {
 
     @Override
     public Figure newInstance(int vertexCount) {
+        if (vertexCount < 3) {
+            throw new IllegalArgumentException();
+        }
         return new FigureImpl(vertexCount);
     }
 

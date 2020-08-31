@@ -12,6 +12,9 @@ import java.util.Map;
 public class Task010Impl implements Task010 {
     @Override
     public Map<String, Integer> countWordNumbers(File source) {
+        if (source == null) {
+            throw new IllegalArgumentException();
+        }
         String line = "";
         String[] lines;
         try (BufferedReader bufRdr  = new BufferedReader(

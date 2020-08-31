@@ -9,6 +9,9 @@ import java.util.Set;
 public class Task012Impl implements Task012 {
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
+        if (sourceGraph == null || actions == null || actions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         for (GraphAction action : actions) {
             action.run(sourceGraph);
         }
@@ -17,6 +20,9 @@ public class Task012Impl implements Task012 {
 
     @Override
     public boolean pathExists(Graph graph, int from, int to) {
+        if (graph == null) {
+            throw new IllegalArgumentException();
+        }
         Set<Integer> visited = new LinkedHashSet<Integer>();
         Queue<Integer> queue = new LinkedList<Integer>();
         queue.add(from);

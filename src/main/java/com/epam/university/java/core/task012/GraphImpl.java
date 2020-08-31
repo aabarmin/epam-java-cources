@@ -21,6 +21,9 @@ public class GraphImpl implements Graph {
 
     @Override
     public void createEdge(int from, int to) {
+        if (!adjVertices.containsKey(from)) {
+            throw new IllegalArgumentException();
+        }
         adjVertices.get(from).add(to);
         adjVertices.get(to).add(from);
     }
@@ -38,16 +41,23 @@ public class GraphImpl implements Graph {
 
     @Override
     public void removeEdge(int from, int to) {
-        if (adjVertices.containsKey(from)) {
+        if (!adjVertices.containsKey(from)) {
+            throw new IllegalArgumentException();
+        } else {
             adjVertices.get(from).remove(Integer.valueOf(to));
         }
-        if (adjVertices.containsKey(to)) {
+        if (!adjVertices.containsKey(to)) {
+            throw new IllegalArgumentException();
+        } else {
             adjVertices.get(to).remove(Integer.valueOf(from));
         }
     }
 
     @Override
     public Collection<Integer> getAdjacent(int from) {
+        if (!adjVertices.containsKey(from)) {
+            throw new IllegalArgumentException();
+        }
         return adjVertices.get(from);
     }
 }

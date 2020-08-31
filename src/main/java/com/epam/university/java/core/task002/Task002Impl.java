@@ -51,7 +51,7 @@ public class Task002Impl implements Task002 {
     public String right(String sourceString, String separator) {
         if (sourceString != null && separator != null) {
             int end = sourceString.length();
-            int index = sourceString.indexOf(separator) + 1;
+            int index = sourceString.indexOf(separator.trim()) + 1;
             return sourceString.substring(index, end).trim();
         } else {
             throw new IllegalArgumentException();
