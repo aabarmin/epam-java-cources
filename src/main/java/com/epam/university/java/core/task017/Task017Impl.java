@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class Task017Impl implements Task017 {
+
     @Override
     public String formatString(Object... args) {
         if (args.length == 0 || args[0] == null) {
@@ -22,13 +23,20 @@ public class Task017Impl implements Task017 {
         double num = Double.parseDouble(String.valueOf(args[0]));
         BigDecimal bd = new BigDecimal(num);
 
-        String buff = String.format("%.1f", num) +
-                ", " +
-                String.format("%1$,.2f", num) +
-                ", " +
-                (bd.signum() > 0 ? "+" : "-") +
-                String.format("%1$,.2f", num) +
-                ", " +
+        String buff = String.format("%.1f", num)
+                +
+                ", "
+                +
+                String.format("%1$,.2f", num)
+                +
+                ", "
+                +
+                (bd.signum() > 0 ? "+" : "-")
+                +
+                String.format("%1$,.2f", num)
+                +
+                ", "
+                +
                 Double.toHexString(num);
         return buff;
     }
