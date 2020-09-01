@@ -2,7 +2,6 @@ package com.epam.university.java.core.task013;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class FigureImpl implements Figure {
         if (vertexes.size() < vertexCount) {
             vertexes.add(vertex);
         } else {
-            System.err.println("Can't add vertex, all vertexes are set");
+            throw new IllegalArgumentException("Can't add vertex");
         }
     }
 
