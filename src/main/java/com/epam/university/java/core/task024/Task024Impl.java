@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task024;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +14,7 @@ public class Task024Impl implements Task024 {
             throw new IllegalArgumentException();
         }
         if (source.length() == 0) {
-            return Collections.EMPTY_LIST;
+            return new ArrayList<String>();
         }
 
         String regex = "(?<=\\p{Lower})(?=\\p{Upper})";
