@@ -86,6 +86,12 @@ $ git merge epam_master
 
 As a result, your `master` branch will receive updates and new tasks if they're present. 
 
+Don't forget to update your remote 'master':
+
+```shell script
+$ git push origin master
+```
+
 ## What is the task
 
 Any task in this repository consists of three parts:
