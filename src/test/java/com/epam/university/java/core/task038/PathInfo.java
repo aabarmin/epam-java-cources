@@ -5,11 +5,11 @@ import java.util.Collection;
 
 import static java.lang.Math.pow;
 
-public class Path {
+public class PathInfo {
 
     private ArrayList<Vertex> path;
 
-    public Path(Collection<Vertex> path) {
+    public PathInfo(Collection<Vertex> path) {
         this.path = new ArrayList<>(path);
     }
 

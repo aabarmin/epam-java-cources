@@ -35,9 +35,9 @@ public class Task038Test {
             g -> g.connectVertices(1, 4),
             g -> g.connectVertices(3, 4)
         ));
-        Path path1 = new Path(instance.getShortestPath(sourceGraph, 0, 3));
-        Path path2 = new Path(instance.getShortestPath(sourceGraph, 0, 4));
-        Path path3 = new Path(instance.getShortestPath(sourceGraph, 0, 2));
+        PathInfo path1 = new PathInfo(instance.getShortestPath(sourceGraph, 0, 3));
+        PathInfo path2 = new PathInfo(instance.getShortestPath(sourceGraph, 0, 4));
+        PathInfo path3 = new PathInfo(instance.getShortestPath(sourceGraph, 0, 2));
         assertEquals("Incorrect path", 10, path1.calculateDistance());
         assertEquals("Incorrect path", 38, path2.calculateDistance());
         assertEquals("Incorrect path", 3, path3.calculateDistance());
@@ -59,9 +59,9 @@ public class Task038Test {
             g -> g.connectVertices(1, 4),
             g -> g.connectVertices(3, 4)
         ));
-        Path path1 = new Path(instance.getShortestPath(sourceGraph, 3, 1));
-        Path path2 = new Path(instance.getShortestPath(sourceGraph, 1, 0));
-        Path path3 = new Path(instance.getShortestPath(sourceGraph, 4, 0));
+        PathInfo path1 = new PathInfo(instance.getShortestPath(sourceGraph, 3, 1));
+        PathInfo path2 = new PathInfo(instance.getShortestPath(sourceGraph, 1, 0));
+        PathInfo path3 = new PathInfo(instance.getShortestPath(sourceGraph, 4, 0));
 
         assertFalse("Path doesn't exist", path1.isExist());
         assertFalse("Path doesn't exist", path2.isExist());
