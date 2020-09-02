@@ -14,6 +14,11 @@ public class Task025Test {
         instance = TestHelper.getInstance(Task025.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.getAmountOfAlteredLetters(null);
+    }
+
     @Test
     public void allCorrect() throws Exception {
         assertEquals("Invalid result",

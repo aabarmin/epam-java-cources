@@ -20,6 +20,11 @@ public class Task019Test {
         instance = TestHelper.getInstance(Task019.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullRobot() throws Exception {
+        instance.isOnStartPosition(null);
+    }
+
     @Test
     public void robotOnTheSamePosition() throws Exception {
         final Robot robot = TestHelper.getInstance(Robot.class);
