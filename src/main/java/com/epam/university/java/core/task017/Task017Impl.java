@@ -7,6 +7,7 @@ import java.util.Locale;
 public class Task017Impl implements Task017 {
     @Override
     public String formatString(Object... args) {
+        validate(args);
         String output = "You know %s, %s!";
 
         return String.format(output, args);
@@ -14,6 +15,7 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatNumbers(Object... args) {
+        validate(args);
         String s = "";
         for (Object o : args) {
             if (o instanceof Double) {
@@ -28,6 +30,7 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatDates(Object... args) {
+        validate(args);
         StringBuilder output = new StringBuilder();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy.dd.MM");
@@ -36,5 +39,16 @@ public class Task017Impl implements Task017 {
         }
 
         return output.toString().trim();
+    }
+
+    private void validate(Object... args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (Object arg : args) {
+            if (arg == null) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }
