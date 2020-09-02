@@ -6,6 +6,9 @@ import java.util.Map;
 /**
  * Huffman coding.
  * Tip: mind that in heap child equal to parent goes to its right side.
+ * Another tip: pay attention when equals frequencies are given. In some situations
+ * order of processing is important, as it may give slightly different encodings,
+ * but only one may pass tests.
  */
 
 public interface Task039 {
