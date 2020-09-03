@@ -65,4 +65,17 @@ public class Task019Test {
                 .forEach(a -> instance.invokeAction(robot, a));
         assertFalse("Incorrect result", instance.isOnStartPosition(robot));
     }
+
+    @Test
+    public void robotMovesOnAxis() throws Exception {
+        final Robot robot = TestHelper.getInstance(Robot.class);
+        Stream.of(
+                MOVE_FORWARD,
+                TURN_RIGHT,
+                TURN_RIGHT,
+                MOVE_FORWARD
+        )
+              .forEach(a -> instance.invokeAction(robot, a));
+        assertTrue("Incorrect result", instance.isOnStartPosition(robot));
+    }
 }
