@@ -86,6 +86,12 @@ $ git merge epam_master
 
 As a result, your `master` branch will receive updates and new tasks if they're present. 
 
+Don't forget to update your remote 'master':
+
+```shell script
+$ git push origin master
+```
+
 ## What is the task
 
 Any task in this repository consists of three parts:
@@ -188,7 +194,7 @@ Git looks quite complicated but the following resources will help you be familia
 
 ## How to check all the tasks at once
 
-Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
+Of course, you can run tests from your favorite IDE but it's also possible checking all of them at once using Gradle
 and the following command:
 
 ```shell script
