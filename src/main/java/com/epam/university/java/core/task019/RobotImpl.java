@@ -31,6 +31,8 @@ public class RobotImpl implements Robot {
                     case "LEFT":
                         robotPosition.setX(robotPosition.getX() - 1);
                         break;
+                    default:
+                        break;
                 }
                 break;
             case TURN_LEFT:
@@ -47,6 +49,8 @@ public class RobotImpl implements Robot {
                     case "LEFT":
                         robotPosition.setDirection("DOWN");
                         break;
+                    default:
+                        break;
                 }
                 break;
             case TURN_RIGHT:
@@ -62,6 +66,8 @@ public class RobotImpl implements Robot {
                         break;
                     case "LEFT":
                         robotPosition.setDirection("UP");
+                        break;
+                    default:
                         break;
                 }
                 break;
