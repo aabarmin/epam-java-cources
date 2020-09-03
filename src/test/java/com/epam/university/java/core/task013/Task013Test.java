@@ -158,12 +158,12 @@ public class Task013Test {
     public void testWithManyPointsHaveOneDistance() throws Exception {
         final Figure sourceFigure = factory.newInstance(6);
         final Figure modifiedFigure = instance.invokeActions(sourceFigure, Arrays.asList(
-                f -> f.addVertex(factory.newInstance(0, 0)),
-                f -> f.addVertex(factory.newInstance(0, 3)),
-                f -> f.addVertex(factory.newInstance(3, 3)),
-                f -> f.addVertex(factory.newInstance(0, 6)),
-                f -> f.addVertex(factory.newInstance(3, 0)),
-                f -> f.addVertex(factory.newInstance(6, 0))
+            f -> f.addVertex(factory.newInstance(0, 0)),
+            f -> f.addVertex(factory.newInstance(0, 3)),
+            f -> f.addVertex(factory.newInstance(3, 3)),
+            f -> f.addVertex(factory.newInstance(0, 6)),
+            f -> f.addVertex(factory.newInstance(3, 0)),
+            f -> f.addVertex(factory.newInstance(6, 0))
         ));
         assertTrue("Figure is convex polygon", instance.isConvexPolygon(modifiedFigure));
     }
