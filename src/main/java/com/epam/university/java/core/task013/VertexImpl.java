@@ -40,7 +40,8 @@ public class VertexImpl implements Vertex {
             return false;
         }
         VertexImpl vertex = (VertexImpl) o;
-        return x == vertex.x &&
+        return x == vertex.x
+                &&
                 y == vertex.y;
     }
 

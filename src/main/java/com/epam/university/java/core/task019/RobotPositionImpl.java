@@ -46,8 +46,10 @@ public class RobotPositionImpl implements RobotPosition {
             return false;
         }
         RobotPositionImpl that = (RobotPositionImpl) o;
-        return x == that.x &&
-                y == that.y &&
+        return x == that.x
+                &&
+                y == that.y
+                &&
                 Objects.equals(direction, that.direction);
     }
 
