@@ -7,7 +7,7 @@ public class VampireNumberImpl implements VampireNumber {
     int multiplication;
 
 
-    public VampireNumberImpl(int first, int second, int multiplication) {
+    public VampireNumberImpl( int multiplication, int first, int second) {
         this.first = first;
         this.second = second;
         this.multiplication = multiplication;
@@ -32,6 +32,6 @@ public class VampireNumberImpl implements VampireNumber {
     @Override
     public boolean equals(Object obj) {
         VampireNumberImpl number = (VampireNumberImpl) obj;
-        return this.getMultiplication() == number.getMultiplication();
+        return this.multiplication == number.multiplication;
     }
 }

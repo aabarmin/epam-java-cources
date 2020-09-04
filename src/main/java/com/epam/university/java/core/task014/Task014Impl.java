@@ -1,15 +1,13 @@
 package com.epam.university.java.core.task014;
 
-import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Task014Impl implements Task014 {
     @Override
     public Collection<VampireNumber> getVampireNumbers() {
 
-        LinkedList<VampireNumber> list = new LinkedList<>();
+//        VampireNumberFactoryImpl factory = new VampireNumberFactoryImpl();
+        Collection<VampireNumber> list = new ArrayList<>();
         ArrayList<Integer> added = new ArrayList<>();
         int min = 10;
         int max = 100;
@@ -26,7 +24,7 @@ public class Task014Impl implements Task014 {
                 String sFirst = String.valueOf(first);
                 String sSecond = String.valueOf(second);
                 if (str.length() > 3) {
-                    if (contains(str, sFirst, sSecond) && !added.contains(multiplication)) {
+                    if (isMultiplication(str, sFirst, sSecond) && !added.contains(multiplication)) {
                         list.add(new VampireNumberImpl(multiplication, first, second));
                         added.add(multiplication);
                     }
@@ -39,11 +37,11 @@ public class Task014Impl implements Task014 {
         return list;
     }
 
-    private boolean contains(String str, String num1, String num2) {
+    private boolean isMultiplication(String sMul, String num1, String num2) {
 
         char[] chars1 = num1.toCharArray();
         char[] chars2 = num2.toCharArray();
-        char[] common = str.toCharArray();
+        char[] common = sMul.toCharArray();
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 4; j++) {
@@ -62,6 +60,6 @@ public class Task014Impl implements Task014 {
                 }
             }
         }
-        return new String(common).trim().length() == 0;
+        return (new String(common).trim().length()) == 0;
     }
 }
