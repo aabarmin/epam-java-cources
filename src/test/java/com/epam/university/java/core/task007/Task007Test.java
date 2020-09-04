@@ -48,7 +48,8 @@ public class Task007Test {
         final Collection<Integer> first = Arrays.asList(6, 10, 0, 5);
         final Collection<Integer> second = Arrays.asList(4, 2, 1);
         final Collection<Integer> result = Arrays.asList(24, 52, 26, 30, 10, 5);
-        assertEquals("Error in third multiplication", result, instance.multiplyPolynomial(first, second));
+        assertEquals("Error in third multiplication",
+                result, instance.multiplyPolynomial(first, second));
     }
 
     @Test(expected = IllegalArgumentException.class)
