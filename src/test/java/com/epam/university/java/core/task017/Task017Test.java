@@ -19,6 +19,36 @@ public class Task017Test {
         instance = TestHelper.getInstance(Task017.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void formatNullStrings() throws Exception {
+        instance.formatString(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void emptyStringArgs() throws Exception {
+        instance.formatString();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void formatNullNumbers() throws Exception {
+        instance.formatNumbers(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void emptyNumbersArgs() throws Exception {
+        instance.formatNumbers();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void formatNullDates() throws Exception {
+        instance.formatDates(null, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void emptyDatesArgs() throws Exception {
+        instance.formatDates();
+    }
+
     @Test
     public void formatStrings() throws Exception {
         final String resultString = instance.formatString("nothing", "John Snow");

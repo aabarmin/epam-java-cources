@@ -50,7 +50,7 @@ public interface Task003 {
      * @return new array without removed elements
      * @throws IllegalArgumentException if parameters not provided
      */
-    String[] removeElements(String[] source, String[] toRemote);
+    String[] removeElements(String[] source, String[] toRemove);
 
     /**
      * Convert source array in accordance with provided operation.
