@@ -5,10 +5,19 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Dmitry Novikov 02-Sep-20
+ * author Dmitry Novikov.
  */
-public class FigureImpl implements Figure{
-    List<Vertex> list = new ArrayList<>();
+public class FigureImpl implements Figure {
+    private List<Vertex> list = new ArrayList<>();
+    private int vertexCount;
+
+    public int getVertexCount() {
+        return vertexCount;
+    }
+
+    public void setVertexCount(int vertexCount) {
+        this.vertexCount = vertexCount;
+    }
 
     @Override
     public void addVertex(Vertex vertex) {
