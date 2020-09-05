@@ -1,11 +1,11 @@
 package com.epam.university.java.core.task013;
 
 /**
- * @author Dmitry Novikov 02-Sep-20
+ * author Dmitry Novikov.
  */
 public class VertexImpl implements Vertex {
     private int x;
-    private  int y;
+    private int y;
 
     public VertexImpl(int x, int y) {
         this.x = x;
@@ -30,5 +30,15 @@ public class VertexImpl implements Vertex {
     @Override
     public void setY(int value) {
         y = value;
+    }
+
+    @Override
+    public int compareTo(Vertex o) {
+        if (x != o.getX()) {
+            return Double.compare(x, o.getX());
+        } else {
+            return Double.compare(y, o.getY());
+        }
+
     }
 }
