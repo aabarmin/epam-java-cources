@@ -18,13 +18,34 @@ public class Task006Impl implements Task006 {
         } else if (measurements.size() == 0) {
             return 0d;
         }
+        double averageAmperage = 0d;
+        double averageVoltage = 0d;
+
+
+
+        for (Measurement currentMeasurement:
+             measurements) {
+            averageAmperage += currentMeasurement.getAmperage();
+            averageVoltage += currentMeasurement.getVoltage();
+        }
+        averageAmperage /= measurements.size();
+        averageVoltage /= measurements.size();
+
         double numerator = 0d;
         double denominator = 0d;
         for (Measurement currentMeasurement:
-             measurements) {
-            numerator += currentMeasurement.getAmperage() * currentMeasurement.getVoltage();
-            denominator += Math.sqrt(currentMeasurement.getAmperage());
+                measurements) {
+            numerator += (currentMeasurement.getAmperage() - averageAmperage)
+                    * (currentMeasurement.getVoltage() - averageVoltage);
+            denominator += Math.pow(currentMeasurement.getAmperage() - averageAmperage, 2.0);
         }
-        return numerator / denominator;
+
+        double resistance = (numerator/denominator);
+        return roundTo(resistance, 3);
+    }
+
+    private double roundTo(double value, int digits) {
+        double scale = Math.pow(10, digits);
+        return Math.round(value * scale) / scale;
     }
 }
