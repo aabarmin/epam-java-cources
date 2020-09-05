@@ -25,5 +25,6 @@ public interface Task007 {
      * @param second collection with coefficients near-th member of second polynomial
      * @return collection of members in multiplied polynomials
      */
-    Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second);
+    Collection<Integer> multiplyPolynomial(Collection<Integer> first, Collection<Integer> second)
+            throws Exception;
 }
