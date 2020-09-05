@@ -16,9 +16,12 @@ public class Task024Impl implements Task024 {
         if (source.isEmpty()) {
             return Collections.emptyList();
         }
-        ArrayList<String> strList = new ArrayList<>(Arrays.asList(source.split("(?<=.)(?=\\p{Lu})")));
+        ArrayList<String> strList = new ArrayList<>(Arrays
+                .asList(source
+                        .split("(?<=.)(?=\\p{Lu})")
+                ));
         return strList.stream()
-                      .map(String::toLowerCase)
-                      .collect(Collectors.toList());
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 }
