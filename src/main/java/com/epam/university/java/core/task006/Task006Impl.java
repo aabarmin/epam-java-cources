@@ -40,7 +40,7 @@ public class Task006Impl implements Task006 {
             denominator += Math.pow(currentMeasurement.getAmperage() - averageAmperage, 2.0);
         }
 
-        double resistance = (numerator/denominator);
+        double resistance = (numerator / denominator);
         return roundTo(resistance, 3);
     }
 
