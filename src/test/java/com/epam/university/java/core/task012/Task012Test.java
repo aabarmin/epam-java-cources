@@ -19,6 +19,44 @@ public class Task012Test {
         instance = TestHelper.getInstance(Task012.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void createNullGraph() throws Exception {
+        instance.invokeActions(null, Arrays.asList());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void addNullActions() throws Exception {
+        final Graph sourceGraph = factory.newInstance(4);
+        instance.invokeActions(sourceGraph, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createGraphWithEmptyActions() throws Exception {
+        final Graph sourceGraph = factory.newInstance(4);
+        instance.invokeActions(sourceGraph, Arrays.asList());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createEdgeWithUnavailableVertex() throws Exception {
+        final Graph sourceGraph = factory.newInstance(4);
+        instance.invokeActions(sourceGraph, Arrays.asList(
+            g -> g.createEdge(5, 2)
+        ));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void removeEdgeWithUnavailableVertex() throws Exception {
+        final Graph sourceGraph = factory.newInstance(4);
+        instance.invokeActions(sourceGraph, Arrays.asList(
+            g -> g.removeEdge(2, 5)
+        ));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createGraphWithoutVertex() throws Exception {
+        factory.newInstance(0);
+    }
+
     @Test
     public void createGraphAndAddVertexes() throws Exception {
         final Graph sourceGraph = factory.newInstance(4);
@@ -54,6 +92,17 @@ public class Task012Test {
         assertFalse("There is edge between vertexes", targetGraph.edgeExists(4, 2));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testPathCalculationWithNullGraph() throws Exception {
+        instance.pathExists(null, 1, 2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPathCalculationWithUnavailableVertex() throws Exception {
+        final Graph sourceGraph = factory.newInstance(4);
+        instance.pathExists(sourceGraph, 5, 2);
+    }
+
     @Test
     public void testPathCalculationFirst() throws Exception {
         final Graph sourceGraph = factory.newInstance(5);
@@ -82,9 +131,9 @@ public class Task012Test {
             g -> g.removeEdge(5, 4)
         ));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 2));
+                instance.pathExists(targetGraph, 1, 2));
         assertTrue("There is path between vertexes",
-            instance.pathExists(targetGraph, 2, 4));
+                instance.pathExists(targetGraph, 2, 4));
     }
 
     @Test
@@ -100,11 +149,11 @@ public class Task012Test {
             g -> g.createEdge(5, 6)
         ));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 6));
+                instance.pathExists(targetGraph, 1, 6));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 5));
+                instance.pathExists(targetGraph, 1, 5));
         assertTrue("There is path between vertexes",
-            instance.pathExists(targetGraph, 2, 4));
+                instance.pathExists(targetGraph, 2, 4));
     }
 
     @Test
