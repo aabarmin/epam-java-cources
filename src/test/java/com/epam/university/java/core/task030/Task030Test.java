@@ -20,6 +20,11 @@ public class Task030Test {
         instance = TestHelper.getInstance(Task030.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullDates() throws Exception {
+        instance.daysBetweenDates(null, null);
+    }
+
     @Test
     public void testDistance() throws Exception {
         final LocalDate localDate = LocalDate.now();
