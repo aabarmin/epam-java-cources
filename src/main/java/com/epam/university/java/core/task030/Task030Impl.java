@@ -13,6 +13,9 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class Task030Impl implements Task030 {
     @Override
     public int daysBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+        if (dateStart == null || dateEnd == null) {
+            throw new IllegalArgumentException();
+        }
         return (int) DAYS.between(dateStart, dateEnd);
     }
 

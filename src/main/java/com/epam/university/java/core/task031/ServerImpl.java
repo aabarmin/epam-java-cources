@@ -16,6 +16,10 @@ public class ServerImpl implements Server {
     private Socket clientSocket;
     private BufferedReader reader;
 
+    /**
+     * Default constructor for Server instance.
+     * @param port port for Server to be hosted on.
+     */
     public ServerImpl(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -61,6 +65,9 @@ public class ServerImpl implements Server {
         }
     }
 
+    /**
+     * Method for getting messages from Client's instances.
+     */
     public void setMessages() {
         try {
             Thread.sleep(50);
