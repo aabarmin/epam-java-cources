@@ -72,4 +72,49 @@ public class Task022Test {
                 instance.minSum(numbers)
         );
     }
+
+    @Test
+    public void test004() throws Exception {
+        final List<Integer> numbers = Arrays.asList(10, 8, 6, 4, 2, -10);
+        assertEquals(
+                "Maximum value is incorrect",
+                30,
+                instance.maxSum(numbers)
+        );
+        assertEquals(
+                "Minimum value in incorrect",
+                10,
+                instance.minSum(numbers)
+        );
+    }
+
+    @Test
+    public void test005() throws Exception {
+        final List<Integer> numbers = Arrays.asList(0, 0, 0, -10);
+        assertEquals(
+                "Maximum value is incorrect",
+                0,
+                instance.maxSum(numbers)
+        );
+        assertEquals(
+                "Minimum value in incorrect",
+                -10,
+                instance.minSum(numbers)
+        );
+    }
+
+    @Test
+    public void test006() throws Exception {
+        final List<Integer> numbers = Arrays.asList(-1, -3, -7, -10);
+        assertEquals(
+                "Maximum value is incorrect",
+                -11,
+                instance.maxSum(numbers)
+        );
+        assertEquals(
+                "Minimum value in incorrect",
+                -20,
+                instance.minSum(numbers)
+        );
+    }
 }
