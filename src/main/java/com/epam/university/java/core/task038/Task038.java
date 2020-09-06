@@ -27,7 +27,8 @@ public interface Task038 {
      * @param graph   graph instance
      * @param startId is id of source vertex
      * @param endId   is id of target vertex
-     * @return collection of vertices from source to target with minimum possible sum of edge weights.
+     * @return collection of vertices from source to target with minimum
+     *      possible sum of edge weights.
      */
     Collection<Vertex> getShortestPath(Graph graph, int startId, int endId);
 
