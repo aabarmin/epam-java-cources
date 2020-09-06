@@ -28,7 +28,8 @@ public class CountingProxyImpl implements CountingProxy {
 
     public SomeActionExecutor setExecutor(Object someActionExecutor) {
         this.someActionExecutor = someActionExecutor;
-        return (SomeActionExecutor) Proxy.newProxyInstance(someActionExecutor.getClass().getClassLoader(),
+        return (SomeActionExecutor) Proxy.newProxyInstance(
+                someActionExecutor.getClass().getClassLoader(),
                 someActionExecutor.getClass().getInterfaces(), this);
     }
 }
