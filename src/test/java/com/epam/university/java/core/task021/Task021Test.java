@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +20,16 @@ public class Task021Test {
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task021.class);
         pointFactory = TestHelper.getInstance(PointFactory.class);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullList() throws Exception {
+        instance.calculate(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithEmptyList() throws Exception {
+        instance.calculate(Collections.emptyList());
     }
 
     @Test

@@ -14,6 +14,11 @@ public class Task027Test {
         instance = TestHelper.getInstance(Task027.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.extract(null);
+    }
+
     @Test
     public void extract1() throws Exception {
         assertArrayEquals(

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -15,6 +16,16 @@ public class Task022Test {
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task022.class);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullList() throws Exception {
+        instance.maxSum(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithEmptyList() throws Exception {
+        instance.maxSum(Collections.emptyList());
     }
 
     @Test
