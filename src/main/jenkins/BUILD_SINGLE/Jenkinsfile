@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'JDK_11'
+    }
+
+    stages {
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+            when {
+                expression {
+                    return params.SHOULD_CLONE
+                }
+            }
+        }
+        stage('Clone') {
+            steps {
+                git "${params.REPOSITORY_URL}"
+            }
+            when {
+                expression {
+                    return params.SHOULD_CLONE
+                }
+            }
+        }
+        stage('Prepare Gradle') {
+            steps {
+                sh "chmod +x ./gradlew"
+            }
+            when {
+                expression {
+                    return params.SHOULD_CLONE
+                }
+            }
+        }
+        /*
+        stage('Checkstyle') {
+            steps {
+                sh "./gradlew checkstyleMain"
+            }
+        }
+        */
+        stage('Run tests') {
+            steps {
+                withEnv(['GRADLE_OPTS=-Dorg.gradle.daemon=false']) {
+                    sh "./gradlew test"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            sh """
+                python3 /opt/analyzer.py ./build/test-results/test \
+                    ${params.REPOSITORY_URL} \
+                    ${params.REPORT_FILE}
+            """
+        }
+    }
+}
