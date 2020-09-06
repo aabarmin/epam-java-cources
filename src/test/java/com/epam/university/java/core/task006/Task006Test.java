@@ -75,11 +75,11 @@ public class Task006Test {
          * Assumption, that measurements are noised.
          */
         final Collection<Measurement> measurements = new ArrayList<>();
-        measurements.add(new Measurement(0,5.3));
-        measurements.add(new Measurement(0,6.3));
-        measurements.add(new Measurement(0,4.8));
-        measurements.add(new Measurement(0,3.8));
-        measurements.add(new Measurement(0,3.3));
+        measurements.add(new Measurement(0, 5.3));
+        measurements.add(new Measurement(0, 6.3));
+        measurements.add(new Measurement(0, 4.8));
+        measurements.add(new Measurement(0, 3.8));
+        measurements.add(new Measurement(0, 3.3));
         //
         assertEquals("Error in third measurement",
                 0.0,
