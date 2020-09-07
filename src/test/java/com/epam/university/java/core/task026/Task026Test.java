@@ -16,6 +16,14 @@ public class Task026Test {
         instance = TestHelper.getInstance(Task026.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.encrypt(
+                null,
+                0
+        );
+    }
+
     @Test
     public void encrypt0() throws Exception {
         final String target = SOURCE_STRING;

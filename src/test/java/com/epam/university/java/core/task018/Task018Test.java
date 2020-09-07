@@ -15,6 +15,21 @@ public class Task018Test {
         instance = TestHelper.getInstance(Task018.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullClass() throws Exception {
+        instance.isAnnotationPresent(null, BasicAnnotation.class);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullAnnotation() throws Exception {
+        instance.isAnnotationPresent(new ClassWithoutAnnotations(), null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullArgs() throws Exception {
+        instance.isAnnotationPresent(null, null);
+    }
+
     @Test
     public void noAnnotation() throws Exception {
         assertFalse("Incorrect result",
