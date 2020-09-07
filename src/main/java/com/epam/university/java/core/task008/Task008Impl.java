@@ -32,16 +32,14 @@ public class Task008Impl implements Task008 {
                 .trim();
 
         while (containsBraces(onlyBracesSourceString)) {
-            onlyBracesSourceString
+            onlyBracesSourceString = onlyBracesSourceString
                     .replaceAll("[\\[\\](){}]", "")
                     .trim();
+
+            System.out.println(onlyBracesSourceString);
         }
 
-        if (onlyBracesSourceString.length() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return onlyBracesSourceString.length() == 0;
     }
 
     private boolean containsBraces(String str) {
