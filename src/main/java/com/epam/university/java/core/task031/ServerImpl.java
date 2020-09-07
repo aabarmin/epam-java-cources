@@ -14,6 +14,10 @@ public class ServerImpl implements Server {
     private LinkedList<String> messages;
     private BufferedReader reader;
 
+    /**
+     * Constructor of server class.
+     * @param port free port.
+     */
     public ServerImpl(int port) {
         try {
             serverSocket = new ServerSocket(port);
