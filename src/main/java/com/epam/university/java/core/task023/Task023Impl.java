@@ -17,6 +17,9 @@ public class Task023Impl implements Task023 {
      */
     @Override
     public String extract(String phoneString) {
+        if (phoneString == null) {
+            throw new IllegalArgumentException();
+        }
         if (!phoneString.matches("(\\D*\\d){11}") || phoneString.length() == 0) {
             throw new IllegalArgumentException();
         }

@@ -3,6 +3,9 @@ package com.epam.university.java.core.task025;
 public class Task025Impl implements Task025 {
     @Override
     public int getAmountOfAlteredLetters(String sourceMessage) {
+        if (sourceMessage == null) {
+            throw new IllegalArgumentException();
+        }
         if (sourceMessage.length() % 3 != 0) {
             throw new IllegalArgumentException();
         }

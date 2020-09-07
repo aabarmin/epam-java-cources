@@ -10,6 +10,9 @@ public class Task020Impl implements Task020 {
 
     @Override
     public int calculate(Collection<String> stones) {
+        if (stones == null || stones.size() == 0) {
+            throw new IllegalArgumentException();
+        }
         int commonPartsCounter = 0;
         Set<Character> characterSet = new HashSet<>();
         for (String stone : stones) {

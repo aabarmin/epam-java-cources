@@ -10,6 +10,9 @@ public class Task032Impl implements Task032 {
 
     @Override
     public SomeActionExecutor createExecutorWithProxy(CountingProxy proxy) {
+        if (proxy == null) {
+            throw new IllegalArgumentException();
+        }
         return ((CountingProxyImpl) proxy).setExecutor(new SomeActionExecutorImpl());
     }
 }

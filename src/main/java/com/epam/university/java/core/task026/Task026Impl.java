@@ -16,6 +16,9 @@ public class Task026Impl implements Task026 {
 
     @Override
     public String encrypt(String sourceString, int shift) {
+        if (sourceString == null) {
+            throw new IllegalArgumentException();
+        }
 
         char[] chars = sourceString.toCharArray();
         for (int i = 0; i < chars.length; i++) {

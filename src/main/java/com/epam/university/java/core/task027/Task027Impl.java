@@ -8,6 +8,10 @@ import java.util.Set;
 public class Task027Impl implements Task027 {
     @Override
     public Collection<Integer> extract(String sourceString) {
+        if (sourceString == null) {
+            throw new IllegalArgumentException();
+        }
+
         if (sourceString.length() <= 1 || sourceString.startsWith("0")) {
             return new ArrayList<>();
         }

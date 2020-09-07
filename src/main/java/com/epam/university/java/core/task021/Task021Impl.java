@@ -27,6 +27,10 @@ public class Task021Impl implements Task021 {
      */
     @Override
     public Point calculate(Collection<Point> minePositions) {
+        if (minePositions == null || minePositions.size() == 0) {
+            throw new IllegalArgumentException();
+        }
+
         List<Point> points = new ArrayList<>(minePositions);
 
         Point point = isFermat(points);

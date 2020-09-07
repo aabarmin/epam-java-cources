@@ -8,6 +8,9 @@ public class Task019Impl implements Task019 {
 
     @Override
     public boolean isOnStartPosition(Robot robot) {
+        if (robot == null) {
+            throw new IllegalArgumentException();
+        }
         RobotImpl robot1 = ((RobotImpl) robot);
         return robot.getPosition().equals(robot1.getStartPosition());
     }
