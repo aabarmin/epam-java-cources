@@ -15,7 +15,10 @@ public class SaxHandlerImpl extends SaxHandler {
     private PersonImpl person;
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri,
+                             String localName,
+                             String qName,
+                             Attributes attributes) throws SAXException {
         if (qName.equalsIgnoreCase("PERSON")) {
             person = new PersonImpl();
             person.setId(Integer.parseInt(attributes.getValue("id")));

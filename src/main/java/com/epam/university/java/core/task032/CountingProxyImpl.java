@@ -26,6 +26,11 @@ public class CountingProxyImpl implements CountingProxy {
         return method.invoke(someActionExecutor, args);
     }
 
+    /**
+     * Creates SomeActionExecutor object.
+     * @param someActionExecutor object
+     * @return SomeActionExecutor proxy
+     */
     public SomeActionExecutor setExecutor(Object someActionExecutor) {
         this.someActionExecutor = someActionExecutor;
         return (SomeActionExecutor) Proxy.newProxyInstance(
