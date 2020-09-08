@@ -8,6 +8,6 @@ public class FilteringConditionImpl implements FilteringCondition {
 
     @Override
     public boolean isValid(String element) {
-        return (element.length() > 5);
+        return (element.length() > 3);
     }
 }
