@@ -11,9 +11,6 @@ public class Tak006Impl implements Task006 {
         if (measurements == null) {
             throw new IllegalArgumentException("Arguments not found.");
         }
-        if (measurements.isEmpty()) {
-            return 0.0;
-        }
 
         double sumAmperage = 0;
         double sumVoltage = 0;

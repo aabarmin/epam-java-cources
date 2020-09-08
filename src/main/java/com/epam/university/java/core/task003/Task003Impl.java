@@ -49,7 +49,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
-        if (source == null || condition == null || source.length == 0) {
+        if (source == null || condition == null) {
             throw new IllegalArgumentException("Arguments not found.");
         }
         String[] filteredArr = Arrays.stream(source)
@@ -63,14 +63,14 @@ public class Task003Impl implements Task003 {
             throw new IllegalArgumentException("Arguments not found.");
         }
         List removedList = Arrays.asList(toRemote);
-        String[] resultArr = (String[]) Arrays.stream(source)
-                .filter(s -> !removedList.contains(s)).toArray();
+        String[] resultArr = Arrays.stream(source)
+                .filter(s -> !removedList.contains(s)).toArray(String[]::new);
         return resultArr;
     }
 
     @Override
     public String[] map(String[] source, MappingOperation operation) {
-        if (source == null || operation == null || source.length == 0) {
+        if (source == null || operation == null) {
             throw new IllegalArgumentException("Arguments not found.");
         }
         String[] resultArr = Arrays.stream(source).map(operation::map).toArray(String[]::new);
