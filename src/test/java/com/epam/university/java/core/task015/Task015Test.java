@@ -4,6 +4,8 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class Task015Test {
@@ -21,6 +23,11 @@ public class Task015Test {
         instance = TestHelper.getInstance(Task015.class);
         pointFactory = TestHelper.getInstance(PointFactory.class);
         squareFactory = TestHelper.getInstance(SquareFactory.class);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullPoints() throws Exception {
+        squareFactory.newInstance(null, null);
     }
 
     @Test
