@@ -13,7 +13,23 @@ public class Task026Impl implements Task026 {
      */
     @Override
     public String encrypt(String sourceString, int shift) {
-        return null;
+        if (sourceString == null) {
+            throw new IllegalArgumentException();
+        }
+        char[] chars = sourceString.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (!Character.isLetter(chars[i])) {
+                continue;
+            }
+            int offset;
+            if (Character.isUpperCase(chars[i])) {
+                offset = 65;
+            } else {
+                offset = 97;
+            }
+            chars[i] = (char) ((chars[i] + shift - offset) % 26 + offset);
+        }
+        return String.valueOf(chars);
     }
 
     /**
@@ -25,6 +41,24 @@ public class Task026Impl implements Task026 {
      */
     @Override
     public String decrypt(String encryptedString, int shift) {
-        return null;
+        char[] chars = encryptedString.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (!Character.isLetter(chars[i])) {
+                continue;
+            }
+            int offset;
+            if (Character.isUpperCase(chars[i])) {
+                offset = 65;
+            } else {
+                offset = 97;
+            }
+            int newPos = chars[i] - shift - offset;
+            if (newPos >= 0) {
+                chars[i] = (char) (newPos % 26 + offset);
+            } else {
+                chars[i] = (char) (newPos + offset + 26);
+            }
+        }
+        return String.valueOf(chars);
     }
 }
