@@ -173,7 +173,7 @@ When all the tests are passed, don't forget to create a commit and push your cha
 
 ```shell script
 $ git commit
-$ git push --set-upstream <task-number>
+$ git push --set-upstream <remote_name> <task-number>
 ```
 
 The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
