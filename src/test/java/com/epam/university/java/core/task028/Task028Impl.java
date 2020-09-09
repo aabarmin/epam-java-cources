@@ -10,35 +10,33 @@ public class Task028Impl implements Task028 {
     }
 
     static int power(int num, int n) {
-        if (n == 0)
+        if (n == 0) {
             return 1;
-        else if (n % 2 == 0)
+        } else if (n % 2 == 0) {
             return power(num, n / 2) * power(num, n / 2);
-        else
+        } else {
             return num * power(num, n / 2) * power(num, n / 2);
+        }
+
     }
 
-    // Function to check power representations recursively
-    static int checkRecursive(int x, int n, int curr_num, int curr_sum) {
-        // Initialize number of ways to express
-        // x as n-th powers of different natural
-        // numbers
+    static int checkRecursive(int x, int n, int currNum, int currSum) {
         int results = 0;
 
-        // Calling power of 'i' raised to 'n'
-        int p = power(curr_num, n);
-        while (p + curr_sum < x) {
-            // Recursively check all greater values of i
-            results += checkRecursive(x, n, curr_num + 1,
-                    p + curr_sum);
-            curr_num++;
-            p = power(curr_num, n);
+        int p = power(currNum, n);
+        while (p + currSum < x) {
+            results += checkRecursive(x, n, currNum + 1,
+                    p + currSum);
+            currNum++;
+            p = power(currNum, n);
         }
 
         // If sum of powers is equal to x
         // then increase the value of result.
-        if (p + curr_sum == x)
+        if (p + currSum == x) {
             results++;
+        }
+
 
         // Return the final result
         return results;
