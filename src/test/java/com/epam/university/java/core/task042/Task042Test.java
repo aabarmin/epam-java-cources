@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class Task042Test {
     private Task042 instance;
@@ -29,10 +30,10 @@ public class Task042Test {
     public void checkAvailabilityWithEmptyListFirst() throws Exception {
         final List<String> schedule = new ArrayList<>();
         final String currentTime = "11:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
-        assertEquals("Error in test checkAvailabilityWithEmptyListFirst",
-                "available",
-                availability
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof AvailableResponse
         );
     }
 
@@ -40,10 +41,14 @@ public class Task042Test {
     public void checkAvailabilityWithEmptyListSecond() throws Exception {
         final List<String> schedule = new ArrayList<>();
         final String currentTime = "06:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof TimeProposalResponse
+        );
         assertEquals("Error in test checkAvailabilityWithEmptyListSecond",
                 "09:00",
-                availability
+                ((TimeProposalResponse) availability).getProposedTime()
         );
     }
 
@@ -51,10 +56,10 @@ public class Task042Test {
     public void checkAvailabilityWithEmptyListThird() throws Exception {
         final List<String> schedule = new ArrayList<>();
         final String currentTime = "18:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
-        assertEquals("Error in test checkAvailabilityWithEmptyListThird",
-                "not available today",
-                availability
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof BusyResponse
         );
     }
 
@@ -75,10 +80,10 @@ public class Task042Test {
                 "12:20-15:50"
         ));
         final String currentTime = "11:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
-        assertEquals("Error in test checkAvailabilityFirst",
-                "available",
-                availability
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof AvailableResponse
         );
     }
 
@@ -89,10 +94,14 @@ public class Task042Test {
                 "12:20-15:50"
         ));
         final String currentTime = "10:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof TimeProposalResponse
+        );
         assertEquals("Error in test checkAvailabilitySecond",
                 "10:15",
-                availability
+                ((TimeProposalResponse) availability).getProposedTime()
         );
     }
 
@@ -103,10 +112,10 @@ public class Task042Test {
                 "12:20-19:00"
         ));
         final String currentTime = "13:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
-        assertEquals("Error in test checkAvailabilityThird",
-                "not available today",
-                availability
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof BusyResponse
         );
     }
 
@@ -117,10 +126,14 @@ public class Task042Test {
                 "12:20-15:50"
         ));
         final String currentTime = "06:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof TimeProposalResponse
+        );
         assertEquals("Error in test checkAvailabilityForth",
                 "09:00",
-                availability
+                ((TimeProposalResponse) availability).getProposedTime()
         );
     }
 
@@ -133,10 +146,14 @@ public class Task042Test {
                 "16:15-17:00"
         ));
         final String currentTime = "10:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof TimeProposalResponse
+        );
         assertEquals("Error in test checkAvailabilityFifth",
                 "17:00",
-                availability
+                ((TimeProposalResponse) availability).getProposedTime()
         );
     }
 
@@ -149,10 +166,10 @@ public class Task042Test {
                 "16:15-18:00"
         ));
         final String currentTime = "09:00";
-        final String availability = instance.checkAvailability(schedule, currentTime);
-        assertEquals("Error in test checkAvailabilitySixth",
-                "not available today",
-                availability
+        final BookingResponse availability = instance.checkAvailability(schedule, currentTime);
+        assertTrue(
+                "Incorrect type of exception",
+                availability instanceof BusyResponse
         );
     }
 }
