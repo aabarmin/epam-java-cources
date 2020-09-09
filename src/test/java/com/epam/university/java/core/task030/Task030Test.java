@@ -77,6 +77,7 @@ public class Task030Test {
         );
     }
 
+
     @Test
     public void testDuration() throws Exception {
         final Instant now = Instant.now();

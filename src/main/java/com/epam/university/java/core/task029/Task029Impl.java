@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task029;
 
-import java.awt.*;
+
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
