@@ -27,7 +27,7 @@ public class Task043Test {
     @Test
     public void firstTest() throws Exception {
         final String decodedText = "HEY JUDE";
-        final String encodedText = "···· · −·−−   ·−−− ··− −·· ·";
+        final String encodedText = ".... . -.--   .--- ..- -.. .";
         assertEquals(
                 "Invalid encoding",
                 encodedText,
@@ -60,8 +60,8 @@ public class Task043Test {
     public void thirdTest() throws Exception {
         final String decodedText = "TO BE OR NOT TO BE, THAT IS THE QUESTION";
         final String encodedText
-                = "- ---     -... .     --- .-.     -. --- -     - ---     "
-                + "-... . --..--     - .... .- -     .. ...     - .... .     "
+                = "- ---   -... .   --- .-.   -. --- -   - ---   "
+                + "-... . --..--   - .... .- -   .. ...   - .... .   "
                 + "--.- ..- . ... - .. --- -.";
         assertEquals(
                 "Invalid encoding",
@@ -74,5 +74,4 @@ public class Task043Test {
                 instance.decode(encodedText)
         );
     }
-
 }

@@ -20,7 +20,7 @@ public interface Task043 {
     /**
      * Encode source string with Morse Code.
      * @param sourceString source string
-     * @return coded string
+     * @return encoded string
      */
     String encode(String sourceString);
 
