@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +19,6 @@ public class Task041Test {
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(getClass());
         targetCollection = new ArrayList<>();
-        instance.create(targetCollection, "First Entity");
-        instance.create(targetCollection, "Second Entity");
-        instance.create(targetCollection, "Third Entity");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -58,8 +56,10 @@ public class Task041Test {
     @Test
     public void testUpdate() throws Exception {
         Entity entity = instance.create(targetCollection, "Another Entity");
+        int currentId = entity.getId();
         instance.update(targetCollection, entity, "Changed Value");
-        assertEquals(entity.getId(), instance.read(targetCollection, entity).getId());
+        List<Entity> current = new ArrayList<>(targetCollection);
+        assertEquals("Changed Value", current.get(currentId).getValue());
     }
 
     @Test

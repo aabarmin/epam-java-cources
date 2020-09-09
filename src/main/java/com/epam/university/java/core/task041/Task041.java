@@ -4,6 +4,7 @@ import java.util.Collection;
 
 /**
  * CRUD Operations.
+ * Tip: Entities are equal if their values are equal.
  */
 public interface Task041 {
 
