@@ -1,7 +1,6 @@
 package com.epam.university.java.core.task024;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -25,6 +24,9 @@ public class Task024Impl implements Task024 {
      */
     @Override
     public Collection<String> getWordsCount(String source) {
+        if (source == null) {
+            throw new IllegalArgumentException();
+        }
         List<String> words = new ArrayList<>();
         Pattern pattern = Pattern.compile("(^[a-zа-я]+|[A-ZА-ЯÄÖÜ][a-zа-я]+)");
         Matcher matcher = pattern.matcher(source);

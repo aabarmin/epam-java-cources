@@ -19,6 +19,9 @@ public class Task023Impl implements Task023 {
      */
     @Override
     public String extract(String phoneString) {
+        if (phoneString == null) {
+            throw new IllegalArgumentException();
+        }
         if (phoneString.length() < 11) {
             throw new IllegalArgumentException();
         }
