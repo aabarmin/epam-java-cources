@@ -75,4 +75,12 @@ public class Task025Test {
         );
     }
 
+    @Test
+    public void oddCharsCountMessage() throws Exception {
+        assertEquals("Invalid result",
+                2,
+                instance.getAmountOfAlteredLetters("SOSSOSAB")
+        );
+    }
+
 }
