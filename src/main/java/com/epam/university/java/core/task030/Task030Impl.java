@@ -7,7 +7,6 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
 
 /**
  * Created by Romin Nuro on 28.08.2020 0:21.
@@ -22,6 +21,9 @@ public class Task030Impl implements Task030 {
      */
     @Override
     public int daysBetweenDates(LocalDate dateStart, LocalDate dateEnd) {
+        if (dateStart == null || dateEnd == null) {
+            throw new IllegalArgumentException();
+        }
         return dateStart.until(dateEnd).getDays();
     }
 
