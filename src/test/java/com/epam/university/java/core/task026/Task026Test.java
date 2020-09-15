@@ -16,6 +16,14 @@ public class Task026Test {
         instance = TestHelper.getInstance(Task026.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.encrypt(
+                null,
+                0
+        );
+    }
+
     @Test
     public void encrypt0() throws Exception {
         final String target = SOURCE_STRING;
@@ -121,4 +129,46 @@ public class Task026Test {
         );
     }
 
+    @Test
+    public void encrypt1000() throws Exception {
+        final String target = "Fa nq ad zaf fa nq, Ftmf ue ftq cgqefuaz";
+        assertEquals(
+                "Invalid encryption",
+                target,
+                instance.encrypt(
+                        SOURCE_STRING,
+                        1000
+                )
+        );
+        assertEquals(
+                "Invalid decryption",
+                SOURCE_STRING,
+                instance.decrypt(
+                        target,
+                        1000
+                )
+        );
+    }
+
+    @Test
+    public void encryptOtherString() throws Exception {
+        final String original = "Zzz... Anyway, Do you have my text?! That's great)))";
+        final String target = "Yyy... Zmxvzx, Cn xnt gzud lx sdws?! Sgzs'r fqdzs)))";
+        assertEquals(
+                "Invalid encryption",
+                target,
+                instance.encrypt(
+                        original,
+                        25
+                )
+        );
+        assertEquals(
+                "Invalid decryption",
+                original,
+                instance.decrypt(
+                        target,
+                        25
+                )
+        );
+    }
 }
