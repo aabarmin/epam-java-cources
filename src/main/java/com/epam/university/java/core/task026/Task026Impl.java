@@ -16,6 +16,7 @@ public class Task026Impl implements Task026 {
         if (sourceString == null) {
             throw new IllegalArgumentException();
         }
+        shift = shift % 26;
         char[] chars = sourceString.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (!Character.isLetter(chars[i])) {
@@ -41,6 +42,7 @@ public class Task026Impl implements Task026 {
      */
     @Override
     public String decrypt(String encryptedString, int shift) {
+        shift = shift % 26;
         char[] chars = encryptedString.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (!Character.isLetter(chars[i])) {
