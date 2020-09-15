@@ -12,13 +12,13 @@ public interface VampireNumber {
 
     /**
      * Get first part of vampire number.
-     * @return value if first part
+     * @return value of the first part
      */
     int getFirst();
 
     /**
      * Get second part of vampire number.
-     * @return value of second part
+     * @return value of the second part
      */
     int getSecond();
 

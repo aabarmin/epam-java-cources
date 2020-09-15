@@ -15,6 +15,11 @@ public class Task023Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.extract(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testIncorrectFormat() throws Exception {
         instance.extract("+712345");
     }

@@ -14,6 +14,11 @@ public class Task032Test {
         instance = TestHelper.getInstance(Task032.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullWrapper() throws Exception {
+        instance.createExecutorWithProxy(null);
+    }
+
     @Test
     public void countOfMethodInvocations() throws Exception {
         final CountingProxy wrapper = instance.createProxyWrapper();
