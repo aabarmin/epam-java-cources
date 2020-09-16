@@ -55,7 +55,7 @@ public interface Task003 {
     /**
      * Convert source array in accordance with provided operation.
      *
-     * @param source    source array
+     * @param source source array
      * @param operation operation instance
      * @return converted array
      * @throws IllegalArgumentException if parameters not provided
