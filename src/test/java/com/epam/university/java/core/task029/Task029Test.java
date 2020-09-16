@@ -17,6 +17,11 @@ public class Task029Test {
         instance = TestHelper.getInstance(Task029.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullLists() throws Exception {
+        instance.fillCrossword(null, null);
+    }
+
     @Test
     public void testFirst() throws Exception {
         final Collection<String> source = Arrays.asList(

@@ -16,6 +16,10 @@ public class Task024Test {
         instance = TestHelper.getInstance(Task024.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullArray() throws Exception {
+        instance.getWordsCount(null);
+    }
 
     @Test
     public void emptyString() throws Exception {
