@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task034;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collection;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +16,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PersonImpl implements Person {
-
+    @JsonProperty("id")
     @XmlAttribute
     private int id;
 
+    @JsonProperty("firstName")
     @XmlElement(name = "first-name")
     private String firstName;
 
+    @JsonProperty("lastName")
     @XmlElement(name = "last-name")
     private String lastName;
 
+    @JsonProperty("phones")
     @XmlElementWrapper(name = "person-phones")
     @XmlElements({@XmlElement(type = PhoneNumberImpl.class, name = "person-phone")})
     private Collection<PhoneNumber> phoneNumbers;
