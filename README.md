@@ -86,6 +86,12 @@ $ git merge epam_master
 
 As a result, your `master` branch will receive updates and new tasks if they're present. 
 
+Don't forget to update your remote 'master':
+
+```shell script
+$ git push origin master
+```
+
 ## What is the task
 
 Any task in this repository consists of three parts:
@@ -167,7 +173,7 @@ When all the tests are passed, don't forget to create a commit and push your cha
 
 ```shell script
 $ git commit
-$ git push --set-upstream <task-number>
+$ git push --set-upstream <remote_name> <task-number>
 ```
 
 The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
@@ -188,7 +194,7 @@ Git looks quite complicated but the following resources will help you be familia
 
 ## How to check all the tasks at once
 
-Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
+Of course, you can run tests from your favorite IDE but it's also possible checking all of them at once using Gradle
 and the following command:
 
 ```shell script
@@ -232,7 +238,7 @@ When the branch is created, write your code in the branch and then commit and pu
 
 ```shell script
 $ git commit
-$ git push --set-upstream <new-task-branch>
+$ git push origin --set-upstream <new-task-branch>
 ```
 
 And the last one step is to create a pull request into the `master` branch of my repository. 

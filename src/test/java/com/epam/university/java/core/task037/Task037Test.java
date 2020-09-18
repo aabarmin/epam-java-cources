@@ -18,6 +18,11 @@ public class Task037Test {
         instance = TestHelper.getInstance(Task037.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullParams() throws Exception {
+        instance.switcher(null, null);
+    }
+
     @Test
     public void switcher() throws Exception {
         final Callable<String> ticker = () -> "Tick";

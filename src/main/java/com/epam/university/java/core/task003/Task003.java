@@ -46,11 +46,11 @@ public interface Task003 {
      * Remove elements from source array.
      *
      * @param source source array
-     * @param toRemote elements to remove
+     * @param toRemove elements to remove
      * @return new array without removed elements
      * @throws IllegalArgumentException if parameters not provided
      */
-    String[] removeElements(String[] source, String[] toRemote);
+    String[] removeElements(String[] source, String[] toRemove);
 
     /**
      * Convert source array in accordance with provided operation.
