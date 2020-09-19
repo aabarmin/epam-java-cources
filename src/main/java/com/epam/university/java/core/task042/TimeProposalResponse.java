@@ -5,6 +5,7 @@ package com.epam.university.java.core.task042;
  * office at proposed time.
  */
 public class TimeProposalResponse implements BookingResponse {
+
     private String proposedTime;
 
     public String getProposedTime() {
