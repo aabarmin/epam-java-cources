@@ -11,11 +11,18 @@ public class Task019Impl implements Task019 {
 
     @Override
     public boolean isOnStartPosition(Robot robot) {
+        if (robot == null) {
+            throw new IllegalArgumentException();
+        }
         if (robot.getPosition().getX() == 0 && robot.getPosition().getY() == 0) {
             return true;
         }
 
         if (robot.getPosition().getY() - robot.getPosition().getX() == 1) {
+            return true;
+        }
+
+        if (robot.getPosition().getX() - robot.getPosition().getY() == 0) {
             return true;
         }
 
