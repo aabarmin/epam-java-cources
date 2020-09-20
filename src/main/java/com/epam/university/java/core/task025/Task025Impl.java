@@ -9,24 +9,48 @@ import java.util.List;
 public class Task025Impl implements Task025 {
     @Override
     public int getAmountOfAlteredLetters(String sourceMessage) {
+        if (sourceMessage == null) {
+            throw new IllegalArgumentException();
+        }
         if (sourceMessage.isEmpty()) {
             return 0;
         }
-        char[] myChar = sourceMessage.toCharArray();
-        int count = 0;
 
-        for (int i = 0; i < myChar.length; i += 3) {
-            if (myChar[i] != 'S') {
-                count++;
+        List<Character> listToCompare = new ArrayList<>();
+        if (sourceMessage.length() % 3 == 0) {
+            for (int i = 0; i < sourceMessage.length() / 3; i++) {
+                listToCompare.add('S');
+                listToCompare.add('O');
+                listToCompare.add('S');
             }
-            if (myChar[i + 1] != 'O') {
-                count++;
+        } else {
+            if (sourceMessage.length() % 3 == 1) {
+                for (int i = 0; i < sourceMessage.length() / 3; i++) {
+                    listToCompare.add('S');
+                    listToCompare.add('O');
+                    listToCompare.add('S');
+                }
+                listToCompare.add('S');
             }
-            if (myChar[i + 2] != 'S') {
-                count++;
+            if (sourceMessage.length() % 3 == 2) {
+                for (int i = 0; i < sourceMessage.length() / 3; i++) {
+                    listToCompare.add('S');
+                    listToCompare.add('O');
+                    listToCompare.add('S');
+                }
+                listToCompare.add('S');
+                listToCompare.add('O');
             }
         }
 
+        char[] myChar = sourceMessage.toCharArray();
+        int count = 0;
+
+        for (int i = 0; i < myChar.length; i++) {
+            if (myChar[i] != listToCompare.get(i)) {
+                count++;
+            }
+        }
         return count;
     }
 }
