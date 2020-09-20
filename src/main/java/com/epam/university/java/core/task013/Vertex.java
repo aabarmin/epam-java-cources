@@ -3,7 +3,7 @@ package com.epam.university.java.core.task013;
 /**
  * Vertex of figure.
  */
-public interface Vertex extends Comparable<Vertex> {
+public interface Vertex {
     /**
      * Get x coordinate of vertex.
      *

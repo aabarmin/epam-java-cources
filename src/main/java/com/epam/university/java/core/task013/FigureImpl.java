@@ -8,24 +8,25 @@ import java.util.List;
  * author Dmitry Novikov.
  */
 public class FigureImpl implements Figure {
-    private List<Vertex> list = new ArrayList<>();
-    private int vertexCount;
+    private final List<Vertex> vertexes;
+    private final int vertexCount;
 
-    public int getVertexCount() {
-        return vertexCount;
-    }
-
-    public void setVertexCount(int vertexCount) {
+    public FigureImpl(int vertexCount) {
+        vertexes = new ArrayList<>();
         this.vertexCount = vertexCount;
     }
 
     @Override
     public void addVertex(Vertex vertex) {
-        list.add(vertex);
+        if (vertexes.size() < vertexCount) {
+            vertexes.add(vertex);
+        } else {
+            throw new IllegalArgumentException("Can't add vertex");
+        }
     }
 
     @Override
     public Collection<Vertex> getVertexes() {
-        return list;
+        return vertexes;
     }
 }
