@@ -5,12 +5,15 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Some summary.
+ * Author Dmitry Novikov.
  */
 public class Task007Impl implements Task007 {
     @Override
     public Collection<Integer> multiplyPolynomial(
             Collection<Integer> first, Collection<Integer> second) {
+        if (first == null || second == null) {
+            throw new IllegalArgumentException();
+        }
         List<Polynominal> firstPolinominal = new ArrayList<>();
         List<Polynominal> secondPolinominal = new ArrayList<>();
         List<Polynominal> result = new ArrayList<>();
@@ -76,28 +79,6 @@ public class Task007Impl implements Task007 {
             newResult.add(result2.get(i).getNumber());
         }
         return newResult;
-    }
-
-    class Polynominal {
-        private int number;
-        private int power;
-
-        public Polynominal(int number, int power) {
-            this.number = number;
-            this.power = power;
-        }
-
-        public int getNumber() {
-            return number;
-        }
-
-        public int getPower() {
-            return power;
-        }
-
-        public String toString() {
-            return number + ";" + power;
-        }
     }
 }
 
