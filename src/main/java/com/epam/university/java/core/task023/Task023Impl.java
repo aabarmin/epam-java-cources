@@ -12,11 +12,13 @@ import java.util.regex.Pattern;
 public class Task023Impl implements Task023 {
     @Override
     public String extract(String phoneString) {
-        // (?<=\().+?(?=\))
+        if (phoneString == null) {
+            throw new IllegalArgumentException();
+        }
         Pattern pattern = Pattern.compile("(?<=\\().+?(?=\\))");
         Matcher matcher = pattern.matcher(phoneString);
         String result = null;
-        StringBuilder myString = new StringBuilder();
+        StringBuilder myString;
 
         while (matcher.find()) {
             int start = matcher.start();
