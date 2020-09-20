@@ -2,6 +2,7 @@ package com.epam.university.java.core.task017;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * Author Dmitry Novikov 06-Sep-20.
@@ -9,6 +10,17 @@ import java.util.Date;
 public class Task017Impl implements Task017 {
     @Override
     public String formatString(Object... args) {
+
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (Object o : args
+        ) {
+            if (o == null) {
+                throw new IllegalArgumentException();
+            }
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("You know ");
         sb.append(args[0]);
@@ -21,11 +33,15 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatNumbers(Object... args) {
-        /*
-          final String resultString = instance.formatNumbers(20d);
-        assertEquals("Numbers formatted incorrectly",
-                "20.0, 20.00, +20.00, 0x1.4p4",
-         */
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (Object o : args
+        ) {
+            if (o == null) {
+                throw new IllegalArgumentException();
+            }
+        }
         double s = (Double) args[0];
         int temp = (int) s;
         String s1 = String.valueOf(s);
@@ -45,6 +61,16 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatDates(Object... args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (Object o : args
+        ) {
+            if (o == null) {
+                throw new IllegalArgumentException();
+            }
+        }
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.dd.MM");
         Date date = (Date) args[0];
         return dateFormat.format(date);
