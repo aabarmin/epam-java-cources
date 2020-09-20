@@ -31,14 +31,4 @@ public class VertexImpl implements Vertex {
     public void setY(int value) {
         y = value;
     }
-
-    @Override
-    public int compareTo(Vertex o) {
-        if (x != o.getX()) {
-            return Double.compare(x, o.getX());
-        } else {
-            return Double.compare(y, o.getY());
-        }
-
-    }
 }

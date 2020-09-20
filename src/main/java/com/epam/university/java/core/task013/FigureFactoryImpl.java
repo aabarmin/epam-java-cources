@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task013;
 
 /**
- * author Dmitry Novikov.
+ * Author Dmitry Novikov.
  */
 public class FigureFactoryImpl implements FigureFactory {
 
@@ -10,13 +10,7 @@ public class FigureFactoryImpl implements FigureFactory {
         if (vertexCount < 3) {
             throw new IllegalArgumentException();
         }
-
-        Figure f = new FigureImpl();
-        for (int i = 0; i < vertexCount; i++) {
-            f.addVertex(newInstance(0, 0));
-        }
-
-        return f;
+        return new FigureImpl(vertexCount);
     }
 
     @Override

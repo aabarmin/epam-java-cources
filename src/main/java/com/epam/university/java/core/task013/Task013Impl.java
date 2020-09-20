@@ -3,6 +3,7 @@ package com.epam.university.java.core.task013;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,20 +13,12 @@ import java.util.stream.Collectors;
 public class Task013Impl implements Task013 {
     @Override
     public Figure invokeActions(Figure figure, Collection<FigureAction> actions) {
-        if (figure == null || actions == null || actions.isEmpty()) {
+        if (actions == null || figure == null || actions.size() == 0) {
             throw new IllegalArgumentException();
         }
-
-        if (figure.getVertexes().size() != actions.size()) {
-            throw new IllegalArgumentException();
+        for (FigureAction action : actions) {
+            action.run(figure);
         }
-
-        figure.getVertexes().clear();
-        for (FigureAction f : actions
-        ) {
-            f.run(figure);
-        }
-
         return figure;
     }
 
@@ -34,106 +27,80 @@ public class Task013Impl implements Task013 {
         if (figure == null) {
             throw new IllegalArgumentException();
         }
-
-        if (figure.getVertexes().size() < 5) {
-            return true;
-        }
-
-        List<Vertex> temp = figure.getVertexes().stream().collect(Collectors.toList());
-        List<Vertex> result = makeHull(temp);
-        if (temp.size() != result.size()) {
+        FigureFactory factory = new FigureFactoryImpl();
+        int polygonSize = figure.getVertexes().size();
+        if (polygonSize < 3) {
             return false;
         }
-
-        return isConvex(result);
-    }
-
-    /**
-     * Some text.
-     */
-    public static boolean isConvex(List<Vertex> list) {
-        if (list.size() < 4) {
+        if (polygonSize == 3) {
             return true;
         }
+        int firstCrossProduct = 0;
+        Vertex one;
+        Vertex two;
+        Vertex three;
 
-        boolean sign = false;
-        int n = list.size();
 
-        for (int i = 0; i < n; i++) {
-            double dx1 = list.get((i + 2) % n).getX() - list.get((i + 1) % n).getX();
-            double dy1 = list.get((i + 2) % n).getY() - list.get((i + 1) % n).getY();
-            double dx2 = list.get(i).getX() - list.get((i + 1) % n).getX();
-            double dy2 = list.get(i).getY() - list.get((i + 1) % n).getY();
-            double zcrossproduct = dx1 * dy2 - dy1 * dx2;
+        List<Vertex> vertexes = (List<Vertex>) figure.getVertexes();
+
+        Vertex startVertex = vertexes.stream()
+                .min(Comparator.comparing(Vertex::getX))
+                .get();
+
+        vertexes.sort(new SortVertexes(startVertex.getX(), startVertex.getY()));
+
+        for (int i = 0; i < polygonSize; i++) {
+            one = vertexes.get(i);
+            two = vertexes.get((i + 1) % polygonSize);
+            three = vertexes.get((i + 2) % polygonSize);
+
+            Vertex firstVector = factory
+                    .newInstance(two.getX() - one.getX(), two.getY() - one.getY());
+            Vertex secondVector = factory
+                    .newInstance(three.getX() - two.getX(), three.getY() - two.getY());
 
             if (i == 0) {
-                sign = zcrossproduct > 0;
-            } else if (sign != (zcrossproduct > 0)) {
-                return false;
+                firstCrossProduct = vectorProduct(firstVector, secondVector);
+            } else {
+                int currentCrossProduct = vectorProduct(firstVector, secondVector);
+                if (currentCrossProduct * firstCrossProduct < 0) {
+                    return false;
+                }
+
             }
 
         }
-
         return true;
     }
 
-    /**
-     * Some text.
-     */
-    public static List<Vertex> makeHull(List<Vertex> points) {
-        List<Vertex> newPoints = new ArrayList<>(points);
-        Collections.sort(newPoints);
-        return makeHullPresorted(newPoints);
+    public static int vectorProduct(Vertex firstVector, Vertex secondVector) {
+        return firstVector.getX() * secondVector.getY() - secondVector.getX() * firstVector.getY();
     }
 
-    /**
-     * Some text.
-     */
-    public static List<Vertex> makeHullPresorted(List<Vertex> points) {
-        if (points.size() <= 1) {
-            return new ArrayList<>(points);
+    class SortVertexes implements Comparator<Vertex> {
+        private final int startX;
+        private final int startY;
+
+        public SortVertexes(int startX, int startY) {
+            this.startX = startX;
+            this.startY = startY;
         }
 
-
-        List<Vertex> upperHull = new ArrayList<>();
-        for (Vertex p : points) {
-            while (upperHull.size() >= 2) {
-                Vertex q = upperHull.get(upperHull.size() - 1);
-                Vertex r = upperHull.get(upperHull.size() - 2);
-                if ((q.getX() - r.getX()) * (p.getY() - r.getY())
-                        >= (q.getY() - r.getY()) * (p.getX() - r.getX())) {
-                    upperHull.remove(upperHull.size() - 1);
-                } else {
-                    break;
-                }
-
+        @Override
+        public int compare(Vertex o1, Vertex o2) {
+            if (o1.getX() - startX == 0 && o1.getY() - startY == 0) {
+                return -1;
             }
-            upperHull.add(p);
-        }
-        upperHull.remove(upperHull.size() - 1);
-
-        List<Vertex> lowerHull = new ArrayList<>();
-        for (int i = points.size() - 1; i >= 0; i--) {
-            Vertex p = points.get(i);
-            while (lowerHull.size() >= 2) {
-                Vertex q = lowerHull.get(lowerHull.size() - 1);
-                Vertex r = lowerHull.get(lowerHull.size() - 2);
-                if ((q.getX() - r.getX()) * (p.getY() - r.getY())
-                        >= (q.getY() - r.getY()) * (p.getX() - r.getX())) {
-                    lowerHull.remove(lowerHull.size() - 1);
-                } else {
-                    break;
-                }
-
+            if (o2.getX() - startX == 0 && o2.getY() - startY == 0) {
+                return 1;
             }
-            lowerHull.add(p);
+            double tg1 = (double) (o1.getY() - startY) / (double) (o1.getX() - startX);
+            double tg2 = (double) (o2.getY() - startY) / (double) (o2.getX() - startX);
+            if (tg1 > tg2) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
-        lowerHull.remove(lowerHull.size() - 1);
-
-        if (!(upperHull.size() == 1 && upperHull.equals(lowerHull))) {
-            upperHull.addAll(lowerHull);
-        }
-
-        return upperHull;
     }
 }
