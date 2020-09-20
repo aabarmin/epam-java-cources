@@ -10,9 +10,12 @@ import java.util.List;
 public class Task24Impl implements Task24 {
     @Override
     public Collection<String> getWordsCount(String source) {
+        if (source == null) {
+            throw new IllegalArgumentException();
+        }
         List<String> result = new ArrayList<>();
 
-        int startIndex = 0;
+        int startIndex;
         int endIndex = 0;
 
         for (int i = 0; i < source.length(); i++) {
