@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public class Task022Impl implements Task022 {
     @Override
     public int maxSum(Collection<Integer> numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         List<Integer> myList = numbers.stream().collect(Collectors.toList());
         Collections.sort(myList);
         Collections.reverse(myList);
