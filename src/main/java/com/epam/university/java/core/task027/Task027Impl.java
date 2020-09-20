@@ -9,6 +9,9 @@ import java.util.LinkedList;
 public class Task027Impl implements Task027 {
     @Override
     public Collection<Integer> extract(String sourceString) {
+        if (sourceString == null) {
+            throw new IllegalArgumentException();
+        }
         LinkedList<Integer> myList = new LinkedList<>();
         if (sourceString.charAt(0) == '1'
                 && sourceString.charAt(1) == '0'
