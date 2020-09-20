@@ -10,6 +10,13 @@ import java.util.Map;
 public class Task020Impl implements Task020 {
     @Override
     public int calculate(Collection<String> stones) {
+        if (stones == null) {
+            throw new IllegalArgumentException();
+        }
+        if (stones.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
         Map<Character, Integer> myMap = new HashMap<>();
         for (String s : stones
         ) {
@@ -39,7 +46,6 @@ public class Task020Impl implements Task020 {
                 countRes++;
             }
         }
-
 
         return countRes;
     }
