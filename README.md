@@ -3,7 +3,7 @@
 # Table of Contents
 
 * [How to use this repository](#how-to-use-this-repository)
-* [Large cross-topic project](#large-cross-topic-project)
+* [Cross topic projects](#cross-topic-projects)
 * [Contribution](#contribution)
 * [How to check tasks automatically](#how-to-check-tasks-automatically)
 
@@ -188,7 +188,7 @@ $ git checkout master
 $ git pull
 ```
 
-Git looks quite complicated but the following resources will help you be familiar with it shortly:
+Git looks quite complicated, but the following resources will help you be familiar with it shortly:
 * [ProGit](https://git-scm.com/book/en/v2)
 * [Git Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
 
@@ -201,9 +201,11 @@ and the following command:
 $ ./gradlew test
 ```
 
-# Large cross-topic project
+# Cross topic projects
 
-You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
+This repository also has two tasks for the large cross topic projects. These projects are described on separate pages:
+
+* [Tiny Dependency Injection Container](https://github.com/aabarmin/epam-java-cources/tree/master/TINY-DI.md)
 
 # Contribution
 
