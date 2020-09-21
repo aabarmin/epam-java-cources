@@ -16,6 +16,7 @@ public interface Task036 {
      * @param limitRight right limit
      * @return integration results
      */
+
     double integrate(Function<Double, Double> function,
                      Integrator integrator,
                      double limitLeft,
