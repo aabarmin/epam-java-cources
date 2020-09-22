@@ -19,7 +19,10 @@ public class Task025Impl implements Task025 {
      */
     @Override
     public int getAmountOfAlteredLetters(String sourceMessage) {
-        if (sourceMessage == null) {
+        if (sourceMessage != null && sourceMessage.length() == 0) {
+            return 0;
+        }
+        if (sourceMessage == null || sourceMessage.charAt(0) != 'S') {
             throw new IllegalArgumentException();
         }
         char[] letters = sourceMessage.toCharArray();
