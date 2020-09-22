@@ -11,7 +11,7 @@ public interface Task025 {
      * has been changed by radiation.
      *
      * <p>
-     *     Example: source SOSOASOB, result is 2
+     *     Example: source SOSOASOB, result is 4
      * </p>
      *
      * @param sourceMessage received message
