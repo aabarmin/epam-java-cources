@@ -22,8 +22,8 @@ public class Task025Test {
     @Test
     public void testIfSignalSos() throws Exception {
         assertEquals("Invalid result",
-                7,
-                instance.getAmountOfAlteredLetters("RTWODTWO")
+                8,
+                instance.getAmountOfAlteredLetters("RTWODTWOA")
         );
     }
 
