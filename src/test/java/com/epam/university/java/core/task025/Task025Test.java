@@ -19,11 +19,6 @@ public class Task025Test {
         instance.getAmountOfAlteredLetters(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testIfSignalSOS() throws Exception {
-        instance.getAmountOfAlteredLetters("RTWODTWO");
-    }
-
     @Test
     public void allCorrect() throws Exception {
         assertEquals("Invalid result",
