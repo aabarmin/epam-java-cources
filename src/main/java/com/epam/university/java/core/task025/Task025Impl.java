@@ -22,7 +22,7 @@ public class Task025Impl implements Task025 {
         if (sourceMessage != null && sourceMessage.length() == 0) {
             return 0;
         }
-        if (sourceMessage == null || sourceMessage.charAt(0) != 'S') {
+        if (sourceMessage == null) {
             throw new IllegalArgumentException();
         }
         char[] letters = sourceMessage.toCharArray();
