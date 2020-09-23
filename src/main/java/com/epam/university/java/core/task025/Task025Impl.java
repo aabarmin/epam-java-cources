@@ -51,6 +51,7 @@ public class Task025Impl implements Task025 {
                 count++;
             }
         }
+
         return count;
     }
 }
