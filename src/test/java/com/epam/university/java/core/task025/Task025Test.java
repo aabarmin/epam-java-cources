@@ -23,7 +23,7 @@ public class Task025Test {
     public void testIfSignalSos() throws Exception {
         assertEquals("Invalid result",
                 8,
-                instance.getAmountOfAlteredLetters("RTWODTWO")
+                instance.getAmountOfAlteredLetters("RTWODTWOA")
         );
     }
 
