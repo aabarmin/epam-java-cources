@@ -22,26 +22,34 @@ public class Task045Test {
 
     @Test
     public void second() throws Exception {
-        String inputAndExpect = "";
-        assertEquals("Invalid result", inputAndExpect, inputAndExpect);
+        String input = "";
+        String expect = "";
+
+        assertEquals("Invalid result", expect, instance.doAnagram(input));
     }
 
     @Test
     public void third() throws Exception {
-        String inputAndExpect = " ";
-        assertEquals("Invalid result", inputAndExpect, inputAndExpect);
+        String input = " ";
+        String expect = " ";
+
+        assertEquals("Invalid result", expect, instance.doAnagram(input));
     }
 
     @Test
     public void fourth() throws Exception {
-        final String inputAndExpect = "123  123";
-        assertEquals("Invalid result", inputAndExpect, inputAndExpect);
+        final String input = "123  123";
+        String expect = "123  123";
+
+        assertEquals("Invalid result", expect, instance.doAnagram(input));
     }
 
     @Test
     public void fifth() throws Exception {
-        String inputAndExpect = "w";
-        assertEquals("Invalid result", inputAndExpect, inputAndExpect);
+        String input = "w";
+        String expect = "w";
+
+        assertEquals("Invalid result", expect, instance.doAnagram(input));
     }
 
     @Test
