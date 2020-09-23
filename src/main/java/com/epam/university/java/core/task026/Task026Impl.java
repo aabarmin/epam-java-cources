@@ -4,9 +4,12 @@ public class Task026Impl implements Task026 {
     @Override
     public String encrypt(String sourceString, int shift) {
 
-        if (sourceString.isEmpty() || shift > 26) {
+        if (sourceString == null || sourceString.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
+        shift = shift % 26;
+
 
         byte[] symbols = sourceString.getBytes();
 
@@ -35,10 +38,10 @@ public class Task026Impl implements Task026 {
     public String decrypt(String encryptedString, int shift) {
 
 
-        if (encryptedString.length() == 0 || shift > 26) {
+        if (encryptedString == null || encryptedString.length() == 0) {
             throw new IllegalArgumentException();
         }
-
+        shift = shift % 26;
         byte[] symbols = encryptedString.getBytes();
 
         for (int i = 0; i < symbols.length; i++) {

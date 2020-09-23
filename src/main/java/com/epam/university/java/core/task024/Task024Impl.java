@@ -7,6 +7,10 @@ public class Task024Impl implements Task024 {
     @Override
     public Collection<String> getWordsCount(String source) {
 
+        if (source == null){
+            throw new IllegalArgumentException();
+        }
+
         ArrayList<String> list = new ArrayList<>();
 
         char[] chars = source.toCharArray();

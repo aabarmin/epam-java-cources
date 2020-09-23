@@ -9,6 +9,10 @@ import java.util.Collection;
 public class Task021Impl implements Task021 {
     @Override
     public Point calculate(Collection<Point> minePositions) {
+        if (minePositions == null || minePositions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
 
         ArrayList<Point> poins = new ArrayList<>(minePositions);
 
