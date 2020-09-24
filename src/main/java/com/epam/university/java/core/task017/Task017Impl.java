@@ -6,6 +6,14 @@ import java.util.Date;
 public class Task017Impl implements Task017 {
     @Override
     public String formatString(Object... args) {
+        if (args.length == 0){
+            throw new IllegalArgumentException();
+        }
+        for (Object obj : args) {
+            if (obj == null) {
+                throw new IllegalArgumentException();
+            }
+        }
         StringBuilder sb = new StringBuilder("You know ");
 
         for (int i = 0; i < args.length; i++) {
@@ -21,6 +29,14 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatNumbers(Object... args) {
+        if (args.length == 0){
+            throw new IllegalArgumentException();
+        }
+        for (Object obj : args) {
+            if (obj == null) {
+                throw new IllegalArgumentException();
+            }
+        }
         double num1 = (double) args[0];
         int num = (int) num1;
         StringBuilder sb = new StringBuilder();
@@ -33,6 +49,14 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatDates(Object... args) {
+        if (args.length == 0){
+            throw new IllegalArgumentException();
+        }
+        for (Object obj : args) {
+            if (obj == null) {
+                throw new IllegalArgumentException();
+            }
+        }
         Date from = (Date) args[0];
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.dd.MM");
         return dateFormat.format(from);
