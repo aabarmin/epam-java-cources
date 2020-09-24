@@ -83,4 +83,12 @@ public class Task045Test {
 
         assertEquals("Invalid result", expect, instance.doAnagram(input));
     }
+
+    @Test
+    public void tenth() throws Exception {
+        String input = "HE*LLO W*ORLD I AM A=LI*VE";
+        String expect = "OL*LEH D*LROW I MA E=VI*LA";
+
+        assertEquals("Invalid result", expect, instance.doAnagram(input));
+    }
 }
