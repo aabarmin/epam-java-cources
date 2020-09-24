@@ -4,7 +4,9 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -15,6 +17,16 @@ public class Task020Test {
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task020.class);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNullList() throws Exception {
+        instance.calculate(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithEmptyList() throws Exception {
+        instance.calculate(Collections.emptyList());
     }
 
     @Test

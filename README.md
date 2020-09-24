@@ -3,7 +3,7 @@
 # Table of Contents
 
 * [How to use this repository](#how-to-use-this-repository)
-* [Large cross-topic project](#large-cross-topic-project)
+* [Cross topic projects](#cross-topic-projects)
 * [Contribution](#contribution)
 * [How to check tasks automatically](#how-to-check-tasks-automatically)
 
@@ -86,6 +86,12 @@ $ git merge epam_master
 
 As a result, your `master` branch will receive updates and new tasks if they're present. 
 
+Don't forget to update your remote 'master':
+
+```shell script
+$ git push origin master
+```
+
 ## What is the task
 
 Any task in this repository consists of three parts:
@@ -167,7 +173,7 @@ When all the tests are passed, don't forget to create a commit and push your cha
 
 ```shell script
 $ git commit
-$ git push --set-upstream <task-number>
+$ git push --set-upstream <remote_name> <task-number>
 ```
 
 The last one step is to go to the GitHub page of your repository and create a merge request from your task branch
@@ -182,22 +188,24 @@ $ git checkout master
 $ git pull
 ```
 
-Git looks quite complicated but the following resources will help you be familiar with it shortly:
+Git looks quite complicated, but the following resources will help you be familiar with it shortly:
 * [ProGit](https://git-scm.com/book/en/v2)
 * [Git Cheat Sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf)
 
 ## How to check all the tasks at once
 
-Of course, you can run tests from your favourite IDE but it's also possible checking all of them at once using Gradle
+Of course, you can run tests from your favorite IDE but it's also possible checking all of them at once using Gradle
 and the following command:
 
 ```shell script
 $ ./gradlew test
 ```
 
-# Large cross-topic project
+# Cross topic projects
 
-You also could implement project in accordance with the following [requirements](https://docs.google.com/document/d/1JLeqArnQ5cfkPF1jbj4Wd-mqrTnj-0OVE8v9bJ0u15s/edit?usp=sharing).
+This repository also has two tasks for the large cross topic projects. These projects are described on separate pages:
+
+* [Tiny Dependency Injection Container](https://github.com/aabarmin/epam-java-cources/tree/master/TINY-DI.md)
 
 # Contribution
 
@@ -232,7 +240,7 @@ When the branch is created, write your code in the branch and then commit and pu
 
 ```shell script
 $ git commit
-$ git push --set-upstream <new-task-branch>
+$ git push origin --set-upstream <new-task-branch>
 ```
 
 And the last one step is to create a pull request into the `master` branch of my repository. 

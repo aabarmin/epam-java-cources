@@ -15,6 +15,11 @@ public class Task023Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testWithNullString() throws Exception {
+        instance.extract(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testIncorrectFormat() throws Exception {
         instance.extract("+712345");
     }
@@ -79,6 +84,24 @@ public class Task023Test {
                 "Incorrect operator code",
                 "912",
                 instance.extract("89123456789")
+        );
+    }
+
+    @Test
+    public void testWithDashesWithNoBraces() throws Exception {
+        assertEquals(
+                "Incorrect operator code",
+                "912",
+                instance.extract("8-912-345-67-89")
+        );
+    }
+
+    @Test
+    public void testWithDashesWithCountryCode() throws Exception {
+        assertEquals(
+                "Incorrect operator code",
+                "912",
+                instance.extract("+7-912-345-67-89")
         );
     }
 }
