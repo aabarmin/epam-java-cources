@@ -9,10 +9,13 @@ import java.util.Map;
  * Created by Romin Nuro on 24.09.2020 16:16.
  */
 public class BeanFactoryImpl implements BeanFactory {
+    private final BeanDefinitionToClassRepository repository;
     private final BeanDefinitionRegistry registry;
     private final Map<Class<?>, Object> singletons = new HashMap<>();
 
-    public BeanFactoryImpl(BeanDefinitionRegistry registry) {
+    public BeanFactoryImpl(BeanDefinitionToClassRepository repository,
+                           BeanDefinitionRegistry registry) {
+        this.repository = repository;
         this.registry = registry;
     }
 
@@ -23,23 +26,20 @@ public class BeanFactoryImpl implements BeanFactory {
      * @return bean instance
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
         if (singletons.containsKey(beanClass)) {
             return (T) singletons.get(beanClass);
         }
-
-        //todo find out how to link beanId and beanClass (the same for interface)
-        String beanClassName = beanClass.getSimpleName();
-        String beanId = beanClassName.substring(0,1).toLowerCase() + beanClassName.substring(1);
+        String beanId = repository.getBeanId(beanClass);
+        BeanDefinition beanDefinition = registry.getBeanDefinition(beanId);
         if (beanClass.isInterface()) {
-            beanId = beanId.replaceFirst("Interface", "");
             try {
-                beanClass = (Class<T>) Class.forName(registry.getBeanDefinition(beanId).getClassName());
+                beanClass = (Class<T>) Class.forName(beanDefinition.getClassName());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        BeanDefinition beanDefinition = registry.getBeanDefinition(beanId);
         T bean = null;
         try {
             bean = beanClass.getConstructor().newInstance();
@@ -62,13 +62,17 @@ public class BeanFactoryImpl implements BeanFactory {
                         value = property.getValue();
                     }
                     field.setAccessible(true);
+                    if (value == null) {
+                        throw new RuntimeException();
+                    }
                     field.set(bean, value);
                 }
             }
             if (beanDefinition.getPostConstruct() != null) {
                 beanClass.getMethod(beanDefinition.getPostConstruct()).invoke(bean);
             }
-            if (beanDefinition.getScope().equals("singleton")) {
+            if (beanDefinition.getScope() != null
+                    && beanDefinition.getScope().equals("singleton")) {
                 singletons.put(beanClass, bean);
             }
         } catch (ReflectiveOperationException e) {
@@ -87,7 +91,7 @@ public class BeanFactoryImpl implements BeanFactory {
     @Override
     public Object getBean(String beanName) {
         BeanDefinition beanDefinition = registry.getBeanDefinition(beanName);
-        Class beanClass = null;
+        Class<?> beanClass = null;
         try {
             beanClass = Class.forName(beanDefinition.getClassName());
         } catch (ClassNotFoundException e) {

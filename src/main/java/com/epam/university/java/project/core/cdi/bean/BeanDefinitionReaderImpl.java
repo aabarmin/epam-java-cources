@@ -13,9 +13,12 @@ import java.util.Collection;
  */
 public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
     private final BeanDefinitionRegistry registry;
+    private final BeanDefinitionToClassRepository repository;
 
-    public BeanDefinitionReaderImpl(BeanDefinitionRegistry registry) {
+    public BeanDefinitionReaderImpl(BeanDefinitionRegistry registry,
+                                    BeanDefinitionToClassRepository repository) {
         this.registry = registry;
+        this.repository = repository;
     }
 
     /**

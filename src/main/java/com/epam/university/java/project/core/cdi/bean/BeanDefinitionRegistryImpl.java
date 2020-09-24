@@ -7,8 +7,12 @@ import java.util.Map;
  * Created by Romin Nuro on 24.09.2020 0:40.
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
-    Map<String, BeanDefinition> registry = new HashMap<>();
-    Map<Class<?>, String> types = new HashMap<>();
+    private final Map<String, BeanDefinition> registry = new HashMap<>();
+    private final BeanDefinitionToClassRepository repository;
+
+    public BeanDefinitionRegistryImpl(BeanDefinitionToClassRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * Add bean definition to registry.
@@ -18,6 +22,20 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
         registry.put(definition.getId(), definition);
+        Class<?> beanClass = null;
+        Class<?> beanInterface = null;
+        try {
+            beanClass = Class.forName(definition.getClassName());
+            if (beanClass.getInterfaces().length > 0) {
+                beanInterface = beanClass.getInterfaces()[0];
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        repository.putBean(beanClass, definition.getId());
+        if (beanInterface != null) {
+            repository.putBean(beanInterface, definition.getId());
+        }
     }
 
     /**

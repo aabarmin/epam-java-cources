@@ -4,6 +4,8 @@ import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReaderImpl;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionToClassRepository;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionToClassRepositoryImpl;
 import com.epam.university.java.project.core.cdi.bean.BeanFactory;
 import com.epam.university.java.project.core.cdi.bean.BeanFactoryImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
@@ -14,9 +16,11 @@ import java.util.Collection;
  * Created by Romin Nuro on 24.09.2020 0:31.
  */
 public class ApplicationContextImpl implements ApplicationContext {
-    BeanDefinitionRegistry registry = new BeanDefinitionRegistryImpl();
-    BeanDefinitionReader reader = new BeanDefinitionReaderImpl(registry);
-    BeanFactory factory = new BeanFactoryImpl(registry);
+    private final BeanDefinitionToClassRepository repository
+            = new BeanDefinitionToClassRepositoryImpl();
+    private final BeanDefinitionRegistry registry = new BeanDefinitionRegistryImpl(repository);
+    private final BeanDefinitionReader reader = new BeanDefinitionReaderImpl(registry, repository);
+    private final BeanFactory factory = new BeanFactoryImpl(repository, registry);
 
     /**
      * Load bean definitions from designated resource.

@@ -26,13 +26,13 @@ public class BeanDefinitionImpl implements BeanDefinition {
 
     @Override
     public String toString() {
-        return "BeanDefinitionImpl{" +
-                "id='" + id + "'\n" +
-                ", className='" + className + "'\n" +
-                ", properties=" + properties +
-                ", postConstruct='" + postConstruct + "'\n" +
-                ", scope='" + scope + "'\n" +
-                '}' + "\n";
+        return "BeanDefinitionImpl{"
+                + "id='" + id + "'\n"
+                + ", className='" + className + "'\n"
+                + ", properties=" + properties
+                + ", postConstruct='" + postConstruct + "'\n"
+                + ", scope='" + scope + "'\n"
+                + '}' + "\n";
     }
 
     /**

@@ -17,12 +17,6 @@ public class ListDefinitionImpl implements ListDefinition {
     @XmlElement(name = "value", type = ListItemDefinitionImpl.class)
     private Collection<ListItemDefinition> items = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "ListDefinitionImpl{" +
-                "items=" + items +
-                '}';
-    }
 
     /**
      * Get list items.
@@ -49,13 +43,6 @@ public class ListDefinitionImpl implements ListDefinition {
     public static class ListItemDefinitionImpl implements ListItemDefinition {
         @XmlValue
         private String value;
-
-        @Override
-        public String toString() {
-            return "ListItemDefinitionImpl{" +
-                    "value='" + value + '\'' +
-                    '}';
-        }
 
         /**
          * Get list item value.

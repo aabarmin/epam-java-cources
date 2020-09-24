@@ -15,13 +15,6 @@ public class MapDefinitionImpl implements MapDefinition {
     @XmlElement(name = "entry", type = MapEntryDefinitionImpl.class)
     private Collection<MapEntryDefinition> values;
 
-    @Override
-    public String toString() {
-        return "MapDefinitionImpl{" +
-                "values=" + values +
-                '}';
-    }
-
     /**
      * Get map entry collection.
      *
@@ -29,7 +22,7 @@ public class MapDefinitionImpl implements MapDefinition {
      */
     @Override
     public Collection<MapEntryDefinition> getValues() {
-        return null;
+        return values;
     }
 
     /**
@@ -39,26 +32,19 @@ public class MapDefinitionImpl implements MapDefinition {
      */
     @Override
     public void setValues(Collection<MapEntryDefinition> values) {
-
+        this.values = values;
     }
+
     @XmlRootElement(name = "entry")
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class MapEntryDefinitionImpl implements MapEntryDefinition {
+
         @XmlElement(name = "key")
         private String key;
         @XmlElement(name = "value")
         private String value;
         @XmlElement(name = "ref")
         private String ref;
-
-        @Override
-        public String toString() {
-            return "MapEntryDefinitionImpl{" +
-                    "key='" + key + '\'' +
-                    ", value='" + value + '\'' +
-                    ", ref='" + ref + '\'' +
-                    '}';
-        }
 
         /**
          * Get map entry key.

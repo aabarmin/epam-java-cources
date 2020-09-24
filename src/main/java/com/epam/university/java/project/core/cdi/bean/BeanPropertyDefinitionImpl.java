@@ -31,12 +31,12 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
 
     @Override
     public String toString() {
-        return "BeanPropertyDefinitionImpl{" +
-                "name='" + name + "'\n" +
-                ", value='" + value + "'\n" +
-                ", ref='" + ref + "'\n" +
-                ", data=" + data +
-                '}' + "\n";
+        return "BeanPropertyDefinitionImpl{"
+                + "name='" + name + "'\n"
+                + ", value='" + value + "'\n"
+                + ", ref='" + ref + "'\n"
+                + ", data=" + data
+                + '}' + "\n";
     }
 
     /**
