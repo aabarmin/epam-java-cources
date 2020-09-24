@@ -4,6 +4,8 @@ import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReaderImpl;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
 import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanFactory;
+import com.epam.university.java.project.core.cdi.bean.BeanFactoryImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import java.util.Collection;
@@ -14,6 +16,7 @@ import java.util.Collection;
 public class ApplicationContextImpl implements ApplicationContext {
     BeanDefinitionRegistry registry = new BeanDefinitionRegistryImpl();
     BeanDefinitionReader reader = new BeanDefinitionReaderImpl(registry);
+    BeanFactory factory = new BeanFactoryImpl(registry);
 
     /**
      * Load bean definitions from designated resource.
@@ -45,7 +48,7 @@ public class ApplicationContextImpl implements ApplicationContext {
      */
     @Override
     public <T> T getBean(Class<T> beanClass) {
-        return null;
+        return factory.getBean(beanClass);
     }
 
     /**
@@ -56,7 +59,7 @@ public class ApplicationContextImpl implements ApplicationContext {
      */
     @Override
     public Object getBean(String beanName) {
-        return null;
+        return factory.getBean(beanName);
     }
 
     /**
@@ -68,6 +71,6 @@ public class ApplicationContextImpl implements ApplicationContext {
      */
     @Override
     public <T> T getBean(String beanName, Class<T> beanClass) {
-        return null;
+        return factory.getBean(beanName, beanClass);
     }
 }

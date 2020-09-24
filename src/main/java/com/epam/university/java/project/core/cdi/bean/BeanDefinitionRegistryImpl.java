@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
     Map<String, BeanDefinition> registry = new HashMap<>();
+    Map<Class<?>, String> types = new HashMap<>();
 
     /**
      * Add bean definition to registry.
