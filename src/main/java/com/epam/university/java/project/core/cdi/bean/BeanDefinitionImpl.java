@@ -13,11 +13,27 @@ import java.util.Collection;
 @XmlRootElement(name = "bean")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BeanDefinitionImpl implements BeanDefinition {
+    @XmlAttribute(name = "id")
     private String id;
+    @XmlAttribute(name = "class")
     private String className;
+    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     private Collection<BeanPropertyDefinition> properties;
+    @XmlAttribute(name = "init")
     private String postConstruct;
+    @XmlAttribute(name = "scope")
     private String scope;
+
+    @Override
+    public String toString() {
+        return "BeanDefinitionImpl{" +
+                "id='" + id + "'\n" +
+                ", className='" + className + "'\n" +
+                ", properties=" + properties +
+                ", postConstruct='" + postConstruct + "'\n" +
+                ", scope='" + scope + "'\n" +
+                '}' + "\n";
+    }
 
     /**
      * Get the bean id.
@@ -35,7 +51,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      * @param id id of bean
      */
     @Override
-    @XmlAttribute(name = "id")
     public void setId(String id) {
         this.id = id;
     }
@@ -56,7 +71,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      * @param className name of class
      */
     @Override
-    @XmlAttribute(name = "class")
     public void setClassName(String className) {
         this.className = className;
     }
@@ -77,7 +91,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      * @param properties collection of bean properties
      */
     @Override
-    @XmlElement(name = "property", type = BeanPropertyDefinitionImpl.class)
     public void setProperties(Collection<BeanPropertyDefinition> properties) {
         this.properties = properties;
     }
@@ -98,7 +111,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      * @param methodName method name
      */
     @Override
-    @XmlAttribute(name = "init")
     public void setPostConstruct(String methodName) {
         this.postConstruct = methodName;
     }
@@ -119,7 +131,6 @@ public class BeanDefinitionImpl implements BeanDefinition {
      * @param scope bean scope
      */
     @Override
-    @XmlAttribute(name = "scope")
     public void setScope(String scope) {
         this.scope = scope;
     }

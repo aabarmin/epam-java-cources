@@ -1,20 +1,43 @@
 package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Romin Nuro on 24.09.2020 1:12.
  */
+@XmlRootElement(name = "property")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
+    @XmlAttribute(name = "name")
     private String name;
+    @XmlAttribute(name = "value")
     private String value;
+    @XmlAttribute(name = "ref")
     private String ref;
+    @XmlElements({
+            @XmlElement(name = "list", type = ListDefinitionImpl.class),
+            @XmlElement(name = "map", type = MapDefinitionImpl.class)
+    })
     private StructureDefinition data;
+
+    @Override
+    public String toString() {
+        return "BeanPropertyDefinitionImpl{" +
+                "name='" + name + "'\n" +
+                ", value='" + value + "'\n" +
+                ", ref='" + ref + "'\n" +
+                ", data=" + data +
+                '}' + "\n";
+    }
 
     /**
      * Get the property name.
@@ -23,7 +46,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     /**
@@ -32,9 +55,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      * @param name name of property
      */
     @Override
-    @XmlAttribute(name = "name")
     public void setName(String name) {
-
+        this.name = name;
     }
 
     /**
@@ -44,7 +66,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public String getValue() {
-        return null;
+        return value;
     }
 
     /**
@@ -53,9 +75,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      * @param value value of property
      */
     @Override
-    @XmlAttribute(name = "value")
     public void setValue(String value) {
-
+        this.value = value;
     }
 
     /**
@@ -65,7 +86,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public String getRef() {
-        return null;
+        return ref;
     }
 
     /**
@@ -74,9 +95,8 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      * @param ref referenced bean name
      */
     @Override
-    @XmlAttribute(name = "ref")
     public void setRef(String ref) {
-
+        this.ref = ref;
     }
 
     /**
@@ -86,7 +106,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      */
     @Override
     public StructureDefinition getData() {
-        return null;
+        return data;
     }
 
     /**
@@ -95,10 +115,7 @@ public class BeanPropertyDefinitionImpl implements BeanPropertyDefinition {
      * @param data structure definition
      */
     @Override
-    @XmlElements({
-            @XmlElement(name = "list", type = ListDefinitionImpl.class)
-    })
     public void setData(StructureDefinition data) {
-
+        this.data = data;
     }
 }

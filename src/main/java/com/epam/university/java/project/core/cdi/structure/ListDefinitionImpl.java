@@ -14,7 +14,15 @@ import java.util.Collection;
 @XmlRootElement(name = "list")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListDefinitionImpl implements ListDefinition {
+    @XmlElement(name = "value", type = ListItemDefinitionImpl.class)
     private Collection<ListItemDefinition> items = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "ListDefinitionImpl{" +
+                "items=" + items +
+                '}';
+    }
 
     /**
      * Get list items.
@@ -32,14 +40,22 @@ public class ListDefinitionImpl implements ListDefinition {
      * @param items collection of list items
      */
     @Override
-    @XmlElement(name = "value", type = ListItemDefinitionImpl.class)
     public void setItems(Collection<ListItemDefinition> items) {
         this.items = items;
     }
+
     @XmlRootElement(name = "value")
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class ListItemDefinitionImpl implements ListItemDefinition {
+        @XmlValue
         private String value;
+
+        @Override
+        public String toString() {
+            return "ListItemDefinitionImpl{" +
+                    "value='" + value + '\'' +
+                    '}';
+        }
 
         /**
          * Get list item value.
@@ -57,7 +73,6 @@ public class ListDefinitionImpl implements ListDefinition {
          * @param value item value
          */
         @Override
-        @XmlValue
         public void setValue(String value) {
             this.value = value;
         }
