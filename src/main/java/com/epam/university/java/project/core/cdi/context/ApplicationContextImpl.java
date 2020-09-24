@@ -1,5 +1,9 @@
 package com.epam.university.java.project.core.cdi.context;
 
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReader;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionReaderImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistry;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionRegistryImpl;
 import com.epam.university.java.project.core.cdi.io.Resource;
 
 import java.util.Collection;
@@ -8,6 +12,9 @@ import java.util.Collection;
  * Created by Romin Nuro on 24.09.2020 0:31.
  */
 public class ApplicationContextImpl implements ApplicationContext {
+    BeanDefinitionRegistry registry = new BeanDefinitionRegistryImpl();
+    BeanDefinitionReader reader = new BeanDefinitionReaderImpl(registry);
+
     /**
      * Load bean definitions from designated resource.
      *
@@ -16,7 +23,7 @@ public class ApplicationContextImpl implements ApplicationContext {
      */
     @Override
     public int loadBeanDefinitions(Resource resource) {
-        return 0;
+        return reader.loadBeanDefinitions(resource);
     }
 
     /**
@@ -27,7 +34,7 @@ public class ApplicationContextImpl implements ApplicationContext {
      */
     @Override
     public int loadBeanDefinitions(Collection<Resource> resources) {
-        return 0;
+        return reader.loadBeanDefinitions(resources);
     }
 
     /**
