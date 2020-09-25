@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Task008Impl implements Task008 {
     @Override
     public boolean isValid(String sourceString) {
+        if (sourceString == null) {
+            throw new IllegalArgumentException();
+        }
 
         if (sourceString.isEmpty()) {
             return true;
