@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Romin Nuro on 24.09.2020 16:16.
@@ -12,6 +13,7 @@ public class BeanFactoryImpl implements BeanFactory {
     private final BeanDefinitionToClassRepository repository;
     private final BeanDefinitionRegistry registry;
     private final Map<Class<?>, Object> singletons = new HashMap<>();
+    private final BeanPropertySetter propertySetter = new BeanPropertySetterImpl(this);
 
     public BeanFactoryImpl(BeanDefinitionToClassRepository repository,
                            BeanDefinitionRegistry registry) {
@@ -28,58 +30,8 @@ public class BeanFactoryImpl implements BeanFactory {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
-        if (singletons.containsKey(beanClass)) {
-            return (T) singletons.get(beanClass);
-        }
         String beanId = repository.getBeanId(beanClass);
-        BeanDefinition beanDefinition = registry.getBeanDefinition(beanId);
-        if (beanClass.isInterface()) {
-            try {
-                beanClass = (Class<T>) Class.forName(beanDefinition.getClassName());
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        T bean = null;
-        try {
-            bean = beanClass.getConstructor().newInstance();
-            Collection<BeanPropertyDefinition> properties = beanDefinition.getProperties();
-            if (properties != null && properties.size() > 0) {
-                for (BeanPropertyDefinition property : properties) {
-                    Object value;
-                    Field field = beanClass.getDeclaredField(property.getName());
-                    Class<?> type = field.getType();
-                    String referenceId = property.getRef();
-                    if (property.getRef() != null) {
-                        value = getBean(referenceId);
-                        field.setAccessible(true);
-                        field.set(bean, value);
-                        continue;
-                    }
-                    if (type.equals(int.class)) {
-                        value = Integer.parseInt(property.getValue());
-                    } else {
-                        value = property.getValue();
-                    }
-                    field.setAccessible(true);
-                    if (value == null) {
-                        throw new RuntimeException();
-                    }
-                    field.set(bean, value);
-                }
-            }
-            if (beanDefinition.getPostConstruct() != null) {
-                beanClass.getMethod(beanDefinition.getPostConstruct()).invoke(bean);
-            }
-            if (beanDefinition.getScope() != null
-                    && beanDefinition.getScope().equals("singleton")) {
-                singletons.put(beanClass, bean);
-            }
-        } catch (ReflectiveOperationException e) {
-            System.err.println("Something gone wrong with reflection!");
-            e.printStackTrace();
-        }
-        return bean;
+        return (T) getBean(beanId);
     }
 
     /**
@@ -97,7 +49,37 @@ public class BeanFactoryImpl implements BeanFactory {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return getBean(beanClass);
+        if (singletons.containsKey(beanClass)) {
+            return singletons.get(beanClass);
+        }
+        Object bean = null;
+        try {
+            bean = Objects.requireNonNull(beanClass).getConstructor().newInstance();
+            Collection<BeanPropertyDefinition> properties = beanDefinition.getProperties();
+            if (properties != null && properties.size() > 0) {
+                for (BeanPropertyDefinition property : properties) {
+                    Field field = beanClass.getDeclaredField(property.getName());
+                    if (property.getRef() != null) {
+                        propertySetter.setReference(bean, field, property);
+                    } else if (property.getData() == null) {
+                        propertySetter.setValue(bean, field, property);
+                    } else if (property.getData() != null) {
+                        propertySetter.setComplexData(bean, field, property);
+                    }
+                }
+            }
+            if (beanDefinition.getPostConstruct() != null) {
+                beanClass.getMethod(beanDefinition.getPostConstruct()).invoke(bean);
+            }
+            if (beanDefinition.getScope() != null
+                    && beanDefinition.getScope().equals("singleton")) {
+                singletons.put(beanClass, bean);
+            }
+        } catch (ReflectiveOperationException e) {
+            System.err.println("Something gone wrong with reflection!");
+            e.printStackTrace();
+        }
+        return bean;
     }
 
     /**
@@ -108,7 +90,8 @@ public class BeanFactoryImpl implements BeanFactory {
      * @return bean instance
      */
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
-        return getBean(beanClass);
+        return (T) getBean(beanName);
     }
 }
