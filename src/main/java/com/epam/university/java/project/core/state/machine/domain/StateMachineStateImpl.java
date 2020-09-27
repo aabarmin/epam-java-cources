@@ -1,5 +1,10 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
+import com.epam.university.java.project.domain.BookEvent;
+import com.epam.university.java.project.domain.BookStatus;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -7,13 +12,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by Romin Nuro on 26.09.2020 22:40.
  */
 @XmlRootElement(name = "transition")
-public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYPE, EVENT> {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class StateMachineStateImpl implements StateMachineState<BookStatus, BookEvent> {
     @XmlAttribute
-    private TYPE from;
+    private BookStatus from;
     @XmlAttribute
-    private TYPE to;
+    private BookStatus to;
     @XmlAttribute
-    private EVENT on;
+    private BookEvent on;
     @XmlAttribute
     private String call;
 
@@ -23,8 +29,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @return state name
      */
     @Override
-    public TYPE getFrom() {
-        return null;
+    public BookStatus getFrom() {
+        return from;
     }
 
     /**
@@ -33,8 +39,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @param state state name
      */
     @Override
-    public void setFrom(TYPE state) {
-
+    public void setFrom(BookStatus state) {
+        this.from = state;
     }
 
     /**
@@ -43,8 +49,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @return state name
      */
     @Override
-    public TYPE getTo() {
-        return null;
+    public BookStatus getTo() {
+        return to;
     }
 
     /**
@@ -53,8 +59,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @param state state name
      */
     @Override
-    public void setTo(TYPE state) {
-
+    public void setTo(BookStatus state) {
+        this.to = state;
     }
 
     /**
@@ -63,8 +69,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @return event name
      */
     @Override
-    public EVENT getOn() {
-        return null;
+    public BookEvent getOn() {
+        return on;
     }
 
     /**
@@ -73,8 +79,8 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      * @param event event name
      */
     @Override
-    public void setOn(EVENT event) {
-
+    public void setOn(BookEvent event) {
+        this.on = event;
     }
 
     /**
@@ -84,7 +90,7 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      */
     @Override
     public String getMethodToCall() {
-        return null;
+        return call;
     }
 
     /**
@@ -94,6 +100,6 @@ public class StateMachineStateImpl<TYPE, EVENT> implements StateMachineState<TYP
      */
     @Override
     public void setMethodToCall(String method) {
-
+        this.call = method;
     }
 }

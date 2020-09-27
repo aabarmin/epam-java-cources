@@ -1,5 +1,8 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
+import com.epam.university.java.project.domain.BookEvent;
+import com.epam.university.java.project.domain.BookStatus;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -13,14 +16,14 @@ import java.util.Collection;
  */
 @XmlRootElement(name = "definition")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDefinition<STATE, EVENT> {
+public class StateMachineDefinitionImpl implements StateMachineDefinition<BookStatus, BookEvent> {
     @XmlAttribute(name = "startEvent")
-    private EVENT startEvent;
+    private BookEvent startEvent;
     @XmlAttribute(name = "startState")
-    private STATE startState;
+    private BookStatus startState;
     @XmlElement(name = "transition", type = StateMachineStateImpl.class)
-    private Collection<StateMachineState<STATE, EVENT>> states;
-    @XmlAttribute(name = "handlerClass")
+    private Collection<StateMachineState<BookStatus, BookEvent>> states;
+    @XmlAttribute(name = "handler")
     @XmlJavaTypeAdapter(HandlerClassAdapter.class)
     private Class<? extends StateMachineEventHandler> handlerClass;
     /**
@@ -29,7 +32,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @return event name
      */
     @Override
-    public EVENT getStartEvent() {
+    public BookEvent getStartEvent() {
         return startEvent;
     }
 
@@ -39,7 +42,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @return state name
      */
     @Override
-    public STATE getStartState() {
+    public BookStatus getStartState() {
         return startState;
     }
 
@@ -49,7 +52,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @param event event name
      */
     @Override
-    public void setStartEvent(EVENT event) {
+    public void setStartEvent(BookEvent event) {
         this.startEvent = event;
     }
 
@@ -59,7 +62,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @param state state name
      */
     @Override
-    public void setStartState(STATE state) {
+    public void setStartState(BookStatus state) {
         this.startState = state;
     }
 
@@ -69,7 +72,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @return states
      */
     @Override
-    public Collection<StateMachineState<STATE, EVENT>> getStates() {
+    public Collection<StateMachineState<BookStatus, BookEvent>> getStates() {
         return states;
     }
 
@@ -79,7 +82,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @param state state to add
      */
     @Override
-    public void addState(StateMachineState<STATE, EVENT> state) {
+    public void addState(StateMachineState<BookStatus, BookEvent> state) {
         states.add(state);
     }
 
@@ -89,6 +92,7 @@ public class StateMachineDefinitionImpl<STATE, EVENT> implements StateMachineDef
      * @return handler class
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Class<? extends StateMachineEventHandler> getHandlerClass() {
         return handlerClass;
     }
