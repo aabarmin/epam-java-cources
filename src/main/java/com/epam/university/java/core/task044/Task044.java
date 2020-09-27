@@ -1,4 +1,4 @@
-package com.epam.university.java.core.dmitry_novikov_task1;
+package com.epam.university.java.core.task044;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
  * 8208 = 8^4 + 2^4 + 0^4 + 8^4
  *
  */
-public interface Task1 {
+public interface Task044 {
     /**
      * Return collection of Armstrong numbers
      *

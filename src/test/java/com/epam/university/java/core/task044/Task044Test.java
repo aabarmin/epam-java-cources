@@ -1,4 +1,4 @@
-package com.epam.university.java.core.dmitry_novikov_task1;
+package com.epam.university.java.core.task044;
 
 import com.epam.university.java.core.helper.TestHelper;
 import java.util.Arrays;
@@ -12,8 +12,8 @@ import static org.junit.Assert.assertTrue;
 /**
  * Author Dmitry Novikov 20-Sep-20.
  */
-public class Task1Test {
-    private Task1 instance;
+public class Task044Test {
+    private Task044 instance;
 
     @Before
     public void setUp() throws Exception {
