@@ -86,4 +86,22 @@ public class Task023Test {
                 instance.extract("89123456789")
         );
     }
+
+    @Test
+    public void testWithDashesWithNoBraces() throws Exception {
+        assertEquals(
+                "Incorrect operator code",
+                "912",
+                instance.extract("8-912-345-67-89")
+        );
+    }
+
+    @Test
+    public void testWithDashesWithCountryCode() throws Exception {
+        assertEquals(
+                "Incorrect operator code",
+                "912",
+                instance.extract("+7-912-345-67-89")
+        );
+    }
 }

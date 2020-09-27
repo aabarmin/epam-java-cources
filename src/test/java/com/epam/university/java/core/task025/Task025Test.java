@@ -20,6 +20,14 @@ public class Task025Test {
     }
 
     @Test
+    public void testIfSignalSos() throws Exception {
+        assertEquals("Invalid result",
+                8,
+                instance.getAmountOfAlteredLetters("RTWODTWOA")
+        );
+    }
+
+    @Test
     public void allCorrect() throws Exception {
         assertEquals("Invalid result",
                 0,
