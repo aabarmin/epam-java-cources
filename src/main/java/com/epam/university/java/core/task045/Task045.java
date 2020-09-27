@@ -1,10 +1,10 @@
-package com.epam.university.java.core.dmitry_novikov_task2;
+package com.epam.university.java.core.task045;
 
 /**
  * Find longest common sequence.
  * Given two strings, write a method that finds the longest common sub-sequence.
  */
-public interface Task2 {
+public interface Task045 {
     /**
      * Return string with longest common sequence.
      *

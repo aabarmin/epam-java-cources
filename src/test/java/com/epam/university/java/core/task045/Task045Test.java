@@ -1,4 +1,4 @@
-package com.epam.university.java.core.dmitry_novikov_task2;
+package com.epam.university.java.core.task045;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
 /**
  * Author Dmitry Novikov 20-Sep-20.
  */
-public class Task2Test {
-    private Task2 instance;
+public class Task045Test {
+    private Task045 instance;
 
     @Before
     public void setUp() throws Exception {
