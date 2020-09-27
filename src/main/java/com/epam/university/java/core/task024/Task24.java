@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * Camels and cases.
  */
-public interface Task024 {
+public interface Task24 {
     /**
      * Given a string with camel case word, you should separate this string
      * into collection of words.

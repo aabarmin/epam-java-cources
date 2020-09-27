@@ -21,4 +21,6 @@ public interface Task016 {
      * @return collection square coordinates
      */
     Collection<Coordinate> getSquaresInsideCircle(int radius);
+
+
 }

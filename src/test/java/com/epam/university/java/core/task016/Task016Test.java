@@ -70,6 +70,8 @@ public class Task016Test {
             generate(-5, 1).stream())
             .flatMap(Function.identity())
             .collect(Collectors.toList());
+        // delete later
+        System.out.println(targetCoordinates);
         final Collection<Coordinate> resultCoordinates =
             instance.getSquaresInsideCircle(3);
         assertEquals("Incorrect collection size with radius 3",
