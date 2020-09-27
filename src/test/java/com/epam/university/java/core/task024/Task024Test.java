@@ -9,11 +9,11 @@ import java.util.Collections;
 import static org.junit.Assert.assertArrayEquals;
 
 public class Task024Test {
-    private Task024 instance;
+    private Task24 instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task024.class);
+        instance = TestHelper.getInstance(Task24.class);
     }
 
     @Test(expected = IllegalArgumentException.class)

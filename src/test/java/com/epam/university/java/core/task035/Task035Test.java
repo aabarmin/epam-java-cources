@@ -57,9 +57,9 @@ public class Task035Test {
         assertArrayEquals("Incorrect JSON parsing",
                 new String[]{"Phone first", "Phone second"},
                 person.getPhoneNumbers()
-                    .stream()
-                    .map(PhoneNumber::getPhoneNumber)
-                    .toArray()
+                        .stream()
+                        .map(PhoneNumber::getPhoneNumber)
+                        .toArray()
         );
     }
 
@@ -88,9 +88,9 @@ public class Task035Test {
         assertArrayEquals("Incorrect JSON parsing",
                 new String[]{"Phone first", "Phone second"},
                 person.getPhoneNumbers()
-                    .stream()
-                    .map(PhoneNumber::getPhoneNumber)
-                    .toArray()
+                        .stream()
+                        .map(PhoneNumber::getPhoneNumber)
+                        .toArray()
         );
     }
 
