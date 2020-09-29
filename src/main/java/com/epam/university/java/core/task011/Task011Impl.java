@@ -36,7 +36,7 @@ public class Task011Impl implements Task011 {
             return collection.get(1);
         } else {
             ArrayList<String> arr = new ArrayList<>();
-            for(int i = 0; i < collection.size(); i += 2) {
+            for (int i = 0; i < collection.size(); i += 2) {
                 arr.add(collection.get(i + 1));
             }
             return getLastName(arr);
@@ -54,7 +54,7 @@ public class Task011Impl implements Task011 {
             return collection.get(1);
         } else {
             LinkedList<String> list = new LinkedList<>();
-            for(int i = 0; i < collection.size(); i += 2) {
+            for (int i = 0; i < collection.size(); i += 2) {
                 list.add(collection.get(i + 1));
             }
             return getLastName(list);
