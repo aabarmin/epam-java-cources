@@ -26,6 +26,7 @@ public class StateMachineDefinitionImpl implements StateMachineDefinition<BookSt
     @XmlAttribute(name = "handler")
     @XmlJavaTypeAdapter(HandlerClassAdapter.class)
     private Class<? extends StateMachineEventHandler> handlerClass;
+
     /**
      * Get start event.
      *
