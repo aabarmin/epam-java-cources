@@ -1,18 +1,18 @@
 package com.epam.university.java.core.task041;
 
 /**
- * Entity object
+ * Entity object.
  */
 public interface Entity {
 
     /**
-     * getter for id
+     * getter for id.
      * @return id of entity
      */
     int getId();
 
     /**
-     * getter of value
+     * getter of value.
      * @return value of entity
      */
     String getValue();

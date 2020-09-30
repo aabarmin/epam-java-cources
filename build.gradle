@@ -20,7 +20,7 @@ compileJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 compileTestJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 
 tasks.withType(Checkstyle) {
-    ignoreFailures = true
+    ignoreFailures = false
     reports {
         html.enabled = true
         xml.enabled = false
