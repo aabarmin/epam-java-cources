@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task040;
 
 /**
- * Ten-Pin Bowling
+ * Ten-Pin Bowling.
  */
 public interface Task040 {
 
