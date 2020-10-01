@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 public interface Task044 {
     /**
-     * Return collection of Armstrong numbers
+     * Return collection of Armstrong numbers.
      *
      * @param from int value of start range number
      * @param to int value of end range number
