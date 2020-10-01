@@ -68,7 +68,7 @@ $ git branch -a
 epam_master
 master
 ```
-
+ 
 When you would like to get updates, you need to pull updates from my repository:
 
 ```shell script
