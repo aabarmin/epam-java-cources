@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 /**
  * Author Dmitry Novikov 28-Sep-20.
  */
-public class SquareImpl implements Square{
+public class SquareImpl implements Square {
     private Point first;
     private Point second;
 
