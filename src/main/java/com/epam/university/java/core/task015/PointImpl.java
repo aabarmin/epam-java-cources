@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 /**
  * Author Dmitry Novikov 27-Sep-20.
  */
-public class PointImpl implements Point{
+public class PointImpl implements Point {
     private double x;
     private double y;
 

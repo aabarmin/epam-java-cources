@@ -1,12 +1,9 @@
 package com.epam.university.java.core.task015;
 
-import java.awt.*;
-import java.awt.geom.Area;
-
 /**
  * Author Dmitry Novikov 27-Sep-20.
  */
-public class Task015Impl implements Task015{
+public class Task015Impl implements Task015 {
     SquareFactory squareFactory = new SquareFactoryImpl();
     PointFactory pointFactory = new PointFactoryImpl();
 
@@ -14,13 +11,6 @@ public class Task015Impl implements Task015{
     public double getArea(Square first, Square second) {
         first = normalize(first);
         second = normalize(second);
-
-//        if (first.getFirst().getX() == first.getSecond().getX()
-//                || first.getFirst().getY() == first.getSecond().getY()
-//
-//
-//        )
-
 
         double left = Math.max(first.getFirst().getX(), second.getFirst().getX());
         double top = Math.min(first.getSecond().getY(), second.getSecond().getY());
