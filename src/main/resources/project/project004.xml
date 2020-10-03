@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="complexObject" class="com.epam.university.java.project.core.cdi.structure.ComplexObject">
+        <property name="stringCollection">
+            <list>
+                <value>first</value>
+                <value>second</value>
+                <value>third</value>
+            </list>
+        </property>
+
+        <property name="stringMap">
+            <map>
+                <entry>
+                    <key>firstKey</key>
+                    <value>firstValue</value>
+                </entry>
+                <entry>
+                    <key>secondKey</key>
+                    <value>secondValue</value>
+                    <ref>dependentObject</ref>
+                </entry>
+            </map>
+        </property>
+
+        <property name="objectMap">
+            <map>
+                <entry>
+                    <key>firstKey</key>
+                    <ref>dependentObject</ref>
+                </entry>
+                <entry>
+                    <key>secondKey</key>
+                    <ref>dependentObject</ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dependentObject" class="com.epam.university.java.project.core.cdi.structure.ComplexObject">
+
+    </bean>
+</beans>
