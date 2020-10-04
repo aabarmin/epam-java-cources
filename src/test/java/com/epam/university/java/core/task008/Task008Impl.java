@@ -3,6 +3,7 @@ package com.epam.university.java.core.task008;
 import java.util.LinkedList;
 import java.util.Stack;
 
+
 public class Task008Impl implements Task008 {
     /**
      * Given a string with mathematical expression like "(1 + 2) * {[-3] - 4}". You need to check,
@@ -26,7 +27,6 @@ public class Task008Impl implements Task008 {
         if (sourceString.equals("")) {
             return true;
         }
-        LinkedList<String> myStack = new LinkedList<>();
         String braces = "";
         for (int i = 0; i < sourceString.length(); i++) {
             if (isBrace(sourceString.charAt(i))) {
@@ -96,6 +96,7 @@ public class Task008Impl implements Task008 {
         boolean curly = prev == '{' && current == '}';
         if (round || square || curly) {
             return true;
+
         } else {
             return false;
         }
