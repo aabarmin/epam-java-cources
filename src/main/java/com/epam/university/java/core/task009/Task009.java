@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task009;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -20,5 +21,5 @@ public interface Task009 {
      * @param sourceFile source file
      * @return collection of different words
      */
-    Collection<String> countWords(File sourceFile);
+    Collection<String> countWords(File sourceFile) throws IOException;
 }
