@@ -3,7 +3,8 @@ package com.epam.university.java.core.task008;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class Task008Impl implements Task008{
+
+public class Task008Impl implements Task008 {
     /**
      * Given a string with mathematical expression like "(1 + 2) * {[-3] - 4}". You need to check,
      * are all braces correct. Ex:
@@ -26,7 +27,6 @@ public class Task008Impl implements Task008{
         if (sourceString.equals("")) {
             return true;
         }
-        LinkedList<String> myStack = new LinkedList<>();
         String braces = "";
         for (int i = 0; i < sourceString.length(); i++) {
             if (isBrace(sourceString.charAt(i))) {
@@ -38,15 +38,13 @@ public class Task008Impl implements Task008{
             char current = braces.charAt(i);
             if (isOpening(current)) {
                 stack.push(current);
-            }
-            else {
-                if(stack.isEmpty()) {
+            } else {
+                if (stack.isEmpty()) {
                     return false;
                 }
                 if (isPairValid(stack.peek().toString().charAt(0), current)) {
                     stack.pop();
-                }
-                else {
+                } else {
                     return false;
                 }
             }
@@ -59,6 +57,7 @@ public class Task008Impl implements Task008{
 
     /**
      * Method to check whether character is brace or not
+     *
      * @param symbol just a char
      * @return true if brace, otherwise false
      */
@@ -69,6 +68,13 @@ public class Task008Impl implements Task008{
         }
         return false;
     }
+
+    /**
+     * Method to check whether brace if opening or not
+     *
+     * @param symbol any brace
+     * @return true if brace, otherwise false
+     */
     private boolean isOpening(char symbol) {
         String openings = "([{";
         if (openings.contains(Character.toString(symbol))) {
@@ -77,21 +83,21 @@ public class Task008Impl implements Task008{
         return false;
     }
 
-    private boolean isClosing(char symbol) {
-        String closings = ")}]";
-        if (closings.contains(Character.toString(symbol))) {
-            return true;
-        }
-        return false;
-    }
+    /**
+     * Method to check whether pair of brackets is valid
+     *
+     * @param prev    is bracket
+     * @param current is bracket
+     * @return true if brace, otherwise false
+     */
     private boolean isPairValid(char prev, char current) {
         boolean round = prev == '(' && current == ')';
         boolean square = prev == '[' && current == ']';
         boolean curly = prev == '{' && current == '}';
         if (round || square || curly) {
             return true;
-        }
-        else {
+
+        } else {
             return false;
         }
     }
