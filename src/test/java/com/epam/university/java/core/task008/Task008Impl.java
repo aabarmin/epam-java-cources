@@ -56,7 +56,7 @@ public class Task008Impl implements Task008 {
     }
 
     /**
-     * Method to check whether character is brace or not
+     * Method to check whether character is brace or not.
      *
      * @param symbol just a char
      * @return true if brace, otherwise false
@@ -70,7 +70,7 @@ public class Task008Impl implements Task008 {
     }
 
     /**
-     * Method to check whether brace if opening or not
+     * Method to check whether brace if opening or not.
      *
      * @param symbol any brace
      * @return true if brace, otherwise false
@@ -84,7 +84,7 @@ public class Task008Impl implements Task008 {
     }
 
     /**
-     * Method to check whether pair of brackets is valid
+     * Method to check whether pair of brackets is valid.
      *
      * @param prev    is bracket
      * @param current is bracket
