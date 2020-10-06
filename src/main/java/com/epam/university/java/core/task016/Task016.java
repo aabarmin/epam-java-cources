@@ -8,7 +8,8 @@ import java.util.Collection;
 public interface Task016 {
     /**
      * Given a 2-dimensional system of coordinates. There is a circle with
-     * center in (0, 0) point. You should return coordinates of squares with side of 0.5
+     * cent
+     * er in (0, 0) point. You should return coordinates of squares with side of 0.5
      * which fully inside the circle.
      *
      * <p>
