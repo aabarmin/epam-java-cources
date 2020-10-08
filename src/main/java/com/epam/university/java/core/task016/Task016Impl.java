@@ -28,14 +28,14 @@ public class Task016Impl implements Task016 {
             throw new IllegalArgumentException("Wrong radius!");
         }
         CoordinateFactory factory = new CoordinateFactoryImpl();
-        List<Coordinate> result= new ArrayList<>();
+        List<Coordinate> result = new ArrayList<>();
         radius *= 2;
         for (int x = - radius; x < radius; x++) {
             for (int y = - radius; y < radius; y++) {
                 if (x == 0 || y == 0) {
                     continue;
                 }
-                if ((x*x + y*y) < radius*radius) {
+                if ((x * x + y * y) < radius * radius) {
                     result.add(factory.newInstance(x, y));
                 }
             }
