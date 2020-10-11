@@ -34,7 +34,7 @@ public class Task043Test {
                 instance.encode(decodedText)
         );
         assertEquals(
-                "Invalid encoding",
+                "Invalid decoding",
                 decodedText,
                 instance.decode(encodedText)
         );
@@ -50,7 +50,7 @@ public class Task043Test {
                 instance.encode(decodedText)
         );
         assertEquals(
-                "Invalid encoding",
+                "Invalid decoding",
                 decodedText,
                 instance.decode(encodedText)
         );
@@ -69,7 +69,7 @@ public class Task043Test {
                 instance.encode(decodedText)
         );
         assertEquals(
-                "Invalid encoding",
+                "Invalid decoding",
                 decodedText,
                 instance.decode(encodedText)
         );
