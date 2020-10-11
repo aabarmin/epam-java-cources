@@ -5,6 +5,7 @@ import com.sun.xml.txw2.annotation.XmlElement;
 /**
  * Phone number model.
  */
+
 public interface PhoneNumber {
     /**
      * Get phone number value.
