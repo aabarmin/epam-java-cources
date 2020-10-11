@@ -2,6 +2,7 @@ package com.epam.university.java.core.task034;
 
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 /**
@@ -28,5 +29,5 @@ public interface Task034 {
      * @param streamReader stax reader
      * @return parsed data
      */
-    Person readWithStaxParser(XMLStreamReader streamReader);
+    Person readWithStaxParser(XMLStreamReader streamReader) throws XMLStreamException;
 }
