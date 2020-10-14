@@ -33,14 +33,14 @@ public class Task048Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void isAnyIntegerPossitive() {
+    public void isAnyIntegerPositive() {
         instance.getArmstrongNumbers(-1, -1);
     }
 
     @Test
     public void checkForCorrectResult() {
         Collection<Integer> expectation
-                = Arrays.asList(2, 3, 4, 5, 6, 7, 8,
+                = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8,
                 9, 153, 370, 371, 407,
                 1634, 8208, 9474, 54748,
                 92727, 93084);
