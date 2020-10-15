@@ -38,7 +38,7 @@ public class Task049Test {
     public void firstTest() {
         String expectation = "aba";
         String result = instance.getResultList("abattd", "gdgeaba");
-        assertTrue("Incorrect Armstrong numbers collection",
+        assertTrue("Wrong longest common sequence",
                 expectation.equals(result)
         );
     }
@@ -47,7 +47,7 @@ public class Task049Test {
     public void secondTest() {
         String expectation = "abcba";
         String result = instance.getResultList("abcba", "abcba");
-        assertTrue("Incorrect Armstrong numbers collection",
+        assertTrue("Wrong longest common sequence",
                 expectation.equals(result)
         );
     }
@@ -56,7 +56,7 @@ public class Task049Test {
     public void thirdTest() {
         String expectation = "a";
         String result = instance.getResultList("abc", "sdsad");
-        assertTrue("Incorrect Armstrong numbers collection",
+        assertTrue("Wrong longest common sequence",
                 expectation.equals(result)
         );
     }
@@ -65,7 +65,7 @@ public class Task049Test {
     public void fourthTest() {
         String expectation = "aaa";
         String result = instance.getResultList("thhwerwaaa", "aaa");
-        assertTrue("Incorrect Armstrong numbers collection",
+        assertTrue("Wrong longest common sequence",
                 expectation.equals(result)
         );
     }
