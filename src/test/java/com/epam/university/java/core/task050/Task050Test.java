@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task046;
+package com.epam.university.java.core.task050;
 
 import com.epam.university.java.core.helper.TestHelper;
 import com.epam.university.java.core.task050.Task050;
@@ -15,7 +15,7 @@ public class Task050Test {
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task046.class);
+        instance = TestHelper.getInstance(Task050.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
