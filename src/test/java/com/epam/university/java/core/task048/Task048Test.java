@@ -33,7 +33,7 @@ public class Task048Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void isAnyIntegerPossitive() {
+    public void isAnyIntegerPositive() {
         instance.getArmstrongNumbers(-1, -1);
     }
 
