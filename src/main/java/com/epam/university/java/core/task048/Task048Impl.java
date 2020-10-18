@@ -31,7 +31,7 @@ public class Task048Impl implements Task048 {
                 originalNumber /= 10;
             }
 
-            if (result == number){
+            if (result == number) {
                 list.add(number);
             }
         }
