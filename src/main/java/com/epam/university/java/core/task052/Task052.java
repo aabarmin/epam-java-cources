@@ -41,5 +41,4 @@ public interface Task052 {
      */
 
     boolean validateCard(long number);
-
 }

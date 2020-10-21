@@ -4,7 +4,7 @@ import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class Task052Test {
     private Task052 instance;
@@ -40,8 +40,4 @@ public class Task052Test {
                 false,
                 instance.validateCard(123456789012345L));
     }
-
-
-
-
 }

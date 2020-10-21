@@ -22,5 +22,4 @@ public interface Task051 {
      */
 
     String replace(String source);
-
 }
