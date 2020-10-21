@@ -51,7 +51,7 @@ public class Task050Test {
 
     @Test
     public void calculate3() {
-        final Double expected = 7777.731;
+        final Double expected = 6168.0;
         final Double result = instance.calculate(9022,
                 Map.of(
                         3316.0, 1601.0,
