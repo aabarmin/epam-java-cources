@@ -19,17 +19,6 @@ public class Task025Test {
         instance.getAmountOfAlteredLetters(null);
     }
 
-<<<<<<< HEAD
-    @Test
-    public void testIfSignalSos() throws Exception {
-        assertEquals("Invalid result",
-                8,
-                instance.getAmountOfAlteredLetters("RTWODTWOA")
-        );
-    }
-
-=======
->>>>>>> 0c3f465b5c749cb770e95508e6c7e775b5986dab
     @Test
     public void allCorrect() throws Exception {
         assertEquals("Invalid result",
