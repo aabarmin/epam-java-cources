@@ -13,19 +13,13 @@ public class Task023Impl implements Task023 {
         }
         phoneString = phoneString.replace(" ", "");
         String code = null;
-        if (phoneString.contains("(")) {
-            Pattern pattern = Pattern.compile("(\\d{3})");
-            Matcher matcher = pattern.matcher(phoneString);
-            if (matcher.find()) {
-                code = phoneString.substring(matcher.start(), matcher.end());
-            }
-        } else {
-            Pattern pattern = Pattern.compile("\\d+");
-            Matcher matcher = pattern.matcher(phoneString);
-            if (matcher.find()) {
-                code = phoneString.substring(matcher.start() + 1, matcher.start() + 4);
-            }
+
+        Pattern pattern = Pattern.compile("9\\d{2}");
+        Matcher matcher = pattern.matcher(phoneString);
+        if (matcher.find()) {
+            code = phoneString.substring(matcher.start(), matcher.end());
         }
+
         return code;
     }
 }
