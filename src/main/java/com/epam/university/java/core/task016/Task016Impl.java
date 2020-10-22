@@ -16,7 +16,7 @@ public class Task016Impl implements Task016 {
         int x = 1;
         int y = 1;
 
-        for (int i = y; isInCircle(i,1,radius); i++) {
+        for (int i = y; isInCircle(i, 1, radius); i++) {
             for (int j = x; isInCircle(i, j, radius); j++) {
                 list.add(new CoordinateImpl(j, i));
                 list.add(new CoordinateImpl(-j, i));
@@ -30,6 +30,6 @@ public class Task016Impl implements Task016 {
     }
 
     private boolean isInCircle(int y, int x, int radius) {
-        return Math.pow(y, 2) + Math.pow(x, 2) <= Math.pow(radius*2, 2);
+        return Math.pow(y, 2) + Math.pow(x, 2) <= Math.pow(radius * 2, 2);
     }
 }

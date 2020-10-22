@@ -3,15 +3,15 @@ package com.epam.university.java.core.task013;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class FigureImpl implements Figure{
+public class FigureImpl implements Figure {
 
     Collection<Vertex> vertexes;
 
-    public FigureImpl(){
+    public FigureImpl() {
         vertexes = new ArrayList<>();
     }
 
-    public FigureImpl(int vertexesCount){
+    public FigureImpl(int vertexesCount) {
         vertexes = new ArrayList<>(vertexesCount);
     }
 

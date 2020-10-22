@@ -1,12 +1,12 @@
 package com.epam.university.java.core.task014;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class Task014Impl implements Task014 {
     @Override
     public Collection<VampireNumber> getVampireNumbers() {
 
-//        VampireNumberFactoryImpl factory = new VampireNumberFactoryImpl();
         Collection<VampireNumber> list = new ArrayList<>();
         ArrayList<Integer> added = new ArrayList<>();
         int min = 10;

@@ -14,11 +14,10 @@ public class Task013Impl implements Task013 {
         return figure;
     }
 
-
     @Override
     public boolean isConvexPolygon(Figure figure) {
         ArrayList<Vertex> list = new ArrayList<>(figure.getVertexes());
-        LinkedList<Vertex> checkedVertices = new LinkedList<>();
+        final LinkedList<Vertex> checkedVertices = new LinkedList<>();
 
         if (list.size() < 4) {
             return true;
@@ -62,7 +61,8 @@ public class Task013Impl implements Task013 {
                     continue;
                 }
                 c = vertex;
-                int angle = (b.getX() - a.getX()) * (c.getY() - a.getY()) - (b.getY() - a.getY()) * (c.getX() - a.getX());
+                int angle = (b.getX() - a.getX()) * (c.getY() - a.getY())
+                        - (b.getY() - a.getY()) * (c.getX() - a.getX());
                 if (angle >= d) {
                     d = angle;
                     current = c;

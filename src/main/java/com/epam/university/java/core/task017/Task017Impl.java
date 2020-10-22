@@ -6,7 +6,7 @@ import java.util.Date;
 public class Task017Impl implements Task017 {
     @Override
     public String formatString(Object... args) {
-        if (args.length == 0){
+        if (args.length == 0) {
             throw new IllegalArgumentException();
         }
         for (Object obj : args) {
@@ -29,7 +29,7 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatNumbers(Object... args) {
-        if (args.length == 0){
+        if (args.length == 0) {
             throw new IllegalArgumentException();
         }
         for (Object obj : args) {
@@ -49,7 +49,7 @@ public class Task017Impl implements Task017 {
 
     @Override
     public String formatDates(Object... args) {
-        if (args.length == 0){
+        if (args.length == 0) {
             throw new IllegalArgumentException();
         }
         for (Object obj : args) {

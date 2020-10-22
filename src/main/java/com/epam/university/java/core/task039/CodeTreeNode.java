@@ -1,7 +1,7 @@
 package com.epam.university.java.core.task039;
 
 /**
- * Huffman tree node
+ * Huffman tree node.
  */
 
 public class CodeTreeNode implements Comparable<CodeTreeNode> {
@@ -17,6 +17,14 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
         this.weight = weight;
     }
 
+    /**
+     * Code tree node constructor.
+     *
+     * @param content content of a node
+     * @param weight weight of a node
+     * @param left left child
+     * @param right right child
+     */
     public CodeTreeNode(Character content, int weight, CodeTreeNode left, CodeTreeNode right) {
         this.content = content;
         this.weight = weight;
@@ -56,6 +64,13 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
         this.right = right;
     }
 
+    /**
+     * Returns binary string for character.
+     *
+     * @param ch character
+     * @param codePath binaryPath
+     * @return string with full binary path if exists else null
+     */
     public String getCodeForCharacter(Character ch, String codePath) {
         if (this.getContent() == ch) {
             return codePath;

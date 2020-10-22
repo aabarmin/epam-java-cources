@@ -14,11 +14,11 @@ public class Task032Impl implements Task032 {
         if (proxy == null) {
             throw new IllegalArgumentException();
         }
-        SomeActionExecutor ExecutorWithProxy = (SomeActionExecutor) Proxy.newProxyInstance(
+        SomeActionExecutor executorWithProxy = (SomeActionExecutor) Proxy.newProxyInstance(
                 SomeActionExecutor.class.getClassLoader(),
                 new Class[]{SomeActionExecutor.class},
                 proxy
         );
-        return ExecutorWithProxy;
+        return executorWithProxy;
     }
 }

@@ -1,6 +1,11 @@
 package com.epam.university.java.core.task039;
 
-import java.util.*;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Task039Impl implements Task039 {
 
@@ -21,7 +26,6 @@ public class Task039Impl implements Task039 {
         for (Character c : chars.keySet()) {
             codes.put(c, tree.getCodeForCharacter(c, ""));
         }
-
 
 
         return codes;
@@ -53,7 +57,12 @@ public class Task039Impl implements Task039 {
         CodeTreeNode codeTreeNode = tree;
 
         for (int i = 0; i < encodedString.length(); i++) {
-            codeTreeNode = encodedString.charAt(i) == '0' ? codeTreeNode.getLeft() : codeTreeNode.getRight();
+            if (encodedString.charAt(i) == '0') {
+                codeTreeNode = codeTreeNode.getLeft();
+            } else {
+                codeTreeNode = codeTreeNode.getRight();
+            }
+
             if (codeTreeNode.getContent() != null) {
                 decodedString.append(codeTreeNode.getContent());
                 codeTreeNode = tree;
@@ -63,13 +72,6 @@ public class Task039Impl implements Task039 {
         return decodedString.toString();
     }
 
-    /**
-     * Returns a binary tree with prefix codes
-     *
-     * @param codeTreeNodes
-     * @return root of the code tree
-     */
-
     private static CodeTreeNode huffman(ArrayList<CodeTreeNode> codeTreeNodes) {
         Collections.sort(codeTreeNodes);
         while (codeTreeNodes.size() > 1) {
@@ -78,12 +80,8 @@ public class Task039Impl implements Task039 {
             CodeTreeNode left = codeTreeNodes.remove(codeTreeNodes.size() - 1);
             CodeTreeNode right = codeTreeNodes.remove(codeTreeNodes.size() - 1);
 
-
-            CodeTreeNode parent = new CodeTreeNode(null, left.getWeight() + right.getWeight(), left, right);
-
-//            if (left.getWeight() == right.getWeight()){
-//                parent = new CodeTreeNode(null, left.getWeight()+ right.getWeight(), right, left);
-//            }
+            int weight = left.getWeight() + right.getWeight();
+            CodeTreeNode parent = new CodeTreeNode(null, weight, left, right);
 
             codeTreeNodes.add(parent);
         }

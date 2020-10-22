@@ -11,6 +11,9 @@ public class SaxHandlerImpl extends SaxHandler {
     private final Person person;
     private final ArrayList<PhoneNumber> phoneNumbers;
 
+    /**
+     * Sax handler default constructor.
+     */
     public SaxHandlerImpl() {
         person = new PersonImpl();
         phoneNumbers = new ArrayList<>();
@@ -48,11 +51,11 @@ public class SaxHandlerImpl extends SaxHandler {
         if (currentElement.equals("person-phone")) {
             PhoneNumber phoneNumber = new PhoneNumberImpl();
             phoneNumber.setPhoneNumber(value);
-           person.getPhoneNumbers().add(phoneNumber);
+            person.getPhoneNumbers().add(phoneNumber);
         }
     }
 
-    public Person getPerson(){
+    public Person getPerson() {
         return person;
     }
 }

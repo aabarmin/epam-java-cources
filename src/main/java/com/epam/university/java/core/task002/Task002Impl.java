@@ -71,7 +71,7 @@ public class Task002Impl implements Task002 {
         }
         String str = "";
         for (int i = 0; i < sourceCollection.length; i++) {
-            if (sourceCollection[i] == null){
+            if (sourceCollection[i] == null) {
                 throw new IllegalArgumentException();
             }
             if (i != sourceCollection.length - 1) {
