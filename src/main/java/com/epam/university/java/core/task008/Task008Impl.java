@@ -45,6 +45,8 @@ public class Task008Impl implements Task008 {
                             list.remove(list.size() - 1);
                         }
                         break;
+                    default:
+                        break;
                 }
             }
         }

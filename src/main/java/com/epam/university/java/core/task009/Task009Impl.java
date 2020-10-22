@@ -22,7 +22,7 @@ public class Task009Impl implements Task009 {
             String[] words = line.split("[.,]? ");
             for (String word : words) {
 
-                if (!set.contains(word.toLowerCase()) && !word.equals(" ") && !word.isEmpty()){
+                if (!set.contains(word.toLowerCase()) && !word.equals(" ") && !word.isEmpty()) {
                     set.add(word.toLowerCase());
                 }
             }

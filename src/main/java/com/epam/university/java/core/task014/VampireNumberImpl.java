@@ -1,13 +1,19 @@
 package com.epam.university.java.core.task014;
 
+
 public class VampireNumberImpl implements VampireNumber {
 
     int first;
     int second;
     int multiplication;
 
-
-    public VampireNumberImpl( int multiplication, int first, int second) {
+    /**
+     * Vampire number constructor.
+     * @param multiplication multiplication value
+     * @param first first number
+     * @param second second number
+     */
+    public VampireNumberImpl(int multiplication, int first, int second) {
         this.first = first;
         this.second = second;
         this.multiplication = multiplication;

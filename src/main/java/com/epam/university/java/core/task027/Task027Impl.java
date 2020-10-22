@@ -17,56 +17,6 @@ public class Task027Impl implements Task027 {
             return list;
         }
 
-//        char[] chars = sourceString.toCharArray();
-
-//        StringBuilder sb = new StringBuilder("");
-        /*for (int i = 1; i < sourceString.length(); i++) {
-            if (i == 1) {
-                sb.append(chars[i - 1]);
-                first = Integer.parseInt(sb.toString());
-                sb.delete(0, sb.length());
-                sb.append(chars[i]);
-                second = Integer.parseInt(sb.toString());
-                continue;
-            }
-            if (second - first == 1) {
-                if (!list.contains(first)) {
-                    list.add(first);
-                }
-                list.add(second);
-                first = second;
-                sb.delete(0, sb.length());
-                sb.append(chars[i]);
-                second = Integer.parseInt(sb.toString());
-                if (i == sourceString.length() - 1){
-                    if (second - first == 1) {
-                        if (!list.contains(first)) {
-                            list.add(first);
-                        }
-                        list.add(second);
-                        first = second;
-                    }
-                }
-
-                continue;
-            }
-            if (first > second) {
-                sb.delete(0, sb.length());
-                sb.append(second);
-                sb.append(chars[i]);
-                second = Integer.parseInt(sb.toString());
-            } else {
-                sb.delete(0, sb.length());
-                sb.append(first);
-                sb.append(second);
-                first = Integer.parseInt(sb.toString());
-                sb.delete(0, sb.length());
-                sb.append(chars[i]);
-                second = Integer.parseInt(sb.toString());
-            }
-
-
-        }*/
         int firstBegin = 0;
         int firstEnd = 1;
         int secondBegin = 1;
@@ -79,7 +29,7 @@ public class Task027Impl implements Task027 {
             first = Integer.parseInt(sourceString.substring(firstBegin, firstEnd).trim());
             second = Integer.parseInt(sourceString.substring(secondBegin, secondEnd).trim());
 
-            if (first == 0){
+            if (first == 0) {
                 return list;
             }
             if (second - first == 1) {

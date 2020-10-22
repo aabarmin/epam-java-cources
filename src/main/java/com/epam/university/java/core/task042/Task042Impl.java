@@ -19,7 +19,8 @@ public class Task042Impl implements Task042 {
             String[] timeRange = line.split("-");
             for (String hoursAndMinutes : timeRange) {
                 String[] hAndM = hoursAndMinutes.split(":");
-                LocalTime time = LocalTime.of(Integer.parseInt(hAndM[0]), Integer.parseInt(hAndM[1]));
+                LocalTime time = LocalTime.of(Integer.parseInt(hAndM[0]),
+                        Integer.parseInt(hAndM[1]));
                 timeTable.add(time);
             }
         }
@@ -58,23 +59,29 @@ public class Task042Impl implements Task042 {
     private BookingResponse findNearestTime(LocalTime eventTime, LinkedList<LocalTime> timeTable) {
         TimeProposalResponse timeProposalResponse = new TimeProposalResponse();
 
-        if (eventTime.isBefore(LocalTime.of(9, 0)) && timeTable.get(0).isAfter(LocalTime.of(9, 0))) {
+        if (eventTime.isBefore(LocalTime.of(9, 0))
+                && timeTable.get(0).isAfter(LocalTime.of(9, 0))) {
             timeProposalResponse.setProposedTime("09:00");
             return timeProposalResponse;
         }
 
         for (int i = 0; i < timeTable.size(); i += 2) {
             if (i < timeTable.size() - 2) {
-                if (eventTime.isBefore(timeTable.get(i + 1)) && eventTime.isBefore(timeTable.get(i + 2)) && !timeTable.get(i+1).equals(timeTable.get(i+2))) {
-                    String time = timeTable.get(i + 1).getHour() + ":" + timeTable.get(i + 1).getMinute();
+                if (eventTime.isBefore(timeTable.get(i + 1))
+                        && eventTime.isBefore(timeTable.get(i + 2))
+                        && !timeTable.get(i + 1).equals(timeTable.get(i + 2))) {
+                    String time = timeTable.get(i + 1).getHour()
+                            + ":" + timeTable.get(i + 1).getMinute();
                     if (time.length() < 5) {
                         time += "0";
                     }
                     timeProposalResponse.setProposedTime(time);
                     return timeProposalResponse;
                 }
-            } else if(eventTime.isBefore(timeTable.get(i + 1)) && timeTable.get(i+1).isBefore(LocalTime.of(18,0))){
-                String time = timeTable.get(i + 1).getHour() + ":" + timeTable.get(i + 1).getMinute();
+            } else if (eventTime.isBefore(timeTable.get(i + 1))
+                    && timeTable.get(i + 1).isBefore(LocalTime.of(18, 0))) {
+                String time = timeTable.get(i + 1).getHour() + ":"
+                        + timeTable.get(i + 1).getMinute();
                 if (time.length() < 5) {
                     time += "0";
                 }
@@ -83,15 +90,16 @@ public class Task042Impl implements Task042 {
             }
         }
 
-        if (timeProposalResponse.getProposedTime() == null && timeTable.get(timeTable.size() - 1).isBefore(LocalTime.of(18, 0))) {
-            String time = timeTable.get(timeTable.size() - 1).getHour() + ":" + timeTable.get(timeTable.size() - 1).getMinute();
+        if (timeProposalResponse.getProposedTime() == null
+                && timeTable.get(timeTable.size() - 1).isBefore(LocalTime.of(18, 0))) {
+            String time = timeTable.get(timeTable.size() - 1).getHour() + ":"
+                    + timeTable.get(timeTable.size() - 1).getMinute();
             if (time.length() < 5) {
                 time += "0";
             }
             timeProposalResponse.setProposedTime(time);
             return timeProposalResponse;
         }
-
 
         return new BusyResponse();
     }

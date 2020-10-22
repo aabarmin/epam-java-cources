@@ -101,7 +101,7 @@ public class Task043Impl implements Task043 {
             char[] letters = morseWords[i].toCharArray();
             String word = wordFromMorse(letters);
             morseString.append(word);
-            if (i != morseWords.length - 1){
+            if (i != morseWords.length - 1) {
                 morseString.append(" ");
             }
         }

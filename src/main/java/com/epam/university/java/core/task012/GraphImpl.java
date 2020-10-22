@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task012;
 
-import javax.imageio.metadata.IIOMetadataNode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +9,10 @@ public class GraphImpl implements Graph {
     private HashMap<Integer, ArrayList<Integer>> map;
     private int size;
 
+    /**
+     * Graph constructor.
+     * @param id id of a node
+     */
     public GraphImpl(int id) {
         map = new HashMap<>();
         for (int i = 0; i <= id; i++) {
@@ -54,7 +57,7 @@ public class GraphImpl implements Graph {
             } else {
                 throw new IllegalArgumentException();
             }
-        } catch (NullPointerException | IllegalArgumentException e){
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
     }

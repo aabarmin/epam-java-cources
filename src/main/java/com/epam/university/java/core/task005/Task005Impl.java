@@ -21,7 +21,8 @@ public class Task005Impl implements Task005 {
                     break;
                 }
 
-                if ((Math.abs((double) first / second - Math.PI)) < (Math.abs((double) fOut / sOut - Math.PI))) {
+                if ((Math.abs((double) first / second - Math.PI))
+                        < (Math.abs((double) fOut / sOut - Math.PI))) {
                     fOut = first;
                     sOut = second;
                 }
@@ -30,30 +31,7 @@ public class Task005Impl implements Task005 {
             first++;
             second = min;
         }
-/*
-        switch (digits) {
-               case 1:
-                first = 3;
-                second = 1;
-                break;
-            case 2:
-                first = 44;
-                second = 14;
-                break;
-            case 3:
-                first = 355;
-                second = 113;
-                break;
-            case 4:
-                first = 99773;
-                second = 31746;
-                break;
-            case 5:
-                first = 99733;
-                second = 31746;
-            case 6:
 
-        }*/
         return new PiHolderImpl(fOut, sOut);
     }
 }

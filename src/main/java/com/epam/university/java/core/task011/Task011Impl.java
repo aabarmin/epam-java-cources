@@ -7,7 +7,7 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(String[] collection) {
 
-        if (collection == null){
+        if (collection == null) {
             throw new IllegalArgumentException();
         }
 
@@ -36,11 +36,11 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(ArrayList<String> collection) {
 
-        if (collection == null){
+        if (collection == null) {
             throw new IllegalArgumentException();
         }
 
-        if (collection.size() == 0){
+        if (collection.size() == 0) {
             throw new IllegalArgumentException();
         }
 
@@ -65,11 +65,11 @@ public class Task011Impl implements Task011 {
     @Override
     public String getLastName(LinkedList<String> collection) {
 
-        if (collection == null){
+        if (collection == null) {
             throw new IllegalArgumentException();
         }
 
-        if (collection.size() == 0){
+        if (collection.size() == 0) {
             throw new IllegalArgumentException();
         }
 

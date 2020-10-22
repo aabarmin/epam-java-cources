@@ -35,7 +35,8 @@ public class Task006Impl implements Task006 {
             sumOfAmpSq += Math.pow(measurement.getAmperage(), 2);
         }
 
-        double result = (list.size() * sum - sumA * sumV) / (list.size() * sumOfAmpSq - Math.pow(sumA, 2));
+        double result = (list.size() * sum - sumA * sumV)
+                / (list.size() * sumOfAmpSq - Math.pow(sumA, 2));
 
         if (sumA == 0) {
             return 0.0;

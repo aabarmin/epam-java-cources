@@ -5,6 +5,9 @@ public class RobotImpl implements Robot {
     private RobotPosition position;
     private int direction; // 0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT
 
+    /**
+     * Robot default constructor.
+     */
     public RobotImpl() {
         position = new RobotPositionImpl(0, 0);
         direction = 0;
@@ -51,7 +54,11 @@ public class RobotImpl implements Robot {
                     case 3:
                         position.setX(position.getX() - 1);
                         break;
+                    default:
+                        break;
                 }
+                break;
+            default:
                 break;
         }
     }
