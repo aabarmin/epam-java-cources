@@ -49,15 +49,16 @@ public class Task034Test {
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
                 person.getPhoneNumbers()
-                    .stream()
-                    .map(PhoneNumber::getPhoneNumber)
-                    .toArray()
+                        .stream()
+                        .map(PhoneNumber::getPhoneNumber)
+                        .toArray()
         );
     }
 
     @Test
     public void readWithJaxParser() throws Exception {
-        final Person person = instance.readWithJaxbParser("A:\\epam-java-cources\\src\\main\\resources\\task034\\data.xml");
+        final Person person = instance.readWithJaxbParser("A:\\epam-java-cources\\src\\main"
+                + "\\resources\\task034\\data.xml");
         assertNotNull("XML was not parsed", person);
         assertEquals("Incorrect XML parsing",
                 10,
@@ -79,9 +80,9 @@ public class Task034Test {
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
                 person.getPhoneNumbers()
-                    .stream()
-                    .map(PhoneNumber::getPhoneNumber)
-                    .toArray()
+                        .stream()
+                        .map(PhoneNumber::getPhoneNumber)
+                        .toArray()
         );
     }
 
@@ -112,9 +113,9 @@ public class Task034Test {
         assertArrayEquals("Incorrect XML parsing",
                 new String[]{"Phone first", "Phone second"},
                 person.getPhoneNumbers()
-                    .stream()
-                    .map(PhoneNumber::getPhoneNumber)
-                    .toArray()
+                        .stream()
+                        .map(PhoneNumber::getPhoneNumber)
+                        .toArray()
         );
     }
 }
