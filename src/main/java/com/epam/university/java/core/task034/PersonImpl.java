@@ -1,26 +1,31 @@
 package com.epam.university.java.core.task034;
 
+
+
+import javax.xml.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 
+@XmlType(name = "person")
+@XmlRootElement(name = "person")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PersonImpl implements Person {
 
+    @XmlAttribute()
     private int id;
+    @XmlElement(name = "first-name")
     private String firstName;
+    @XmlElement(name = "last-name")
     private String lastName;
+    @XmlElementWrapper(name = "person-phones")
+    @XmlElements({@XmlElement(type = PhoneNumberImpl.class, name = "person-phone")})
     List<PhoneNumber> phoneNumbers;
-
-    public PersonImpl(int id, String firstName, String lastName, List<PhoneNumber> phoneNumbers) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumbers = phoneNumbers;
-    }
 
     @Override
     public int getId() {
         return id;
     }
+
 
     @Override
     public void setId(int id) {
@@ -32,6 +37,7 @@ public class PersonImpl implements Person {
         return firstName;
     }
 
+
     @Override
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -41,6 +47,7 @@ public class PersonImpl implements Person {
     public String getLastName() {
         return lastName;
     }
+
 
     @Override
     public void setLastName(String lastName) {
