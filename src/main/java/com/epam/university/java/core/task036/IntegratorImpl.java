@@ -12,21 +12,22 @@ public class IntegratorImpl implements Integrator {
     public double integrate(double left, double right, Function<Double, Double> function) {
         double area = 0;
         double modifier = 1;
-//        if (left > right) {
-//            double tmp = left;
-//            left = right;
-//            right = tmp;
-//            modifier = -1;
-//        }
+        if (left > right) {
+            double tmp = left;
+            left = right;
+            right = tmp;
+            modifier = -1;
+        }
         for (double i = left + INCREMENT; i < right; i += INCREMENT) {
             double dFromLeft = i - left;
-            area += (INCREMENT / 2) * function.apply(left + dFromLeft) + function.apply(left + dFromLeft - INCREMENT);
+            area += (INCREMENT / 2) * function.apply(left + dFromLeft)
+                    + function.apply(left + dFromLeft - INCREMENT);
         }
         area /= 10;
         area = Math.round(area);
 
 
         int result = (int) area;
-        return Math.round(result )/ 100000.0 * modifier;
+        return Math.round(result) / 100000.0 * modifier;
     }
 }
