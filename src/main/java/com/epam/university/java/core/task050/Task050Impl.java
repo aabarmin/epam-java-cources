@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task050;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
