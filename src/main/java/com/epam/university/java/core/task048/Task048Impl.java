@@ -13,7 +13,7 @@ public class Task048Impl implements Task048 {
 
         Collection<Integer> list = new ArrayList<>();
 
-        for (int number = from + 1; number < to; ++number) {
+        for (int number = from; number < to; ++number) {
             int digits = 0;
             int result = 0;
             int originalNumber = number;
