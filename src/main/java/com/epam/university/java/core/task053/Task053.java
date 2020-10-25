@@ -5,7 +5,7 @@ package com.epam.university.java.core.task053;
  *
  * <p>
  *     A mathematical expression in a classical record is given.
- *     The expression can only contain natural numbers and
+ *     The expression can only contain natural, positive numbers and
  *     mathematical characters, without spaces such as:
  *     + - * / ^ ( )
  *
