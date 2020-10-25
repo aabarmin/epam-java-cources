@@ -80,6 +80,10 @@ public class Task040Impl implements Task040 {
         public Roll() {
         }
 
+        /**
+         * Roll constructor.
+         * @param line frame line
+         */
         public Roll(String line) {
             if (!line.contains("X") && !line.contains("/")) {
                 this.first = Integer.parseInt(String.valueOf(line.charAt(0)));
@@ -100,6 +104,11 @@ public class Task040Impl implements Task040 {
             this.isLast = false;
         }
 
+        /**
+         * Last roll constructor.
+         * @param frame frame of the roll
+         * @param isLast is last
+         */
         public Roll(String frame, boolean isLast) {
             this.isLast = isLast;
 
