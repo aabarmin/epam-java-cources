@@ -42,7 +42,7 @@ public class Task040Test {
     @Test
     public void countTest3() throws Exception {
         assertEquals("Incorrect counted score",
-                163 ,instance.countScore("X 81 X X 7/ 53 06 X 7/ X81")
-                );
+                163, instance.countScore("X 81 X X 7/ 53 06 X 7/ X81")
+        );
     }
 }
