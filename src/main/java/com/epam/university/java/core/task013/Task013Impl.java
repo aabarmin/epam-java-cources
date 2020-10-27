@@ -89,13 +89,17 @@ public class Task013Impl implements Task013 {
 
                 double scMul = modifiedXOfPrev * modifiedXOfNext
                         + modifiedYOfPrev * modifiedYOfNext;
-                double moduloOfPrev = Math.sqrt(Math.pow(modifiedXOfPrev, 2) + Math.pow(modifiedYOfPrev, 2));
-                double moduloOfNext = Math.sqrt(Math.pow(modifiedXOfNext, 2) + Math.pow(modifiedYOfNext, 2));
+                double moduloOfPrev = Math.sqrt(Math.pow(modifiedXOfPrev, 2)
+                        + Math.pow(modifiedYOfPrev, 2));
+                double moduloOfNext = Math.sqrt(Math.pow(modifiedXOfNext, 2)
+                        + Math.pow(modifiedYOfNext, 2));
                 double curCos = scMul / (moduloOfPrev * moduloOfNext);
                 double curSin = Math.sqrt(1 - Math.pow(curCos, 2));
                 double curTang = curSin / curCos;
 
-                if (list.size() - checkedVertices.size() == 1 && curTang > 0 && 1 - curTang > 0.0000001) {
+                if (list.size() - checkedVertices.size() == 1
+                        && curTang > 0
+                        && 1 - curTang > 0.0000001) {
                     return false;
                 }
                 if (curTang < -0.0 && curTang > tang) {
@@ -110,9 +114,11 @@ public class Task013Impl implements Task013 {
                     nextVertex = vertex;
                 } else if (1 - curTang < 0.0000001 && tang < -70) {
                     if (nextVertex != null) {
-                        double fromPrevToNext = Math.sqrt(Math.pow((nextVertex.getX() - prevVertex.getX()), 2)
+                        double fromPrevToNext =
+                                Math.sqrt(Math.pow((nextVertex.getX() - prevVertex.getX()), 2)
                                 + Math.pow(nextVertex.getY() - prevVertex.getY(), 2));
-                        double fromCurrentToPrev = Math.sqrt(Math.pow((vertex.getX() - prevVertex.getX()), 2)
+                        double fromCurrentToPrev =
+                                Math.sqrt(Math.pow((vertex.getX() - prevVertex.getX()), 2)
                                 + Math.pow(vertex.getY() - prevVertex.getY(), 2));
                         if (fromCurrentToPrev < fromPrevToNext) {
                             tang = -100;
