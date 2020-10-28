@@ -81,7 +81,8 @@ public class Task039Impl implements Task039 {
             CodeTreeNode left = codeTreeNodes.remove(codeTreeNodes.size() - 1);
             CodeTreeNode right = codeTreeNodes.remove(codeTreeNodes.size() - 1);
 
-            CodeTreeNode parent = new CodeTreeNode(null, left.getWeight() + right.getWeight(), left, right);
+            CodeTreeNode parent = new CodeTreeNode(null, left.getWeight()
+                    + right.getWeight(), left, right);
 
             codeTreeNodes.add(parent);
         }

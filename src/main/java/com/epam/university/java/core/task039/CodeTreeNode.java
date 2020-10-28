@@ -21,9 +21,9 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
      * Code tree node constructor.
      *
      * @param content content of a node
-     * @param weight weight of a node
-     * @param left left child
-     * @param right right child
+     * @param weight  weight of a node
+     * @param left    left child
+     * @param right   right child
      */
     public CodeTreeNode(Character content, int weight, CodeTreeNode left, CodeTreeNode right) {
         this.content = content;
@@ -67,7 +67,7 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
     /**
      * Returns binary string for character.
      *
-     * @param ch character
+     * @param ch       character
      * @param codePath binaryPath
      * @return string with full binary path if exists else null
      */
@@ -93,10 +93,10 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
 
     @Override
     public int compareTo(CodeTreeNode o) {
-        if (this.getWeight() != o.getWeight()){
+        if (this.getWeight() != o.getWeight()) {
             return o.getWeight() - this.getWeight();
-        } else if (o.getContent() != null && this.getContent() != null){
-            return  o.getContent() - this.getContent();
+        } else if (o.getContent() != null && this.getContent() != null) {
+            return o.getContent() - this.getContent();
         }
         return o.getWeight() - this.getWeight();
     }
