@@ -15,6 +15,10 @@ public class Task054Test {
     String input;
     String output;
 
+    /**
+     * Instantiate class.
+     * @throws Exception in case of Runtime Exceptions.
+     */
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task054.class);
@@ -36,11 +40,11 @@ public class Task054Test {
             pixel = image.getRGB((int) (Math.random() * image.getWidth()),
                     (int) (Math.random() * image.getHeight()));
             assertTrue("Incorrect grayscale filtering, red, green and blue values aren't equal",
-                    instance.getGreen(pixel) == instance.getBlue(pixel) &&
-                    instance.getBlue(pixel) == instance.getRed(pixel));
+                    instance.getGreen(pixel) == instance.getBlue(pixel)
+                            && instance.getBlue(pixel) == instance.getRed(pixel));
             assertTrue("Value of some color can't be greater then 255",
-                    (instance.getRed(pixel) <= 255) && (instance.getGreen(pixel) <= 255) &&
-                            (instance.getBlue(pixel) <= 255));
+                    (instance.getRed(pixel) <= 255) && (instance.getGreen(pixel) <= 255)
+                            && (instance.getBlue(pixel) <= 255));
         }
     }
 
@@ -91,8 +95,9 @@ public class Task054Test {
             assertEquals("Incorrect Sepia filtering, wrong blue value",
                     blueExpected, instance.getBlue(processedPixel));
             assertTrue("Value of some color can't be greater then 255",
-                    (instance.getRed(processedPixel) <= 255) && (instance.getGreen(processedPixel) <= 255) &&
-                            (instance.getBlue(processedPixel) <= 255));
+                    (instance.getRed(processedPixel) <= 255)
+                            && (instance.getGreen(processedPixel) <= 255)
+                            && (instance.getBlue(processedPixel) <= 255));
         }
     }
 
@@ -110,7 +115,8 @@ public class Task054Test {
         for (int i = 0; i < image.getWidth(); i++) {
             x = (int) (Math.random() * image.getWidth());
             y = (int) (Math.random() * image.getHeight());
-            assertEquals("Incorrect reflect filter", original.getRGB(original.getWidth() - x - 1, y),
+            assertEquals("Incorrect reflect filter",
+                    original.getRGB(original.getWidth() - x - 1, y),
                     image.getRGB(x, y));
         }
     }
@@ -123,11 +129,16 @@ public class Task054Test {
         int[] greenValues = {232, 30, 100, 0, 255};
         int[] blueValues = {180, 24, 100, 0, 255};
         for (int i = 0; i < pixelValues.length; i++) {
-            assertTrue("Color value can't be greater then 255", (instance.getRed(pixelValues[i]) < 256 &&
-                    instance.getGreen(pixelValues[i]) < 256 && instance.getBlue(pixelValues[i]) < 256));
-            assertEquals("Incorrect value of red", redValues[i], instance.getRed(pixelValues[i]));
-            assertEquals("Incorrect value of green", greenValues[i], instance.getGreen(pixelValues[i]));
-            assertEquals("Incorrect value of blue", blueValues[i], instance.getBlue(pixelValues[i]));
+            assertTrue("Color value can't be greater then 255",
+                    (instance.getRed(pixelValues[i]) < 256
+                    && instance.getGreen(pixelValues[i]) < 256
+                    && instance.getBlue(pixelValues[i]) < 256));
+            assertEquals("Incorrect value of red",
+                    redValues[i], instance.getRed(pixelValues[i]));
+            assertEquals("Incorrect value of green",
+                    greenValues[i], instance.getGreen(pixelValues[i]));
+            assertEquals("Incorrect value of blue",
+                    blueValues[i], instance.getBlue(pixelValues[i]));
         }
     }
 }
