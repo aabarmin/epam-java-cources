@@ -78,6 +78,11 @@ public class CodeTreeNode implements Comparable<CodeTreeNode> {
 
     @Override
     public int compareTo(CodeTreeNode o) {
+        if (this.getWeight() != o.getWeight()){
+            return o.getWeight() - this.getWeight();
+        } else if (o.getContent() != null && this.getContent() != null){
+            return  o.getContent() - this.getContent();
+        }
         return o.getWeight() - this.getWeight();
     }
 }

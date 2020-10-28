@@ -23,7 +23,6 @@ public class Task039Impl implements Task039 {
         }
 
 
-
         return codes;
     }
 
@@ -72,18 +71,14 @@ public class Task039Impl implements Task039 {
 
     private static CodeTreeNode huffman(ArrayList<CodeTreeNode> codeTreeNodes) {
         Collections.sort(codeTreeNodes);
+
         while (codeTreeNodes.size() > 1) {
             Collections.sort(codeTreeNodes);
 
             CodeTreeNode left = codeTreeNodes.remove(codeTreeNodes.size() - 1);
             CodeTreeNode right = codeTreeNodes.remove(codeTreeNodes.size() - 1);
 
-
             CodeTreeNode parent = new CodeTreeNode(null, left.getWeight() + right.getWeight(), left, right);
-
-//            if (left.getWeight() == right.getWeight()){
-//                parent = new CodeTreeNode(null, left.getWeight()+ right.getWeight(), right, left);
-//            }
 
             codeTreeNodes.add(parent);
         }
