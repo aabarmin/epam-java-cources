@@ -7,6 +7,10 @@ public class Task024Impl implements Task024 {
     @Override
     public Collection<String> getWordsCount(String source) {
 
+        if (source == null) {
+            throw new IllegalArgumentException();
+        }
+
         ArrayList<String> list = new ArrayList<>();
 
         char[] chars = source.toCharArray();
@@ -24,7 +28,7 @@ public class Task024Impl implements Task024 {
             if (Character.isLowerCase(chars[i])) {
                 sb.append(chars[i]);
             }
-            if (i == chars.length - 1){
+            if (i == chars.length - 1) {
                 list.add(sb.toString().toLowerCase());
             }
         }

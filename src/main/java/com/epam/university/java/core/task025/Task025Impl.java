@@ -15,11 +15,11 @@ public class Task025Impl implements Task025 {
         int index = 0;
 
         for (int i = 0; i < message.length; i++) {
-            if (message[i] != sos[index]){
+            if (message[i] != sos[index]) {
                 amountOfChanges++;
             }
             index++;
-            if (index > 2){
+            if (index > 2) {
                 index = 0;
             }
         }

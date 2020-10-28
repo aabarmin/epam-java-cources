@@ -8,7 +8,7 @@ import java.util.List;
 public class Task029Impl implements Task029 {
     @Override
     public Collection<String> fillCrossword(Collection<String> rows, Collection<String> words) {
-        if (rows == null || words == null){
+        if (rows == null || words == null) {
             throw new IllegalArgumentException();
         }
         ArrayList<String> crossWord = new ArrayList<>(rows);

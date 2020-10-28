@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task003;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Task003Impl implements Task003 {
 
@@ -122,7 +123,7 @@ public class Task003Impl implements Task003 {
             str += line + " ";
         }
         String[] output = operation.flatMap(str);
-//        System.out.println(Arrays.toString(output));
+
         return output;
     }
 

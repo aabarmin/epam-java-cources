@@ -51,4 +51,13 @@ public class StructuresTest {
         assertTrue("Incorrect value in object map",
                 complexObject.getObjectMap().get("secondKey") instanceof ComplexObject);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testIncorrectStructures() throws Exception {
+        final String contextConfigPath =
+                getClass().getResource("/project/project004.xml").getFile();
+        applicationContext.loadBeanDefinitions(new XmlResource(contextConfigPath));
+        // load and check
+        applicationContext.getBean("complexObject", ComplexObject.class);
+    }
 }

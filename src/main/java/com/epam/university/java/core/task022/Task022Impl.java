@@ -9,6 +9,9 @@ public class Task022Impl implements Task022 {
     @Override
     public int maxSum(Collection<Integer> numbers) {
 
+        if (numbers == null) {
+            throw new IllegalArgumentException();
+        }
         if (numbers.isEmpty()) {
             throw new IllegalArgumentException();
         }
@@ -27,6 +30,9 @@ public class Task022Impl implements Task022 {
     @Override
     public int minSum(Collection<Integer> numbers) {
 
+        if (numbers == null) {
+            throw new IllegalArgumentException();
+        }
         if (numbers.isEmpty()) {
             throw new IllegalArgumentException();
         }
