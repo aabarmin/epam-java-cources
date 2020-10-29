@@ -1,13 +1,11 @@
 package com.epam.university.java.core.task021;
 
-import com.epam.university.java.core.task013.Vertex;
 import com.epam.university.java.core.task015.Point;
 import com.epam.university.java.core.task015.PointImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class Task021Impl implements Task021 {
     @Override
@@ -18,7 +16,6 @@ public class Task021Impl implements Task021 {
         }
 
         ArrayList<PointImpl> listOfMinePositions = new ArrayList<>();
-
 
         for (Point minePosition : minePositions) {
             PointImpl vertex = (PointImpl) minePosition;
@@ -31,8 +28,7 @@ public class Task021Impl implements Task021 {
         Point vertexB = listOfMinePositions.get(1);
         Point vertexC = listOfMinePositions.get(2);
 
-//      Get angles
-
+        //Get angles
         double angleA = findAngle(vertexC, vertexA, vertexB);
         if (angleA > 120) {
             return vertexA;
@@ -46,30 +42,33 @@ public class Task021Impl implements Task021 {
             return vertexC;
         }
 
-//      three new vertexes;
-        Point vertexAB = findAdditionalVertex(vertexA, vertexB);
-        Point vertexBC = findAdditionalVertex(vertexB, vertexC);
-        Point vertexAC = findAdditionalVertex(vertexC, vertexA);
+        //three new vertexes;
+        Point vertexAb = findAdditionalVertex(vertexA, vertexB);
+        Point vertexBc = findAdditionalVertex(vertexB, vertexC);
+        Point vertexAc = findAdditionalVertex(vertexC, vertexA);
 
-        Point intersection = findIntersectionBetween(vertexAB, vertexC, vertexBC, vertexA, vertexAC, vertexB);
+        Point intersection = findIntersectionBetween(vertexAb, vertexC,
+                                                     vertexBc, vertexA,
+                                                     vertexAc, vertexB);
 
 
         return intersection;
 
     }
 
-    private Point findIntersectionBetween(Point vertexAB, Point vertexC,
-                                          Point vertexBC, Point vertexA,
-                                          Point vertexAC, Point vertexB) {
+    private Point findIntersectionBetween(Point vertexAb, Point vertexC,
+                                          Point vertexBc, Point vertexA,
+                                          Point vertexAc, Point vertexB) {
+
         Point intersectionPoint = new PointImpl();
 
-        Line fromABtoC = new Line(vertexAB.getX(), vertexAB.getY(), vertexC.getX(), vertexC.getY());
-        Line fromBCtoA = new Line(vertexBC.getX(), vertexBC.getY(), vertexA.getX(), vertexA.getY());
+        Line fromABtoC = new Line(vertexAb.getX(), vertexAb.getY(), vertexC.getX(), vertexC.getY());
+        Line fromBCtoA = new Line(vertexBc.getX(), vertexBc.getY(), vertexA.getX(), vertexA.getY());
 
         if (Double.isNaN(fromABtoC.getB())) {
-            fromABtoC = new Line(vertexAC.getX(), vertexAC.getY(), vertexC.getX(), vertexC.getY());
-        } else if (Double.isNaN(fromBCtoA.getB())){
-            fromBCtoA = new Line(vertexAC.getX(), vertexAC.getY(), vertexC.getX(), vertexC.getY());
+            fromABtoC = new Line(vertexAc.getX(), vertexAc.getY(), vertexC.getX(), vertexC.getY());
+        } else if (Double.isNaN(fromBCtoA.getB())) {
+            fromBCtoA = new Line(vertexAc.getX(), vertexAc.getY(), vertexC.getX(), vertexC.getY());
         }
 
         //x = (b2-b1) / (m1-m2)
@@ -87,7 +86,7 @@ public class Task021Impl implements Task021 {
 
     private Point findAdditionalVertex(Point baseVertex, Point rotateVertex) {
 
-        Point newPoint = new PointImpl();
+        final Point newPoint = new PointImpl();
         double modifiedXOfB = rotateVertex.getX() - baseVertex.getX();
         double modifiedYOfB = rotateVertex.getY() - baseVertex.getY();
 
@@ -108,17 +107,13 @@ public class Task021Impl implements Task021 {
 
     private double findAngle(Point vertexC, Point vertexA, Point vertexB) {
 
-
-        double angle;
-
         double modifiedXOfB;
         double modifiedYOfB;
-        double modifiedXOfC;
-        double modifiedYOfC;
-
         modifiedXOfB = vertexB.getX() - vertexA.getX();
         modifiedYOfB = vertexB.getY() - vertexA.getY();
 
+        double modifiedXOfC;
+        double modifiedYOfC;
         modifiedXOfC = vertexC.getX() - vertexA.getX();
         modifiedYOfC = vertexC.getY() - vertexA.getY();
 
@@ -130,9 +125,10 @@ public class Task021Impl implements Task021 {
                 + Math.pow(modifiedYOfC, 2));
         double cosOfAngle = scMul / (moduloOfB * moduloOfC);
 
+        double angle;
         angle = Math.acos(cosOfAngle);
-
         angle = Math.toDegrees(angle);
+
         return angle;
     }
 
@@ -141,6 +137,13 @@ public class Task021Impl implements Task021 {
         private double k;
         private double b;
 
+        /**
+         * Line constructor y= kx + b sets k and b.
+         * @param x1 first point x
+         * @param y1 first point y
+         * @param x2 second point x
+         * @param y2 second point y
+         */
         public Line(double x1, double y1, double x2, double y2) {
             if (x1 + x2 == 0) {
                 this.k = Double.NaN;
@@ -168,6 +171,4 @@ public class Task021Impl implements Task021 {
             this.b = b;
         }
     }
-
-
 }

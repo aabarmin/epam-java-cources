@@ -62,7 +62,7 @@ public class PointImpl implements Point, Comparable<PointImpl> {
         if (this.getX() != point.getX()) {
             return (int) (this.getX() - point.getX());
         } else {
-            return (int) (this.getY() - point.getY() );
+            return (int) (this.getY() - point.getY());
         }
     }
 }
