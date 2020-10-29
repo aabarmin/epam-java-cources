@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task012;
 
-import javax.imageio.metadata.IIOMetadataNode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,6 +8,11 @@ public class GraphImpl implements Graph {
 
     private HashMap<Integer, ArrayList<Integer>> map;
     private int size;
+
+    /**
+     * Graph constructor.
+     * @param id id of a node
+     */
     public GraphImpl(int id) {
         map = new HashMap<>();
         for (int i = 0; i <= id; i++) {
@@ -19,17 +23,18 @@ public class GraphImpl implements Graph {
 
     @Override
     public void createEdge(int from, int to) {
-        ArrayList<Integer> tmp = map.get(from);
-//        if (!tmp.contains(to)) {
-            tmp.add(to);
-//        }
-        map.put(from, tmp);
 
-        tmp = map.get(to);
-//        if (!tmp.contains(from)) {
+        try {
+            ArrayList<Integer> tmp = map.get(from);
+            tmp.add(to);
+            map.put(from, tmp);
+
+            tmp = map.get(to);
             tmp.add(from);
-//        }
-        map.put(to,tmp);
+            map.put(to, tmp);
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
@@ -39,15 +44,21 @@ public class GraphImpl implements Graph {
 
     @Override
     public void removeEdge(int from, int to) {
-        ArrayList<Integer> tmp = map.get(from);
-        int index = tmp.indexOf(to);
-        if (edgeExists(from, to)) {
-            tmp.remove(index);
-            map.put(from, tmp);
-            tmp = map.get(to);
-            index = tmp.indexOf(from);
-            tmp.remove(index);
-            map.put(to,tmp);
+        try {
+            ArrayList<Integer> tmp = map.get(from);
+            int index = tmp.indexOf(to);
+            if (edgeExists(from, to)) {
+                tmp.remove(index);
+                map.put(from, tmp);
+                tmp = map.get(to);
+                index = tmp.indexOf(from);
+                tmp.remove(index);
+                map.put(to, tmp);
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (NullPointerException | IllegalArgumentException e) {
+            throw new IllegalArgumentException();
         }
     }
 

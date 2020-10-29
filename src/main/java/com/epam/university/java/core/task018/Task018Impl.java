@@ -6,8 +6,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Task018Impl implements Task018 {
+
     @Override
     public boolean isAnnotationPresent(Object toCheck, Class<?> annotationToFind) {
+        if (toCheck == null || annotationToFind == null) {
+            throw new IllegalArgumentException();
+        }
 
         Annotation[] annotations2 = toCheck.getClass().getPackage().getAnnotations();
         for (Annotation annotation : annotations2) {

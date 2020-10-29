@@ -12,7 +12,6 @@ public class Task001Impl implements Task001 {
     }
 
 
-
     @Override
     public double subtraction(String firstNumber, String secondNumber) {
 
@@ -39,6 +38,6 @@ public class Task001Impl implements Task001 {
         }
 
 
-            return Double.parseDouble(firstNumber.trim()) / Double.parseDouble(secondNumber.trim());
+        return Double.parseDouble(firstNumber.trim()) / Double.parseDouble(secondNumber.trim());
     }
 }
