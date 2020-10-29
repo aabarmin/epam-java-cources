@@ -21,9 +21,27 @@ public class PointImpl implements Point {
     }
 
     @Override
+    public int hashCode() {
+        return (int) (31 * x + 31 * y);
+    }
+
+    @Override
     public boolean equals(Object obj) {
+
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
         PointImpl point = (PointImpl) obj;
-        return this.y == point.y && this.x == point.x;
+
+        return point.getX() == this.getX()
+                && point.getY() == this.getY();
     }
 
     @Override
