@@ -59,7 +59,7 @@ public class Task039Test {
                         'D', 20,
                         'E', 10,
                         'F', 5)));
-        assertEquals("Incorrect encoding", resultEncoding, targetEncoding);
+        assertEquals("Incorrect encoding", targetEncoding, resultEncoding);
     }
 
     @Test

@@ -1,9 +1,12 @@
 package com.epam.university.java.core.task015;
 
-public class PointImpl implements Point {
+public class PointImpl implements Point, Comparable<PointImpl> {
 
     private double x;
     private double y;
+
+    public PointImpl() {
+    }
 
     public PointImpl(double x, double y) {
         this.x = x;
@@ -52,5 +55,14 @@ public class PointImpl implements Point {
     @Override
     public void setY(double y) {
         this.y = y;
+    }
+
+    @Override
+    public int compareTo(PointImpl point) {
+        if (this.getX() != point.getX()) {
+            return (int) (this.getX() - point.getX());
+        } else {
+            return (int) (this.getY() - point.getY() );
+        }
     }
 }
