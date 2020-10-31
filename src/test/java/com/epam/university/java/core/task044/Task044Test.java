@@ -30,13 +30,13 @@ public class Task044Test {
         final List<String> footprints = Arrays.asList(
                 "1 2", "2 3", "3 4", "5 6"
         );
-        assertEquals("invalid number of prints", instance.findCountOfTraces(7, footprints), 3);
+        assertEquals("invalid number of prints", 3, instance.findCountOfTraces(7, footprints));
     }
 
     @Test
     public void getAllFootprints2() {
         final List<String> footprints = new ArrayList<>();
-        assertEquals("invalid number of prints", instance.findCountOfTraces(5, footprints), 5);
+        assertEquals("invalid number of prints", 5, instance.findCountOfTraces(5, footprints));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class Task044Test {
         final List<String> footprints = Arrays.asList(
                 "1 2", "2 3", "3 4", "4 1"
         );
-        assertEquals("invalid number of prints", instance.findCountOfTraces(4, footprints), 1);
+        assertEquals("invalid number of prints", 1, instance.findCountOfTraces(4, footprints));
     }
 
     @Test
@@ -52,6 +52,6 @@ public class Task044Test {
         final List<String> footprints = Arrays.asList(
                 "1 2", "2 3", "3 4", "4 1", "8 5", "5 6", "6 7"
         );
-        assertEquals("invalid number of prints", instance.findCountOfTraces(8, footprints), 2);
+        assertEquals("invalid number of prints", 2, instance.findCountOfTraces(8, footprints));
     }
 }
