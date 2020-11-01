@@ -1,13 +1,14 @@
 package com.epam.university.java.project.core.cdi.bean;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class BeanDefinitionImpl implements BeanDefinition {
-    private String mId;
-    private String mClassName;
-    private Collection<BeanPropertyDefinition> mProperties;
-    private String mPostContract;
-    private String mScope;
+    private String mId = "";
+    private String mClassName = "";
+    private Collection<BeanPropertyDefinition> mProperties = new ArrayList<>();
+    private String mPostContract = "";
+    private String mScope = "";
 
     @Override
     public String getId() {
