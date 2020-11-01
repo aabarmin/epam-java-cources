@@ -16,7 +16,7 @@ public interface ProcessingContext {
     /**
      * Calculate average age of living houses for each district of the city.
      * @param district - Cyrillic name of district. "Город" - must calculate
-     *                 average age for entire city.
+     *                 average age for houses entire city.
      * @return - average age of houses in particular district.
      */
     int averageAge(String district);

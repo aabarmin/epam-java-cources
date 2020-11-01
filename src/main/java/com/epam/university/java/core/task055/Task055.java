@@ -1,6 +1,5 @@
 package com.epam.university.java.core.task055;
 
-
 /**
  * Read XML.
  * Implement a programme that get a data about Saint Petersburg residential buildings from
