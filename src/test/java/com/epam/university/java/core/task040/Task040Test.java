@@ -28,21 +28,21 @@ public class Task040Test {
     @Test
     public void countTest1() throws Exception {
         assertEquals("Incorrect counted score",
-                instance.countScore("11 11 11 11 11 11 11 11 11 11"),
-                20);
+                20,
+                instance.countScore("11 11 11 11 11 11 11 11 11 11"));
     }
 
     @Test
     public void countTest2() throws Exception {
         assertEquals("Incorrect counted score",
-                instance.countScore("X X X X X X X X X XXX"),
-                300);
+                300,
+                instance.countScore("X X X X X X X X X XXX"));
     }
 
     @Test
     public void countTest3() throws Exception {
         assertEquals("Incorrect counted score",
-                instance.countScore("X 81 X X 7/ 53 06 X 7/ X81"),
-                163);
+                163,
+                instance.countScore("X 81 X X 7/ 53 06 X 7/ X81"));
     }
 }
