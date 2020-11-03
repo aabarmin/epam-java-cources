@@ -9,7 +9,9 @@ import java.util.Collection;
 public class StateMachineDefinitionImpl implements StateMachineDefinition<BookStatus, BookEvent> {
     BookEvent startEvent;
     BookStatus startState;
-    Collection<StateMachineState<BookStatus, BookEvent>> states;
+    Collection<StateMachineState<BookStatus, BookEvent>> states =
+            new ArrayList<StateMachineState<BookStatus, BookEvent>>();
+    Class<? extends StateMachineEventHandler> handlerClass;
 
     @Override
     public BookEvent getStartEvent() {
@@ -38,17 +40,16 @@ public class StateMachineDefinitionImpl implements StateMachineDefinition<BookSt
 
     @Override
     public void addState(StateMachineState<BookStatus, BookEvent> state) {
-        states = new ArrayList<StateMachineState<BookStatus, BookEvent>>();
         states.add(state);
     }
 
     @Override
     public Class<? extends StateMachineEventHandler> getHandlerClass() {
-        return null;
+        return handlerClass;
     }
 
     @Override
     public void setHandlerClass(Class<? extends StateMachineEventHandler> handlerClass) {
-
+        this.handlerClass = handlerClass;
     }
 }
