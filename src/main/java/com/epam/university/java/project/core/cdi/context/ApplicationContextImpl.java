@@ -1,6 +1,10 @@
 package com.epam.university.java.project.core.cdi.context;
 
-import com.epam.university.java.project.core.cdi.bean.*;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinition;
+import com.epam.university.java.project.core.cdi.bean.BeanDefinitionHandler;
+import com.epam.university.java.project.core.cdi.bean.BeanPropertiesSetter;
+import com.epam.university.java.project.core.cdi.bean.BeanPropertiesSetterImpl;
+import com.epam.university.java.project.core.cdi.bean.BeanPropertyDefinition;
 import com.epam.university.java.project.core.cdi.io.Resource;
 import org.xml.sax.SAXException;
 
@@ -52,100 +56,113 @@ public class ApplicationContextImpl implements ApplicationContext {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(Class<T> beanClass) {
         if (beanClass == null) {
             return null;
         }
-            for (BeanDefinition beanDefinition:
-                 beanDefinitions) {
-                if (beanClass.getName().equals(beanDefinition.getClassName())) {
-                    return (T) getBean(beanDefinition.getId());
-                }
-                String className = beanDefinition.getClassName();
-                try {
-                    Class<?> aClass = Class.forName(className);
-                    Class<?>[] interfaces = aClass.getInterfaces();
-                    for (Class<?> anInterface : interfaces) {
-                        if (beanClass.getName().equals(anInterface.getName())) {
-                            return (T) getBean(beanDefinition.getId());
-                        }
-                    }
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+        for (BeanDefinition beanDefinition :
+                beanDefinitions) {
+            if (beanClass.getName().equals(beanDefinition.getClassName())) {
+                return (T) getBean(beanDefinition.getId());
             }
+            String className = beanDefinition.getClassName();
+            try {
+                Class<?> aClass = Class.forName(className);
+                Class<?>[] interfaces = aClass.getInterfaces();
+                for (Class<?> anInterface : interfaces) {
+                    if (beanClass.getName().equals(anInterface.getName())) {
+                        return (T) getBean(beanDefinition.getId());
+                    }
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Object getBean(String beanName) {
         if (beanName == null) {
             return null;
         }
-        for (BeanDefinition beanDefinition:
-             beanDefinitions) {
-                if (beanName.equalsIgnoreCase(beanDefinition.getId())) {
-                    for (Object o:
-                         listOfSingletons) {
-                        if ((beanDefinition.getScope().equals("singleton") ||
-                                beanDefinition.getScope() == null) &&
-                        o.getClass().getName().equals(beanDefinition.getClassName())) {
-                            return o;
-                        }
+        for (BeanDefinition beanDefinition :
+                beanDefinitions) {
+            if (beanName.equalsIgnoreCase(beanDefinition.getId())) {
+                for (Object o :
+                        listOfSingletons) {
+                    if ((beanDefinition.getScope().equals("singleton")
+                            || beanDefinition.getScope() == null)
+                            && o.getClass().getName().equals(beanDefinition.getClassName())) {
+                        return o;
                     }
-                    try {
-                        Class c = Class.forName(beanDefinition.getClassName());
-                        Object o = c.getDeclaredConstructor().newInstance();
-                        Field[] fields = o.getClass().getDeclaredFields();
-                        Collection<BeanPropertyDefinition> properties = beanDefinition.getProperties();
-                        if (fields.length != properties.size()) {
-                            throw new RuntimeException();
-                        }
-                        for (Field field : fields) {
-                            for (BeanPropertyDefinition property : properties) {
-                                if (property.getName().equalsIgnoreCase(field.getName())){
-                                    if (property.getValue() != null) {
-                                        setter.setValue(o, field, property);
-                                    }
-                                    else if (property.getRef() != null) {
-                                        Object bean = getBean(field.getName());
-                                        field.setAccessible(true);
-                                        field.set(o, bean);
-                                    }
-                                    else if (property.getData() != null) {
-                                        setter.setComplexData(o, field, property);
-                                    }
+                }
+                try {
+                    Class c = Class.forName(beanDefinition.getClassName());
+                    Object o = c.getDeclaredConstructor().newInstance();
+                    Field[] fields = o.getClass().getDeclaredFields();
+                    Collection<BeanPropertyDefinition> properties = beanDefinition.getProperties();
+                    for (Field field : fields) {
+                        for (BeanPropertyDefinition property : properties) {
+                            if (!checkProperty(property)) {
+                                throw new RuntimeException();
+                            }
+                            if (property.getName().equalsIgnoreCase(field.getName())) {
+                                if (property.getValue() != null) {
+                                    setter.setValue(o, field, property);
+                                } else if (property.getRef() != null) {
+                                    Object bean = getBean(field.getName());
+                                    field.setAccessible(true);
+                                    field.set(o, bean);
+                                } else if (property.getData() != null) {
+                                    setter.setComplexData(o, field, property, this);
                                 }
                             }
                         }
-                        listOfSingletons.add(o);
-                        return o;
-                    } catch (ClassNotFoundException
-                            | InstantiationException
-                            | InvocationTargetException
-                            | NoSuchMethodException
-                            | IllegalAccessException e) {
-                        e.printStackTrace();
                     }
+                    listOfSingletons.add(o);
+                    return o;
+                } catch (ClassNotFoundException
+                        | InstantiationException
+                        | InvocationTargetException
+                        | NoSuchMethodException
+                        | IllegalAccessException e) {
+                    e.printStackTrace();
                 }
+            }
         }
         return null;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getBean(String beanName, Class<T> beanClass) {
         if (beanName == null || beanClass == null) {
             return null;
         }
-        for (BeanDefinition beanDefinition:
+        for (BeanDefinition beanDefinition :
                 beanDefinitions) {
             if (beanDefinition.getId().equals(beanName)) {
-                if (beanDefinition.getClassName().equals(beanClass.getName())){
-                        return (T) getBean(beanDefinition.getId());
+                if (beanDefinition.getClassName().equals(beanClass.getName())) {
+                    return (T) getBean(beanDefinition.getId());
 
                 }
             }
         }
         return null;
+    }
+
+    private boolean checkProperty(BeanPropertyDefinition property) {
+        if (property == null) {
+            return false;
+        }
+        if (property.getValue() == null
+                && property.getRef() == null
+                && property.getData() == null) {
+            return false;
+        }
+        return true;
     }
 }

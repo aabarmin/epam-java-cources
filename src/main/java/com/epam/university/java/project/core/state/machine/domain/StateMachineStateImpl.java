@@ -9,6 +9,9 @@ public class StateMachineStateImpl implements StateMachineState<BookStatus, Book
     private BookEvent mOn;
     private String mMethodToCall;
 
+    /**
+     * Constructor of StateMachineStateImpl (with method name).
+     */
     public StateMachineStateImpl(BookStatus from, BookStatus to, BookEvent on, String method) {
         this.mFrom = from;
         this.mTo = to;
@@ -16,6 +19,9 @@ public class StateMachineStateImpl implements StateMachineState<BookStatus, Book
         this.mMethodToCall = method;
     }
 
+    /**
+     * Constructor of StateMachineStateImpl (without method name).
+     */
     public StateMachineStateImpl(BookStatus from, BookStatus to, BookEvent on) {
         this(from, to, on, null);
     }

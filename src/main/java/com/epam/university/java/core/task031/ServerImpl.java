@@ -19,7 +19,7 @@ public class ServerImpl implements Server {
     @Override
     public String readMessage() {
         try {
-            Thread.sleep(200);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -38,6 +38,9 @@ public class ServerImpl implements Server {
 
     @Override
     public void stop() {
+        if (serverSocket == null) {
+            throw new RuntimeException();
+        }
         isRunning = false;
         try {
             serverSocket.close();

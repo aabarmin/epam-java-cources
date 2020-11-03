@@ -9,6 +9,9 @@ public interface BeanPropertiesSetter {
     public void setReference(Object bean, Field field, BeanPropertyDefinition property)
             throws IllegalAccessException;
 
-    public void setComplexData(Object bean, Field field, BeanPropertyDefinition property)
+    public void setComplexData(Object bean,
+                               Field field,
+                               BeanPropertyDefinition property,
+                               BeanFactory factory)
             throws IllegalAccessException;
 }
