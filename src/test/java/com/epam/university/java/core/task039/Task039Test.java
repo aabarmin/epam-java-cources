@@ -29,8 +29,8 @@ public class Task039Test {
                 'B', "10",
                 'C', "00",
                 'D', "011",
-                'E', "0101",
-                'F', "0100");
+                'E', "0100",
+                'F', "0101");
         final Map<Character, String> resultEncoding = instance.getEncoding(
                 new HashMap<>(Map.of(
                         'A', 100,
@@ -39,7 +39,7 @@ public class Task039Test {
                         'D', 45,
                         'E', 10,
                         'F', 10)));
-        assertEquals("Incorrect encoding", resultEncoding, targetEncoding);
+        assertEquals("Incorrect encoding", targetEncoding, resultEncoding);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class Task039Test {
                         'D', 20,
                         'E', 10,
                         'F', 5)));
-        assertEquals("Incorrect encoding", resultEncoding, targetEncoding);
+        assertEquals("Incorrect encoding", targetEncoding, resultEncoding);
     }
 
     @Test
