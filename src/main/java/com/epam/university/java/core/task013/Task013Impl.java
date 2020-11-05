@@ -45,7 +45,6 @@ public class Task013Impl implements Task013 {
         }
         checkedVertices.add(theLeftest);
 
-
         Vertex secondVertex = list.get(0);
         if (secondVertex.equals(theLeftest)) {
             secondVertex = list.get(1);
@@ -61,7 +60,6 @@ public class Task013Impl implements Task013 {
         }
 
         checkedVertices.add(secondVertex);
-
 
         Vertex prevVertex;
         Vertex currentVertex;
@@ -134,14 +132,11 @@ public class Task013Impl implements Task013 {
                 checkedVertices.add(nextVertex);
 
             }
-
             if (tang >= 0.0 && tang != 1  && tang != -0.0) {
                 return false;
             }
             tang = -100;
         }
-
-
         return checkedVertices.size() == list.size();
     }
 }
