@@ -43,6 +43,7 @@ public interface Task056 {
      * Determination of the required packs of pills.
      * @param prescriptionFile prescription from the doctor
      * @return collection with packs numbers. Numbering started from 0
+     * @throws IllegalArgumentException if input parameter is null
      */
     Collection<Integer> necessaryMedication(String prescriptionFile);
 
@@ -52,6 +53,7 @@ public interface Task056 {
      *      "from-to" (both inclusive)
      * @param necessaryMedication treatment course
      * @return collection of intervals or empty collection. Numbering started from 1
+     * @throws IllegalArgumentException if input parameter is null
      */
     Collection<String> intervalBetweenMedication(Collection<Integer> necessaryMedication);
 }
