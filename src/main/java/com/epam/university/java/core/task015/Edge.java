@@ -1,10 +1,11 @@
-package com.epam.university.java.core.task038;
+package com.epam.university.java.core.task015;
+
 
 import java.util.Objects;
 
-public class Edge implements Comparable<Edge> {
-    private Vertex from;
-    private Vertex to;
+public class Edge implements Comparable<com.epam.university.java.core.task038.Edge> {
+    private Point from;
+    private Point to;
     private double weight;
 
     /**
@@ -15,30 +16,31 @@ public class Edge implements Comparable<Edge> {
 
     /**
      * Edge constructor.
-     * @param from source Vertex
-     * @param to to Vertex
+     *
+     * @param from   source Vertex
+     * @param to     to Vertex
      * @param weight weight of the edge
      */
-    public Edge(Vertex from, Vertex to, double weight) {
+    public Edge(Point from, Point to, double weight) {
         this.from = from;
         this.to = to;
         this.weight = weight;
     }
 
 
-    public Vertex getFrom() {
+    public Point getFrom() {
         return from;
     }
 
-    public void setFrom(Vertex from) {
+    public void setFrom(Point from) {
         this.from = from;
     }
 
-    public Vertex getTo() {
+    public Point getTo() {
         return to;
     }
 
-    public void setTo(Vertex to) {
+    public void setTo(Point to) {
         this.to = to;
     }
 
@@ -60,8 +62,10 @@ public class Edge implements Comparable<Edge> {
         }
         Edge edge = (Edge) o;
         return Double.compare(edge.getWeight(), getWeight()) == 0
-                && getFrom().equals(edge.getFrom())
-                && getTo().equals(edge.getTo());
+                && (getFrom().equals(edge.getFrom())
+                && getTo().equals(edge.getTo()))
+                || (getFrom().equals(edge.getTo())
+                && getTo().equals(edge.getFrom()));
     }
 
     @Override
@@ -78,7 +82,7 @@ public class Edge implements Comparable<Edge> {
     }
 
     @Override
-    public int compareTo(Edge edge) {
+    public int compareTo(com.epam.university.java.core.task038.Edge edge) {
         return Double.compare(this.getWeight(), edge.getWeight());
     }
 }

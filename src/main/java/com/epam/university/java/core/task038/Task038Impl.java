@@ -12,7 +12,7 @@ import static java.lang.Math.pow;
 public class Task038Impl implements Task038 {
     @Override
     public Graph invokeActions(Graph sourceGraph, Collection<GraphAction> actions) {
-        if (sourceGraph == null || actions == null) {
+        if (sourceGraph == null || actions == null || actions.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
@@ -24,6 +24,10 @@ public class Task038Impl implements Task038 {
 
     @Override
     public Collection<Vertex> getShortestPath(Graph graph, int startId, int endId) {
+
+        if (graph == null) {
+            throw new IllegalArgumentException();
+        }
 
         Vertex start = findVertexById(graph, startId);
         Vertex end = findVertexById(graph, endId);

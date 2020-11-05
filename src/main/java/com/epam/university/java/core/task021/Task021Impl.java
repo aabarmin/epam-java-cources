@@ -73,6 +73,7 @@ public class Task021Impl implements Task021 {
 
         //x = (b2-b1) / (m1-m2)
         double newX = (fromBCtoA.getB() - fromABtoC.getB()) / (fromABtoC.getK() - fromBCtoA.getK());
+        //newY = Math.round(newY * 1000000000000000L) / 1000000000000000.0;
         intersectionPoint.setX(newX);
 
         //y = m1 * [(b2-b1) / (m1-m2)] + b1
