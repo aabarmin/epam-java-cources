@@ -30,7 +30,7 @@ public class Task046Test {
                 "0"
         );
         assertEquals("it is impossible to assemble a matryoshka",
-                instance.assembleMatryoshka(1, 1), target);
+                target, instance.assembleMatryoshka(1, 1));
     }
 
     @Test
