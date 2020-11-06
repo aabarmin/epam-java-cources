@@ -9,8 +9,13 @@ public class SquareImpl implements Square {
     private Point first;
     private Point second;
     private double edgeLength;
+    private Point middle;
+
+
+
     private List<Point> vertexes;
     private List<Edge> edges;
+
 
 
     /**
@@ -53,6 +58,7 @@ public class SquareImpl implements Square {
         Point middle = new PointImpl();
         middle.setX((theLeftest.getX() + theRightest.getX()) / 2);
         middle.setY((theLeftest.getY() + theRightest.getY()) / 2);
+        this.middle = middle;
 
         ArrayList<Point> vertexes = new ArrayList<>();
 
@@ -130,12 +136,36 @@ public class SquareImpl implements Square {
         this.second = second;
     }
 
+    public Point getMiddle() {
+        return middle;
+    }
+
+    public void setMiddle(Point middle) {
+        this.middle = middle;
+    }
+
     public double getEdgeLength() {
         return edgeLength;
     }
 
     public void setEdgeLength(double edgeLength) {
         this.edgeLength = edgeLength;
+    }
+
+    public List<Point> getVertexes() {
+        return vertexes;
+    }
+
+    public void setVertexes(List<Point> vertexes) {
+        this.vertexes = vertexes;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
     }
 
 

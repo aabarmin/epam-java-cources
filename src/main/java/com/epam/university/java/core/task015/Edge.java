@@ -3,7 +3,7 @@ package com.epam.university.java.core.task015;
 
 import java.util.Objects;
 
-public class Edge implements Comparable<com.epam.university.java.core.task038.Edge> {
+public class Edge implements Comparable<Edge> {
     private Point from;
     private Point to;
     private double weight;
@@ -82,7 +82,12 @@ public class Edge implements Comparable<com.epam.university.java.core.task038.Ed
     }
 
     @Override
-    public int compareTo(com.epam.university.java.core.task038.Edge edge) {
+    public int compareTo(Edge edge) {
         return Double.compare(this.getWeight(), edge.getWeight());
+    }
+
+
+    public boolean isVertical(){
+        return this.getFrom().getX() == this.getTo().getX();
     }
 }
