@@ -3,6 +3,7 @@ package com.epam.university.java.core.task058;
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class Task058Test {
@@ -25,7 +26,7 @@ public class Task058Test {
         assertEquals("Orders are different", target.length, actual.length);
         assertEquals("Orders are different", target[0].length, actual[0].length);
         for (int i = 0; i < target.length; i++) {
-            for(int j = 0; j < target.length; j++) {
+            for (int j = 0; j < target.length; j++) {
                 assertEquals("Incorrect result in element (" + i + ", " + j + ")!",
                         target[i][j], actual[i][j]);
             }
@@ -36,10 +37,10 @@ public class Task058Test {
     public void numberIsTwo() throws Exception {
         final int[][] target = {{1, 2}, {4, 3}};
         final int[][] actual = instance.fillSpiral(2);
-        assertEquals("Orders are different", target.length, actual.length );
-        assertEquals("Orders are different", target[0].length, actual[0].length );
+        assertEquals("Orders are different", target.length, actual.length);
+        assertEquals("Orders are different", target[0].length, actual[0].length);
         for (int i = 0; i < target.length; i++) {
-            for(int j = 0; j < target.length; j++) {
+            for (int j = 0; j < target.length; j++) {
                 assertEquals("Incorrect result in element (" + i + ", " + j + ")!",
                         target[i][j], actual[i][j]);
             }
@@ -53,10 +54,10 @@ public class Task058Test {
                 {8, 9, 4},
                 {7, 6, 5}};
         final int[][] actual = instance.fillSpiral(3);
-        assertEquals("Orders are different", target.length, actual.length );
-        assertEquals("Orders are different", target[0].length, actual[0].length );
+        assertEquals("Orders are different", target.length, actual.length);
+        assertEquals("Orders are different", target[0].length, actual[0].length);
         for (int i = 0; i < target.length; i++) {
-            for(int j = 0; j < target.length; j++) {
+            for (int j = 0; j < target.length; j++) {
                 assertEquals("Incorrect result in element (" + i + ", " + j + ")!",
                         target[i][j], actual[i][j]);
             }
@@ -73,10 +74,10 @@ public class Task058Test {
                 {13, 12, 11, 10, 9}
         };
         final int[][] actual = instance.fillSpiral(5);
-        assertEquals("Orders are different", target.length, actual.length );
-        assertEquals("Orders are different", target[0].length, actual[0].length );
+        assertEquals("Orders are different", target.length, actual.length);
+        assertEquals("Orders are different", target[0].length, actual[0].length);
         for (int i = 0; i < target.length; i++) {
-            for(int j = 0; j < target.length; j++) {
+            for (int j = 0; j < target.length; j++) {
                 assertEquals("Incorrect result in element (" + i + ", " + j + ")!",
                         target[i][j], actual[i][j]);
             }
