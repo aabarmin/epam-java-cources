@@ -3,10 +3,7 @@ package com.epam.university.java.core.task057;
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -27,8 +24,8 @@ public class Task057Test {
 
     @Test(expected = IllegalArgumentException.class)
     public void substringIsNull() {
-        String path = getClass().getResource("/task057/").getPath();
-        instance.find(path, null);
+        String startPath = getClass().getResource("/task057/").getPath();
+        instance.find(startPath, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -38,31 +35,41 @@ public class Task057Test {
 
     @Test
     public void oneFile() {
-        String path = getClass().getResource("/task057/").getPath();
-        List<String> result = instance.find(path, "test2");
-        assertTrue("Incorrect list size or result isn't contain target",
-                result.size() == 1
-                        && result.contains(getClass().getResource("/task057/test.txt").getPath()));
+        Path startPath = Path.of(getClass().getResource("/task057/").getPath());
+        List<String> result = instance.find(startPath.toString(), "test2");
+
+        assertEquals("Incorrect list size", 1, result.size());
+
+        Path target = startPath.resolve("test.txt");
+        assertTrue("Result isn't contain target",
+                result.contains(target.toString()));
     }
 
     @Test
     public void severalFiles() {
-        String path = getClass().getResource("/task057/").getPath();
-        String target1 = getClass().getResource("/task057/subdir1/test1.txt").getPath();
-        String target2 = getClass().getResource("/task057/subdir2/test2.txt").getPath();
-        String target3 = getClass().getResource("/task057/subdir2/subsubdir/test3.txt").getPath();
-        List<String> result = instance.find(path, "test3");
-        assertTrue("Incorrect list size or result isn't contain target",
-                result.size() == 3
-                        && result.contains(target1)
-                        && result.contains(target2)
-                        && result.contains(target3));
+        Path startPath = Path.of(getClass().getResource("/task057/").getPath());
+        List<String> result = instance.find(startPath.toString(), "test3");
+
+        assertEquals("Incorrect list size", 3, result.size());
+
+        Path target1 = startPath.resolve("subdir1/test1.txt");
+        assertTrue("Result isn't contain target",
+                result.contains(target1.toString()));
+
+        Path target2 = startPath.resolve("subdir2/test2.txt");
+        assertTrue("Result isn't contain target",
+                result.contains(target2.toString()));
+
+        Path target3 = startPath.resolve("subdir2/subsubdir/test3.txt");
+        assertTrue("Result isn't contain target",
+                        result.contains(target3.toString()));
     }
 
     @Test
     public void substringNotFound() {
-        String path = getClass().getResource("/task057/").getPath();
-        List<String> result = instance.find(path, "test4");
+        String startPath = getClass().getResource("/task057/").getPath();
+        List<String> result = instance.find(startPath, "test4");
+
         assertEquals("Not empty list", 0, result.size());
     }
 }
