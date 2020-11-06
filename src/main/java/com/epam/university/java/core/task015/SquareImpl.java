@@ -12,10 +12,8 @@ public class SquareImpl implements Square {
     private Point middle;
 
 
-
     private List<Point> vertexes;
     private List<Edge> edges;
-
 
 
     /**
@@ -31,10 +29,9 @@ public class SquareImpl implements Square {
      * @param first  first point
      * @param second second point
      */
-    public SquareImpl(Point first, Point second, double edgeLength) {
+    public SquareImpl(Point first, Point second) {
         this.first = first;
         this.second = second;
-        this.edgeLength = edgeLength;
         vertexes = findVertexes(first, second);
         edges = findEdges(edgeLength);
     }
@@ -67,6 +64,8 @@ public class SquareImpl implements Square {
         vertexes.add(findAdditionalVertex(middle, theLeftest));
         vertexes.add(findAdditionalVertex(middle, theRightest));
 
+        edgeLength = distanceBetweenVertices(vertexes.get(0), vertexes.get(2));
+
         return vertexes;
     }
 
@@ -75,9 +74,9 @@ public class SquareImpl implements Square {
 
         for (Point from : vertexes) {
             for (Point to : vertexes) {
-                if (distanceBetweenVertices(from, to) == edgeLength) {
+                if (Double.compare(distanceBetweenVertices(from, to), edgeLength) == 0) {
                     Edge newEdge = new Edge(from, to, edgeLength);
-                    if (!edges.contains(newEdge)){
+                    if (!edges.contains(newEdge)) {
                         edges.add(newEdge);
                     }
                 }

@@ -87,7 +87,7 @@ public class Edge implements Comparable<Edge> {
     }
 
 
-    public boolean isVertical(){
+    public boolean isVertical() {
         return this.getFrom().getX() == this.getTo().getX();
     }
 }

@@ -1,8 +1,7 @@
 package com.epam.university.java.core.task015;
 
-import com.epam.university.java.core.task013.Line;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Task015Impl implements Task015 {
@@ -16,13 +15,11 @@ public class Task015Impl implements Task015 {
         final ArrayList<Edge> edgesOfFirst = new ArrayList<>(firstSquare.getEdges());
         final ArrayList<Edge> edgesOfSecond = new ArrayList<>(secondSquare.getEdges());
 
-
-        final ArrayList<Point> pointsOfIntersections = new ArrayList<>();
+        final ArrayList<PointImpl> pointsOfIntersections = new ArrayList<>();
 
         for (Edge firstEdge : edgesOfFirst) {
             for (Edge secondEdge : edgesOfSecond) {
-
-                Point intersectionPoint = intersectionOf(firstEdge, secondEdge);
+                PointImpl intersectionPoint = intersectionOf(firstEdge, secondEdge);
                 if (intersectionPoint != null
                         && !pointsOfIntersections.contains(intersectionPoint)) {
                     pointsOfIntersections.add(intersectionPoint);
@@ -30,36 +27,73 @@ public class Task015Impl implements Task015 {
             }
         }
 
+
         final ArrayList<Point> vertexesOfFirst = new ArrayList<>(firstSquare.getVertexes());
         final ArrayList<Point> vertexesOfSecond = new ArrayList<>(secondSquare.getVertexes());
 
-        for (Point firstPoint : vertexesOfFirst) {
-            if (isInsideTheQuad(firstPoint, secondSquare.getMiddle(), secondSquare)) {
+        for (Point point : vertexesOfFirst) {
+            PointImpl firstPoint = (PointImpl) point;
+            if (isInsideTheQuad(point, secondSquare.getMiddle(), secondSquare)
+                    && !pointsOfIntersections.contains(firstPoint)) {
                 pointsOfIntersections.add(firstPoint);
-
             }
         }
-        for (Point secondPoint : vertexesOfSecond) {
-            if (isInsideTheQuad(secondPoint, firstSquare.getMiddle(), firstSquare)) {
+
+        for (Point point : vertexesOfSecond) {
+            PointImpl secondPoint = (PointImpl) point;
+            if (isInsideTheQuad(point, firstSquare.getMiddle(), firstSquare)
+                    && !pointsOfIntersections.contains(secondPoint)) {
                 pointsOfIntersections.add(secondPoint);
-
             }
         }
 
+        for (Point point : vertexesOfFirst) {
+            PointImpl firstPoint = (PointImpl) point;
+            if (isInsideTheQuad(firstPoint, secondSquare.getMiddle(), secondSquare)
+                    && !pointsOfIntersections.contains(firstPoint)) {
+                pointsOfIntersections.add(firstPoint);
+            }
+        }
+        for (Point point : vertexesOfSecond) {
+            PointImpl secondPoint = (PointImpl) point;
+            if (isInsideTheQuad(secondPoint, firstSquare.getMiddle(), firstSquare)
+                    && !pointsOfIntersections.contains(secondPoint)) {
+                pointsOfIntersections.add(secondPoint);
+            }
+        }
 
         if (pointsOfIntersections.size() == 0) {
             return 0;
         } else if (pointsOfIntersections.size() == 3) {
             return squareOfTriangle(pointsOfIntersections);
+        } else if (pointsOfIntersections.size() == 4) {
+            return squareOfSquare(pointsOfIntersections);
+        } else if (pointsOfIntersections.size() == 8) {
+            return squareOfOctagon(pointsOfIntersections, secondSquare.getMiddle());
         }
-
 
         return 0;
     }
 
+    private double squareOfOctagon(ArrayList<PointImpl> pointsOfIntersections, Point middle) {
 
-    private Point intersectionOf(Edge first, Edge second) {
-        Point intersectionPoint = new PointImpl();
+        Collections.sort(pointsOfIntersections);
+        Point first = pointsOfIntersections.get(0);
+        Point second = pointsOfIntersections.get(1);
+        Point fourth = pointsOfIntersections.get(3);
+
+        double squareOfOctagon = 0;
+
+        squareOfOctagon += squareOfTriangle(first, middle, second);
+        squareOfOctagon += squareOfTriangle(second, middle, fourth);
+        squareOfOctagon *= 4;
+
+        return squareOfOctagon;
+    }
+
+
+    private PointImpl intersectionOf(Edge first, Edge second) {
+        final PointImpl intersectionPoint = new PointImpl();
 
         if (first.isVertical()) {
             Edge tmp = first;
@@ -129,7 +163,6 @@ public class Task015Impl implements Task015 {
         double x = x3 + (x4 - x3) * n;  // x3 + (-b(x))*n
         double y = y3 + (y4 - y3) * n;  // y3 +(-b(y))*n
 
-
         intersectionPoint.setX(x);
         intersectionPoint.setY(y);
 
@@ -137,43 +170,55 @@ public class Task015Impl implements Task015 {
     }
 
     private boolean isInsideTheQuad(Point supposedPoint, Point squareCenter, SquareImpl square) {
-
+        Collections.sort(square.getEdges());
+        if (supposedPoint.equals(squareCenter)) {
+            return true;
+        }
         for (Edge edge : square.getEdges()) {
             Point pointA = squareCenter;
             Point pointB = edge.getFrom();
             Point pointC = edge.getTo();
+
             if (isInsideTheTriangle(supposedPoint, pointA, pointB, pointC)) {
                 return true;
             }
+            if (squareOfTriangle(pointA, pointB, pointC)
+                    == squareOfTriangle(supposedPoint, pointB, pointC)
+                    + squareOfTriangle(supposedPoint, pointC, pointA)
+                    + squareOfTriangle(supposedPoint, pointA, pointB)) {
+                return true;
+            }
         }
-
-
         return false;
     }
 
-    private boolean isInsideTheTriangle(Point supposedPoint, Point pointA, Point pointB, Point pointC) {
+    private boolean isInsideTheTriangle(Point supposedPoint, Point pointA,
+                                        Point pointB, Point pointC) {
 
-        double x = supposedPoint.getX();
-        double y = supposedPoint.getY();
+        if (pointB.getY() == supposedPoint.getY()) {
+            Point tmp = pointB;
+            pointB = pointC;
+            pointC = tmp;
+        }
+        if (pointC.getY() == supposedPoint.getY()) {
+            Point tmp = pointB;
+            pointB = pointC;
+            pointC = tmp;
+        }
 
-        double x1 = pointA.getX();
-        double y1 = pointA.getY();
-        double x2 = pointB.getX();
-        double y2 = pointB.getY();
-        double x3 = pointC.getX();
-        double y3 = pointC.getY();
+        double firstPart = squareOfTriangle(pointB, supposedPoint, pointA);
+        double secondPart = squareOfTriangle(pointB, pointA, pointC);
+        if (firstPart == 0 || secondPart == 0) {
+            return false;
+        }
 
-
-        double squareWithSupposedPoint = (Math.abs((x1 - x) * (y2 - y) * (y1 - y)))
-                + (Math.abs((x1 - x3) * (y - y3) - (x - x3) * (y1 - y3)))
-                + Math.abs((x - x3) * (y2 - y3) - (x2 - x3) * (y - y3));
-
-        double simpleSquare = Math.abs((x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3));
+        double squareWithSupposedPoint = firstPart + secondPart;
+        double simpleSquare = squareOfTriangle(pointA, pointB, pointC);
 
         return squareWithSupposedPoint == simpleSquare;
     }
 
-    private double squareOfTriangle(List<Point> points){
+    private double squareOfTriangle(List<PointImpl> points) {
         double x1 = points.get(0).getX();
         double y1 = points.get(0).getY();
         double x2 = points.get(1).getX();
@@ -181,21 +226,28 @@ public class Task015Impl implements Task015 {
         double x3 = points.get(2).getX();
         double y3 = points.get(2).getY();
 
-        double simpleSquare = Math.abs((x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3));
-
-        return simpleSquare;
+        return Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)) / 2;
     }
 
-    private double squareOfSquare(List<Point> points){
-        double x1 = points.get(0).getX();
-        double y1 = points.get(0).getY();
-        double x2 = points.get(1).getX();
-        double y2 = points.get(1).getY();
-        double x3 = points.get(2).getX();
-        double y3 = points.get(2).getY();
+    private double squareOfTriangle(Point a, Point b, Point c) {
+        double x1 = a.getX();
+        double y1 = a.getY();
+        double x2 = b.getX();
+        double y2 = b.getY();
+        double x3 = c.getX();
+        double y3 = c.getY();
 
-        double simpleSquare = Math.abs((x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3));
+        return Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)) / 2;
+    }
 
-        return simpleSquare;
+    private double squareOfSquare(List<PointImpl> points) {
+        Collections.sort(points);
+        PointImpl pointA = points.get(1);
+        PointImpl pointC = points.get(3);
+
+        double firstSquare = squareOfTriangle(pointA, pointC, points.get(0));
+        double secondSquare = squareOfTriangle(pointA, pointC, points.get(2));
+
+        return firstSquare + secondSquare;
     }
 }
