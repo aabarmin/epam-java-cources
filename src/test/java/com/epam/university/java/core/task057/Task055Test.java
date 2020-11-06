@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task055;
+package com.epam.university.java.core.task057;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
@@ -7,11 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class Task055Test {
-    private Task055 instance;
+    private Task057 instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task055.class);
+        instance = TestHelper.getInstance(Task057.class);
     }
 
     @Test

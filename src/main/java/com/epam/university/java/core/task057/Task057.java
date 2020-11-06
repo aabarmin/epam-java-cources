@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task055;
+package com.epam.university.java.core.task057;
 
 /**
  * Deliveryman with QuadCopter.
@@ -22,7 +22,7 @@ package com.epam.university.java.core.task055;
  * You deliver post to living room every.
  * </p>
  */
-public interface Task055 {
+public interface Task057 {
 
     /**
      * Every house has levels, and entrances.

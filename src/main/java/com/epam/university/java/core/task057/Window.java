@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task055;
+package com.epam.university.java.core.task057;
 
 /**
  * Window has 3 params. Level count from 1 level(floor).
