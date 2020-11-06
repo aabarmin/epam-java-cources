@@ -37,17 +37,17 @@ public class Task053Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void first_BracketOrderNotValid() throws Exception {
+    public void first_BracesOrderNotValid() throws Exception {
         instance.calculate("(1+1)*((5-3)");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void second_BracketOrderNotValid() throws Exception {
+    public void second_BracesOrderNotValid() throws Exception {
         instance.calculate("(1+1)*(5-3))");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void third_BracketOrderNotValid() throws Exception {
+    public void third_BracesOrderNotValid() throws Exception {
         instance.calculate("3-1)");
     }
 
