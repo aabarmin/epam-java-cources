@@ -34,14 +34,14 @@ public class Task041Impl implements Task041 {
         Entity newEntity = new EntityImpl(entity.getId(), value);
         boolean found = false;
         for (Entity entity1 : collection) {
-            if (entity1.getId() == newEntity.getId()){
+            if (entity1.getId() == newEntity.getId()) {
                 found = true;
                 collection.remove(entity1);
                 collection.add(newEntity);
             }
         }
 
-        if (!found){
+        if (!found) {
             throw new IllegalArgumentException();
         }
     }
