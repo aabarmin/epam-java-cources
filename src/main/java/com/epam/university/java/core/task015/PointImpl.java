@@ -68,9 +68,9 @@ public class PointImpl implements Point, Comparable<PointImpl> {
 
     @Override
     public String toString() {
-        return "PointImpl{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "PointImpl{"
+                + "x=" + x
+                + ", y=" + y
+                + '}';
     }
 }

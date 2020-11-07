@@ -1,9 +1,11 @@
 package com.epam.university.java.core.task031;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
+
 
 public class ClientImpl implements Client {
 
