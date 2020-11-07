@@ -65,4 +65,12 @@ public class PointImpl implements Point, Comparable<PointImpl> {
             return (int) (this.getY() - point.getY());
         }
     }
+
+    @Override
+    public String toString() {
+        return "PointImpl{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
