@@ -1,52 +1,69 @@
 package com.epam.university.java.core.task031;
 
-import javax.activation.DataHandler;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServerImpl implements Server {
     ServerSocket serverSocket = null;
-
-    DataOutputStream out;
-    DataInputStream in;
+    private boolean isRunning;
+    private List<String> messages = new ArrayList<>();
 
     @Override
     public String readMessage() {
+
         String entry;
-
-
-        try {
-            entry = in.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (messages.isEmpty()) {
+            entry = "";
+        } else {
+            entry = messages.remove(messages.size() - 1);
         }
 
 
-        return null;
+        return entry;
     }
 
     @Override
     public void start() {
+        isRunning = true;
         try {
-            serverSocket = new ServerSocket(44444);
-            Socket client = serverSocket.accept();
-            out = new DataOutputStream(client.getOutputStream());
-            in = new DataInputStream(client.getInputStream());
-
-
+            serverSocket = new ServerSocket(9090);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Socket client = serverSocket.accept();
+                    new Thread(() -> {
+                        try (BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(client.getInputStream()))) {
+                            while (isRunning) {
+                                if (reader.ready()) {
+                                    messages.add(reader.readLine());
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }).start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 
     @Override
     public void stop() {
+        isRunning = false;
         try {
-            out.close();
-            in.close();
             serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
