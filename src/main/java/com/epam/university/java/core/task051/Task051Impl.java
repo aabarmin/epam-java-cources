@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class Task051Impl implements Task051 {
     String str = "the ";
+
     @Override
     public String replace(String source) {
         if (source == null || source.equalsIgnoreCase("the")) {
