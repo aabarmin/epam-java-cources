@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 public interface PersonSerializable extends Serializable {
+
     String getFullName();
 
     void setFullName(String fullName);

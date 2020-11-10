@@ -1,12 +1,10 @@
 package com.epam.university.java.core.task060;
-/*
- * Created by Laptev Egor 10.11.2020
- * */
 
 import java.io.Externalizable;
 import java.util.Collection;
 
 public interface PersonExternalizable extends Externalizable {
+
     String getFullName();
 
     void setFullName(String fullName);

@@ -1,20 +1,38 @@
 package com.epam.university.java.core.task060;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Сериализация объектов
+ * Serialization / deserialization.
  *
  * <p>
- *     Сериализовать объект класса Person двумя способами:
- *     1. Стандартная сериализация
+ *  Perform serialization/deserialization objects of classes PersonSerializable,
+ *  PersonExternalizable and SingletonObject.
  *
+ *  Initial object and object from method objectDeserialization() should be equal by fields (you
+ *  need to override equals() and hashcode() methods).
+ *
+ *  Deserialization of SingletonObject instance should not break the Singleton pattern.
  * </p>
  */
 
 public interface Task060 {
-    OutputStream objectSerialization(Object obj) throws IOException;
 
-    Object objectDeserialization(OutputStream outStream) throws IOException, ClassNotFoundException;
+    /**
+     * Object serialization.
+     *
+     * @param obj object to serialize
+     * @return an output stream of serialized object
+     * @throws IllegalArgumentException if obj is null
+     */
+    OutputStream objectSerialization(Object obj);
+
+    /**
+     * Object deserialization.
+     *
+     * @param outStream output stream of serialized object
+     * @return a deserialized object
+     * @throws IllegalArgumentException if outStream is null
+     */
+    Object objectDeserialization(OutputStream outStream);
 }
