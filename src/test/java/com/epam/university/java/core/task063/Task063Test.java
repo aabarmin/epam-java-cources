@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task060;
+package com.epam.university.java.core.task063;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
@@ -9,15 +9,15 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class Task060Test {
-    private Task060 instance;
+public class Task063Test {
+    private Task063 instance;
     private PersonSerializable personSer;
     private PersonExternalizable personExt;
     private SingletonObject singletonObject;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task060.class);
+        instance = TestHelper.getInstance(Task063.class);
 
         personSer = TestHelper.getInstance(PersonSerializable.class);
         personSer.setFullName("Name");
