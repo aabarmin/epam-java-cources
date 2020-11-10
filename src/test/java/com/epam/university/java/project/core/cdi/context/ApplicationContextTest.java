@@ -30,7 +30,8 @@ public class ApplicationContextTest {
         final XmlResource xmlResource = new XmlResource(testFilePath);
         applicationContext.loadBeanDefinitions(xmlResource);
         // try to get beans from context
-        final ParentBean parentBean = (ParentBean) applicationContext.getBean("parentBean");
+        Object object = applicationContext.getBean("parentBean");
+        final ParentBean parentBean = (ParentBean) object;
         assertNotNull("Can't get bean definition from context", parentBean);
         assertNotNull("Can't get loaded bean property", parentBean.getProperty1());
         assertEquals("Can't get loaded bean property", 10, parentBean.getProperty2());
