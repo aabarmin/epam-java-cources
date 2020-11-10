@@ -2,8 +2,11 @@ package com.epam.university.java.core.task060;
 
 public class SingletonObject {
 
+    private SingletonObject() {
+    }
+
     /**
-     * Return or create (if not created yet) an singleton instance.
+     * Return or create (if not created yet) a singleton instance.
      *
      * @return singleton instance
      */
