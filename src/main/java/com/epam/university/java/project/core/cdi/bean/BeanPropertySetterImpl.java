@@ -56,6 +56,9 @@ public class BeanPropertySetterImpl implements BeanPropertySetter {
             MapDefinition data = (MapDefinition) property.getData();
             Collection<MapDefinition.MapEntryDefinition> values = data.getValues();
             for (MapDefinition.MapEntryDefinition value : values) {
+                if (value.getRef() != null) {
+                    throw new RuntimeException();
+                }
                 dataMap.put(value.getKey(), value.getValue());
             }
             field.setAccessible(true);
