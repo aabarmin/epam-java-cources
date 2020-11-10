@@ -6,8 +6,8 @@ import java.io.OutputStream;
  * Serialization / deserialization.
  *
  * <p>
- *  Perform serialization/deserialization objects of classes PersonSerializable,
- *  PersonExternalizable and SingletonObject.
+ *  Perform serialization/deserialization of objects PersonSerializable, PersonExternalizable
+ *  and SingletonObject classes.
  *
  *  Initial object and object from method objectDeserialization() should be equal by fields (you
  *  need to override equals() and hashcode() methods).
@@ -23,7 +23,6 @@ public interface Task063 {
      *
      * @param obj object to serialize
      * @return an output stream of serialized object
-     * @throws IllegalArgumentException if obj is null
      */
     OutputStream objectSerialization(Object obj);
 
@@ -32,7 +31,6 @@ public interface Task063 {
      *
      * @param outStream output stream of serialized object
      * @return a deserialized object
-     * @throws IllegalArgumentException if outStream is null
      */
     Object objectDeserialization(OutputStream outStream);
 }
