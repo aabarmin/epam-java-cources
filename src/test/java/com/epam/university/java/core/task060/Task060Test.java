@@ -1,0 +1,69 @@
+package com.epam.university.java.core.task060;
+
+import com.epam.university.java.core.helper.TestHelper;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+public class Task060Test {
+    private Task060 instance;
+    private PersonSerializable personSer;
+    private PersonExternalizable personExt;
+    private SingletonObject singletonObject;
+
+    @Before
+    public void setUp() throws Exception {
+        instance = TestHelper.getInstance(Task060.class);
+
+        personSer = TestHelper.getInstance(PersonSerializable.class);
+        personSer.setFullName("Name");
+        personSer.setAge(30);
+        personSer.setMale(true);
+        personSer.setChildren(List.of(TestHelper.getInstance(PersonSerializable.class), TestHelper.getInstance(PersonSerializable.class)));
+        personSer.setSpouse(TestHelper.getInstance(PersonSerializable.class));
+
+        personExt = TestHelper.getInstance(PersonExternalizable.class);
+        personExt.setFullName("Another Name");
+        personExt.setAge(42);
+        personExt.setMale(false);
+        personExt.setChildren(List.of(TestHelper.getInstance(PersonExternalizable.class), TestHelper.getInstance(PersonExternalizable.class)));
+        personExt.setSpouse(new PersonExternalizableImpl());
+
+        singletonObject = SingletonObject.getInstance();
+    }
+
+    @Test
+    public void testStandardSerialization() throws IOException, ClassNotFoundException {
+        OutputStream outputStream = instance.objectSerialization(personSer);
+        Object obj = instance.objectDeserialization(outputStream);
+
+        assertEquals("Serialize/deserialize error: objects are not equal", personSer, obj);
+    }
+
+    @Test
+    public void testExternalSerialization() throws IOException, ClassNotFoundException {
+        OutputStream outputStream = instance.objectSerialization(personExt);
+        Object obj = instance.objectDeserialization(outputStream);
+
+        assertEquals("Something went wrong with external serialization: objects are not equal", personExt, obj);
+    }
+
+    @Test
+    public void testSingletonObject() throws IOException, ClassNotFoundException {
+        assertNotNull(singletonObject);
+
+        OutputStream outputStream = instance.objectSerialization(singletonObject);
+        Object obj = instance.objectDeserialization(outputStream);
+
+        assertNotNull(obj);
+        assertSame("Singleton serialize/deserialize error: objects are different", singletonObject, obj);
+    }
+
+
+
+}
