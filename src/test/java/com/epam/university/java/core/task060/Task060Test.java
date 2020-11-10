@@ -49,6 +49,9 @@ public class Task060Test {
         OutputStream outputStream = instance.objectSerialization(personSer);
         Object obj = instance.objectDeserialization(outputStream);
 
+        assertNotNull("outputStream is null", outputStream);
+        assertNotNull("Deserialized object is null", obj);
+
         assertEquals("Serialization error: objects are not equal", personSer, obj);
     }
 
@@ -56,6 +59,9 @@ public class Task060Test {
     public void testExternalSerialization() {
         OutputStream outputStream = instance.objectSerialization(personExt);
         Object obj = instance.objectDeserialization(outputStream);
+
+        assertNotNull("outputStream is null", outputStream);
+        assertNotNull("Deserialized object is null", obj);
 
         assertEquals(
                 "Something went wrong with external serialization: objects are not equal",
