@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task062;
+package com.epam.university.java.core.task060;
 
 public enum Suit {
     CLUB,

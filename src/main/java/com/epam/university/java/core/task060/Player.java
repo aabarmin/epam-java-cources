@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task062;
+package com.epam.university.java.core.task060;
 
 import java.util.Collection;
 
@@ -6,25 +6,29 @@ public interface Player {
 
     /**
      * Get player's id.
+     *
      * @return player's id
      */
     int getId();
 
     /**
      * Set player's id.
+     *
      * @param id is the player's id.
      */
-    void setId (int id);
+    void setId(int id);
 
     /**
      * Get player's hand.
+     *
      * @return player's hand
      */
     Collection<Card> getPlayerHand();
 
     /**
      * Set player's hand.
+     *
      * @param hand is the player's hand.
      */
-    void setPlayerHand (Collection<Card> hand);
+    void setPlayerHand(Collection<Card> hand);
 }
