@@ -133,7 +133,7 @@ public class Task060Test {
     }
 
     @Test
-    public void FlushRoyalVsFourOfKindTest() throws Exception {
+    public void flushRoyalVsFourOfKindTest() throws Exception {
         assertEquals(
                 "The winner is wrong",
                 1,
