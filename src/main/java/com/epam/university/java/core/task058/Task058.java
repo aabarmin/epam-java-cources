@@ -18,9 +18,10 @@ package com.epam.university.java.core.task058;
  * 1. Open file resource/Task058/wayTable.html this exp. GoogleChrome.
  * 2. Find green lines - confirmed route.
  * 3. Find grey lines - unconfirmed route.
- * 4. Parsing this site. Get correct distance value from every line.
- * 5. Count full distance of Month.
- * 6. Create method that count all value of distance in one day.
+ * 4. Find information about JSoup for parsing HTML File.
+ * 5. Parsing this site. Get correct distance value from every line.
+ * 6. Count full distance of Month.
+ * 7. Create method that count all value of distance in one day.
  * </p>
  */
 public interface Task058 {
