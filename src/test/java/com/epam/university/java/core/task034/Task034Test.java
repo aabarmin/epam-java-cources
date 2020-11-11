@@ -26,7 +26,7 @@ public class Task034Test {
     public void readWithSaxParser() throws Exception {
         final Person person = instance.readWithSaxParser(
                 saxHandler,
-                "A:\\epam-java-cources\\src\\main\\resources\\task034\\data.xml"
+                "/task034/data.xml"
         );
         assertNotNull("XML was not parsed", person);
         assertEquals("Incorrect XML parsing",
@@ -57,8 +57,7 @@ public class Task034Test {
 
     @Test
     public void readWithJaxParser() throws Exception {
-        final Person person = instance.readWithJaxbParser("A:\\epam-java-cources\\src\\main"
-                + "\\resources\\task034\\data.xml");
+        final Person person = instance.readWithJaxbParser("/task034/data.xml");
         assertNotNull("XML was not parsed", person);
         assertEquals("Incorrect XML parsing",
                 10,
