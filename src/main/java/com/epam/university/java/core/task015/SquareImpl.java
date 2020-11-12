@@ -9,6 +9,9 @@ public class SquareImpl implements Square {
     private Point first;
     private Point second;
     private double edgeLength;
+    private Point middle;
+
+
     private List<Point> vertexes;
     private List<Edge> edges;
 
@@ -26,10 +29,9 @@ public class SquareImpl implements Square {
      * @param first  first point
      * @param second second point
      */
-    public SquareImpl(Point first, Point second, double edgeLength) {
+    public SquareImpl(Point first, Point second) {
         this.first = first;
         this.second = second;
-        this.edgeLength = edgeLength;
         vertexes = findVertexes(first, second);
         edges = findEdges(edgeLength);
     }
@@ -53,6 +55,7 @@ public class SquareImpl implements Square {
         Point middle = new PointImpl();
         middle.setX((theLeftest.getX() + theRightest.getX()) / 2);
         middle.setY((theLeftest.getY() + theRightest.getY()) / 2);
+        this.middle = middle;
 
         ArrayList<Point> vertexes = new ArrayList<>();
 
@@ -60,6 +63,8 @@ public class SquareImpl implements Square {
         vertexes.add(theRightest);
         vertexes.add(findAdditionalVertex(middle, theLeftest));
         vertexes.add(findAdditionalVertex(middle, theRightest));
+
+        edgeLength = distanceBetweenVertices(vertexes.get(0), vertexes.get(2));
 
         return vertexes;
     }
@@ -69,9 +74,9 @@ public class SquareImpl implements Square {
 
         for (Point from : vertexes) {
             for (Point to : vertexes) {
-                if (distanceBetweenVertices(from, to) == edgeLength) {
+                if (Double.compare(distanceBetweenVertices(from, to), edgeLength) == 0) {
                     Edge newEdge = new Edge(from, to, edgeLength);
-                    if (!edges.contains(newEdge)){
+                    if (!edges.contains(newEdge)) {
                         edges.add(newEdge);
                     }
                 }
@@ -130,12 +135,36 @@ public class SquareImpl implements Square {
         this.second = second;
     }
 
+    public Point getMiddle() {
+        return middle;
+    }
+
+    public void setMiddle(Point middle) {
+        this.middle = middle;
+    }
+
     public double getEdgeLength() {
         return edgeLength;
     }
 
     public void setEdgeLength(double edgeLength) {
         this.edgeLength = edgeLength;
+    }
+
+    public List<Point> getVertexes() {
+        return vertexes;
+    }
+
+    public void setVertexes(List<Point> vertexes) {
+        this.vertexes = vertexes;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
     }
 
 

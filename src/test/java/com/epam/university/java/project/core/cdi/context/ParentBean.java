@@ -9,7 +9,6 @@ public class ParentBean implements ParentBeanInterface {
     private ChildBean childBean;
 
     public void init() {
-
     }
 
     public String getProperty1() {
