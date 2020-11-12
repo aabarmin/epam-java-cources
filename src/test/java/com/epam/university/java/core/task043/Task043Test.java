@@ -74,4 +74,20 @@ public class Task043Test {
                 instance.decode(encodedText)
         );
     }
+    @Test
+    public void TestWithNumbers() throws Exception {
+        final String decodedText = "WSUP MATE 123";
+        final String encodedText
+                = ".-- ... ..- .--.   -- .- - .   .---- ..--- ...--";
+        assertEquals(
+                "Invalid encoding",
+                encodedText,
+                instance.encode(decodedText)
+        );
+        assertEquals(
+                "Invalid decoding",
+                decodedText,
+                instance.decode(encodedText)
+        );
+    }
 }
