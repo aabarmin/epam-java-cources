@@ -5,7 +5,7 @@ package com.epam.university.java.core.task061;
  */
 public interface Task061 {
     /**
-     * Convert roman number to arabic.
+     * Convert arabic number to roman.
      *
      * @param number arabic number
      * @return roman number
@@ -14,7 +14,7 @@ public interface Task061 {
     String convertToRoman(int number);
 
     /**
-     * Convert arabic number to roman.
+     * Convert roman number to arabic.
      *
      * @param number roman number
      * @return arabic number
