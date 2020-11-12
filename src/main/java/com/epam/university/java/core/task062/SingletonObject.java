@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task063;
+package com.epam.university.java.core.task062;
 
 public class SingletonObject {
 

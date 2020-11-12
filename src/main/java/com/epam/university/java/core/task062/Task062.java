@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task063;
+package com.epam.university.java.core.task062;
 
 import java.io.OutputStream;
 
@@ -16,7 +16,7 @@ import java.io.OutputStream;
  * </p>
  */
 
-public interface Task063 {
+public interface Task062 {
 
     /**
      * Object serialization.
