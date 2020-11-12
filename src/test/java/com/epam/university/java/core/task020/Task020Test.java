@@ -80,6 +80,7 @@ public class Task020Test {
                 instance.calculate(parts)
         );
     }
+
     @Test
     public void fourCommonParts() throws Exception {
         final List<String> parts = Arrays.asList(
