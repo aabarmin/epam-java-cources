@@ -3,7 +3,7 @@ package com.epam.university.java.project.core.cdi.structure;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ListDefinitionImpl implements ListDefinition{
+public class ListDefinitionImpl implements ListDefinition {
 
     Collection<ListItemDefinition> items = new ArrayList<>();
 
