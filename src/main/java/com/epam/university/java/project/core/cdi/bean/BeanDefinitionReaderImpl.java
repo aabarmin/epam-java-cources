@@ -1,6 +1,7 @@
 package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.io.Resource;
+import com.epam.university.java.project.core.cdi.structure.*;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -50,6 +51,7 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
 
             while (xmlEventReader.hasNext()) {
                 XMLEvent event = xmlEventReader.nextEvent();
+
                 if (event.isEndElement()) {
                     EndElement endElement = event.asEndElement();
                     if ("bean".equals(endElement.getName().getLocalPart())) {
@@ -78,19 +80,102 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                     } else if ("property".equals(elementName)) {
                         beanPropertyDefinition = new BeanPropertyDefinitionImpl();
                         Iterator<Attribute> it = startElement.getAttributes();
+                        boolean isList = false;
+                        boolean isMap = false;
                         while (it.hasNext()) {
                             Attribute attribute = it.next();
                             if (QName.valueOf("name").equals(attribute.getName())) {
                                 beanPropertyDefinition.setName(attribute.getValue());
+                                if ("stringCollection".equals(attribute.getValue())) {
+                                    isList = true;
+                                } else if ("stringMap".equalsIgnoreCase(attribute.getValue())
+                                        || "objectMap".equalsIgnoreCase(attribute.getValue())) {
+                                    isMap = true;
+                                }
+
                             } else if (QName.valueOf("ref").equals(attribute.getName())) {
                                 beanPropertyDefinition.setRef(attribute.getValue());
                             } else if (QName.valueOf("value").equals(attribute.getName())) {
                                 beanPropertyDefinition.setValue(attribute.getValue());
-                            } //else if (){
-//                                beanPropertyDefinition.getData()
-//                            }
+                            }
+                        }
+                        if (isMap) {
+                            ArrayList<MapDefinition.MapEntryDefinition> tmpList = new ArrayList<>();
+                            event = xmlEventReader.nextEvent();
+                            while (!event.isStartElement()) {
+                                event = xmlEventReader.nextEvent();
+                            }
+                            StartElement mapStart = event.asStartElement();
+                            String tmpName = mapStart.getName().getLocalPart();
+                            MapDefinition.MapEntryDefinition entry = null;
+                            while (true) {
+                                event = xmlEventReader.nextEvent();
+
+                                if (event.isStartElement()) {
+                                    StartElement startInMapElement = event.asStartElement();
+                                    if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("entry")) {
+                                        entry = new MapEntryDefinitionImpl();
+                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("key")) {
+                                        event = xmlEventReader.nextEvent();
+                                        entry.setKey(event.asCharacters().toString());
+                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("value")) {
+                                        event = xmlEventReader.nextEvent();
+                                        entry.setValue(event.asCharacters().toString());
+                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("ref")) {
+                                        event = xmlEventReader.nextEvent();
+                                        entry.setRef(event.asCharacters().toString());
+                                    }
+                                }
+                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase("entry")){
+                                    tmpList.add(entry);
+                                }
+
+                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase(tmpName)){
+                                    break;
+                                }
+                                if (!xmlEventReader.hasNext()){
+                                    throw new RuntimeException();
+                                }
+                            }
+                            MapDefinition mapDefinition = new MapDefinitionImpl();
+                            mapDefinition.setValues(tmpList);
+                            beanPropertyDefinition.setData(mapDefinition);
+                        }
+                        if (isList) {
+                            ArrayList<ListDefinition.ListItemDefinition> tmpList = new ArrayList<>();
+                            event = xmlEventReader.nextEvent();
+                            while (!event.isStartElement()) {
+                                event = xmlEventReader.nextEvent();
+                            }
+                            StartElement listStart = event.asStartElement();
+                            String tmpName = listStart.getName().getLocalPart();
+                            while (true) {
+                                event = xmlEventReader.nextEvent();
+
+                                if (event.isStartElement()) {
+                                    StartElement startInMapElement = event.asStartElement();
+                                    if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("value")) {
+                                        event = xmlEventReader.nextEvent();
+                                        ListDefinition.ListItemDefinition itemDefinition = new ListItemDefinitionImpl();
+                                        itemDefinition.setValue(event.asCharacters().toString());
+                                        tmpList.add(itemDefinition);
+                                    }
+                                }
+                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase(tmpName)){
+                                    break;
+                                }
+                                if (!xmlEventReader.hasNext()){
+                                    throw new RuntimeException();
+                                }
+                            }
+
+                            ListDefinition listDefinition = new ListDefinitionImpl();
+                            listDefinition.setItems(tmpList);
+                            beanPropertyDefinition.setData(listDefinition);
                         }
                     }
+
+
                     if (beanPropertyDefinition != null) {
                         beanPropertyDefinitionList.add(beanPropertyDefinition);
                         beanPropertyDefinition = null;

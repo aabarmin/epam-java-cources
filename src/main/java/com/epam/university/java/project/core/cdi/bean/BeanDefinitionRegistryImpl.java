@@ -9,8 +9,19 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
     @Override
     public void addBeanDefinition(BeanDefinition definition) {
-        registry.put(definition.getId(), definition);
-        registry.put(definition.getClassName(), definition);
+        try {
+            registry.put(definition.getId(), definition);
+            registry.put(definition.getClassName(), definition);
+
+
+            Class<?>[] interfaces = Class.forName(definition.getClassName()).getInterfaces();
+            for (Class<?> anInterface : interfaces) {
+                registry.put(anInterface.getName(), definition);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
