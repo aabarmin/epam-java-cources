@@ -16,36 +16,34 @@ public class Task052Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void wrongAmountofDigits() throws Exception {
+    public void wrongAmountOfDigits() {
         instance.validateCard(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void negativeNumber() throws Exception {
+    public void negativeNumber() {
         instance.validateCard(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void bigNegativeNumber() throws Exception {
+    public void bigNegativeNumber() {
         instance.validateCard(-123456789101215L);
     }
 
     @Test
-    public void numberWithManyZeros() throws Exception {
+    public void numberWithManyZeros() {
         assertTrue("Invalid result",
                 instance.validateCard(40000000000002L));
     }
 
     @Test
-    public void trueValidation() throws Exception {
+    public void trueValidation() {
         assertTrue("Invalid result",
                 instance.validateCard(1234567890123452L));
     }
 
     @Test
-    public void falseValidation() throws Exception {
-        long numbers = 123456789012345L;
-
+    public void falseValidation() {
         assertFalse("Invalid result",
                 instance.validateCard(123456789012345L));
     }
