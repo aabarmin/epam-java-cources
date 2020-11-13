@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task058;
+package com.epam.university.java.core.task065;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
@@ -9,12 +9,12 @@ import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class Task058Test {
-    private Task058 instance;
+public class Task065Test {
+    private Task065 instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task058.class);
+        instance = TestHelper.getInstance(Task065.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -29,13 +29,13 @@ public class Task058Test {
 
     @Test
     public void loadTable1() {
-        final WayTable table = instance.getWayTable("/Task058/wayTable.html");
+        final WayTable table = instance.getWayTable("/task065/wayTable.html");
         assertNotNull("Wrong all distance", table);
     }
 
     @Test
     public void loadTable2() {
-        final WayTable table = instance.getWayTable("/Task058/wayTable.html");
+        final WayTable table = instance.getWayTable("/task065/wayTable.html");
         assertEquals("Wrong all distance",
                 3876,
                 table.getAllDistance()
@@ -44,7 +44,7 @@ public class Task058Test {
 
     @Test
     public void loadTable3() {
-        final WayTable table = instance.getWayTable("/Task058/wayTable.html");
+        final WayTable table = instance.getWayTable("/task065/wayTable.html");
         assertEquals("Wrong count ways from html file",
                 98,
                 table.getCountWays()
@@ -53,7 +53,7 @@ public class Task058Test {
 
     @Test
     public void loadTable4() {
-        final WayTable table = instance.getWayTable("/Task058/wayTable.html");
+        final WayTable table = instance.getWayTable("/task065/wayTable.html");
         assertEquals("Incorrect XML parsing",
                 502,
                 table.getDistOfDate(LocalDate.parse("2020-10-01"))
