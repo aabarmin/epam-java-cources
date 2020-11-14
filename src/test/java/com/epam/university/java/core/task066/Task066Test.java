@@ -31,9 +31,9 @@ public class Task066Test {
 
     @Test
     public void test4() {
-        assertEquals("Invalid result", 51574523448L, instance.repeatString
-                ("kmretasscityylpdhuwjirnqimlkcgxubxmsxpypgzxtenwei" +
-                        "rknjtasxtvxemtwxuarabssvqdnktqadhyktagjxoanknhgilnm", 736778906400L));
+        assertEquals("Invalid result", 51574523448L, instance.repeatString(
+                "kmretasscityylpdhuwjirnqimlkcgxubxmsxpypgzxtenwei"
+                        + "rknjtasxtvxemtwxuarabssvqdnktqadhyktagjxoanknhgilnm", 736778906400L));
     }
 
     @Test
