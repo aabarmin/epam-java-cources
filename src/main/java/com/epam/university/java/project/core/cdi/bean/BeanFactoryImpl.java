@@ -1,9 +1,17 @@
 package com.epam.university.java.project.core.cdi.bean;
 
-import com.epam.university.java.project.core.cdi.structure.*;
-
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import com.epam.university.java.project.core.cdi.structure.StructureDefinition;
+import com.epam.university.java.project.core.cdi.structure.MapDefinition;
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.ListDefinition;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
+
 
 public class BeanFactoryImpl implements BeanFactory {
 

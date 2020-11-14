@@ -3,7 +3,7 @@ package com.epam.university.java.project.core.cdi.structure;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class MapDefinitionImpl implements MapDefinition{
+public class MapDefinitionImpl implements MapDefinition {
 
     private Collection<MapEntryDefinition> values;
 
