@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class Task055Test {
+public class Task057Test {
     private Task057 instance;
 
     @Before
