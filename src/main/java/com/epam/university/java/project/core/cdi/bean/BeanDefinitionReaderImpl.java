@@ -8,6 +8,7 @@ import com.epam.university.java.project.core.cdi.structure.ListItemDefinitionImp
 import com.epam.university.java.project.core.cdi.structure.ListDefinition;
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
 
+
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -135,6 +136,7 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                                         entry.setRef(event.asCharacters().toString());
                                     }
                                 }
+
                                 if (event.isEndElement()
                                         && event.asEndElement().getName().getLocalPart()
                                         .equalsIgnoreCase("entry")) {
@@ -144,6 +146,7 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                                 if (event.isEndElement()
                                         && event.asEndElement().getName().getLocalPart()
                                         .equalsIgnoreCase(tmpName)) {
+
                                     break;
                                 }
                                 if (!xmlEventReader.hasNext()) {
@@ -177,6 +180,7 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                                         tmpList.add(itemDefinition);
                                     }
                                 }
+
                                 if (event.isEndElement()
                                         && event.asEndElement().getName().getLocalPart()
                                         .equalsIgnoreCase(tmpName)) {

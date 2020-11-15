@@ -5,13 +5,13 @@ import com.epam.university.java.project.core.cdi.structure.ListDefinition;
 import com.epam.university.java.project.core.cdi.structure.MapDefinition;
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
-
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+
 
 public class BeanFactoryImpl implements BeanFactory {
 
