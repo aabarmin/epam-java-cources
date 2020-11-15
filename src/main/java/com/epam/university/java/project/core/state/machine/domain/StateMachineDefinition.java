@@ -1,5 +1,7 @@
 package com.epam.university.java.project.core.state.machine.domain;
 
+import com.epam.university.java.project.service.StateMachineEventHandler;
+
 import java.util.Collection;
 
 /**

@@ -1,7 +1,12 @@
 package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.io.Resource;
-import com.epam.university.java.project.core.cdi.structure.*;
+import com.epam.university.java.project.core.cdi.structure.MapDefinition;
+import com.epam.university.java.project.core.cdi.structure.MapEntryDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.ListItemDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.ListDefinition;
+import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -113,27 +118,35 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
 
                                 if (event.isStartElement()) {
                                     StartElement startInMapElement = event.asStartElement();
-                                    if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("entry")) {
+                                    if (startInMapElement.getName().getLocalPart()
+                                            .equalsIgnoreCase("entry")) {
                                         entry = new MapEntryDefinitionImpl();
-                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("key")) {
+                                    } else if (startInMapElement.getName().getLocalPart()
+                                            .equalsIgnoreCase("key")) {
                                         event = xmlEventReader.nextEvent();
                                         entry.setKey(event.asCharacters().toString());
-                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("value")) {
+                                    } else if (startInMapElement.getName().getLocalPart()
+                                            .equalsIgnoreCase("value")) {
                                         event = xmlEventReader.nextEvent();
                                         entry.setValue(event.asCharacters().toString());
-                                    } else if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("ref")) {
+                                    } else if (startInMapElement.getName().getLocalPart()
+                                            .equalsIgnoreCase("ref")) {
                                         event = xmlEventReader.nextEvent();
                                         entry.setRef(event.asCharacters().toString());
                                     }
                                 }
-                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase("entry")){
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase("entry")) {
                                     tmpList.add(entry);
                                 }
 
-                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase(tmpName)){
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase(tmpName)) {
                                     break;
                                 }
-                                if (!xmlEventReader.hasNext()){
+                                if (!xmlEventReader.hasNext()) {
                                     throw new RuntimeException();
                                 }
                             }
@@ -142,7 +155,8 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                             beanPropertyDefinition.setData(mapDefinition);
                         }
                         if (isList) {
-                            ArrayList<ListDefinition.ListItemDefinition> tmpList = new ArrayList<>();
+                            ArrayList<ListDefinition.ListItemDefinition> tmpList
+                                    = new ArrayList<>();
                             event = xmlEventReader.nextEvent();
                             while (!event.isStartElement()) {
                                 event = xmlEventReader.nextEvent();
@@ -154,17 +168,21 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
 
                                 if (event.isStartElement()) {
                                     StartElement startInMapElement = event.asStartElement();
-                                    if (startInMapElement.getName().getLocalPart().equalsIgnoreCase("value")) {
+                                    if (startInMapElement.getName().getLocalPart()
+                                            .equalsIgnoreCase("value")) {
                                         event = xmlEventReader.nextEvent();
-                                        ListDefinition.ListItemDefinition itemDefinition = new ListItemDefinitionImpl();
+                                        ListDefinition.ListItemDefinition itemDefinition
+                                                = new ListItemDefinitionImpl();
                                         itemDefinition.setValue(event.asCharacters().toString());
                                         tmpList.add(itemDefinition);
                                     }
                                 }
-                                if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equalsIgnoreCase(tmpName)){
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase(tmpName)) {
                                     break;
                                 }
-                                if (!xmlEventReader.hasNext()){
+                                if (!xmlEventReader.hasNext()) {
                                     throw new RuntimeException();
                                 }
                             }
