@@ -1,4 +1,4 @@
-package com.epam.university.java.project.core.state.machine.domain;
+package com.epam.university.java.project.service;
 
 /**
  * State machine event handler.
