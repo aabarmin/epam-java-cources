@@ -36,6 +36,21 @@ public class Task053Test {
         instance.calculate("1+3-6+#");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void first_BracesOrderNotValid() throws Exception {
+        instance.calculate("(1+1)*((5-3)");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void second_BracesOrderNotValid() throws Exception {
+        instance.calculate("(1+1)*(5-3))");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void third_BracesOrderNotValid() throws Exception {
+        instance.calculate("3-1)");
+    }
+
     @Test
     public void first() {
         String input = "1+2+3";
