@@ -2,11 +2,12 @@ package com.epam.university.java.project.core.cdi.bean;
 
 import com.epam.university.java.project.core.cdi.io.Resource;
 import com.epam.university.java.project.core.cdi.structure.MapDefinition;
-import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.MapEntryDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.MapDefinitionImpl;
+import com.epam.university.java.project.core.cdi.structure.ListItemDefinitionImpl;
 import com.epam.university.java.project.core.cdi.structure.ListDefinition;
 import com.epam.university.java.project.core.cdi.structure.ListDefinitionImpl;
-import com.epam.university.java.project.core.cdi.structure.ListItemDefinitionImpl;
+
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
@@ -135,13 +136,17 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                                         entry.setRef(event.asCharacters().toString());
                                     }
                                 }
-                                if (event.isEndElement() && event.asEndElement().getName()
-                                        .getLocalPart().equalsIgnoreCase("entry")) {
+
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase("entry")) {
                                     tmpList.add(entry);
                                 }
 
-                                if (event.isEndElement() && event.asEndElement().getName()
-                                        .getLocalPart().equalsIgnoreCase(tmpName)) {
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase(tmpName)) {
+
                                     break;
                                 }
                                 if (!xmlEventReader.hasNext()) {
@@ -175,8 +180,10 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
                                         tmpList.add(itemDefinition);
                                     }
                                 }
-                                if (event.isEndElement() && event.asEndElement().getName()
-                                        .getLocalPart().equalsIgnoreCase(tmpName)) {
+
+                                if (event.isEndElement()
+                                        && event.asEndElement().getName().getLocalPart()
+                                        .equalsIgnoreCase(tmpName)) {
                                     break;
                                 }
                                 if (!xmlEventReader.hasNext()) {
