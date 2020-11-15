@@ -142,11 +142,11 @@ public class Task064Test {
     }
 
     @Test
-    public void highStraightVsLowStraightTest() throws Exception {
+    public void straightFromAceToFiveVsTwoPairs() throws Exception {
         assertEquals(
                 "The winner is wrong",
-                2,
-                instance.determineWinner("3d,4s", "6d,7s", "Ad,2h,5c,8s,9h").getId()
+                1,
+                instance.determineWinner("3d,4s", "8d,9s", "Ad,2h,5c,8s,9h").getId()
         );
     }
 }
