@@ -14,7 +14,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Player constructor
+     * Player constructor.
      *
      * @param id         id of the player
      * @param playerHand player's hand

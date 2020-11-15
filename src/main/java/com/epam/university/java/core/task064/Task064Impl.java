@@ -1,6 +1,10 @@
 package com.epam.university.java.core.task064;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class Task064Impl implements Task064 {
 
@@ -15,7 +19,9 @@ public class Task064Impl implements Task064 {
         String[] cardCharPairsSecond = secondHand.split(",");
         String[] cardCharPairsBoard = board.split(",");
 
-        if (cardCharPairsFirst.length != 2 || cardCharPairsSecond.length != 2 || cardCharPairsBoard.length != 5) {
+        if (cardCharPairsFirst.length != 2
+                || cardCharPairsSecond.length != 2
+                || cardCharPairsBoard.length != 5) {
             throw new IllegalArgumentException();
         }
 
@@ -28,8 +34,10 @@ public class Task064Impl implements Task064 {
         List<Card> secondHandCards = getHandCards(cardCharPairsSecond);
         Player secondPlayer = new PlayerImpl(2, secondHandCards);
 
-        Combination firstPlayersCombination = getTheHighestCombination(firstHandCards, boardCards);
-        Combination secondPlayersCombination = getTheHighestCombination(secondHandCards, boardCards);
+        Combination firstPlayersCombination
+                = getTheHighestCombination(firstHandCards, boardCards);
+        Combination secondPlayersCombination
+                = getTheHighestCombination(secondHandCards, boardCards);
 
         int winner = winnerIdBetween(firstPlayersCombination, secondPlayersCombination);
         if (winner == firstPlayer.getId()) {
@@ -41,11 +49,14 @@ public class Task064Impl implements Task064 {
         return null;
     }
 
-    private int winnerIdBetween(Combination firstPlayersCombination, Combination secondPlayersCombination) {
+    private int winnerIdBetween(Combination firstPlayersCombination,
+                                Combination secondPlayersCombination) {
 
-        if (firstPlayersCombination.combinationValue > secondPlayersCombination.combinationValue) {
+        if (firstPlayersCombination.combinationValue
+                > secondPlayersCombination.combinationValue) {
             return 1;
-        } else if (secondPlayersCombination.combinationValue < firstPlayersCombination.combinationValue) {
+        } else if (secondPlayersCombination.combinationValue
+                < firstPlayersCombination.combinationValue) {
             return 2;
         } else {
             if (firstPlayersCombination.theHighestCardInCombination
@@ -173,7 +184,8 @@ public class Task064Impl implements Task064 {
             theHighestCombination.fourthHighestCardInCombination = rankOfQuad;
             List<Integer> listOfExceptions = new ArrayList<>();
             listOfExceptions.add(rankOfQuad);
-            theHighestCombination.fifthCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fifthCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             return theHighestCombination;
         } else if (itIsTheFullHouse(commonCards) != null) {
             theHighestCombination.combinationValue = 7;
@@ -202,9 +214,11 @@ public class Task064Impl implements Task064 {
             theHighestCombination.thirdHighestCardInCombination = tripsRank;
             List<Integer> listOfExceptions = new ArrayList<>();
             listOfExceptions.add(tripsRank);
-            theHighestCombination.fourthHighestCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fourthHighestCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             listOfExceptions.add(theHighestCombination.fourthHighestCardInCombination);
-            theHighestCombination.fifthCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fifthCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             return theHighestCombination;
         } else if (itIsTwoPairs(commonCards) != null) {
             theHighestCombination.combinationValue = 3;
@@ -216,7 +230,8 @@ public class Task064Impl implements Task064 {
             List<Integer> listOfExceptions = new ArrayList<>();
             listOfExceptions.add(ranks[0]);
             listOfExceptions.add(ranks[1]);
-            theHighestCombination.fifthCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fifthCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             return theHighestCombination;
         } else if (itIsPair(commonCards) != -1) {
             theHighestCombination.combinationValue = 2;
@@ -225,11 +240,14 @@ public class Task064Impl implements Task064 {
             theHighestCombination.secondHighestCardInCombination = pairRank;
             List<Integer> listOfExceptions = new ArrayList<>();
             listOfExceptions.add(pairRank);
-            theHighestCombination.thirdHighestCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.thirdHighestCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             listOfExceptions.add(theHighestCombination.thirdHighestCardInCombination);
-            theHighestCombination.fourthHighestCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fourthHighestCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             listOfExceptions.add(theHighestCombination.fourthHighestCardInCombination);
-            theHighestCombination.fifthCardInCombination = getTheHighestCardExceptSome(commonCards, listOfExceptions);
+            theHighestCombination.fifthCardInCombination
+                    = getTheHighestCardExceptSome(commonCards, listOfExceptions);
             return theHighestCombination;
         } else {
             theHighestCombination.combinationValue = 1;
@@ -243,7 +261,8 @@ public class Task064Impl implements Task064 {
         }
     }
 
-    private int getTheHighestCardExceptSome(List<CardImpl> commonCards, List<Integer> listOfExceptions) {
+    private int getTheHighestCardExceptSome(List<CardImpl> commonCards,
+                                            List<Integer> listOfExceptions) {
         List<Integer> ranks = getCardsByRanks(commonCards);
         ranks.removeAll(listOfExceptions);
         return ranks.get(0);

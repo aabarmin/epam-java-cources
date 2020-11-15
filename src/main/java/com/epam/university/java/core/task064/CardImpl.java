@@ -9,6 +9,7 @@ public class CardImpl implements Card, Comparable<CardImpl> {
 
     /**
      * Card constructor.
+     *
      * @param rank rank of the card
      * @param suit suit of the card
      */
@@ -52,8 +53,8 @@ public class CardImpl implements Card, Comparable<CardImpl> {
             return false;
         }
         CardImpl card = (CardImpl) o;
-        return rank == card.rank &&
-                suit == card.suit;
+        return rank == card.rank
+                && suit == card.suit;
     }
 
     @Override
