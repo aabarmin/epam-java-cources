@@ -136,7 +136,7 @@ public class Task064Test {
     public void flushRoyalVsFourOfKindTest() throws Exception {
         assertEquals(
                 "The winner is wrong",
-                1,
+                2,
                 instance.determineWinner("5d,5s", "Qd,Kd", "10d,Jd,Ad,5h,5c").getId()
         );
     }
