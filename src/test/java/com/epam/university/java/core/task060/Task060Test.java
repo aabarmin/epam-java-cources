@@ -29,12 +29,12 @@ public class Task060Test {
         assertEquals("Node not found", "test4", instance.get(cache, 4));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetWithoutCache() {
         instance.set(null, 1, "test");
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testGetWithoutCache() {
         instance.get(null, 1);
     }
