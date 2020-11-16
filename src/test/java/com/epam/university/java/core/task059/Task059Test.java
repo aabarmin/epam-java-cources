@@ -3,7 +3,10 @@ package com.epam.university.java.core.task059;
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -23,9 +26,9 @@ public class Task059Test {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void substringIsNull() {
-        String startPath = getClass().getResource("/task059/").getPath();
-        instance.find(startPath, null);
+    public void substringIsNull() throws URISyntaxException {
+        Path startPath = Paths.get(getClass().getResource("/task059/").toURI());
+        instance.find(startPath.toString(), null);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -34,8 +37,8 @@ public class Task059Test {
     }
 
     @Test
-    public void oneFile() {
-        Path startPath = Path.of(getClass().getResource("/task059/").getPath());
+    public void oneFile() throws URISyntaxException {
+        Path startPath = Paths.get(getClass().getResource("/task059/").toURI());
         List<String> result = instance.find(startPath.toString(), "test2");
 
         assertEquals("Incorrect list size", 1, result.size());
@@ -46,8 +49,8 @@ public class Task059Test {
     }
 
     @Test
-    public void severalFiles() {
-        Path startPath = Path.of(getClass().getResource("/task059/").getPath());
+    public void severalFiles() throws URISyntaxException {
+        Path startPath = Paths.get(getClass().getResource("/task059/").toURI());
         List<String> result = instance.find(startPath.toString(), "test3");
 
         assertEquals("Incorrect list size", 3, result.size());
@@ -66,9 +69,9 @@ public class Task059Test {
     }
 
     @Test
-    public void substringNotFound() {
-        String startPath = getClass().getResource("/task059/").getPath();
-        List<String> result = instance.find(startPath, "test4");
+    public void substringNotFound() throws URISyntaxException {
+        Path startPath = Paths.get(getClass().getResource("/task059/").toURI());
+        List<String> result = instance.find(startPath.toString(), "test4");
 
         assertEquals("Not empty list", 0, result.size());
     }
