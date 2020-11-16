@@ -10,7 +10,6 @@ package com.epam.university.java.core.task065;
  * distance value will be unconfirmed (gray line).
  * After that the accountant will start counting manually from the very beginning.
  * The accountant spends a lot of time on this every month.
- *
  * Your task: to parse the HTML file and create a Table of ways,
  * taking into account all comments. Make a method that counts the distance in one day.
  * If a line contains a comment,
