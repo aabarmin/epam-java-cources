@@ -23,6 +23,11 @@ public class Task061Test {
         instance.convertToArabic("thirty two");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void romanNumberWithNull() {
+        instance.convertToArabic(null);
+    }
+
     @Test
     public void firstArabic() {
         int arabic = 9;
