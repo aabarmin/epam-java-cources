@@ -77,4 +77,11 @@ public class Task024Test {
         );
     }
 
+    @Test
+    public void frenchWords() throws Exception {
+        assertArrayEquals("Invalid result",
+                new String[] {"tests", "en", "français"},
+                instance.getWordsCount("testsEnFrançais").toArray()
+        );
+    }
 }

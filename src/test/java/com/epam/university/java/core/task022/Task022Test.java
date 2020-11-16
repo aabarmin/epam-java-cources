@@ -117,4 +117,19 @@ public class Task022Test {
                 instance.minSum(numbers)
         );
     }
+
+    @Test
+    public void test007() throws Exception {
+        final List<Integer> numbers = Arrays.asList(-1, -1, 1, -1, 1, 1);
+        assertEquals(
+                "Maximum value is incorrect",
+                1,
+                instance.maxSum(numbers)
+        );
+        assertEquals(
+                "Minimum value in incorrect",
+                -1,
+                instance.minSum(numbers)
+        );
+    }
 }
