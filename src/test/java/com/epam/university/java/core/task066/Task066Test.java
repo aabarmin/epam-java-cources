@@ -14,6 +14,21 @@ public class Task066Test {
         instance = TestHelper.getInstance(com.epam.university.java.core.task066.Task066.class);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNull() {
+        assertEquals("Invalid result", 7, instance.repeatString(null, 10));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithNegativeNumber() {
+        assertEquals("Invalid result", 7, instance.repeatString("aba", -5));
+    }
+
+    @Test
+    public void test0() {
+        assertEquals("Invalid result", 0, instance.repeatString("aba", 0));
+    }
+
     @Test
     public void test1() {
         assertEquals("Invalid result", 7, instance.repeatString("aba", 10));
