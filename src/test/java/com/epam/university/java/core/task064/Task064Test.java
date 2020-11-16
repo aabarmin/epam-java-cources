@@ -91,7 +91,7 @@ public class Task064Test {
 
     @Test
     public void splitTest() throws Exception {
-        assertNull("Pot should be splitted",
+        assertNull("Pot should be split",
                 instance.determineWinner("9s,9c", "Kd,Qs", "10c,10d,10h,10s,As")
         );
     }
