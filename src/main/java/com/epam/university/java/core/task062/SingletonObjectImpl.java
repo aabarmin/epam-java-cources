@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SingletonObjectImpl implements SingletonObject, Serializable {
 
-    private static SingletonObject instance ;
+    private static SingletonObject instance;
 
 
     /**
@@ -19,7 +19,7 @@ public class SingletonObjectImpl implements SingletonObject, Serializable {
      * @return singleton instance
      */
     public static SingletonObject getInstance() {
-        if (instance == null){
+        if (instance == null) {
             instance = new SingletonObjectImpl();
         }
         return instance;
