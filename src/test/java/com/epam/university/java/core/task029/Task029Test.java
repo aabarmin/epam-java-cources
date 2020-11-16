@@ -97,4 +97,41 @@ public class Task029Test {
                 instance.fillCrossword(source, words).toArray(new String[0])
         );
     }
+
+    @Test
+    public void testThird() throws Exception {
+        final Collection<String> source = Arrays.asList(
+                "++++++++++",
+                "++++-+++++",
+                "+----+++++",
+                "++++-+++++",
+                "++++-+++++",
+                "++++-+++++",
+                "++++-+++++",
+                "++-------+",
+                "++++-+++++",
+                "++++++++++"
+        );
+        final Collection<String> target = Arrays.asList(
+                "++++++++++",
+                "++++H+++++",
+                "+JAVA+++++",
+                "++++R+++++",
+                "++++D+++++",
+                "++++C+++++",
+                "++++O+++++",
+                "++FOREVER+",
+                "++++E+++++",
+                "++++++++++"
+        );
+        final Collection<String> words = Arrays.asList(
+                "JAVA",
+                "HARDCORE",
+                "FOREVER"
+        );
+        assertArrayEquals("Incorrect answer",
+                target.toArray(new String[0]),
+                instance.fillCrossword(source, words).toArray(new String[0])
+        );
+    }
 }

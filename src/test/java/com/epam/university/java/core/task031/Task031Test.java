@@ -31,6 +31,21 @@ public class Task031Test {
         client.stop();
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSingleClientNullMessage() throws Exception {
+        final Server server = factory.createServer();
+        final Client client = factory.createClient();
+        //
+        server.start();
+        client.start();
+        //
+        client.sendMessage(null);
+        //
+        server.stop();
+        client.stop();
+    }
+
+
     @Test
     public void testSingleClientOneMessage() throws Exception {
         final Server server = factory.createServer();

@@ -74,7 +74,7 @@ public class BookServiceTest {
         newBook.setTitle("Demo book");
         newBook.setAuthors(Arrays.asList("Author 1", "Author 2"));
         final Book savedBook = bookService.save(newBook);
-        assertTrue("Saved book have no id", savedBook.getId() > 0);
+        assertTrue("Saved book has no id", savedBook.getId() > 0);
         // get book by id
         final Book bookById = bookService.getBook(savedBook.getId());
         assertNotNull("Can't get saved book by id", bookById);
@@ -86,8 +86,8 @@ public class BookServiceTest {
                 booksCollection.contains(bookById));
         // remove book with service
         bookService.remove(bookById);
-        assertNull("Book not removed", bookService.getBook(bookById.getId()));
-        assertFalse("Book not remove", bookService.getBooks().contains(bookById));
+        assertNull("Book is not removed", bookService.getBook(bookById.getId()));
+        assertFalse("Book is not removed", bookService.getBooks().contains(bookById));
     }
 
     @Test
