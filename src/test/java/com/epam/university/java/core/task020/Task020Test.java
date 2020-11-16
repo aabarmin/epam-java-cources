@@ -80,4 +80,17 @@ public class Task020Test {
                 instance.calculate(parts)
         );
     }
+
+    @Test
+    public void fourCommonParts() throws Exception {
+        final List<String> parts = Arrays.asList(
+                "aabcd1",
+                "bcd1ea",
+                "cd1efa"
+        );
+        assertEquals("There are four common parts",
+                4,
+                instance.calculate(parts)
+        );
+    }
 }

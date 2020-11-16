@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.OutputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -48,7 +50,7 @@ public class Task062Test {
         );
         personExt.setSpouse(TestHelper.getInstance(PersonExternalizable.class));
 
-        singletonObject = SingletonObject.getInstance();
+        singletonInitialization();
     }
 
     @Test
@@ -90,5 +92,21 @@ public class Task062Test {
                 singletonObject,
                 obj
         );
+    }
+
+    /**
+     * Initialization of singleton instance.
+     *
+     * @throws Exception if the class or field cannot be located
+     */
+    public void singletonInitialization() throws Exception {
+        Class<?> singletonClass = Class.forName(SingletonObject.class.getName() + "Impl");
+        Constructor<?> singletonConstructor = singletonClass.getDeclaredConstructor();
+        singletonConstructor.setAccessible(true);
+        singletonObject = (SingletonObject) singletonConstructor.newInstance();
+
+        Field instanceField = singletonClass.getDeclaredField("instance");
+        instanceField.setAccessible(true);
+        instanceField.set(this.singletonObject, this.singletonObject);
     }
 }
