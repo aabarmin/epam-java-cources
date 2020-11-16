@@ -7,11 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class Task066Test {
-    private com.epam.university.java.core.task066.Task066 instance;
+    private Task066 instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(com.epam.university.java.core.task066.Task066.class);
+        instance = TestHelper.getInstance(Task066.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
