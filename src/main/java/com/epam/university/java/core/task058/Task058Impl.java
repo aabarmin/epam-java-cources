@@ -23,7 +23,7 @@ public class Task058Impl implements Task058 {
                 matrix[topBorder][i] = number;
                 number++;
             }
-            if (number > maxValue){
+            if (number > maxValue) {
                 break;
             }
             topBorder++;
@@ -32,7 +32,7 @@ public class Task058Impl implements Task058 {
                 matrix[i][rightBorder] = number;
                 number++;
             }
-            if (number > maxValue){
+            if (number > maxValue) {
                 break;
             }
             rightBorder--;
@@ -41,16 +41,16 @@ public class Task058Impl implements Task058 {
                 matrix[bottomBorder][i] = number;
                 number++;
             }
-            if (number > maxValue){
+            if (number > maxValue) {
                 break;
             }
-                bottomBorder--;
+            bottomBorder--;
 
             for (int i = bottomBorder; i >= topBorder; i--) {
                 matrix[i][leftBorder] = number;
                 number++;
             }
-            if (number > maxValue){
+            if (number > maxValue) {
                 break;
             }
             leftBorder++;
