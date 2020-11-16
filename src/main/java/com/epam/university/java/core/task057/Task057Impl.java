@@ -4,13 +4,13 @@ public class Task057Impl implements Task057 {
     @Override
     public Window getWindowForDelivery(int level, int entrances, int numberOfFlat) {
 
-        if (level == 0|| entrances == 0 || numberOfFlat == 0){
+        if (level == 0 || entrances == 0 || numberOfFlat == 0) {
             throw new IllegalArgumentException();
         }
 
         House house = new House(level, entrances);
         house.fillInEntrances();
-        if (numberOfFlat > house.amountOfFlats){
+        if (numberOfFlat > house.amountOfFlats) {
             throw new IllegalArgumentException();
         }
 
@@ -28,17 +28,21 @@ public class Task057Impl implements Task057 {
         int levelOfWindow = floorOfTheFlat / 2 + 1;
         int numberOfWindow;
         if (side.equals(SideType.FRONT_SIDE)) {
-            numberOfWindow = getNumberOfWindowFrontSide(floorOfTheFlat, entranceOfTheFlat, numberOfEntrance, numberOfFlat);
+            numberOfWindow = getNumberOfWindowFrontSide(floorOfTheFlat, entranceOfTheFlat,
+                    numberOfEntrance, numberOfFlat);
         } else {
-            numberOfWindow = getNumberOfWindowBackSide(floorOfTheFlat, entranceOfTheFlat, numberOfEntrance, numberOfFlat, entrances);
+            numberOfWindow = getNumberOfWindowBackSide(floorOfTheFlat, entranceOfTheFlat,
+                    numberOfEntrance, numberOfFlat, entrances);
         }
         return new WindowImpl(levelOfWindow, numberOfWindow, side);
 
     }
 
-    private int getNumberOfWindowBackSide(int floorOfTheFlat, Entrance entranceOfTheFlat, int numberOfEntrance, int numberOfFlat, int totalEntrances) {
+    private int getNumberOfWindowBackSide(int floorOfTheFlat, Entrance entranceOfTheFlat,
+                                          int numberOfEntrance,
+                                          int numberOfFlat, int totalEntrances) {
         int[][] flatsOfTheEntrance = entranceOfTheFlat.flats;
-        int numberOfWindow;
+
         int numberOfFlatInSection = 0;
         int amountOfPreviousEntranceWindows = 0;
 
@@ -50,17 +54,15 @@ public class Task057Impl implements Task057 {
         }
         numberOfFlatInSection *= 2;
 
-        numberOfWindow = numberOfFlatInSection + amountOfPreviousEntranceWindows;
-
-        return numberOfWindow;
+        return numberOfFlatInSection + amountOfPreviousEntranceWindows;
 
     }
 
-    private int getNumberOfWindowFrontSide(int floorOfTheFlat, Entrance entranceOfTheFlat, int numberOfEntrance, int numberOfFlat) {
+    private int getNumberOfWindowFrontSide(int floorOfTheFlat, Entrance entranceOfTheFlat,
+                                           int numberOfEntrance, int numberOfFlat) {
         int[][] flatsOfTheEntrance = entranceOfTheFlat.flats;
-        int numberOfWindow;
         int numberOfFlatInSection = 0;
-        int amountOfPreviousEntranceWindows = 0;
+        int amountOfPreviousEntranceWindows;
 
         amountOfPreviousEntranceWindows = (numberOfEntrance - 1) * 8;
         for (int i = 0; i < 4; i++) {
@@ -69,8 +71,8 @@ public class Task057Impl implements Task057 {
             }
         }
         numberOfFlatInSection *= 2;
-        numberOfWindow = numberOfFlatInSection + amountOfPreviousEntranceWindows;
-        return numberOfWindow;
+
+        return numberOfFlatInSection + amountOfPreviousEntranceWindows;
     }
 
 
@@ -152,18 +154,6 @@ public class Task057Impl implements Task057 {
                     flats[i][2] = 4 + 8 * (i - 1) / 2 + startNumber;
                     flats[i][3] = 3 + 8 * (i - 1) / 2 + startNumber;
                 }
-
-//                if (i % 2 == 0) {
-//                    for (int j = 0; j < 4; j++) {
-//                        flats[i][j] = startNumber;
-//                        startNumber++;
-//                    }
-//                } else {
-//                    for (int j = 3; j >= 0; j--) {
-//                        flats[i][j] = startNumber;
-//                        startNumber++;
-//                    }
-//            }
             }
         }
     }

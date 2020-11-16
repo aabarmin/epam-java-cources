@@ -11,7 +11,8 @@ import static org.junit.Assert.assertNotNull;
 
 public class Task065Test {
     private Task065 instance;
-private String filePath = "/home/petr/Desktop/epam/epam-java-cources/src/main/resources/task065/wayTable.html";
+    private String filePath = "/task065/wayTable.html";
+
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task065.class);
