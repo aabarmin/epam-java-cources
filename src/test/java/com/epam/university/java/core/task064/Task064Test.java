@@ -91,7 +91,7 @@ public class Task064Test {
 
     @Test
     public void splitTest() throws Exception {
-        assertNull("Pot should be splitted",
+        assertNull("Pot should be split",
                 instance.determineWinner("9s,9c", "Kd,Qs", "10c,10d,10h,10s,As")
         );
     }
@@ -136,8 +136,17 @@ public class Task064Test {
     public void flushRoyalVsFourOfKindTest() throws Exception {
         assertEquals(
                 "The winner is wrong",
-                1,
+                2,
                 instance.determineWinner("5d,5s", "Qd,Kd", "10d,Jd,Ad,5h,5c").getId()
+        );
+    }
+
+    @Test
+    public void straightFromAceToFiveVsTwoPairs() throws Exception {
+        assertEquals(
+                "The winner is wrong",
+                1,
+                instance.determineWinner("3d,4s", "8d,9s", "Ad,2h,5c,8s,9h").getId()
         );
     }
 }

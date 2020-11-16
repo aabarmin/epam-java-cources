@@ -13,6 +13,7 @@ import java.io.OutputStream;
  *  need to override equals() and hashcode() methods).
  *
  *  Deserialization of SingletonObject instance should not break the Singleton pattern.
+ *  You should create a field with name "instance" in SingletonObjectImpl class.
  * </p>
  */
 

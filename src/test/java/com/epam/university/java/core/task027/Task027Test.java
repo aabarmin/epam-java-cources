@@ -117,4 +117,13 @@ public class Task027Test {
                 instance.extract("9998999910000").toArray(new Integer[0])
         );
     }
+
+    @Test
+    public void extract12() throws Exception {
+        assertArrayEquals(
+                "Invalid extraction",
+                new Integer[]{99998, 99999, 100000},
+                instance.extract("9999899999100000").toArray(new Integer[3])
+        );
+    }
 }
