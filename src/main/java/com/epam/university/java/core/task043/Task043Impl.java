@@ -37,7 +37,20 @@ public class Task043Impl implements Task043 {
         morseDecodeAlphabet.put("-.--", 'Y');
         morseDecodeAlphabet.put("--..", 'Z');
         morseDecodeAlphabet.put("--..--", ',');
+        morseDecodeAlphabet.put(".----", '1');
+        morseDecodeAlphabet.put("..---", '2');
+        morseDecodeAlphabet.put("...--", '3');
+        morseDecodeAlphabet.put("....-", '4');
+        morseDecodeAlphabet.put(".....", '5');
+        morseDecodeAlphabet.put("-....", '6');
+        morseDecodeAlphabet.put("--...", '7');
+        morseDecodeAlphabet.put("---..", '8');
+        morseDecodeAlphabet.put("----.", '9');
+        morseDecodeAlphabet.put("-----", '0');
+
+
     }
+
 
     static {
         morseAlphabet.put('A', ".-");
@@ -67,6 +80,17 @@ public class Task043Impl implements Task043 {
         morseAlphabet.put('Y', "-.--");
         morseAlphabet.put('Z', "--..");
         morseAlphabet.put(',', "--..--");
+        morseAlphabet.put('1', ".----");
+        morseAlphabet.put('2', "..---");
+        morseAlphabet.put('3', "...--");
+        morseAlphabet.put('4', "....-");
+        morseAlphabet.put('5', ".....");
+        morseAlphabet.put('6', "-....");
+        morseAlphabet.put('7', "--...");
+        morseAlphabet.put('8', "---..");
+        morseAlphabet.put('9', "----.");
+        morseAlphabet.put('0', "-----");
+
     }
 
     @Override
