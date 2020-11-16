@@ -11,7 +11,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class Task065Test {
     private Task065 instance;
-
+private String filePath = "/home/petr/Desktop/epam/epam-java-cources/src/main/resources/task065/wayTable.html";
     @Before
     public void setUp() throws Exception {
         instance = TestHelper.getInstance(Task065.class);
@@ -29,13 +29,13 @@ public class Task065Test {
 
     @Test
     public void loadTable1() {
-        final WayTable table = instance.getWayTable("/task065/wayTable.html");
+        final WayTable table = instance.getWayTable(filePath);
         assertNotNull("Wrong all distance", table);
     }
 
     @Test
     public void loadTable2() {
-        final WayTable table = instance.getWayTable("/task065/wayTable.html");
+        final WayTable table = instance.getWayTable(filePath);
         assertEquals("Wrong all distance",
                 3876,
                 table.getAllDistance()
@@ -44,7 +44,7 @@ public class Task065Test {
 
     @Test
     public void loadTable3() {
-        final WayTable table = instance.getWayTable("/task065/wayTable.html");
+        final WayTable table = instance.getWayTable(filePath);
         assertEquals("Wrong count ways from html file",
                 98,
                 table.getCountWays()
@@ -53,7 +53,7 @@ public class Task065Test {
 
     @Test
     public void loadTable4() {
-        final WayTable table = instance.getWayTable("/task065/wayTable.html");
+        final WayTable table = instance.getWayTable(filePath);
         assertEquals("Incorrect XML parsing",
                 502,
                 table.getDistOfDate(LocalDate.parse("2020-10-01"))
