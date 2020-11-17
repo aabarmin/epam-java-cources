@@ -41,7 +41,8 @@ public class Task068Test {
     @Test
     public void second() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, -2, -7, 9, 1, -8, -5));
-        List<Double> expect = new ArrayList<>(Arrays.asList(0.42857142857142855, 0.5714285714285714, 0.0));
+        List<Double> expect = new ArrayList<>(Arrays.asList(0.42857142857142855,
+                0.5714285714285714, 0.0));
 
         assertEquals("Invalid result", expect, instance.countOfRatios(input));
     }
