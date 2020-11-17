@@ -1,10 +1,10 @@
-package com.epam.university.java.core.Task069;
+package com.epam.university.java.core.task069;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class Task069Test {
     Task069 instance;
@@ -36,6 +36,7 @@ public class Task069Test {
 
     @Test
     public void biggerThanInteger() {
-        assertEquals("Wrong result", 59884848483595L, instance.nextSameDigitsNumber(59884848483559L));
+        assertEquals("Wrong result", 59884848483595L,
+                instance.nextSameDigitsNumber(59884848483559L));
     }
 }

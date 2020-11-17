@@ -1,4 +1,4 @@
-package com.epam.university.java.core.Task069;
+package com.epam.university.java.core.task069;
 
 /**
  * Find the next number, containing same digits.
