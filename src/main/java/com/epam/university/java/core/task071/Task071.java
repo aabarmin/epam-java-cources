@@ -34,7 +34,7 @@ public interface Task071 {
 
 
     /**
-     * Method that finds dates between in quarters
+     * Method that finds dates between in quarters.
      * @param from starting date
      * @param to the last date of a period
      * @return a list of periods in quarters
@@ -42,7 +42,7 @@ public interface Task071 {
     List<String> periodBetweenQuarters(LocalDate from, LocalDate to);
 
     /**
-     * Method that finds dates between in months
+     * Method that finds dates between in months.
      * @param from starting date
      * @param to the last date of a period
      * @return a list of periods in months
@@ -50,7 +50,7 @@ public interface Task071 {
     List<String> periodBetweenMonths(LocalDate from, LocalDate to);
 
     /**
-     * Method that finds dates between in years
+     * Method that finds dates between in years.
      * @param from starting date
      * @param to the last date of a period
      * @return a list of periods in years
@@ -58,7 +58,7 @@ public interface Task071 {
     List<String> periodBetweenYears(LocalDate from, LocalDate to);
 
     /**
-     * Method that finds dates between in weeks
+     * Method that finds dates between in weeks.
      * @param from starting date
      * @param to the last date of a period
      * @return a list of periods in weeks
