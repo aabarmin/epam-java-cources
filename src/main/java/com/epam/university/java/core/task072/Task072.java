@@ -3,18 +3,21 @@ package com.epam.university.java.core.task072;
 public interface Task072 {
 
     /**
+     * <p>
      * Task072.
      * In this task you need to implement some methods
      * using varargs.
      * I hope you will get in touch
      * with it and the process of getting the topic
      * won't be hard and boring.
+     * </p>
+     *
      * <p>
      * Have fun :)
-     */
-
-    /**
+     * </p>
+     * <p>
      * Method that finds an average number.
+     * </p>
      *
      * @param numbers some numbers
      * @returns an average number
@@ -31,7 +34,7 @@ public interface Task072 {
 
     /**
      * Method that finds a result of boolean
-     * operation
+     * operation.
      *
      * @param operation logical operation
      * @param values    boolean values

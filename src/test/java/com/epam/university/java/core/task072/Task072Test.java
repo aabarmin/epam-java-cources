@@ -49,39 +49,42 @@ public class Task072Test {
 
     @Test
     public void testLogicalOperationAndFalse() {
-        boolean result = instance.logicalOperations("AND", false,false,false);
+        boolean result = instance.logicalOperations("AND", false, false, false);
         boolean target = false;
         assertEquals("Incorrect average number", target, result);
     }
 
     @Test
     public void testLogicalOperationAndTrue() {
-        boolean result = instance.logicalOperations("AND", true,true);
+        boolean result = instance.logicalOperations("AND", true, true);
         boolean target = true;
         assertEquals("Incorrect average number", target, result);
     }
+
     @Test
     public void testLogicalOperationOrFalse() {
-        boolean result = instance.logicalOperations("OR", false,false,false,false);
+        boolean result = instance.logicalOperations("OR", false, false, false, false);
         boolean target = false;
         assertEquals("Incorrect average number", target, result);
     }
+
     @Test
     public void testLogicalOperationOrTrue() {
-        boolean result = instance.logicalOperations("OR", true,false,false);
+        boolean result = instance.logicalOperations("OR", true, false, false);
         boolean target = true;
         assertEquals("Incorrect average number", target, result);
     }
 
     @Test
     public void testLogicalOperationXorTrue() {
-        boolean result = instance.logicalOperations("XOR", true,false,false, true);
+        boolean result = instance.logicalOperations("XOR", true, false, false, true);
         boolean target = true;
         assertEquals("Incorrect average number", target, result);
     }
+
     @Test
     public void testLogicalOperationXorFalse() {
-        boolean result = instance.logicalOperations("XOR", true,true,true);
+        boolean result = instance.logicalOperations("XOR", true, true, true);
         boolean target = false;
         assertEquals("Incorrect average number", target, result);
     }
