@@ -12,12 +12,12 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class Task068Test {
+public class Task073Test {
     Task068 instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = TestHelper.getInstance(Task068.class);
+        instance = TestHelper.getInstance(Task073.class);
     }
 
     @Test(expected = IllegalArgumentException.class)
