@@ -39,9 +39,9 @@ public class Task046Test {
                 "0 1", "0 2", "1 2"
         );
         List<String> result = instance.assembleMatryoshka(2, 3);
-        assertTrue(target.containsAll(result)
-                && result.containsAll(target)
-                && target.size() == result.size());
+        assertTrue("Target doesn't contain all result items", target.containsAll(result));
+        assertTrue("Result doesn't contain all target items", result.containsAll(target));
+        assertEquals("Target and result have different size", target.size(), result.size());
     }
 
     @Test
@@ -50,9 +50,9 @@ public class Task046Test {
                 "0 1 2", "0 1 3", "0 2 3", "1 2 3"
         );
         List<String> result = instance.assembleMatryoshka(3, 4);
-        assertTrue(target.containsAll(result)
-                && result.containsAll(target)
-                && target.size() == result.size());
+        assertTrue("Target doesn't contain all result items", target.containsAll(result));
+        assertTrue("Result doesn't contain all target items", result.containsAll(target));
+        assertEquals("Target and result have different size", target.size(), result.size());
     }
 
     @Test
@@ -64,8 +64,8 @@ public class Task046Test {
                 "1 2 4 5", "1 3 4 5", "2 3 4 5"
         );
         List<String> result = instance.assembleMatryoshka(4, 6);
-        assertTrue(target.containsAll(result)
-                && result.containsAll(target)
-                && target.size() == result.size());
+        assertTrue("Target doesn't contain all result items", target.containsAll(result));
+        assertTrue("Result doesn't contain all target items", result.containsAll(target));
+        assertEquals("Target and result have different size", target.size(), result.size());
     }
 }
