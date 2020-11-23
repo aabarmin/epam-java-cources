@@ -1,6 +1,4 @@
-package com.epam.university.java.core.task068;
-
-//import com.epam.university.java.core.helper.TestHelper;
+package com.epam.university.java.core.task073;
 
 import com.epam.university.java.core.helper.TestHelper;
 import org.junit.Before;
@@ -13,7 +11,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class Task073Test {
-    Task068 instance;
+    Task073 instance;
 
     @Before
     public void setUp() throws Exception {

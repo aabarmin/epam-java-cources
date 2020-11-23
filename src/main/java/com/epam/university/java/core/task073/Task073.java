@@ -1,4 +1,4 @@
-package com.epam.university.java.core.task068;
+package com.epam.university.java.core.task073;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ public interface Task073 {
      * @param listOfNumbers list of input numbers;
      * @return collection of ratios.
      */
-    public List<Double> countOfRatios(List<Integer> listOfNumbers);
+    List<Double> countOfRatios(List<Integer> listOfNumbers);
 }
