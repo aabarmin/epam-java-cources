@@ -34,7 +34,7 @@ public class Task072Test {
     public void testAverageNumber() {
         double result = instance.averageNum(2, 252, 23, 432, 21, -15);
         double target = 119.17;
-        assertEquals("Average number is incorrect", target, result);
+        assertEquals("Average number is incorrect", target, result, 0.01);
     }
 
 
