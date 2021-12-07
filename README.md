@@ -30,7 +30,7 @@ As a result, you'll have a folder called `epam-java-courses` locally.
 ## How to get updates of a remote repository
 
 When the fork is created it'll not receive updates automatically, it's necessary making some manual configuration 
-for your local repository - you need add a new remote to your local repository. To do it, execute the following
+for your local repository - you need to add a new remote to your local repository. To do it, execute the following
 command:
 
 ```shell script
