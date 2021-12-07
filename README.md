@@ -14,7 +14,7 @@ copy of the repository and all your implementations will stay in your own reposi
 has both benefits and drawbacks:
 
 * Benefit - nobody sees your code except yourself.
-* Drawback - nobody sees your code expect yourself.
+* Drawback - nobody sees your code except yourself.
 
 ## How to make a fork of this repository
 
